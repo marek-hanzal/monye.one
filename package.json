@@ -16,7 +16,8 @@
         "dev": "turbo run dev --no-daemon --no-cache --force --parallel",
         "start": "turbo run start --no-daemon --parallel",
         "prisma-format": "turbo run prisma-format --no-daemon --parallel",
-        "prisma-generate": "turbo run prisma-generate --no-daemon --parallel"
+        "prisma-generate": "turbo run prisma-generate --no-daemon --parallel",
+        "prisma-migrate-reset": "turbo run prisma-migrate-reset --no-daemon --parallel"
     },
     "devDependencies": {
         "turbo": "^1.7.0"

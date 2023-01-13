@@ -1,14 +1,14 @@
 import logo              from "@/monye.one/assets/logo/logo.svg";
 import {withTranslation} from "@leight/i18n-server";
-import {withLabLayout}   from "@monye.one/lab";
+import {withBookLayout}  from "@monye.one/book";
 
-export default withLabLayout(function Index() {
+export default withBookLayout(function Index() {
     return (
-        <h1>Lab here!!</h1>
+        <h1>Book here!!</h1>
     );
 }, {logo});
 
 export const getServerSideProps = withTranslation([
     "common",
-    "lab"
+    "book"
 ]);

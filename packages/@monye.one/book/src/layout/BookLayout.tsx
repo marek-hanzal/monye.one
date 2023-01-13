@@ -8,9 +8,9 @@ import {
 import {
     PrimaryButton,
     SessionOverlay,
-    useAuthenticatedSession
+    useUnauthenticatedRedirect
 }                       from "@monye.one/ui";
-import {signIn}         from "next-auth/react";
+import {signOut}        from "next-auth/react";
 import {useTranslation} from "next-i18next";
 import Image            from "next/image";
 import Link             from "next/link";
@@ -38,14 +38,14 @@ const useStyles = createStyles(theme => ({
     },
 }));
 
-export interface IPublicLayoutProps extends PropsWithChildren {
+export interface IBookLayoutProps extends PropsWithChildren {
     logo: ComponentProps<typeof Image>["src"];
 }
 
-export const PublicLayout: FC<IPublicLayoutProps> = ({logo, children}) => {
-    useAuthenticatedSession({redirect: "/book"});
+export const BookLayout: FC<IBookLayoutProps> = ({logo, children}) => {
+    useUnauthenticatedRedirect();
     const {classes, theme} = useStyles();
-    const {t}              = useTranslation("public");
+    const {t}              = useTranslation("book");
     return <>
         <SessionOverlay/>
         <Box>
@@ -59,10 +59,10 @@ export const PublicLayout: FC<IPublicLayoutProps> = ({logo, children}) => {
                     </Group>
                     <Group>
                         <PrimaryButton
-                            onClick={() => signIn()}
+                            onClick={() => signOut()}
                             withTranslation={{
-                                label:     "button.sign-in",
-                                namespace: "public",
+                                label:     "button.sign-out",
+                                namespace: "book",
                             }}
                         />
                     </Group>

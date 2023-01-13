@@ -23,6 +23,9 @@
                 "prisma/schema.prisma"
             ]
         },
+        "prisma-migrate-reset": {
+            "cache": false
+        },
         "lint": {
             "outputMode": "new-only",
             "inputs": [

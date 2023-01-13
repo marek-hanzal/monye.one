@@ -45,7 +45,7 @@ const PuffSmith = (props: AppProps & { colorScheme: ColorScheme }) => {
 
     return <>
         <Head>
-            <title>Puff Smith</title>
+            <title>monye.one</title>
             <meta name={"viewport"} content={"minimum-scale=1, initial-scale=1, width=device-width"}/>
             <link rel={"shortcut icon"} href={"/favicon.ico"}/>
         </Head>
