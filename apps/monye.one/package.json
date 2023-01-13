@@ -10,7 +10,7 @@
         "prisma-generate": "npx dotenv -c development -- npx prisma generate",
         "prisma-format": "npx dotenv -c development -- npx prisma format",
         "prisma-migrate-reset": "npx dotenv -c development -- npx prisma migrate reset --force",
-        "prisma-migrate-dev": "npx dotenv -c development -- npx prisma migrate dev --create-only",
+        "prisma-migrate-dev": "npx dotenv -c development -- npx prisma migrate dev",
         "lint": "npx dotenv -c development -- next lint",
         "start": "next start"
     },
