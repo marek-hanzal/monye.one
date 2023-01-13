@@ -1,4 +1,4 @@
-import {type AppRouter} from "@/monye.one/server/trpc/router/_app";
+import {type AppRouter} from "@monye.one/trpc-server";
 import {
     httpBatchLink,
     loggerLink
@@ -28,9 +28,5 @@ export const trpc = createTRPCNext<AppRouter>({
     ssr: false,
 });
 
-/**
- * Inference helpers
- * @example type HelloOutput = RouterTypes['example']['hello']['output']
- **/
 export type RouterInputTypes = inferRouterInputs<AppRouter>;
 export type RouterOutputTypes = inferRouterOutputs<AppRouter>;

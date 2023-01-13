@@ -22,6 +22,9 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/account-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/book/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
     </content>

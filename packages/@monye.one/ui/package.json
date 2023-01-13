@@ -34,7 +34,7 @@
         "@mantine/prism": "^5.10.0",
         "@tabler/icons": "^1.119.0",
         "i18next": "^22.4.9",
-        "next": "^13.1.1",
+        "next": "^13.1.2",
         "next-auth": "^4.18.8",
         "next-i18next": "^13.0.3",
         "react": "^18.2.0",

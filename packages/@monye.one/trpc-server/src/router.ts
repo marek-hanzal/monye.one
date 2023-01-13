@@ -1,8 +1,7 @@
-import {type Context} from "@/monye.one/server/trpc/context";
-import {initTRPC}     from "@trpc/server";
-import superjson      from "superjson";
+import {initTRPC} from "@trpc/server";
+import superjson  from "superjson";
 
-const t = initTRPC.context<Context>().create({
+const t = initTRPC.create({
     transformer: superjson,
     errorFormatter({shape}) {
         return shape;

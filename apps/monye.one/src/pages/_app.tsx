@@ -1,7 +1,6 @@
 import {bootstrap}                      from "@/monye.one/bootstrap/bootstrap";
 import {emotionCache}                   from "@/monye.one/emotion-cache";
 import "@/monye.one/styles/globals.css";
-import {trpc}                           from "@/monye.one/utils/trpc";
 import type {IPageWithLayout}           from "@leight/layout";
 import type {ColorScheme}               from "@mantine/core";
 import {
@@ -9,6 +8,7 @@ import {
     MantineProvider
 }                                       from "@mantine/core";
 import {NotificationsProvider}          from "@mantine/notifications";
+import {trpc}                           from "@monye.one/trpc-client";
 import {
     getCookie,
     setCookies
