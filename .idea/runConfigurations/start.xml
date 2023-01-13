@@ -1,0 +1,22 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="start" type="js.build_tools.npm" folderName="npm">
+    <package-json value="$PROJECT_DIR$/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="start:local" />
+    </scripts>
+    <node-interpreter value="project" />
+    <envs>
+      <env name="AGENDA_DB" value="root:1234@localhost:57017/?authSource=admin" />
+      <env name="DATABASE_URL" value="postgresql://puff-smith:1234@localhost:5532/puff-smith?schema=public" />
+      <env name="EMAIL_FROM" value="noreply@puff-smith.rocks" />
+      <env name="EMAIL_SERVER" value="smtp://localhost:5025" />
+      <env name="LOKI_URL" value="http://127.0.0.1:3100" />
+      <env name="NEXTAUTH_GITHUB_CLIENT_ID" value="abbc01fc85709ab26921" />
+      <env name="NEXTAUTH_GITHUB_CLIENT_SECRET" value="d1d4c98417588b8280c60ee0b3b4233761d529f7" />
+      <env name="NEXTAUTH_SECRET" value="1234" />
+      <env name="NEXTAUTH_URL" value="http://localhost:3000" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>

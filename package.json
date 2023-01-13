@@ -1,0 +1,24 @@
+{
+    "name": "@marek-hanzal/monye.one",
+    "private": true,
+    "description": "Simple app for analyziing hosehold financial flow (and optimization).",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/marek-hanzal/monye.one.git"
+    },
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "scripts": {
+        "build": "turbo run build --no-daemon --no-cache --force",
+        "lint": "turbo run lint --no-daemon",
+        "dev": "turbo run dev --no-daemon --no-cache --force --parallel",
+        "start": "turbo run start --no-daemon --parallel",
+        "prisma-format": "turbo run prisma-format --no-daemon --parallel",
+        "prisma-generate": "turbo run prisma-generate --no-daemon --parallel"
+    },
+    "devDependencies": {
+        "turbo": "^1.7.0"
+    }
+}

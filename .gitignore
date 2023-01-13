@@ -1,0 +1,9 @@
+node_modules
+.next
+lib
+.swc
+.env.development.local
+.env.production.local
+~*.xlsx
+.turbo
+tsconfig.tsbuildinfo

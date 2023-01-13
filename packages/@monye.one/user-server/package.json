@@ -1,0 +1,47 @@
+{
+    "version": "0.5.0",
+    "name": "@monye.one/user-server",
+    "description": "User stuff used server-side.",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/marek-hanzal/monye.one.git"
+    },
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "sideEffects": false,
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "build": "tsc -p tsconfig.json && tsc -p tsconfig.json -m es6 --outDir lib/esm",
+        "lint": "eslint src",
+        "postinstall": "pnpm run prisma-format && prisma generate",
+        "prisma-format": "npx dotenv -c development npx prisma format"
+    },
+    "dependencies": {
+        "@prisma/client": "^4.8.1",
+        "@monye.one/user": "*",
+        "tsyringe": "^4.7.0"
+    },
+    "devDependencies": {
+        "@types/node": "^18.11.18",
+        "@typescript-eslint/eslint-plugin": "^5.48.1",
+        "@typescript-eslint/parser": "^5.48.1",
+        "dotenv-cli": "^6.0.0",
+        "eslint": "^8.31.0",
+        "eslint-plugin-unicorn": "^45.0.2",
+        "prisma": "^4.8.1",
+        "typescript": "^4.9.4"
+    },
+    "bugs": {
+        "url": "https://github.com/marek-hanzal/monye.one/issues"
+    },
+    "homepage": "https://github.com/marek-hanzal/monye.one#readme",
+    "directories": {
+        "lib": "lib"
+    }
+}

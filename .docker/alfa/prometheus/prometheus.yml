@@ -1,0 +1,13 @@
+global:
+    scrape_interval: 30s
+    scrape_timeout: 3s
+
+rule_files:
+    - alert.yml
+
+scrape_configs:
+    - job_name: app
+      metrics_path: /api/metric/pull
+      static_configs:
+          - targets:
+                - 'app:3000'

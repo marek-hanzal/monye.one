@@ -1,0 +1,97 @@
+version: '3.4'
+services:
+    app:
+        image: marekhanzal/monye.one:alfa
+        env_file: .env
+        networks:
+            - web
+            - postgres
+#            - loki
+#            - prometheus
+        labels:
+            - 'traefik.enable=true'
+            # http stuff
+            - 'traefik.http.routers.monye.one-alfa.rule=Host(`alfa.monye.one`)'
+            - 'traefik.http.routers.monye.one-alfa.entrypoints=http'
+            - 'traefik.http.routers.monye.one-alfa.middlewares=redirect-to-https'
+            - 'traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https'
+            # https stuff
+            - 'traefik.http.routers.monye.one-alfa-tls.rule=Host(`alfa.monye.one`)'
+            - 'traefik.http.routers.monye.one-alfa-tls.entrypoints=https'
+            - 'traefik.http.routers.monye.one-alfa-tls.tls=true'
+            - 'traefik.http.routers.monye.one-alfa-tls.tls.certresolver=default'
+            - 'traefik.http.services.monye.one-alfa-tls.loadbalancer.server.port=3000'
+
+    postgres:
+        image: postgres:14.2
+        env_file: .env
+        networks:
+            - postgres
+        environment:
+            POSTGRES_USER: monye.one
+            POSTGRES_DB: monye.one
+
+#    loki:
+#        image: grafana/loki
+#        restart: always
+#        networks:
+#            - loki
+#
+#    grafana:
+#        image: grafana/grafana-oss
+#        networks:
+#            - web
+#            - loki
+#            - prometheus
+#        volumes:
+#            - ./grafana/provisioning:/etc/grafana/provisioning
+#        labels:
+#            - 'traefik.enable=true'
+#            # http stuff
+#            - 'traefik.http.routers.monye.one-alfa-grafana.rule=Host(`grafana.alfa.monye.one`)'
+#            - 'traefik.http.routers.monye.one-alfa-grafana.entrypoints=http'
+#            - 'traefik.http.routers.monye.one-alfa-grafana.middlewares=redirect-to-https'
+#            - 'traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https'
+#            # https stuff
+#            - 'traefik.http.routers.monye.one-alfa-grafana-tls.rule=Host(`grafana.alfa.monye.one`)'
+#            - 'traefik.http.routers.monye.one-alfa-grafana-tls.entrypoints=https'
+#            - 'traefik.http.routers.monye.one-alfa-grafana-tls.tls=true'
+#            - 'traefik.http.routers.monye.one-alfa-grafana-tls.tls.certresolver=default'
+#            - 'traefik.http.services.monye.one-alfa-grafana-tls.loadbalancer.server.port=3000'
+#
+#    prometheus:
+#        image: prom/prometheus
+#        command:
+#            - '--config.file=/etc/prometheus/prometheus.yml'
+#            - '--storage.tsdb.path=/prometheus'
+#            - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+#            - '--web.console.templates=/usr/share/prometheus/consoles'
+#        networks:
+#            - prometheus
+#        volumes:
+#            - ./prometheus:/etc/prometheus
+
+    mailhog:
+        image: mailhog/mailhog
+        networks:
+            - web
+        labels:
+            - 'traefik.enable=true'
+            # http stuff
+            - 'traefik.http.routers.monye.one-alfa-mailhog.rule=Host(`mail.alfa.monye.one`)'
+            - 'traefik.http.routers.monye.one-alfa-mailhog.entrypoints=http'
+            - 'traefik.http.routers.monye.one-alfa-mailhog.middlewares=redirect-to-https'
+            - 'traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https'
+            # https stuff
+            - 'traefik.http.routers.monye.one-alfa-mailhog-tls.rule=Host(`mail.alfa.monye.one`)'
+            - 'traefik.http.routers.monye.one-alfa-mailhog-tls.entrypoints=https'
+            - 'traefik.http.routers.monye.one-alfa-mailhog-tls.tls=true'
+            - 'traefik.http.routers.monye.one-alfa-mailhog-tls.tls.certresolver=default'
+            - 'traefik.http.services.monye.one-alfa-mailhog-tls.loadbalancer.server.port=8025'
+
+networks:
+    web:
+        external: true
+    postgres:
+#    loki:
+#    prometheus:

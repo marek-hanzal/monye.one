@@ -1,0 +1,105 @@
+version: '3.4'
+services:
+    app:
+        image: marekhanzal/monye.one:beta
+        env_file: .env
+        networks:
+            - web
+            - postgres
+#            - loki
+#            - prometheus
+        labels:
+            - 'traefik.enable=true'
+            # http stuff
+            - 'traefik.http.routers.monye.one-beta.rule=Host(`beta.monye.one`)'
+            - 'traefik.http.routers.monye.one-beta.entrypoints=http'
+            - 'traefik.http.routers.monye.one-beta.middlewares=redirect-to-https'
+            - 'traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https'
+            # https stuff
+            - 'traefik.http.routers.monye.one-beta-tls.rule=Host(`beta.monye.one`)'
+            - 'traefik.http.routers.monye.one-beta-tls.entrypoints=https'
+            - 'traefik.http.routers.monye.one-beta-tls.tls=true'
+            - 'traefik.http.routers.monye.one-beta-tls.tls.certresolver=default'
+            - 'traefik.http.services.monye.one-beta-tls.loadbalancer.server.port=3000'
+        volumes:
+            - "monye.one-data:/opt/app/.data"
+
+    postgres:
+        image: postgres:14.2
+        env_file: .env
+        networks:
+            - postgres
+        environment:
+            POSTGRES_USER: monye.one
+            POSTGRES_DB: monye.one
+        volumes:
+            - "monye.one-postgres:/var/lib/postgresql/data"
+#
+#    loki:
+#        image: grafana/loki
+#        restart: always
+#        networks:
+#            - loki
+#
+#    grafana:
+#        image: grafana/grafana-oss
+#        networks:
+#            - web
+#            - loki
+#            - prometheus
+#        volumes:
+#            - ./grafana/provisioning:/etc/grafana/provisioning
+#        labels:
+#            - 'traefik.enable=true'
+#            # http stuff
+#            - 'traefik.http.routers.monye.one-beta-grafana.rule=Host(`grafana.beta.monye.one`)'
+#            - 'traefik.http.routers.monye.one-beta-grafana.entrypoints=http'
+#            - 'traefik.http.routers.monye.one-beta-grafana.middlewares=redirect-to-https'
+#            - 'traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https'
+#            # https stuff
+#            - 'traefik.http.routers.monye.one-beta-grafana-tls.rule=Host(`grafana.beta.monye.one`)'
+#            - 'traefik.http.routers.monye.one-beta-grafana-tls.entrypoints=https'
+#            - 'traefik.http.routers.monye.one-beta-grafana-tls.tls=true'
+#            - 'traefik.http.routers.monye.one-beta-grafana-tls.tls.certresolver=default'
+#            - 'traefik.http.services.monye.one-beta-grafana-tls.loadbalancer.server.port=3000'
+#
+#    prometheus:
+#        image: prom/prometheus
+#        command:
+#            - '--config.file=/etc/prometheus/prometheus.yml'
+#            - '--storage.tsdb.path=/prometheus'
+#            - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+#            - '--web.console.templates=/usr/share/prometheus/consoles'
+#        networks:
+#            - prometheus
+#        volumes:
+#            - ./prometheus:/etc/prometheus
+
+    mailhog:
+        image: mailhog/mailhog
+        networks:
+            - web
+        labels:
+            - 'traefik.enable=true'
+            # http stuff
+            - 'traefik.http.routers.monye.one-beta-mailhog.rule=Host(`mail.beta.monye.one`)'
+            - 'traefik.http.routers.monye.one-beta-mailhog.entrypoints=http'
+            - 'traefik.http.routers.monye.one-beta-mailhog.middlewares=redirect-to-https'
+            - 'traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https'
+            # https stuff
+            - 'traefik.http.routers.monye.one-beta-mailhog-tls.rule=Host(`mail.beta.monye.one`)'
+            - 'traefik.http.routers.monye.one-beta-mailhog-tls.entrypoints=https'
+            - 'traefik.http.routers.monye.one-beta-mailhog-tls.tls=true'
+            - 'traefik.http.routers.monye.one-beta-mailhog-tls.tls.certresolver=default'
+            - 'traefik.http.services.monye.one-beta-mailhog-tls.loadbalancer.server.port=8025'
+
+networks:
+    web:
+        external: true
+    postgres:
+#    loki:
+#    prometheus:
+
+volumes:
+    monye.one-data:
+    monye.one-postgres:

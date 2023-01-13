@@ -1,0 +1,6 @@
+groups:
+    - name: alerts
+      rules:
+          - alert: InstanceDown
+            expr: up{job="app"} < 1
+            for: 5m

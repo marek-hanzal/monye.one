@@ -1,0 +1,21 @@
+version: '3.4'
+
+x-environment:
+  &env
+    POSTGRES_USER: monye.one
+    POSTGRES_DB: monye.one
+    POSTGRES_PASSWORD: 1234
+
+services:
+    postgres:
+        image: postgres:14.2
+        restart: always
+        environment: *env
+        command: "-c shared_preload_libraries='pg_stat_statements'"
+        ports:
+            - "127.0.0.1:5532:5432"
+        networks:
+            - postgres
+
+networks:
+    postgres:
