@@ -3,7 +3,7 @@
     "version": "0.5.0",
     "private": true,
     "scripts": {
-        "build": "next build",
+        "build": "npx dotenv -c development -- next build",
         "dev": "next dev",
         "postinstall": "prisma generate",
         "migration": "npx dotenv -c development -- npx prisma migrate deploy",
@@ -11,7 +11,7 @@
         "prisma-format": "npx dotenv -c development -- npx prisma format",
         "prisma-migrate-reset": "npx dotenv -c development -- npx prisma migrate reset --force",
         "prisma-migrate-dev": "npx dotenv -c development -- npx prisma migrate dev --create-only",
-        "lint": "next lint",
+        "lint": "npx dotenv -c development -- next lint",
         "start": "next start"
     },
     "dependencies": {
@@ -40,8 +40,10 @@
         "@mantine/prism": "^5.10.0",
         "@mantine/rte": "^5.10.0",
         "@mantine/spotlight": "^5.10.0",
+        "@monye.one/account-client": "*",
         "@monye.one/book": "*",
         "@monye.one/public": "*",
+        "@monye.one/transaction-client": "*",
         "@monye.one/ui": "*",
         "@monye.one/user": "*",
         "@monye.one/user-server": "*",

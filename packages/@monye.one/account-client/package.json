@@ -1,7 +1,7 @@
 {
     "version": "0.5.0",
-    "name": "@monye.one/book",
-    "description": "User-land components used in the @monye.one application (authenticated users).",
+    "name": "@monye.one/account-client",
+    "description": "Client-side account stuff.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -24,7 +24,6 @@
         "@babel/core": "^7.20.12",
         "@emotion/react": "^11.10.5",
         "@leight/i18n-client": "*",
-        "@leight/layout": "*",
         "@leight/mantine": "*",
         "@leight/ui": "*",
         "@mantine/core": "^5.10.0",

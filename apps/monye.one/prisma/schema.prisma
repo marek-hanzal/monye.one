@@ -40,9 +40,11 @@ model User {
   emailVerified DateTime?
   image         String?
 
-  accounts  Account[]
-  sessions  Session[]
-  UserToken UserToken[]
+  accounts    Account[]
+  sessions    Session[]
+  UserToken   UserToken[]
+  BankAccount BankAccount[]
+  Transaction Transaction[]
 }
 
 model VerificationToken {
@@ -68,4 +70,36 @@ model UserToken {
   token   Token  @relation(fields: [tokenId], references: [id], onDelete: Cascade)
 
   @@unique([userId, tokenId])
+}
+
+model BankAccount {
+  id      String @id @default(cuid())
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  account String @unique
+  name    String
+
+  Transaction Transaction[]
+
+  @@unique([userId, name])
+}
+
+model Transaction {
+  id            String      @id @default(cuid())
+  // bank transaction ID (transaction reference)
+  reference     String
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // user's bank account
+  bankAccountId String
+  bankAccount   BankAccount @relation(fields: [bankAccountId], references: [id], onDelete: Cascade)
+  amount        Decimal     @db.Decimal(16, 2)
+  // date of transaction
+  date          DateTime
+  // target of a transaction - maybe card number, target account number, whatever; used by an user to identify this transaction
+  target        String?     @db.Text
+  // note provided by bank/user to identify this transaction
+  note          String?     @db.Text
+
+  @@unique([userId, reference])
 }

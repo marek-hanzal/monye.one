@@ -29,7 +29,14 @@ module.exports = {
     },
     localeStructure:          "{lng}/{ns}",
     nonExplicitSupportedLngs: true,
-    ns:                       ["common", "public", "book"],
+    ns:                       [
+        "common",
+        "public",
+        "book",
+        "account",
+        "filter",
+        "transaction",
+    ],
     supportedLngs:            supported,
     detection:                {
         order: [
