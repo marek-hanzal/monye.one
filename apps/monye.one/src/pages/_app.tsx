@@ -2,6 +2,7 @@ import {bootstrap}                      from "@/monye.one/bootstrap/bootstrap";
 import {emotionCache}                   from "@/monye.one/emotion-cache";
 import "@/monye.one/styles/globals.css";
 import type {IPageWithLayout}           from "@leight/layout";
+import {RouterTransition}               from "@leight/mantine";
 import type {ColorScheme}               from "@mantine/core";
 import {
     ColorSchemeProvider,
@@ -59,6 +60,7 @@ const PuffSmith = (props: AppProps & { colorScheme: ColorScheme }) => {
                 withNormalizeCSS
                 emotionCache={emotionCache}
             >
+                <RouterTransition/>
                 <NotificationsProvider>
                     <SessionProvider
                         refetchInterval={30}
