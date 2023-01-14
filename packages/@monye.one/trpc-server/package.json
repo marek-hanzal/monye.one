@@ -22,9 +22,11 @@
     },
     "dependencies": {
         "@trpc/server": "^10.9.0",
+        "reflect-metadata": "^0.1.13",
         "superjson": "^1.12.1"
     },
     "devDependencies": {
+        "@monye.one/tsconfig": "*",
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.48.1",
         "@typescript-eslint/parser": "^5.48.1",

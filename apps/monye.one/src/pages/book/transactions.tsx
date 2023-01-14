@@ -4,7 +4,7 @@ import {Box}              from "@mantine/core";
 import {withBookLayout}   from "@monye.one/book";
 import {TransactionTable} from "@monye.one/transaction-client";
 
-export default withBookLayout(function Index() {
+export default withBookLayout(() => {
     return (
         <>
             <h1>Transactions here!!</h1>

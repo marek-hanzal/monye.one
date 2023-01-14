@@ -8,7 +8,7 @@ import {AccountTable}    from "@monye.one/account-client";
 import {withBookLayout}  from "@monye.one/book";
 import {trpc}            from "@monye.one/trpc-client";
 
-export default withBookLayout(function Index() {
+export default withBookLayout(() => {
     const result = trpc.foo.useQuery();
     return (
         <>

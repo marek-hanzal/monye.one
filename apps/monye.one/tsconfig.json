@@ -1,22 +1,6 @@
 {
+    "extends": "@monye.one/tsconfig/next.json",
     "compilerOptions": {
-        "allowJs": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "incremental": true,
-        "isolatedModules": true,
-        "jsx": "preserve",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
-        ],
-        "module": "esnext",
-        "moduleResolution": "node",
-        "noEmit": true,
-        "noUncheckedIndexedAccess": true,
         "paths": {
             "@/monye.one": [
                 "."
@@ -32,22 +16,11 @@
             {
                 "name": "next"
             }
-        ],
-        "resolveJsonModule": true,
-        "skipLibCheck": true,
-        "strict": true,
-        "target": "es2017",
-        "types": [
-            "reflect-metadata"
         ]
     },
     "include": [
-        "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.cjs",
-        "**/*.mjs",
-        ".next/types/**/*.ts"
+        "src/**/*",
+        "src/**/*.json"
     ],
     "exclude": [
         "node_modules"

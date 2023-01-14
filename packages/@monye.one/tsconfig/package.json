@@ -1,0 +1,10 @@
+{
+    "name": "@monye.one/tsconfig",
+    "version": "0.0.0",
+    "private": true,
+    "files": [
+        "common.json",
+        "next.json",
+        "lib.json"
+    ]
+}

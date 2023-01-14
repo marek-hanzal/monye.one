@@ -11,7 +11,7 @@
         "node": ">=16.0.0"
     },
     "scripts": {
-        "build": "turbo run build --no-daemon --no-cache --force",
+        "build": "turbo run build --no-daemon",
         "lint": "turbo run lint --no-daemon",
         "dev": "turbo run dev --no-daemon --no-cache --force --parallel",
         "start": "turbo run start --no-daemon --parallel",

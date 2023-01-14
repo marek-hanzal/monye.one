@@ -72,6 +72,8 @@
         "zustand": "^4.3.2"
     },
     "devDependencies": {
+        "@monye.one/tsconfig": "*",
+        "@monye.one/eslint-config": "*",
         "@tailwindcss/forms": "^0.5.3",
         "@tailwindcss/typography": "^0.5.9",
         "@types/node": "^18.11.18",
@@ -86,7 +88,7 @@
         "eslint": "^8.31.0",
         "eslint-config-next": "^13.1.2",
         "postcss": "^8.4.21",
-        "prettier": "^2.8.2",
+        "prettier": "^2.8.3",
         "prettier-plugin-tailwindcss": "^0.2.1",
         "prisma": "^4.8.1",
         "tailwindcss": "^3.2.4",

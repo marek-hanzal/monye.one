@@ -29,23 +29,26 @@ const providers: Provider[] = [
     //     clientSecret: env.NEXTAUTH_GOOGLE_CLIENT_SECRET,
     // }),
 ];
-env.NODE_ENV === "development" && providers.push(CredentialsProvider({
-    name:        "Credentials",
-    credentials: {
-        secret: {label: "Dark Secret", type: "text"},
-    },
-    async authorize(credentials) {
-        const {secret} = credentials || {};
-        if (!secret) {
-            return null;
-        }
-        return prisma.user.findUnique({
-            where: {
-                email: secret,
+
+if (env.NODE_ENV === "development") {
+    providers.push(CredentialsProvider({
+        name:        "Credentials",
+        credentials: {
+            secret: {label: "Dark Secret", type: "text"},
+        },
+        async authorize(credentials) {
+            const {secret} = credentials || {};
+            if (!secret) {
+                return null;
             }
-        });
-    }
-}));
+            return prisma.user.findUnique({
+                where: {
+                    email: secret,
+                }
+            });
+        }
+    }));
+}
 
 export default NextAuth({
     theme:     {
@@ -70,7 +73,7 @@ export default NextAuth({
         jwt:     async token => {
             try {
                 await registrationService.handle(token);
-                return userJwtService.token(token.token);
+                return await userJwtService.token(token.token);
             } catch (e) {
                 if (e instanceof Error) {
                     logger.error(e.message);
@@ -80,14 +83,15 @@ export default NextAuth({
             }
         },
         session: async ({session, token}) => {
-            if (session && token?.sub) {
-                session.user = {
+            const $session = {...session};
+            if ($session && token?.sub) {
+                $session.user = {
                     userId: token.sub,
                     tokens: token.tokens,
                     ...session.user,
                 };
             }
-            return session;
+            return $session;
         },
     },
 });

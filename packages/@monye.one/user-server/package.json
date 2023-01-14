@@ -23,11 +23,13 @@
         "prisma-format": "npx dotenv -c development -- npx prisma format"
     },
     "dependencies": {
-        "@prisma/client": "^4.8.1",
         "@monye.one/user": "*",
+        "@prisma/client": "^4.8.1",
+        "reflect-metadata": "^0.1.13",
         "tsyringe": "^4.7.0"
     },
     "devDependencies": {
+        "@monye.one/tsconfig": "*",
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.48.1",
         "@typescript-eslint/parser": "^5.48.1",

@@ -44,7 +44,9 @@
             ],
             "inputs": [
                 "prisma",
-                "src"
+                "src",
+                "package.json",
+                "tsconfig.json"
             ],
             "env": [
                 "NEXT_PUBLIC_BUILD"

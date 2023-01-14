@@ -26,4 +26,4 @@ export const locales = {
 
 export type IAvailableLocales = keyof typeof locales;
 
-export const defaultLocale: ILocale = locales["en"];
+export const defaultLocale: ILocale = locales.en;

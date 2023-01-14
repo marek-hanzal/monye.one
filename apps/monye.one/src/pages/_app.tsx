@@ -21,11 +21,12 @@ import type {AppProps}                  from "next/app";
 import Head                             from "next/head";
 import {useRouter}                      from "next/router";
 import {
+    type FC,
     useEffect,
     useState
 }                                       from "react";
 
-const PuffSmith = (props: AppProps & { colorScheme: ColorScheme }) => {
+const PuffSmith: FC<AppProps & { colorScheme: ColorScheme }> = ({Component, pageProps, colorScheme}) => {
     const router = useRouter();
     useEffect(() => {
         (async () => {
@@ -35,12 +36,11 @@ const PuffSmith = (props: AppProps & { colorScheme: ColorScheme }) => {
         router.locale,
         router.defaultLocale,
     ]);
-    const {Component, pageProps}        = props;
-    const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
+    const [$colorScheme, $setColorScheme] = useState<ColorScheme>(colorScheme);
 
     const toggleColorScheme = (value?: ColorScheme) => {
-        const nextColorScheme = value || (colorScheme === "dark" ? "light" : "dark");
-        setColorScheme(nextColorScheme);
+        const nextColorScheme = value || ($colorScheme === "dark" ? "light" : "dark");
+        $setColorScheme(nextColorScheme);
         setCookies("mantine-color-scheme", nextColorScheme, {maxAge: 60 * 60 * 24 * 30});
     };
 
@@ -51,11 +51,11 @@ const PuffSmith = (props: AppProps & { colorScheme: ColorScheme }) => {
             <link rel={"shortcut icon"} href={"/favicon.ico"}/>
         </Head>
         <ColorSchemeProvider
-            colorScheme={colorScheme}
+            colorScheme={$colorScheme}
             toggleColorScheme={toggleColorScheme}
         >
             <MantineProvider
-                theme={{colorScheme}}
+                theme={{colorScheme: $colorScheme}}
                 withGlobalStyles
                 withNormalizeCSS
                 emotionCache={emotionCache}
@@ -64,7 +64,7 @@ const PuffSmith = (props: AppProps & { colorScheme: ColorScheme }) => {
                 <NotificationsProvider>
                     <SessionProvider
                         refetchInterval={30}
-                        refetchOnWindowFocus={true}
+                        refetchOnWindowFocus
                     >
                         {((Component as unknown as IPageWithLayout).layout || (page => page))(<Component {...pageProps}/>)}
                     </SessionProvider>
@@ -75,7 +75,7 @@ const PuffSmith = (props: AppProps & { colorScheme: ColorScheme }) => {
 };
 
 PuffSmith.getInitialProps = ({ctx}: { ctx: GetServerSidePropsContext }) => ({
-    colorScheme: getCookie("mantine-color-scheme", ctx) || "light",
+    $colorScheme: getCookie("mantine-color-scheme", ctx) || "light",
 });
 
 export default trpc.withTRPC(appWithTranslation(PuffSmith));
