@@ -4,6 +4,8 @@
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
         "resolveJsonModule": true,
         "isolatedModules": true,
         "strictPropertyInitialization": true,
