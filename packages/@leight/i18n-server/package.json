@@ -13,7 +13,7 @@
     "sideEffects": false,
     "main": "lib/cjs/index.js",
     "module": "lib/esm/index.js",
-    "types": "lib/esm/index.d.ts",
+    "types": "src/index.ts",
     "files": [
         "lib"
     ],
