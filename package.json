@@ -18,7 +18,8 @@
         "prisma-format": "turbo run prisma-format --no-daemon --parallel",
         "prisma-generate": "turbo run prisma-generate --no-daemon --parallel",
         "prisma-migrate-dev": "turbo run prisma-migrate-dev --no-daemon --parallel",
-        "prisma-migrate-reset": "turbo run prisma-migrate-reset --no-daemon --parallel"
+        "prisma-migrate-reset": "turbo run prisma-migrate-reset --no-daemon --parallel",
+        "npkill": "npx npkill"
     },
     "devDependencies": {
         "turbo": "^1.7.0"
