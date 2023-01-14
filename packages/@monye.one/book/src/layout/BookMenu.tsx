@@ -32,10 +32,10 @@ const links: ILink[] = [
 ];
 
 const useStyles = createStyles(theme => ({
-    link:       {
+    link: {
         display:        "flex",
         alignItems:     "center",
-        height:         "75%",
+        height:         "50%",
         margin:         theme.spacing.xs,
         borderRadius:   theme.radius.md,
         paddingLeft:    theme.spacing.md,
