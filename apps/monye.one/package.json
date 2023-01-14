@@ -1,6 +1,6 @@
 {
     "name": "monye.one",
-    "version": "0.5.0",
+    "version": "0.5.0.0",
     "private": true,
     "scripts": {
         "build": "npx dotenv -c development -- next build",
