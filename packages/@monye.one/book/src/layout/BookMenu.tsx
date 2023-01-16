@@ -9,7 +9,7 @@ import Link           from "next/link";
 import {type FC}      from "react";
 
 export interface IBookMenuProps {
-    active?: string;
+    active: string;
 }
 
 const links: ILink[] = [

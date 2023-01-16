@@ -44,8 +44,8 @@ export interface IPublicLayoutProps extends PropsWithChildren {
 
 export const PublicLayout: FC<IPublicLayoutProps> = ({logo, children}) => {
     useAuthenticatedSession({redirect: "/book"});
-    const {classes, theme} = useStyles();
-    const {t}              = useTranslation("public");
+    const {classes} = useStyles();
+    const {t}       = useTranslation("public");
     return <>
         <SessionOverlay/>
         <Box>

@@ -1,32 +1,33 @@
-import {bootstrap}                      from "@/monye.one/bootstrap/bootstrap";
-import {emotionCache}                   from "@/monye.one/emotion-cache";
+import {bootstrap}             from "@/monye.one/bootstrap/bootstrap";
+import {emotionCache}          from "@/monye.one/emotion-cache";
 import "@/monye.one/styles/globals.css";
-import type {IPageWithLayout}           from "@leight/layout";
-import {RouterTransition}               from "@leight/mantine";
-import type {ColorScheme}               from "@mantine/core";
+import type {IPageWithLayout}  from "@leight/layout";
+import {RouterTransition}      from "@leight/mantine";
+import type {ColorScheme}      from "@mantine/core";
 import {
     ColorSchemeProvider,
     MantineProvider
-}                                       from "@mantine/core";
-import {NotificationsProvider}          from "@mantine/notifications";
-import {trpc}                           from "@monye.one/trpc-client";
+}                              from "@mantine/core";
+import {NotificationsProvider} from "@mantine/notifications";
+import {trpc}                  from "@monye.one/trpc-client";
 import {
     getCookie,
     setCookies
-}                                       from "cookies-next";
-import type {GetServerSidePropsContext} from "next";
-import {SessionProvider}                from "next-auth/react";
-import {appWithTranslation}             from "next-i18next";
-import type {AppProps}                  from "next/app";
-import Head                             from "next/head";
-import {useRouter}                      from "next/router";
+}                              from "cookies-next";
+import {SessionProvider}       from "next-auth/react";
+import {appWithTranslation}    from "next-i18next";
+import type {
+    AppContext,
+    AppProps
+}                              from "next/app";
+import Head                    from "next/head";
+import {useRouter}             from "next/router";
 import {
-    type FC,
     useEffect,
     useState
-}                                       from "react";
+}                              from "react";
 
-const PuffSmith: FC<AppProps & { colorScheme: ColorScheme }> = ({Component, pageProps, colorScheme}) => {
+export function PuffSmith({Component, pageProps, colorScheme}: AppProps & { colorScheme: ColorScheme }) {
     const router = useRouter();
     useEffect(() => {
         (async () => {
@@ -72,9 +73,9 @@ const PuffSmith: FC<AppProps & { colorScheme: ColorScheme }> = ({Component, page
             </MantineProvider>
         </ColorSchemeProvider>
     </>;
-};
+}
 
-PuffSmith.getInitialProps = ({ctx}: { ctx: GetServerSidePropsContext }) => ({
+PuffSmith.getInitialProps = ({ctx}: AppContext) => ({
     $colorScheme: getCookie("mantine-color-scheme", ctx) || "light",
 });
 
