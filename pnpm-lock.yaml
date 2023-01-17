@@ -14,6 +14,7 @@ importers:
       '@emotion/react': ^11.10.5
       '@emotion/server': ^11.10.0
       '@leight/core': '*'
+      '@leight/file-server': '*'
       '@leight/i18n': '*'
       '@leight/i18n-client': '*'
       '@leight/i18n-server': '*'
@@ -94,6 +95,7 @@ importers:
       '@emotion/react': 11.10.5_jp5qgyg6plq757v5hojp7ls2oe
       '@emotion/server': 11.10.0
       '@leight/core': link:../../packages/@leight/core
+      '@leight/file-server': link:../../packages/@leight/file-server
       '@leight/i18n': link:../../packages/@leight/i18n
       '@leight/i18n-client': link:../../packages/@leight/i18n-client
       '@leight/i18n-server': link:../../packages/@leight/i18n-server
@@ -206,6 +208,7 @@ importers:
       glob: ^8.0.3
       mime-types: ^2.1.35
       prisma: ^4.9.0
+      reflect-metadata: ^0.1.13
       touch: ^3.1.0
       tsyringe: ^4.7.0
       typescript: ^4.9.4
@@ -215,6 +218,7 @@ importers:
       fs-extra: 10.1.0
       glob: 8.1.0
       mime-types: 2.1.35
+      reflect-metadata: 0.1.13
       touch: 3.1.0
       tsyringe: 4.7.0
     devDependencies:
