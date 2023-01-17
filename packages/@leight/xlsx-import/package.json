@@ -22,8 +22,10 @@
         "lint": "eslint src"
     },
     "dependencies": {
+        "@leight/core": "*",
         "@leight/import": "*",
         "@leight/job": "*",
+        "measure-time": "^5.0.8",
         "reflect-metadata": "^0.1.13",
         "tsyringe": "^4.7.0",
         "xlsx": "^0.18.5"
