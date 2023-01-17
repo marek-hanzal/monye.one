@@ -14,7 +14,7 @@ importers:
       '@emotion/react': ^11.10.5
       '@emotion/server': ^11.10.0
       '@leight/core': '*'
-      '@leight/file-server': '*'
+      '@leight/core-server': '*'
       '@leight/i18n': '*'
       '@leight/i18n-client': '*'
       '@leight/i18n-server': '*'
@@ -24,7 +24,6 @@ importers:
       '@leight/prisma': '*'
       '@leight/sql': '*'
       '@leight/winston': '*'
-      '@leight/xlsx-import': '*'
       '@mantine/carousel': ^5.10.1
       '@mantine/core': ^5.10.1
       '@mantine/dates': ^5.10.1
@@ -95,7 +94,7 @@ importers:
       '@emotion/react': 11.10.5_jp5qgyg6plq757v5hojp7ls2oe
       '@emotion/server': 11.10.0
       '@leight/core': link:../../packages/@leight/core
-      '@leight/file-server': link:../../packages/@leight/file-server
+      '@leight/core-server': link:../../packages/@leight/core-server
       '@leight/i18n': link:../../packages/@leight/i18n
       '@leight/i18n-client': link:../../packages/@leight/i18n-client
       '@leight/i18n-server': link:../../packages/@leight/i18n-server
@@ -105,7 +104,6 @@ importers:
       '@leight/prisma': link:../../packages/@leight/prisma
       '@leight/sql': link:../../packages/@leight/sql
       '@leight/winston': link:../../packages/@leight/winston
-      '@leight/xlsx-import': link:../../packages/@leight/xlsx-import
       '@mantine/carousel': 5.10.1_onynh6z4fd3zrymwubqdhzfegi
       '@mantine/core': 5.10.1_vmfc4eynrtlwqan3hg7ts62b2m
       '@mantine/dates': 5.10.1_bpk7vfbxhpsvcdizyj7sptmxnq
@@ -181,6 +179,29 @@ importers:
       eslint: ^8.32.0
       eslint-plugin-unicorn: ^45.0.2
       typescript: ^4.9.4
+    devDependencies:
+      '@types/node': 18.11.18
+      '@typescript-eslint/eslint-plugin': 5.48.2_caon6io6stgpr7lz2rtbhekxqy
+      '@typescript-eslint/parser': 5.48.2_7uibuqfxkfaozanbtbziikiqje
+      eslint: 8.32.0
+      eslint-plugin-unicorn: 45.0.2_eslint@8.32.0
+      typescript: 4.9.4
+
+  packages/@leight/core-server:
+    specifiers:
+      '@leight/file-server': '*'
+      '@leight/xlsx-import': '*'
+      '@types/node': ^18.11.18
+      '@typescript-eslint/eslint-plugin': ^5.48.2
+      '@typescript-eslint/parser': ^5.48.2
+      eslint: ^8.32.0
+      eslint-plugin-unicorn: ^45.0.2
+      tsyringe: ^4.7.0
+      typescript: ^4.9.4
+    dependencies:
+      '@leight/file-server': link:../file-server
+      '@leight/xlsx-import': link:../xlsx-import
+      tsyringe: 4.7.0
     devDependencies:
       '@types/node': 18.11.18
       '@typescript-eslint/eslint-plugin': 5.48.2_caon6io6stgpr7lz2rtbhekxqy

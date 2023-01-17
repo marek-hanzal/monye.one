@@ -1,0 +1,44 @@
+{
+    "version": "0.5.0",
+    "name": "@leight/core-server",
+    "description": "Core server stuff; for example re-exported typed services from whole @leight for simpler use.",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/leight-core/viv.git"
+    },
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "sideEffects": false,
+    "main": "lib/cjs/index.js",
+    "module": "lib/esm/index.js",
+    "types": "src/index.ts",
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "build": "tsc -p tsconfig.json && tsc -p tsconfig.json -m es6 --outDir lib/esm",
+        "lint": "eslint src"
+    },
+    "dependencies": {
+        "@leight/file-server": "*",
+        "@leight/xlsx-import": "*",
+        "tsyringe": "^4.7.0"
+    },
+    "devDependencies": {
+        "@types/node": "^18.11.18",
+        "@typescript-eslint/eslint-plugin": "^5.48.2",
+        "@typescript-eslint/parser": "^5.48.2",
+        "eslint": "^8.32.0",
+        "eslint-plugin-unicorn": "^45.0.2",
+        "typescript": "^4.9.4"
+    },
+    "bugs": {
+        "url": "https://github.com/leight-core/viv/issues"
+    },
+    "homepage": "https://github.com/leight-core/viv#readme",
+    "directories": {
+        "lib": "lib"
+    }
+}

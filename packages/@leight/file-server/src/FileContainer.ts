@@ -11,7 +11,7 @@ import {ChunkService} from "./service";
  * Register services of this package into a container and return typed
  * public services.
  */
-export const RegisterFileServices = (target: typeof container) => {
+export const FileContainer = (target: typeof container) => {
 	target.register<IChunkService>($ChunkService, {
 		useClass: ChunkService,
 	});

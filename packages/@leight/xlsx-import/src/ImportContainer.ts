@@ -19,7 +19,7 @@ import {
 /**
  * Register all services of this packages into a target container.
  */
-export const RegisterImportServices = (target: typeof container) => {
+export const ImportContainer = (target: typeof container) => {
 	target.register<ITabService>($TabService, {
 		useClass: TabService,
 	});
