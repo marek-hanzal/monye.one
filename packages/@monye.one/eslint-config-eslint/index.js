@@ -1,5 +1,6 @@
 module.exports = {
-    extends:       [
+    extends: [
+        "eslint:recommended",
         "next",
         "airbnb",
         "airbnb-typescript",
@@ -7,8 +8,6 @@ module.exports = {
         "turbo",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
-        "eslint:recommended",
-        "next",
     ],
     "parser":      "@typescript-eslint/parser",
     parserOptions: {
@@ -18,7 +17,7 @@ module.exports = {
         "@typescript-eslint",
         "eslint-plugin-unicorn"
     ],
-    "rules":       {
+    "rules": {
         "import/prefer-default-export":          "off",
         "react/react-in-jsx-scope":              "off",
         "no-console":                            "off",
@@ -32,6 +31,6 @@ module.exports = {
         "@typescript-eslint/no-empty-interface": "off",
         "react-hooks/exhaustive-deps":           "off",
         "no-unused-vars":                        "off",
-        "no-html-link-for-pages":                "off",
+        "no-html-link-for-pages": "off"
     }
 };

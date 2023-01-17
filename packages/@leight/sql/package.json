@@ -20,21 +20,21 @@
     "scripts": {
         "build": "tsc -p tsconfig.json && tsc -p tsconfig.json -m es6 --outDir lib/esm",
         "lint": "eslint src",
-        "prisma-format": "npx dotenv -c development npx prisma format",
+        "prisma-format": "npx dotenv -c development -- npx prisma format",
         "postinstall": "pnpm run prisma-format && prisma generate"
     },
     "dependencies": {
-        "@prisma/client": "^4.8.1",
+        "@prisma/client": "^4.9.0",
         "tsyringe": "^4.7.0"
     },
     "devDependencies": {
         "@types/node": "^18.11.18",
-        "@typescript-eslint/eslint-plugin": "^5.48.1",
+        "@typescript-eslint/eslint-plugin": "^5.48.2",
         "@typescript-eslint/parser": "^5.48.2",
         "dotenv-cli": "^6.0.0",
         "eslint": "^8.32.0",
         "eslint-plugin-unicorn": "^45.0.2",
-        "prisma": "^4.8.1",
+        "prisma": "^4.9.0",
         "typescript": "^4.9.4"
     },
     "bugs": {

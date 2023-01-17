@@ -25,6 +25,12 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/import-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/import/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/job-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/file-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/job/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
     </content>

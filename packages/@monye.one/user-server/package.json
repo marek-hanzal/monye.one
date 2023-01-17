@@ -24,7 +24,7 @@
     },
     "dependencies": {
         "@monye.one/user": "*",
-        "@prisma/client": "^4.8.1",
+        "@prisma/client": "^4.9.0",
         "reflect-metadata": "^0.1.13",
         "tsyringe": "^4.7.0"
     },
@@ -32,12 +32,12 @@
         "@monye.one/eslint-config-eslint": "*",
         "@monye.one/tsconfig": "*",
         "@types/node": "^18.11.18",
-        "@typescript-eslint/eslint-plugin": "^5.48.1",
+        "@typescript-eslint/eslint-plugin": "^5.48.2",
         "@typescript-eslint/parser": "^5.48.2",
         "dotenv-cli": "^6.0.0",
         "eslint": "^8.32.0",
         "eslint-plugin-unicorn": "^45.0.2",
-        "prisma": "^4.8.1",
+        "prisma": "^4.9.0",
         "typescript": "^4.9.4"
     },
     "bugs": {
