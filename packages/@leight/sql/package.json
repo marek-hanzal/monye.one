@@ -24,7 +24,9 @@
         "postinstall": "pnpm run prisma-format && prisma generate"
     },
     "dependencies": {
+        "@leight/prisma": "*",
         "@prisma/client": "^4.9.0",
+        "reflect-metadata": "^0.1.13",
         "tsyringe": "^4.7.0"
     },
     "devDependencies": {

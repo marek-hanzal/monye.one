@@ -24,6 +24,8 @@
         "@leight/i18n-server": "*",
         "@leight/layout": "*",
         "@leight/mantine": "*",
+        "@leight/next.js-server": "*",
+        "@leight/prisma": "*",
         "@leight/sql": "*",
         "@leight/winston": "*",
         "@leight/xlsx-import": "*",

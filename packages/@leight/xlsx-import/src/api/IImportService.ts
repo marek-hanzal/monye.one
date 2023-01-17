@@ -3,6 +3,7 @@
  * a job).
  */
 export interface IImportService {
+    fun(): string;
 }
 
 export const $ImportService = Symbol.for("@leight/xlsx-import/ImportService");

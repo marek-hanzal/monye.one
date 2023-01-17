@@ -1,10 +1,12 @@
-import {env}          from "@/monye.one/env/server.mjs";
-import {PrismaClient} from "@prisma/client";
+import {env}             from "@/monye.one/env/server.mjs";
+import {$PrismaClient}   from "@leight/prisma";
+import {ImportContainer} from "@leight/xlsx-import";
+import {PrismaClient}    from "@prisma/client";
 import "reflect-metadata";
 import {
     container,
     instanceCachingFactory
-}                     from "tsyringe";
+}                        from "tsyringe";
 
 container.register<PrismaClient>(PrismaClient, {
     useFactory: instanceCachingFactory<PrismaClient>(() => {
@@ -18,8 +20,9 @@ container.register<PrismaClient>(PrismaClient, {
         });
     }),
 });
-container.register("PrismaClient", {
+container.register($PrismaClient, {
     useToken: PrismaClient,
 });
+ImportContainer(container);
 
 export {container} from "tsyringe";
