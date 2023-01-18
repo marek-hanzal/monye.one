@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {type FC} from "react";
 
 export interface ITabLinkMenuItem {
 
@@ -10,6 +10,6 @@ export interface ITabLinkMenuProps {
 
 export const TabLinkMenu: FC<ITabLinkMenuProps> = ({items}) => {
     return <>
-        AAAAAAAAAAAAAAAAAAa
+        aa
     </>;
 };
