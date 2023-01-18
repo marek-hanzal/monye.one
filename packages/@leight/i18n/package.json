@@ -18,8 +18,10 @@
         "lib"
     ],
     "scripts": {
-        "build": "tsc -p tsconfig.json && tsc -p tsconfig.json -m es6 --outDir lib/esm",
-        "lint": "eslint src"
+        "build-esm": "tsc -p tsconfig.json -m es6 --outDir lib/esm",
+        "build-cjs": "tsc -p tsconfig.json",
+        "lint": "eslint src",
+        "dev": "tsc -w -p tsconfig.json"
     },
     "devDependencies": {
         "@types/node": "^18.11.18",

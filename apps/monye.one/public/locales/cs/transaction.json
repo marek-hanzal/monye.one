@@ -1,4 +1,6 @@
 {
     "tab.transactions": "Transakce",
-    "tab.import": "Import"
+    "tab.import": "Import",
+    "dropzone.import": "Import transakcí",
+    "dropzone.import.hint": "Vyberte XLSX soubory obsahující vaše transakce, které budou naimportovány; aplikace umí ignorovat již importované položky."
 }

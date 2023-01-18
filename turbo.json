@@ -32,12 +32,23 @@
                 "src"
             ]
         },
+        "build-cjs": {
+            "dependsOn": [
+                "^build-cjs"
+            ]
+        },
+        "build-esm": {
+            "dependsOn": [
+                "^build-cjs"
+            ]
+        },
         "build": {
             "outputMode": "new-only",
             "dependsOn": [
                 "prisma-generate",
                 "lint",
-                "^build"
+                "build-cjs",
+                "build-esm"
             ],
             "outputs": [
                 "lib"

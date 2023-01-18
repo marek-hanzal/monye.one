@@ -1,12 +1,14 @@
+import {type IWithTranslation}    from "@leight/i18n";
+import {Translation}              from "@leight/i18n-client";
 import {
-    createStyles,
     Group,
     Paper,
-    Text
+    Text,
+    useMantineTheme
 }                                 from "@mantine/core";
 import {Dropzone as CoolDropzone} from "@mantine/dropzone";
 import {
-    IconPhoto,
+    IconFileImport,
     IconUpload,
     IconX
 }                                 from "@tabler/icons";
@@ -17,19 +19,12 @@ import {
 import {switchScheme}             from "../utils";
 
 export interface IDropZoneProps extends Partial<ComponentProps<typeof CoolDropzone>> {
+    withTranslation: IWithTranslation;
+    withHintTranslation: IWithTranslation;
 }
 
-const useStyles = createStyles(theme => ({
-    uploadIcon:  {
-        color: switchScheme(theme, theme.colors.gray[4], theme.colors.gray[6]),
-    },
-    uploadClose: {
-        color: switchScheme(theme, theme.colors.red[4], theme.colors.red[6]),
-    },
-}));
-
-export const DropZone: FC<IDropZoneProps> = ({...props}) => {
-    const {classes} = useStyles();
+export const DropZone: FC<IDropZoneProps> = ({withTranslation, withHintTranslation, ...props}) => {
+    const theme = useMantineTheme();
     return <Paper
         shadow={"md"}
         radius={"md"}
@@ -49,28 +44,30 @@ export const DropZone: FC<IDropZoneProps> = ({...props}) => {
                 style={{minHeight: 220, pointerEvents: "none"}}
             >
                 <CoolDropzone.Accept>
+                    Yahoo here
                     <IconUpload
                         size={50}
                         stroke={1.5}
-                        className={classes.uploadIcon}
+                        color={switchScheme(theme, theme.colors.gray[4], theme.colors.gray[6])}
                     />
                 </CoolDropzone.Accept>
                 <CoolDropzone.Reject>
                     <IconX
                         size={50}
                         stroke={1.5}
-                        className={classes.uploadClose}
+                        color={switchScheme(theme, theme.colors.red[4], theme.colors.red[6])}
                     />
                 </CoolDropzone.Reject>
                 <CoolDropzone.Idle>
-                    <IconPhoto size={50} stroke={1.5}/>
+                    Idle here
+                    <IconFileImport size={50} stroke={1.5}/>
                 </CoolDropzone.Idle>
                 <div>
                     <Text size={"xl"} inline>
-                        Drag images here or click to select files
+                        <Translation {...withTranslation}/>
                     </Text>
                     <Text size={"sm"} color={"dimmed"} inline mt={7}>
-                        Attach as many files as you like, each file should not exceed 5mb
+                        <Translation {...withHintTranslation}/>
                     </Text>
                 </div>
             </Group>

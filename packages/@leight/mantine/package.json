@@ -18,12 +18,16 @@
         "lib"
     ],
     "scripts": {
-        "build": "tsc -p tsconfig.json && tsc -p tsconfig.json -m es6 --outDir lib/esm",
-        "lint": "eslint src"
+        "build-esm": "tsc -p tsconfig.json -m es6 --outDir lib/esm",
+        "build-cjs": "tsc -p tsconfig.json",
+        "lint": "eslint src",
+        "dev": "tsc -w -p tsconfig.json && tsc -w -p tsconfig.json -m es6 --outDir lib/esm"
     },
     "dependencies": {
         "@babel/core": "^7.20.12",
         "@emotion/react": "^11.10.5",
+        "@leight/i18n": "*",
+        "@leight/i18n-client": "*",
         "@mantine/core": "^5.10.1",
         "@mantine/dropzone": "^5.10.1",
         "@mantine/hooks": "^5.10.1",

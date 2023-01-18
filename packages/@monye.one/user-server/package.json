@@ -17,7 +17,8 @@
         "lib"
     ],
     "scripts": {
-        "build": "tsc -p tsconfig.json && tsc -p tsconfig.json -m es6 --outDir lib/esm",
+        "build-esm": "tsc -p tsconfig.json -m es6 --outDir lib/esm",
+        "build-cjs": "tsc -p tsconfig.json",
         "lint": "eslint src",
         "postinstall": "pnpm run prisma-format && prisma generate",
         "prisma-format": "npx dotenv -c development -- npx prisma format"

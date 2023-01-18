@@ -18,10 +18,12 @@
         "lib"
     ],
     "scripts": {
-        "build": "tsc -p tsconfig.json && tsc -p tsconfig.json -m es6 --outDir lib/esm",
+        "build-esm": "tsc -p tsconfig.json -m es6 --outDir lib/esm",
+        "build-cjs": "tsc -p tsconfig.json",
         "lint": "eslint src",
         "prisma-format": "npx dotenv -c development -- npx prisma format",
-        "postinstall": "pnpm run prisma-format && prisma generate"
+        "postinstall": "pnpm run prisma-format && prisma generate",
+        "dev": "tsc -w -p tsconfig.json"
     },
     "dependencies": {
         "@leight/prisma": "*",

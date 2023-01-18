@@ -1,10 +1,6 @@
 import logo               from "@/monye.one/assets/logo/logo.svg";
 import {withTranslation}  from "@leight/i18n-server";
 import {
-    DropZone,
-    TabLinkMenu
-}                         from "@leight/mantine";
-import {
     Box,
     Tabs
 }                         from "@mantine/core";
@@ -23,10 +19,6 @@ export default withBookLayout(() => {
             <Box
                 p={"md"}
             >
-                <TabLinkMenu
-                    items={[]}
-                />
-
                 <Tabs defaultValue={"transactions"}>
                     <Tabs.List>
                         <Tabs.Tab
@@ -42,15 +34,7 @@ export default withBookLayout(() => {
                             {t("tab.import")}
                         </Tabs.Tab>
                     </Tabs.List>
-                    <Tabs.Panel value={"transactions"}>
-                        <TransactionTable/>
-                    </Tabs.Panel>
-                    <Tabs.Panel value={"import"}>
-                        <DropZone
-                            withTranslation={{label: "dropzone.import", namespace: "transaction"}}
-                            withHintTranslation={{label: "dropzone.import.hint", namespace: "transaction"}}
-                        />
-                    </Tabs.Panel>
+                    <TransactionTable/>
                 </Tabs>
             </Box>
         </>
