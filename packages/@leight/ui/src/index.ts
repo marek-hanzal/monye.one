@@ -1,1 +1,1 @@
-export * from "./ILink";
+export * from "./api";

@@ -1,5 +1,5 @@
 import {FileContainer as $FileContainer}     from "@leight/file-server";
-import {ImportContainer as $ImportContainer} from "@leight/xlsx-import";
+import {ImportContainer as $ImportContainer} from "@leight/xlsx-import-server";
 import {container}                           from "tsyringe";
 
 export const ServerContainer = (target: typeof container) => {

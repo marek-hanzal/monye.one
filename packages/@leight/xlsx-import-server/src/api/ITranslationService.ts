@@ -8,4 +8,4 @@ export interface ITranslationService {
     toTranslations(workbook: WorkBook): Promise<ITranslations>;
 }
 
-export const $TranslationService = Symbol.for("@leight/xlsx-import/TranslationService");
+export const $TranslationService = Symbol.for("@leight/xlsx-import-server/TranslationService");

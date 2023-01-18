@@ -1,21 +1,16 @@
 import {env}               from "@/monye.one/env/server.mjs";
-import {container}         from "@/monye.one/server/container";
-import {Logger}            from "@leight/winston";
 import {
-    RegistrationService,
-    UserJwtService
-}                          from "@monye.one/user-server";
+    MonyeOneContainer,
+    UserContainer
+}                          from "@/monye.one/server/container";
+import {Logger}            from "@leight/winston";
 import {PrismaAdapter}     from "@next-auth/prisma-adapter";
-import {PrismaClient}      from "@prisma/client";
 import NextAuth            from "next-auth";
 import type {Provider}     from "next-auth/providers";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHub              from "next-auth/providers/github";
 
-const logger              = Logger("auth");
-const prisma              = container.resolve(PrismaClient);
-const registrationService = container.resolve(RegistrationService);
-const userJwtService      = container.resolve(UserJwtService);
+const logger = Logger("auth");
 
 const providers: Provider[] = [
     GitHub({
@@ -41,7 +36,7 @@ if (env.NODE_ENV === "development") {
             if (!secret) {
                 return null;
             }
-            return prisma.user.findUnique({
+            return MonyeOneContainer.PrismaClient.user.findUnique({
                 where: {
                     email: secret,
                 }
@@ -64,7 +59,7 @@ export default NextAuth({
             logger.debug("User sign-out", {label: {userId: sub}});
         },
     },
-    adapter:   PrismaAdapter(prisma),
+    adapter:   PrismaAdapter(MonyeOneContainer.PrismaClient),
     session:   {
         strategy: "jwt",
     },
@@ -72,8 +67,8 @@ export default NextAuth({
     callbacks: {
         jwt:     async token => {
             try {
-                await registrationService.handle(token);
-                return await userJwtService.token(token.token);
+                await UserContainer.RegistrationService.handle(token);
+                return await UserContainer.UserJwtService.token(token.token);
             } catch (e) {
                 if (e instanceof Error) {
                     logger.error(e.message);

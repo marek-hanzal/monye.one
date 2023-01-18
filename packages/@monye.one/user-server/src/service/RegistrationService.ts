@@ -1,9 +1,10 @@
-import {type IToken}  from "@monye.one/user";
-import {PrismaClient} from "@prisma/client";
+import {$PrismaClient} from "@leight/prisma";
+import {type IToken}   from "@monye.one/user";
+import {PrismaClient}  from "@prisma/client";
 import {
     inject,
     injectable
-}                     from "tsyringe";
+}                      from "tsyringe";
 
 export interface IHandleProps<T extends IToken> {
     token: T;
@@ -17,7 +18,7 @@ export interface IHandleProps<T extends IToken> {
  */
 @injectable()
 export class RegistrationService {
-    constructor(@inject("PrismaClient") protected prisma: PrismaClient) {
+    constructor(@inject($PrismaClient) protected prisma: PrismaClient) {
     }
 
     public async handle<T extends IToken>({token, isNewUser}: IHandleProps<T>): Promise<void> {

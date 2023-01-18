@@ -1,6 +1,6 @@
 {
     "version": "0.5.0",
-    "name": "@leight/xlsx-import",
+    "name": "@leight/xlsx-import-server",
     "description": "Support for XLSX import (server-side) using @leight/job stuff.",
     "license": "MIT",
     "repository": {

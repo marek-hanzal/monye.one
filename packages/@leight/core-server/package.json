@@ -23,7 +23,7 @@
     },
     "dependencies": {
         "@leight/file-server": "*",
-        "@leight/xlsx-import": "*",
+        "@leight/xlsx-import-server": "*",
         "tsyringe": "^4.7.0"
     },
     "devDependencies": {

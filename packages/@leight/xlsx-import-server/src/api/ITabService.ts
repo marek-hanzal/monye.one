@@ -8,4 +8,4 @@ export interface ITabService {
     toTabs(workbook: WorkBook): Promise<ITab[]>;
 }
 
-export const $TabService = Symbol.for("@leight/xlsx-import/TabService");
+export const $TabService = Symbol.for("@leight/xlsx-import-server/TabService");
