@@ -7,7 +7,6 @@ import {
 }                                 from "@mantine/core";
 import {Dropzone as CoolDropzone} from "@mantine/dropzone";
 import {
-    IconFileImport,
     IconUpload,
     IconX
 }                                 from "@tabler/icons";
@@ -18,18 +17,21 @@ import {
 import {switchScheme}             from "../utils";
 import {Paper}                    from "./Paper";
 
-export interface IDropZoneProps extends Partial<ComponentProps<typeof CoolDropzone>> {
+export interface IDropZoneProps extends Partial<Omit<ComponentProps<typeof CoolDropzone>, "children">> {
     withTranslation: IWithTranslation;
     withHintTranslation: IWithTranslation;
 }
 
-export const DropZone: FC<IDropZoneProps> = ({withTranslation, withHintTranslation, ...props}) => {
+export const DropZone: FC<IDropZoneProps> = ({loading, withTranslation, withHintTranslation, onDrop, ...props}) => {
     const theme = useMantineTheme();
     return <Paper>
         <CoolDropzone
-            onDrop={(files) => console.log("accepted files", files)}
-            onReject={(files) => console.log("rejected files", files)}
             maxSize={8 * 1024 ** 2}
+            loading={loading}
+            onDrop={files => {
+                console.log("handling upload!");
+                onDrop?.(files);
+            }}
             {...props}
         >
             <Group
@@ -38,11 +40,10 @@ export const DropZone: FC<IDropZoneProps> = ({withTranslation, withHintTranslati
                 style={{minHeight: 220, pointerEvents: "none"}}
             >
                 <CoolDropzone.Accept>
-                    Yahoo here
                     <IconUpload
                         size={50}
                         stroke={1.5}
-                        color={switchScheme(theme, theme.colors.gray[4], theme.colors.gray[6])}
+                        color={switchScheme(theme, theme.colors.green[4], theme.colors.green[6])}
                     />
                 </CoolDropzone.Accept>
                 <CoolDropzone.Reject>
@@ -53,8 +54,11 @@ export const DropZone: FC<IDropZoneProps> = ({withTranslation, withHintTranslati
                     />
                 </CoolDropzone.Reject>
                 <CoolDropzone.Idle>
-                    Idle here
-                    <IconFileImport size={50} stroke={1.5}/>
+                    <IconUpload
+                        size={50}
+                        stroke={1.5}
+                        color={loading ? switchScheme(theme, theme.colors.green[4], theme.colors.green[6]) : switchScheme(theme, theme.colors.gray[4], theme.colors.gray[6])}
+                    />
                 </CoolDropzone.Idle>
                 <div>
                     <Text size={"xl"} inline>

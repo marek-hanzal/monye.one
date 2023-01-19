@@ -1,0 +1,60 @@
+{
+    "version": "0.5.0",
+    "name": "@leight/xlsx-import-client",
+    "description": "Client-side tools for imports.",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/leight-core/viv.git"
+    },
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "sideEffects": false,
+    "main": "lib/cjs/index.js",
+    "module": "lib/esm/index.js",
+    "types": "src/index.ts",
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "build:esm": "tsc -p tsconfig.json -m es2022 --outDir lib/esm",
+        "build:cjs": "tsc -p tsconfig.json",
+        "build": "concurrently npm:build:*",
+        "dev:cjs": "tsc -w -p tsconfig.json --preserveWatchOutput",
+        "dev:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
+        "dev": "concurrently npm:dev:*"
+    },
+    "dependencies": {
+        "@babel/core": "^7.20.12",
+        "@emotion/react": "^11.10.5",
+        "@leight/i18n": "*",
+        "@leight/i18n-client": "*",
+        "@leight/mantine": "*",
+        "@mantine/core": "^5.10.1",
+        "@mantine/dropzone": "^5.10.1",
+        "@mantine/hooks": "^5.10.1",
+        "@tabler/icons": "^1.119.0",
+        "next": "^13.1.2",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@types/node": "^18.11.18",
+        "@types/react": "^18.0.27",
+        "@types/react-dom": "^18.0.10",
+        "@typescript-eslint/eslint-plugin": "^5.48.2",
+        "@typescript-eslint/parser": "^5.48.2",
+        "concurrently": "^7.6.0",
+        "eslint": "^8.32.0",
+        "eslint-plugin-unicorn": "^45.0.2",
+        "typescript": "^4.9.4"
+    },
+    "bugs": {
+        "url": "https://github.com/leight-core/viv/issues"
+    },
+    "homepage": "https://github.com/leight-core/viv#readme",
+    "directories": {
+        "lib": "lib"
+    }
+}

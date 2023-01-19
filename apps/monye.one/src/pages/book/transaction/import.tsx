@@ -1,6 +1,6 @@
 import logo              from "@/monye.one/assets/logo/logo.svg";
 import {withTranslation} from "@leight/i18n-server";
-import {DropZone}        from "@leight/mantine";
+import {ImportZone}      from "@leight/xlsx-import-client";
 import {Box}             from "@mantine/core";
 import {withBookLayout}  from "@monye.one/book";
 import {TransactionMenu} from "@monye.one/transaction-client";
@@ -12,7 +12,7 @@ export default withBookLayout(() => {
                 p={"md"}
             >
                 <TransactionMenu/>
-                <DropZone
+                <ImportZone
                     withTranslation={{label: "dropzone.import", namespace: "transaction"}}
                     withHintTranslation={{label: "dropzone.import.hint", namespace: "transaction"}}
                 />
