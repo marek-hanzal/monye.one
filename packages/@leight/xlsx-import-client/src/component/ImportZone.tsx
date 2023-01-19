@@ -3,23 +3,17 @@ import {
     type IDropZoneProps
 }                   from "@leight/mantine";
 import {MIME_TYPES} from "@mantine/dropzone";
-import {
-    type FC,
-    useState
-}                   from "react";
+import {type FC}    from "react";
 
-export interface IImportZoneProps extends Omit<IDropZoneProps, "onDrop"> {
+export interface IImportZoneProps extends IDropZoneProps {
 }
 
 export const ImportZone: FC<IImportZoneProps> = props => {
-    const [loading, setLoading] = useState(false);
     return <DropZone
-        loading={loading}
-        onDrop={files => {
-            setLoading(true);
+        onUpload={(files, commit) => {
             setTimeout(() => {
-                setLoading(false);
-            }, 1500);
+                commit();
+            }, 3500);
             files.forEach(file => {
                 console.log("Import of", file);
             });

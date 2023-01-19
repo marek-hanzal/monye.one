@@ -14,7 +14,9 @@ export default withBookLayout(() => {
                 <TransactionMenu/>
                 <ImportZone
                     withTranslation={{label: "dropzone.import", namespace: "transaction"}}
-                    withHintTranslation={{label: "dropzone.import.hint", namespace: "transaction"}}
+                    href={{
+                        href: "/api/file/chunk/{chunkId}/upload",
+                    }}
                 />
             </Box>
         </>

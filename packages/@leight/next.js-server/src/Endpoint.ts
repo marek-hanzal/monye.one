@@ -12,10 +12,11 @@ const logger = Logger("@leight/next.js-server");
 
 export const Endpoint = <TData = unknown>({handler}: IHandler<TData>) => async (request: NextApiRequest, response: NextApiResponse<TData | IError>) => {
     try {
-        return response.status(200).json(await handler({
+        const result = await handler({
             request,
             response,
-        }));
+        });
+        result && response.status(200).json(result);
     } catch (e) {
         logger.error(e);
         return response.status(500).json({error: "Kaboom!"});

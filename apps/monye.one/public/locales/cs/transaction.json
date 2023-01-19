@@ -2,5 +2,8 @@
     "tab.transactions": "Transakce",
     "tab.import": "Import",
     "dropzone.import": "Import transakcí",
-    "dropzone.import.hint": "Vyberte XLSX soubory obsahující vaše transakce, které budou naimportovány; aplikace umí ignorovat již importované položky."
+    "dropzone.import.hint": "Vyberte XLSX soubory obsahující vaše transakce, které budou naimportovány; aplikace umí ignorovat již importované položky.",
+    "dropzone.import.file": "Soubor",
+    "dropzone.import.progress": "Průběh",
+    "dropzone.import.actions": "Akce"
 }
