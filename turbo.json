@@ -32,25 +32,11 @@
                 "src"
             ]
         },
-        "build-cjs": {
-            "outputMode": "new-only",
-            "dependsOn": [
-                "^build-cjs"
-            ]
-        },
-        "build-esm": {
-            "outputMode": "new-only",
-            "dependsOn": [
-                "^build-esm"
-            ]
-        },
         "build": {
             "outputMode": "new-only",
             "dependsOn": [
                 "prisma-generate",
-                "lint",
-                "build-cjs",
-                "build-esm"
+                "lint"
             ],
             "outputs": [
                 "lib/**",
