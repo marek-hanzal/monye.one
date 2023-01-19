@@ -1,5 +1,5 @@
 export interface IWithTranslation {
-    label: string;
+    label?: string;
     namespace?: string;
     values?: Record<string, any>;
 }

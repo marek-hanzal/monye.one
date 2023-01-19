@@ -1,5 +1,5 @@
 import {env}                                 from "@/monye.one/env/server.mjs";
-import {ServerContainer as $ServerContainer} from "@leight/core-server";
+import {ServerContainer as $ServerContainer} from "@leight/container-server";
 import {$PrismaClient}                       from "@leight/prisma";
 import {UserContainer as $UserContainer}     from "@monye.one/user-server";
 import {PrismaClient}                        from "@prisma/client";

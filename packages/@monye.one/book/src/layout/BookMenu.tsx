@@ -18,7 +18,7 @@ const links: ILink[] = [
         label: "link.home",
     },
     {
-        href:  "/book/transactions",
+        href:  "/book/transaction/list",
         label: "link.transactions",
     },
     {

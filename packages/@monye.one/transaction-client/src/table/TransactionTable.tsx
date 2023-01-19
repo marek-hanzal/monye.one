@@ -1,26 +1,20 @@
+import {Paper} from "@leight/mantine";
 import {
     Center,
     Divider,
     Pagination,
-    Paper,
     Table
-} from "@mantine/core";
+}              from "@mantine/core";
 import {
     type ComponentProps,
     type FC
-} from "react";
+}              from "react";
 
 export interface ITransactionTableProps extends ComponentProps<typeof Table> {
 }
 
 export const TransactionTable: FC<ITransactionTableProps> = ({...props}) => {
-    return <Paper
-        shadow={"md"}
-        radius={"md"}
-        withBorder
-        m={"md"}
-        p={"md"}
-    >
+    return <Paper>
         <Table
             striped
             highlightOnHover

@@ -1,4 +1,4 @@
-import {streamOf}      from "@leight/core";
+import {streamOf}      from "@leight/core-server";
 import {measureTime}   from "measure-time";
 import {type Readable} from "node:stream";
 import "reflect-metadata";

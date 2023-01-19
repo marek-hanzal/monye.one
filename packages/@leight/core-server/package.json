@@ -26,11 +26,6 @@
         "dev": "concurrently npm:dev:*",
         "lint": "eslint src"
     },
-    "dependencies": {
-        "@leight/file-server": "*",
-        "@leight/xlsx-import-server": "*",
-        "tsyringe": "^4.7.0"
-    },
     "devDependencies": {
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.48.2",

@@ -1,7 +1,7 @@
 {
     "version": "0.5.0",
-    "name": "@leight/core",
-    "description": "Core stuff shared between all other @leight packages.",
+    "name": "@leight/container-server",
+    "description": "All @leight services exposed on server-side.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -25,6 +25,11 @@
         "dev:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
         "dev": "concurrently npm:dev:*",
         "lint": "eslint src"
+    },
+    "dependencies": {
+        "@leight/file-server": "*",
+        "@leight/xlsx-import-server": "*",
+        "tsyringe": "^4.7.0"
     },
     "devDependencies": {
         "@types/node": "^18.11.18",

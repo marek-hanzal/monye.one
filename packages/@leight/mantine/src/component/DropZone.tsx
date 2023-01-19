@@ -2,7 +2,6 @@ import {type IWithTranslation}    from "@leight/i18n";
 import {Translation}              from "@leight/i18n-client";
 import {
     Group,
-    Paper,
     Text,
     useMantineTheme
 }                                 from "@mantine/core";
@@ -17,6 +16,7 @@ import {
     type FC
 }                                 from "react";
 import {switchScheme}             from "../utils";
+import {Paper}                    from "./Paper";
 
 export interface IDropZoneProps extends Partial<ComponentProps<typeof CoolDropzone>> {
     withTranslation: IWithTranslation;
@@ -25,13 +25,7 @@ export interface IDropZoneProps extends Partial<ComponentProps<typeof CoolDropzo
 
 export const DropZone: FC<IDropZoneProps> = ({withTranslation, withHintTranslation, ...props}) => {
     const theme = useMantineTheme();
-    return <Paper
-        shadow={"md"}
-        radius={"md"}
-        withBorder
-        m={"md"}
-        p={"md"}
-    >
+    return <Paper>
         <CoolDropzone
             onDrop={(files) => console.log("accepted files", files)}
             onReject={(files) => console.log("rejected files", files)}

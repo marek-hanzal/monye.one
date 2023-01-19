@@ -7,10 +7,10 @@ import {
 }                         from "react";
 
 export interface ITranslationProps extends Omit<IWithTranslation, "label"> {
-    label: ReactNode;
+    label?: ReactNode;
 }
 
 export const Translation: FC<ITranslationProps> = ({label, namespace, values}) => {
     const {t} = useTranslation(namespace);
-    return <>{isString(label) ? t(label as string, values as any) : label}</>;
+    return label ? <>{isString(label) ? t(label, values as any) : label}</> : null;
 };

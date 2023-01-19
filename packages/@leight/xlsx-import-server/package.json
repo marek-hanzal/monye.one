@@ -27,7 +27,7 @@
         "lint": "eslint src"
     },
     "dependencies": {
-        "@leight/core": "*",
+        "@leight/core-server": "*",
         "@leight/import": "*",
         "@leight/job": "*",
         "measure-time": "^5.0.8",

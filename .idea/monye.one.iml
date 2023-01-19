@@ -35,6 +35,8 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/core-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/container-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/core-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
     </content>
