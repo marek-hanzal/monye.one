@@ -10,6 +10,6 @@ export interface ITabLinkMenuProps {
 
 export const TabLinkMenu: FC<ITabLinkMenuProps> = ({items}) => {
     return <>
-        aa
+        yep :)
     </>;
 };

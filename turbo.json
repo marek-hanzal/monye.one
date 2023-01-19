@@ -33,13 +33,15 @@
             ]
         },
         "build-cjs": {
+            "outputMode": "new-only",
             "dependsOn": [
                 "^build-cjs"
             ]
         },
         "build-esm": {
+            "outputMode": "new-only",
             "dependsOn": [
-                "^build-cjs"
+                "^build-esm"
             ]
         },
         "build": {
@@ -51,10 +53,11 @@
                 "build-esm"
             ],
             "outputs": [
-                "lib"
+                "lib/**",
+                ".next/**"
             ],
             "inputs": [
-                "prisma",
+                "prisma/schema.prisma",
                 "src",
                 "package.json",
                 "tsconfig.json"

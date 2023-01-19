@@ -3,9 +3,7 @@
     "display": "lib",
     "extends": "./common.json",
     "compilerOptions": {
-        "jsx": "react-jsx",
         "module": "CommonJS",
-        "moduleResolution": "Node",
         "outDir": "lib/cjs"
     }
 }

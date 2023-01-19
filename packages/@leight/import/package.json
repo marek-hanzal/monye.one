@@ -18,10 +18,12 @@
         "lib"
     ],
     "scripts": {
-        "build-esm": "tsc -p tsconfig.json -m es6 --outDir lib/esm",
+        "build-esm": "tsc -p tsconfig.json -m es2022 --outDir lib/esm",
         "build-cjs": "tsc -p tsconfig.json",
-        "lint": "eslint src",
-        "dev": "tsc -w -p tsconfig.json"
+        "dev:cjs": "tsc -w -p tsconfig.json --preserveWatchOutput",
+        "dev:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
+        "dev": "concurrently npm:dev:*",
+        "lint": "eslint src"
     },
     "dependencies": {
         "@leight/job": "*"
@@ -30,6 +32,7 @@
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.48.2",
         "@typescript-eslint/parser": "^5.48.2",
+        "concurrently": "^7.6.0",
         "eslint": "^8.32.0",
         "eslint-plugin-unicorn": "^45.0.2",
         "typescript": "^4.9.4"
