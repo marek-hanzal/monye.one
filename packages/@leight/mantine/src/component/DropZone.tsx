@@ -12,8 +12,10 @@ export interface IDropZoneProps
     extends Partial<
             Omit<ComponentProps<typeof CoolDropzone>, "children" | "onDrop">
         >,
-        Pick<IUploadProps, "commitHref" | "chunkHref"> {
+        Partial<Pick<IUploadProps, "commitHref" | "chunkHref">> {
     withTranslation: IWithTranslation;
+
+    path: string;
 
     onUpload?(files: FileWithPath[], commit: () => void): void;
 }
@@ -23,6 +25,7 @@ export const DropZone: FC<IDropZoneProps> = ({
     onUpload = () => null,
     chunkHref,
     commitHref,
+    path,
     ...props
 }) => {
     const theme = useMantineTheme();
@@ -139,6 +142,7 @@ export const DropZone: FC<IDropZoneProps> = ({
                                         <td>
                                             <Upload
                                                 file={file}
+                                                path={path}
                                                 chunkHref={chunkHref}
                                                 commitHref={commitHref}
                                             />

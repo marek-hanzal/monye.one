@@ -27,6 +27,7 @@
         "lint": "eslint src"
     },
     "dependencies": {
+        "@leight/file": "*",
         "@leight/file-server": "*",
         "@leight/xlsx-import-server": "*",
         "tsyringe": "^4.7.0"

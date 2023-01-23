@@ -1,4 +1,4 @@
-import {container} from "tsyringe";
+import { container } from "tsyringe";
 import {
     $ImportService,
     $MetaService,
@@ -8,18 +8,25 @@ import {
     type IMetaService,
     type ITabService,
     type ITranslationService,
-}                  from "./api";
+} from "./api";
 import {
     ImportService,
     MetaService,
     TabService,
-    TranslationService
-}                  from "./service";
+    TranslationService,
+} from "./service";
+
+export interface IImportContainer {
+    TabService: ITabService;
+    ImportService: IImportService;
+    MetaService: IMetaService;
+    TranslationService: ITranslationService;
+}
 
 /**
  * Register all services of this packages into a target container.
  */
-export const ImportContainer = (target: typeof container) => {
+export const ImportContainer = (target: typeof container): IImportContainer => {
     target.register<ITabService>($TabService, {
         useClass: TabService,
     });
@@ -44,7 +51,7 @@ export const ImportContainer = (target: typeof container) => {
             return target.resolve<IMetaService>($MetaService);
         },
         get TranslationService() {
-            return target.resolve<IMetaService>($TranslationService);
+            return target.resolve<ITranslationService>($TranslationService);
         },
     };
 };

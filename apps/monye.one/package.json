@@ -21,6 +21,8 @@
         "@leight/container-server": "*",
         "@leight/core-client": "*",
         "@leight/core-server": "*",
+        "@leight/file": "*",
+        "@leight/file-server": "*",
         "@leight/i18n": "*",
         "@leight/i18n-client": "*",
         "@leight/i18n-server": "*",

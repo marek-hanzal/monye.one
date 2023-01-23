@@ -4,27 +4,55 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+    url    = env("DATABASE_URL")
 }
 
 // This is just dummy placeholder for real user use could use
 model User {
-  id String @id @default(cuid())
+    id String @id @default(cuid())
 
-  File File[]
+    Job Job[]
 }
 
-model File {
-  id       String @id @default(cuid())
-  path     String
-  name     String
-  mime     String
-  size     Int
-  location String
+model Job {
+    id           String    @id @default(cuid())
+    name         String
+    status       JobStatus @default(NEW)
+    total        Int       @default(0)
+    progress     Float     @default(0)
+    success      Int?
+    successRatio Float?
+    failure      Int?
+    failureRatio Float?
+    skip         Int?
+    skipRatio    Float?
+    created      DateTime
+    started      DateTime?
+    finished     DateTime?
+    logs         JobLog[]
+    userId       String?
+    user         User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    params       String?
+}
 
-  ttl     Int?
-  created DateTime
-  updated DateTime?
-  userId  String
-  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+model JobLog {
+    id      String @id @default(cuid())
+    jobId   String
+    job     Job    @relation(fields: [jobId], references: [id], onDelete: Cascade)
+    message String @db.Text
+}
+
+enum JobStatus {
+    // Just created, nobody cares about the job yet
+    NEW
+    // Job has been picked up and is in progress.
+    RUNNING
+    // Job has been successfully done; waiting for "commit".
+    SUCCESS
+    // Job has failed hard (usually outside of boundaris of the job handler)
+    FAILURE
+    //  Job has been processed, but there are some failed items
+    REVIEW
+    //  When everything is OK, it's done: goes from review->done and failure->done
+    DONE
 }

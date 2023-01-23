@@ -1,7 +1,7 @@
 {
     "version": "0.5.0",
-    "name": "@leight/next.js-server",
-    "description": "Next.js related server-side helper stuff.",
+    "name": "@leight/file",
+    "description": "Common file stuff.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -24,25 +24,22 @@
         "dev:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
         "dev:cjs": "tsc -w -p tsconfig.json --preserveWatchOutput",
         "dev": "concurrently npm:dev:*",
+        "prisma-format": "npx dotenv -c development -- npx prisma format",
+        "postinstall": "pnpm run prisma-format && prisma generate",
         "lint": "eslint src"
     },
     "dependencies": {
-        "@leight/core": "*",
-        "@leight/winston": "*",
-        "next": "^13.1.4",
-        "raw-body": "^2.5.1",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "@prisma/client": "^4.9.0"
     },
     "devDependencies": {
         "@types/node": "^18.11.18",
-        "@types/react": "^18.0.27",
-        "@types/react-dom": "^18.0.10",
         "@typescript-eslint/eslint-plugin": "^5.48.2",
         "@typescript-eslint/parser": "^5.48.2",
         "concurrently": "^7.6.0",
+        "dotenv-cli": "^7.0.0",
         "eslint": "^8.32.0",
         "eslint-plugin-unicorn": "^45.0.2",
+        "prisma": "^4.9.0",
         "typescript": "^4.9.4"
     },
     "bugs": {

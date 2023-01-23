@@ -16,12 +16,6 @@ export default withBookLayout(
                             label: "dropzone.import",
                             namespace: "transaction",
                         }}
-                        chunkHref={{
-                            href: "/api/file/chunk/{chunkId}/upload",
-                        }}
-                        commitHref={{
-                            href: "/api/file/chunk/{chunkId}/upload",
-                        }}
                     />
                 </Box>
             </>
@@ -30,4 +24,8 @@ export default withBookLayout(
     { logo, href: "/book/transaction/list" }
 );
 
-export const getServerSideProps = withTranslation(["common", "book", "transaction"]);
+export const getServerSideProps = withTranslation([
+    "common",
+    "book",
+    "transaction",
+]);
