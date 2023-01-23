@@ -11,4 +11,9 @@ export interface IHandler<
     container: typeof container;
 
     handler(props: IHandlerProps<TBody, THrefQuery>): Promise<TData | IError>;
+
+    /**
+     * If specified, tokens would be required to access an endpoint.
+     */
+    withTokens?: string[];
 }
