@@ -32,7 +32,7 @@ export interface IUseLoopProps {
  */
 export const useLoop = ({
     total,
-    throttle = 500,
+    throttle = 0,
     onStart = () => Promise.resolve(),
     onTick,
     onFinish = () => Promise.resolve(),
@@ -74,5 +74,6 @@ export const useLoop = ({
         current,
         total,
         started: started.current,
+        percent: (100 * (current + 1)) / total,
     };
 };

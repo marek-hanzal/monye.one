@@ -1,10 +1,14 @@
-import { IHrefProps, useChunk } from "@leight/core-client";
-import { FileWithPath } from "@mantine/dropzone";
-import { FC, useRef } from "react";
+import { type IUseChunkProps, useChunk } from "@leight/core-client";
+import { type FileWithPath } from "@mantine/dropzone";
+import { type FC, useRef } from "react";
 import { v4 } from "uuid";
+import { Progress } from "@mantine/core";
+import { type IHrefProps } from "@leight/core";
 
-export interface IUploadProps {
-    href: IHrefProps;
+export interface IUploadProps
+    extends Pick<IUseChunkProps, "onStart" | "onFinish"> {
+    chunkHref: IHrefProps;
+    commitHref: IHrefProps;
     file: FileWithPath;
 }
 
@@ -16,27 +20,23 @@ const defaultChunkSize = 1024 * 4;
  *
  * Progress and other stuff are synced through Zustand Store.
  */
-export const Upload: FC<IUploadProps> = ({ href, file }) => {
+export const Upload: FC<IUploadProps> = ({
+    chunkHref,
+    commitHref,
+    file,
+    onStart,
+    onFinish,
+}) => {
     const uuid = useRef(v4());
-    const { current, total } = useChunk({
+    const { percent } = useChunk({
         chunk: defaultChunkSize,
-        throttle: 1000,
+        throttle: 500,
         size: file.size,
-        async onStart() {
-            console.log("UUID", uuid);
-            console.log("Exetuing upload of", file, "to", href);
-        },
-        async onTick({ current, total, start, end, size, percent }) {
-            console.log(
-                "Tick",
-                `${start} -> ${end} [${current}/${total}] ${percent.toFixed(
-                    2
-                )}%`,
-                size
-            );
-        },
-        async onFinish() {
-            console.log("Done!");
+        async onTick({ current, total, start, end, size, percent }) {},
+        onStart,
+        onFinish: async (props) => {
+            console.log("Calling commit on file", commitHref);
+            return onFinish?.(props);
         },
     });
 
@@ -85,7 +85,13 @@ export const Upload: FC<IUploadProps> = ({ href, file }) => {
 
     return (
         <>
-            {current}/{total}
+            <Progress
+                color={"green"}
+                radius={"md"}
+                size={"md"}
+                value={percent}
+                animate
+            />
         </>
     );
 };

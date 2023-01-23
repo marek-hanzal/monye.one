@@ -1,4 +1,3 @@
-import { IHrefProps } from "@leight/core-client";
 import { type IWithTranslation } from "@leight/i18n";
 import { Translation } from "@leight/i18n-client";
 import { Divider, Group, Table, Text, useMantineTheme } from "@mantine/core";
@@ -7,14 +6,14 @@ import { IconUpload, IconX } from "@tabler/icons";
 import { type ComponentProps, type FC, useState } from "react";
 import { switchScheme } from "../utils";
 import { Paper } from "./Paper";
-import { Upload } from "./Upload";
+import { IUploadProps, Upload } from "./Upload";
 
 export interface IDropZoneProps
     extends Partial<
-        Omit<ComponentProps<typeof CoolDropzone>, "children" | "onDrop">
-    > {
+            Omit<ComponentProps<typeof CoolDropzone>, "children" | "onDrop">
+        >,
+        Pick<IUploadProps, "commitHref" | "chunkHref"> {
     withTranslation: IWithTranslation;
-    href: IHrefProps;
 
     onUpload?(files: FileWithPath[], commit: () => void): void;
 }
@@ -22,7 +21,8 @@ export interface IDropZoneProps
 export const DropZone: FC<IDropZoneProps> = ({
     withTranslation,
     onUpload = () => null,
-    href,
+    chunkHref,
+    commitHref,
     ...props
 }) => {
     const theme = useMantineTheme();
@@ -137,7 +137,11 @@ export const DropZone: FC<IDropZoneProps> = ({
                                     <tr key={file.path}>
                                         <td>{file.path}</td>
                                         <td>
-                                            <Upload file={file} href={href} />
+                                            <Upload
+                                                file={file}
+                                                chunkHref={chunkHref}
+                                                commitHref={commitHref}
+                                            />
                                         </td>
                                         <td>actions</td>
                                     </tr>

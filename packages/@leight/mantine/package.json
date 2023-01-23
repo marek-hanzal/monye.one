@@ -28,6 +28,7 @@
     "dependencies": {
         "@babel/core": "^7.20.12",
         "@emotion/react": "^11.10.5",
+        "@leight/core": "*",
         "@leight/core-client": "*",
         "@leight/i18n": "*",
         "@leight/i18n-client": "*",

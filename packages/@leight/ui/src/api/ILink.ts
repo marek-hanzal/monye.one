@@ -1,8 +1,7 @@
-import {type ReactNode} from "react";
+import { type ReactNode } from "react";
+import { type IHrefProps } from "@leight/core";
 
-export interface ILink {
-    href: string;
-    query?: Record<string, any>;
+export interface ILink extends IHrefProps {
     label?: string;
     icon?: ReactNode;
 }

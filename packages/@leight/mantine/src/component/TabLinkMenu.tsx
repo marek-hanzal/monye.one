@@ -1,15 +1,10 @@
-import {
-    type IHrefProps,
-    toHref
-}                              from "@leight/core-client";
-import {type IWithTranslation} from "@leight/i18n";
-import {Translation}           from "@leight/i18n-client";
-import {Tabs}                  from "@mantine/core";
-import {useRouter}             from "next/router";
-import {
-    type FC,
-    type ReactNode
-}                              from "react";
+import { toHref } from "@leight/core-client";
+import { type IWithTranslation } from "@leight/i18n";
+import { Translation } from "@leight/i18n-client";
+import { Tabs } from "@mantine/core";
+import { useRouter } from "next/router";
+import { type FC, type ReactNode } from "react";
+import { type IHrefProps } from "@leight/core";
 
 export interface ITabLinkMenuItem {
     href: IHrefProps;
@@ -22,20 +17,22 @@ export interface ITabLinkMenuProps {
     active?: string;
 }
 
-export const TabLinkMenu: FC<ITabLinkMenuProps> = ({active, items}) => {
+export const TabLinkMenu: FC<ITabLinkMenuProps> = ({ active, items }) => {
     const router = useRouter();
-    return <Tabs
-        defaultValue={active || router.pathname}
-        onTabChange={href => href && router.push(href)}
-    >
-        <Tabs.List>
-            {items.map(({icon, href, withTranslation}) => <Tabs.Tab
-                icon={icon}
-                key={href.href}
-                value={toHref(href)}
-            >
-                {withTranslation && <Translation {...withTranslation} />}
-            </Tabs.Tab>)}
-        </Tabs.List>
-    </Tabs>;
+    return (
+        <Tabs
+            defaultValue={active || router.pathname}
+            onTabChange={(href) => href && router.push(href)}
+        >
+            <Tabs.List>
+                {items.map(({ icon, href, withTranslation }) => (
+                    <Tabs.Tab icon={icon} key={href.href} value={toHref(href)}>
+                        {withTranslation && (
+                            <Translation {...withTranslation} />
+                        )}
+                    </Tabs.Tab>
+                ))}
+            </Tabs.List>
+        </Tabs>
+    );
 };
