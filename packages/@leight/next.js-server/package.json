@@ -28,12 +28,15 @@
     },
     "dependencies": {
         "@leight/core": "*",
+        "@leight/user": "*",
+        "@leight/user-server": "*",
         "@leight/winston": "*",
         "next": "^13.1.4",
         "next-auth": "^4.18.8",
         "raw-body": "^2.5.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "reflect-metadata": "^0.1.13",
         "tsyringe": "^4.7.0"
     },
     "devDependencies": {

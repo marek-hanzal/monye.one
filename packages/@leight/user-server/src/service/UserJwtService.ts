@@ -11,6 +11,9 @@ export class UserJwtService implements IUserJwtService {
     constructor(@inject($PrismaClient) protected prisma: PrismaClient) {}
 
     public async token<T extends IToken>(props: T): Promise<T> {
-        return props;
+        return {
+            ...props,
+            tokens: ["token1", "token2", "*"],
+        };
     }
 }

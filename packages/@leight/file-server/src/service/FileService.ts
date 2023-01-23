@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { File, PrismaClient } from "@prisma/client";
 import {
     $FileServiceConfig,
@@ -6,7 +7,6 @@ import {
     type IFileServiceStoreProps,
 } from "@leight/file";
 import { inject, injectable } from "tsyringe";
-import "reflect-metadata";
 import { v4 } from "uuid";
 import fs from "node:fs";
 import { copySync } from "fs-extra";

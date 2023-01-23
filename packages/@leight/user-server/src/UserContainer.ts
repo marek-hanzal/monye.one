@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { container } from "tsyringe";
 import { RegistrationService, UserJwtService } from "./service";
 import {

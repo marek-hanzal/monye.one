@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import {
     FileContainer as $FileContainer,
     type IFileContainer,

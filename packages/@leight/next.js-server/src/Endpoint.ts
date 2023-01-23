@@ -3,6 +3,7 @@ import { type IError, type IHandler, type INextHandler } from "./api";
 import { type IHrefQuery } from "@leight/core";
 import getRawBody from "raw-body";
 import { type NextApiRequest, type NextApiResponse } from "next";
+import { TokenServiceUtils } from "@leight/user";
 import { getToken } from "next-auth/jwt";
 
 const logger = Logger("@leight/next.js-server");
@@ -21,9 +22,11 @@ export const Endpoint =
         response: NextApiResponse<TData | IError>
     ) => {
         try {
-            console.log("Token", await getToken({ req: request }));
             const result = await handler({
-                container,
+                container: TokenServiceUtils.withTokens(
+                    container,
+                    ((await getToken({ req: request }))?.tokens || []) as []
+                ),
                 request,
                 body: request.body,
                 query: request.query as THrefQuery,

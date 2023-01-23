@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { container } from "tsyringe";
 import {
     $ChunkService,
@@ -9,8 +10,7 @@ import {
     type IFileService,
     type IFileServiceConfig,
 } from "@leight/file";
-import { ChunkService } from "./service";
-import { FileService } from "./service/FileService";
+import { ChunkService, FileService } from "./service";
 
 export interface IFileContainer {
     ChunkService: IChunkService;

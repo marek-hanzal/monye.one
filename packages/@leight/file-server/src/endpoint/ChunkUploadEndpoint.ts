@@ -1,4 +1,5 @@
-import {$ChunkService, IChunkService} from "@leight/file";
+import "reflect-metadata";
+import {$ChunkService, type IChunkService} from "@leight/file";
 import {Endpoint} from "@leight/next.js-server";
 import {container} from "tsyringe";
 

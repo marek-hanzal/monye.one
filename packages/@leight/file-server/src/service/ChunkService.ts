@@ -1,5 +1,5 @@
-import { outputFileSync, removeSync } from "fs-extra";
 import "reflect-metadata";
+import { outputFileSync, removeSync } from "fs-extra";
 import { inject, injectable } from "tsyringe";
 import {
     $ChunkServiceConfig,
