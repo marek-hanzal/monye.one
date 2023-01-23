@@ -21,8 +21,8 @@
         "build:esm": "tsc -p tsconfig.json -m es2022 --outDir lib/esm",
         "build:cjs": "tsc -p tsconfig.json",
         "build": "concurrently npm:build:*",
-        "dev:cjs": "tsc -w -p tsconfig.json --preserveWatchOutput",
         "dev:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
+        "dev:cjs": "tsc -w -p tsconfig.json --preserveWatchOutput",
         "dev": "concurrently npm:dev:*",
         "lint": "eslint src"
     },
@@ -30,7 +30,7 @@
         "@leight/i18n": "*",
         "@leight/utils": "*",
         "i18next": "^22.4.9",
-        "next": "^13.1.2",
+        "next": "^13.1.4",
         "next-i18next": "^13.0.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

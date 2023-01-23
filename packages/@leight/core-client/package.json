@@ -21,13 +21,19 @@
         "build:esm": "tsc -p tsconfig.json -m es2022 --outDir lib/esm",
         "build:cjs": "tsc -p tsconfig.json",
         "build": "concurrently npm:build:*",
-        "dev:cjs": "tsc -w -p tsconfig.json --preserveWatchOutput",
         "dev:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
+        "dev:cjs": "tsc -w -p tsconfig.json --preserveWatchOutput",
         "dev": "concurrently npm:dev:*",
         "lint": "eslint src"
     },
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
     "devDependencies": {
         "@types/node": "^18.11.18",
+        "@types/react": "^18.0.27",
+        "@types/react-dom": "^18.0.10",
         "@typescript-eslint/eslint-plugin": "^5.48.2",
         "@typescript-eslint/parser": "^5.48.2",
         "concurrently": "^7.6.0",
