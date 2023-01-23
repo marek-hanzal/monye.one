@@ -30,6 +30,7 @@
     },
     "dependencies": {
         "@leight/file": "*",
+        "@leight/next.js-server": "*",
         "@leight/prisma": "*",
         "@prisma/client": "^4.9.0",
         "filesize": "^10.0.6",

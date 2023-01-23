@@ -94,7 +94,7 @@ CREATE TABLE "File"
     "ttl"      INTEGER,
     "created"  TIMESTAMP(3) NOT NULL,
     "updated"  TIMESTAMP(3),
-    "userId"   TEXT         NOT NULL,
+    "userId"   TEXT,
 
     CONSTRAINT "File_pkey" PRIMARY KEY ("id")
 );
@@ -169,6 +169,9 @@ CREATE UNIQUE INDEX "UserToken_userId_tokenId_key" ON "UserToken" ("userId", "to
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Translation_locale_hash_key" ON "Translation" ("locale", "hash");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "File_userId_path_name_key" ON "File" ("userId", "path", "name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Transaction_userId_reference_key" ON "Transaction" ("userId", "reference");

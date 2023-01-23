@@ -27,4 +27,6 @@ model File {
     updated DateTime?
     userId  String?
     user    User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([userId, path, name])
 }

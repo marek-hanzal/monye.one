@@ -1,8 +1,8 @@
 import { Logger } from "@leight/winston";
-import type { NextApiRequest, NextApiResponse } from "next";
-import { type IError, type IHandler } from "./api";
+import { IError, type IHandler, INextHandler } from "./api";
 import { IHrefQuery } from "@leight/core";
 import getRawBody from "raw-body";
+import { NextApiRequest, NextApiResponse } from "next";
 
 const logger = Logger("@leight/next.js-server");
 
@@ -13,7 +13,7 @@ export const Endpoint =
         THrefQuery extends IHrefQuery = IHrefQuery
     >({
         handler,
-    }: IHandler<TBody, TData, THrefQuery>) =>
+    }: IHandler<TBody, TData, THrefQuery>): INextHandler<TData> =>
     async (
         request: NextApiRequest,
         response: NextApiResponse<TData | IError>

@@ -1,5 +1,5 @@
-import { Endpoint } from "@leight/next.js-server";
 import { ServerContainer } from "@/monye.one/server/container";
+import { ChunkUploadEndpoint } from "@leight/file-server";
 
 export const config = {
     api: {
@@ -7,10 +7,4 @@ export const config = {
     },
 };
 
-const ChunkService = ServerContainer.FileContainer.ChunkService;
-
-export default Endpoint<unknown, void, { chunkId: string }>({
-    async handler({ toBody, query: { chunkId }, end }) {
-        end(await ChunkService.chunk(chunkId, toBody()));
-    },
-});
+export default ChunkUploadEndpoint(ServerContainer.FileContainer.ChunkService);
