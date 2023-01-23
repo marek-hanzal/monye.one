@@ -29,6 +29,7 @@
         "prisma-format": "npx dotenv -c development -- npx prisma format"
     },
     "dependencies": {
+        "@leight/utils": "*",
         "@prisma/client": "^4.9.0",
         "next": "^13.1.4",
         "next-auth": "^4.18.8",

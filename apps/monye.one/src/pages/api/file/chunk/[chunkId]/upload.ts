@@ -1,4 +1,4 @@
-import { ServerContainer } from "@/monye.one/server/container";
+import { container } from "@/monye.one/server/container";
 import { ChunkUploadEndpoint } from "@leight/file-server";
 
 export const config = {
@@ -7,4 +7,4 @@ export const config = {
     },
 };
 
-export default ChunkUploadEndpoint(ServerContainer.FileContainer.ChunkService);
+export default ChunkUploadEndpoint(container);

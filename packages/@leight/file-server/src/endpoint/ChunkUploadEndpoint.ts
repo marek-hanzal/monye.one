@@ -1,13 +1,17 @@
-import {IChunkService} from "@leight/file";
+import {$ChunkService, IChunkService} from "@leight/file";
 import {Endpoint} from "@leight/next.js-server";
+import {container} from "tsyringe";
 
 /**
  * Export default this to handle chunk uploading.
  */
-export const ChunkUploadEndpoint = (chunkService: IChunkService) => {
+export const ChunkUploadEndpoint = (target: typeof container) => {
     return Endpoint<unknown, void, { chunkId: string }>({
+        container: target,
         async handler({ toBody, query: { chunkId }, end }) {
-            await chunkService.chunk(chunkId, toBody());
+            await container
+                .resolve<IChunkService>($ChunkService)
+                .chunk(chunkId, toBody());
             end();
         },
     });

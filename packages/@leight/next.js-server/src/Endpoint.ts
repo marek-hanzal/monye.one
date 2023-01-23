@@ -1,8 +1,9 @@
 import { Logger } from "@leight/winston";
-import { IError, type IHandler, INextHandler } from "./api";
-import { IHrefQuery } from "@leight/core";
+import { type IError, type IHandler, type INextHandler } from "./api";
+import { type IHrefQuery } from "@leight/core";
 import getRawBody from "raw-body";
-import { NextApiRequest, NextApiResponse } from "next";
+import { type NextApiRequest, type NextApiResponse } from "next";
+import { getToken } from "next-auth/jwt";
 
 const logger = Logger("@leight/next.js-server");
 
@@ -13,13 +14,16 @@ export const Endpoint =
         THrefQuery extends IHrefQuery = IHrefQuery
     >({
         handler,
+        container,
     }: IHandler<TBody, TData, THrefQuery>): INextHandler<TData> =>
     async (
         request: NextApiRequest,
         response: NextApiResponse<TData | IError>
     ) => {
         try {
+            console.log("Token", await getToken({ req: request }));
             const result = await handler({
+                container,
                 request,
                 body: request.body,
                 query: request.query as THrefQuery,

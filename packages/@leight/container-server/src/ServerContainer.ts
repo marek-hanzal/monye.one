@@ -1,18 +1,30 @@
-import { FileContainer as $FileContainer } from "@leight/file-server";
-import { ImportContainer as $ImportContainer } from "@leight/xlsx-import-server";
-import { UserContainer as $UserContainer } from "@leight/user-server";
+import {
+    FileContainer as $FileContainer,
+    type IFileContainer,
+} from "@leight/file-server";
+import {
+    type IImportContainer,
+    ImportContainer as $ImportContainer,
+} from "@leight/xlsx-import-server";
+import {
+    type IUserContainer,
+    UserContainer as $UserContainer,
+} from "@leight/user-server";
 import { container } from "tsyringe";
 
-export const ServerContainer = (target: typeof container) => {
+export interface IServerContainer {
+    FileContainer: IFileContainer;
+    ImportContainer: IImportContainer;
+    UserContainer: IUserContainer;
+}
+
+export const ServerContainer = (target: typeof container): IServerContainer => {
+    const FileContainer = $FileContainer(target);
+    const ImportContainer = $ImportContainer(target);
+    const UserContainer = $UserContainer(target);
     return {
-        get FileContainer() {
-            return $FileContainer(target);
-        },
-        get ImportContainer() {
-            return $ImportContainer(target);
-        },
-        get UserContainer() {
-            return $UserContainer(target);
-        },
+        FileContainer,
+        ImportContainer,
+        UserContainer,
     };
 };
