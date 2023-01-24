@@ -1,4 +1,4 @@
-import { IOnTickProps, IUseLoopProps, useLoop } from "./useLoop";
+import { type IOnTickProps, type IUseLoopProps, useLoop } from "../loop";
 
 export interface IUseChunkTickProps {
     current: number;

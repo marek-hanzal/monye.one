@@ -1,1 +1,7 @@
-export type IJobStatus = "NEW" | "RUNNING" | "SUCCESS" | "FAILURE" | "REVIEW" | "DONE";
+export type IJobStatus =
+    | "NEW"
+    | "RUNNING"
+    | "SUCCESS"
+    | "FAILURE"
+    | "REVIEW"
+    | "DONE";

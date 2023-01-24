@@ -1,7 +1,7 @@
 {
     "version": "0.5.0",
-    "name": "@leight/mantine",
-    "description": "Tools and some wrappers for Mantine UI library.",
+    "name": "@leight/zustand",
+    "description": "Zustand helper stuff.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -23,35 +23,18 @@
         "build": "concurrently npm:build:*",
         "dev:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
         "dev:cjs": "tsc -w -p tsconfig.json --preserveWatchOutput",
-        "dev": "concurrently npm:dev:*"
+        "dev": "concurrently npm:dev:*",
+        "lint": "eslint src"
     },
     "dependencies": {
-        "@babel/core": "^7.20.12",
-        "@emotion/react": "^11.10.5",
-        "@leight/core": "*",
-        "@leight/core-client": "*",
-        "@leight/file": "*",
-        "@leight/file-client": "*",
-        "@leight/i18n": "*",
-        "@leight/i18n-client": "*",
-        "@mantine/core": "^5.10.1",
-        "@mantine/dropzone": "^5.10.1",
-        "@mantine/hooks": "^5.10.1",
-        "@mantine/nprogress": "^5.10.1",
-        "@tabler/icons": "^2.0.0",
-        "@tabler/icons-react": "^2.0.0",
-        "axios": "^1.2.3",
-        "next": "^13.1.5",
-        "prop-types": "^15.8.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "uuid": "^9.0.0"
+        "zustand": "^4.3.2"
     },
     "devDependencies": {
         "@types/node": "^18.11.18",
         "@types/react": "^18.0.27",
         "@types/react-dom": "^18.0.10",
-        "@types/uuid": "^9.0.0",
         "@typescript-eslint/eslint-plugin": "^5.49.0",
         "@typescript-eslint/parser": "^5.49.0",
         "concurrently": "^7.6.0",

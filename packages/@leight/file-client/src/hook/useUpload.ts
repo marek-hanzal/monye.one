@@ -27,9 +27,9 @@ export const useUpload = ({
     replace = true,
 }: IUseUploadProps) => {
     const uuid = useRef(v4());
-    const chunk = useChunk({
+    return useChunk({
         chunk: defaultChunkSize,
-        throttle: 50,
+        throttle: 0,
         size: file.size,
         async onTick({ start, end }) {
             return axios.post(
@@ -58,9 +58,4 @@ export const useUpload = ({
         },
         onError,
     });
-
-    return {
-        ...chunk,
-        uuid: uuid.current,
-    };
 };

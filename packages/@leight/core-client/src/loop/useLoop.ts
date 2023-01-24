@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
+import { useLoopStore } from "./useLoopStore";
 
 export interface IOnStartProps {
     total: number;
@@ -40,67 +41,53 @@ export const useLoop = ({
     onError = () => Promise.resolve(),
     onFinish = () => Promise.resolve(),
 }: IUseLoopProps) => {
-    /**
-     * Changes to this will execute the loop.
-     */
-    const [current, setCurrent] = useState(0);
-    const running = useRef(false);
-    const [error, setError] = useState(false);
-    const [done, setDone] = useState(false);
+    const loopStore = useLoopStore();
 
     useEffect(() => {
-        if (running.current) {
+        if (loopStore.isRunning) {
             return;
         }
-        running.current = true;
-        onStart({ total }).then(() => setCurrent(0));
+        loopStore.setTotal(total);
+        loopStore.running();
+        (async () => await onStart({ total }))();
     }, []);
 
     useEffect(() => {
-        if (!running.current) {
+        if (!loopStore.isRunning) {
             return;
         }
-        if (current === total) {
-            running.current = false;
+        if (loopStore.current === total) {
+            loopStore.running(false);
             onFinish?.({})
                 .then(() => {
-                    setDone(true);
+                    loopStore.done();
                 })
                 .catch((e) => {
                     console.error(e);
-                    setError(true);
-                    setDone(true);
+                    loopStore.error();
+                    loopStore.done();
                     onError(e);
                 });
             return;
         }
         setTimeout(() => {
             onTick({
-                current,
+                current: loopStore.current,
                 total,
-                percent: (100 * (current + 1)) / total,
+                percent: loopStore.percent(),
             })
                 .then(() => {
-                    setCurrent((current) => current + 1);
+                    loopStore.progress();
                 })
                 .catch((e) => {
-                    running.current = false;
                     console.error(e);
-                    setError(true);
-                    setDone(true);
+                    loopStore.running(false);
+                    loopStore.error();
+                    loopStore.done();
                     onError(e);
                 });
         }, throttle);
-    }, [current]);
+    }, [loopStore.isRunning, loopStore.current]);
 
-    return {
-        idle: !running.current && !done,
-        running: running.current,
-        error,
-        success: running ? undefined : !error,
-        done,
-        current,
-        total,
-        percent: (100 * current) / total,
-    };
+    return loopStore;
 };

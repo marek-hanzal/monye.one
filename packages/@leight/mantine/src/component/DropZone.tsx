@@ -7,7 +7,8 @@ import { type ComponentProps, type FC, useState } from "react";
 import { switchScheme } from "../utils";
 import { Paper } from "./Paper";
 import { Upload } from "./Upload";
-import { UploadProvider } from "@leight/file-client";
+import { LoopProvider } from "@leight/core-client";
+import { UploadControls } from "./UploadControls";
 
 export interface IDropZoneProps
     extends Partial<
@@ -49,7 +50,7 @@ export const DropZone: FC<IDropZoneProps> = ({
                         setFiles(files.slice(0, limit));
                         onDrop?.(files, () => {
                             // setFiles([]);
-                            setLoading(false);
+                            // setLoading(false);
                         });
                     }}
                     {...props}
@@ -143,17 +144,19 @@ export const DropZone: FC<IDropZoneProps> = ({
                             </thead>
                             <tbody>
                                 {files.map((file) => (
-                                    <UploadProvider>
-                                        <tr key={file.path}>
+                                    <LoopProvider key={file.path}>
+                                        <tr>
                                             <td>{file.path}</td>
                                             <td>
                                                 <Upload
                                                     upload={{ file, path }}
                                                 />
                                             </td>
-                                            <td>actions</td>
+                                            <td>
+                                                <UploadControls />
+                                            </td>
                                         </tr>
-                                    </UploadProvider>
+                                    </LoopProvider>
                                 ))}
                             </tbody>
                         </Table>

@@ -21,4 +21,8 @@ export default withBookLayout(
     { logo, href: "/book/transaction/list" }
 );
 
-export const getServerSideProps = withTranslation(["common", "book", "transaction"]);
+export const getServerSideProps = withTranslation([
+    "common",
+    "book",
+    "transaction",
+]);

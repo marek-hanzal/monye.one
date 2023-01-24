@@ -42,10 +42,17 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/file/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/user-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/user/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/zustand/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
       <excludeFolder url="file://$MODULE_DIR$/apps/monye.one/.data" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/file-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/file-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/zustand/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/zustand/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
