@@ -62,18 +62,32 @@ export class FileService implements IFileService {
         file
             ? copySync(file, location, { overwrite: replace })
             : touch.sync(location);
-        return this.prismaClient.file.create({
-            data: {
-                id,
-                location,
-                name,
-                path,
-                mime: this.mimeOf(file),
-                size: this.sizeOf(file),
-                created: new Date().toISOString(),
-                ttl: undefined,
-                userId,
-            },
-        });
+        const data = {
+            id,
+            location,
+            name,
+            path,
+            mime: this.mimeOf(file),
+            size: this.sizeOf(file),
+            created: new Date().toISOString(),
+            ttl: undefined,
+            userId,
+        };
+
+        return replace && userId
+            ? this.prismaClient.file.upsert({
+                  where: {
+                      userId_path_name: {
+                          name,
+                          path,
+                          userId,
+                      },
+                  },
+                  create: data,
+                  update: data,
+              })
+            : this.prismaClient.file.create({
+                  data,
+              });
     }
 }

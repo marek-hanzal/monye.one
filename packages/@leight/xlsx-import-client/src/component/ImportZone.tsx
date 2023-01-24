@@ -10,7 +10,7 @@ export const ImportZone: FC<IImportZoneProps> = (props) => {
     return (
         <DropZone
             path={"/import"}
-            onUpload={(files, commit) => {
+            onDrop={(files, commit) => {
                 setTimeout(() => {
                     commit();
                 }, 3500);

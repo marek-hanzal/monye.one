@@ -6,26 +6,27 @@ import { IconUpload, IconX } from "@tabler/icons-react";
 import { type ComponentProps, type FC, useState } from "react";
 import { switchScheme } from "../utils";
 import { Paper } from "./Paper";
-import { type IUploadProps, Upload } from "./Upload";
+import { Upload } from "./Upload";
 
 export interface IDropZoneProps
     extends Partial<
-            Omit<ComponentProps<typeof CoolDropzone>, "children" | "onDrop">
-        >,
-        Partial<Pick<IUploadProps, "commitHref" | "chunkHref">> {
+        Omit<ComponentProps<typeof CoolDropzone>, "children" | "onDrop">
+    > {
     withTranslation: IWithTranslation;
 
     path: string;
 
-    onUpload?(files: FileWithPath[], commit: () => void): void;
+    onDrop?(files: FileWithPath[], commit: () => void): void;
 }
 
+/**
+ * Uploader component based on @leight/file-client Upload. Separation is because of this library
+ * directly using Mantine, an Upload component is basically standalone.
+ */
 export const DropZone: FC<IDropZoneProps> = ({
     withTranslation,
-    onUpload = () => null,
-    chunkHref,
-    commitHref,
     path,
+    onDrop = () => null,
     ...props
 }) => {
     const theme = useMantineTheme();
@@ -40,8 +41,9 @@ export const DropZone: FC<IDropZoneProps> = ({
                     onDrop={(files) => {
                         console.log("files", files);
                         setLoading(true);
+                        setFiles([]);
                         setFiles(files);
-                        onUpload?.(files, () => {
+                        onDrop?.(files, () => {
                             // setFiles([]);
                             setLoading(false);
                         });
@@ -140,12 +142,7 @@ export const DropZone: FC<IDropZoneProps> = ({
                                     <tr key={file.path}>
                                         <td>{file.path}</td>
                                         <td>
-                                            <Upload
-                                                file={file}
-                                                path={path}
-                                                chunkHref={chunkHref}
-                                                commitHref={commitHref}
-                                            />
+                                            <Upload upload={{ file, path }} />
                                         </td>
                                         <td>actions</td>
                                     </tr>

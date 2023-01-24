@@ -10,7 +10,10 @@ export interface IUseChunkTickProps {
 }
 
 export interface IUseChunkProps
-    extends Pick<IUseLoopProps, "onStart" | "onFinish" | "throttle"> {
+    extends Pick<
+        IUseLoopProps,
+        "onStart" | "onFinish" | "onError" | "throttle"
+    > {
     /**
      * Default chunk (page, whatever) size
      */
@@ -30,6 +33,7 @@ export const useChunk = ({
     onStart,
     onTick,
     onFinish,
+    onError,
 }: IUseChunkProps) => {
     return useLoop({
         total: Math.ceil(size / chunk),
@@ -46,5 +50,6 @@ export const useChunk = ({
             });
         },
         onFinish,
+        onError,
     });
 };

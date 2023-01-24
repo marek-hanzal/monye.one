@@ -23,6 +23,8 @@ export interface IUseLoopProps {
 
     onTick(props: IOnTickProps): Promise<void>;
 
+    onError?(e: unknown): void;
+
     onFinish?(props: IOnFinishProps): Promise<void>;
 }
 
@@ -35,28 +37,41 @@ export const useLoop = ({
     throttle = 0,
     onStart = () => Promise.resolve(),
     onTick,
+    onError = () => Promise.resolve(),
     onFinish = () => Promise.resolve(),
 }: IUseLoopProps) => {
-    const started = useRef(false);
     /**
      * Changes to this will execute the loop.
      */
     const [current, setCurrent] = useState(0);
+    const running = useRef(false);
+    const [error, setError] = useState(false);
+    const [done, setDone] = useState(false);
+
     useEffect(() => {
-        if (started.current) {
+        if (running.current) {
             return;
         }
-        started.current = true;
+        running.current = true;
         onStart({ total }).then(() => setCurrent(0));
     }, []);
 
     useEffect(() => {
-        if (!started.current) {
+        if (!running.current) {
             return;
         }
         if (current === total) {
-            started.current = false;
-            onFinish?.({});
+            running.current = false;
+            onFinish?.({})
+                .then(() => {
+                    setDone(true);
+                })
+                .catch((e) => {
+                    console.error(e);
+                    setError(true);
+                    setDone(true);
+                    onError(e);
+                });
             return;
         }
         setTimeout(() => {
@@ -64,16 +79,28 @@ export const useLoop = ({
                 current,
                 total,
                 percent: (100 * (current + 1)) / total,
-            }).then(() => {
-                setCurrent((current) => current + 1);
-            });
+            })
+                .then(() => {
+                    setCurrent((current) => current + 1);
+                })
+                .catch((e) => {
+                    running.current = false;
+                    console.error(e);
+                    setError(true);
+                    setDone(true);
+                    onError(e);
+                });
         }, throttle);
     }, [current]);
 
     return {
+        idle: !running.current && !done,
+        running: running.current,
+        error,
+        success: running ? undefined : !error,
+        done,
         current,
         total,
-        started: started.current,
-        percent: (100 * (current + 1)) / total,
+        percent: (100 * current) / total,
     };
 };

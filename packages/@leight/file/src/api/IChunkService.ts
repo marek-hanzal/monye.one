@@ -12,6 +12,7 @@ export namespace IChunkService {
         userId?: string;
         name: string;
         path: string;
+        replace?: boolean;
     }
 }
 

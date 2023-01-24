@@ -38,6 +38,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/container-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/core-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/file-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/file/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/user-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/user/src" isTestSource="false" />

@@ -32,13 +32,15 @@ export class ChunkService implements IChunkService {
         name,
         path,
         userId,
+        replace,
     }: IChunkService.CommitProps): Promise<File> {
         const $file = this.pathOf(chunkId);
-        const file = this.fileService.store({
+        const file = await this.fileService.store({
             file: $file,
             path,
             name,
             userId,
+            replace,
         });
         removeSync($file);
         return file;
