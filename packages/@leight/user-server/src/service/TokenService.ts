@@ -1,6 +1,5 @@
-import { type ITokenService } from "../api";
-import { TokenError } from "../error";
 import { diffOf, intersectOf } from "@leight/utils";
+import { ITokenService, TokenError } from "@leight/user";
 
 export class TokenService implements ITokenService {
     constructor(public tokens: string[]) {}

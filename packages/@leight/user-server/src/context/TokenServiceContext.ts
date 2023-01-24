@@ -1,6 +1,6 @@
 import { container as coolContainer } from "tsyringe";
-import { $TokenService, type ITokenService } from "../api";
-import { TokenService } from "./TokenService";
+import { $TokenService, type ITokenService } from "@leight/user";
+import { TokenService } from "../service";
 
 export class $TokenServiceContext {
     constructor(private container: typeof coolContainer) {}

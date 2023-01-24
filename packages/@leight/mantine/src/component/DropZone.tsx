@@ -1,12 +1,12 @@
 import { type IWithTranslation } from "@leight/i18n";
 import { Translation } from "@leight/i18n-client";
 import { Divider, Group, Table, Text, useMantineTheme } from "@mantine/core";
-import { Dropzone as CoolDropzone, FileWithPath } from "@mantine/dropzone";
-import { IconUpload, IconX } from "@tabler/icons";
+import { Dropzone as CoolDropzone, type FileWithPath } from "@mantine/dropzone";
+import { IconUpload, IconX } from "@tabler/icons-react";
 import { type ComponentProps, type FC, useState } from "react";
 import { switchScheme } from "../utils";
 import { Paper } from "./Paper";
-import { IUploadProps, Upload } from "./Upload";
+import { type IUploadProps, Upload } from "./Upload";
 
 export interface IDropZoneProps
     extends Partial<
@@ -56,7 +56,7 @@ export const DropZone: FC<IDropZoneProps> = ({
                         <CoolDropzone.Accept>
                             <IconUpload
                                 size={50}
-                                stroke={1.5}
+                                stroke={"1.5"}
                                 color={switchScheme(
                                     theme,
                                     theme.colors.green[4],
@@ -67,7 +67,7 @@ export const DropZone: FC<IDropZoneProps> = ({
                         <CoolDropzone.Reject>
                             <IconX
                                 size={50}
-                                stroke={1.5}
+                                stroke={"1.5"}
                                 color={switchScheme(
                                     theme,
                                     theme.colors.red[4],
@@ -78,7 +78,7 @@ export const DropZone: FC<IDropZoneProps> = ({
                         <CoolDropzone.Idle>
                             <IconUpload
                                 size={50}
-                                stroke={1.5}
+                                stroke={"1.5"}
                                 color={
                                     loading
                                         ? switchScheme(

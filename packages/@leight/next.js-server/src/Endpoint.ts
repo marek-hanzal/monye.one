@@ -3,8 +3,13 @@ import { type IError, type IHandler, type INextHandler } from "./api";
 import { type IHrefQuery } from "@leight/core";
 import getRawBody from "raw-body";
 import { type NextApiRequest, type NextApiResponse } from "next";
-import { TokenError, TokenServiceContext } from "@leight/user";
+import {
+    TokenServiceContext,
+    UserIdContext,
+    UserServiceContext,
+} from "@leight/user-server";
 import { getToken } from "next-auth/jwt";
+import { TokenError, UserError } from "@leight/user";
 
 const logger = Logger("@leight/next.js-server");
 
@@ -25,14 +30,17 @@ export const Endpoint =
         try {
             const $container = container.createChildContainer();
             const token = await getToken({ req: request });
-
-            TokenServiceContext($container)
+            const tokenService = TokenServiceContext($container)
                 .register((token?.tokens || []) as [])
-                .resolve()
-                .checkAny(withTokens);
+                .resolve();
+            UserIdContext($container).register(token?.sub);
+
+            tokenService.checkAny(withTokens);
 
             const result = await handler({
                 container: $container,
+                tokenService,
+                userService: UserServiceContext($container).resolve(),
                 request,
                 body: request.body,
                 query: request.query as THrefQuery,
@@ -43,10 +51,16 @@ export const Endpoint =
                 end: response.end,
             });
 
-            result && response.status(200).json(result);
+            result && (await response.status(200).json(result));
         } catch (e) {
             if (e instanceof TokenError) {
-                return response.status(403).json({ error: "Access denied." });
+                return response
+                    .status(403)
+                    .json({ error: "Token: Access denied." });
+            } else if (e instanceof UserError) {
+                return response
+                    .status(403)
+                    .json({ error: "User: Access denied." });
             }
             console.error(e);
             logger.error(e);

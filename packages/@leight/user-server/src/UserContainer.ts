@@ -1,16 +1,19 @@
 import "reflect-metadata";
 import { container } from "tsyringe";
-import { RegistrationService, UserJwtService } from "./service";
+import { RegistrationService, UserJwtService, UserService } from "./service";
 import {
     $RegistrationService,
     $UserJwtService,
+    $UserService,
     type IRegistrationService,
     type IUserJwtService,
+    type IUserService,
 } from "@leight/user";
 
 export interface IUserContainer {
     RegistrationService: IRegistrationService;
     UserJwtService: IUserJwtService;
+    UserService: IUserService;
 }
 
 export const UserContainer = (target: typeof container): IUserContainer => {
@@ -20,6 +23,9 @@ export const UserContainer = (target: typeof container): IUserContainer => {
     target.register<IUserJwtService>($UserJwtService, {
         useClass: UserJwtService,
     });
+    target.register<IUserService>($UserService, {
+        useClass: UserService,
+    });
 
     return {
         get RegistrationService() {
@@ -27,6 +33,9 @@ export const UserContainer = (target: typeof container): IUserContainer => {
         },
         get UserJwtService() {
             return target.resolve<IUserJwtService>($UserJwtService);
+        },
+        get UserService() {
+            return target.resolve<IUserService>($UserService);
         },
     };
 };
