@@ -1,4 +1,4 @@
-import {ITab}          from "./ITab";
+import {ITab} from "./ITab";
 import {ITranslations} from "./ITranslations";
 
 /**

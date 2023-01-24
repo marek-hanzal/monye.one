@@ -1,6 +1,10 @@
 import { type FC } from "react";
 import { Progress } from "@mantine/core";
-import { type IUseUploadProps, useUpload } from "@leight/file-client";
+import {
+    type IUseUploadProps,
+    useUpload,
+    useUploadStore,
+} from "@leight/file-client";
 
 export interface IUploadProps {
     /**
@@ -13,6 +17,7 @@ export interface IUploadProps {
  * This component executes upload just as it's got rendered.
  */
 export const Upload: FC<IUploadProps> = ({ upload }) => {
+    const uploadStore = useUploadStore();
     const { percent, error, running, idle } = useUpload(upload);
 
     return (

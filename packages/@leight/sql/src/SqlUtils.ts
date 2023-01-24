@@ -1,15 +1,11 @@
-import {$PrismaClient}     from "@leight/prisma";
-import {type PrismaClient} from "@prisma/client";
+import { $PrismaClient } from "@leight/prisma";
+import { type PrismaClient } from "@prisma/client";
 import "reflect-metadata";
-import {
-    inject,
-    injectable
-}                          from "tsyringe";
+import { inject, injectable } from "tsyringe";
 
 @injectable()
 export class SqlUtils {
-    constructor(@inject($PrismaClient) protected prisma: PrismaClient) {
-    }
+    constructor(@inject($PrismaClient) protected prisma: PrismaClient) {}
 
     parse(source: string): string[] {
         return source
@@ -18,16 +14,21 @@ export class SqlUtils {
             .replace(/\/\*.*\*\//g, " ")
             .replace(/\s\s+/g, " ")
             .split(";")
-            .map(query => query.trim())
-            .filter(query => query.length);
+            .map((query) => query.trim())
+            .filter((query) => query.length);
     }
 
     async read(file: string): Promise<string[]> {
-        return this.parse((await import("node:fs")).readFileSync(file).toString());
+        return this.parse(
+            (await import("node:fs")).readFileSync(file).toString()
+        );
     }
 
-    async file<T>(file: string, executor: (query: string) => Promise<T>): Promise<T[]> {
-        const queries      = await this.read(file);
+    async file<T>(
+        file: string,
+        executor: (query: string) => Promise<T>
+    ): Promise<T[]> {
+        const queries = await this.read(file);
         const results: T[] = [];
         for (const query of queries) {
             results.push(await executor(query));
@@ -35,8 +36,11 @@ export class SqlUtils {
         return results;
     }
 
-    async source<T>(source: string, executor: (query: string) => Promise<T>): Promise<T[]> {
-        const queries      = this.parse(source);
+    async source<T>(
+        source: string,
+        executor: (query: string) => Promise<T>
+    ): Promise<T[]> {
+        const queries = this.parse(source);
         const results: T[] = [];
         for (const query of queries) {
             results.push(await executor(query));
@@ -45,20 +49,28 @@ export class SqlUtils {
     }
 
     async run(file: string, timeout: number = 1000 * 60) {
-        return this.prisma.$transaction(async (prisma: any) => this.file(file, sql => {
-            console.log(`Executing: ${sql}`);
-            return prisma.$executeRawUnsafe(sql);
-        }), {
-            timeout,
-        });
+        return this.prisma.$transaction(
+            async (prisma: any) =>
+                this.file(file, (sql) => {
+                    console.log(`Executing: ${sql}`);
+                    return prisma.$executeRawUnsafe(sql);
+                }),
+            {
+                timeout,
+            }
+        );
     }
 
     async execute(source: string, timeout: number = 1000 * 60) {
-        return this.prisma.$transaction(async (prisma: any) => this.source(source, sql => {
-            console.log(`Executing: ${sql}`);
-            return prisma.$executeRawUnsafe(sql);
-        }), {
-            timeout,
-        });
+        return this.prisma.$transaction(
+            async (prisma: any) =>
+                this.source(source, (sql) => {
+                    console.log(`Executing: ${sql}`);
+                    return prisma.$executeRawUnsafe(sql);
+                }),
+            {
+                timeout,
+            }
+        );
     }
 }

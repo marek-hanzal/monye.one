@@ -1,16 +1,15 @@
-import {
-    type IImportJob,
-    type IWithImporters
-}                          from "@leight/import";
+import {type IImportJob, type IWithImporters} from "@leight/import";
 import {type IJobProgress} from "@leight/job";
-import {type WorkBook}     from "xlsx";
+import {type WorkBook} from "xlsx";
 
 /**
  * Main service used for importing Excel files (the final handler, should be used inside
  * a job).
  */
 export interface IImportService {
-    import(props: IImportService.ImportProps): Promise<IImportService.ImportResult>;
+    import(
+        props: IImportService.ImportProps
+    ): Promise<IImportService.ImportResult>;
 }
 
 export namespace IImportService {
@@ -29,4 +28,6 @@ export namespace IImportService {
     }
 }
 
-export const $ImportService = Symbol.for("@leight/xlsx-import-server/ImportService");
+export const $ImportService = Symbol.for(
+    "@leight/xlsx-import-server/ImportService"
+);

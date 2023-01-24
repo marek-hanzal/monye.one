@@ -1,4 +1,4 @@
-import {IJobStatus} from "./IJobStatus";
+import { IJobStatus } from "./IJobStatus";
 
 export interface IJob<TParams = any> {
     readonly id: string;

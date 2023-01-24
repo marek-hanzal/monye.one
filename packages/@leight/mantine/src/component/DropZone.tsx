@@ -7,6 +7,7 @@ import { type ComponentProps, type FC, useState } from "react";
 import { switchScheme } from "../utils";
 import { Paper } from "./Paper";
 import { Upload } from "./Upload";
+import { UploadProvider } from "@leight/file-client";
 
 export interface IDropZoneProps
     extends Partial<
@@ -15,6 +16,8 @@ export interface IDropZoneProps
     withTranslation: IWithTranslation;
 
     path: string;
+
+    limit?: number;
 
     onDrop?(files: FileWithPath[], commit: () => void): void;
 }
@@ -26,6 +29,7 @@ export interface IDropZoneProps
 export const DropZone: FC<IDropZoneProps> = ({
     withTranslation,
     path,
+    limit = 5,
     onDrop = () => null,
     ...props
 }) => {
@@ -42,7 +46,7 @@ export const DropZone: FC<IDropZoneProps> = ({
                         console.log("files", files);
                         setLoading(true);
                         setFiles([]);
-                        setFiles(files);
+                        setFiles(files.slice(0, limit));
                         onDrop?.(files, () => {
                             // setFiles([]);
                             setLoading(false);
@@ -139,13 +143,17 @@ export const DropZone: FC<IDropZoneProps> = ({
                             </thead>
                             <tbody>
                                 {files.map((file) => (
-                                    <tr key={file.path}>
-                                        <td>{file.path}</td>
-                                        <td>
-                                            <Upload upload={{ file, path }} />
-                                        </td>
-                                        <td>actions</td>
-                                    </tr>
+                                    <UploadProvider>
+                                        <tr key={file.path}>
+                                            <td>{file.path}</td>
+                                            <td>
+                                                <Upload
+                                                    upload={{ file, path }}
+                                                />
+                                            </td>
+                                            <td>actions</td>
+                                        </tr>
+                                    </UploadProvider>
                                 ))}
                             </tbody>
                         </Table>

@@ -1,2 +1,1 @@
-export interface IImportBeginEvent {
-}
+export interface IImportBeginEvent {}

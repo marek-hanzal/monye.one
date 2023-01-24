@@ -1,12 +1,12 @@
 /** @type {import("tailwindcss").Config} */
 module.exports = {
-    mode:     "jit",
+    mode: "jit",
     darkMode: "media",
-    theme:    {
+    theme: {
         extend: {
             colors: {
                 primary: {
-                    "50":  "#fff1f2",
+                    "50": "#fff1f2",
                     "100": "#ffe4e6",
                     "200": "#fecdd3",
                     "300": "#fda4af",
@@ -20,12 +20,12 @@ module.exports = {
             }
         },
     },
-    content:  [
+    content: [
         "./public/**/*.html",
         "./src/**/*.{js,ts,jsx,tsx}",
         "../../packages/**/src/**/*.{js,ts,jsx,tsx}",
     ],
-    plugins:  [
+    plugins: [
         require("@tailwindcss/forms"),
         require("@tailwindcss/typography"),
     ],

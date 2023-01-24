@@ -1,5 +1,5 @@
 import {type WorkBook} from "xlsx";
-import {ITab}          from "./ITab";
+import {ITab} from "./ITab";
 
 /**
  * Service used to extract tab metadata from the Excel spreadsheet.

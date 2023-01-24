@@ -1,6 +1,1 @@
-export type ILogLevel =
-    "info"
-    | "error"
-    | "warning"
-    | "debug"
-    | "silly";
+export type ILogLevel = "info" | "error" | "warning" | "debug" | "silly";
