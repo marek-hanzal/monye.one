@@ -35,23 +35,17 @@ export const DropZone: FC<IDropZoneProps> = ({
     ...props
 }) => {
     const theme = useMantineTheme();
-    const [loading, setLoading] = useState(false);
+    const loading = false;
     const [files, setFiles] = useState<FileWithPath[]>([]);
     return (
         <>
             <Paper>
                 <CoolDropzone
                     maxSize={8 * 1024 ** 2}
-                    loading={loading}
                     onDrop={(files) => {
                         console.log("files", files);
-                        setLoading(true);
-                        setFiles([]);
                         setFiles(files.slice(0, limit));
-                        onDrop?.(files, () => {
-                            // setFiles([]);
-                            // setLoading(false);
-                        });
+                        onDrop?.(files, () => {});
                     }}
                     {...props}
                 >
