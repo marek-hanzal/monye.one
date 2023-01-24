@@ -9,6 +9,7 @@ export interface IChunkService {
 export namespace IChunkService {
     export interface CommitProps {
         chunkId: string;
+        userId?: string;
         name: string;
         path: string;
     }

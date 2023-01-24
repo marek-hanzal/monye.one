@@ -13,8 +13,11 @@ export const ChunkCommitEndpoint = (
     return Endpoint<IChunkService.CommitProps>({
         container: target,
         withTokens: withTokens || ["user"],
-        async handler({ end, body }) {
-            await container.resolve<IChunkService>($ChunkService).commit(body);
+        async handler({ end, body, userService }) {
+            await container.resolve<IChunkService>($ChunkService).commit({
+                ...body,
+                userId: userService.optional(),
+            });
             end();
         },
     });
