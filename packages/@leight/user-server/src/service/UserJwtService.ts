@@ -13,7 +13,11 @@ export class UserJwtService implements IUserJwtService {
     public async token<T extends IToken>(props: T): Promise<T> {
         return {
             ...props,
-            tokens: ["token1", "token2", "*"],
+            tokens: this.defaults(),
         };
+    }
+
+    public defaults(): string[] {
+        return ["user"];
     }
 }

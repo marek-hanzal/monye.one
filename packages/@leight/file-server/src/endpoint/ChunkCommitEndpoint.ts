@@ -6,9 +6,13 @@ import {container} from "tsyringe";
 /**
  * Export default this to handle chunk commits.
  */
-export const ChunkCommitEndpoint = (target: typeof container) => {
+export const ChunkCommitEndpoint = (
+    target: typeof container,
+    withTokens?: string[]
+) => {
     return Endpoint<IChunkService.CommitProps>({
         container: target,
+        withTokens: withTokens || ["user"],
         async handler({ end, body }) {
             await container.resolve<IChunkService>($ChunkService).commit(body);
             end();

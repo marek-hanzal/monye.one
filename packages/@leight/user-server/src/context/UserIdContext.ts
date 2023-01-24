@@ -6,7 +6,11 @@ export class $UserIdContext {
 
     register(userId?: string): this {
         this.container.register<string | undefined>($UserId, {
-            useValue: userId,
+            /**
+             * Must be an empty string as container will fail to resolve
+             * dependency if it's undefined.
+             */
+            useValue: userId || "",
         });
         return this;
     }

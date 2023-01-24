@@ -6,9 +6,13 @@ import {container} from "tsyringe";
 /**
  * Export default this to handle chunk uploading.
  */
-export const ChunkUploadEndpoint = (target: typeof container) => {
+export const ChunkUploadEndpoint = (
+    target: typeof container,
+    withTokens?: string[]
+) => {
     return Endpoint<unknown, void, { chunkId: string }>({
         container: target,
+        withTokens: withTokens || ["user"],
         async handler({ toBody, query: { chunkId }, end }) {
             await container
                 .resolve<IChunkService>($ChunkService)

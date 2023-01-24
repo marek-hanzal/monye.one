@@ -3,7 +3,7 @@ import { Endpoint } from "@leight/next.js-server";
 
 export default Endpoint<string>({
     container,
-    async handler() {
-        return "ok";
+    async handler({ userService }) {
+        return userService.required();
     },
 });
