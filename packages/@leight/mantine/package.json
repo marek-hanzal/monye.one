@@ -40,6 +40,8 @@
         "@mantine/nprogress": "^5.10.1",
         "@tabler/icons": "^2.0.0",
         "@tabler/icons-react": "^2.0.0",
+        "@trpc/client": "^10.9.0",
+        "@trpc/server": "^10.9.0",
         "axios": "^1.2.3",
         "next": "^13.1.5",
         "prop-types": "^15.8.1",

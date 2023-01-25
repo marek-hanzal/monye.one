@@ -1,7 +1,7 @@
 import { type NextApiRequest, type NextApiResponse } from "next";
 import { type IError } from "./IError";
 
-export type INextHandler<TData> = (
+export type INextHandler<TResponse> = (
     request: NextApiRequest,
-    response: NextApiResponse<TData | IError>
+    response: NextApiResponse<TResponse | IError>
 ) => Promise<unknown>;

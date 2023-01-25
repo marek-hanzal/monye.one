@@ -1,11 +1,11 @@
 import { publicProcedure, router } from "./router";
+import { ImportRouter } from "./import";
 
 export const appRouter = router({
     foo: publicProcedure.query((): string[] => {
         return ["a", "b", "c"];
     }),
-    // example: exampleRouter,
-    // auth:    authRouter,
+    import: ImportRouter,
 });
 
 export type AppRouter = typeof appRouter;

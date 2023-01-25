@@ -1,6 +1,6 @@
-import { IJobStatus } from "./IJobStatus";
+import { type IJobStatus } from "./IJobStatus";
 
-export interface IJob<TParams = any> {
+export interface IJob<TParams = unknown> {
     readonly id: string;
     readonly name: string;
     readonly status: IJobStatus;

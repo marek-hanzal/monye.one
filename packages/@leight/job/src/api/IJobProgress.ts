@@ -1,4 +1,4 @@
-import { IJobStatus } from "./IJobStatus";
+import { type IJobStatus } from "./IJobStatus";
 
 export interface IJobProgress {
     readonly jobId: string;

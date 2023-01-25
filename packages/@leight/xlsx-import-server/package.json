@@ -27,9 +27,12 @@
         "lint": "eslint src"
     },
     "dependencies": {
-        "@leight/utils-server": "*",
         "@leight/import": "*",
         "@leight/job": "*",
+        "@leight/next.js-server": "*",
+        "@leight/utils-server": "*",
+        "@trpc/client": "^10.9.0",
+        "@trpc/server": "^10.9.0",
         "measure-time": "^5.0.8",
         "reflect-metadata": "^0.1.13",
         "tsyringe": "^4.7.0",

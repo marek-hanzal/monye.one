@@ -35,6 +35,7 @@
         "@leight/utils-server": "*",
         "@leight/winston": "*",
         "@leight/xlsx-import-client": "*",
+        "@leight/xlsx-import-server": "*",
         "@mantine/carousel": "^5.10.1",
         "@mantine/core": "^5.10.1",
         "@mantine/dates": "^5.10.1",

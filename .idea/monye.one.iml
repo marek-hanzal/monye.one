@@ -66,6 +66,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/file-server/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/file/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/file/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/job-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/job-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/job/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/job/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/mantine/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/mantine/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/next.js-server/.turbo" />
@@ -84,6 +88,8 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/book/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc-server/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

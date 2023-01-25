@@ -8,6 +8,7 @@ import { trpc } from "@monye.one/trpc-client";
 export default withBookLayout(
     () => {
         const result = trpc.foo.useQuery();
+        const result2 = trpc.import.xlsx.useMutation();
         return (
             <>
                 <h1>Accounts here!!</h1>
