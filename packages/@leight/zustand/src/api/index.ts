@@ -1,1 +1,1 @@
-export * from "./IStoreContext";
+export * from "./IStore";
