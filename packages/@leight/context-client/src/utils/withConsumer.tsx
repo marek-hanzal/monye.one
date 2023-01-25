@@ -1,6 +1,6 @@
 import {type Context as CoolContext} from "react";
-import {isCallable} from "@leight/core";
-import {type IContextRender, type IProviderChildren} from "./api";
+import {type IContextRender, type IProviderChildren} from "../api";
+import {isCallable} from "@leight/utils";
 
 /**
  * Render consumer of a context if callback is provided in children.

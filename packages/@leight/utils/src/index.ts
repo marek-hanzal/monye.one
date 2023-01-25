@@ -1,3 +1,2 @@
-export * from "./diffOf";
-export * from "./intersectOf";
-export * from "./isString";
+export * from "./api";
+export * from "./utils";

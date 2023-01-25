@@ -1,7 +1,7 @@
-import { type IUseChunkProps, toHref, useChunk } from "@leight/core-client";
+import { type IUseChunkProps, toHref, useChunk } from "@leight/utils-client";
 import axios from "axios";
 import { type IChunkService, type IFileWithPath } from "@leight/file";
-import { type IHrefProps } from "@leight/core";
+import { type IHrefProps } from "@leight/utils";
 import { useRef } from "react";
 import { v4 } from "uuid";
 

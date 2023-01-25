@@ -27,9 +27,9 @@
         "lint": "eslint src"
     },
     "dependencies": {
-        "@leight/core": "*",
-        "@leight/core-client": "*",
         "@leight/file": "*",
+        "@leight/utils": "*",
+        "@leight/utils-client": "*",
         "@leight/zustand": "*",
         "axios": "^1.2.4",
         "react": "^18.2.0",

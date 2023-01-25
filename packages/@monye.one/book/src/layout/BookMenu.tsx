@@ -1,6 +1,6 @@
 import { Translation } from "@leight/i18n-client";
 import { switchScheme } from "@leight/mantine";
-import { type ILink } from "@leight/ui";
+import { type ILink } from "@leight/utils-client";
 import { createStyles, Group } from "@mantine/core";
 import Link from "next/link";
 import { type FC } from "react";

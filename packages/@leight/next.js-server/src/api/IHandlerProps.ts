@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { type IHrefQuery } from "@leight/core";
+import { type IHrefQuery } from "@leight/utils";
 import { container } from "tsyringe";
-import { ITokenService, IUserService } from "@leight/user";
+import { type ITokenService, type IUserService } from "@leight/user";
 
 export interface IHandlerProps<
     TBody = unknown,

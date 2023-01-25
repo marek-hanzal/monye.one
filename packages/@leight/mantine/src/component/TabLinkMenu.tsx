@@ -1,10 +1,10 @@
-import { toHref } from "@leight/core-client";
+import { toHref } from "@leight/utils-client";
 import { type IWithTranslation } from "@leight/i18n";
 import { Translation } from "@leight/i18n-client";
 import { Tabs } from "@mantine/core";
 import { useRouter } from "next/router";
 import { type FC, type ReactNode } from "react";
-import { type IHrefProps } from "@leight/core";
+import { type IHrefProps } from "@leight/utils";
 
 export interface ITabLinkMenuItem {
     href: IHrefProps;

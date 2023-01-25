@@ -30,7 +30,6 @@
         "@emotion/react": "^11.10.5",
         "@leight/i18n-client": "*",
         "@leight/mantine": "*",
-        "@leight/ui": "*",
         "@mantine/core": "^5.10.1",
         "@mantine/hooks": "^5.10.1",
         "@mantine/prism": "^5.10.1",

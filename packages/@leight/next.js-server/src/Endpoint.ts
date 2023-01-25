@@ -1,6 +1,6 @@
 import { Logger } from "@leight/winston";
 import { type IError, type IHandler, type INextHandler } from "./api";
-import { type IHrefQuery } from "@leight/core";
+import { type IHrefQuery } from "@leight/utils";
 import getRawBody from "raw-body";
 import { type NextApiRequest, type NextApiResponse } from "next";
 import {

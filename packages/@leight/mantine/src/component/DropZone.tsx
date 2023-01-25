@@ -1,14 +1,15 @@
 import { type IWithTranslation } from "@leight/i18n";
 import { Translation } from "@leight/i18n-client";
 import { Divider, Group, Table, Text, useMantineTheme } from "@mantine/core";
-import { Dropzone as CoolDropzone, type FileWithPath } from "@mantine/dropzone";
+import { Dropzone as CoolDropzone } from "@mantine/dropzone";
 import { IconUpload, IconX } from "@tabler/icons-react";
 import { type ComponentProps, type FC, useState } from "react";
 import { switchScheme } from "../utils";
 import { Paper } from "./Paper";
 import { Upload } from "./Upload";
-import { LoopProvider } from "@leight/core-client";
+import { LoopProvider } from "@leight/utils-client";
 import { UploadControls } from "./UploadControls";
+import { type IFileWithPath } from "@leight/file";
 
 export interface IDropZoneProps
     extends Partial<
@@ -20,7 +21,7 @@ export interface IDropZoneProps
 
     limit?: number;
 
-    onDrop?(files: FileWithPath[], commit: () => void): void;
+    onDrop?(files: IFileWithPath[], commit: () => void): void;
 }
 
 /**
@@ -36,7 +37,7 @@ export const DropZone: FC<IDropZoneProps> = ({
 }) => {
     const theme = useMantineTheme();
     const loading = false;
-    const [files, setFiles] = useState<FileWithPath[]>([]);
+    const [files, setFiles] = useState<IFileWithPath[]>([]);
     return (
         <>
             <Paper>

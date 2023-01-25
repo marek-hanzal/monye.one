@@ -1,7 +1,7 @@
 {
     "version": "0.5.0",
-    "name": "@leight/core-server",
-    "description": "Core server stuff; for example re-exported typed services from whole @leight for simpler use.",
+    "name": "@leight/utils-client",
+    "description": "Some utility stuff usable on client side.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -26,13 +26,24 @@
         "dev": "concurrently npm:dev:*",
         "lint": "eslint src"
     },
+    "dependencies": {
+        "@leight/context-client": "*",
+        "@leight/utils": "*",
+        "@leight/zustand": "*",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "zustand": "^4.3.2"
+    },
     "devDependencies": {
         "@types/node": "^18.11.18",
+        "@types/react": "^18.0.27",
+        "@types/react-dom": "^18.0.10",
         "@typescript-eslint/eslint-plugin": "^5.49.0",
         "@typescript-eslint/parser": "^5.49.0",
         "concurrently": "^7.6.0",
         "eslint": "^8.32.0",
         "eslint-plugin-unicorn": "^45.0.2",
+        "path-to-regexp": "^6.2.1",
         "typescript": "^4.9.4"
     },
     "bugs": {

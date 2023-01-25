@@ -1,5 +1,5 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { IError } from "./IError";
+import { type NextApiRequest, type NextApiResponse } from "next";
+import { type IError } from "./IError";
 
 export type INextHandler<TData> = (
     request: NextApiRequest,

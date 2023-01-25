@@ -33,7 +33,6 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/next.js-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/prisma/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/core-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/container-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/core-client/src" isTestSource="false" />
@@ -43,6 +42,9 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/user-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/user/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/zustand/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/context-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/utils-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/utils-server/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -53,6 +55,31 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import-server/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/zustand/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/zustand/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/context-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/context-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/core/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/core/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/utils/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/utils/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/monye.one/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/mantine/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/mantine/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/next.js-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/next.js-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/ui/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/ui/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/user-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/user-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/utils-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/utils-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/utils-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/utils-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/account-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/account-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/book/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/book/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-client/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

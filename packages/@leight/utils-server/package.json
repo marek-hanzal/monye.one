@@ -1,7 +1,7 @@
 {
     "version": "0.5.0",
-    "name": "@leight/ui",
-    "description": "Common UI stuff.",
+    "name": "@leight/utils-server",
+    "description": "Utilities usable only on server-side.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -26,16 +26,8 @@
         "dev": "concurrently npm:dev:*",
         "lint": "eslint src"
     },
-    "dependencies": {
-        "@leight/core": "*",
-        "@leight/core-client": "*",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
-    },
     "devDependencies": {
         "@types/node": "^18.11.18",
-        "@types/react": "^18.0.27",
-        "@types/react-dom": "^18.0.10",
         "@typescript-eslint/eslint-plugin": "^5.49.0",
         "@typescript-eslint/parser": "^5.49.0",
         "concurrently": "^7.6.0",

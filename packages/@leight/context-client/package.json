@@ -1,7 +1,7 @@
 {
     "version": "0.5.0",
-    "name": "@leight/core-client",
-    "description": "Core stuff usable on client side.",
+    "name": "@leight/context-client",
+    "description": "Context helper stuff on client-side, including support for Zustand.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -27,7 +27,7 @@
         "lint": "eslint src"
     },
     "dependencies": {
-        "@leight/core": "*",
+        "@leight/utils": "*",
         "@leight/zustand": "*",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

@@ -1,5 +1,4 @@
 import { createStore } from "zustand";
-import { type IStoreContext } from "@leight/zustand";
 
 export interface ILoopStoreProps {
     isRunning: boolean;
@@ -41,6 +40,3 @@ export const createLoopStore = () => {
         },
     }));
 };
-
-export interface ILoopStoreContext
-    extends IStoreContext<ReturnType<typeof createLoopStore>> {}
