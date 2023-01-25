@@ -1,45 +1,51 @@
 import { createStoreContext } from "@leight/context-client";
 
 export interface ILoopStoreProps {
-    isRunning: boolean;
-    isDone: boolean;
-    isError: boolean;
-    isSuccess?: boolean;
-    current: number;
-    total: number;
-
-    setTotal(total: number): void;
+    readonly isRunning: boolean;
+    readonly isDone: boolean;
+    readonly isError: boolean;
+    readonly isSuccess?: boolean;
+    readonly current: number;
+    readonly total: number;
 
     progress(): void;
 
-    running(running?: boolean): void;
+    start(total: number): void;
 
-    done(done?: boolean): void;
+    finish(withError?: boolean): void;
 
     error(error?: boolean): void;
 
     percent(): number;
 }
 
-export const { Provider: LoopProvider, useStore: useLoopStore } =
-    createStoreContext<ILoopStoreProps>(
-        (set, get) => ({
-            total: 0,
-            isRunning: false,
-            isDone: false,
-            isError: false,
-            isSuccess: false,
-            current: 0,
-            setTotal: (total) => set({ total }),
-            progress: () => set(({ current }) => ({ current: current + 1 })),
-            running: (isRunning = true) => set({ isRunning }),
-            done: (isDone = true) => set({ isDone, isSuccess: !get().isError }),
-            error: (isError = true) => set({ isError, isSuccess: !isError }),
-            percent: () => {
-                const { current, total } = get();
-                return (100 * current) / total;
-            },
-        }),
-        "LoopContext",
-        "Add LoopProvider."
-    );
+export const {
+    Provider: LoopProvider,
+    useStore: useLoopStore,
+    useOptionalStore: useOptionalLoopStore,
+} = createStoreContext<ILoopStoreProps>(
+    (set, get) => ({
+        total: 0,
+        isRunning: false,
+        isDone: false,
+        isError: false,
+        isSuccess: false,
+        current: 0,
+        progress: () => set(({ current }) => ({ current: current + 1 })),
+        start: (total) => set({ isRunning: true, total }),
+        finish: (withError = false) =>
+            set({
+                isDone: true,
+                isRunning: false,
+                isError: withError,
+                isSuccess: !withError,
+            }),
+        error: (isError = true) => set({ isError, isSuccess: !isError }),
+        percent: () => {
+            const { current, total } = get();
+            return (100 * current) / total;
+        },
+    }),
+    "LoopContext",
+    "Add LoopProvider."
+);

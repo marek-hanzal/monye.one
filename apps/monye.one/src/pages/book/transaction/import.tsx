@@ -1,7 +1,7 @@
 import logo from "@/monye.one/assets/logo/logo.svg";
 import { withTranslation } from "@leight/i18n-server";
 import { ImportZone } from "@leight/xlsx-import-client";
-import { Box } from "@mantine/core";
+import { Box, Divider } from "@mantine/core";
 import { withBookLayout } from "@monye.one/book";
 import { TransactionMenu } from "@monye.one/transaction-client";
 
@@ -17,6 +17,7 @@ export default withBookLayout(
                             namespace: "transaction",
                         }}
                     />
+                    <Divider m={"md"} /># show import jobs here.
                 </Box>
             </>
         );

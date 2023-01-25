@@ -29,7 +29,7 @@ export const useUpload = ({
     const uuid = useRef(v4());
     return useChunk({
         chunk: defaultChunkSize,
-        throttle: 0,
+        throttle: 150,
         size: file.size,
         async onTick({ start, end }) {
             return axios.post(

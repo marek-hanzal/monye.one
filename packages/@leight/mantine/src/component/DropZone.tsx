@@ -36,80 +36,78 @@ export const DropZone: FC<IDropZoneProps> = ({
     ...props
 }) => {
     const theme = useMantineTheme();
-    const loading = false;
     const [files, setFiles] = useState<IFileWithPath[]>([]);
     return (
         <>
-            <Paper>
-                <CoolDropzone
-                    maxSize={8 * 1024 ** 2}
-                    onDrop={(files) => {
-                        console.log("files", files);
-                        setFiles(files.slice(0, limit));
-                        onDrop?.(files, () => {});
-                    }}
-                    {...props}
-                >
-                    <Group
-                        position={"center"}
-                        spacing={"xl"}
-                        style={{ minHeight: 220, pointerEvents: "none" }}
+            {!files.length && (
+                <Paper>
+                    <CoolDropzone
+                        maxSize={8 * 1024 ** 2}
+                        onDrop={(files) => {
+                            console.log("files", files);
+                            setFiles(files.slice(0, limit));
+                            onDrop?.(files, () => {});
+                        }}
+                        {...props}
                     >
-                        <CoolDropzone.Accept>
-                            <IconUpload
-                                size={50}
-                                stroke={"1.5"}
-                                color={switchScheme(
-                                    theme,
-                                    theme.colors.green[4],
-                                    theme.colors.green[6]
-                                )}
-                            />
-                        </CoolDropzone.Accept>
-                        <CoolDropzone.Reject>
-                            <IconX
-                                size={50}
-                                stroke={"1.5"}
-                                color={switchScheme(
-                                    theme,
-                                    theme.colors.red[4],
-                                    theme.colors.red[6]
-                                )}
-                            />
-                        </CoolDropzone.Reject>
-                        <CoolDropzone.Idle>
-                            <IconUpload
-                                size={50}
-                                stroke={"1.5"}
-                                color={
-                                    loading
-                                        ? switchScheme(
-                                              theme,
-                                              theme.colors.green[4],
-                                              theme.colors.green[6]
-                                          )
-                                        : switchScheme(
-                                              theme,
-                                              theme.colors.gray[4],
-                                              theme.colors.gray[6]
-                                          )
-                                }
-                            />
-                        </CoolDropzone.Idle>
-                        <div>
-                            <Text size={"xl"} inline>
-                                <Translation {...withTranslation} />
-                            </Text>
-                            <Text size={"sm"} color={"dimmed"} inline mt={7}>
-                                <Translation
-                                    {...withTranslation}
-                                    label={`${withTranslation.label}.hint`}
+                        <Group
+                            position={"center"}
+                            spacing={"xl"}
+                            style={{ minHeight: 220, pointerEvents: "none" }}
+                        >
+                            <CoolDropzone.Accept>
+                                <IconUpload
+                                    size={50}
+                                    stroke={"1.5"}
+                                    color={switchScheme(
+                                        theme,
+                                        theme.colors.green[4],
+                                        theme.colors.green[6]
+                                    )}
                                 />
-                            </Text>
-                        </div>
-                    </Group>
-                </CoolDropzone>
-            </Paper>
+                            </CoolDropzone.Accept>
+                            <CoolDropzone.Reject>
+                                <IconX
+                                    size={50}
+                                    stroke={"1.5"}
+                                    color={switchScheme(
+                                        theme,
+                                        theme.colors.red[4],
+                                        theme.colors.red[6]
+                                    )}
+                                />
+                            </CoolDropzone.Reject>
+                            <CoolDropzone.Idle>
+                                <IconUpload
+                                    size={50}
+                                    stroke={"1.5"}
+                                    color={switchScheme(
+                                        theme,
+                                        theme.colors.gray[4],
+                                        theme.colors.gray[6]
+                                    )}
+                                />
+                            </CoolDropzone.Idle>
+                            <div>
+                                <Text size={"xl"} inline>
+                                    <Translation {...withTranslation} />
+                                </Text>
+                                <Text
+                                    size={"sm"}
+                                    color={"dimmed"}
+                                    inline
+                                    mt={7}
+                                >
+                                    <Translation
+                                        {...withTranslation}
+                                        label={`${withTranslation.label}.hint`}
+                                    />
+                                </Text>
+                            </div>
+                        </Group>
+                    </CoolDropzone>
+                </Paper>
+            )}
             {files.length > 0 && (
                 <>
                     <Divider m={"md"} />
@@ -117,7 +115,7 @@ export const DropZone: FC<IDropZoneProps> = ({
                         <Table fontSize={"xs"} highlightOnHover>
                             <thead>
                                 <tr>
-                                    <th style={{ width: "360px" }}>
+                                    <th style={{ width: "420px" }}>
                                         <Translation
                                             {...withTranslation}
                                             label={`${withTranslation.label}.file`}

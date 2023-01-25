@@ -2,13 +2,21 @@ import { createStore, type StateCreator } from "zustand";
 import { createContext } from "./createContext";
 import { type IStoreApi } from "@leight/zustand";
 import { createProvider, type IStoreProviderFactory } from "./createProvider";
-import { hookStore, type IHookStoreFactory } from "./hookStore";
+import {
+    hookOptionalStore,
+    hookStore,
+    type IHookStoreFactory,
+} from "./hookStore";
 
 export interface ICrateStoreContext<TProps> {
     Provider: IStoreProviderFactory<TProps>;
     useStore: IHookStoreFactory<TProps>;
+    useOptionalStore: IHookStoreFactory<TProps | null>;
 }
 
+/**
+ * Creates store hook and provider of Zustand.
+ */
 export const createStoreContext = <TProps>(
     store: StateCreator<TProps>,
     name: string,
@@ -23,5 +31,6 @@ export const createStoreContext = <TProps>(
             Context,
         }),
         useStore: hookStore(Context, name, hint),
+        useOptionalStore: hookOptionalStore(Context),
     };
 };

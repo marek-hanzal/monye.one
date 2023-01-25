@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLoopStore } from "./useLoopStore";
+import { useOptionalLoopsStore } from "./useLoopsStore";
 
 export interface IOnStartProps {
     total: number;
@@ -42,13 +43,14 @@ export const useLoop = ({
     onFinish = () => Promise.resolve(),
 }: IUseLoopProps) => {
     const loopStore = useLoopStore();
+    const loopsStore = useOptionalLoopsStore();
 
     useEffect(() => {
         if (loopStore.isRunning) {
             return;
         }
-        loopStore.setTotal(total);
-        loopStore.running();
+        loopStore.start(total);
+        loopsStore?.inc();
         (async () => await onStart({ total }))();
     }, []);
 
@@ -57,16 +59,15 @@ export const useLoop = ({
             return;
         }
         if (loopStore.current === total) {
-            loopStore.running(false);
             onFinish?.({})
-                .then(() => {
-                    loopStore.done();
-                })
+                .then(() => loopStore.finish())
                 .catch((e) => {
                     console.error(e);
-                    loopStore.error();
-                    loopStore.done();
+                    loopStore.finish(true);
                     onError(e);
+                })
+                .finally(() => {
+                    loopsStore?.dec();
                 });
             return;
         }
@@ -76,14 +77,11 @@ export const useLoop = ({
                 total,
                 percent: loopStore.percent(),
             })
-                .then(() => {
-                    loopStore.progress();
-                })
+                .then(() => loopStore.progress())
                 .catch((e) => {
+                    loopsStore?.dec();
                     console.error(e);
-                    loopStore.running(false);
-                    loopStore.error();
-                    loopStore.done();
+                    loopStore.finish(true);
                     onError(e);
                 });
         }, throttle);
