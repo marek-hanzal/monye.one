@@ -1,5 +1,5 @@
-import { StoreApi } from "zustand";
-import { Context } from "react";
+import { type StoreApi } from "zustand";
+import { type Context } from "react";
 
 export interface IStore<TStore extends StoreApi<any>> {
     state: InferStore.State<TStore>;
