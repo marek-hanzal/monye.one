@@ -142,7 +142,18 @@ export const DropZone: FC<IDropZoneProps> = ({
                                             <td>{file.path}</td>
                                             <td>
                                                 <Upload
-                                                    upload={{ file, path }}
+                                                    upload={{
+                                                        file,
+                                                        path,
+                                                        async onFinish({
+                                                            file,
+                                                        }) {
+                                                            console.log(
+                                                                "Finished upload of",
+                                                                file
+                                                            );
+                                                        },
+                                                    }}
                                                 />
                                             </td>
                                             <td>

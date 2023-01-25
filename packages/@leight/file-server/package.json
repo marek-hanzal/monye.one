@@ -36,7 +36,7 @@
         "filesize": "^10.0.6",
         "fs-extra": "^11.1.0",
         "glob": "^8.1.0",
-        "mime-types": "^2.1.35",
+        "mime-detect": "^1.1.4",
         "reflect-metadata": "^0.1.13",
         "touch": "^3.1.0",
         "tsyringe": "^4.7.0"
@@ -44,7 +44,6 @@
     "devDependencies": {
         "@types/fs-extra": "^11.0.1",
         "@types/glob": "^8.0.1",
-        "@types/mime-types": "^2.1.1",
         "@types/node": "^18.11.18",
         "@types/touch": "^3.1.2",
         "@types/uuid": "^9.0.0",

@@ -1,7 +1,8 @@
 import "reflect-metadata";
-import { File, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import {
     $FileServiceConfig,
+    type IFile,
     type IFileService,
     type IFileServiceConfig,
     type IFileServiceStoreProps,
@@ -11,9 +12,9 @@ import { v4 } from "uuid";
 import fs from "node:fs";
 import { copySync } from "fs-extra";
 import touch from "touch";
-import mime from "mime-types";
 import coolPath from "node:path";
 import { $PrismaClient } from "@leight/prisma";
+import { detectFileMime } from "mime-detect";
 
 @injectable()
 export class FileService implements IFileService {
@@ -31,15 +32,18 @@ export class FileService implements IFileService {
         );
     }
 
-    protected mimeOf(file?: string): string {
+    protected async mimeOf(file?: string): Promise<string> {
         if (!file) {
             return "application/octet-stream";
         }
-        return (
-            mime.lookup(file) ||
-            this.fileServiceConfig.defaultMimeType ||
-            "application/octet-stream"
-        );
+        try {
+            return await detectFileMime(file);
+        } catch (e) {
+            return (
+                this.fileServiceConfig.defaultMimeType ||
+                "application/octet-stream"
+            );
+        }
     }
 
     protected sizeOf(file?: string): number {
@@ -54,8 +58,9 @@ export class FileService implements IFileService {
         path,
         file,
         userId,
+        mime,
         replace = false,
-    }: IFileServiceStoreProps): Promise<File> {
+    }: IFileServiceStoreProps): Promise<IFile> {
         const id = v4();
         const location = this.pathOf(id);
         fs.mkdirSync(coolPath.dirname(location), { recursive: true });
@@ -67,8 +72,8 @@ export class FileService implements IFileService {
             location,
             name,
             path,
-            mime: this.mimeOf(file),
-            size: this.sizeOf(file),
+            mime: mime || (await this.mimeOf(location)),
+            size: this.sizeOf(location),
             created: new Date().toISOString(),
             ttl: undefined,
             userId,

@@ -6,9 +6,9 @@ import {
     $FileService,
     type IChunkService,
     type IChunkServiceConfig,
+    type IFile,
     type IFileService,
 } from "@leight/file";
-import { File } from "@prisma/client";
 
 @injectable()
 export class ChunkService implements IChunkService {
@@ -31,14 +31,16 @@ export class ChunkService implements IChunkService {
         chunkId,
         name,
         path,
+        mime,
         userId,
         replace,
-    }: IChunkService.CommitProps): Promise<File> {
+    }: IChunkService.CommitProps): Promise<IFile> {
         const $file = this.pathOf(chunkId);
         const file = await this.fileService.store({
             file: $file,
             path,
             name,
+            mime,
             userId,
             replace,
         });

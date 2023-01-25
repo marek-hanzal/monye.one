@@ -62,6 +62,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/utils/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/utils/lib" />
       <excludeFolder url="file://$MODULE_DIR$/apps/monye.one/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/file-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/file-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/file/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/file/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/mantine/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/mantine/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/next.js-server/.turbo" />
