@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="dev-watch" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="dev-watch" />
+    </scripts>
+    <node-interpreter value="project" />
+    <envs>
+      <env name="RUST_BACKTRACE" value="1" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>
