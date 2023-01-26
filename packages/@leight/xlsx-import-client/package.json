@@ -44,8 +44,9 @@
         "reflect-metadata": "^0.1.13"
     },
     "devDependencies": {
-        "@leight/tsconfig": "*",
         "@leight/eslint-config-eslint": "*",
+        "@leight/tsconfig": "*",
+        "@leight/xlsx-import": "*",
         "@types/node": "^18.11.18",
         "@types/react": "^18.0.27",
         "@types/react-dom": "^18.0.10",

@@ -4,6 +4,7 @@ import { ImportZone } from "@leight/xlsx-import-client";
 import { Box, Divider } from "@mantine/core";
 import { withBookLayout } from "@monye.one/book";
 import { TransactionMenu } from "@monye.one/transaction-client";
+import { trpc } from "@monye.one/trpc-client";
 
 export default withBookLayout(
     () => {
@@ -12,6 +13,7 @@ export default withBookLayout(
                 <Box p={"md"}>
                     <TransactionMenu />
                     <ImportZone
+                        mutation={trpc.import.xlsx.job}
                         withTranslation={{
                             label: "dropzone.import",
                             namespace: "transaction",

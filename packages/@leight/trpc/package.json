@@ -1,7 +1,7 @@
 {
     "version": "0.5.0",
-    "name": "@leight/xlsx-import-server",
-    "description": "Support for XLSX import (server-side) using @leight/job stuff.",
+    "name": "@leight/trpc",
+    "description": "Common tRPC stuff.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -27,18 +27,11 @@
         "lint": "eslint src"
     },
     "dependencies": {
-        "@leight/import": "*",
-        "@leight/job": "*",
-        "@leight/next.js-server": "*",
-        "@leight/trpc-server": "*",
-        "@leight/utils-server": "*",
-        "@leight/xlsx-import": "*",
-        "@trpc/client": "^10.9.0",
+        "@tanstack/react-query": "^4.23.0",
         "@trpc/server": "^10.9.0",
-        "measure-time": "^5.0.8",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "reflect-metadata": "^0.1.13",
-        "tsyringe": "^4.7.0",
-        "xlsx": "^0.18.5",
         "zod": "^3.20.2"
     },
     "devDependencies": {

@@ -46,6 +46,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/utils-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/utils-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/trpc-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/trpc/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -109,6 +110,8 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/sql/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/trpc-server/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/trpc-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/trpc/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/trpc/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/tsconfig/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/user/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/user/lib" />
@@ -116,6 +119,8 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/winston/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

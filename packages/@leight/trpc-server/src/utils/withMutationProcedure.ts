@@ -1,6 +1,6 @@
 import { type ProcedureBuilder } from "@trpc/server";
 import { type ZodType } from "zod";
-import { type ITrpcCallback } from "./ITrpcCallback";
+import { type ITrpcCallback } from "@leight/trpc";
 
 export const withMutationProcedure = <
     TProcedureBuilder extends ProcedureBuilder<any>,

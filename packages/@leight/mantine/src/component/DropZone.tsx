@@ -9,7 +9,7 @@ import { Paper } from "./Paper";
 import { Upload } from "./Upload";
 import { LoopProvider } from "@leight/utils-client";
 import { UploadControls } from "./UploadControls";
-import { type IFileWithPath } from "@leight/file";
+import { IFile, type IFileWithPath } from "@leight/file";
 
 export interface IDropZoneProps
     extends Partial<
@@ -22,6 +22,8 @@ export interface IDropZoneProps
     limit?: number;
 
     onDrop?(files: IFileWithPath[], commit: () => void): void;
+
+    onUpload?(file: IFile): void;
 }
 
 /**
@@ -33,6 +35,7 @@ export const DropZone: FC<IDropZoneProps> = ({
     path,
     limit = 5,
     onDrop = () => null,
+    onUpload,
     ...props
 }) => {
     const theme = useMantineTheme();
@@ -148,10 +151,7 @@ export const DropZone: FC<IDropZoneProps> = ({
                                                         async onFinish({
                                                             file,
                                                         }) {
-                                                            console.log(
-                                                                "Finished upload of",
-                                                                file
-                                                            );
+                                                            onUpload?.(file);
                                                         },
                                                     }}
                                                 />
