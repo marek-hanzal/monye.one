@@ -2,14 +2,14 @@ import { type IWithTranslation } from "@leight/i18n";
 import { Translation } from "@leight/i18n-client";
 import { Divider, Group, Table, Text, useMantineTheme } from "@mantine/core";
 import { Dropzone as CoolDropzone } from "@mantine/dropzone";
+import { LoopProvider } from "@leight/utils-client";
 import { IconUpload, IconX } from "@tabler/icons-react";
+import { type IFile, type IFileWithPath } from "@leight/file";
 import { type ComponentProps, type FC, useState } from "react";
 import { switchScheme } from "../utils";
 import { Paper } from "./Paper";
 import { Upload } from "./Upload";
-import { LoopProvider } from "@leight/utils-client";
 import { UploadControls } from "./UploadControls";
-import { IFile, type IFileWithPath } from "@leight/file";
 
 export interface IDropZoneProps
     extends Partial<

@@ -30,6 +30,7 @@ module.exports = {
         "no-unused-vars": "off",
         "react/prop-types": "off",
         "react/require-default-props": "off",
+        "@typescript-eslint/no-shadow": "off",
         "react/jsx-no-useless-fragment": "off",
         "no-html-link-for-pages": "off",
         "no-await-in-loop": "off",
