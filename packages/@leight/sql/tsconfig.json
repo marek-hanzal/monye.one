@@ -1,42 +1,13 @@
 {
+    "extends": "@leight/tsconfig/common.json",
     "compilerOptions": {
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "noFallthroughCasesInSwitch": false,
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "strictPropertyInitialization": true,
-        "strict": true,
-        "allowJs": true,
-        "useDefineForClassFields": true,
-        "disableSolutionSearching": true,
-        "checkJs": true,
-        "noImplicitAny": true,
-        "target": "ES2021",
-        "module": "CommonJS",
-        "declaration": true,
-        "sourceMap": true,
-        "composite": true,
-        "removeComments": false,
-        "moduleResolution": "Node",
-        "jsx": "react-jsx",
-        "rootDir": "src",
-        "outDir": "lib/cjs",
-        "lib": [
-            "DOM",
-            "ESNext"
-        ],
-        "skipLibCheck": true,
-        "types": [
-            "node"
-        ],
-        "baseUrl": "src"
+        "rootDir": "src"
     },
     "include": [
         "src/**/*",
         "src/**/*.json"
+    ],
+    "exclude": [
+        "node_modules"
     ]
 }

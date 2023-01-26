@@ -47,9 +47,11 @@
         "prop-types": "^15.8.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "reflect-metadata": "^0.1.13",
         "uuid": "^9.0.0"
     },
     "devDependencies": {
+        "@leight/tsconfig": "*",
         "@leight/eslint-config-eslint": "*",
         "@types/node": "^18.11.18",
         "@types/react": "^18.0.27",

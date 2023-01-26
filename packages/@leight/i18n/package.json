@@ -26,7 +26,11 @@
         "dev": "concurrently npm:dev:*",
         "lint": "eslint src"
     },
+    "dependencies": {
+        "reflect-metadata": "^0.1.13"
+    },
     "devDependencies": {
+        "@leight/tsconfig": "*",
         "@leight/eslint-config-eslint": "*",
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.49.0",

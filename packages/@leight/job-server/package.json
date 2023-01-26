@@ -31,9 +31,11 @@
     "dependencies": {
         "@leight/job": "*",
         "@prisma/client": "^4.9.0",
-        "tsyringe": "^4.7.0"
+        "tsyringe": "^4.7.0",
+        "reflect-metadata": "^0.1.13"
     },
     "devDependencies": {
+        "@leight/tsconfig": "*",
         "@leight/eslint-config-eslint": "*",
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.49.0",

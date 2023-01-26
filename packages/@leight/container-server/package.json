@@ -31,9 +31,11 @@
         "@leight/file-server": "*",
         "@leight/user-server": "*",
         "@leight/xlsx-import-server": "*",
+        "reflect-metadata": "^0.1.13",
         "tsyringe": "^4.7.0"
     },
     "devDependencies": {
+        "@leight/tsconfig": "*",
         "@leight/eslint-config-eslint": "*",
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.49.0",

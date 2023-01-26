@@ -34,9 +34,11 @@
         "next-auth": "^4.18.10",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "reflect-metadata": "^0.1.13",
         "tsyringe": "^4.7.0"
     },
     "devDependencies": {
+        "@leight/tsconfig": "*",
         "@leight/eslint-config-eslint": "*",
         "@types/node": "^18.11.18",
         "@types/react": "^18.0.27",
