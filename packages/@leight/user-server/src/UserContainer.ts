@@ -1,6 +1,5 @@
 import "reflect-metadata";
 import { container } from "tsyringe";
-import { RegistrationService, UserJwtService, UserService } from "./service";
 import {
     $RegistrationService,
     $UserJwtService,
@@ -9,6 +8,7 @@ import {
     type IUserJwtService,
     type IUserService,
 } from "@leight/user";
+import { RegistrationService, UserJwtService, UserService } from "./service";
 
 export interface IUserContainer {
     RegistrationService: IRegistrationService;

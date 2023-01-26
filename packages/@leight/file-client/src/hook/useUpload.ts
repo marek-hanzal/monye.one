@@ -62,7 +62,7 @@ export const useUpload = ({
                         replace,
                     }
                 )
-                .then(({ data: file }) => onFinish?.({ ...props, file }));
+                .then(({ data }) => onFinish?.({ ...props, file: data }));
         },
         onError,
     });

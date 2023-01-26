@@ -1,3 +1,3 @@
-import { IImportHandler } from "./IImportHandler";
+import { type IImportHandler } from "./IImportHandler";
 
-export type IImportHandlers = Record<string, () => IImportHandler<any>>;
+export type IImportHandlers = Record<string, () => IImportHandler<unknown>>;

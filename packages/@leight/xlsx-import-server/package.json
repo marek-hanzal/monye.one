@@ -33,12 +33,15 @@
         "@leight/utils-server": "*",
         "@trpc/client": "^10.9.0",
         "@trpc/server": "^10.9.0",
+        "delay": "^5.0.0",
         "measure-time": "^5.0.8",
         "reflect-metadata": "^0.1.13",
         "tsyringe": "^4.7.0",
-        "xlsx": "^0.18.5"
+        "xlsx": "^0.18.5",
+        "zod": "^3.20.2"
     },
     "devDependencies": {
+        "@leight/eslint-config-eslint": "*",
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.49.0",
         "@typescript-eslint/parser": "^5.49.0",

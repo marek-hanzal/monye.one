@@ -4,11 +4,19 @@ import { Box, LoadingOverlay } from "@mantine/core";
 import { AccountTable } from "@monye.one/account-client";
 import { withBookLayout } from "@monye.one/book";
 import { trpc } from "@monye.one/trpc-client";
+import { useEffect } from "react";
 
 export default withBookLayout(
     () => {
         const result = trpc.foo.useQuery();
-        const result2 = trpc.import.xlsx.useMutation();
+        const result2 = trpc.import.xlsx.job.useMutation();
+        useEffect(() => {
+            result2.mutate({
+                fileId: "123",
+            });
+        }, []);
+
+        console.log("R", result2.data);
         return (
             <>
                 <h1>Accounts here!!</h1>

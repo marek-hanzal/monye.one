@@ -10,15 +10,15 @@ import type {
 @injectable()
 export class TranslationService implements ITranslationService {
     async toTranslations(workbook: WorkBook): Promise<ITranslations> {
-        const translations = workbook.Sheets["translations"];
+        const { translations } = workbook.Sheets;
         if (!translations) {
             return {};
         }
         return utils
             .sheet_to_json<IXlsxTranslation>(translations)
-            .reduce<ITranslations>((obj, current) => {
-                obj[current.from] = current.to;
-                return obj;
-            }, {});
+            .reduce<ITranslations>(
+                (obj, current) => ({ ...obj, [current.from]: current.to }),
+                {}
+            );
     }
 }

@@ -14,12 +14,10 @@ export const ChunkCommitEndpoint: IEndpointFactory<IFile> = (
         container: target,
         withTokens: withTokens || ["user"],
         async handler({ body, userService }) {
-            return await container
-                .resolve<IChunkService>($ChunkService)
-                .commit({
-                    ...body,
-                    userId: userService.optional(),
-                });
+            return container.resolve<IChunkService>($ChunkService).commit({
+                ...body,
+                userId: userService.optional(),
+            });
         },
     });
 };

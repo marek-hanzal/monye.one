@@ -1,1 +1,1 @@
-export type IHrefQuery = Record<string | number, any>;
+export type IHrefQuery = Record<string | number, unknown>;

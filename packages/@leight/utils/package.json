@@ -31,6 +31,7 @@
         "is-string": "^1.0.7"
     },
     "devDependencies": {
+        "@leight/eslint-config-eslint": "*",
         "@types/is-callable": "^1.1.0",
         "@types/is-string": "^1.0.0",
         "@types/node": "^18.11.18",

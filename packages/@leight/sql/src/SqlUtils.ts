@@ -1,6 +1,6 @@
+import "reflect-metadata";
 import { $PrismaClient } from "@leight/prisma";
 import { type PrismaClient } from "@prisma/client";
-import "reflect-metadata";
 import { inject, injectable } from "tsyringe";
 
 @injectable()
@@ -50,7 +50,7 @@ export class SqlUtils {
 
     async run(file: string, timeout: number = 1000 * 60) {
         return this.prisma.$transaction(
-            async (prisma: any) =>
+            async (prisma) =>
                 this.file(file, (sql) => {
                     console.log(`Executing: ${sql}`);
                     return prisma.$executeRawUnsafe(sql);
@@ -63,7 +63,7 @@ export class SqlUtils {
 
     async execute(source: string, timeout: number = 1000 * 60) {
         return this.prisma.$transaction(
-            async (prisma: any) =>
+            async (prisma) =>
                 this.source(source, (sql) => {
                     console.log(`Executing: ${sql}`);
                     return prisma.$executeRawUnsafe(sql);

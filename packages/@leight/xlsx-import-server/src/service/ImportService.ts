@@ -54,28 +54,34 @@ export class ImportService implements IImportService {
                 if (!handler) {
                     await streamOf($stream, async () => {
                         skip++;
-                        jobProgress.onSkip();
+                        await jobProgress.onSkip();
                     });
                     continue;
                 }
                 await handler.begin?.({});
                 const getElapsed = measureTime();
-                await streamOf<Record<string, any>>($stream, async (item) => {
-                    try {
-                        await handler.handler(
-                            Object.keys(item).reduce<any>((obj, key) => {
-                                obj[translations[key] || key] = item[key];
-                                return obj;
-                            }, {})
-                        );
-                        success++;
-                        await jobProgress.onSuccess();
-                    } catch (e) {
-                        failure++;
-                        await jobProgress.onFailure();
-                        console.error(e);
+                await streamOf<Record<string, unknown>>(
+                    $stream,
+                    async (item) => {
+                        try {
+                            await handler.handler(
+                                Object.keys(item).reduce<object>(
+                                    (obj, key) => ({
+                                        ...obj,
+                                        [translations[key] || key]: item[key],
+                                    }),
+                                    {}
+                                )
+                            );
+                            success++;
+                            await jobProgress.onSuccess();
+                        } catch (e) {
+                            failure++;
+                            await jobProgress.onFailure();
+                            console.error(e);
+                        }
                     }
-                });
+                );
                 runtime += getElapsed().millisecondsTotal;
                 await handler.end?.({});
             }

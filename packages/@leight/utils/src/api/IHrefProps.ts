@@ -1,4 +1,4 @@
-import { IHrefQuery } from "./IHrefQuery";
+import { type IHrefQuery } from "./IHrefQuery";
 
 export interface IHrefProps<TQuery extends IHrefQuery = IHrefQuery> {
     href: string;

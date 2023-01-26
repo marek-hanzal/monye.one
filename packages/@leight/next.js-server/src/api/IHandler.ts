@@ -1,7 +1,7 @@
-import { type IError } from "./IError";
-import { type IHandlerProps } from "./IHandlerProps";
 import { type IHrefQuery } from "@leight/utils";
 import { container } from "tsyringe";
+import { type IError } from "./IError";
+import { type IHandlerProps } from "./IHandlerProps";
 
 export interface IHandler<
     TBody = unknown,

@@ -1,5 +1,4 @@
 import { Logger } from "@leight/winston";
-import { type IError, type IHandler, type INextHandler } from "./api";
 import { type IHrefQuery } from "@leight/utils";
 import getRawBody from "raw-body";
 import { type NextApiRequest, type NextApiResponse } from "next";
@@ -10,6 +9,7 @@ import {
 } from "@leight/user-server";
 import { getToken } from "next-auth/jwt";
 import { TokenError, UserError } from "@leight/user";
+import { type IError, type IHandler, type INextHandler } from "./api";
 
 const logger = Logger("@leight/next.js-server");
 
@@ -55,13 +55,14 @@ export const Endpoint =
                     end: response.end,
                 });
 
-                result && (await response.status(200).json(result));
+                return result && (await response.status(200).json(result));
             } catch (e) {
                 if (e instanceof TokenError) {
                     return response
                         .status(403)
                         .json({ error: "Token: Access denied." });
-                } else if (e instanceof UserError) {
+                }
+                if (e instanceof UserError) {
                     return response
                         .status(403)
                         .json({ error: "User: Access denied." });

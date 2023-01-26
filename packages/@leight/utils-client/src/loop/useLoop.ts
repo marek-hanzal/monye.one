@@ -51,7 +51,13 @@ export const useLoop = ({
         }
         loopStore.start(total);
         loopsStore?.inc();
-        (async () => await onStart({ total }))();
+        (async () => {
+            try {
+                await onStart({ total });
+            } catch (e) {
+                console.error(e);
+            }
+        })();
     }, []);
 
     useEffect(() => {

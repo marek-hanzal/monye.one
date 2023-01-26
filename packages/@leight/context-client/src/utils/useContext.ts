@@ -8,7 +8,9 @@ export function useContext<TContext>(
     const $context = useCoolContext(context);
     if (!$context) {
         throw new Error(
-            `There is no [${name}] context available.${hint ? " " + hint : ""} `
+            `There is no [${name}] context available.${
+                hint ? `" ${hint}` : ""
+            } `
         );
     }
     return $context;

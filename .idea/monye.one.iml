@@ -90,6 +90,28 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-client/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc-server/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/container-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/container-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/i18n-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/i18n-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/i18n-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/i18n-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/i18n/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/i18n/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/import/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/import/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/layout/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/layout/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/prisma/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/prisma/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/sql/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/sql/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/user/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/user/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/winston/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/winston/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import-client/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

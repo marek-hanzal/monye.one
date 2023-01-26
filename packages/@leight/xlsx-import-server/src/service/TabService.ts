@@ -6,7 +6,7 @@ import type { ITab, ITabService, IXlsxTab } from "../api";
 @injectable()
 export class TabService implements ITabService {
     async toTabs(workbook: WorkBook): Promise<ITab[]> {
-        const tabs = workbook.Sheets["tabs"];
+        const { tabs } = workbook.Sheets;
         if (!tabs) {
             return [];
         }

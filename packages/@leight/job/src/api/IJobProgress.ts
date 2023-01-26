@@ -11,15 +11,15 @@ export interface IJobProgress {
 
     skip(): number;
 
-    setTotal(total: number): Promise<any>;
+    setTotal(total: number): Promise<unknown>;
 
-    setStatus(status: IJobStatus): Promise<any>;
+    setStatus(status: IJobStatus): Promise<unknown>;
 
-    onSuccess(): Promise<any>;
+    onSuccess(): Promise<unknown>;
 
-    onFailure(): Promise<any>;
+    onFailure(): Promise<unknown>;
 
-    onSkip(): Promise<any>;
+    onSkip(): Promise<unknown>;
 
     setResult(result: IJobStatus): void;
 
