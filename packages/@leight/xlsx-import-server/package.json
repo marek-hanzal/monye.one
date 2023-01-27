@@ -24,7 +24,8 @@
         "dev-watch:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
         "dev-watch:cjs": "tsc -w -p tsconfig.json --outDir lib/cjs --preserveWatchOutput",
         "dev-watch": "concurrently npm:dev-watch:*",
-        "lint": "eslint src"
+        "lint": "eslint src",
+        "cleanup": "npx rimraf .turbo lib"
     },
     "dependencies": {
         "@leight/import": "*",
@@ -37,18 +38,20 @@
         "@trpc/server": "^10.9.0",
         "measure-time": "^5.0.8",
         "reflect-metadata": "^0.1.13",
+        "rimraf": "^4.1.2",
         "tsyringe": "^4.7.0",
         "xlsx": "^0.18.5",
         "zod": "^3.20.2"
     },
     "devDependencies": {
-        "@leight/tsconfig": "*",
         "@leight/eslint-config-eslint": "*",
+        "@leight/tsconfig": "*",
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.49.0",
         "@typescript-eslint/parser": "^5.49.0",
         "concurrently": "^7.6.0",
         "eslint": "^8.32.0",
+        "eslint-plugin-disable": "^2.0.3",
         "eslint-plugin-unicorn": "^45.0.2",
         "typescript": "^4.9.4"
     },

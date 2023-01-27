@@ -1,6 +1,19 @@
 {
     "root": true,
+    "processor": "disable/disable",
     "extends": [
-        "@monye.one/eslint"
+        "@money.one/eslint"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "src/**/*"
+            ],
+            "settings": {
+                "disable/plugins": [
+                    "react"
+                ]
+            }
+        }
     ]
 }

@@ -24,16 +24,18 @@
         "dev-watch:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
         "dev-watch:cjs": "tsc -w -p tsconfig.json --outDir lib/cjs --preserveWatchOutput",
         "dev-watch": "concurrently npm:dev-watch:*",
-        "lint": "eslint src"
+        "lint": "eslint src",
+        "cleanup": "npx rimraf .turbo lib"
     },
     "dependencies": {
         "is-callable": "^1.2.7",
         "is-string": "^1.0.7",
-        "reflect-metadata": "^0.1.13"
+        "reflect-metadata": "^0.1.13",
+        "rimraf": "^4.1.2"
     },
     "devDependencies": {
-        "@leight/tsconfig": "*",
         "@leight/eslint-config-eslint": "*",
+        "@leight/tsconfig": "*",
         "@types/is-callable": "^1.1.0",
         "@types/is-string": "^1.0.0",
         "@types/node": "^18.11.18",

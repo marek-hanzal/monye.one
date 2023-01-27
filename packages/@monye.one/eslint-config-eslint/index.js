@@ -28,7 +28,7 @@ module.exports = {
         "@typescript-eslint/no-empty-interface": "off",
         "react-hooks/exhaustive-deps": "off",
         "no-unused-vars": "off",
-        "no-html-link-for-pages": "off",
+        "@next/next/no-html-link-for-pages": "off",
         "no-await-in-loop": "off",
         "no-plusplus": "off",
     },

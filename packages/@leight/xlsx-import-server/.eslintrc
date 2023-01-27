@@ -1,9 +1,19 @@
 {
     "root": true,
+    "processor": "disable/disable",
     "extends": [
         "@leight/eslint"
     ],
-    "rules": {
-        "eslint-plugin-react": "off"
-    }
+    "overrides": [
+        {
+            "files": [
+                "src/**/*"
+            ],
+            "settings": {
+                "disable/plugins": [
+                    "react"
+                ]
+            }
+        }
+    ]
 }

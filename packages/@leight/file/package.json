@@ -26,15 +26,17 @@
         "dev-watch": "concurrently npm:dev-watch:*",
         "prisma-format": "npx dotenv -c development -- npx prisma format",
         "postinstall": "pnpm run prisma-format && prisma generate",
-        "lint": "eslint src"
+        "lint": "eslint src",
+        "cleanup": "npx rimraf .turbo lib"
     },
     "dependencies": {
         "@prisma/client": "^4.9.0",
-        "reflect-metadata": "^0.1.13"
+        "reflect-metadata": "^0.1.13",
+        "rimraf": "^4.1.2"
     },
     "devDependencies": {
-        "@leight/tsconfig": "*",
         "@leight/eslint-config-eslint": "*",
+        "@leight/tsconfig": "*",
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.49.0",
         "@typescript-eslint/parser": "^5.49.0",

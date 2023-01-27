@@ -23,7 +23,9 @@
         "build": "concurrently npm:build:*",
         "dev-watch:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
         "dev-watch:cjs": "tsc -w -p tsconfig.json --outDir lib/cjs --preserveWatchOutput",
-        "dev-watch": "concurrently npm:dev-watch:*"
+        "dev-watch": "concurrently npm:dev-watch:*",
+        "lint": "eslint src",
+        "cleanup": "npx rimraf .turbo lib"
     },
     "dependencies": {
         "@babel/core": "^7.20.12",
@@ -38,8 +40,8 @@
         "@mantine/dropzone": "^5.10.2",
         "@mantine/hooks": "^5.10.2",
         "@mantine/nprogress": "^5.10.2",
-        "@tabler/icons": "^2.1.1",
-        "@tabler/icons-react": "^2.1.1",
+        "@tabler/icons": "^2.1.2",
+        "@tabler/icons-react": "^2.1.2",
         "@trpc/client": "^10.9.0",
         "@trpc/server": "^10.9.0",
         "axios": "^1.2.5",
@@ -48,11 +50,12 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "reflect-metadata": "^0.1.13",
+        "rimraf": "^4.1.2",
         "uuid": "^9.0.0"
     },
     "devDependencies": {
-        "@leight/tsconfig": "*",
         "@leight/eslint-config-eslint": "*",
+        "@leight/tsconfig": "*",
         "@types/node": "^18.11.18",
         "@types/react": "^18.0.27",
         "@types/react-dom": "^18.0.10",

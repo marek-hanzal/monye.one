@@ -20,10 +20,11 @@
         "build:esm": "tsc -p tsconfig.json -m es2022 --outDir lib/esm",
         "build:cjs": "tsc -p tsconfig.json",
         "build": "concurrently npm:build:*",
-        "dev-watch:cjs": "tsc -w -p tsconfig.json --preserveWatchOutput",
         "dev-watch:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
+        "dev-watch:cjs": "tsc -w -p tsconfig.json --outDir lib/cjs --preserveWatchOutput",
         "dev-watch": "concurrently npm:dev-watch:*",
-        "lint": "eslint src"
+        "lint": "eslint src",
+        "cleanup": "npx rimraf .turbo lib"
     },
     "dependencies": {
         "@monye.one/trpc-server": "*",
@@ -36,6 +37,7 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "reflect-metadata": "^0.1.13",
+        "rimraf": "^4.1.2",
         "superjson": "^1.12.2"
     },
     "devDependencies": {

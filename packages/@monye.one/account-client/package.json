@@ -18,12 +18,13 @@
     ],
     "scripts": {
         "build:esm": "tsc -p tsconfig.json -m es2022 --outDir lib/esm",
-        "build:cjs": "tsc -p tsconfig.json",
+        "build:cjs": "tsc -p tsconfig.json --outDir lib/cjs",
         "build": "concurrently npm:build:*",
-        "dev-watch:cjs": "tsc -w -p tsconfig.json --preserveWatchOutput",
         "dev-watch:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
+        "dev-watch:cjs": "tsc -w -p tsconfig.json --outDir lib/cjs --preserveWatchOutput",
         "dev-watch": "concurrently npm:dev-watch:*",
-        "lint": "eslint src"
+        "lint": "eslint src",
+        "cleanup": "npx rimraf .turbo lib"
     },
     "dependencies": {
         "@babel/core": "^7.20.12",
@@ -34,7 +35,7 @@
         "@mantine/hooks": "^5.10.2",
         "@mantine/prism": "^5.10.2",
         "@monye.one/ui": "*",
-        "@tabler/icons-react": "^2.1.1",
+        "@tabler/icons-react": "^2.1.2",
         "i18next": "^22.4.9",
         "next": "^13.1.5",
         "next-auth": "^4.18.10",
@@ -43,7 +44,8 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-i18next": "^12.1.4",
-        "reflect-metadata": "^0.1.13"
+        "reflect-metadata": "^0.1.13",
+        "rimraf": "^4.1.2"
     },
     "devDependencies": {
         "@monye.one/eslint-config-eslint": "*",

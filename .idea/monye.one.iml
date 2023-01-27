@@ -121,6 +121,13 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import-client/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/xlsx-import/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/public/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/public/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/tsconfig/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/ui/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/ui/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

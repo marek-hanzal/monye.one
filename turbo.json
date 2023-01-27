@@ -55,6 +55,9 @@
                 "PORT"
             ]
         },
+        "cleanup": {
+            "cache": false
+        },
         "dev": {
             "cache": false
         },
