@@ -21,7 +21,12 @@ export const ImportZone: FC<IImportZoneProps> = ({
                     { fileId: file.id },
                     {
                         onSuccess: (job) => {
-                            console.log("Import started of ", file, job);
+                            console.log(
+                                "Import started of ",
+                                file,
+                                job,
+                                job.created
+                            );
                         },
                     }
                 );

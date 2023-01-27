@@ -1,6 +1,10 @@
 import { XlsxImportProcedure } from "@leight/xlsx-import-server";
-import { publicProcedure, router } from "../../router";
+import { procedure, router } from "../../router";
 
 export const XlsxRouter = router({
-    job: XlsxImportProcedure(publicProcedure),
+    /**
+     * TRY TO USE PROCEDURE DIRECTLY
+     */
+
+    job: XlsxImportProcedure(procedure),
 });

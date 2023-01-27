@@ -15,7 +15,7 @@ export class ImportService implements IImportService {
         setTimeout(() => {
             console.log("Sooo, it is time for import!", fileId);
         }, 0);
-        return { id: "job-id" } as unknown as IJob;
+        return { id: "job-id", created: new Date() } as unknown as IJob;
     }
 
     async import({

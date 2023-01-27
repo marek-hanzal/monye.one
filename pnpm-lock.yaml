@@ -1723,6 +1723,7 @@ importers:
       '@typescript-eslint/parser': ^5.49.0
       concurrently: ^7.6.0
       del-cli: ^5.0.0
+      devalue: ^4.2.2
       eslint: ^8.32.0
       eslint-plugin-unicorn: ^45.0.2
       next: ^13.1.5
@@ -1738,6 +1739,7 @@ importers:
       '@trpc/next': 10.9.0_zf4dmnjasp57goshgvidib2hkq
       '@trpc/react-query': 10.9.0_22wgxldzdfxutowffn2dykkd3i
       '@trpc/server': 10.9.0
+      devalue: 4.2.2
       next: 13.1.5_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1771,6 +1773,7 @@ importers:
       '@typescript-eslint/parser': ^5.49.0
       concurrently: ^7.6.0
       del-cli: ^5.0.0
+      devalue: ^4.2.2
       eslint: ^8.32.0
       eslint-plugin-disable: ^2.0.3
       eslint-plugin-unicorn: ^45.0.2
@@ -1784,6 +1787,7 @@ importers:
       '@leight/trpc': link:../../@leight/trpc
       '@leight/xlsx-import-server': link:../../@leight/xlsx-import-server
       '@trpc/server': 10.9.0
+      devalue: 4.2.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       reflect-metadata: 0.1.13
@@ -4020,6 +4024,10 @@ packages:
       defined: 1.0.1
       minimist: 1.2.7
     dev: true
+
+  /devalue/4.2.2:
+    resolution: {integrity: sha512-Pkwd8qrI9O20VJ14fBNHu+on99toTNZFbgWRpZbC0zbDXpnE2WHYcrC1fHhMsF/3Ee+2yaW7vEujAT7fCYgqrA==}
+    dev: false
 
   /didyoumean/1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}

@@ -17,7 +17,8 @@ export const withMutationProcedure = <
     ) =>
         procedure
             .input(input)
-            .mutation<TResponse>(({ ctx, input }) =>
-                callback({ ...ctx, request: input })
+            .mutation(
+                ({ ctx, input }) =>
+                    callback({ ...ctx, request: input }) as Awaited<TResponse>
             );
 };

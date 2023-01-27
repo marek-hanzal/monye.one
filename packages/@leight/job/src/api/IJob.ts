@@ -16,5 +16,5 @@ export interface IJob<TParams = unknown> {
     readonly started?: Date | null;
     readonly finished?: Date | null;
     readonly userId?: string | null;
-    readonly params: TParams;
+    readonly params?: TParams;
 }

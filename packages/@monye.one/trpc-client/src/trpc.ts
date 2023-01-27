@@ -2,6 +2,7 @@ import { type AppRouter } from "@monye.one/trpc-server";
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
 import superjson from "superjson";
+import { parse, stringify } from "devalue";
 
 export const trpc = createTRPCNext<AppRouter>({
     config() {
@@ -10,7 +11,13 @@ export const trpc = createTRPCNext<AppRouter>({
                 ? ""
                 : `http://localhost:${process.env.PORT ?? 3000}`;
         return {
-            transformer: superjson,
+            transformer: {
+                input: superjson,
+                output: {
+                    serialize: (object) => stringify(object),
+                    deserialize: (object) => parse(object),
+                },
+            },
             links: [
                 loggerLink({
                     enabled: (opts) =>
@@ -25,6 +32,7 @@ export const trpc = createTRPCNext<AppRouter>({
             queryClientConfig: {
                 defaultOptions: {
                     queries: {
+                        staleTime: 5 * 1000,
                         keepPreviousData: true,
                     },
                 },

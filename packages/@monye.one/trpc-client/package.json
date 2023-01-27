@@ -33,6 +33,7 @@
         "@trpc/next": "^10.9.0",
         "@trpc/react-query": "^10.9.0",
         "@trpc/server": "^10.9.0",
+        "devalue": "^4.2.2",
         "next": "^13.1.5",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
