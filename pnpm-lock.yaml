@@ -28,6 +28,7 @@ importers:
       '@leight/next.js-server': '*'
       '@leight/prisma': '*'
       '@leight/sql': '*'
+      '@leight/trpc-server': '*'
       '@leight/user': '*'
       '@leight/user-server': '*'
       '@leight/utils-client': '*'
@@ -117,6 +118,7 @@ importers:
       '@leight/next.js-server': link:../../packages/@leight/next.js-server
       '@leight/prisma': link:../../packages/@leight/prisma
       '@leight/sql': link:../../packages/@leight/sql
+      '@leight/trpc-server': link:../../packages/@leight/trpc-server
       '@leight/user': link:../../packages/@leight/user
       '@leight/user-server': link:../../packages/@leight/user-server
       '@leight/utils-client': link:../../packages/@leight/utils-client
@@ -907,6 +909,7 @@ importers:
     specifiers:
       '@leight/eslint-config-eslint': '*'
       '@leight/tsconfig': '*'
+      '@leight/user': '*'
       '@tanstack/react-query': ^4.23.0
       '@trpc/server': ^10.9.0
       '@types/node': ^18.11.18
@@ -919,14 +922,17 @@ importers:
       react: ^18.2.0
       react-dom: ^18.2.0
       reflect-metadata: ^0.1.13
+      tsyringe: ^4.7.0
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
+      '@leight/user': link:../user
       '@tanstack/react-query': 4.23.0_biqbaboplfbrettd7655fr4n2y
       '@trpc/server': 10.9.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       reflect-metadata: 0.1.13
+      tsyringe: 4.7.0
       zod: 3.20.2
     devDependencies:
       '@leight/eslint-config-eslint': link:../eslint-config-eslint
@@ -945,6 +951,8 @@ importers:
       '@leight/eslint-config-eslint': '*'
       '@leight/trpc': '*'
       '@leight/tsconfig': '*'
+      '@leight/user': '*'
+      '@leight/user-server': '*'
       '@trpc/server': ^10.9.0
       '@types/node': ^18.11.18
       '@typescript-eslint/eslint-plugin': ^5.49.0
@@ -953,13 +961,25 @@ importers:
       del-cli: ^5.0.0
       eslint: ^8.32.0
       eslint-plugin-unicorn: ^45.0.2
+      next: ^13.1.5
+      next-auth: ^4.18.10
+      react: ^18.2.0
+      react-dom: ^18.2.0
       reflect-metadata: ^0.1.13
+      tsyringe: ^4.7.0
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
       '@leight/trpc': link:../trpc
+      '@leight/user': link:../user
+      '@leight/user-server': link:../user-server
       '@trpc/server': 10.9.0
+      next: 13.1.5_biqbaboplfbrettd7655fr4n2y
+      next-auth: 4.18.10_s6zlkfvllybxhmcq5pkr2zsuza
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
       reflect-metadata: 0.1.13
+      tsyringe: 4.7.0
       zod: 3.20.2
     devDependencies:
       '@leight/eslint-config-eslint': link:../eslint-config-eslint
@@ -1206,6 +1226,7 @@ importers:
   packages/@leight/xlsx-import:
     specifiers:
       '@leight/eslint-config-eslint': '*'
+      '@leight/job': '*'
       '@leight/trpc': '*'
       '@leight/tsconfig': '*'
       '@types/node': ^18.11.18
@@ -1219,6 +1240,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
+      '@leight/job': link:../job
       '@leight/trpc': link:../trpc
       reflect-metadata: 0.1.13
       zod: 3.20.2
@@ -1737,6 +1759,7 @@ importers:
 
   packages/@monye.one/trpc-server:
     specifiers:
+      '@leight/trpc': '*'
       '@leight/xlsx-import-server': '*'
       '@monye.one/eslint-config-eslint': '*'
       '@monye.one/tsconfig': '*'
@@ -1758,6 +1781,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
+      '@leight/trpc': link:../../@leight/trpc
       '@leight/xlsx-import-server': link:../../@leight/xlsx-import-server
       '@trpc/server': 10.9.0
       react: 18.2.0

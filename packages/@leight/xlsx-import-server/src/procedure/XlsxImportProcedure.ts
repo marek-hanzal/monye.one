@@ -1,19 +1,21 @@
+import { TRPCError } from "@trpc/server";
 import { withMutationProcedure } from "@leight/trpc-server";
 import { RequestSchema } from "@leight/xlsx-import";
+import { ImportServiceContext } from "../context";
 
 export const XlsxImportProcedure = withMutationProcedure(
     RequestSchema,
-    ({ input: { fileId } }) => {
-        console.log("Importing", fileId);
-        setTimeout(async () => {
-            for (let i = 0; i <= 100; i++) {
-                console.log("Step", i);
-                // await delay(750);
-            }
-        }, 0);
-        return {
-            id: Math.random() * 100,
-            foo: true,
-        };
+    async ({ checkAny, container, request }) => {
+        checkAny(["user"]);
+        try {
+            return await ImportServiceContext(container)
+                .resolve()
+                .async(request);
+        } catch (e) {
+            throw new TRPCError({
+                message: "Could not start an import job. Yaaykes!",
+                code: "INTERNAL_SERVER_ERROR",
+            });
+        }
     }
 );

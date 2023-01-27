@@ -31,6 +31,7 @@
         "@leight/next.js-server": "*",
         "@leight/prisma": "*",
         "@leight/sql": "*",
+        "@leight/trpc-server": "*",
         "@leight/user": "*",
         "@leight/user-server": "*",
         "@leight/utils-client": "*",

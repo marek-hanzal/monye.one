@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import { streamOf } from "@leight/utils-server";
 import { measureTime } from "measure-time";
+import { type IJob } from "@leight/job";
 import { type Readable } from "node:stream";
 import { inject, injectable } from "tsyringe";
 import { stream } from "xlsx";
@@ -10,11 +11,23 @@ import { $MetaService, type IImportService, type IMetaService } from "../api";
 export class ImportService implements IImportService {
     constructor(@inject($MetaService) protected metaService: IMetaService) {}
 
+    async async({ fileId }: IImportService.IAsyncProps): Promise<IJob> {
+        setTimeout(() => {
+            console.log("Sooo, it is time for import!", fileId);
+        }, 0);
+        return { id: "job-id" } as unknown as IJob;
+    }
+
     async import({
         workbook,
         importers,
         jobProgress,
     }: IImportService.ImportProps): Promise<IImportService.ImportResult> {
+        /**
+         * Read meta from database/config/whatever based on filename, the file itself
+         * could not contain all the metadata.
+         */
+
         const { tabs, translations } = await this.metaService.toMeta(workbook);
 
         let total = 0;

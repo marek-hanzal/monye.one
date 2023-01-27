@@ -1,4 +1,3 @@
-export interface IResponseType {
-    id: number;
-    foo: boolean;
-}
+import { type IJob } from "@leight/job";
+
+export type IResponseType = IJob;

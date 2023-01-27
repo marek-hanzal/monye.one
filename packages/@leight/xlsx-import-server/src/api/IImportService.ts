@@ -1,5 +1,5 @@
 import {type IImportJob, type IWithImporters} from "@leight/import";
-import {type IJobProgress} from "@leight/job";
+import {type IJob, type IJobProgress} from "@leight/job";
 import {type WorkBook} from "xlsx";
 
 /**
@@ -7,6 +7,8 @@ import {type WorkBook} from "xlsx";
  * a job).
  */
 export interface IImportService {
+    async(props: IImportService.IAsyncProps): Promise<IJob>;
+
     import(
         props: IImportService.ImportProps
     ): Promise<IImportService.ImportResult>;
@@ -25,6 +27,10 @@ export namespace IImportService {
         failure: number;
         skip: number;
         runtime: number;
+    }
+
+    export interface IAsyncProps {
+        fileId: string;
     }
 }
 

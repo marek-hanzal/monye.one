@@ -1,5 +1,5 @@
 export * from "./api";
-export * from "./endpoint";
+export * from "./context";
 export * from "./job";
 export * from "./procedure";
 export * from "./service";

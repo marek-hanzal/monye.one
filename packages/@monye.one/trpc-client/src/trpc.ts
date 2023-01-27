@@ -1,7 +1,6 @@
 import { type AppRouter } from "@monye.one/trpc-server";
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
-import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import superjson from "superjson";
 
 export const trpc = createTRPCNext<AppRouter>({
@@ -34,6 +33,3 @@ export const trpc = createTRPCNext<AppRouter>({
     },
     ssr: false,
 });
-
-export type RouterInputTypes = inferRouterInputs<AppRouter>;
-export type RouterOutputTypes = inferRouterOutputs<AppRouter>;

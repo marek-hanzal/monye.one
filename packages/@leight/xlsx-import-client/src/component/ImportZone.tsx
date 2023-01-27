@@ -20,8 +20,8 @@ export const ImportZone: FC<IImportZoneProps> = ({
                 mutation.mutate(
                     { fileId: file.id },
                     {
-                        onSuccess: () => {
-                            console.log("Import started of ", file);
+                        onSuccess: (job) => {
+                            console.log("Import started of ", file, job);
                         },
                     }
                 );

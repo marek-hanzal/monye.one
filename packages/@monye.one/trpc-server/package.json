@@ -27,6 +27,7 @@
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
+        "@leight/trpc": "*",
         "@leight/xlsx-import-server": "*",
         "@trpc/server": "^10.9.0",
         "react": "^18.2.0",
