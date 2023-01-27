@@ -1,5 +1,5 @@
 {
-    "extends": "@monye.one/tsconfig/lib.json",
+    "extends": "@monye.one/tsconfig/common.json",
     "compilerOptions": {
         "rootDir": "src",
         "baseUrl": "src"

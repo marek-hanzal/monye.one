@@ -3,8 +3,9 @@
     "version": "0.0.0",
     "private": true,
     "files": [
-        "common.json",
-        "next.json",
-        "lib.json"
-    ]
+        "common.json"
+    ],
+    "devDependencies": {
+        "del-cli": "^5.0.0"
+    }
 }

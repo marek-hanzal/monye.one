@@ -27,13 +27,12 @@
         "prisma-format": "npx dotenv -c development -- npx prisma format",
         "postinstall": "pnpm run prisma-format && prisma generate",
         "lint": "eslint src",
-        "cleanup": "pnpm rimraf .turbo lib"
+        "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
         "@leight/job": "*",
         "@prisma/client": "^4.9.0",
         "reflect-metadata": "^0.1.13",
-        "rimraf": "^4.1.2",
         "tsyringe": "^4.7.0"
     },
     "devDependencies": {
@@ -43,6 +42,7 @@
         "@typescript-eslint/eslint-plugin": "^5.49.0",
         "@typescript-eslint/parser": "^5.49.0",
         "concurrently": "^7.6.0",
+        "del-cli": "^5.0.0",
         "dotenv-cli": "^7.0.0",
         "eslint": "^8.32.0",
         "eslint-plugin-unicorn": "^45.0.2",

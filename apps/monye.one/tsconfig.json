@@ -1,5 +1,5 @@
 {
-    "extends": "@monye.one/tsconfig/next.json",
+    "extends": "@monye.one/tsconfig/common.json",
     "compilerOptions": {
         "paths": {
             "@/monye.one": [

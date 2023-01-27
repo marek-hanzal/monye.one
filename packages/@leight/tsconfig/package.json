@@ -4,5 +4,8 @@
     "private": true,
     "files": [
         "common.json"
-    ]
+    ],
+    "devDependencies": {
+        "del-cli": "^5.0.0"
+    }
 }

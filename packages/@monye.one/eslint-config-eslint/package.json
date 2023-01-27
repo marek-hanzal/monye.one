@@ -22,5 +22,8 @@
     },
     "publishConfig": {
         "access": "public"
+    },
+    "devDependencies": {
+        "del-cli": "^5.0.0"
     }
 }
