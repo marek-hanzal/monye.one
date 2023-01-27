@@ -2,10 +2,7 @@
     "extends": "@leight/tsconfig/common.json",
     "compilerOptions": {
         "rootDir": "src",
-        "baseUrl": "src",
-        "types": [
-            "@trpc/server"
-        ]
+        "baseUrl": "src"
     },
     "include": [
         "src/**/*",

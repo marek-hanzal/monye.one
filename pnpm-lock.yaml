@@ -1762,6 +1762,7 @@ importers:
   packages/@monye.one/trpc-server:
     specifiers:
       '@leight/trpc': '*'
+      '@leight/xlsx-import': '*'
       '@leight/xlsx-import-server': '*'
       '@monye.one/eslint-config-eslint': '*'
       '@monye.one/tsconfig': '*'
@@ -1785,6 +1786,7 @@ importers:
       zod: ^3.20.2
     dependencies:
       '@leight/trpc': link:../../@leight/trpc
+      '@leight/xlsx-import': link:../../@leight/xlsx-import
       '@leight/xlsx-import-server': link:../../@leight/xlsx-import-server
       '@trpc/server': 10.9.0
       devalue: 4.2.2

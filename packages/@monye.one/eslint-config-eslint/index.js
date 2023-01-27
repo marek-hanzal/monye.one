@@ -24,6 +24,7 @@ module.exports = {
         "react/jsx-props-no-spreading": "off",
         "react/function-component-definition": "off",
         "no-underscore-dangle": "off",
+        "@typescript-eslint/no-shadow": "off",
         "class-methods-use-this": "off",
         "@typescript-eslint/no-empty-interface": "off",
         "react-hooks/exhaustive-deps": "off",

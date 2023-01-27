@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "@leight/trpc": "*",
+        "@leight/xlsx-import": "*",
         "@leight/xlsx-import-server": "*",
         "@trpc/server": "^10.9.0",
         "devalue": "^4.2.2",

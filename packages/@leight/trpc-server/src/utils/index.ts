@@ -1,3 +1,3 @@
 export * from "./createHandler";
 export * from "./TrpcEndpoint";
-export * from "./withMutationProcedure";
+export * from "./withHandler";
