@@ -1301,6 +1301,7 @@ importers:
       '@leight/import': '*'
       '@leight/job': '*'
       '@leight/next.js-server': '*'
+      '@leight/trpc': '*'
       '@leight/trpc-server': '*'
       '@leight/tsconfig': '*'
       '@leight/utils-server': '*'
@@ -1336,6 +1337,7 @@ importers:
       zod: 3.20.2
     devDependencies:
       '@leight/eslint-config-eslint': link:../eslint-config-eslint
+      '@leight/trpc': link:../trpc
       '@leight/tsconfig': link:../tsconfig
       '@types/node': 18.11.18
       '@typescript-eslint/eslint-plugin': 5.49.0_iu322prlnwsygkcra5kbpy22si
