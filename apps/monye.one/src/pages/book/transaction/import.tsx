@@ -8,6 +8,12 @@ import { trpc } from "@monye.one/trpc-client";
 
 export default withBookLayout(
     () => {
+        const a = trpc.import.xlsx.job.useMutation();
+        a.mutate({
+            fileId: "aa",
+        });
+        const boo = a.data?.foo;
+
         return (
             <>
                 <Box p={"md"}>

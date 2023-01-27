@@ -1,8 +1,25 @@
-import { BuildProcedure, ProcedureBuilder } from "@trpc/server";
+import {
+    type BuildProcedure,
+    type ProcedureBuilder,
+    type ProcedureParams,
+} from "@trpc/server";
 
 export type IMutationProcedure<
-    TProcedureBuilder extends ProcedureBuilder<any>,
-    TReturnType
+    TRequest,
+    TResponse,
+    TParams extends ProcedureParams<
+        any,
+        any,
+        TRequest,
+        TRequest,
+        TResponse,
+        TResponse,
+        any
+    >
 > = (
-    procedure: TProcedureBuilder
-) => BuildProcedure<"mutation", any, TReturnType>;
+    procedure: ProcedureBuilder<TParams>
+) => BuildProcedure<
+    "mutation",
+    ProcedureParams<any, any, any, any, TResponse, TResponse, any>,
+    TResponse
+>;

@@ -1,9 +1,9 @@
-import { type IMutationProcedure } from "@leight/trpc";
 import { withMutationProcedure } from "@leight/trpc-server";
 import { RequestSchema } from "@leight/xlsx-import";
 
-export const XlsxImportProcedure: IMutationProcedure<any, any> =
-    withMutationProcedure(RequestSchema, ({ input: { fileId } }) => {
+export const XlsxImportProcedure = withMutationProcedure(
+    RequestSchema,
+    ({ input: { fileId } }) => {
         console.log("Importing", fileId);
         setTimeout(async () => {
             for (let i = 0; i <= 100; i++) {
@@ -15,4 +15,5 @@ export const XlsxImportProcedure: IMutationProcedure<any, any> =
             id: Math.random() * 100,
             foo: true,
         };
-    });
+    }
+);
