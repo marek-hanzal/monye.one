@@ -4,9 +4,8 @@ import {
     UserIdContext,
     UserServiceContext,
 } from "@leight/user-server";
-import { TokenError } from "@leight/user";
 import { container } from "tsyringe";
-import { AnyRouter, TRPCError } from "@trpc/server";
+import { AnyRouter } from "@trpc/server";
 import { createHandler } from "./createHandler";
 
 export const TrpcEndpoint = <TRouter extends AnyRouter>(
@@ -24,21 +23,6 @@ export const TrpcEndpoint = <TRouter extends AnyRouter>(
             container,
             userService: UserServiceContext(container).resolve(),
             tokenService,
-            checkAny: (tokens) => {
-                try {
-                    tokenService.checkAny(tokens);
-                } catch (e) {
-                    if (e instanceof TokenError) {
-                        throw new TRPCError({
-                            message: "Token: Unauthorized :(",
-                            code: "UNAUTHORIZED",
-                        });
-                    }
-                    throw new TRPCError({
-                        message: "General kaboom :'(",
-                        code: "INTERNAL_SERVER_ERROR",
-                    });
-                }
-            },
+            checkAny: (tokens) => tokenService.checkAny(tokens),
         };
     });

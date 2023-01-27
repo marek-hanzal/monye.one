@@ -1,22 +1,21 @@
 import { IContext } from "@leight/trpc";
 import { TRPCError } from "@trpc/server";
-import { ZodType } from "zod";
+import { TokenError } from "@leight/user";
 
 export interface IHandlerRequest<TRequest> {
     ctx: IContext;
     input: TRequest;
 }
 
-export type IHandlerCallback<TRequest, TResponse> = (
-    props: IHandlerProps<TRequest>
-) => Promise<TResponse>;
-
 export interface IHandlerProps<TRequest> extends IContext {
     request: TRequest;
 }
 
+export type IHandlerCallback<TRequest, TResponse> = (
+    props: IHandlerProps<TRequest>
+) => Promise<TResponse>;
+
 export interface IWithHandlerProps<TRequest, TResponse> {
-    request: TRequest;
     handler: IHandlerCallback<TRequest, TResponse>;
     withTokens?: string[];
     defaultErrorMessage?: string;
@@ -28,8 +27,7 @@ export interface IWithHandlerProps<TRequest, TResponse> {
 /**
  * Utility function making a clever bridge for handling tRPC calls.
  */
-export const withHandler = <TRequest extends ZodType, TResponse>({
-    request,
+export const withHandler = <TRequest, TResponse>({
     handler,
     withTokens = ["user"],
     defaultErrorMessage = "Unhandled kaboom",
@@ -37,11 +35,25 @@ export const withHandler = <TRequest extends ZodType, TResponse>({
     onError = (e) => {
         throw e;
     },
-}: IWithHandlerProps<TRequest, TResponse>): ((
-    props: IHandlerRequest<string>
-) => Promise<TResponse>) => {
-    return async ({ ctx, input }) => {
-        ctx.checkAny(withTokens);
+}: IWithHandlerProps<TRequest, TResponse>) => {
+    return async ({
+        ctx,
+        input,
+    }: IHandlerRequest<TRequest>): Promise<TResponse> => {
+        try {
+            ctx.checkAny(withTokens);
+        } catch (e) {
+            if (e instanceof TokenError) {
+                throw new TRPCError({
+                    message: "Token: Unauthorized :(",
+                    code: "UNAUTHORIZED",
+                });
+            }
+            throw new TRPCError({
+                message: "Token: General kaboom :'(",
+                code: "INTERNAL_SERVER_ERROR",
+            });
+        }
         try {
             return await handler({
                 ...ctx,
