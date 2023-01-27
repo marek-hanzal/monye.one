@@ -2,5 +2,18 @@
     "root": true,
     "extends": [
         "@leight/eslint"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "src/**/*"
+            ],
+            "settings": {
+                "disable/plugins": [
+                    "react",
+                    "eslint-plugin-react"
+                ]
+            }
+        }
     ]
 }

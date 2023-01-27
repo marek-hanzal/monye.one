@@ -19,15 +19,15 @@
     ],
     "scripts": {
         "build:esm": "tsc -p tsconfig.json -m es2022 --outDir lib/esm",
-        "build:cjs": "tsc -p tsconfig.json --outDir lib/cjs",
+        "build:cjs": "tsc -p tsconfig.json -m commonjs --outDir lib/cjs",
         "build": "concurrently npm:build:*",
         "dev-watch:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
-        "dev-watch:cjs": "tsc -w -p tsconfig.json --outDir lib/cjs --preserveWatchOutput",
+        "dev-watch:cjs": "tsc -w -p tsconfig.json -m commonjs --outDir lib/cjs --preserveWatchOutput",
         "dev-watch": "concurrently npm:dev-watch:*",
         "prisma-format": "npx dotenv -c development -- npx prisma format",
         "postinstall": "pnpm run prisma-format && prisma generate",
         "lint": "eslint src",
-        "cleanup": "npx rimraf .turbo lib"
+        "cleanup": "pnpm rimraf .turbo lib"
     },
     "dependencies": {
         "@leight/i18n": "*",
@@ -52,7 +52,6 @@
         "concurrently": "^7.6.0",
         "dotenv-cli": "^7.0.0",
         "eslint": "^8.32.0",
-        "eslint-plugin-disable": "^2.0.3",
         "eslint-plugin-unicorn": "^45.0.2",
         "prisma": "^4.9.0",
         "typescript": "^4.9.4"

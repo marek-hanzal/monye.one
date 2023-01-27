@@ -4,7 +4,7 @@ import { type ComponentProps, type FC } from "react";
 const useStyles = createStyles((theme) => ({
     paper: {
         "&:hover": {
-            boxShadow: theme.shadows["lg"],
+            boxShadow: theme.shadows.lg,
         },
     },
 }));

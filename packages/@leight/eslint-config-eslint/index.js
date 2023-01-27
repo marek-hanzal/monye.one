@@ -9,11 +9,12 @@ module.exports = {
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
     ],
+    processor: "disable/disable",
     parser: "@typescript-eslint/parser",
     parserOptions: {
         project: "./tsconfig.json",
     },
-    plugins: ["@typescript-eslint", "eslint-plugin-unicorn"],
+    plugins: ["@typescript-eslint", "eslint-plugin-unicorn", "disable"],
     rules: {
         "import/prefer-default-export": "off",
         "react/react-in-jsx-scope": "off",
@@ -31,6 +32,7 @@ module.exports = {
         "@typescript-eslint/no-empty-interface": "off",
         "no-unused-vars": "off",
         "no-underscore-dangle": "off",
+        "no-nested-ternary": "off",
         "@typescript-eslint/no-shadow": "off",
         "@next/next/no-html-link-for-pages": "off",
         "no-await-in-loop": "off",
@@ -45,5 +47,10 @@ module.exports = {
             "error",
             { devDependencies: true },
         ],
+    },
+    settings: {
+        react: {
+            version: "18",
+        },
     },
 };

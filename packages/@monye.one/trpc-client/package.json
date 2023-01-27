@@ -21,10 +21,10 @@
         "build:cjs": "tsc -p tsconfig.json",
         "build": "concurrently npm:build:*",
         "dev-watch:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
-        "dev-watch:cjs": "tsc -w -p tsconfig.json --outDir lib/cjs --preserveWatchOutput",
+        "dev-watch:cjs": "tsc -w -p tsconfig.json -m commonjs --outDir lib/cjs --preserveWatchOutput",
         "dev-watch": "concurrently npm:dev-watch:*",
         "lint": "eslint src",
-        "cleanup": "npx rimraf .turbo lib"
+        "cleanup": "pnpm rimraf .turbo lib"
     },
     "dependencies": {
         "@monye.one/trpc-server": "*",

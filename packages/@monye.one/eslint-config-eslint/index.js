@@ -13,7 +13,7 @@ module.exports = {
     parserOptions: {
         project: "./tsconfig.json",
     },
-    plugins: ["@typescript-eslint", "eslint-plugin-unicorn"],
+    plugins: ["@typescript-eslint", "eslint-plugin-unicorn", "disable"],
     rules: {
         "import/prefer-default-export": "off",
         "react/react-in-jsx-scope": "off",
@@ -31,5 +31,10 @@ module.exports = {
         "@next/next/no-html-link-for-pages": "off",
         "no-await-in-loop": "off",
         "no-plusplus": "off",
+    },
+    settings: {
+        react: {
+            version: "18",
+        },
     },
 };

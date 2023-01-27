@@ -1,6 +1,5 @@
 {
     "root": true,
-    "processor": "disable/disable",
     "extends": [
         "@leight/eslint"
     ],
@@ -11,7 +10,8 @@
             ],
             "settings": {
                 "disable/plugins": [
-                    "react"
+                    "react",
+                    "eslint-plugin-react"
                 ]
             }
         }
