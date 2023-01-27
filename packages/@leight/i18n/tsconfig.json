@@ -1,12 +1,5 @@
 {
     "extends": "@leight/tsconfig/common.json",
-    "compilerOptions": {
-        "rootDir": "src"
-    },
-    "include": [
-        "src/**/*",
-        "src/**/*.json"
-    ],
     "exclude": [
         "node_modules"
     ]
