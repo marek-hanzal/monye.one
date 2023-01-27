@@ -19,10 +19,10 @@
     ],
     "scripts": {
         "build:esm": "tsc -p tsconfig.json -m es2022 --outDir lib/esm",
-        "build:cjs": "tsc -p tsconfig.json",
+        "build:cjs": "tsc -p tsconfig.json --outDir lib/cjs",
         "build": "concurrently npm:build:*",
         "dev-watch:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
-        "dev-watch:cjs": "tsc -w -p tsconfig.json --preserveWatchOutput",
+        "dev-watch:cjs": "tsc -w -p tsconfig.json --outDir lib/cjs --preserveWatchOutput",
         "dev-watch": "concurrently npm:dev-watch:*"
     },
     "dependencies": {
