@@ -5,6 +5,7 @@
     "scripts": {
         "build": "npx dotenv -c development -- next build",
         "dev": "next dev",
+        "dev-watch": "next dev",
         "postinstall": "prisma generate",
         "migration": "npx dotenv -c development -- npx prisma migrate deploy",
         "prisma-generate": "npx dotenv -c development -- npx prisma generate",

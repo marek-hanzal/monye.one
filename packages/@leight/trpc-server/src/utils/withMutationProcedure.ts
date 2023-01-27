@@ -1,4 +1,4 @@
-import { ProcedureBuilder } from "@trpc/server";
+import { type ProcedureBuilder } from "@trpc/server";
 import { type ZodType } from "zod";
 import { type ITrpcCallback } from "@leight/trpc";
 
