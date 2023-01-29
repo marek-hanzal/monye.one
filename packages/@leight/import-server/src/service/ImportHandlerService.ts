@@ -11,6 +11,9 @@ export class ImportHandlerService implements IImportHandlerService {
     }
 
     resolve<TItem>(service: string): IImportHandler<TItem> {
+        /**
+         * @TODO add validation for service to prevent resolving arbitrary services by the user.
+         */
         return this.container.resolve(Symbol.for(service));
     }
 }
