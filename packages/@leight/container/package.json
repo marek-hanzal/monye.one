@@ -32,15 +32,15 @@
         "tsyringe": "^4.7.0"
     },
     "devDependencies": {
-        "@leight/eslint-config-eslint": "*",
-        "@leight/tsconfig": "*",
+        "@leight/eslint-config-eslint": "^0.0.0",
+        "@leight/tsconfig": "^0.0.0",
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.49.0",
         "@typescript-eslint/parser": "^5.49.0",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
         "dotenv-cli": "^7.0.0",
-        "eslint": "^8.32.0",
+        "eslint": "^8.33.0",
         "eslint-plugin-unicorn": "^45.0.2",
         "typescript": "^4.9.4"
     },

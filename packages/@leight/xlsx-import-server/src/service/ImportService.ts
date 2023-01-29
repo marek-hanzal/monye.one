@@ -25,7 +25,7 @@ export class ImportService implements IImportService {
             params: {
                 fileId,
             },
-            handler: this.job,
+            handler: this.job.bind(this),
         });
     }
 
@@ -33,12 +33,9 @@ export class ImportService implements IImportService {
                   jobProgress,
                   params: {fileId}
               }: IJobExecutor.HandlerRequest<IImportJob>): Promise<IImportService.ImportResult> {
-        const file = this.fileService.pathOf(fileId);
-        console.log("Sooo, it is time for import!", file);
-
-        const workbook = readFile(file);
-
-        const {tabs} = await this.metaService.toMeta(workbook);
+        const file = await this.fileService.fetch(fileId);
+        const workbook = readFile(file.location);
+        const {tabs, translations} = await this.metaService.toMeta({workbook, file: file.location, name: file.name});
 
         let total = 0;
         let success = 0;
@@ -81,6 +78,7 @@ export class ImportService implements IImportService {
                         $stream,
                         async (item) => {
                             try {
+                                console.log('Item', item);
                                 await handler.handler(
                                     /**
                                      * @TODO use Translation service to resolve item translation

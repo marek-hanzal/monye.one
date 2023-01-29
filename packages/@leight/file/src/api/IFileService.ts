@@ -15,6 +15,8 @@ export interface IFileService {
      */
     pathOf(fileId: string): string;
 
+    fetch(fileId: string): Promise<IFile>;
+
     store(props: IFileServiceStoreProps): Promise<IFile>;
 }
 

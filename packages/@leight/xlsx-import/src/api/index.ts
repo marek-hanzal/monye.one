@@ -1,5 +1,6 @@
 export * from "./IImportService";
 export * from "./IMetaService";
+export * from "./IMetaServiceConfig";
 export * from "./IRequestType";
 export * from "./IResponseType";
 export * from "./ITabService";

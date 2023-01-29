@@ -30,43 +30,45 @@ export class JobExecutor implements IJobExecutor {
         const labels = {name, jobId: job.id};
         logger = logger.child({labels, jobId: labels.jobId, name});
         const jobProgress = this.jobProgressService.create(job.id);
-        setTimeout(() => async () => {
-            try {
-                await this.prismaClient.job.findUniqueOrThrow({where: {id: job.id}});
-                await jobProgress.setStatus("RUNNING");
-                await handler({
-                    name,
-                    job,
-                    params: job.params,
-                    userId: job.userId,
-                    jobProgress,
-                    logger,
-                    progress: async (callback, $sleep = 0) => {
-                        try {
-                            await delay($sleep);
-                            const result = await callback();
-                            await jobProgress.onSuccess();
-                            return result;
-                        } catch (e) {
-                            await jobProgress.onFailure();
-                            if (e instanceof Error) {
-                                logger.error(e.message);
-                                logger.error(e.stack);
+        setTimeout(() => {
+            (async () => {
+                try {
+                    await this.prismaClient.job.findUniqueOrThrow({where: {id: job.id}});
+                    await jobProgress.setStatus("RUNNING");
+                    await handler({
+                        name,
+                        job,
+                        params,
+                        userId: job.userId,
+                        jobProgress,
+                        logger,
+                        progress: async (callback, $sleep = 0) => {
+                            try {
+                                await delay($sleep);
+                                const result = await callback();
+                                await jobProgress.onSuccess();
+                                return result;
+                            } catch (e) {
+                                await jobProgress.onFailure();
+                                if (e instanceof Error) {
+                                    logger.error(e.message);
+                                    logger.error(e.stack);
+                                }
+                                throw e;
                             }
-                            throw e;
-                        }
-                    },
-                });
-                await jobProgress.setStatus(jobProgress.result() || (jobProgress.isReview() ? "REVIEW" : "SUCCESS"));
-            } catch (e) {
-                logger.error(`Job [${name}] failed.`);
-                if (e instanceof Error) {
-                    logger.error(e.message);
-                    logger.error(e.stack);
+                        },
+                    });
+                    await jobProgress.setStatus(jobProgress.result() || (jobProgress.isReview() ? "REVIEW" : "SUCCESS"));
+                } catch (e) {
+                    logger.error(`Job [${name}] failed.`);
+                    if (e instanceof Error) {
+                        logger.error(e.message);
+                        logger.error(e.stack);
+                    }
+                    await jobProgress.setStatus("FAILURE");
+                    throw e;
                 }
-                await jobProgress.setStatus("FAILURE");
-                throw e;
-            }
+            })();
         }, 0);
         return job;
     }

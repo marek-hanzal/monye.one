@@ -28,13 +28,13 @@
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/container": "*",
-        "@leight/trpc": "*",
-        "@leight/user": "*",
-        "@leight/user-server": "*",
+        "@leight/container": "^0.5.0",
+        "@leight/trpc": "^0.5.0",
+        "@leight/user": "^0.5.0",
+        "@leight/user-server": "^0.5.0",
         "@trpc/server": "^10.9.0",
-        "next": "^13.1.5",
-        "next-auth": "^4.18.10",
+        "next": "^13.1.6",
+        "next-auth": "^4.19.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "reflect-metadata": "^0.1.13",
@@ -42,14 +42,14 @@
         "zod": "^3.20.2"
     },
     "devDependencies": {
-        "@leight/eslint-config-eslint": "*",
-        "@leight/tsconfig": "*",
+        "@leight/eslint-config-eslint": "^0.0.0",
+        "@leight/tsconfig": "^0.0.0",
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.49.0",
         "@typescript-eslint/parser": "^5.49.0",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
-        "eslint": "^8.32.0",
+        "eslint": "^8.33.0",
         "eslint-plugin-unicorn": "^45.0.2",
         "typescript": "^4.9.4"
     },

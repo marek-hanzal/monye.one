@@ -1,19 +1,18 @@
-import { env } from "@/monye.one/env/server.mjs";
-import { ServerContainer as $ServerContainer } from "@leight/container-server";
-import { $PrismaClient } from "@leight/prisma";
-import { PrismaClient } from "@prisma/client";
+import {ServerContainer as $ServerContainer} from "@leight/container-server";
+import {$PrismaClient} from "@leight/prisma";
+import {PrismaClient} from "@prisma/client";
 import "reflect-metadata";
-import { container, instanceCachingFactory } from "tsyringe";
+import {container, instanceCachingFactory} from "tsyringe";
 
 export const MonyeOneContainer = ((target: typeof container) => {
     target.register<PrismaClient>($PrismaClient, {
         useFactory: instanceCachingFactory<PrismaClient>(() => {
             return new PrismaClient({
                 errorFormat: "pretty",
-                log:
-                    env.NODE_ENV === "development"
-                        ? ["query", "error", "warn"]
-                        : ["error"],
+                // log:
+                //     env.NODE_ENV === "development"
+                //         ? ["query", "error", "warn"]
+                //         : ["error"],
             });
         }),
     });

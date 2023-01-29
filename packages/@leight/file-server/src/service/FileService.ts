@@ -33,6 +33,11 @@ export class FileService implements IFileService {
         );
     }
 
+    public fetch(fileId: string): Promise<IFile> {
+        return this.prismaClient.file.findUniqueOrThrow({where: {id: fileId}});
+    }
+
+
     protected async mimeOf(file?: string): Promise<string> {
         if (!file) {
             return "application/octet-stream";

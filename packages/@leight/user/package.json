@@ -31,16 +31,16 @@
     },
     "dependencies": {
         "@prisma/client": "^4.9.0",
-        "next": "^13.1.5",
-        "next-auth": "^4.18.10",
+        "next": "^13.1.6",
+        "next-auth": "^4.19.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "reflect-metadata": "^0.1.13",
         "tsyringe": "^4.7.0"
     },
     "devDependencies": {
-        "@leight/eslint-config-eslint": "*",
-        "@leight/tsconfig": "*",
+        "@leight/eslint-config-eslint": "^0.0.0",
+        "@leight/tsconfig": "^0.0.0",
         "@types/node": "^18.11.18",
         "@types/react": "^18.0.27",
         "@types/react-dom": "^18.0.10",
@@ -49,7 +49,7 @@
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
         "dotenv-cli": "^7.0.0",
-        "eslint": "^8.32.0",
+        "eslint": "^8.33.0",
         "eslint-plugin-unicorn": "^45.0.2",
         "prisma": "^4.9.0",
         "typescript": "^4.9.4"

@@ -2,10 +2,12 @@ import "reflect-metadata";
 import {
     $ImportService,
     $MetaService,
+    $MetaServiceConfig,
     $TabService,
     $TranslationService,
     type IImportService,
     type IMetaService,
+    type IMetaServiceConfig,
     type ITabService,
     type ITranslationService,
 } from "@leight/xlsx-import";
@@ -35,6 +37,11 @@ export const XlsxImportContainer = (container: IContainer): IXlsxImportContainer
     container.register<ITranslationService>($TranslationService, {
         useClass: TranslationService,
     });
+    container.register<IMetaServiceConfig>($MetaServiceConfig, {
+        useValue: {
+            templates: 'public/import',
+        },
+    })
 
     return {
         get TabService() {

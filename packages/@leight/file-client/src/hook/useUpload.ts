@@ -1,16 +1,11 @@
-import {
-    IOnFinishProps,
-    type IUseChunkProps,
-    toHref,
-    useChunk,
-} from "@leight/utils-client";
+import {IOnFinishProps, type IUseChunkProps, toHref, useChunk,} from "@leight/utils-client";
 import axios from "axios";
-import { type IChunkService, IFile, type IFileWithPath } from "@leight/file";
-import { type IHrefProps } from "@leight/utils";
-import { useRef } from "react";
-import { v4 } from "uuid";
+import {type IChunkService, IFile, type IFileWithPath} from "@leight/file";
+import {type IHrefProps} from "@leight/utils";
+import {useRef} from "react";
+import {v4} from "uuid";
 
-const defaultChunkSize = 1024 * 4;
+const defaultChunkSize = 1048576 * 4;
 
 export interface IUseUploadProps
     extends Pick<IUseChunkProps, "onStart" | "onError"> {
@@ -24,23 +19,23 @@ export interface IUseUploadProps
 }
 
 export const useUpload = ({
-    file,
-    path,
-    chunkHref = { href: "/api/file/chunk/{chunkId}/upload" },
-    commitHref = { href: "/api/file/chunk/commit" },
-    onStart,
-    onFinish,
-    onError,
-    replace = true,
-}: IUseUploadProps) => {
+                              file,
+                              path,
+                              chunkHref = {href: "/api/file/chunk/{chunkId}/upload"},
+                              commitHref = {href: "/api/file/chunk/commit"},
+                              onStart,
+                              onFinish,
+                              onError,
+                              replace = true,
+                          }: IUseUploadProps) => {
     const uuid = useRef(v4());
     return useChunk({
         chunk: defaultChunkSize,
         throttle: 150,
         size: file.size,
-        async onTick({ start, end }) {
+        async onTick({start, end}) {
             return axios.post(
-                toHref({ ...chunkHref, query: { chunkId: uuid.current } }),
+                toHref({...chunkHref, query: {chunkId: uuid.current}}),
                 file.slice(start, end),
                 {
                     headers: {
@@ -53,7 +48,7 @@ export const useUpload = ({
         onFinish: async (props) => {
             return axios
                 .post<unknown, { data: IFile }, IChunkService.CommitProps>(
-                    toHref({ ...commitHref, query: { chunkId: uuid.current } }),
+                    toHref({...commitHref, query: {chunkId: uuid.current}}),
                     {
                         name: file.name,
                         path,
@@ -62,7 +57,7 @@ export const useUpload = ({
                         replace,
                     }
                 )
-                .then(({ data }) => onFinish?.({ ...props, file: data }));
+                .then(({data}) => onFinish?.({...props, file: data}));
         },
         onError,
     });
