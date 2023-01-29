@@ -1,13 +1,13 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { type IHrefQuery } from "@leight/utils";
-import { container } from "tsyringe";
-import { type ITokenService, type IUserService } from "@leight/user";
+import type {NextApiRequest, NextApiResponse} from "next";
+import {type IHrefQuery} from "@leight/utils";
+import {type ITokenService, type IUserService} from "@leight/user";
+import {type IContainer} from "@leight/container";
 
 export interface IHandlerProps<
     TBody = unknown,
     THrefQuery extends IHrefQuery = IHrefQuery
 > {
-    container: typeof container;
+    container: IContainer;
     request: NextApiRequest;
     body: TBody;
     query: THrefQuery;

@@ -28,6 +28,7 @@ module.exports = {
         "react/prop-types": "off",
         "react/require-default-props": "off",
         "react/jsx-no-useless-fragment": "off",
+        "no-return-assign": "off",
         "class-methods-use-this": "off",
         "@typescript-eslint/no-empty-interface": "off",
         "no-unused-vars": "off",
@@ -45,7 +46,7 @@ module.exports = {
         "no-continue": "off",
         "import/no-extraneous-dependencies": [
             "error",
-            { devDependencies: true },
+            {devDependencies: true},
         ],
     },
     settings: {

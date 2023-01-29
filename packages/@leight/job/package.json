@@ -29,7 +29,8 @@
     },
     "dependencies": {
         "@leight/user-server": "*",
-        "reflect-metadata": "^0.1.13"
+        "reflect-metadata": "^0.1.13",
+        "winston": "^3.8.2"
     },
     "devDependencies": {
         "@leight/eslint-config-eslint": "*",

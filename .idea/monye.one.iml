@@ -47,6 +47,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/utils-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/trpc-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/trpc/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/container/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -128,6 +129,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/tsconfig/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/ui/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/ui/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/container/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/container/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/import-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/import-server/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

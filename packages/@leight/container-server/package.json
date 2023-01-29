@@ -30,8 +30,11 @@
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
+        "@leight/container": "*",
         "@leight/file": "*",
         "@leight/file-server": "*",
+        "@leight/import-server": "*",
+        "@leight/job-server": "*",
         "@leight/user-server": "*",
         "@leight/xlsx-import-server": "*",
         "@prisma/client": "^4.9.0",

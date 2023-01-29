@@ -1,6 +1,6 @@
-import { type IJobStatus } from "./IJobStatus";
+import {type IJobStatus} from "./IJobStatus";
 
-export interface IJob<TParams = unknown> {
+export interface IJob<TParams = any> {
     readonly id: string;
     readonly name: string;
     readonly status: IJobStatus;
@@ -16,5 +16,5 @@ export interface IJob<TParams = unknown> {
     readonly started?: Date | null;
     readonly finished?: Date | null;
     readonly userId?: string | null;
-    readonly params?: TParams;
+    readonly params: TParams;
 }

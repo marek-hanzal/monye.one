@@ -1,5 +1,4 @@
 import "reflect-metadata";
-import { container } from "tsyringe";
 import {
     $RegistrationService,
     $UserJwtService,
@@ -8,7 +7,8 @@ import {
     type IUserJwtService,
     type IUserService,
 } from "@leight/user";
-import { RegistrationService, UserJwtService, UserService } from "./service";
+import {type IContainer} from "@leight/container";
+import {RegistrationService, UserJwtService, UserService} from "./service";
 
 export interface IUserContainer {
     RegistrationService: IRegistrationService;
@@ -16,26 +16,26 @@ export interface IUserContainer {
     UserService: IUserService;
 }
 
-export const UserContainer = (target: typeof container): IUserContainer => {
-    target.register<IRegistrationService>($RegistrationService, {
+export const UserContainer = (container: IContainer): IUserContainer => {
+    container.register<IRegistrationService>($RegistrationService, {
         useClass: RegistrationService,
     });
-    target.register<IUserJwtService>($UserJwtService, {
+    container.register<IUserJwtService>($UserJwtService, {
         useClass: UserJwtService,
     });
-    target.register<IUserService>($UserService, {
+    container.register<IUserService>($UserService, {
         useClass: UserService,
     });
 
     return {
         get RegistrationService() {
-            return target.resolve<IRegistrationService>($RegistrationService);
+            return container.resolve<IRegistrationService>($RegistrationService);
         },
         get UserJwtService() {
-            return target.resolve<IUserJwtService>($UserJwtService);
+            return container.resolve<IUserJwtService>($UserJwtService);
         },
         get UserService() {
-            return target.resolve<IUserService>($UserService);
+            return container.resolve<IUserService>($UserService);
         },
     };
 };

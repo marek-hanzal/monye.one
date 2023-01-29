@@ -1,5 +1,4 @@
 import "reflect-metadata";
-import { container } from "tsyringe";
 import {
     $ChunkService,
     $ChunkServiceConfig,
@@ -10,7 +9,8 @@ import {
     type IFileService,
     type IFileServiceConfig,
 } from "@leight/file";
-import { ChunkService, FileService } from "./service";
+import {type IContainer} from "@leight/container";
+import {ChunkService, FileService} from "./service";
 
 export interface IFileContainer {
     ChunkService: IChunkService;
@@ -23,19 +23,19 @@ export interface IFileContainer {
  * Register services of this package into a container and return typed
  * public services.
  */
-export const FileContainer = (target: typeof container): IFileContainer => {
-    target.register<IChunkService>($ChunkService, {
+export const FileContainer = (container: IContainer): IFileContainer => {
+    container.register<IChunkService>($ChunkService, {
         useClass: ChunkService,
     });
-    target.register<IChunkServiceConfig>($ChunkServiceConfig, {
+    container.register<IChunkServiceConfig>($ChunkServiceConfig, {
         useValue: {
             path: ".data/chunk/{chunkId}",
         },
     });
-    target.register<IFileService>($FileService, {
+    container.register<IFileService>($FileService, {
         useClass: FileService,
     });
-    target.register<IFileServiceConfig>($FileServiceConfig, {
+    container.register<IFileServiceConfig>($FileServiceConfig, {
         useValue: {
             path: ".data/file/{fileId}",
             defaultMimeType: "application/octet-stream",
@@ -44,16 +44,16 @@ export const FileContainer = (target: typeof container): IFileContainer => {
 
     return {
         get ChunkService() {
-            return target.resolve<IChunkService>($ChunkService);
+            return container.resolve<IChunkService>($ChunkService);
         },
         get ChunkServiceConfig() {
-            return target.resolve<IChunkServiceConfig>($ChunkServiceConfig);
+            return container.resolve<IChunkServiceConfig>($ChunkServiceConfig);
         },
         get FileService() {
-            return target.resolve<IFileService>($FileService);
+            return container.resolve<IFileService>($FileService);
         },
         get FileServiceConfig() {
-            return target.resolve<IFileServiceConfig>($FileServiceConfig);
+            return container.resolve<IFileServiceConfig>($FileServiceConfig);
         },
     };
 };

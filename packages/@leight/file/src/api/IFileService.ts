@@ -1,4 +1,4 @@
-import { IFile } from "./IFile";
+import {IFile} from "./IFile";
 
 export interface IFileServiceStoreProps {
     name: string;
@@ -10,6 +10,11 @@ export interface IFileServiceStoreProps {
 }
 
 export interface IFileService {
+    /**
+     * Returns native (physical location) path of the given fileId.
+     */
+    pathOf(fileId: string): string;
+
     store(props: IFileServiceStoreProps): Promise<IFile>;
 }
 

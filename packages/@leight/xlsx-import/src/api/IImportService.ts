@@ -1,6 +1,5 @@
-import {type IImportJob, type IWithImporters} from "@leight/import";
-import {type IJob, type IJobProgress} from "@leight/job";
-import {type WorkBook} from "xlsx";
+import {type IImportJob} from "@leight/import";
+import {type IJob, type IJobExecutor} from "@leight/job";
 
 /**
  * Main service used for importing Excel files (the final handler, should be used inside
@@ -9,18 +8,10 @@ import {type WorkBook} from "xlsx";
 export interface IImportService {
     async(props: IImportService.IAsyncProps): Promise<IJob>;
 
-    import(
-        props: IImportService.ImportProps
-    ): Promise<IImportService.ImportResult>;
+    job(props: IJobExecutor.HandlerRequest<IImportJob>): Promise<IImportService.ImportResult>;
 }
 
 export namespace IImportService {
-    export interface ImportProps extends IWithImporters {
-        workbook: WorkBook;
-        job: IImportJob;
-        jobProgress: IJobProgress;
-    }
-
     export interface ImportResult {
         total: number;
         success: number;

@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { PrismaClient } from "@prisma/client";
+import {PrismaClient} from "@prisma/client";
 import {
     $FileServiceConfig,
     type IFile,
@@ -7,14 +7,14 @@ import {
     type IFileServiceConfig,
     type IFileServiceStoreProps,
 } from "@leight/file";
-import { inject, injectable } from "tsyringe";
-import { v4 } from "uuid";
+import {inject, injectable} from "tsyringe";
+import {v4} from "uuid";
 import fs from "node:fs";
-import { copySync } from "fs-extra";
+import {copySync} from "fs-extra";
 import touch from "touch";
 import coolPath from "node:path";
-import { $PrismaClient } from "@leight/prisma";
-import { detectFileMime } from "mime-detect";
+import {$PrismaClient} from "@leight/prisma";
+import {detectFileMime} from "mime-detect";
 
 @injectable()
 export class FileService implements IFileService {
@@ -23,9 +23,10 @@ export class FileService implements IFileService {
         private fileServiceConfig: IFileServiceConfig,
         @inject($PrismaClient)
         private prismaClient: PrismaClient
-    ) {}
+    ) {
+    }
 
-    protected pathOf(fileId: string) {
+    public pathOf(fileId: string): string {
         return this.fileServiceConfig.path.replace(
             "{fileId}",
             fileId.split("-").join("/")
@@ -53,19 +54,19 @@ export class FileService implements IFileService {
         return fs.statSync(file).size;
     }
 
-    async store({
-        name,
-        path,
-        file,
-        userId,
-        mime,
-        replace = false,
-    }: IFileServiceStoreProps): Promise<IFile> {
+    public async store({
+                           name,
+                           path,
+                           file,
+                           userId,
+                           mime,
+                           replace = false,
+                       }: IFileServiceStoreProps): Promise<IFile> {
         const id = v4();
         const location = this.pathOf(id);
-        fs.mkdirSync(coolPath.dirname(location), { recursive: true });
+        fs.mkdirSync(coolPath.dirname(location), {recursive: true});
         file
-            ? copySync(file, location, { overwrite: replace })
+            ? copySync(file, location, {overwrite: replace})
             : touch.sync(location);
         const data = {
             id,
@@ -81,18 +82,18 @@ export class FileService implements IFileService {
 
         return replace && userId
             ? this.prismaClient.file.upsert({
-                  where: {
-                      userId_path_name: {
-                          name,
-                          path,
-                          userId,
-                      },
-                  },
-                  create: data,
-                  update: data,
-              })
+                where: {
+                    userId_path_name: {
+                        name,
+                        path,
+                        userId,
+                    },
+                },
+                create: data,
+                update: data,
+            })
             : this.prismaClient.file.create({
-                  data,
-              });
+                data,
+            });
     }
 }

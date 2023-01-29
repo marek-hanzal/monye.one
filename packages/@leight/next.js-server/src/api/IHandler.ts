@@ -1,14 +1,14 @@
-import { type IHrefQuery } from "@leight/utils";
-import { container } from "tsyringe";
-import { type IError } from "./IError";
-import { type IHandlerProps } from "./IHandlerProps";
+import {type IHrefQuery} from "@leight/utils";
+import {type IContainer} from "@leight/container";
+import {type IError} from "./IError";
+import {type IHandlerProps} from "./IHandlerProps";
 
 export interface IHandler<
     TBody = unknown,
     TData = unknown,
     THrefQuery extends IHrefQuery = IHrefQuery
 > {
-    container: typeof container;
+    container: IContainer;
 
     handler(props: IHandlerProps<TBody, THrefQuery>): Promise<TData | IError>;
 

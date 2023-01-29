@@ -30,8 +30,17 @@
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
+        "@leight/container": "*",
         "@leight/job": "*",
+        "@leight/prisma": "*",
+        "@leight/user": "*",
+        "@leight/user-server": "*",
+        "@leight/utils": "*",
+        "@leight/winston": "*",
         "@prisma/client": "^4.9.0",
+        "delay": "^5.0.0",
+        "devalue": "^4.2.2",
+        "p-queue": "^7.3.0",
         "reflect-metadata": "^0.1.13",
         "tsyringe": "^4.7.0"
     },

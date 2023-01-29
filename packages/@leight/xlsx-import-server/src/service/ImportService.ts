@@ -1,30 +1,44 @@
 import "reflect-metadata";
 import {streamOf} from "@leight/utils-server";
 import {measureTime} from "measure-time";
-import {type IJob} from "@leight/job";
+import {$JobExecutor, type IJobExecutor} from "@leight/job";
 import {type Readable} from "node:stream";
 import {inject, injectable} from "tsyringe";
-import {stream} from "xlsx";
-import {$MetaService, type IImportService, type IMetaService} from "@leight/xlsx-import";
+import {readFile, stream} from "xlsx";
+import {$ImportService, $MetaService, type IImportService, type IMetaService} from "@leight/xlsx-import";
+import {$FileService, type IFileService} from "@leight/file";
+import {$ImportHandlerService, type IImportHandlerService, type IImportJob} from "@leight/import";
 
 @injectable()
 export class ImportService implements IImportService {
-    constructor(@inject($MetaService) protected metaService: IMetaService) {
+    constructor(
+        @inject($MetaService) protected metaService: IMetaService,
+        @inject($FileService) protected fileService: IFileService,
+        @inject($JobExecutor) protected jobExecutor: IJobExecutor,
+        @inject($ImportHandlerService) protected importHandlerService: IImportHandlerService,
+    ) {
     }
 
-    async async({fileId}: IImportService.IAsyncProps): Promise<IJob> {
-        setTimeout(() => {
-            console.log("Sooo, it is time for import!", fileId);
-        }, 0);
-        return {id: "job-id", created: new Date()} as unknown as IJob;
+    async async({fileId}: IImportService.IAsyncProps): Promise<IImportJob> {
+        return this.jobExecutor.execute({
+            name: $ImportService.toString(),
+            params: {
+                fileId,
+            },
+            handler: this.job,
+        });
     }
 
-    async import({
-                     workbook,
-                     importers,
-                     jobProgress,
-                 }: IImportService.ImportProps): Promise<IImportService.ImportResult> {
-        const {tabs, translations} = await this.metaService.toMeta(workbook);
+    async job({
+                  jobProgress,
+                  params: {fileId}
+              }: IJobExecutor.HandlerRequest<IImportJob>): Promise<IImportService.ImportResult> {
+        const file = this.fileService.pathOf(fileId);
+        console.log("Sooo, it is time for import!", file);
+
+        const workbook = readFile(file);
+
+        const {tabs} = await this.metaService.toMeta(workbook);
 
         let total = 0;
         let success = 0;
@@ -59,44 +73,45 @@ export class ImportService implements IImportService {
                 const $stream: Readable = stream.to_json(workSheet, {
                     defval: null,
                 });
-                const handler = importers[service]?.();
-                if (!handler) {
+                try {
+                    const handler = this.importHandlerService.resolve(service);
+                    await handler.begin?.({});
+                    const getElapsed = measureTime();
+                    await streamOf<Record<string, unknown>>(
+                        $stream,
+                        async (item) => {
+                            try {
+                                await handler.handler(
+                                    /**
+                                     * @TODO use Translation service to resolve item translation
+                                     */
+                                    item
+                                    // Object.keys(item).reduce<object>(
+                                    //     (obj, key) => ({
+                                    //         ...obj,
+                                    //         [translations[key] || key]: item[key],
+                                    //     }),
+                                    //     {}
+                                    // )
+                                );
+                                success++;
+                                await jobProgress.onSuccess();
+                            } catch (e) {
+                                failure++;
+                                await jobProgress.onFailure();
+                                console.error(e);
+                            }
+                        }
+                    );
+                    runtime += getElapsed().millisecondsTotal;
+                    await handler.end?.({});
+                } catch (e) {
                     await streamOf($stream, async () => {
                         skip++;
                         await jobProgress.onSkip();
                     });
-                    continue;
+                    console.error(e);
                 }
-                await handler.begin?.({});
-                const getElapsed = measureTime();
-                await streamOf<Record<string, unknown>>(
-                    $stream,
-                    async (item) => {
-                        try {
-                            await handler.handler(
-                                /**
-                                 * @TODO use Translation service to resolve item translation
-                                 */
-                                item
-                                // Object.keys(item).reduce<object>(
-                                //     (obj, key) => ({
-                                //         ...obj,
-                                //         [translations[key] || key]: item[key],
-                                //     }),
-                                //     {}
-                                // )
-                            );
-                            success++;
-                            await jobProgress.onSuccess();
-                        } catch (e) {
-                            failure++;
-                            await jobProgress.onFailure();
-                            console.error(e);
-                        }
-                    }
-                );
-                runtime += getElapsed().millisecondsTotal;
-                await handler.end?.({});
             }
         }
 

@@ -28,6 +28,7 @@
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
+        "@leight/container": "*",
         "@leight/user": "*",
         "@tanstack/react-query": "^4.23.0",
         "@trpc/server": "^10.9.0",

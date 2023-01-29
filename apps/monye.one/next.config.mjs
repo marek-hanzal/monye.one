@@ -10,6 +10,9 @@ import i18n from "./next-i18next.config.js";
 /** @type {import("next").NextConfig} */
 const config = {
     reactStrictMode: false,
+    experimental: {
+        esmExternals: 'loose',
+    },
     swcMinify: true,
     i18n: i18n.i18n,
     transpilePackages: [],

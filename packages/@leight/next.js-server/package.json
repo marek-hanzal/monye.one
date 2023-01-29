@@ -28,6 +28,7 @@
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
+        "@leight/container": "*",
         "@leight/user": "*",
         "@leight/user-server": "*",
         "@leight/utils": "*",

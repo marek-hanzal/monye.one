@@ -1,3 +1,8 @@
-import { type IJob } from "@leight/job";
+import {type IJob} from "@leight/job";
 
-export interface IImportJob extends IJob<{ file: string }> {}
+export interface IImportJobParams {
+    fileId: string;
+}
+
+export interface IImportJob extends IJob<IImportJobParams> {
+}

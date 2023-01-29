@@ -1,8 +1,8 @@
-import { container } from "tsyringe";
-import { type ITokenService, type IUserService } from "@leight/user";
+import {type ITokenService, type IUserService} from "@leight/user";
+import {type IContainer} from "@leight/container";
 
 export interface IContext {
-    container: typeof container;
+    container: IContainer;
     userService: IUserService;
     tokenService: ITokenService;
 

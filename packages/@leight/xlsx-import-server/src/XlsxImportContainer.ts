@@ -1,5 +1,4 @@
 import "reflect-metadata";
-import {container} from "tsyringe";
 import {
     $ImportService,
     $MetaService,
@@ -10,9 +9,10 @@ import {
     type ITabService,
     type ITranslationService,
 } from "@leight/xlsx-import";
-import {ImportService, MetaService, TabService, TranslationService,} from "./service";
+import {type IContainer} from "@leight/container";
+import {ImportService, MetaService, TabService, TranslationService} from "./service";
 
-export interface IImportContainer {
+export interface IXlsxImportContainer {
     TabService: ITabService;
     ImportService: IImportService;
     MetaService: IMetaService;
@@ -22,32 +22,32 @@ export interface IImportContainer {
 /**
  * Register all services of this packages into a target container.
  */
-export const ImportContainer = (target: typeof container): IImportContainer => {
-    target.register<ITabService>($TabService, {
+export const XlsxImportContainer = (container: IContainer): IXlsxImportContainer => {
+    container.register<ITabService>($TabService, {
         useClass: TabService,
     });
-    target.register<IMetaService>($MetaService, {
+    container.register<IMetaService>($MetaService, {
         useClass: MetaService,
     });
-    target.register<IImportService>($ImportService, {
+    container.register<IImportService>($ImportService, {
         useClass: ImportService,
     });
-    target.register<ITranslationService>($TranslationService, {
+    container.register<ITranslationService>($TranslationService, {
         useClass: TranslationService,
     });
 
     return {
         get TabService() {
-            return target.resolve<ITabService>($TabService);
+            return container.resolve<ITabService>($TabService);
         },
         get ImportService() {
-            return target.resolve<IImportService>($ImportService);
+            return container.resolve<IImportService>($ImportService);
         },
         get MetaService() {
-            return target.resolve<IMetaService>($MetaService);
+            return container.resolve<IMetaService>($MetaService);
         },
         get TranslationService() {
-            return target.resolve<ITranslationService>($TranslationService);
+            return container.resolve<ITranslationService>($TranslationService);
         },
     };
 };

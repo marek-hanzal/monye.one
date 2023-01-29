@@ -1,7 +1,7 @@
-import { container } from "tsyringe";
-import { type INextHandler } from "./INextHandler";
+import {type IContainer} from "@leight/container";
+import {type INextHandler} from "./INextHandler";
 
 export type IEndpointFactory<TResponse> = (
-    target: typeof container,
+    container: IContainer,
     withTokens?: string[]
 ) => INextHandler<TResponse>;
