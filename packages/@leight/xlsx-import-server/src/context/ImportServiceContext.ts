@@ -1,8 +1,9 @@
-import { container as coolContainer } from "tsyringe";
-import { $ImportService, type IImportService } from "../api";
+import {container as coolContainer} from "tsyringe";
+import {$ImportService, type IImportService} from "@leight/xlsx-import";
 
 export class $ImportServiceContext {
-    constructor(private container: typeof coolContainer) {}
+    constructor(private container: typeof coolContainer) {
+    }
 
     resolve(): IImportService {
         return this.container.resolve<IImportService>($ImportService);

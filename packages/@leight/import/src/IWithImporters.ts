@@ -1,4 +1,4 @@
-import { IImportHandlers } from "./IImportHandlers";
+import {type IImportHandlers} from "./IImportHandlers";
 
 export interface IWithImporters {
     importers: IImportHandlers;

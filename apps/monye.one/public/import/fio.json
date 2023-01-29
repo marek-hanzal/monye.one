@@ -1,0 +1,86 @@
+{
+    "tabs": [
+        {
+            "tab": "transakce",
+            "services": [
+                "transaction"
+            ]
+        }
+    ],
+    "translations": [
+        {
+            "from": {
+                "source": [
+                    "Účet"
+                ]
+            },
+            "to": "bank"
+        },
+        {
+            "from": {
+                "source": [
+                    "ID pokynu"
+                ]
+            },
+            "to": "reference"
+        },
+        {
+            "from": {
+                "source": [
+                    "Poznámka"
+                ]
+            },
+            "to": "note"
+        },
+        {
+            "from": {
+                "source": [
+                    "Datum"
+                ]
+            },
+            "to": "date"
+        },
+        {
+            "from": {
+                "source": [
+                    "Objem"
+                ]
+            },
+            "to": "amount"
+        },
+        {
+            "from": {
+                "source": [
+                    "KS"
+                ]
+            },
+            "to": "symbol"
+        },
+        {
+            "from": {
+                "source": [
+                    "VS"
+                ]
+            },
+            "to": "variable"
+        },
+        {
+            "from": {
+                "source": [
+                    "SS"
+                ]
+            },
+            "to": "static"
+        },
+        {
+            "from": {
+                "source": [
+                    "Protiúčet",
+                    "Kód banky"
+                ],
+                "concat": "/"
+            },
+            "to": "target"
+        }
+    ]
+}

@@ -46,6 +46,7 @@ model User {
   Transaction Transaction[]
   Job         Job[]
   File        File[]
+  Bank        Bank[]
 }
 
 model VerificationToken {
@@ -146,13 +147,32 @@ enum JobStatus {
 // === -----
 // monye.one stuff from here
 
+model Bank {
+  id      String @id @default(cuid())
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  account String
+
+  Transaction Transaction[]
+
+  @@unique([userId, account])
+}
+
 model Transaction {
   id        String   @id @default(cuid())
   // bank transaction ID (transaction reference)
   reference String
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bankId    String
+  bank      Bank     @relation(fields: [bankId], references: [id], onDelete: Cascade)
   amount    Decimal  @db.Decimal(16, 2)
+  // variable symbol
+  variable  String?
+  // constant symbol
+  symbol    String?
+  // static symbol
+  static    String?
   // date of transaction
   date      DateTime
   // target of a transaction - maybe card number, target account number, whatever; used by an user to identify this transaction

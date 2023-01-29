@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { container } from "tsyringe";
+import {container} from "tsyringe";
 import {
     $ImportService,
     $MetaService,
@@ -9,13 +9,8 @@ import {
     type IMetaService,
     type ITabService,
     type ITranslationService,
-} from "./api";
-import {
-    ImportService,
-    MetaService,
-    TabService,
-    TranslationService,
-} from "./service";
+} from "@leight/xlsx-import";
+import {ImportService, MetaService, TabService, TranslationService,} from "./service";
 
 export interface IImportContainer {
     TabService: ITabService;

@@ -133,12 +133,26 @@ CREATE TABLE "JobLog"
 );
 
 -- CreateTable
+CREATE TABLE "Bank"
+(
+    "id"      TEXT NOT NULL,
+    "userId"  TEXT NOT NULL,
+    "account" TEXT NOT NULL,
+
+    CONSTRAINT "Bank_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Transaction"
 (
     "id"        TEXT           NOT NULL,
     "reference" TEXT           NOT NULL,
     "userId"    TEXT           NOT NULL,
+    "bankId"    TEXT           NOT NULL,
     "amount"    DECIMAL(16, 2) NOT NULL,
+    "variable"  TEXT,
+    "symbol"    TEXT,
+    "static"    TEXT,
     "date"      TIMESTAMP(3)   NOT NULL,
     "target"    TEXT,
     "note"      TEXT,
@@ -174,6 +188,9 @@ CREATE UNIQUE INDEX "Translation_locale_hash_key" ON "Translation" ("locale", "h
 CREATE UNIQUE INDEX "File_userId_path_name_key" ON "File" ("userId", "path", "name");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Bank_userId_account_key" ON "Bank" ("userId", "account");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Transaction_userId_reference_key" ON "Transaction" ("userId", "reference");
 
 -- AddForeignKey
@@ -205,5 +222,13 @@ ALTER TABLE "JobLog"
     ADD CONSTRAINT "JobLog_jobId_fkey" FOREIGN KEY ("jobId") REFERENCES "Job" ("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "Bank"
+    ADD CONSTRAINT "Bank_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Transaction"
     ADD CONSTRAINT "Transaction_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Transaction"
+    ADD CONSTRAINT "Transaction_bankId_fkey" FOREIGN KEY ("bankId") REFERENCES "Bank" ("id") ON DELETE CASCADE ON UPDATE CASCADE;

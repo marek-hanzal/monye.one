@@ -1232,6 +1232,7 @@ importers:
   packages/@leight/xlsx-import:
     specifiers:
       '@leight/eslint-config-eslint': '*'
+      '@leight/import': '*'
       '@leight/job': '*'
       '@leight/trpc': '*'
       '@leight/tsconfig': '*'
@@ -1244,11 +1245,14 @@ importers:
       eslint-plugin-unicorn: ^45.0.2
       reflect-metadata: ^0.1.13
       typescript: ^4.9.4
+      xlsx: ^0.18.5
       zod: ^3.20.2
     dependencies:
+      '@leight/import': link:../import
       '@leight/job': link:../job
       '@leight/trpc': link:../trpc
       reflect-metadata: 0.1.13
+      xlsx: 0.18.5
       zod: 3.20.2
     devDependencies:
       '@leight/eslint-config-eslint': link:../eslint-config-eslint

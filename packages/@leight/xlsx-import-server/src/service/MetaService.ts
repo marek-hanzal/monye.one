@@ -1,13 +1,8 @@
 import "reflect-metadata";
-import { inject, injectable } from "tsyringe";
-import { type WorkBook } from "xlsx";
-import type {
-    IMeta,
-    IMetaService,
-    ITabService,
-    ITranslationService,
-} from "../api";
-import { $TabService, $TranslationService } from "../api";
+import {inject, injectable} from "tsyringe";
+import {type WorkBook} from "xlsx";
+import type {IMetaSchema, IMetaService, ITabService, ITranslationService,} from "@leight/xlsx-import";
+import {$TabService, $TranslationService} from "@leight/xlsx-import";
 
 @injectable()
 export class MetaService implements IMetaService {
@@ -15,9 +10,10 @@ export class MetaService implements IMetaService {
         @inject($TabService) protected tabService: ITabService,
         @inject($TranslationService)
         protected translationService: ITranslationService
-    ) {}
+    ) {
+    }
 
-    async toMeta(workbook: WorkBook): Promise<IMeta> {
+    async toMeta(workbook: WorkBook): Promise<IMetaSchema> {
         return {
             tabs: await this.tabService.toTabs(workbook),
             translations: await this.translationService.toTranslations(
