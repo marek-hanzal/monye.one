@@ -1,4 +1,4 @@
-import {IOnFinishProps, type IUseChunkProps, toHref, useChunk,} from "@leight/utils-client";
+import {IOnFinishProps, type IUseChunkProps, toHref, useChunk} from "@leight/utils-client";
 import axios from "axios";
 import {type IChunkService, IFile, type IFileWithPath} from "@leight/file";
 import {type IHrefProps} from "@leight/utils";
@@ -31,7 +31,7 @@ export const useUpload = ({
     const uuid = useRef(v4());
     return useChunk({
         chunk: defaultChunkSize,
-        throttle: 150,
+        throttle: 0,
         size: file.size,
         async onTick({start, end}) {
             return axios.post(
