@@ -27,11 +27,11 @@
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/trpc": "^0.5.0",
-        "@leight/xlsx-import": "^0.5.0",
-        "@leight/xlsx-import-server": "^0.5.0",
+        "@leight/trpc": "workspace:^0.5.0",
+        "@leight/xlsx-import": "workspace:^0.5.0",
+        "@leight/xlsx-import-server": "workspace:^0.5.0",
         "@trpc/server": "^10.9.0",
-        "devalue": "^4.2.2",
+        "devalue": "^4.2.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "reflect-metadata": "^0.1.13",
@@ -39,8 +39,8 @@
         "zod": "^3.20.2"
     },
     "devDependencies": {
-        "@monye.one/eslint-config-eslint": "^0.0.0",
-        "@monye.one/tsconfig": "^0.0.0",
+        "@monye.one/eslint-config-eslint": "workspace:^0.0.0",
+        "@monye.one/tsconfig": "workspace:^0.0.0",
         "@types/node": "^18.11.18",
         "@types/react": "^18.0.27",
         "@types/react-dom": "^18.0.10",
@@ -51,7 +51,7 @@
         "eslint": "^8.33.0",
         "eslint-plugin-disable": "^2.0.3",
         "eslint-plugin-unicorn": "^45.0.2",
-        "typescript": "^4.9.4"
+        "typescript": "^4.9.5"
     },
     "bugs": {
         "url": "https://github.com/marek-hanzal/monye.one/issues"

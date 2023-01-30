@@ -29,14 +29,14 @@
     "dependencies": {
         "@babel/core": "^7.20.12",
         "@emotion/react": "^11.10.5",
-        "@leight/i18n-client": "^0.5.0",
-        "@leight/layout": "^0.5.0",
-        "@leight/mantine": "^0.5.0",
-        "@leight/utils-client": "^0.5.0",
+        "@leight/i18n-client": "workspace:^0.5.0",
+        "@leight/layout": "workspace:^0.5.0",
+        "@leight/mantine": "workspace:^0.5.0",
+        "@leight/utils-client": "workspace:^0.5.0",
         "@mantine/core": "^5.10.2",
         "@mantine/hooks": "^5.10.2",
         "@mantine/prism": "^5.10.2",
-        "@monye.one/ui": "^0.5.0",
+        "@monye.one/ui": "workspace:^0.5.0",
         "@tabler/icons-react": "^2.1.2",
         "i18next": "^22.4.9",
         "next": "^13.1.6",
@@ -49,8 +49,8 @@
         "reflect-metadata": "^0.1.13"
     },
     "devDependencies": {
-        "@monye.one/eslint-config-eslint": "^0.0.0",
-        "@monye.one/tsconfig": "^0.0.0",
+        "@monye.one/eslint-config-eslint": "workspace:^0.0.0",
+        "@monye.one/tsconfig": "workspace:^0.0.0",
         "@types/node": "^18.11.18",
         "@types/react": "^18.0.27",
         "@types/react-dom": "^18.0.10",
@@ -60,7 +60,7 @@
         "del-cli": "^5.0.0",
         "eslint": "^8.33.0",
         "eslint-plugin-unicorn": "^45.0.2",
-        "typescript": "^4.9.4"
+        "typescript": "^4.9.5"
     },
     "bugs": {
         "url": "https://github.com/marek-hanzal/monye.one/issues"

@@ -80,17 +80,18 @@ export class ImportService implements IImportService {
                 });
                 try {
                     const handler = this.importHandlerService.resolve(service);
-                    const validator = handler.validator?.();
+                    const validator = handler.validator();
                     await handler.begin?.({});
                     const getElapsed = measureTime();
                     await streamOf<Record<string, string>>(
                         $stream,
                         async (item) => {
                             try {
-                                console.log('Item', item);
-                                validator?.parse(item);
-                                console.log('Validated!', item);
-                                await handler.handler(this.translationService.translate(item, translations));
+                                await handler.handler(
+                                    validator?.parse(
+                                        this.translationService.translate(item, translations)
+                                    )
+                                );
                                 success++;
                                 await jobProgress.onSuccess();
                             } catch (e) {

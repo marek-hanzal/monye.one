@@ -1,3 +1,4 @@
+export * from "./cleanOf";
 export * from "./diffOf";
 export * from "./intersectOf";
 export * from "./isCallable";

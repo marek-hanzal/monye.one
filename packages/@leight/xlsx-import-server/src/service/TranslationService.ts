@@ -27,12 +27,10 @@ export class TranslationService implements ITranslationService {
 
     translate(item: Record<string, string>, translations: ITranslationSchema[]): Record<string, string> {
         const output: Record<string, string> = {...item};
-        console.log('Input item', item);
         translations.forEach(({to, from: {source, concat}}) => {
             const result = source.map(key => item[key] ?? '');
             output[to] = result.join(concat);
         });
-        console.log('Output item', output);
         return output;
     }
 }
