@@ -1,12 +1,9 @@
-import { env } from "@/monye.one/env/server.mjs";
-import {
-    MonyeOneContainer,
-    ServerContainer,
-} from "@/monye.one/server/container";
-import { Logger } from "@leight/winston";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import {env} from "@/monye.one/env/server.mjs";
+import {LeightServerContainer, MonyeOneContainer,} from "@/monye.one/server/container";
+import {Logger} from "@leight/winston";
+import {PrismaAdapter} from "@next-auth/prisma-adapter";
 import NextAuth from "next-auth";
-import type { Provider } from "next-auth/providers";
+import type {Provider} from "next-auth/providers";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHub from "next-auth/providers/github";
 
@@ -30,10 +27,10 @@ if (env.NODE_ENV === "development") {
         CredentialsProvider({
             name: "Credentials",
             credentials: {
-                secret: { label: "Dark Secret", type: "text" },
+                secret: {label: "Dark Secret", type: "text"},
             },
             async authorize(credentials) {
-                const { secret } = credentials || {};
+                const {secret} = credentials || {};
                 if (!secret) {
                     return null;
                 }
@@ -54,11 +51,11 @@ export default NextAuth({
         colorScheme: "light",
     },
     events: {
-        signIn: ({ user }) => {
-            logger.debug("User sign-in", { label: { userId: user.id } });
+        signIn: ({user}) => {
+            logger.debug("User sign-in", {label: {userId: user.id}});
         },
-        signOut: ({ token: { sub } }) => {
-            logger.debug("User sign-out", { label: { userId: sub } });
+        signOut: ({token: {sub}}) => {
+            logger.debug("User sign-out", {label: {userId: sub}});
         },
     },
     adapter: PrismaAdapter(MonyeOneContainer.PrismaClient),
@@ -68,11 +65,12 @@ export default NextAuth({
     providers,
     callbacks: {
         jwt: async (token) => {
+            const {UserContainer} = LeightServerContainer;
             try {
-                await ServerContainer.UserContainer.RegistrationService.handle(
+                await UserContainer.RegistrationService.handle(
                     token
                 );
-                return await ServerContainer.UserContainer.UserJwtService.token(
+                return await UserContainer.UserJwtService.token(
                     token.token
                 );
             } catch (e) {
@@ -83,8 +81,8 @@ export default NextAuth({
                 throw e;
             }
         },
-        session: async ({ session, token }) => {
-            const $session = { ...session };
+        session: async ({session, token}) => {
+            const $session = {...session};
             if ($session && token?.sub) {
                 $session.user = {
                     userId: token.sub,

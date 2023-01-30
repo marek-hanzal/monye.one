@@ -5,7 +5,14 @@ import {$JobExecutor, type IJobExecutor} from "@leight/job";
 import {type Readable} from "node:stream";
 import {inject, injectable} from "tsyringe";
 import {readFile, stream} from "xlsx";
-import {$ImportService, $MetaService, type IImportService, type IMetaService} from "@leight/xlsx-import";
+import {
+    $ImportService,
+    $MetaService,
+    $TranslationService,
+    type IImportService,
+    type IMetaService,
+    type ITranslationService
+} from "@leight/xlsx-import";
 import {$FileService, type IFileService} from "@leight/file";
 import {$ImportHandlerService, type IImportHandlerService, type IImportJob} from "@leight/import";
 
@@ -15,6 +22,7 @@ export class ImportService implements IImportService {
         @inject($MetaService) protected metaService: IMetaService,
         @inject($FileService) protected fileService: IFileService,
         @inject($JobExecutor) protected jobExecutor: IJobExecutor,
+        @inject($TranslationService) protected translationService: ITranslationService,
         @inject($ImportHandlerService) protected importHandlerService: IImportHandlerService,
     ) {
     }
@@ -72,26 +80,17 @@ export class ImportService implements IImportService {
                 });
                 try {
                     const handler = this.importHandlerService.resolve(service);
+                    const validator = handler.validator?.();
                     await handler.begin?.({});
                     const getElapsed = measureTime();
-                    await streamOf<Record<string, unknown>>(
+                    await streamOf<Record<string, string>>(
                         $stream,
                         async (item) => {
                             try {
                                 console.log('Item', item);
-                                await handler.handler(
-                                    /**
-                                     * @TODO use Translation service to resolve item translation
-                                     */
-                                    item
-                                    // Object.keys(item).reduce<object>(
-                                    //     (obj, key) => ({
-                                    //         ...obj,
-                                    //         [translations[key] || key]: item[key],
-                                    //     }),
-                                    //     {}
-                                    // )
-                                );
+                                validator?.parse(item);
+                                console.log('Validated!', item);
+                                await handler.handler(this.translationService.translate(item, translations));
                                 success++;
                                 await jobProgress.onSuccess();
                             } catch (e) {

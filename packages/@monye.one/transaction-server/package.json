@@ -1,18 +1,17 @@
 {
     "version": "0.5.0",
-    "name": "@leight/import",
-    "description": "Common import stuff.",
+    "name": "@monye.one/transaction-server",
+    "description": "Server-side transaction stuff.",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git://github.com/leight-core/viv.git"
+        "url": "git://github.com/marek-hanzal/monye.one.git"
     },
     "engines": {
         "node": ">=16.0.0"
     },
     "sideEffects": false,
-    "main": "lib/cjs/index.js",
-    "module": "lib/esm/index.js",
+    "main": "src/index.ts",
     "types": "src/index.ts",
     "files": [
         "lib"
@@ -28,13 +27,15 @@
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/job": "^0.5.0",
+        "@leight/container": "*",
+        "@monye.one/transaction": "*",
         "reflect-metadata": "^0.1.13",
+        "tsyringe": "^4.7.0",
         "zod": "^3.20.2"
     },
     "devDependencies": {
-        "@leight/eslint-config-eslint": "^0.0.0",
-        "@leight/tsconfig": "^0.0.0",
+        "@monye.one/eslint-config-eslint": "^0.0.0",
+        "@monye.one/tsconfig": "^0.0.0",
         "@types/node": "^18.11.18",
         "@typescript-eslint/eslint-plugin": "^5.49.0",
         "@typescript-eslint/parser": "^5.49.0",
@@ -45,9 +46,9 @@
         "typescript": "^4.9.4"
     },
     "bugs": {
-        "url": "https://github.com/leight-core/viv/issues"
+        "url": "https://github.com/marek-hanzal/monye.one/issues"
     },
-    "homepage": "https://github.com/leight-core/viv#readme",
+    "homepage": "https://github.com/marek-hanzal/monye.one#readme",
     "directories": {
         "lib": "lib"
     }

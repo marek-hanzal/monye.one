@@ -4,7 +4,7 @@ import {type IXlsxImportContainer, XlsxImportContainer as $XlsxImportContainer,}
 import {type IUserContainer, UserContainer as $UserContainer,} from "@leight/user-server";
 import {type IJobContainer, JobContainer as $JobContainer} from "@leight/job-server";
 import {type IImportContainer, ImportContainer as $ImportContainer} from "@leight/import-server";
-import {$Container, type IContainer} from "@leight/container";
+import {type IContainer} from "@leight/container";
 
 export interface IServerContainer {
     FileContainer: IFileContainer;
@@ -15,9 +15,6 @@ export interface IServerContainer {
 }
 
 export const ServerContainer = (container: IContainer): IServerContainer => {
-    container.register<IContainer>($Container, {
-        useValue: container,
-    })
     return {
         FileContainer: $FileContainer(container),
         XlsxImportContainer: $XlsxImportContainer(container),

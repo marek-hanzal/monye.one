@@ -48,6 +48,9 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/trpc-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/trpc/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/container/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/container-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -133,6 +136,12 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/container/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/import-server/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/import-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/container-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/container-server/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

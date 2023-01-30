@@ -6,6 +6,8 @@ import {type ITranslationSchema} from "../schema";
  */
 export interface ITranslationService {
     toTranslations(workbook: WorkBook): Promise<ITranslationSchema[]>;
+
+    translate(item: Record<string, string>, translations: ITranslationSchema[]): Record<string, string>;
 }
 
 export const $TranslationService = Symbol.for(

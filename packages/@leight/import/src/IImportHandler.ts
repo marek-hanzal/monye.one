@@ -1,3 +1,4 @@
+import {ZodType} from "zod";
 import {type IImportBeginEvent} from "./IImportBeginEvent";
 import {type IImportEndEvent} from "./IImportEndEvent";
 
@@ -7,4 +8,6 @@ export interface IImportHandler<TItem> {
     end?(event: IImportEndEvent): Promise<void>;
 
     handler(item: TItem): Promise<any>;
+
+    validator?(): ZodType | undefined;
 }

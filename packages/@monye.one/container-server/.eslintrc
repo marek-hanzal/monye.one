@@ -1,0 +1,6 @@
+{
+    "root": true,
+    "extends": [
+        "@monye.one/eslint"
+    ]
+}
