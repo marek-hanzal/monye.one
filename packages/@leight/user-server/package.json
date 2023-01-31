@@ -27,6 +27,7 @@
         "dev-watch": "concurrently npm:dev-watch:*",
         "postinstall": "pnpm run prisma-format && prisma generate",
         "prisma-format": "npx dotenv -c development -- npx prisma format",
+        "depcheck": "npx depcheck",
         "lint": "eslint src",
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },

@@ -27,12 +27,12 @@
         "dev-watch": "concurrently npm:dev-watch:*",
         "prisma-format": "npx dotenv -c development -- npx prisma format",
         "postinstall": "pnpm run prisma-format && prisma generate",
+        "depcheck": "npx depcheck",
         "lint": "eslint src",
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
         "@leight/i18n": "workspace:^0.5.0",
-        "@prisma/client": "^4.9.0",
         "i18next": "^22.4.9",
         "next": "^13.1.6",
         "next-i18next": "^13.0.3",

@@ -27,20 +27,18 @@
         "dev-watch": "concurrently npm:dev-watch:*",
         "prisma-format": "npx dotenv -c development -- npx prisma format",
         "postinstall": "pnpm run prisma-format && prisma generate",
+        "depcheck": "npx depcheck",
         "lint": "eslint src",
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
         "@leight/container": "workspace:^0.5.0",
-        "@leight/file": "workspace:^0.5.0",
         "@leight/file-server": "workspace:^0.5.0",
         "@leight/import-server": "workspace:^0.5.0",
         "@leight/job-server": "workspace:^0.5.0",
         "@leight/user-server": "workspace:^0.5.0",
         "@leight/xlsx-import-server": "workspace:^0.5.0",
-        "@prisma/client": "^4.9.0",
-        "reflect-metadata": "^0.1.13",
-        "tsyringe": "^4.7.0"
+        "reflect-metadata": "^0.1.13"
     },
     "devDependencies": {
         "@leight/eslint-config-eslint": "workspace:^0.0.0",

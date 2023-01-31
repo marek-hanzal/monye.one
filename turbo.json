@@ -28,6 +28,9 @@
         },
         "lint": {
             "outputMode": "new-only",
+            "dependsOn": [
+                "^depcheck"
+            ],
             "outputs": [],
             "inputs": [
                 "src"
@@ -56,6 +59,13 @@
                 "PORT"
             ]
         },
+        "build:no-cache": {
+            "dependsOn": [
+                "^cleanup",
+                "^build"
+            ],
+            "cache": false
+        },
         "build:types": {
             "outputMode": "new-only",
             "dependsOn": [
@@ -75,6 +85,13 @@
                 "PORT"
             ]
         },
+        "depcheck": {
+            "outputMode": "new-only",
+            "inputs": [
+                "package.json"
+            ],
+            "outputs": []
+        },
         "cleanup": {
             "cache": false
         },
@@ -90,7 +107,7 @@
         "start": {
             "cache": false,
             "dependsOn": [
-                "migration"
+                "^migration"
             ]
         }
     }

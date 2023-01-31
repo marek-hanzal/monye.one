@@ -1,0 +1,24 @@
+{
+    "ignores": [
+        "zod",
+        "@tailwindcss/*",
+        "@types/*",
+        "del-cli",
+        "dotenv-cli",
+        "autoprefixer",
+        "postcss",
+        "tailwindcss",
+        "eslint",
+        "eslint-config-next",
+        "@monye.one/tsconfig",
+        "@emotion/*",
+        "@babel/core",
+        "reflect-metadata",
+        "concurrently",
+        "@typescript-eslint/*",
+        "typescript"
+    ],
+    "specials": [
+        "prettier"
+    ]
+}

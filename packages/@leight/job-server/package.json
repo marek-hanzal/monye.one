@@ -27,6 +27,7 @@
         "dev-watch": "concurrently npm:dev-watch:*",
         "prisma-format": "npx dotenv -c development -- npx prisma format",
         "postinstall": "pnpm run prisma-format && prisma generate",
+        "depcheck": "npx depcheck",
         "lint": "eslint src",
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
@@ -35,13 +36,10 @@
         "@leight/job": "workspace:^0.5.0",
         "@leight/prisma": "workspace:^0.5.0",
         "@leight/user": "workspace:^0.5.0",
-        "@leight/user-server": "workspace:^0.5.0",
         "@leight/utils": "workspace:^0.5.0",
         "@leight/winston": "workspace:^0.5.0",
         "@prisma/client": "^4.9.0",
         "delay": "^5.0.0",
-        "devalue": "^4.2.3",
-        "p-queue": "^7.3.0",
         "reflect-metadata": "^0.1.13",
         "tsyringe": "^4.7.0"
     },

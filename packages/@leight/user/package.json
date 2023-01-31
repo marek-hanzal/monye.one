@@ -25,26 +25,23 @@
         "dev-watch:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
         "dev-watch:cjs": "tsc -w -p tsconfig.json -m commonjs --outDir lib/cjs --preserveWatchOutput",
         "dev-watch": "concurrently npm:dev-watch:*",
+        "depcheck": "npx depcheck",
         "lint": "eslint src",
         "postinstall": "pnpm run prisma-format && prisma generate",
         "prisma-format": "npx dotenv -c development -- npx prisma format",
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@prisma/client": "^4.9.0",
         "next": "^13.1.6",
         "next-auth": "^4.19.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "reflect-metadata": "^0.1.13",
-        "tsyringe": "^4.7.0"
+        "reflect-metadata": "^0.1.13"
     },
     "devDependencies": {
         "@leight/eslint-config-eslint": "workspace:^0.0.0",
         "@leight/tsconfig": "workspace:^0.0.0",
         "@types/node": "^18.11.18",
-        "@types/react": "^18.0.27",
-        "@types/react-dom": "^18.0.10",
         "@typescript-eslint/eslint-plugin": "^5.50.0",
         "@typescript-eslint/parser": "^5.50.0",
         "concurrently": "^7.6.0",

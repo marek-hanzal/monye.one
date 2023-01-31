@@ -25,11 +25,11 @@
         "dev-watch:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
         "dev-watch:cjs": "tsc -w -p tsconfig.json -m commonjs --outDir lib/cjs --preserveWatchOutput",
         "dev-watch": "concurrently npm:dev-watch:*",
+        "depcheck": "npx depcheck",
         "lint": "eslint src",
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/user-server": "workspace:^0.5.0",
         "reflect-metadata": "^0.1.13",
         "winston": "^3.8.2"
     },
@@ -43,7 +43,6 @@
         "del-cli": "^5.0.0",
         "eslint": "^8.33.0",
         "eslint-plugin-unicorn": "^45.0.2",
-        "p-queue": "^7.3.0",
         "typescript": "^4.9.5"
     },
     "bugs": {

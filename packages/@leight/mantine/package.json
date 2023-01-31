@@ -25,6 +25,7 @@
         "dev-watch:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
         "dev-watch:cjs": "tsc -w -p tsconfig.json -m commonjs --outDir lib/cjs --preserveWatchOutput",
         "dev-watch": "concurrently npm:dev-watch:*",
+        "depcheck": "npx depcheck",
         "lint": "eslint src",
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
@@ -41,17 +42,11 @@
         "@mantine/dropzone": "^5.10.2",
         "@mantine/hooks": "^5.10.2",
         "@mantine/nprogress": "^5.10.2",
-        "@tabler/icons": "^2.1.2",
         "@tabler/icons-react": "^2.1.2",
-        "@trpc/client": "^10.9.1",
-        "@trpc/server": "^10.9.1",
-        "axios": "^1.2.6",
         "next": "^13.1.6",
-        "prop-types": "^15.8.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "reflect-metadata": "^0.1.13",
-        "uuid": "^9.0.0"
+        "reflect-metadata": "^0.1.13"
     },
     "devDependencies": {
         "@leight/eslint-config-eslint": "workspace:^0.0.0",
@@ -59,7 +54,6 @@
         "@types/node": "^18.11.18",
         "@types/react": "^18.0.27",
         "@types/react-dom": "^18.0.10",
-        "@types/uuid": "^9.0.0",
         "@typescript-eslint/eslint-plugin": "^5.50.0",
         "@typescript-eslint/parser": "^5.50.0",
         "concurrently": "^7.6.0",

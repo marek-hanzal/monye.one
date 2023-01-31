@@ -27,6 +27,7 @@
         "dev-watch": "concurrently npm:dev-watch:*",
         "prisma-format": "npx dotenv -c development -- npx prisma format",
         "postinstall": "pnpm run prisma-format && prisma generate",
+        "depcheck": "npx depcheck",
         "lint": "eslint src",
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
@@ -36,13 +37,12 @@
         "@leight/next.js-server": "workspace:^0.5.0",
         "@leight/prisma": "workspace:^0.5.0",
         "@prisma/client": "^4.9.0",
-        "filesize": "^10.0.6",
         "fs-extra": "^11.1.0",
-        "glob": "^8.1.0",
         "mime-detect": "^1.1.4",
         "reflect-metadata": "^0.1.13",
         "touch": "^3.1.0",
-        "tsyringe": "^4.7.0"
+        "tsyringe": "^4.7.0",
+        "uuid": "^9.0.0"
     },
     "devDependencies": {
         "@leight/eslint-config-eslint": "workspace:^0.0.0",
