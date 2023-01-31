@@ -34,7 +34,7 @@ export class ImportService implements IImportService {
             params: {
                 fileId,
             },
-            handler: props => this.job(props),
+            handler: async props => this.job(props),
         });
     }
 
@@ -111,11 +111,11 @@ export class ImportService implements IImportService {
                     runtime += getElapsed().millisecondsTotal;
                     await handler.end?.({});
                 } catch (e) {
+                    console.error(e);
                     await streamOf($stream, async () => {
                         skip++;
                         await jobProgress.onSkip();
                     });
-                    console.error(e);
                 }
             }
         }

@@ -1453,8 +1453,6 @@ importers:
       '@leight/trpc': workspace:^0.5.0
       '@leight/trpc-server': workspace:^0.5.0
       '@leight/tsconfig': workspace:^0.0.0
-      '@leight/user': workspace:^0.5.0
-      '@leight/user-server': workspace:^0.5.0
       '@leight/utils': ^0.5.0
       '@leight/utils-server': workspace:^0.5.0
       '@leight/xlsx-import': workspace:^0.5.0
@@ -1481,8 +1479,6 @@ importers:
       '@leight/job': link:../job
       '@leight/next.js-server': link:../next.js-server
       '@leight/trpc-server': link:../trpc-server
-      '@leight/user': link:../user
-      '@leight/user-server': link:../user-server
       '@leight/utils': link:../utils
       '@leight/utils-server': link:../utils-server
       '@leight/xlsx-import': link:../xlsx-import
