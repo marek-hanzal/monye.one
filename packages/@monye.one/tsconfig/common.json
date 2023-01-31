@@ -16,18 +16,19 @@
             "dom.iterable",
             "esnext"
         ],
-        "module": "esnext",
         "moduleResolution": "node",
-        "noEmit": true,
         "noFallthroughCasesInSwitch": false,
         "noImplicitAny": true,
         "noUncheckedIndexedAccess": true,
         "removeComments": false,
         "resolveJsonModule": true,
+        "declaration": false,
+        "sourceMap": true,
+        "inlineSources": true,
         "skipLibCheck": true,
         "strict": true,
         "strictPropertyInitialization": true,
-        "target": "ES2021",
+        "target": "ES2022",
         "types": [
             "reflect-metadata",
             "node"

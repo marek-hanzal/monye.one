@@ -19,7 +19,7 @@
         {
             "from": {
                 "source": [
-                    "ID pokynu"
+                    "ID operace"
                 ]
             },
             "to": "reference"

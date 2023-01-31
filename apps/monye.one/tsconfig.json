@@ -16,7 +16,12 @@
             {
                 "name": "next"
             }
-        ]
+        ],
+        "types": [
+            "@monye.one/trpc-client"
+        ],
+        "noEmit": true,
+        "module": "esnext"
     },
     "include": [
         "src/**/*",

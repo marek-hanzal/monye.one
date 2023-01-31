@@ -55,6 +55,25 @@
                 "PORT"
             ]
         },
+        "build:types": {
+            "outputMode": "new-only",
+            "dependsOn": [
+                "^build:types"
+            ],
+            "outputs": [
+                "lib/**"
+            ],
+            "inputs": [
+                "src",
+                "package.json",
+                "tsconfig.json"
+            ],
+            "env": [
+                "NEXT_PUBLIC_BUILD",
+                "NODE_ENV",
+                "PORT"
+            ]
+        },
         "cleanup": {
             "cache": false
         },

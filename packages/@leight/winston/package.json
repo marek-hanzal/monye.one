@@ -13,13 +13,14 @@
     "sideEffects": false,
     "main": "lib/cjs/index.js",
     "module": "lib/esm/index.js",
-    "types": "src/index.ts",
+    "types": "lib/types/index.d.ts",
     "files": [
         "lib"
     ],
     "scripts": {
         "build:esm": "tsc -p tsconfig.json -m es2022 --outDir lib/esm",
         "build:cjs": "tsc -p tsconfig.json -m commonjs --outDir lib/cjs",
+        "build:types": "tsc -p tsconfig.json -m es2022 --declaration --emitDeclarationOnly --outDir lib/types",
         "build": "concurrently npm:build:*",
         "dev-watch:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
         "dev-watch:cjs": "tsc -w -p tsconfig.json -m commonjs --outDir lib/cjs --preserveWatchOutput",
@@ -35,8 +36,8 @@
         "@leight/eslint-config-eslint": "workspace:^0.0.0",
         "@leight/tsconfig": "workspace:^0.0.0",
         "@types/node": "^18.11.18",
-        "@typescript-eslint/eslint-plugin": "^5.49.0",
-        "@typescript-eslint/parser": "^5.49.0",
+        "@typescript-eslint/eslint-plugin": "^5.50.0",
+        "@typescript-eslint/parser": "^5.50.0",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
         "eslint": "^8.33.0",
