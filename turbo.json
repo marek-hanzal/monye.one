@@ -28,6 +28,7 @@
         },
         "lint": {
             "outputMode": "new-only",
+            "outputs": [],
             "inputs": [
                 "src"
             ]
@@ -35,8 +36,8 @@
         "build": {
             "outputMode": "new-only",
             "dependsOn": [
-                "prisma-generate",
-                "lint",
+                "^prisma-generate",
+                "^lint",
                 "^build"
             ],
             "outputs": [
