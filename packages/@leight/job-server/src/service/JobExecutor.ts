@@ -39,7 +39,7 @@ export class JobExecutor implements IJobExecutor {
                         name,
                         job,
                         params,
-                        userId: job.userId,
+                        userId: this.userService.required(),
                         jobProgress,
                         logger,
                         progress: async (callback, $sleep = 0) => {

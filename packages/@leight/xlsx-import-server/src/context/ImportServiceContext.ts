@@ -1,8 +1,8 @@
-import {container as coolContainer} from "tsyringe";
 import {$ImportService, type IImportService} from "@leight/xlsx-import";
+import {type IContainer} from "@leight/container";
 
 export class $ImportServiceContext {
-    constructor(private container: typeof coolContainer) {
+    constructor(private container: IContainer) {
     }
 
     resolve(): IImportService {
@@ -13,6 +13,6 @@ export class $ImportServiceContext {
 /**
  * Wrapper for accessing typed ImportService from any container.
  */
-export const ImportServiceContext = (container: typeof coolContainer) => {
+export const ImportServiceContext = (container: IContainer) => {
     return new $ImportServiceContext(container);
 };

@@ -6,7 +6,7 @@ import {type IImportHandler, type IImportHandlerService} from "@leight/import";
 @injectable()
 export class ImportHandlerService implements IImportHandlerService {
     constructor(
-        @inject($Container) protected container: IContainer
+        @inject($Container) protected container: IContainer,
     ) {
     }
 

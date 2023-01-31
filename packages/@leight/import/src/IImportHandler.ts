@@ -9,5 +9,5 @@ export interface IImportHandler<TItem> {
 
     handler(item: TItem): Promise<any>;
 
-    validator(): ZodType | undefined;
+    validator(): ZodType;
 }

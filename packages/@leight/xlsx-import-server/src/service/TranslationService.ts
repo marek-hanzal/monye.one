@@ -29,7 +29,7 @@ export class TranslationService implements ITranslationService {
         const output: Record<string, string> = {...item};
         translations.forEach(({to, from: {source, concat}}) => {
             const result = source.map(key => item[key] ?? '');
-            output[to] = result.join(concat);
+            output[to] = result.filter(Boolean).join(concat);
         });
         return output;
     }

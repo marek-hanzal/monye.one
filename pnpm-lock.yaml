@@ -1453,6 +1453,8 @@ importers:
       '@leight/trpc': workspace:^0.5.0
       '@leight/trpc-server': workspace:^0.5.0
       '@leight/tsconfig': workspace:^0.0.0
+      '@leight/user': workspace:^0.5.0
+      '@leight/user-server': workspace:^0.5.0
       '@leight/utils': ^0.5.0
       '@leight/utils-server': workspace:^0.5.0
       '@leight/xlsx-import': workspace:^0.5.0
@@ -1479,6 +1481,8 @@ importers:
       '@leight/job': link:../job
       '@leight/next.js-server': link:../next.js-server
       '@leight/trpc-server': link:../trpc-server
+      '@leight/user': link:../user
+      '@leight/user-server': link:../user-server
       '@leight/utils': link:../utils
       '@leight/utils-server': link:../utils-server
       '@leight/xlsx-import': link:../xlsx-import
@@ -1905,23 +1909,33 @@ importers:
   packages/@monye.one/transaction-server:
     specifiers:
       '@leight/container': ^0.5.0
+      '@leight/prisma': '*'
+      '@leight/user': '*'
+      '@leight/user-server': '*'
       '@monye.one/eslint-config-eslint': workspace:^0.0.0
       '@monye.one/transaction': ^0.5.0
       '@monye.one/tsconfig': workspace:^0.0.0
+      '@prisma/client': ^4.9.0
       '@types/node': ^18.11.18
       '@typescript-eslint/eslint-plugin': ^5.49.0
       '@typescript-eslint/parser': ^5.49.0
       concurrently: ^7.6.0
       del-cli: ^5.0.0
+      dotenv-cli: ^7.0.0
       eslint: ^8.33.0
       eslint-plugin-unicorn: ^45.0.2
+      prisma: ^4.9.0
       reflect-metadata: ^0.1.13
       tsyringe: ^4.7.0
       typescript: ^4.9.5
       zod: ^3.20.2
     dependencies:
       '@leight/container': link:../../@leight/container
+      '@leight/prisma': link:../../@leight/prisma
+      '@leight/user': link:../../@leight/user
+      '@leight/user-server': link:../../@leight/user-server
       '@monye.one/transaction': link:../transaction
+      '@prisma/client': 4.9.0_prisma@4.9.0
       reflect-metadata: 0.1.13
       tsyringe: 4.7.0
       zod: 3.20.2
@@ -1933,8 +1947,10 @@ importers:
       '@typescript-eslint/parser': 5.49.0_4vsywjlpuriuw3tl5oq6zy5a64
       concurrently: 7.6.0
       del-cli: 5.0.0
+      dotenv-cli: 7.0.0
       eslint: 8.33.0
       eslint-plugin-unicorn: 45.0.2_eslint@8.33.0
+      prisma: 4.9.0
       typescript: 4.9.5
 
   packages/@monye.one/trpc-client:

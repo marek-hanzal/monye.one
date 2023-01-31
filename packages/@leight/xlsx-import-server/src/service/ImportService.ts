@@ -15,6 +15,7 @@ import {
 } from "@leight/xlsx-import";
 import {$FileService, type IFileService} from "@leight/file";
 import {$ImportHandlerService, type IImportHandlerService, type IImportJob} from "@leight/import";
+import {cleanOf} from "@leight/utils";
 
 @injectable()
 export class ImportService implements IImportService {
@@ -33,7 +34,7 @@ export class ImportService implements IImportService {
             params: {
                 fileId,
             },
-            handler: this.job.bind(this),
+            handler: props => this.job(props),
         });
     }
 
@@ -42,7 +43,11 @@ export class ImportService implements IImportService {
                   params: {fileId}
               }: IJobExecutor.HandlerRequest<IImportJob>): Promise<IImportService.ImportResult> {
         const file = await this.fileService.fetch(fileId);
-        const workbook = readFile(file.location);
+        const workbook = readFile(file.location, {
+            type: 'binary',
+            cellDates: true,
+            cellNF: false,
+        });
         const {tabs, translations} = await this.metaService.toMeta({workbook, file: file.location, name: file.name});
 
         let total = 0;
@@ -88,8 +93,10 @@ export class ImportService implements IImportService {
                         async (item) => {
                             try {
                                 await handler.handler(
-                                    validator?.parse(
-                                        this.translationService.translate(item, translations)
+                                    cleanOf(
+                                        validator.parse(
+                                            this.translationService.translate(item, translations)
+                                        )
                                     )
                                 );
                                 success++;
