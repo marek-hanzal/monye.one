@@ -19,7 +19,7 @@ export default withBookLayout(
                             namespace: "transaction",
                         }}
                     />
-                    <Divider m={"md"}/># show import jobs here. Blable
+                    <Divider m={"md"}/># show import jobs here.
                 </Box>
             </>
         );
