@@ -1,9 +1,0 @@
-{
-    "root": true,
-    "extends": [
-        "@leight/eslint"
-    ],
-    "rules": {
-        "eslint-plugin-react": "off"
-    }
-}
