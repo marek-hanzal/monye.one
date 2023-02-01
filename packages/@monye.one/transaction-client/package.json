@@ -31,7 +31,7 @@
     "dependencies": {
         "@babel/core": "^7.20.12",
         "@emotion/react": "^11.10.5",
-        "@leight/i18n-client": "^0.5.1",
+        "@leight/i18n-client": "^0.5.2",
         "@leight/mantine": "^0.5.1",
         "@mantine/core": "^5.10.2",
         "@mantine/hooks": "^5.10.2",
