@@ -1,8 +1,8 @@
 import {router} from "./router";
 import {ImportRouter} from "./import";
 
-export const appRouter = router({
+export const api = router({
     import: ImportRouter,
 });
 
-export type AppRouter = typeof appRouter;
+export type IApi = typeof api;

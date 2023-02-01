@@ -1,10 +1,11 @@
-import {type AppRouter} from "@monye.one/trpc-server";
+import {IApi} from "@monye.one/trpc-server";
 import {httpBatchLink, loggerLink} from "@trpc/client";
 import {createTRPCNext} from "@trpc/next";
 import superjson from "superjson";
 import {parse, stringify} from "devalue";
+import {CreateTRPCNext} from "@trpc/next/src/createTRPCNext";
 
-export const trpc = createTRPCNext<AppRouter>({
+export const trpc: CreateTRPCNext<IApi, any, any> = createTRPCNext<IApi>({
     config() {
         const resolveApiUrl = (): string =>
             typeof window !== "undefined"
