@@ -1,15 +1,11 @@
-import { switchScheme } from "@leight/mantine";
-import { Box, createStyles, Group, Header } from "@mantine/core";
-import {
-    PrimaryButton,
-    SessionOverlay,
-    useAuthenticatedSession,
-} from "@monye.one/ui";
-import { signIn } from "next-auth/react";
-import { useTranslation } from "next-i18next";
+import {switchScheme} from "@leight/mantine";
+import {Box, createStyles, Group, Header} from "@mantine/core";
+import {PrimaryButton, SessionOverlay, useAuthenticatedSession,} from "@monye.one/ui";
+import {signIn} from "next-auth/react";
+import {useTranslation} from "next-i18next";
 import Image from "next/image";
 import Link from "next/link";
-import { ComponentProps, type FC, type PropsWithChildren } from "react";
+import {ComponentProps, type FC, type PropsWithChildren} from "react";
 
 const useStyles = createStyles((theme) => ({
     link: {
@@ -37,16 +33,16 @@ export interface IPublicLayoutProps extends PropsWithChildren {
     logo: ComponentProps<typeof Image>["src"];
 }
 
-export const PublicLayout: FC<IPublicLayoutProps> = ({ logo, children }) => {
-    useAuthenticatedSession({ redirect: "/book" });
-    const { classes } = useStyles();
-    const { t } = useTranslation("public");
+export const PublicLayout: FC<IPublicLayoutProps> = ({logo, children}) => {
+    useAuthenticatedSession({redirect: "/book"});
+    const {classes} = useStyles();
+    const {t} = useTranslation("public");
     return (
         <>
-            <SessionOverlay />
+            <SessionOverlay/>
             <Box>
                 <Header height={72} px={"md"}>
-                    <Group position={"apart"} sx={{ height: "100%" }}>
+                    <Group position={"apart"} sx={{height: "100%"}}>
                         <Link href={"/"}>
                             <Image
                                 width={96}
@@ -56,7 +52,7 @@ export const PublicLayout: FC<IPublicLayoutProps> = ({ logo, children }) => {
                                 alt="logo"
                             />
                         </Link>
-                        <Group sx={{ height: "100%" }} spacing={0}>
+                        <Group sx={{height: "100%"}} spacing={0}>
                             <Link href={"/"} className={classes.link}>
                                 {t("link.home")}
                             </Link>

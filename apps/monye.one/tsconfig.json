@@ -18,7 +18,7 @@
             }
         ],
         "types": [
-            "@monye.one/trpc-client"
+            "@leight/i18n"
         ],
         "noEmit": true,
         "module": "esnext"

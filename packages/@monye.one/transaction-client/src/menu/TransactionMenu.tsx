@@ -1,15 +1,16 @@
-import { type ITabLinkMenuProps, TabLinkMenu } from "@leight/mantine";
-import { IconFileImport, IconList } from "@tabler/icons-react";
-import { type FC } from "react";
+import {type ITabLinkMenuProps, TabLinkMenu} from "@leight/mantine";
+import {IconFileImport, IconList} from "@tabler/icons-react";
+import {type FC} from "react";
 
-export interface ITransactionMenuProps extends Partial<ITabLinkMenuProps> {}
+export interface ITransactionMenuProps extends Partial<ITabLinkMenuProps> {
+}
 
 export const TransactionMenu: FC<ITransactionMenuProps> = (props) => {
     return (
         <TabLinkMenu
             items={[
                 {
-                    icon: <IconList />,
+                    icon: <IconList/>,
                     withTranslation: {
                         label: "tab.transactions",
                         namespace: "transaction",
@@ -19,7 +20,7 @@ export const TransactionMenu: FC<ITransactionMenuProps> = (props) => {
                     },
                 },
                 {
-                    icon: <IconFileImport />,
+                    icon: <IconFileImport/>,
                     withTranslation: {
                         label: "tab.import",
                         namespace: "transaction",

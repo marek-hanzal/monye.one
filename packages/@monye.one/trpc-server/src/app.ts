@@ -1,5 +1,5 @@
-import { router } from "./router";
-import { ImportRouter } from "./import";
+import {router} from "./router";
+import {ImportRouter} from "./import";
 
 export const appRouter = router({
     import: ImportRouter,

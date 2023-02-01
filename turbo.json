@@ -59,32 +59,6 @@
                 "PORT"
             ]
         },
-        "build:no-cache": {
-            "dependsOn": [
-                "^cleanup",
-                "^build"
-            ],
-            "cache": false
-        },
-        "build:types": {
-            "outputMode": "new-only",
-            "dependsOn": [
-                "^build:types"
-            ],
-            "outputs": [
-                "lib/**"
-            ],
-            "inputs": [
-                "src",
-                "package.json",
-                "tsconfig.json"
-            ],
-            "env": [
-                "NEXT_PUBLIC_BUILD",
-                "NODE_ENV",
-                "PORT"
-            ]
-        },
         "depcheck": {
             "outputMode": "new-only",
             "inputs": [

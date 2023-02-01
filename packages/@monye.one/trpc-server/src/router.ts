@@ -1,7 +1,7 @@
-import { initTRPC } from "@trpc/server";
-import { parse, stringify } from "devalue";
+import {initTRPC} from "@trpc/server";
+import {parse, stringify} from "devalue";
 import superjson from "superjson";
-import { type IContext } from "@leight/trpc";
+import {type IContext} from "@leight/trpc";
 
 const t = initTRPC.context<IContext>().create({
     transformer: {
@@ -11,9 +11,9 @@ const t = initTRPC.context<IContext>().create({
             deserialize: (object) => parse(object),
         },
     },
-    errorFormatter({ shape }) {
+    errorFormatter({shape}) {
         return shape;
     },
 });
 
-export const { router, procedure } = t;
+export const {router, procedure} = t;

@@ -1,9 +1,9 @@
-import { Translation } from "@leight/i18n-client";
-import { switchScheme } from "@leight/mantine";
-import { type ILink } from "@leight/utils-client";
-import { createStyles, Group } from "@mantine/core";
+import {Translation} from "@leight/i18n-client";
+import {switchScheme} from "@leight/mantine";
+import {type ILink} from "@leight/utils-client";
+import {createStyles, Group} from "@mantine/core";
 import Link from "next/link";
-import { type FC } from "react";
+import {type FC} from "react";
 
 export interface IBookMenuProps {
     active: string;
@@ -60,10 +60,10 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export const BookMenu: FC<IBookMenuProps> = ({ active }) => {
-    const { classes, cx } = useStyles();
+export const BookMenu: FC<IBookMenuProps> = ({active}) => {
+    const {classes, cx} = useStyles();
     return (
-        <Group sx={{ height: "100%" }} spacing={0}>
+        <Group sx={{height: "100%"}} spacing={0}>
             {links.map((link) => (
                 <Link
                     key={link.href}
@@ -72,7 +72,7 @@ export const BookMenu: FC<IBookMenuProps> = ({ active }) => {
                         [classes.linkActive]: active === link.href,
                     })}
                 >
-                    <Translation namespace={"book"} label={link.label} />
+                    <Translation namespace={"book"} label={link.label}/>
                 </Link>
             ))}
         </Group>

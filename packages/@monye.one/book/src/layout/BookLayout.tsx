@@ -1,28 +1,24 @@
-import { Box, Group, Header } from "@mantine/core";
-import {
-    PrimaryButton,
-    SessionOverlay,
-    useUnauthenticatedRedirect,
-} from "@monye.one/ui";
-import { signOut } from "next-auth/react";
+import {Box, Group, Header} from "@mantine/core";
+import {PrimaryButton, SessionOverlay, useUnauthenticatedRedirect,} from "@monye.one/ui";
+import {signOut} from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { ComponentProps, type FC, type PropsWithChildren } from "react";
-import { BookMenu } from "./BookMenu";
+import {ComponentProps, type FC, type PropsWithChildren} from "react";
+import {BookMenu} from "./BookMenu";
 
 export interface IBookLayoutProps extends PropsWithChildren {
     logo: ComponentProps<typeof Image>["src"];
     href: string;
 }
 
-export const BookLayout: FC<IBookLayoutProps> = ({ logo, href, children }) => {
+export const BookLayout: FC<IBookLayoutProps> = ({logo, href, children}) => {
     useUnauthenticatedRedirect();
     return (
         <>
-            <SessionOverlay />
+            <SessionOverlay/>
             <Box>
                 <Header height={72} px={"md"}>
-                    <Group position={"apart"} sx={{ height: "100%" }}>
+                    <Group position={"apart"} sx={{height: "100%"}}>
                         <Link href={"/"}>
                             <Image
                                 width={96}
@@ -32,7 +28,7 @@ export const BookLayout: FC<IBookLayoutProps> = ({ logo, href, children }) => {
                                 alt="logo"
                             />
                         </Link>
-                        <BookMenu active={href} />
+                        <BookMenu active={href}/>
                         <Group>
                             <PrimaryButton
                                 onClick={() => signOut()}

@@ -1,14 +1,14 @@
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/router";
+import {useEffect} from "react";
 
 export interface IUseAuthenticatedSessionProps {
     redirect: string;
 }
 
 export const useAuthenticatedSession = ({
-    redirect,
-}: IUseAuthenticatedSessionProps) => {
+                                            redirect,
+                                        }: IUseAuthenticatedSessionProps) => {
     const session = useSession();
     const router = useRouter();
     useEffect(() => {

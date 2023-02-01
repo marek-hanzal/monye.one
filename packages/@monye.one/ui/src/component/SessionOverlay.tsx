@@ -1,11 +1,12 @@
-import { LoadingOverlay } from "@mantine/core";
-import { useSession } from "next-auth/react";
-import { type ComponentProps, type FC } from "react";
+import {LoadingOverlay} from "@mantine/core";
+import {useSession} from "next-auth/react";
+import {type ComponentProps, type FC} from "react";
 
 export interface ISessionOverlayProps
-    extends Partial<ComponentProps<typeof LoadingOverlay>> {}
+    extends Partial<ComponentProps<typeof LoadingOverlay>> {
+}
 
-export const SessionOverlay: FC<ISessionOverlayProps> = ({ ...props }) => {
+export const SessionOverlay: FC<ISessionOverlayProps> = ({...props}) => {
     const session = useSession();
     return (
         <LoadingOverlay

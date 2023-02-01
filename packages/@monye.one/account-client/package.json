@@ -11,28 +11,23 @@
         "node": ">=16.0.0"
     },
     "sideEffects": false,
-    "main": "lib/cjs/index.js",
-    "module": "lib/esm/index.js",
-    "types": "lib/types/index.d.ts",
+    "type": "module",
+    "module": "lib/index.js",
+    "types": "lib/index.d.ts",
     "files": [
         "lib"
     ],
     "scripts": {
-        "build:esm": "tsc -p tsconfig.json -m es2022 --outDir lib/esm",
-        "build:cjs": "tsc -p tsconfig.json -m commonjs --outDir lib/cjs",
-        "build:types": "tsc -p tsconfig.json -m es2022 --declaration --emitDeclarationOnly --outDir lib/types",
-        "build": "concurrently npm:build:*",
-        "dev-watch:esm": "tsc -w -p tsconfig.json -m es2022 --outDir lib/esm --preserveWatchOutput",
-        "dev-watch:cjs": "tsc -w -p tsconfig.json -m commonjs --outDir lib/cjs --preserveWatchOutput",
-        "dev-watch": "concurrently npm:dev-watch:*",
+        "build": "tsc -p tsconfig.json --outDir lib",
+        "dev:watch": "tsc -w -p tsconfig.json --outDir lib --preserveWatchOutput",
         "lint": "eslint src",
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
         "@babel/core": "^7.20.12",
         "@emotion/react": "^11.10.5",
-        "@leight/i18n-client": "^0.5.2",
-        "@leight/mantine": "^0.5.2",
+        "@leight/i18n-client": "^0.5.7",
+        "@leight/mantine": "^0.5.7",
         "@mantine/core": "^5.10.2",
         "@mantine/hooks": "^5.10.2",
         "@mantine/prism": "^5.10.2",

@@ -1,8 +1,8 @@
-import { type AppRouter } from "@monye.one/trpc-server";
-import { httpBatchLink, loggerLink } from "@trpc/client";
-import { createTRPCNext } from "@trpc/next";
+import {type AppRouter} from "@monye.one/trpc-server";
+import {httpBatchLink, loggerLink} from "@trpc/client";
+import {createTRPCNext} from "@trpc/next";
 import superjson from "superjson";
-import { parse, stringify } from "devalue";
+import {parse, stringify} from "devalue";
 
 export const trpc = createTRPCNext<AppRouter>({
     config() {
