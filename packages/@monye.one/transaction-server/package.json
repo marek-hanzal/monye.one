@@ -19,7 +19,7 @@
     ],
     "scripts": {
         "build": "tsc -p tsconfig.json --outDir lib",
-        "dev:watch": "tsc -w -p tsconfig.json --outDir lib --preserveWatchOutput",
+        "dev": "tsc -w -p tsconfig.json --outDir lib --preserveWatchOutput",
         "postinstall": "pnpm run prisma-format && prisma generate",
         "prisma-format": "npx dotenv -c development -- npx prisma format",
         "lint": "eslint src",

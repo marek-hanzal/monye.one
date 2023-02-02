@@ -19,7 +19,7 @@
     ],
     "scripts": {
         "build": "tsc -p tsconfig.json --outDir lib",
-        "dev:watch": "tsc -w -p tsconfig.json --outDir lib --preserveWatchOutput",
+        "dev": "tsc -w -p tsconfig.json --outDir lib --preserveWatchOutput",
         "lint": "eslint src",
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
