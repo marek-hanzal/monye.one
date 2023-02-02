@@ -20,14 +20,13 @@
     "scripts": {
         "build": "tsc -p tsconfig.json --outDir lib",
         "dev": "tsc -w -p tsconfig.json --outDir lib --preserveWatchOutput",
-        "postinstall": "pnpm run prisma-format && prisma generate",
-        "prisma-format": "npx dotenv -c development -- npx prisma format",
         "lint": "eslint src",
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
         "@leight/container": "^0.5.6",
         "@leight/prisma": "^0.5.7",
+        "@leight/trpc-server": "^0.5.6",
         "@leight/user": "^0.5.6",
         "@leight/user-server": "^0.5.6",
         "@monye.one/transaction": "workspace:^0.5.0",

@@ -5,25 +5,25 @@
         "tsconfig.json"
     ],
     "pipeline": {
-        "prisma-format": {
+        "prisma:format": {
             "outputMode": "new-only",
             "outputs": [],
             "inputs": [
                 "prisma/schema.prisma"
             ]
         },
-        "prisma-generate": {
+        "prisma:generate": {
             "outputMode": "new-only",
             "dependsOn": [
-                "prisma-format",
-                "^prisma-generate"
+                "prisma:format",
+                "^prisma:generate"
             ],
             "outputs": [],
             "inputs": [
                 "prisma/schema.prisma"
             ]
         },
-        "prisma-migrate-reset": {
+        "prisma:migrate-reset": {
             "cache": false
         },
         "lint": {
@@ -39,7 +39,7 @@
         "build": {
             "outputMode": "new-only",
             "dependsOn": [
-                "^prisma-generate",
+                "^prisma:generate",
                 "^lint",
                 "^build"
             ],
