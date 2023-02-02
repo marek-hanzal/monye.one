@@ -26,8 +26,10 @@
     "dependencies": {
         "@leight/container": "^0.5.6",
         "@leight/prisma": "^0.5.7",
-        "@leight/trpc-server": "^0.5.6",
-        "@leight/user": "^0.5.6",
+        "@leight/source": "^0.5.1",
+        "@leight/source-server": "^0.5.1",
+        "@leight/trpc-server": "^0.5.7",
+        "@leight/user": "^0.5.7",
         "@leight/user-server": "^0.5.6",
         "@monye.one/transaction": "workspace:^0.5.0",
         "@prisma/client": "^4.9.0",

@@ -27,7 +27,7 @@
         "@babel/core": "^7.20.12",
         "@emotion/react": "^11.10.5",
         "@leight/i18n": "^0.5.6",
-        "@leight/i18n-client": "^0.5.7",
+        "@leight/i18n-client": "^0.5.8",
         "@leight/layout": "^0.5.7",
         "@leight/mantine": "^0.5.7",
         "@leight/utils": "^0.5.7",
