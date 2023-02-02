@@ -19,19 +19,19 @@ importers:
       '@babel/core': ^7.20.12
       '@emotion/react': ^11.10.5
       '@emotion/server': ^11.10.0
-      '@leight/container': ^0.5.7
-      '@leight/container-server': ^0.5.7
-      '@leight/file-server': ^0.5.7
-      '@leight/i18n': ^0.5.7
-      '@leight/i18n-server': ^0.5.8
-      '@leight/layout': ^0.5.8
-      '@leight/mantine': ^0.5.8
-      '@leight/next.js-server': ^0.5.8
-      '@leight/prisma': ^0.5.8
-      '@leight/trpc-server': ^0.5.8
-      '@leight/user': ^0.5.8
-      '@leight/winston': ^0.5.7
-      '@leight/xlsx-import-client': ^0.5.9
+      '@leight/container': ^0.5.8
+      '@leight/container-server': ^0.5.8
+      '@leight/file-server': ^0.5.8
+      '@leight/i18n': ^0.5.8
+      '@leight/i18n-server': ^0.5.9
+      '@leight/layout': ^0.5.9
+      '@leight/mantine': ^0.5.9
+      '@leight/next.js-server': ^0.5.9
+      '@leight/prisma': ^0.5.9
+      '@leight/trpc-server': ^0.5.9
+      '@leight/user': ^0.5.9
+      '@leight/winston': ^0.5.8
+      '@leight/xlsx-import-client': ^0.5.10
       '@mantine/core': ^5.10.2
       '@mantine/hooks': ^5.10.2
       '@mantine/next': ^5.10.2
@@ -64,7 +64,7 @@ importers:
       i18next: ^22.4.9
       next: ^13.1.6
       next-auth: ^4.19.2
-      next-i18next: ^13.1.0
+      next-i18next: ^13.1.4
       postcss: ^8.4.21
       prisma: ^4.9.0
       react: ^18.2.0
@@ -76,19 +76,19 @@ importers:
       typescript: ^4.9.5
       zod: ^3.20.2
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/container-server': 0.5.7_gskeklljahpim6vtz354vntlem
-      '@leight/file-server': 0.5.7_gskeklljahpim6vtz354vntlem
-      '@leight/i18n': 0.5.7
-      '@leight/i18n-server': 0.5.8_@babel+core@7.20.12
-      '@leight/layout': 0.5.8
-      '@leight/mantine': 0.5.8_gs5pdpymxifm4lhkilqzed2ete
-      '@leight/next.js-server': 0.5.8_gskeklljahpim6vtz354vntlem
-      '@leight/prisma': 0.5.8_prisma@4.9.0
-      '@leight/trpc-server': 0.5.8_gskeklljahpim6vtz354vntlem
-      '@leight/user': 0.5.8_@babel+core@7.20.12
-      '@leight/winston': 0.5.7
-      '@leight/xlsx-import-client': 0.5.9_gs5pdpymxifm4lhkilqzed2ete
+      '@leight/container': 0.5.8
+      '@leight/container-server': 0.5.8_gskeklljahpim6vtz354vntlem
+      '@leight/file-server': 0.5.8_gskeklljahpim6vtz354vntlem
+      '@leight/i18n': 0.5.8
+      '@leight/i18n-server': 0.5.9_@babel+core@7.20.12
+      '@leight/layout': 0.5.9
+      '@leight/mantine': 0.5.9_gs5pdpymxifm4lhkilqzed2ete
+      '@leight/next.js-server': 0.5.9_gskeklljahpim6vtz354vntlem
+      '@leight/prisma': 0.5.9_prisma@4.9.0
+      '@leight/trpc-server': 0.5.9_gskeklljahpim6vtz354vntlem
+      '@leight/user': 0.5.9_@babel+core@7.20.12
+      '@leight/winston': 0.5.8
+      '@leight/xlsx-import-client': 0.5.10_gs5pdpymxifm4lhkilqzed2ete
       '@mantine/core': 5.10.2_bgdfy3qhwgihjpd7hjoiv47mfe
       '@mantine/hooks': 5.10.2_react@18.2.0
       '@mantine/next': 5.10.2_frkyvidol3cyjondljhrqtyp5u
@@ -107,7 +107,7 @@ importers:
       i18next: 22.4.9
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
       next-auth: 4.19.2_3vryta7zmbcsw4rrqf4axjqggm
-      next-i18next: 13.1.0_ofn3rluqlytmjlkhptt5cftfxy
+      next-i18next: 13.1.4_ofn3rluqlytmjlkhptt5cftfxy
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-i18next: 12.1.5_iakk3dtjhjpukdoa4oua5khgci
@@ -141,8 +141,8 @@ importers:
     specifiers:
       '@babel/core': ^7.20.12
       '@emotion/react': ^11.10.5
-      '@leight/i18n-client': ^0.5.9
-      '@leight/mantine': ^0.5.8
+      '@leight/i18n-client': ^0.5.10
+      '@leight/mantine': ^0.5.9
       '@mantine/core': ^5.10.2
       '@mantine/hooks': ^5.10.2
       '@mantine/prism': ^5.10.2
@@ -162,7 +162,7 @@ importers:
       i18next: ^22.4.9
       next: ^13.1.6
       next-auth: ^4.19.2
-      next-i18next: ^13.1.0
+      next-i18next: ^13.1.4
       prop-types: ^15.8.1
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -172,8 +172,8 @@ importers:
     dependencies:
       '@babel/core': 7.20.12
       '@emotion/react': 11.10.5_yxdp3dl3eazy3vwpbmv4fq727a
-      '@leight/i18n-client': 0.5.9_@babel+core@7.20.12
-      '@leight/mantine': 0.5.8_@types+react@18.0.27
+      '@leight/i18n-client': 0.5.10_@babel+core@7.20.12
+      '@leight/mantine': 0.5.9_@types+react@18.0.27
       '@mantine/core': 5.10.2_bgdfy3qhwgihjpd7hjoiv47mfe
       '@mantine/hooks': 5.10.2_react@18.2.0
       '@mantine/prism': 5.10.2_yzf4d63xstafd7ya36kewhvvjm
@@ -182,7 +182,7 @@ importers:
       i18next: 22.4.9
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
       next-auth: 4.19.2_3vryta7zmbcsw4rrqf4axjqggm
-      next-i18next: 13.1.0_ofn3rluqlytmjlkhptt5cftfxy
+      next-i18next: 13.1.4_ofn3rluqlytmjlkhptt5cftfxy
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -206,10 +206,10 @@ importers:
     specifiers:
       '@babel/core': ^7.20.12
       '@emotion/react': ^11.10.5
-      '@leight/i18n-client': ^0.5.9
-      '@leight/layout': ^0.5.8
-      '@leight/mantine': ^0.5.8
-      '@leight/utils-client': ^0.5.9
+      '@leight/i18n-client': ^0.5.10
+      '@leight/layout': ^0.5.9
+      '@leight/mantine': ^0.5.9
+      '@leight/utils-client': ^0.5.10
       '@mantine/core': ^5.10.2
       '@mantine/hooks': ^5.10.2
       '@mantine/prism': ^5.10.2
@@ -229,7 +229,7 @@ importers:
       i18next: ^22.4.9
       next: ^13.1.6
       next-auth: ^4.19.2
-      next-i18next: ^13.1.0
+      next-i18next: ^13.1.4
       prop-types: ^15.8.1
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -239,10 +239,10 @@ importers:
     dependencies:
       '@babel/core': 7.20.12
       '@emotion/react': 11.10.5_yxdp3dl3eazy3vwpbmv4fq727a
-      '@leight/i18n-client': 0.5.9_@babel+core@7.20.12
-      '@leight/layout': 0.5.8
-      '@leight/mantine': 0.5.8_@types+react@18.0.27
-      '@leight/utils-client': 0.5.9
+      '@leight/i18n-client': 0.5.10_@babel+core@7.20.12
+      '@leight/layout': 0.5.9
+      '@leight/mantine': 0.5.9_@types+react@18.0.27
+      '@leight/utils-client': 0.5.10
       '@mantine/core': 5.10.2_bgdfy3qhwgihjpd7hjoiv47mfe
       '@mantine/hooks': 5.10.2_react@18.2.0
       '@mantine/prism': 5.10.2_yzf4d63xstafd7ya36kewhvvjm
@@ -251,7 +251,7 @@ importers:
       i18next: 22.4.9
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
       next-auth: 4.19.2_3vryta7zmbcsw4rrqf4axjqggm
-      next-i18next: 13.1.0_ofn3rluqlytmjlkhptt5cftfxy
+      next-i18next: 13.1.4_ofn3rluqlytmjlkhptt5cftfxy
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -273,7 +273,7 @@ importers:
 
   packages/@monye.one/container-server:
     specifiers:
-      '@leight/container': ^0.5.7
+      '@leight/container': ^0.5.8
       '@monye.one/eslint-config-eslint': workspace:^0.0.0
       '@monye.one/transaction': workspace:^0.5.0
       '@monye.one/transaction-server': workspace:^0.5.0
@@ -288,7 +288,7 @@ importers:
       reflect-metadata: ^0.1.13
       typescript: ^4.9.5
     dependencies:
-      '@leight/container': 0.5.7
+      '@leight/container': 0.5.8
       '@monye.one/transaction': link:../transaction
       '@monye.one/transaction-server': link:../transaction-server
       reflect-metadata: 0.1.13
@@ -376,8 +376,8 @@ importers:
     specifiers:
       '@babel/core': ^7.20.12
       '@emotion/react': ^11.10.5
-      '@leight/layout': ^0.5.8
-      '@leight/mantine': ^0.5.8
+      '@leight/layout': ^0.5.9
+      '@leight/mantine': ^0.5.9
       '@mantine/core': ^5.10.2
       '@mantine/hooks': ^5.10.2
       '@mantine/prism': ^5.10.2
@@ -397,7 +397,7 @@ importers:
       i18next: ^22.4.9
       next: ^13.1.6
       next-auth: ^4.19.2
-      next-i18next: ^13.1.0
+      next-i18next: ^13.1.4
       prop-types: ^15.8.1
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -407,8 +407,8 @@ importers:
     dependencies:
       '@babel/core': 7.20.12
       '@emotion/react': 11.10.5_yxdp3dl3eazy3vwpbmv4fq727a
-      '@leight/layout': 0.5.8
-      '@leight/mantine': 0.5.8_@types+react@18.0.27
+      '@leight/layout': 0.5.9
+      '@leight/mantine': 0.5.9_@types+react@18.0.27
       '@mantine/core': 5.10.2_bgdfy3qhwgihjpd7hjoiv47mfe
       '@mantine/hooks': 5.10.2_react@18.2.0
       '@mantine/prism': 5.10.2_yzf4d63xstafd7ya36kewhvvjm
@@ -417,7 +417,7 @@ importers:
       i18next: 22.4.9
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
       next-auth: 4.19.2_3vryta7zmbcsw4rrqf4axjqggm
-      next-i18next: 13.1.0_ofn3rluqlytmjlkhptt5cftfxy
+      next-i18next: 13.1.4_ofn3rluqlytmjlkhptt5cftfxy
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -439,9 +439,9 @@ importers:
 
   packages/@monye.one/transaction:
     specifiers:
-      '@leight/import': ^0.5.7
-      '@leight/query': ^0.5.2
-      '@leight/source': ^0.5.2
+      '@leight/import': ^0.5.8
+      '@leight/query': ^0.5.3
+      '@leight/source': ^0.5.4
       '@monye.one/eslint-config-eslint': workspace:^0.0.0
       '@monye.one/prisma': workspace:^0.5.0
       '@monye.one/tsconfig': workspace:^0.0.0
@@ -456,9 +456,9 @@ importers:
       typescript: ^4.9.5
       zod: ^3.20.2
     dependencies:
-      '@leight/import': 0.5.7
-      '@leight/query': 0.5.2
-      '@leight/source': 0.5.2
+      '@leight/import': 0.5.8
+      '@leight/query': 0.5.3
+      '@leight/source': 0.5.4
       '@monye.one/prisma': link:../prisma
       reflect-metadata: 0.1.13
       zod: 3.20.2
@@ -478,8 +478,8 @@ importers:
     specifiers:
       '@babel/core': ^7.20.12
       '@emotion/react': ^11.10.5
-      '@leight/i18n-client': ^0.5.9
-      '@leight/mantine': ^0.5.8
+      '@leight/i18n-client': ^0.5.10
+      '@leight/mantine': ^0.5.9
       '@mantine/core': ^5.10.2
       '@mantine/hooks': ^5.10.2
       '@mantine/prism': ^5.10.2
@@ -498,7 +498,7 @@ importers:
       i18next: ^22.4.9
       next: ^13.1.6
       next-auth: ^4.19.2
-      next-i18next: ^13.1.0
+      next-i18next: ^13.1.4
       prop-types: ^15.8.1
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -508,8 +508,8 @@ importers:
     dependencies:
       '@babel/core': 7.20.12
       '@emotion/react': 11.10.5_yxdp3dl3eazy3vwpbmv4fq727a
-      '@leight/i18n-client': 0.5.9_@babel+core@7.20.12
-      '@leight/mantine': 0.5.8_@types+react@18.0.27
+      '@leight/i18n-client': 0.5.10_@babel+core@7.20.12
+      '@leight/mantine': 0.5.9_@types+react@18.0.27
       '@mantine/core': 5.10.2_bgdfy3qhwgihjpd7hjoiv47mfe
       '@mantine/hooks': 5.10.2_react@18.2.0
       '@mantine/prism': 5.10.2_yzf4d63xstafd7ya36kewhvvjm
@@ -517,7 +517,7 @@ importers:
       i18next: 22.4.9
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
       next-auth: 4.19.2_3vryta7zmbcsw4rrqf4axjqggm
-      next-i18next: 13.1.0_ofn3rluqlytmjlkhptt5cftfxy
+      next-i18next: 13.1.4_ofn3rluqlytmjlkhptt5cftfxy
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -539,14 +539,15 @@ importers:
 
   packages/@monye.one/transaction-server:
     specifiers:
-      '@leight/container': ^0.5.7
-      '@leight/prisma': ^0.5.8
-      '@leight/source': ^0.5.2
-      '@leight/source-server': ^0.5.4
-      '@leight/trpc-server': ^0.5.8
-      '@leight/user': ^0.5.8
-      '@leight/user-server': ^0.5.7
+      '@leight/container': ^0.5.8
+      '@leight/prisma': '*'
+      '@leight/source': ^0.5.4
+      '@leight/source-server': ^0.5.6
+      '@leight/trpc-server': ^0.5.9
+      '@leight/user': ^0.5.9
+      '@leight/user-server': ^0.5.8
       '@monye.one/eslint-config-eslint': workspace:^0.0.0
+      '@monye.one/prisma': '*'
       '@monye.one/transaction': workspace:^0.5.0
       '@monye.one/tsconfig': workspace:^0.0.0
       '@prisma/client': ^4.9.0
@@ -564,13 +565,14 @@ importers:
       typescript: ^4.9.5
       zod: ^3.20.2
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/prisma': 0.5.8_prisma@4.9.0
-      '@leight/source': 0.5.2
-      '@leight/source-server': 0.5.4
-      '@leight/trpc-server': 0.5.8_prisma@4.9.0
-      '@leight/user': 0.5.8
-      '@leight/user-server': 0.5.7_prisma@4.9.0
+      '@leight/container': 0.5.8
+      '@leight/prisma': 0.5.9_prisma@4.9.0
+      '@leight/source': 0.5.4
+      '@leight/source-server': 0.5.6
+      '@leight/trpc-server': 0.5.9_prisma@4.9.0
+      '@leight/user': 0.5.9
+      '@leight/user-server': 0.5.8_prisma@4.9.0
+      '@monye.one/prisma': link:../prisma
       '@monye.one/transaction': link:../transaction
       '@prisma/client': 4.9.0_prisma@4.9.0
       reflect-metadata: 0.1.13
@@ -592,8 +594,8 @@ importers:
 
   packages/@monye.one/trpc-client:
     specifiers:
-      '@leight/trpc': ^0.5.7
-      '@leight/xlsx-import': ^0.5.7
+      '@leight/trpc': ^0.5.8
+      '@leight/xlsx-import': ^0.5.8
       '@monye.one/eslint-config-eslint': workspace:^0.0.0
       '@monye.one/trpc-server': workspace:^0.5.0
       '@monye.one/tsconfig': workspace:^0.0.0
@@ -619,8 +621,8 @@ importers:
       superjson: ^1.12.2
       typescript: ^4.9.5
     dependencies:
-      '@leight/trpc': 0.5.7
-      '@leight/xlsx-import': 0.5.7
+      '@leight/trpc': 0.5.8
+      '@leight/xlsx-import': 0.5.8
       '@monye.one/trpc-server': link:../trpc-server
       '@tanstack/react-query': 4.24.4_biqbaboplfbrettd7655fr4n2y
       '@trpc/client': 10.9.1_@trpc+server@10.9.1
@@ -649,10 +651,12 @@ importers:
 
   packages/@monye.one/trpc-server:
     specifiers:
-      '@leight/trpc': ^0.5.7
-      '@leight/xlsx-import': ^0.5.7
-      '@leight/xlsx-import-server': ^0.5.7
+      '@leight/trpc': ^0.5.8
+      '@leight/trpc-server': ^0.5.9
+      '@leight/xlsx-import': ^0.5.8
+      '@leight/xlsx-import-server': ^0.5.8
       '@monye.one/eslint-config-eslint': workspace:^0.0.0
+      '@monye.one/transaction-server': workspace:^0.5.0
       '@monye.one/tsconfig': workspace:^0.0.0
       '@trpc/server': ^10.9.1
       '@types/node': ^18.11.18
@@ -673,9 +677,11 @@ importers:
       typescript: ^4.9.5
       zod: ^3.20.2
     dependencies:
-      '@leight/trpc': 0.5.7
-      '@leight/xlsx-import': 0.5.7
-      '@leight/xlsx-import-server': 0.5.7
+      '@leight/trpc': 0.5.8
+      '@leight/trpc-server': 0.5.9
+      '@leight/xlsx-import': 0.5.8
+      '@leight/xlsx-import-server': 0.5.8
+      '@monye.one/transaction-server': link:../transaction-server
       '@trpc/server': 10.9.1
       devalue: 4.2.3
       react: 18.2.0
@@ -705,11 +711,11 @@ importers:
     specifiers:
       '@babel/core': ^7.20.12
       '@emotion/react': ^11.10.5
-      '@leight/i18n': ^0.5.7
-      '@leight/i18n-client': ^0.5.9
-      '@leight/layout': ^0.5.8
-      '@leight/mantine': ^0.5.8
-      '@leight/utils': ^0.5.9
+      '@leight/i18n': ^0.5.8
+      '@leight/i18n-client': ^0.5.10
+      '@leight/layout': ^0.5.9
+      '@leight/mantine': ^0.5.9
+      '@leight/utils': ^0.5.10
       '@mantine/core': ^5.10.2
       '@mantine/hooks': ^5.10.2
       '@mantine/prism': ^5.10.2
@@ -728,7 +734,7 @@ importers:
       i18next: ^22.4.9
       next: ^13.1.6
       next-auth: ^4.19.2
-      next-i18next: ^13.1.0
+      next-i18next: ^13.1.4
       prop-types: ^15.8.1
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -738,11 +744,11 @@ importers:
     dependencies:
       '@babel/core': 7.20.12
       '@emotion/react': 11.10.5_yxdp3dl3eazy3vwpbmv4fq727a
-      '@leight/i18n': 0.5.7
-      '@leight/i18n-client': 0.5.9_@babel+core@7.20.12
-      '@leight/layout': 0.5.8
-      '@leight/mantine': 0.5.8_@types+react@18.0.27
-      '@leight/utils': 0.5.9
+      '@leight/i18n': 0.5.8
+      '@leight/i18n-client': 0.5.10_@babel+core@7.20.12
+      '@leight/layout': 0.5.9
+      '@leight/mantine': 0.5.9_@types+react@18.0.27
+      '@leight/utils': 0.5.10
       '@mantine/core': 5.10.2_bgdfy3qhwgihjpd7hjoiv47mfe
       '@mantine/hooks': 5.10.2_react@18.2.0
       '@mantine/prism': 5.10.2_yzf4d63xstafd7ya36kewhvvjm
@@ -750,7 +756,7 @@ importers:
       i18next: 22.4.9
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
       next-auth: 4.19.2_3vryta7zmbcsw4rrqf4axjqggm
-      next-i18next: 13.1.0_ofn3rluqlytmjlkhptt5cftfxy
+      next-i18next: 13.1.4_ofn3rluqlytmjlkhptt5cftfxy
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1194,16 +1200,16 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
 
-  /@leight/container-server/0.5.7_gskeklljahpim6vtz354vntlem:
-    resolution: {integrity: sha512-bIh0XVWUDA3ZsUtPnK0mQmEV4imywXk+QOJskG5vDrFGBf7Fk7+2shu1JCafEFWWnUai25tFB61tcMh8iMxgOw==}
+  /@leight/container-server/0.5.8_gskeklljahpim6vtz354vntlem:
+    resolution: {integrity: sha512-n4omLztwUg7Dt4rAi9cDY9u5wtJDXNaukHg8vlWHNJqi3njV1x3N4HyUuykACKP6Ukp/k+ks7xFWwwDZULTyWg==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/file-server': 0.5.7_gskeklljahpim6vtz354vntlem
-      '@leight/import-server': 0.5.7
-      '@leight/job-server': 0.5.8_gskeklljahpim6vtz354vntlem
-      '@leight/user-server': 0.5.7_gskeklljahpim6vtz354vntlem
-      '@leight/xlsx-import-server': 0.5.7_gskeklljahpim6vtz354vntlem
+      '@leight/container': 0.5.8
+      '@leight/file-server': 0.5.8_gskeklljahpim6vtz354vntlem
+      '@leight/import-server': 0.5.8
+      '@leight/job-server': 0.5.9_gskeklljahpim6vtz354vntlem
+      '@leight/user-server': 0.5.8_gskeklljahpim6vtz354vntlem
+      '@leight/xlsx-import-server': 0.5.8_gskeklljahpim6vtz354vntlem
       reflect-metadata: 0.1.13
     transitivePeerDependencies:
       - '@babel/core'
@@ -1216,20 +1222,20 @@ packages:
       - sass
     dev: false
 
-  /@leight/container/0.5.7:
-    resolution: {integrity: sha512-Pg1OcwLbkgIh3lIVypn6yNgHfECQiTA10PI8k8zjcNs2pjAp6l161mlXILY6fhZTxvsB5tEAIudo8wGzK+ogXw==}
+  /@leight/container/0.5.8:
+    resolution: {integrity: sha512-g6JDzkslfphXHvhfWvDaLXgn0LNtZ44PaTkJjUPnajSehHjyIi50rnJ2GUIuDxk8owbfYo0iJyLMfh7DLl0n8g==}
     engines: {node: '>=16.0.0'}
     dependencies:
       reflect-metadata: 0.1.13
       tsyringe: 4.7.0
     dev: false
 
-  /@leight/context-client/0.5.8:
-    resolution: {integrity: sha512-10tKkOkwWDi6meg98AOFh8GXDS8CWZj71A/9DXxyhQFotS+UUw7Wsu0uzGyXxV6Xd7mh91Z18i3Jk5CzxAs39Q==}
+  /@leight/context-client/0.5.9:
+    resolution: {integrity: sha512-BSIkC0NlgyCMLrArZRrICayrbcVnzocnn3a8AYEul3+OrqJFjH00/bfisiOQE6sd6PvbMsVeT8aEs31Zmhvusg==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/utils': 0.5.9
-      '@leight/zustand': 0.5.7
+      '@leight/utils': 0.5.10
+      '@leight/zustand': 0.5.8
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       reflect-metadata: 0.1.13
@@ -1238,20 +1244,20 @@ packages:
       - immer
     dev: false
 
-  /@leight/cursor/0.5.2:
-    resolution: {integrity: sha512-wrF2Ltx4y0mxmdSyzmIr83UrhQc3DC1dgdDaYBJMjhxiYWumDBLG+r26bg+U++eJAFEeH1jpaEGo3lMIrkTUHw==}
+  /@leight/cursor/0.5.3:
+    resolution: {integrity: sha512-OuETRom7mqqAwa26VanAoLLx6CRUSkJWdKnDIcEfEBat3iBFg2ZLAOk6GD8rjNOHHab76MEhB1XteuCdKCtWKg==}
     engines: {node: '>=16.0.0'}
     dependencies:
       reflect-metadata: 0.1.13
     dev: false
 
-  /@leight/file-client/0.5.9:
-    resolution: {integrity: sha512-Ek39jTx/n/RrQdHG4A4anhYUdpEttl4FOI43XEQhnRa2C4qVqUh+ptatqCHMqwHoyCPr8ZY3/cZcDmxSNy/P1g==}
+  /@leight/file-client/0.5.10:
+    resolution: {integrity: sha512-Xfwx5GRCc7fUPAuCWIcbgc+/QFTIwvvRDyTfbEP5GZ1xu4uWTiiKqvs7W1BE/esuhT1p2XqnTtgEwefQPIUTOQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/file': 0.5.7
-      '@leight/utils': 0.5.9
-      '@leight/utils-client': 0.5.9
+      '@leight/file': 0.5.8
+      '@leight/utils': 0.5.10
+      '@leight/utils-client': 0.5.10
       axios: 1.3.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1263,13 +1269,13 @@ packages:
       - prisma
     dev: false
 
-  /@leight/file-client/0.5.9_prisma@4.9.0:
-    resolution: {integrity: sha512-Ek39jTx/n/RrQdHG4A4anhYUdpEttl4FOI43XEQhnRa2C4qVqUh+ptatqCHMqwHoyCPr8ZY3/cZcDmxSNy/P1g==}
+  /@leight/file-client/0.5.10_prisma@4.9.0:
+    resolution: {integrity: sha512-Xfwx5GRCc7fUPAuCWIcbgc+/QFTIwvvRDyTfbEP5GZ1xu4uWTiiKqvs7W1BE/esuhT1p2XqnTtgEwefQPIUTOQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/file': 0.5.7_prisma@4.9.0
-      '@leight/utils': 0.5.9
-      '@leight/utils-client': 0.5.9
+      '@leight/file': 0.5.8_prisma@4.9.0
+      '@leight/utils': 0.5.10
+      '@leight/utils-client': 0.5.10
       axios: 1.3.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1281,14 +1287,14 @@ packages:
       - prisma
     dev: false
 
-  /@leight/file-server/0.5.7_gskeklljahpim6vtz354vntlem:
-    resolution: {integrity: sha512-5mjPhLFLUTwTMaG93fDDyP1KJGa+CfvJ77wRwcy42oN5VPLl/VM86reTiq+8eybB8lh6GsFL7oqwg9e6Xbfymg==}
+  /@leight/file-server/0.5.8_gskeklljahpim6vtz354vntlem:
+    resolution: {integrity: sha512-8Y/4UtdpzvoSaFTMloOjQw9JVr/oUiSRjnxFIXmUBZwEwoiuWZzEwEhkzm3WyYquGjA0SEjsDSgJhsKcmiR+5A==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/file': 0.5.7_prisma@4.9.0
-      '@leight/next.js-server': 0.5.8_gskeklljahpim6vtz354vntlem
-      '@leight/prisma': 0.5.8_prisma@4.9.0
+      '@leight/container': 0.5.8
+      '@leight/file': 0.5.8_prisma@4.9.0
+      '@leight/next.js-server': 0.5.9_gskeklljahpim6vtz354vntlem
+      '@leight/prisma': 0.5.9_prisma@4.9.0
       fs-extra: 11.1.0
       mime-detect: 1.1.4
       reflect-metadata: 0.1.13
@@ -1305,42 +1311,42 @@ packages:
       - sass
     dev: false
 
-  /@leight/file/0.5.7:
-    resolution: {integrity: sha512-wghX1kbFdHKB6RNMiIx+OrIydHQOwxTbZ4GwN1T833UjS2yJvGNEEGAWDk5i8dYKoLpSwEnRkuqQOI9kx5jQ8A==}
+  /@leight/file/0.5.8:
+    resolution: {integrity: sha512-Cqw3qsP5edODg2lbjR/i628eUrq0OolhX27BRbpElw8mmvdAHvm7o2ds0f6RyLHQcW8lPVw5MH5UF2NSoPhUag==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/prisma': 0.5.8
+      '@leight/prisma': 0.5.9
       reflect-metadata: 0.1.13
     transitivePeerDependencies:
       - prisma
     dev: false
 
-  /@leight/file/0.5.7_prisma@4.9.0:
-    resolution: {integrity: sha512-wghX1kbFdHKB6RNMiIx+OrIydHQOwxTbZ4GwN1T833UjS2yJvGNEEGAWDk5i8dYKoLpSwEnRkuqQOI9kx5jQ8A==}
+  /@leight/file/0.5.8_prisma@4.9.0:
+    resolution: {integrity: sha512-Cqw3qsP5edODg2lbjR/i628eUrq0OolhX27BRbpElw8mmvdAHvm7o2ds0f6RyLHQcW8lPVw5MH5UF2NSoPhUag==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/prisma': 0.5.8_prisma@4.9.0
+      '@leight/prisma': 0.5.9_prisma@4.9.0
       reflect-metadata: 0.1.13
     transitivePeerDependencies:
       - prisma
     dev: false
 
-  /@leight/filter/0.5.2:
-    resolution: {integrity: sha512-uVR30xZ/s7chCZdjfmZ7P3F33SNiStlB6Ke4guUEElWnnzHGbfAFMhR6+injhXJk5gEDeEQpNFc6dH2fi2/Y8A==}
+  /@leight/filter/0.5.3:
+    resolution: {integrity: sha512-EMVnilYliZArH8NnU+XrCgnsp/Oi4hgIuUTvlvRvlADduTr07Chal0EjhVFAL4VB124SLuTcziuvPDDdqMoORg==}
     engines: {node: '>=16.0.0'}
     dependencies:
       reflect-metadata: 0.1.13
     dev: false
 
-  /@leight/i18n-client/0.5.9_@babel+core@7.20.12:
-    resolution: {integrity: sha512-kYA9mT6AO5CINgQvQ/pxD0W5J80S7F4ROig7bEFTKazPfuwUIYaxmqmfBmuAZ8YoZK5p86BIiGSJS5SGP71r0A==}
+  /@leight/i18n-client/0.5.10_@babel+core@7.20.12:
+    resolution: {integrity: sha512-KKTGNlKOI90Gp6A8TZPIdD28Xq5OE7xSOW8KHEUYUG9ITxwEGoXHihcojgC+8Ek3nBlqAynspwZht5V3YPAMjQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/i18n': 0.5.7
-      '@leight/utils': 0.5.9
+      '@leight/i18n': 0.5.8
+      '@leight/utils': 0.5.10
       i18next: 22.4.9
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
-      next-i18next: 13.1.0_ofn3rluqlytmjlkhptt5cftfxy
+      next-i18next: 13.1.4_ofn3rluqlytmjlkhptt5cftfxy
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-i18next: 12.1.5_iakk3dtjhjpukdoa4oua5khgci
@@ -1354,14 +1360,14 @@ packages:
       - sass
     dev: false
 
-  /@leight/i18n-server/0.5.8_@babel+core@7.20.12:
-    resolution: {integrity: sha512-5KXqicwR2SIaOYXIG5j0Sst1aU3bjWor7ETdDnAutEM0moDyF5xby7lHdYN9uSgjv61W4IUImqsc3Gccv54hWg==}
+  /@leight/i18n-server/0.5.9_@babel+core@7.20.12:
+    resolution: {integrity: sha512-0tbJkFnmJyZ8/togYp5s7MuddpjC3zD4kdxAal5CagOpl3l5Pm69DRhwMOx1nSGk8iq/bFxvPREdNA3kwpoCdg==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/i18n': 0.5.7
+      '@leight/i18n': 0.5.8
       i18next: 22.4.9
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
-      next-i18next: 13.1.0_ofn3rluqlytmjlkhptt5cftfxy
+      next-i18next: 13.1.4_ofn3rluqlytmjlkhptt5cftfxy
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-i18next: 12.1.5_iakk3dtjhjpukdoa4oua5khgci
@@ -1375,42 +1381,42 @@ packages:
       - sass
     dev: false
 
-  /@leight/i18n/0.5.7:
-    resolution: {integrity: sha512-N09PE+2d/R3CghPeKABc5QvYmnAPZGLA5OLIXylZFN3L1X2NpWIUqUl3t/50yuMNEk4fhv6ymt8iLRNePSKs+w==}
+  /@leight/i18n/0.5.8:
+    resolution: {integrity: sha512-i/Ei6J4+2oCiZX6GjyDbr3zT4Ac/cEukLnkvCbPxN3BCkjCOMQSwLlij+B1ENEXJwiBZW166qpVUH8KmdtQg4Q==}
     engines: {node: '>=16.0.0'}
     dependencies:
       reflect-metadata: 0.1.13
     dev: false
 
-  /@leight/import-server/0.5.7:
-    resolution: {integrity: sha512-kSLEo1CnThWubt8QGSknwQ1O4Rug0y/l2aoHTNkUau8HRj5uQEgSWMd9ZxSxvd9+xpD/6ftIZyUASjX9WPVPBA==}
+  /@leight/import-server/0.5.8:
+    resolution: {integrity: sha512-cvUc3LJuMmLIP3pij/GNxb3xbryRBTm/6ZOUrcgggOzkV4XEgq3ymv+sl4tx1oZxO8UkLxnmV+zU5RIwvz4eFA==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/import': 0.5.7
+      '@leight/container': 0.5.8
+      '@leight/import': 0.5.8
       reflect-metadata: 0.1.13
       tsyringe: 4.7.0
     dev: false
 
-  /@leight/import/0.5.7:
-    resolution: {integrity: sha512-FfNENUtrQTL3/YIEZ4xg/SiGTASoyu4EWyvKfwKCH/TisJe3JEBnnCpDh/GOwn3muOC4mW1Rz+Zpd27WQz29WA==}
+  /@leight/import/0.5.8:
+    resolution: {integrity: sha512-qsqzAHpK48GG1MQ6ICB3RvpmAr7niaI09o3ISfKi8MUXum4LP3Rchx4iCxFQwSFcDtxCfUy9jYFx2kuz4fPXWQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/job': 0.5.7
+      '@leight/job': 0.5.8
       reflect-metadata: 0.1.13
       zod: 3.20.2
     dev: false
 
-  /@leight/job-server/0.5.8_gskeklljahpim6vtz354vntlem:
-    resolution: {integrity: sha512-b5o/ub85vWr9QBPEMFDiYWZfGNbmJftAdPkBRKdhgJSieJAij9qOxiK06q47sLDxyJtyw+e736hPWpVqpGgVQA==}
+  /@leight/job-server/0.5.9_gskeklljahpim6vtz354vntlem:
+    resolution: {integrity: sha512-lDirjnv2EichXgBnz28c3VbecDJAgECAEBlws6kR5JVI8Eg0x8OfzdaPnDYnnFyGlUvQ3oCHfWZh+n3QMH50aA==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/job': 0.5.7
-      '@leight/prisma': 0.5.8_prisma@4.9.0
-      '@leight/user': 0.5.8_@babel+core@7.20.12
-      '@leight/utils': 0.5.9
-      '@leight/winston': 0.5.7
+      '@leight/container': 0.5.8
+      '@leight/job': 0.5.8
+      '@leight/prisma': 0.5.9_prisma@4.9.0
+      '@leight/user': 0.5.9_@babel+core@7.20.12
+      '@leight/utils': 0.5.10
+      '@leight/winston': 0.5.8
       delay: 5.0.0
       reflect-metadata: 0.1.13
       tsyringe: 4.7.0
@@ -1424,16 +1430,16 @@ packages:
       - sass
     dev: false
 
-  /@leight/job/0.5.7:
-    resolution: {integrity: sha512-Cg5bSQ2bypHz/JBnwDdWGOqVdLV/YWG3iArAEYYFOu3BJM55eak+19vu0pOBWxuo7C9KFvxYET2xVA/QEFbx2g==}
+  /@leight/job/0.5.8:
+    resolution: {integrity: sha512-9UsGv19faWYds/s1wccqo4c6mQD0owJOlJd7CHMOanQEoxJUn0vtST798IL0wuvfRFp8ZiUhfhhspYdOOglGBQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
       reflect-metadata: 0.1.13
       winston: 3.8.2
     dev: false
 
-  /@leight/layout/0.5.8:
-    resolution: {integrity: sha512-wst9HNxfsF5CrStrGRHIhutXgYSYydNCQsRQZEnEUpPtPpnLW4W4eB+y1OI/h31sO4Y7rouSjdmKs/zCBmki9w==}
+  /@leight/layout/0.5.9:
+    resolution: {integrity: sha512-K4S0uE8bVOKrL0CFZO+ohNpBktsqlB50k1A+pnxzR3p3rs6F97klmJ+YNCFKY/xU/a6uqvMTYWGplPGaFjBWbg==}
     engines: {node: '>=16.0.0'}
     dependencies:
       react: 18.2.0
@@ -1441,18 +1447,18 @@ packages:
       reflect-metadata: 0.1.13
     dev: false
 
-  /@leight/mantine/0.5.8_@types+react@18.0.27:
-    resolution: {integrity: sha512-gR4mtAXAhddjqbF6YKw5nayJHzXnySl+pcpvfwT9jytn/TPzxTvEQN3s66+Ch+p33UgXlr0ikeTAHzWDHiCKIg==}
+  /@leight/mantine/0.5.9_@types+react@18.0.27:
+    resolution: {integrity: sha512-r02dYP3GHqfGs3V5VJuCLuZNtrTbllXaZKIqg3DTyiWjv+qNlcrxwD6IJcv5kBG/EuHB9EjOUu+MtxhUVpkHUA==}
     engines: {node: '>=16.0.0'}
     dependencies:
       '@babel/core': 7.20.12
       '@emotion/react': 11.10.5_yxdp3dl3eazy3vwpbmv4fq727a
-      '@leight/file': 0.5.7
-      '@leight/file-client': 0.5.9
-      '@leight/i18n': 0.5.7
-      '@leight/i18n-client': 0.5.9_@babel+core@7.20.12
-      '@leight/utils': 0.5.9
-      '@leight/utils-client': 0.5.9
+      '@leight/file': 0.5.8
+      '@leight/file-client': 0.5.10
+      '@leight/i18n': 0.5.8
+      '@leight/i18n-client': 0.5.10_@babel+core@7.20.12
+      '@leight/utils': 0.5.10
+      '@leight/utils-client': 0.5.10
       '@mantine/core': 5.10.2_bgdfy3qhwgihjpd7hjoiv47mfe
       '@mantine/dropzone': 5.10.2_yzf4d63xstafd7ya36kewhvvjm
       '@mantine/hooks': 5.10.2_react@18.2.0
@@ -1475,18 +1481,18 @@ packages:
       - supports-color
     dev: false
 
-  /@leight/mantine/0.5.8_gs5pdpymxifm4lhkilqzed2ete:
-    resolution: {integrity: sha512-gR4mtAXAhddjqbF6YKw5nayJHzXnySl+pcpvfwT9jytn/TPzxTvEQN3s66+Ch+p33UgXlr0ikeTAHzWDHiCKIg==}
+  /@leight/mantine/0.5.9_gs5pdpymxifm4lhkilqzed2ete:
+    resolution: {integrity: sha512-r02dYP3GHqfGs3V5VJuCLuZNtrTbllXaZKIqg3DTyiWjv+qNlcrxwD6IJcv5kBG/EuHB9EjOUu+MtxhUVpkHUA==}
     engines: {node: '>=16.0.0'}
     dependencies:
       '@babel/core': 7.20.12
       '@emotion/react': 11.10.5_yxdp3dl3eazy3vwpbmv4fq727a
-      '@leight/file': 0.5.7_prisma@4.9.0
-      '@leight/file-client': 0.5.9_prisma@4.9.0
-      '@leight/i18n': 0.5.7
-      '@leight/i18n-client': 0.5.9_@babel+core@7.20.12
-      '@leight/utils': 0.5.9
-      '@leight/utils-client': 0.5.9
+      '@leight/file': 0.5.8_prisma@4.9.0
+      '@leight/file-client': 0.5.10_prisma@4.9.0
+      '@leight/i18n': 0.5.8
+      '@leight/i18n-client': 0.5.10_@babel+core@7.20.12
+      '@leight/utils': 0.5.10
+      '@leight/utils-client': 0.5.10
       '@mantine/core': 5.10.2_bgdfy3qhwgihjpd7hjoiv47mfe
       '@mantine/dropzone': 5.10.2_yzf4d63xstafd7ya36kewhvvjm
       '@mantine/hooks': 5.10.2_react@18.2.0
@@ -1509,15 +1515,15 @@ packages:
       - supports-color
     dev: false
 
-  /@leight/next.js-server/0.5.8_gskeklljahpim6vtz354vntlem:
-    resolution: {integrity: sha512-5XbLCCSDVdj6C5OpI4DN/ZmgITVUqFyDUq8eMIOs1DG1QzEF2UIlVXivLByDPlF/31FH1CcsVkVIcP8i1X/riw==}
+  /@leight/next.js-server/0.5.9_gskeklljahpim6vtz354vntlem:
+    resolution: {integrity: sha512-WC9CuhGSCuvKMRbKpoGNRFISjn5zWuNzTdcNzvyQKI8p52wngn5HCICkYwYytCLyvZtADfMV078bV95tPvPTBQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/user': 0.5.8_@babel+core@7.20.12
-      '@leight/user-server': 0.5.7_gskeklljahpim6vtz354vntlem
-      '@leight/utils': 0.5.9
-      '@leight/winston': 0.5.7
+      '@leight/container': 0.5.8
+      '@leight/user': 0.5.9_@babel+core@7.20.12
+      '@leight/user-server': 0.5.8_gskeklljahpim6vtz354vntlem
+      '@leight/utils': 0.5.10
+      '@leight/winston': 0.5.8
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
       next-auth: 4.19.2_3vryta7zmbcsw4rrqf4axjqggm
       raw-body: 2.5.1
@@ -1534,8 +1540,8 @@ packages:
       - sass
     dev: false
 
-  /@leight/prisma/0.5.8:
-    resolution: {integrity: sha512-lNUTt9hOXsRl4+/GEGZ4/II+fu/OKmP4Zj5us0h/xE1J1/EkHLrmhUPSZUUdFkhpeEmL5T54POG76LnLDtFtsQ==}
+  /@leight/prisma/0.5.9:
+    resolution: {integrity: sha512-qAxLoY2nB3NVNThyRGR36uPDIUacA1C2zsKQd2xpuo5KCirw8PoggZuDgBtsPxrfEAckCx/RFt1/L+ymj3lPwQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
       '@prisma/client': 4.9.0
@@ -1544,8 +1550,8 @@ packages:
       - prisma
     dev: false
 
-  /@leight/prisma/0.5.8_prisma@4.9.0:
-    resolution: {integrity: sha512-lNUTt9hOXsRl4+/GEGZ4/II+fu/OKmP4Zj5us0h/xE1J1/EkHLrmhUPSZUUdFkhpeEmL5T54POG76LnLDtFtsQ==}
+  /@leight/prisma/0.5.9_prisma@4.9.0:
+    resolution: {integrity: sha512-qAxLoY2nB3NVNThyRGR36uPDIUacA1C2zsKQd2xpuo5KCirw8PoggZuDgBtsPxrfEAckCx/RFt1/L+ymj3lPwQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
       '@prisma/client': 4.9.0_prisma@4.9.0
@@ -1554,49 +1560,49 @@ packages:
       - prisma
     dev: false
 
-  /@leight/query/0.5.2:
-    resolution: {integrity: sha512-FHr7ayXn41kHhkzHFCNzv7f0HLu46BtPaTsPeHWo6WN8bpOpaPoEaqeT8yyQxknebuCy+2kpPazb2UF3MA+TYw==}
+  /@leight/query/0.5.3:
+    resolution: {integrity: sha512-tbj2CIMoq0ksTc+Y/C2LIxlTse35XTpfVi0MDmolA+xgl7oopuIEFPbgTKyYLxk77KfXVd+UNnQtzxpKN5pEKA==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/cursor': 0.5.2
-      '@leight/filter': 0.5.2
-      '@leight/sort': 0.5.2
+      '@leight/cursor': 0.5.3
+      '@leight/filter': 0.5.3
+      '@leight/sort': 0.5.3
       reflect-metadata: 0.1.13
     dev: false
 
-  /@leight/sort/0.5.2:
-    resolution: {integrity: sha512-rbwE8yg1sL1exh9J1ZT9zUNNCgUSGBaJw0TZNAGzlAFmBXdB36Q3mNrqipeFutxfo3UodDNKYFVGESD5r/dRcw==}
+  /@leight/sort/0.5.3:
+    resolution: {integrity: sha512-LbuQ1QL2Gy/aFMQTXVJmDG/KoYqfUX2gFVtF+C2CA5uAMpHw+mCQVlt7xxlvYewWwQKLafsbUwPPbeEVcIABRw==}
     engines: {node: '>=16.0.0'}
     dependencies:
       reflect-metadata: 0.1.13
     dev: false
 
-  /@leight/source-server/0.5.4:
-    resolution: {integrity: sha512-5tW/e5OUTP02uj3RCY41T/gLiOj6E2+hTPjSOLruGCyF2yAXoUrOG8pgvMH2eNJbtGME05fPEc4/fCW5cUVrDw==}
+  /@leight/source-server/0.5.6:
+    resolution: {integrity: sha512-ZPxzlQJlSc2fn80Uv3bkq82aauUlNwtKO02v/aC+BOYG+IRlkvvDW9eYGz7VwXg4Z/BZCh9CGMbSVdXqDVHw9Q==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/query': 0.5.2
-      '@leight/source': 0.5.2
-      '@leight/utils': 0.5.9
+      '@leight/query': 0.5.3
+      '@leight/source': 0.5.4
+      '@leight/utils': 0.5.10
       reflect-metadata: 0.1.13
     dev: false
 
-  /@leight/source/0.5.2:
-    resolution: {integrity: sha512-XQh5pK310LAykXBJwwpn7n5AIfdVpRSlWBt+Ch9OQXDjjRabqKP77XIbDVw02Y64D4kJyFhxYV/UPsUCb6yKxA==}
+  /@leight/source/0.5.4:
+    resolution: {integrity: sha512-QGuSjckktlNbI0kVFsoZdSshbdwciUxDJsiMQIyN6rr/GZw4DyQ4kmAlQwR9BhZq1LmLzUq114fCBDCofOgArQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/query': 0.5.2
+      '@leight/query': 0.5.3
       reflect-metadata: 0.1.13
     dev: false
 
-  /@leight/trpc-server/0.5.8:
-    resolution: {integrity: sha512-Nwi1TIPdfkfRUDdKUPcap1RioOW4LVDKYt0vx06gVsMPQLA6LBpDtI0mCDc4+Jo6QViPhpJpMBECGo+vYqD8HQ==}
+  /@leight/trpc-server/0.5.9:
+    resolution: {integrity: sha512-XsBGELX11pEUiWwGwz+xHhAIVnQVqjuczFhSttb39UI1PIQjm/8o8y7N7Yc0aDsSYyMFgj1bKtf7n3pP3YqoLg==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/trpc': 0.5.7
-      '@leight/user': 0.5.8
-      '@leight/user-server': 0.5.7
+      '@leight/container': 0.5.8
+      '@leight/trpc': 0.5.8
+      '@leight/user': 0.5.9
+      '@leight/user-server': 0.5.8
       '@trpc/server': 10.9.1
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       next-auth: 4.19.2_3vryta7zmbcsw4rrqf4axjqggm
@@ -1615,14 +1621,14 @@ packages:
       - sass
     dev: false
 
-  /@leight/trpc-server/0.5.8_gskeklljahpim6vtz354vntlem:
-    resolution: {integrity: sha512-Nwi1TIPdfkfRUDdKUPcap1RioOW4LVDKYt0vx06gVsMPQLA6LBpDtI0mCDc4+Jo6QViPhpJpMBECGo+vYqD8HQ==}
+  /@leight/trpc-server/0.5.9_gskeklljahpim6vtz354vntlem:
+    resolution: {integrity: sha512-XsBGELX11pEUiWwGwz+xHhAIVnQVqjuczFhSttb39UI1PIQjm/8o8y7N7Yc0aDsSYyMFgj1bKtf7n3pP3YqoLg==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/trpc': 0.5.7_@babel+core@7.20.12
-      '@leight/user': 0.5.8_@babel+core@7.20.12
-      '@leight/user-server': 0.5.7_gskeklljahpim6vtz354vntlem
+      '@leight/container': 0.5.8
+      '@leight/trpc': 0.5.8_@babel+core@7.20.12
+      '@leight/user': 0.5.9_@babel+core@7.20.12
+      '@leight/user-server': 0.5.8_gskeklljahpim6vtz354vntlem
       '@trpc/server': 10.9.1
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
       next-auth: 4.19.2_3vryta7zmbcsw4rrqf4axjqggm
@@ -1641,14 +1647,14 @@ packages:
       - sass
     dev: false
 
-  /@leight/trpc-server/0.5.8_prisma@4.9.0:
-    resolution: {integrity: sha512-Nwi1TIPdfkfRUDdKUPcap1RioOW4LVDKYt0vx06gVsMPQLA6LBpDtI0mCDc4+Jo6QViPhpJpMBECGo+vYqD8HQ==}
+  /@leight/trpc-server/0.5.9_prisma@4.9.0:
+    resolution: {integrity: sha512-XsBGELX11pEUiWwGwz+xHhAIVnQVqjuczFhSttb39UI1PIQjm/8o8y7N7Yc0aDsSYyMFgj1bKtf7n3pP3YqoLg==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/trpc': 0.5.7
-      '@leight/user': 0.5.8
-      '@leight/user-server': 0.5.7_prisma@4.9.0
+      '@leight/container': 0.5.8
+      '@leight/trpc': 0.5.8
+      '@leight/user': 0.5.9
+      '@leight/user-server': 0.5.8_prisma@4.9.0
       '@trpc/server': 10.9.1
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       next-auth: 4.19.2_3vryta7zmbcsw4rrqf4axjqggm
@@ -1667,12 +1673,12 @@ packages:
       - sass
     dev: false
 
-  /@leight/trpc/0.5.7:
-    resolution: {integrity: sha512-uB7EtnNdL62B3sj0aJ+P+jNHryQIKksqSB93SuMg3SNcZ8wWkhsIgtUk4rVOiNcNei+WbjnjD/B1z1y1iwYTmA==}
+  /@leight/trpc/0.5.8:
+    resolution: {integrity: sha512-enpsVkioLfETXkU8mfmZVVSQZv2tyoj4eFclH+I9GCuw3yl7Td/84Z7k3DHktyTzW0JGYsWaghgpSW7f7XlWkQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/user': 0.5.8
+      '@leight/container': 0.5.8
+      '@leight/user': 0.5.9
       '@tanstack/react-query': 4.24.4_biqbaboplfbrettd7655fr4n2y
       '@trpc/server': 10.9.1
       react: 18.2.0
@@ -1689,12 +1695,12 @@ packages:
       - sass
     dev: false
 
-  /@leight/trpc/0.5.7_@babel+core@7.20.12:
-    resolution: {integrity: sha512-uB7EtnNdL62B3sj0aJ+P+jNHryQIKksqSB93SuMg3SNcZ8wWkhsIgtUk4rVOiNcNei+WbjnjD/B1z1y1iwYTmA==}
+  /@leight/trpc/0.5.8_@babel+core@7.20.12:
+    resolution: {integrity: sha512-enpsVkioLfETXkU8mfmZVVSQZv2tyoj4eFclH+I9GCuw3yl7Td/84Z7k3DHktyTzW0JGYsWaghgpSW7f7XlWkQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/user': 0.5.8_@babel+core@7.20.12
+      '@leight/container': 0.5.8
+      '@leight/user': 0.5.9_@babel+core@7.20.12
       '@tanstack/react-query': 4.24.4_biqbaboplfbrettd7655fr4n2y
       '@trpc/server': 10.9.1
       react: 18.2.0
@@ -1711,18 +1717,18 @@ packages:
       - sass
     dev: false
 
-  /@leight/tsconfig/0.5.9:
-    resolution: {integrity: sha512-1Y7geA/JETIqgw3Uq+KS3mJtpfxKhKLaFtnnvOXgJrQw/iJaa4Q6uqdKqwRdwUWCwcldv5IdNDP4fm9+NBpu+w==}
+  /@leight/tsconfig/0.5.10:
+    resolution: {integrity: sha512-Qeinmkwd8aKo201sZvoJZB3HYyTARH7/iWJ41o0aP0OQ99oZewRcrPOPwjW5iVYuSjGVFjczpMZq1TW04jDaEw==}
     dev: false
 
-  /@leight/user-server/0.5.7:
-    resolution: {integrity: sha512-LMG6qBE8Wt8yC2+GsM1y7db0RMFJ/AcRK3FVU37EJVJv76HLq59xkKeUE+YpXePB2oKTLVxgH0xqpokv2Bft7w==}
+  /@leight/user-server/0.5.8:
+    resolution: {integrity: sha512-5WMjYE6cR2XM7y1112hzL6ZvnKxL+NFjsymWsSjiAX3cmzpcKU6NLI6YUgx2DpCuQMusN/fgbtvb/FHAw4BNJg==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/prisma': 0.5.8
-      '@leight/user': 0.5.8
-      '@leight/utils': 0.5.9
+      '@leight/container': 0.5.8
+      '@leight/prisma': 0.5.9
+      '@leight/user': 0.5.9
+      '@leight/utils': 0.5.10
       reflect-metadata: 0.1.13
       tsyringe: 4.7.0
     transitivePeerDependencies:
@@ -1735,14 +1741,14 @@ packages:
       - sass
     dev: false
 
-  /@leight/user-server/0.5.7_gskeklljahpim6vtz354vntlem:
-    resolution: {integrity: sha512-LMG6qBE8Wt8yC2+GsM1y7db0RMFJ/AcRK3FVU37EJVJv76HLq59xkKeUE+YpXePB2oKTLVxgH0xqpokv2Bft7w==}
+  /@leight/user-server/0.5.8_gskeklljahpim6vtz354vntlem:
+    resolution: {integrity: sha512-5WMjYE6cR2XM7y1112hzL6ZvnKxL+NFjsymWsSjiAX3cmzpcKU6NLI6YUgx2DpCuQMusN/fgbtvb/FHAw4BNJg==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/prisma': 0.5.8_prisma@4.9.0
-      '@leight/user': 0.5.8_@babel+core@7.20.12
-      '@leight/utils': 0.5.9
+      '@leight/container': 0.5.8
+      '@leight/prisma': 0.5.9_prisma@4.9.0
+      '@leight/user': 0.5.9_@babel+core@7.20.12
+      '@leight/utils': 0.5.10
       reflect-metadata: 0.1.13
       tsyringe: 4.7.0
     transitivePeerDependencies:
@@ -1755,14 +1761,14 @@ packages:
       - sass
     dev: false
 
-  /@leight/user-server/0.5.7_prisma@4.9.0:
-    resolution: {integrity: sha512-LMG6qBE8Wt8yC2+GsM1y7db0RMFJ/AcRK3FVU37EJVJv76HLq59xkKeUE+YpXePB2oKTLVxgH0xqpokv2Bft7w==}
+  /@leight/user-server/0.5.8_prisma@4.9.0:
+    resolution: {integrity: sha512-5WMjYE6cR2XM7y1112hzL6ZvnKxL+NFjsymWsSjiAX3cmzpcKU6NLI6YUgx2DpCuQMusN/fgbtvb/FHAw4BNJg==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/prisma': 0.5.8_prisma@4.9.0
-      '@leight/user': 0.5.8
-      '@leight/utils': 0.5.9
+      '@leight/container': 0.5.8
+      '@leight/prisma': 0.5.9_prisma@4.9.0
+      '@leight/user': 0.5.9
+      '@leight/utils': 0.5.10
       reflect-metadata: 0.1.13
       tsyringe: 4.7.0
     transitivePeerDependencies:
@@ -1775,8 +1781,8 @@ packages:
       - sass
     dev: false
 
-  /@leight/user/0.5.8:
-    resolution: {integrity: sha512-fjp+eLsATf7qqczRx9CKyFfGPIT2AxV3JuX7ltLaQwprY6huo/Q8Xzssenpj22aSCoW1yY8/m4zfj/6flKn64Q==}
+  /@leight/user/0.5.9:
+    resolution: {integrity: sha512-mJpHx5RaUfCL09bCQQ5oXUxNLGAG9GTQ08ifdI4jPQbnxCHYQJhrGdolSl5wTPEa40hgP7QyUXOXgfh8HFS3mA==}
     engines: {node: '>=16.0.0'}
     dependencies:
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
@@ -1793,8 +1799,8 @@ packages:
       - sass
     dev: false
 
-  /@leight/user/0.5.8_@babel+core@7.20.12:
-    resolution: {integrity: sha512-fjp+eLsATf7qqczRx9CKyFfGPIT2AxV3JuX7ltLaQwprY6huo/Q8Xzssenpj22aSCoW1yY8/m4zfj/6flKn64Q==}
+  /@leight/user/0.5.9_@babel+core@7.20.12:
+    resolution: {integrity: sha512-mJpHx5RaUfCL09bCQQ5oXUxNLGAG9GTQ08ifdI4jPQbnxCHYQJhrGdolSl5wTPEa40hgP7QyUXOXgfh8HFS3mA==}
     engines: {node: '>=16.0.0'}
     dependencies:
       next: 13.1.6_pjwopsidmaokadturxaafygjp4
@@ -1811,12 +1817,12 @@ packages:
       - sass
     dev: false
 
-  /@leight/utils-client/0.5.9:
-    resolution: {integrity: sha512-WsdGRsJBciXFONlufjc2kf9r9Sv7kA55oTqrV5auc1dyYqJ4TscQLB1jffk1vv+D8NyQxYGoFmpdaTDvc5Kb9Q==}
+  /@leight/utils-client/0.5.10:
+    resolution: {integrity: sha512-u8Uls8R3PAIGSelczEcmZg2RQGcu2ps0Bh1TQOAGFXXSJ3QTTwVb8oQF7Ct+GbLwDxQ+/Buno0oBW2fr3Mb/Rw==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/context-client': 0.5.8
-      '@leight/utils': 0.5.9
+      '@leight/context-client': 0.5.9
+      '@leight/utils': 0.5.10
       path-to-regexp: 6.2.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1825,15 +1831,15 @@ packages:
       - immer
     dev: false
 
-  /@leight/utils-server/0.5.7:
-    resolution: {integrity: sha512-lX46cJf7xrdSEHpah+G4/hL1dss1RqhI5rUb5Yy5YWq/JaboXGlYgkZV9aAkbl8ISexPvL2TD3f03pawXyW1DQ==}
+  /@leight/utils-server/0.5.8:
+    resolution: {integrity: sha512-+Am0BqFvxEkuPHrUsUMkqSS+dHEZ2efszsdyxXsIOs7FsXvuga/O2erMYT/EMZKLHCGTgtcOf6GlYisOa8U+4g==}
     engines: {node: '>=16.0.0'}
     dependencies:
       reflect-metadata: 0.1.13
     dev: false
 
-  /@leight/utils/0.5.9:
-    resolution: {integrity: sha512-IPvFAo8bNsbH1W0PqvqrSjeiXAREbVpqEwBaXzIS1JtMMCvnadB+Y+OdhNzM/orEqIAKGdX6mJxXCR28x+BSKw==}
+  /@leight/utils/0.5.10:
+    resolution: {integrity: sha512-WRZZmAHJdugCQ6w66gLPMOupyD7zr/ygCQJms95iPt04g3eqsOCDrScsZVx5vATBSK7SwegWfvyOQPfkLgMiVw==}
     engines: {node: '>=16.0.0'}
     dependencies:
       fast-clean: 1.2.1
@@ -1842,22 +1848,22 @@ packages:
       reflect-metadata: 0.1.13
     dev: false
 
-  /@leight/winston/0.5.7:
-    resolution: {integrity: sha512-IIZjAdGH5Hpk2TG9dEaRXHi3/FtNloOImjS8hBzWZPJiOOex8QmfQ11JpajxmcQzdevxb4inUNro2Iye4zTsrg==}
+  /@leight/winston/0.5.8:
+    resolution: {integrity: sha512-0wrwEUKMxfrs9ilMRMexXQcW3VV2Tdh4P7FPxKN2bLKOEQ9ySaXcdVBTevxmHx2IeJ8GjSZlNFpflsQKT62jkQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
       reflect-metadata: 0.1.13
       winston: 3.8.2
     dev: false
 
-  /@leight/xlsx-import-client/0.5.9_gs5pdpymxifm4lhkilqzed2ete:
-    resolution: {integrity: sha512-V36LKk2FRBQjLMJc/8t1S2C1rnJjhLCSCigrP2TvukMKvdsClVjTUDsUU49PcYW88NDerYfqnaI5F7rp74f4MA==}
+  /@leight/xlsx-import-client/0.5.10_gs5pdpymxifm4lhkilqzed2ete:
+    resolution: {integrity: sha512-WIxRDZcvGaI73AAaYmQBm8QuTKwSpiE/OZy7rYa2BL1KbDcfh6+AghgeEjDLljBlKopoxRJ0alt+DPdplva+UA==}
     engines: {node: '>=16.0.0'}
     dependencies:
       '@babel/core': 7.20.12
       '@emotion/react': 11.10.5_yxdp3dl3eazy3vwpbmv4fq727a
-      '@leight/mantine': 0.5.8_gs5pdpymxifm4lhkilqzed2ete
-      '@leight/tsconfig': 0.5.9
+      '@leight/mantine': 0.5.9_gs5pdpymxifm4lhkilqzed2ete
+      '@leight/tsconfig': 0.5.10
       '@mantine/core': 5.10.2_bgdfy3qhwgihjpd7hjoiv47mfe
       '@mantine/dropzone': 5.10.2_yzf4d63xstafd7ya36kewhvvjm
       '@mantine/hooks': 5.10.2_react@18.2.0
@@ -1877,18 +1883,18 @@ packages:
       - supports-color
     dev: false
 
-  /@leight/xlsx-import-server/0.5.7:
-    resolution: {integrity: sha512-xTY3j6MDPpMh0QdTnS6BPTd/YbVq/ypDPNFvxB7LqGSn7uykrzNtRJuiZpnpmwQCIjreMYOrloNcCeuIlLaYxw==}
+  /@leight/xlsx-import-server/0.5.8:
+    resolution: {integrity: sha512-X1wUfFdq7otj7kCWIUsSn19Ioe4TN1D9DNgKck+F/32/StiQVjNyaAbD+BBXLqihLODFda9kgEnWCXzao12FRA==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/file': 0.5.7
-      '@leight/import': 0.5.7
-      '@leight/job': 0.5.7
-      '@leight/trpc-server': 0.5.8
-      '@leight/utils': 0.5.9
-      '@leight/utils-server': 0.5.7
-      '@leight/xlsx-import': 0.5.7
+      '@leight/container': 0.5.8
+      '@leight/file': 0.5.8
+      '@leight/import': 0.5.8
+      '@leight/job': 0.5.8
+      '@leight/trpc-server': 0.5.9
+      '@leight/utils': 0.5.10
+      '@leight/utils-server': 0.5.8
+      '@leight/xlsx-import': 0.5.8
       measure-time: 5.0.8
       reflect-metadata: 0.1.13
       tsyringe: 4.7.0
@@ -1905,18 +1911,18 @@ packages:
       - sass
     dev: false
 
-  /@leight/xlsx-import-server/0.5.7_gskeklljahpim6vtz354vntlem:
-    resolution: {integrity: sha512-xTY3j6MDPpMh0QdTnS6BPTd/YbVq/ypDPNFvxB7LqGSn7uykrzNtRJuiZpnpmwQCIjreMYOrloNcCeuIlLaYxw==}
+  /@leight/xlsx-import-server/0.5.8_gskeklljahpim6vtz354vntlem:
+    resolution: {integrity: sha512-X1wUfFdq7otj7kCWIUsSn19Ioe4TN1D9DNgKck+F/32/StiQVjNyaAbD+BBXLqihLODFda9kgEnWCXzao12FRA==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/container': 0.5.7
-      '@leight/file': 0.5.7_prisma@4.9.0
-      '@leight/import': 0.5.7
-      '@leight/job': 0.5.7
-      '@leight/trpc-server': 0.5.8_gskeklljahpim6vtz354vntlem
-      '@leight/utils': 0.5.9
-      '@leight/utils-server': 0.5.7
-      '@leight/xlsx-import': 0.5.7_@babel+core@7.20.12
+      '@leight/container': 0.5.8
+      '@leight/file': 0.5.8_prisma@4.9.0
+      '@leight/import': 0.5.8
+      '@leight/job': 0.5.8
+      '@leight/trpc-server': 0.5.9_gskeklljahpim6vtz354vntlem
+      '@leight/utils': 0.5.10
+      '@leight/utils-server': 0.5.8
+      '@leight/xlsx-import': 0.5.8_@babel+core@7.20.12
       measure-time: 5.0.8
       reflect-metadata: 0.1.13
       tsyringe: 4.7.0
@@ -1933,13 +1939,13 @@ packages:
       - sass
     dev: false
 
-  /@leight/xlsx-import/0.5.7:
-    resolution: {integrity: sha512-9jtG6usxl3+EjUnjZ33AGEgNcyJ7yrpJlxHCDPrVjc7MNhNrABEr+iRAXdSBu9fWDH27Ks2p98hfPACHD9oYtA==}
+  /@leight/xlsx-import/0.5.8:
+    resolution: {integrity: sha512-NpVl3By/A2CifBKU6o8nLBGamVz8fez1EiYaiMEjDSHESM7UdNwaEljpNrSdcb9RT/pQ+XrTMjYHvpfu0Ttz5w==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/import': 0.5.7
-      '@leight/job': 0.5.7
-      '@leight/trpc': 0.5.7
+      '@leight/import': 0.5.8
+      '@leight/job': 0.5.8
+      '@leight/trpc': 0.5.8
       reflect-metadata: 0.1.13
       xlsx: 0.18.5
       zod: 3.20.2
@@ -1953,13 +1959,13 @@ packages:
       - sass
     dev: false
 
-  /@leight/xlsx-import/0.5.7_@babel+core@7.20.12:
-    resolution: {integrity: sha512-9jtG6usxl3+EjUnjZ33AGEgNcyJ7yrpJlxHCDPrVjc7MNhNrABEr+iRAXdSBu9fWDH27Ks2p98hfPACHD9oYtA==}
+  /@leight/xlsx-import/0.5.8_@babel+core@7.20.12:
+    resolution: {integrity: sha512-NpVl3By/A2CifBKU6o8nLBGamVz8fez1EiYaiMEjDSHESM7UdNwaEljpNrSdcb9RT/pQ+XrTMjYHvpfu0Ttz5w==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@leight/import': 0.5.7
-      '@leight/job': 0.5.7
-      '@leight/trpc': 0.5.7_@babel+core@7.20.12
+      '@leight/import': 0.5.8
+      '@leight/job': 0.5.8
+      '@leight/trpc': 0.5.8_@babel+core@7.20.12
       reflect-metadata: 0.1.13
       xlsx: 0.18.5
       zod: 3.20.2
@@ -1973,8 +1979,8 @@ packages:
       - sass
     dev: false
 
-  /@leight/zustand/0.5.7:
-    resolution: {integrity: sha512-SvyMRXRIbKZsxuXZTmw8nlQRZmgkMtpdl3x/v2cdrfMEj3asQQA/iXfmPPcvPWTgGloc23j+jT3DP9Gyvy919Q==}
+  /@leight/zustand/0.5.8:
+    resolution: {integrity: sha512-dz3eiucpSJHLfMKnPXWDlKl8Up/eRRzXkGT9kb44kckFzfW8mq5cDI6RMEApzx3s7xTzP1zBxxuPXJXGrJpOdA==}
     engines: {node: '>=16.0.0'}
     dependencies:
       react: 18.2.0
@@ -5145,8 +5151,8 @@ packages:
       uuid: 8.3.2
     dev: false
 
-  /next-i18next/13.1.0_ofn3rluqlytmjlkhptt5cftfxy:
-    resolution: {integrity: sha512-uWsMiZ1At3FdHhc2Q9wpGJ/3FYN5lsyzj+SV6PJ8TMwakiY60MrxNgs/v8TdpyQNvMeYHB0wKAtkwnEtcQPswg==}
+  /next-i18next/13.1.4_ofn3rluqlytmjlkhptt5cftfxy:
+    resolution: {integrity: sha512-//Ub7TCdbbNnI5rA6XEe+TLsiXaHR/7OjFBlXw5caPirHNCLvVs24NsmXl9z0ZIqqAT8T8I5hnPWIL75d84ubA==}
     engines: {node: '>=14'}
     peerDependencies:
       i18next: ^22.0.6

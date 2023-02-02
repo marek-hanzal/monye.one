@@ -2,7 +2,6 @@ import {IApi} from "@monye.one/trpc-server";
 import {httpBatchLink, loggerLink} from "@trpc/client";
 import {createTRPCNext} from "@trpc/next";
 import superjson from "superjson";
-import {parse, stringify} from "devalue";
 import {CreateTRPCNext} from "@trpc/next/src/createTRPCNext";
 
 export const trpc: CreateTRPCNext<IApi, any, any> = createTRPCNext<IApi>({
@@ -12,13 +11,7 @@ export const trpc: CreateTRPCNext<IApi, any, any> = createTRPCNext<IApi>({
                 ? ""
                 : `http://localhost:${process.env.PORT ?? 3000}`;
         return {
-            transformer: {
-                input: superjson,
-                output: {
-                    serialize: (object) => stringify(object),
-                    deserialize: (object) => parse(object),
-                },
-            },
+            transformer: superjson,
             links: [
                 loggerLink({
                     enabled: (opts) =>

@@ -6,6 +6,7 @@ import {
     type ITransactionSource
 } from "@monye.one/transaction";
 import {TransactionImportService} from "./service";
+import {TransactionSource} from "./source";
 
 export interface ITransactionContainer {
     TransactionImportService: ITransactionImportService;
@@ -15,7 +16,10 @@ export interface ITransactionContainer {
 export const TransactionContainer = (container: IContainer): ITransactionContainer => {
     container.register<ITransactionImportService>($TransactionImportService, {
         useClass: TransactionImportService,
-    })
+    });
+    container.register<ITransactionSource>($TransactionSource, {
+        useClass: TransactionSource,
+    });
 
     return {
         get TransactionImportService() {
