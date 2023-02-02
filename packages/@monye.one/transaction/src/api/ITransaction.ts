@@ -1,1 +1,1 @@
-export {Transaction as ITransaction} from '@monye.one/prisma';
+export {type Transaction as ITransaction} from '@monye.one/prisma';
