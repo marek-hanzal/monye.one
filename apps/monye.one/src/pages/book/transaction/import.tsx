@@ -7,7 +7,7 @@ import {TransactionMenu} from "@monye.one/transaction-client";
 import {trpc} from "@monye.one/trpc-client";
 
 export default withBookLayout(
-    () => {
+    function Import() {
         return (
             <>
                 <Box p={"md"}>

@@ -1,24 +1,21 @@
 import logo from "@/monye.one/assets/logo/logo.svg";
-import { withTranslation } from "@leight/i18n-server";
-import { Box } from "@mantine/core";
-import { withBookLayout } from "@monye.one/book";
-import {
-    TransactionMenu,
-    TransactionTable,
-} from "@monye.one/transaction-client";
+import {withTranslation} from "@leight/i18n-server";
+import {Box} from "@mantine/core";
+import {withBookLayout} from "@monye.one/book";
+import {TransactionMenu, TransactionTable,} from "@monye.one/transaction-client";
 
 export default withBookLayout(
-    () => {
+    function List() {
         return (
             <>
                 <Box p={"md"}>
-                    <TransactionMenu />
-                    <TransactionTable />
+                    <TransactionMenu/>
+                    <TransactionTable/>
                 </Box>
             </>
         );
     },
-    { logo, href: "/book/transaction/list" }
+    {logo, href: "/book/transaction/list"}
 );
 
 export const getServerSideProps = withTranslation([

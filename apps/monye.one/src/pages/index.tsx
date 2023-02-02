@@ -1,12 +1,12 @@
 import logo from "@/monye.one/assets/logo/logo.svg";
-import { withTranslation } from "@leight/i18n-server";
-import { withPublicLayout } from "@monye.one/public";
+import {withTranslation} from "@leight/i18n-server";
+import {withPublicLayout} from "@monye.one/public";
 
 export default withPublicLayout(
-    () => {
+    function Index() {
         return <h1>Bello!</h1>;
     },
-    { logo }
+    {logo}
 );
 
 export const getServerSideProps = withTranslation(["common", "public"]);
