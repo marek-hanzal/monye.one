@@ -25,12 +25,12 @@
         "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/trpc": "^0.5.8",
-        "@leight/trpc-server": "^0.5.9",
-        "@leight/xlsx-import": "^0.5.8",
-        "@leight/xlsx-import-server": "^0.5.8",
+        "@leight/trpc": "^0.5.9",
+        "@leight/trpc-server": "^0.5.10",
+        "@leight/xlsx-import": "^0.5.9",
+        "@leight/xlsx-import-server": "^0.5.9",
         "@monye.one/transaction-server": "workspace:^0.5.0",
-        "@trpc/server": "^10.9.1",
+        "@trpc/server": "^10.10.0",
         "devalue": "^4.2.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
