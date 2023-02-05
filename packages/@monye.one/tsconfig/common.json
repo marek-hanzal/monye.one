@@ -30,6 +30,7 @@
         "inlineSources": true,
         "skipLibCheck": true,
         "strict": true,
+        "noEmit": true,
         "strictPropertyInitialization": true,
         "types": [
             "reflect-metadata",

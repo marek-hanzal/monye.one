@@ -12,23 +12,17 @@
     },
     "sideEffects": false,
     "type": "module",
-    "module": "lib/index.js",
-    "types": "lib/index.d.ts",
+    "module": "src/index.ts",
+    "types": "src/index.ts",
     "source": "src/index.ts",
-    "files": [
-        "lib"
-    ],
     "scripts": {
-        "build": "tsc -p tsconfig.json --outDir lib",
-        "dev": "tsc -w -p tsconfig.json --outDir lib --preserveWatchOutput",
-        "lint": "eslint src",
-        "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
+        "lint": "eslint src"
     },
     "dependencies": {
-        "@leight/trpc": "^0.5.9",
-        "@leight/trpc-server": "^0.5.10",
-        "@leight/xlsx-import": "^0.5.9",
-        "@leight/xlsx-import-server": "^0.5.9",
+        "@leight/trpc": "^0.5.12",
+        "@leight/trpc-server": "^0.5.13",
+        "@leight/xlsx-import": "^0.5.12",
+        "@leight/xlsx-import-server": "^0.5.12",
         "@monye.one/transaction-server": "workspace:^0.5.0",
         "@trpc/server": "^10.10.0",
         "devalue": "^4.2.3",
@@ -41,7 +35,7 @@
     "devDependencies": {
         "@monye.one/eslint-config-eslint": "workspace:^0.0.0",
         "@monye.one/tsconfig": "workspace:^0.0.0",
-        "@types/node": "^18.11.18",
+        "@types/node": "^18.11.19",
         "@types/react": "^18.0.27",
         "@types/react-dom": "^18.0.10",
         "@typescript-eslint/eslint-plugin": "^5.50.0",

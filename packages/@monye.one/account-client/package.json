@@ -12,22 +12,16 @@
     },
     "sideEffects": false,
     "type": "module",
-    "module": "lib/index.js",
-    "types": "lib/index.d.ts",
-    "files": [
-        "lib"
-    ],
+    "module": "src/index.ts",
+    "types": "src/index.ts",
     "scripts": {
-        "build": "tsc -p tsconfig.json --outDir lib",
-        "dev": "tsc -w -p tsconfig.json --outDir lib --preserveWatchOutput",
-        "lint": "eslint src",
-        "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
+        "lint": "eslint src"
     },
     "dependencies": {
         "@babel/core": "^7.20.12",
         "@emotion/react": "^11.10.5",
-        "@leight/i18n-client": "^0.5.11",
-        "@leight/mantine": "^0.5.10",
+        "@leight/i18n-client": "^0.5.14",
+        "@leight/mantine": "^0.5.13",
         "@mantine/core": "^5.10.3",
         "@mantine/hooks": "^5.10.3",
         "@mantine/prism": "^5.10.3",
@@ -46,7 +40,7 @@
     "devDependencies": {
         "@monye.one/eslint-config-eslint": "workspace:^0.0.0",
         "@monye.one/tsconfig": "workspace:^0.0.0",
-        "@types/node": "^18.11.18",
+        "@types/node": "^18.11.19",
         "@types/react": "^18.0.27",
         "@types/react-dom": "^18.0.10",
         "@typescript-eslint/eslint-plugin": "^5.50.0",

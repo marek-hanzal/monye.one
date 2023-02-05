@@ -12,19 +12,13 @@
     },
     "sideEffects": false,
     "type": "module",
-    "module": "lib/index.js",
-    "types": "lib/index.d.ts",
-    "files": [
-        "lib"
-    ],
+    "module": "src/index.ts",
+    "types": "src/index.ts",
     "scripts": {
-        "build": "tsc -p tsconfig.json --outDir lib",
-        "dev": "tsc -w -p tsconfig.json --outDir lib --preserveWatchOutput",
-        "lint": "eslint src",
-        "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
+        "lint": "eslint src"
     },
     "dependencies": {
-        "@leight/container": "^0.5.9",
+        "@leight/container": "^0.5.12",
         "@monye.one/transaction": "workspace:^0.5.0",
         "@monye.one/transaction-server": "workspace:^0.5.0",
         "reflect-metadata": "^0.1.13"
@@ -32,7 +26,7 @@
     "devDependencies": {
         "@monye.one/eslint-config-eslint": "workspace:^0.0.0",
         "@monye.one/tsconfig": "workspace:^0.0.0",
-        "@types/node": "^18.11.18",
+        "@types/node": "^18.11.19",
         "@typescript-eslint/eslint-plugin": "^5.50.0",
         "@typescript-eslint/parser": "^5.50.0",
         "concurrently": "^7.6.0",

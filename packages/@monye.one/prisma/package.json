@@ -12,18 +12,15 @@
     },
     "sideEffects": false,
     "type": "module",
-    "module": "lib/index.js",
-    "types": "lib/index.d.ts",
+    "module": "src/index.ts",
+    "types": "src/index.ts",
     "files": [
         "lib",
         "prisma"
     ],
     "scripts": {
-        "build": "tsc -p tsconfig.json --outDir lib",
-        "dev": "tsc -w -p tsconfig.json --outDir lib --preserveWatchOutput",
         "prisma:generate": "prisma format && prisma generate",
-        "lint": "eslint src",
-        "cleanup": "pnpm del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
+        "lint": "eslint src"
     },
     "dependencies": {
         "@prisma/client": "^4.9.0",
@@ -32,7 +29,7 @@
     "devDependencies": {
         "@monye.one/eslint-config-eslint": "workspace:^0.0.0",
         "@monye.one/tsconfig": "workspace:^0.0.0",
-        "@types/node": "^18.11.18",
+        "@types/node": "^18.11.19",
         "@typescript-eslint/eslint-plugin": "^5.50.0",
         "@typescript-eslint/parser": "^5.50.0",
         "concurrently": "^7.6.0",
