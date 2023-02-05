@@ -143,6 +143,8 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/container-server/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/container-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/prisma/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/prisma/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

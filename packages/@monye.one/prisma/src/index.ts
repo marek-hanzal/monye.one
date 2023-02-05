@@ -1,3 +1,3 @@
-export {PrismaClient as IPrismaClient} from '@prisma/client';
+export {PrismaClient as IPrismaClient, Prisma as IPrisma} from '@prisma/client';
 
 export * from '@prisma/client';
