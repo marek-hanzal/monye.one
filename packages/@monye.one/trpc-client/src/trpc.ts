@@ -1,8 +1,7 @@
-import {IApi} from "@monye.one/trpc-server";
+import {type IApi} from "@monye.one/trpc-server";
 import {httpBatchLink, loggerLink} from "@trpc/client";
-import {createTRPCNext} from "@trpc/next";
+import {type CreateTRPCNext, createTRPCNext} from "@trpc/next";
 import superjson from "superjson";
-import {CreateTRPCNext} from "@trpc/next/src/createTRPCNext";
 
 export const trpc: CreateTRPCNext<IApi, any, any> = createTRPCNext<IApi>({
     config() {
