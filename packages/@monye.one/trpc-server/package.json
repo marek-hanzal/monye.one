@@ -23,19 +23,19 @@
         "@leight/trpc-server": "^0.5.13",
         "@leight/xlsx-import": "^0.5.13",
         "@leight/xlsx-import-server": "^0.5.12",
-        "@monye.one/transaction": "^0.5.0",
+        "@monye.one/transaction": "workspace:^0.5.0",
         "@monye.one/transaction-server": "workspace:^0.5.0",
         "@trpc/server": "^10.10.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "reflect-metadata": "^0.1.13",
         "superjson": "^1.12.2",
-        "zod": "^3.20.2"
+        "zod": "^3.20.6"
     },
     "devDependencies": {
         "@monye.one/eslint-config-eslint": "workspace:^0.0.0",
         "@monye.one/tsconfig": "workspace:^0.0.0",
-        "@types/node": "^18.11.19",
+        "@types/node": "^18.13.0",
         "@types/react": "^18.0.27",
         "@types/react-dom": "^18.0.10",
         "@typescript-eslint/eslint-plugin": "^5.51.0",
