@@ -15,8 +15,7 @@
         "prisma:generate": {
             "outputMode": "new-only",
             "dependsOn": [
-                "prisma:format",
-                "^prisma:generate"
+                "prisma:format"
             ],
             "outputs": [],
             "inputs": [
@@ -26,10 +25,17 @@
         "prisma:migrate-reset": {
             "cache": false
         },
+        "depcheck": {
+            "outputMode": "new-only",
+            "inputs": [
+                "package.json"
+            ],
+            "outputs": []
+        },
         "lint": {
             "outputMode": "new-only",
             "dependsOn": [
-                "^depcheck"
+                "depcheck"
             ],
             "outputs": [],
             "inputs": [
@@ -39,9 +45,9 @@
         "build": {
             "outputMode": "new-only",
             "dependsOn": [
-                "^prisma:generate",
-                "^lint",
-                "^build"
+                "^build",
+                "prisma:generate",
+                "lint"
             ],
             "outputs": [
                 "lib/**",
@@ -58,13 +64,6 @@
                 "NODE_ENV",
                 "PORT"
             ]
-        },
-        "depcheck": {
-            "outputMode": "new-only",
-            "inputs": [
-                "package.json"
-            ],
-            "outputs": []
         },
         "cleanup": {
             "cache": false

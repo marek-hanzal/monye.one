@@ -12,13 +12,16 @@
     },
     "sideEffects": false,
     "type": "module",
-    "module": "src/index.ts",
-    "types": "src/index.ts",
+    "module": "lib/index.js",
+    "types": "lib/index.d.ts",
     "scripts": {
-        "lint": "eslint src"
+        "build": "tsc -p tsconfig.json --outDir lib",
+        "depcheck": "depcheck",
+        "lint": "eslint src",
+        "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/container": "^0.5.12",
+        "@leight/container": "^0.5.13",
         "@monye.one/transaction": "workspace:^0.5.0",
         "@monye.one/transaction-server": "workspace:^0.5.0",
         "reflect-metadata": "^0.1.13"
@@ -31,6 +34,7 @@
         "@typescript-eslint/parser": "^5.51.0",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
+        "depcheck": "^1.4.3",
         "eslint": "^8.33.0",
         "eslint-plugin-unicorn": "^45.0.2",
         "typescript": "^4.9.5"
@@ -38,8 +42,5 @@
     "bugs": {
         "url": "https://github.com/marek-hanzal/monye.one/issues"
     },
-    "homepage": "https://github.com/marek-hanzal/monye.one#readme",
-    "directories": {
-        "lib": "lib"
-    }
+    "homepage": "https://github.com/marek-hanzal/monye.one#readme"
 }
