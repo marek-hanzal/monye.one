@@ -22,6 +22,7 @@
         "eslint",
         "eslint-plugin-unicorn",
         "prisma",
+        "@leight/i18n",
         "react-dom"
     ],
     "specials": [

@@ -19,11 +19,13 @@
         "depcheck": "depcheck",
         "lint": "eslint src",
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}",
-        "prisma:generate": "prisma format && prisma generate"
+        "prisma:format": "prisma format",
+        "prisma:generate": "prisma generate"
     },
     "dependencies": {
-        "@prisma/client": "^4.10.0",
-        "reflect-metadata": "^0.1.13"
+        "@prisma/client": "^4.10.1",
+        "reflect-metadata": "^0.1.13",
+        "zod": "^3.20.6"
     },
     "devDependencies": {
         "@monye.one/eslint-config-eslint": "workspace:^0.0.0",
@@ -33,10 +35,12 @@
         "@typescript-eslint/parser": "^5.51.0",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
+        "depcheck": "^1.4.3",
         "eslint": "^8.33.0",
         "eslint-plugin-unicorn": "^45.0.2",
-        "prisma": "^4.10.0",
-        "typescript": "^4.9.5"
+        "prisma": "^4.10.1",
+        "typescript": "^4.9.5",
+        "zod-prisma-types": "^2.0.8"
     },
     "bugs": {
         "url": "https://github.com/marek-hanzal/monye.one/issues"

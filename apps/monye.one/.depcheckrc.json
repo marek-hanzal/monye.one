@@ -15,8 +15,10 @@
         "@babel/core",
         "reflect-metadata",
         "concurrently",
+        "@monye.one/prisma",
         "@typescript-eslint/*",
-        "typescript"
+        "typescript",
+        "depcheck"
     ],
     "specials": [
         "prettier"

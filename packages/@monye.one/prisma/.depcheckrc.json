@@ -20,6 +20,7 @@
         "concurrently",
         "typescript",
         "eslint",
+        "zod-prisma-types",
         "eslint-plugin-unicorn",
         "prisma",
         "react-dom"

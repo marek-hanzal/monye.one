@@ -2,5 +2,9 @@
     "root": true,
     "extends": [
         "@monye.one/eslint"
-    ]
+    ],
+    "rules": {
+        "@typescript-eslint/no-use-before-define": "off",
+        "spaced-comment": "off"
+    }
 }

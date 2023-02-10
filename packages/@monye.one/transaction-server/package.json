@@ -21,16 +21,13 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/container": "^0.5.13",
-        "@leight/prisma": "^0.5.14",
-        "@leight/source": "^0.5.9",
-        "@leight/source-server": "^0.5.11",
-        "@leight/trpc-server": "^0.5.14",
-        "@leight/user": "^0.5.14",
-        "@leight/user-server": "^0.5.13",
+        "@leight/container": "^0.5.14",
+        "@leight/prisma": "^0.5.15",
+        "@leight/trpc-server": "^0.5.15",
+        "@leight/user": "^0.5.15",
         "@monye.one/prisma": "workspace:^0.5.0",
         "@monye.one/transaction": "workspace:^0.5.0",
-        "@prisma/client": "^4.10.0",
+        "@prisma/client": "^4.10.1",
         "reflect-metadata": "^0.1.13",
         "tsyringe": "^4.7.0",
         "zod": "^3.20.6"
@@ -47,7 +44,7 @@
         "dotenv-cli": "^7.0.0",
         "eslint": "^8.33.0",
         "eslint-plugin-unicorn": "^45.0.2",
-        "prisma": "^4.10.0",
+        "prisma": "^4.10.1",
         "typescript": "^4.9.5"
     },
     "bugs": {
