@@ -145,6 +145,7 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/container-server/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/prisma/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/prisma/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/monye.one/.next" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

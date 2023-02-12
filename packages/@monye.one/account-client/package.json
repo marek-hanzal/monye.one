@@ -15,7 +15,7 @@
     "module": "lib/index.js",
     "types": "lib/index.d.ts",
     "scripts": {
-        "build": "tsc -p tsconfig.json --outDir lib",
+        "build": "tsc --outDir lib",
         "depcheck": "depcheck",
         "lint": "eslint src",
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
