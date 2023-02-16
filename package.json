@@ -17,6 +17,7 @@
         "depcheck": "turbo run depcheck --parallel --no-daemon",
         "cleanup": "turbo run cleanup --parallel --no-daemon",
         "start": "turbo run start --no-daemon --parallel --no-daemon",
+        "migration": "turbo run migration --no-daemon",
         "prisma:format": "turbo run prisma:format --parallel --no-daemon",
         "prisma:generate": "turbo run prisma:generate --parallel --no-daemon",
         "prisma:migrate-dev": "turbo run prisma:migrate-dev --parallel --no-daemon",

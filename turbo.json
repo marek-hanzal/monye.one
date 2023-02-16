@@ -71,9 +71,6 @@
         "dev": {
             "cache": false
         },
-        "dev-watch": {
-            "cache": false
-        },
         "migration": {
             "cache": false
         },
