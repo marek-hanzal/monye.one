@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="prisma generate" type="js.build_tools.npm" folderName="prisma">
+  <configuration default="false" name="prisma:generate" type="js.build_tools.npm" folderName="prisma">
     <package-json value="$PROJECT_DIR$/package.json" />
     <command value="run" />
     <scripts>
-      <script value="prisma-generate" />
+      <script value="prisma:generate" />
     </scripts>
     <node-interpreter value="project" />
     <envs />

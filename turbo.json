@@ -13,13 +13,10 @@
             ]
         },
         "prisma:generate": {
+            "cache": false,
             "outputMode": "new-only",
             "dependsOn": [
                 "prisma:format"
-            ],
-            "outputs": [],
-            "inputs": [
-                "prisma/schema.prisma"
             ]
         },
         "prisma:migrate-reset": {
@@ -69,6 +66,9 @@
             "cache": false
         },
         "dev": {
+            "dependsOn": [
+                "^prisma:generate"
+            ],
             "cache": false
         },
         "migration": {

@@ -18,6 +18,7 @@
         "@leight/eslint-config-eslint",
         "@typescript-eslint/*",
         "concurrently",
+        "@leight/i18n",
         "typescript",
         "eslint",
         "eslint-plugin-unicorn",

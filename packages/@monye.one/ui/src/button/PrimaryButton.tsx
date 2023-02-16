@@ -8,10 +8,11 @@ export interface IPrimaryButtonProps
     withTranslation: IWithTranslation;
 }
 
-export const PrimaryButton: FC<IPrimaryButtonProps> = ({
-                                                           withTranslation,
-                                                           ...props
-                                                       }) => {
+export const PrimaryButton: FC<IPrimaryButtonProps> = (
+    {
+        withTranslation,
+        ...props
+    }) => {
     return (
         <Button
             variant={"gradient"}
