@@ -21,6 +21,7 @@
         "@leight/i18n",
         "typescript",
         "eslint",
+        "@leight/esbuild",
         "eslint-plugin-unicorn",
         "prisma",
         "react-dom"

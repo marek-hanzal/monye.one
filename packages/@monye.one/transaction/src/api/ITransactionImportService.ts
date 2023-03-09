@@ -1,4 +1,4 @@
-import {type IImportService} from '@leight/import';
+import {type IImportService}           from "@leight/import";
 import {type ITransactionImportSchema} from "../schema";
 
 export interface ITransactionImportService extends IImportService<ITransactionImportSchema> {

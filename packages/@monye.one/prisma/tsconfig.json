@@ -1,5 +1,5 @@
 {
-    "extends": "@monye.one/tsconfig/common.json",
+    "extends": "@leight/tsconfig/esbuild.json",
     "compilerOptions": {
         "rootDir": "src",
         "baseUrl": "src"

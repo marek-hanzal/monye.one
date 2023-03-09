@@ -1,9 +1,21 @@
-import {Box, Group, Header} from "@mantine/core";
-import {PrimaryButton, SessionOverlay, useUnauthenticatedRedirect,} from "@monye.one/ui";
-import {signOut} from "next-auth/react";
-import Image from "next/image";
-import Link from "next/link";
-import {ComponentProps, type FC, type PropsWithChildren} from "react";
+import {
+    Box,
+    Group,
+    Header
+}                 from "@mantine/core";
+import {
+    PrimaryButton,
+    SessionOverlay,
+    useUnauthenticatedRedirect,
+}                 from "@monye.one/ui";
+import {signOut}  from "next-auth/react";
+import Image      from "next/image";
+import Link       from "next/link";
+import {
+    ComponentProps,
+    type FC,
+    type PropsWithChildren
+}                 from "react";
 import {BookMenu} from "./BookMenu";
 
 export interface IBookLayoutProps extends PropsWithChildren {
@@ -33,7 +45,7 @@ export const BookLayout: FC<IBookLayoutProps> = ({logo, href, children}) => {
                             <PrimaryButton
                                 onClick={() => signOut()}
                                 withTranslation={{
-                                    label: "button.sign-out",
+                                    label:     "button.sign-out",
                                     namespace: "book",
                                 }}
                             />

@@ -1,6 +1,9 @@
 import {LoadingOverlay} from "@mantine/core";
-import {useSession} from "next-auth/react";
-import {type ComponentProps, type FC} from "react";
+import {useSession}     from "next-auth/react";
+import {
+    type ComponentProps,
+    type FC
+}                       from "react";
 
 export interface ISessionOverlayProps
     extends Partial<ComponentProps<typeof LoadingOverlay>> {

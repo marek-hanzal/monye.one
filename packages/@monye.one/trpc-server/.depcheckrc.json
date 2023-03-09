@@ -20,6 +20,7 @@
         "concurrently",
         "typescript",
         "eslint",
+        "@leight/esbuild",
         "@monye.one/transaction",
         "eslint-plugin-unicorn",
         "prisma",

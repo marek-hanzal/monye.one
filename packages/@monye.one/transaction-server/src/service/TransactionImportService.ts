@@ -1,20 +1,20 @@
-import {$PrismaClient} from "@leight/prisma";
+import {$PrismaClient}      from "@leight/prisma";
 import {
     $UserService,
     type IUserService
-}                      from "@leight/user";
-import {IPrismaClient} from "@monye.one/prisma";
+}                           from "@leight/user";
+import {type IPrismaClient} from "@monye.one/prisma";
 import {
     type ITransactionImportSchema,
     type ITransactionImportService,
     TransactionImportSchema
-}                      from "@monye.one/transaction";
+}                           from "@monye.one/transaction";
 import "reflect-metadata";
 import {
     inject,
     injectable
-}                      from "tsyringe";
-import {ZodType}       from "zod";
+}                           from "tsyringe";
+import {type ZodType}       from "zod";
 
 @injectable()
 export class TransactionImportService implements ITransactionImportService {
@@ -43,7 +43,7 @@ export class TransactionImportService implements ITransactionImportService {
         });
 
         return this.prismaClient.transaction.upsert({
-            where: {
+            where:  {
                 userId_reference: {
                     userId:    this.userService.required(),
                     reference: item.reference,

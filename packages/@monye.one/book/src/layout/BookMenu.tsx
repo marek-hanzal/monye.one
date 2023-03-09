@@ -1,9 +1,12 @@
-import {Translation} from "@leight/i18n-client";
+import {Translation}  from "@leight/i18n-client";
 import {switchScheme} from "@leight/mantine";
-import {type ILink} from "@leight/utils-client";
-import {createStyles, Group} from "@mantine/core";
-import Link from "next/link";
-import {type FC} from "react";
+import {type ILink}   from "@leight/utils-client";
+import {
+    createStyles,
+    Group
+}                     from "@mantine/core";
+import Link           from "next/link";
+import {type FC}      from "react";
 
 export interface IBookMenuProps {
     active: string;
@@ -11,36 +14,36 @@ export interface IBookMenuProps {
 
 const links: ILink[] = [
     {
-        href: "/book",
+        href:  "/book",
         label: "link.home",
     },
     {
-        href: "/book/transaction/list",
+        href:  "/book/transaction/list",
         label: "link.transactions",
     },
     {
-        href: "/book/filters",
+        href:  "/book/filters",
         label: "link.filters",
     },
     {
-        href: "/book/accounts",
+        href:  "/book/accounts",
         label: "link.accounts",
     },
 ];
 
 const useStyles = createStyles((theme) => ({
-    link: {
-        display: "flex",
-        alignItems: "center",
-        height: "50%",
-        margin: theme.spacing.xs,
-        borderRadius: theme.radius.md,
-        paddingLeft: theme.spacing.md,
-        paddingRight: theme.spacing.md,
+    link:       {
+        display:        "flex",
+        alignItems:     "center",
+        height:         "50%",
+        margin:         theme.spacing.xs,
+        borderRadius:   theme.radius.md,
+        paddingLeft:    theme.spacing.md,
+        paddingRight:   theme.spacing.md,
         textDecoration: "none",
-        fontWeight: 500,
-        fontSize: theme.fontSizes.sm,
-        color: switchScheme(theme, theme.white, theme.black),
+        fontWeight:     500,
+        fontSize:       theme.fontSizes.sm,
+        color:          switchScheme(theme, theme.white, theme.black),
         ...theme.fn.hover({
             backgroundColor: switchScheme(
                 theme,

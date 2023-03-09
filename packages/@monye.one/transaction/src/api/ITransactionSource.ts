@@ -1,4 +1,4 @@
-import {type ISource} from "@leight/source";
+import {type ISource}                  from "@leight/source";
 import {type ITransactionSourceConfig} from "./ITransactionSourceConfig";
 
 export interface ITransactionSource extends ISource<ITransactionSourceConfig> {

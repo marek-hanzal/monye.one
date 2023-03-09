@@ -15,7 +15,9 @@
     "module": "lib/index.js",
     "types": "lib/index.d.ts",
     "scripts": {
-        "build": "tsc --outDir lib",
+        "build": "concurrently npm:build:*",
+        "build:esbuild": "node esbuild.mjs",
+        "build:types": "tsc --outDir lib",
         "depcheck": "depcheck",
         "lint": "eslint src",
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}",
@@ -23,25 +25,23 @@
         "prisma:generate": "npx dotenv -c development -- npx prisma generate"
     },
     "dependencies": {
-        "@prisma/client": "^4.10.1",
+        "@prisma/client": "4.10.0",
         "reflect-metadata": "^0.1.13",
-        "zod": "^3.20.6"
+        "zod": "3.21.0"
     },
     "devDependencies": {
-        "@monye.one/eslint-config-eslint": "workspace:^0.0.0",
-        "@monye.one/tsconfig": "workspace:^0.0.0",
-        "@types/node": "^18.13.0",
-        "@typescript-eslint/eslint-plugin": "^5.52.0",
-        "@typescript-eslint/parser": "^5.52.0",
+        "@leight/esbuild": "^0.5.5",
+        "@leight/eslint-config-eslint": "^0.5.15",
+        "@leight/tsconfig": "^0.5.28",
+        "@types/node": "^18.14.6",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
         "depcheck": "^1.4.3",
         "dotenv-cli": "^7.0.0",
-        "eslint": "^8.34.0",
-        "eslint-plugin-unicorn": "^45.0.2",
-        "prisma": "^4.10.1",
+        "eslint": "^8.35.0",
+        "prisma": "4.10.0",
         "typescript": "^4.9.5",
-        "zod-prisma-types": "^2.0.17"
+        "zod-prisma-types": "^2.3.4"
     },
     "bugs": {
         "url": "https://github.com/marek-hanzal/monye.one/issues"

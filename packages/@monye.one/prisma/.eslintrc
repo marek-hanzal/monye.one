@@ -1,7 +1,7 @@
 {
     "root": true,
     "extends": [
-        "@monye.one/eslint"
+        "@leight/eslint"
     ],
     "rules": {
         "@typescript-eslint/no-use-before-define": "off",

@@ -1,12 +1,12 @@
-import {type IContainer} from '@leight/container';
+import {type IContainer}          from "@leight/container";
 import {
     $TransactionImportService,
     $TransactionSource,
     type ITransactionImportService,
     type ITransactionSource
-} from "@monye.one/transaction";
+}                                 from "@monye.one/transaction";
 import {TransactionImportService} from "./service";
-import {TransactionSource} from "./source";
+import {TransactionSource}        from "./source";
 
 export interface ITransactionContainer {
     TransactionImportService: ITransactionImportService;
@@ -28,5 +28,5 @@ export const TransactionContainer = (container: IContainer): ITransactionContain
         get TransactionSource() {
             return container.resolve<ITransactionSource>($TransactionSource);
         },
-    }
-}
+    };
+};

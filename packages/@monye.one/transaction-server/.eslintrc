@@ -1,6 +1,6 @@
 {
     "root": true,
     "extends": [
-        "@monye.one/eslint"
+        "@leight/eslint"
     ]
 }

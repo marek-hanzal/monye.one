@@ -1,1 +1,1 @@
-export * from './TransactionQueryProcedure';
+export * from "./TransactionQueryProcedure";

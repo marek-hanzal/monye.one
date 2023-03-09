@@ -1,9 +1,9 @@
-import {router} from "./router";
+import {ImportRouter}      from "./import";
+import {router}            from "./router";
 import {TransactionRouter} from "./transaction";
-import {ImportRouter} from "./import";
 
 export const api = router({
-    import: ImportRouter,
+    import:      ImportRouter,
     transaction: TransactionRouter,
 });
 

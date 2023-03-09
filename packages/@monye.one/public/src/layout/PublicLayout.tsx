@@ -1,24 +1,37 @@
-import {switchScheme} from "@leight/mantine";
-import {Box, createStyles, Group, Header} from "@mantine/core";
-import {PrimaryButton, SessionOverlay, useAuthenticatedSession,} from "@monye.one/ui";
-import {signIn} from "next-auth/react";
+import {switchScheme}   from "@leight/mantine";
+import {
+    Box,
+    createStyles,
+    Group,
+    Header
+}                       from "@mantine/core";
+import {
+    PrimaryButton,
+    SessionOverlay,
+    useAuthenticatedSession,
+}                       from "@monye.one/ui";
+import {signIn}         from "next-auth/react";
 import {useTranslation} from "next-i18next";
-import Image from "next/image";
-import Link from "next/link";
-import {ComponentProps, type FC, type PropsWithChildren} from "react";
+import Image            from "next/image";
+import Link             from "next/link";
+import {
+    ComponentProps,
+    type FC,
+    type PropsWithChildren
+}                       from "react";
 
 const useStyles = createStyles((theme) => ({
     link: {
-        display: "flex",
-        alignItems: "center",
-        height: "75%",
-        borderRadius: theme.radius.md,
-        paddingLeft: theme.spacing.md,
-        paddingRight: theme.spacing.md,
+        display:        "flex",
+        alignItems:     "center",
+        height:         "75%",
+        borderRadius:   theme.radius.md,
+        paddingLeft:    theme.spacing.md,
+        paddingRight:   theme.spacing.md,
         textDecoration: "none",
-        fontWeight: 500,
-        fontSize: theme.fontSizes.sm,
-        color: switchScheme(theme, theme.white, theme.black),
+        fontWeight:     500,
+        fontSize:       theme.fontSizes.sm,
+        color:          switchScheme(theme, theme.white, theme.black),
         ...theme.fn.hover({
             backgroundColor: switchScheme(
                 theme,
@@ -36,7 +49,7 @@ export interface IPublicLayoutProps extends PropsWithChildren {
 export const PublicLayout: FC<IPublicLayoutProps> = ({logo, children}) => {
     useAuthenticatedSession({redirect: "/book"});
     const {classes} = useStyles();
-    const {t} = useTranslation("public");
+    const {t}       = useTranslation("public");
     return (
         <>
             <SessionOverlay/>
@@ -61,7 +74,7 @@ export const PublicLayout: FC<IPublicLayoutProps> = ({logo, children}) => {
                             <PrimaryButton
                                 onClick={() => signIn()}
                                 withTranslation={{
-                                    label: "button.sign-in",
+                                    label:     "button.sign-in",
                                     namespace: "public",
                                 }}
                             />
