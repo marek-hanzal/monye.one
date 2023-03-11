@@ -14,12 +14,9 @@ export interface ITransactionContainer {
 }
 
 export const TransactionContainer = (container: IContainer): ITransactionContainer => {
-    container.register<ITransactionImportService>($TransactionImportService, {
-        useClass: TransactionImportService,
-    });
-    container.register<ITransactionSource>($TransactionSource, {
-        useClass: TransactionSource,
-    });
+    container
+        .bindClass($TransactionImportService, TransactionImportService)
+        .bindClass($TransactionSource, TransactionSource);
 
     return {
         get TransactionImportService() {

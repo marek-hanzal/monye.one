@@ -6,15 +6,14 @@ import {
     IBankSourceSchema,
 }                           from "@monye.one/bank";
 import {type IPrismaClient} from "@monye.one/prisma";
-import {
-    inject,
-    injectable
-}                           from "tsyringe";
 
-@injectable()
 export class BankSource extends AbstractSource<IBankSourceSchema> implements IBankSource {
+    static inject = [
+        $PrismaClient,
+    ];
+
     constructor(
-        @inject($PrismaClient) protected prismaClient: IPrismaClient,
+        protected prismaClient: IPrismaClient,
     ) {
         super($BankSource);
     }

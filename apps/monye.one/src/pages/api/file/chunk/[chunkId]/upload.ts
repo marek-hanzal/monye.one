@@ -1,6 +1,5 @@
-import "reflect-metadata";
-import { container } from "@/monye.one/server/container";
-import { ChunkUploadEndpoint } from "@leight/file-server";
+import {container}           from "@/monye.one/server/container";
+import {ChunkUploadEndpoint} from "@leight/file-server";
 
 export const config = {
     api: {

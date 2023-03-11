@@ -6,15 +6,14 @@ import {
     type ITransactionSource,
     type ITransactionSourceSchema
 }                           from "@monye.one/transaction";
-import {
-    inject,
-    injectable
-}                           from "tsyringe";
 
-@injectable()
 export class TransactionSource extends AbstractSource<ITransactionSourceSchema> implements ITransactionSource {
+    static inject = [
+        $PrismaClient,
+    ];
+
     constructor(
-        @inject($PrismaClient) protected prismaClient: IPrismaClient,
+        protected prismaClient: IPrismaClient,
     ) {
         super($TransactionSource);
     }

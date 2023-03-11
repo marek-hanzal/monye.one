@@ -13,7 +13,6 @@
         "@monye.one/tsconfig",
         "@emotion/*",
         "@babel/core",
-        "reflect-metadata",
         "concurrently",
         "zod-prisma-types",
         "@monye.one/prisma",

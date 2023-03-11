@@ -12,7 +12,6 @@
         "@emotion/*",
         "@babel/core",
         "@monye.one/eslint-config-eslint",
-        "reflect-metadata",
         "depcheck",
         "@leight/tsconfig",
         "@leight/eslint-config-eslint",

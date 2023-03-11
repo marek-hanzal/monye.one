@@ -1,5 +1,4 @@
-import "reflect-metadata";
-import { container } from "@/monye.one/server/container";
-import { ChunkCommitEndpoint } from "@leight/file-server";
+import {container}           from "@/monye.one/server/container";
+import {ChunkCommitEndpoint} from "@leight/file-server";
 
 export default ChunkCommitEndpoint(container);

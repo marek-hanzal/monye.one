@@ -10,9 +10,7 @@ export interface IBankContainer {
 }
 
 export const BankContainer = (container: IContainer): IBankContainer => {
-    container.register<IBankSource>($BankSource, {
-        useClass: BankSource,
-    });
+    container.bindClass($BankSource, BankSource);
 
     return {
         get BankSource() {

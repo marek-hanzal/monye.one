@@ -8,24 +8,24 @@ import {
 }               from "@monye.one/bank";
 import {
     $TransactionSource,
-    ITransactionImport,
+    type ITransactionImport,
     type ITransactionImportService,
     type ITransactionSource,
     TransactionImportSchema
 }               from "@monye.one/transaction";
-import "reflect-metadata";
-import {
-    inject,
-    injectable
-}               from "tsyringe";
 import {type z} from "zod";
 
-@injectable()
 export class TransactionImportService implements ITransactionImportService {
+    static inject = [
+        $BankSource,
+        $TransactionSource,
+        $UserService,
+    ];
+
     constructor(
-        @inject($BankSource) protected bankSource: IBankSource,
-        @inject($TransactionSource) protected transactionSource: ITransactionSource,
-        @inject($UserService) protected userService: IUserService,
+        protected bankSource: IBankSource,
+        protected transactionSource: ITransactionSource,
+        protected userService: IUserService,
     ) {
     }
 
