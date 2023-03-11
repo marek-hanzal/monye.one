@@ -6,7 +6,7 @@ import {
 import {ServerContainer as $LeightServerContainer}   from "@leight/container-server";
 import {$PrismaClient}                               from "@leight/prisma";
 import {ServerContainer as $MonyeOneServerContainer} from "@monye.one/container-server";
-import {PrismaClient}                                from "@prisma/client";
+import {PrismaClient}                                from "@monye.one/prisma";
 
 export const container = new PumpIt();
 

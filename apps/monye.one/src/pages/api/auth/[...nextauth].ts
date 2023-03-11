@@ -1,18 +1,21 @@
-import {env} from "@/monye.one/env/server.mjs";
-import {LeightServerContainer, MonyeOneContainer,} from "@/monye.one/server/container";
-import {Logger} from "@leight/winston";
-import {PrismaAdapter} from "@next-auth/prisma-adapter";
-import NextAuth from "next-auth";
-import type {Provider} from "next-auth/providers";
+import {env}               from "@/monye.one/env/server.mjs";
+import {
+    LeightServerContainer,
+    MonyeOneContainer
+}                          from "@/monye.one/server/container";
+import {PrismaAdapter}     from "@leight/next.js-server";
+import {Logger}            from "@leight/winston";
+import NextAuth            from "next-auth";
+import type {Provider}     from "next-auth/providers";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GitHub from "next-auth/providers/github";
+import GitHub              from "next-auth/providers/github";
 
 const logger = Logger("auth");
 
 const providers: Provider[] = [
     GitHub({
-        name: "github",
-        clientId: env.NEXTAUTH_GITHUB_CLIENT_ID,
+        name:         "github",
+        clientId:     env.NEXTAUTH_GITHUB_CLIENT_ID,
         clientSecret: env.NEXTAUTH_GITHUB_CLIENT_SECRET,
     }),
     // Google({
@@ -25,7 +28,7 @@ const providers: Provider[] = [
 if (env.NODE_ENV === "development") {
     providers.push(
         CredentialsProvider({
-            name: "Credentials",
+            name:        "Credentials",
             credentials: {
                 secret: {label: "Dark Secret", type: "text"},
             },
@@ -34,37 +37,33 @@ if (env.NODE_ENV === "development") {
                 if (!secret) {
                     return null;
                 }
-                return MonyeOneContainer.PrismaClient.user.findUnique({
-                    where: {
-                        email: secret,
-                    },
-                });
+                return LeightServerContainer.UserContainer.UserSource.findByEmail(secret);
             },
         })
     );
 }
 
 export default NextAuth({
-    theme: {
-        logo: "/logo.png",
-        brandColor: "#1890ff",
+    theme:     {
+        logo:        "/logo.png",
+        brandColor:  "#1890ff",
         colorScheme: "light",
     },
-    events: {
-        signIn: ({user}) => {
+    events:    {
+        signIn:  ({user}) => {
             logger.debug("User sign-in", {label: {userId: user.id}});
         },
         signOut: ({token: {sub}}) => {
             logger.debug("User sign-out", {label: {userId: sub}});
         },
     },
-    adapter: PrismaAdapter(MonyeOneContainer.PrismaClient),
-    session: {
+    adapter:   PrismaAdapter(MonyeOneContainer.PrismaClient),
+    session:   {
         strategy: "jwt",
     },
     providers,
     callbacks: {
-        jwt: async (token) => {
+        jwt:     async (token) => {
             const {UserContainer} = LeightServerContainer;
             try {
                 await UserContainer.RegistrationService.handle(

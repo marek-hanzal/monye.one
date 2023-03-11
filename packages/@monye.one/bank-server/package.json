@@ -24,7 +24,7 @@
     },
     "dependencies": {
         "@leight/container": "^0.5.27",
-        "@leight/prisma": "^0.5.32",
+        "@leight/prisma": "^0.5.34",
         "@leight/source-server": "^0.5.26",
         "@leight/trpc-server": "^0.5.28",
         "@monye.one/bank": "workspace:^0.5.0",
