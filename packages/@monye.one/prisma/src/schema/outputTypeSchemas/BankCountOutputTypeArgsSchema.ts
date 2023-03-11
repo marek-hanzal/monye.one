@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { type Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 import { BankCountOutputTypeSelectSchema } from './BankCountOutputTypeSelectSchema';
 
 export const BankCountOutputTypeArgsSchema: z.ZodType<Prisma.BankCountOutputTypeArgs> = z.object({

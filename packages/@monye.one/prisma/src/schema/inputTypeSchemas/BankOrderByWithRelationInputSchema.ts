@@ -7,8 +7,8 @@ import { TransactionOrderByRelationAggregateInputSchema } from './TransactionOrd
 export const BankOrderByWithRelationInputSchema: z.ZodType<Prisma.BankOrderByWithRelationInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
   userId: z.lazy(() => SortOrderSchema).optional(),
-  user: z.lazy(() => UserOrderByWithRelationInputSchema).optional(),
   account: z.lazy(() => SortOrderSchema).optional(),
+  user: z.lazy(() => UserOrderByWithRelationInputSchema).optional(),
   Transaction: z.lazy(() => TransactionOrderByRelationAggregateInputSchema).optional(),
 }).strict();
 

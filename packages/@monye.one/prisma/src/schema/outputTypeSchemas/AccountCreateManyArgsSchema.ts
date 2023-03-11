@@ -3,7 +3,7 @@ import type { Prisma } from '@prisma/client';
 import { AccountCreateManyInputSchema } from '../inputTypeSchemas/AccountCreateManyInputSchema'
 
 export const AccountCreateManyArgsSchema: z.ZodType<Prisma.AccountCreateManyArgs> = z.object({
-  data: AccountCreateManyInputSchema.array(),
+  data: z.union([ AccountCreateManyInputSchema,AccountCreateManyInputSchema.array() ]),
   skipDuplicates: z.boolean().optional(),
 }).strict()
 

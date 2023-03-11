@@ -11,9 +11,7 @@ export const TransactionSelectSchema: z.ZodType<Prisma.TransactionSelect> = z.ob
   id: z.boolean().optional(),
   reference: z.boolean().optional(),
   userId: z.boolean().optional(),
-  user: z.union([z.boolean(),z.lazy(() => UserArgsSchema)]).optional(),
   bankId: z.boolean().optional(),
-  bank: z.union([z.boolean(),z.lazy(() => BankArgsSchema)]).optional(),
   amount: z.boolean().optional(),
   variable: z.boolean().optional(),
   symbol: z.boolean().optional(),
@@ -21,6 +19,8 @@ export const TransactionSelectSchema: z.ZodType<Prisma.TransactionSelect> = z.ob
   date: z.boolean().optional(),
   target: z.boolean().optional(),
   note: z.boolean().optional(),
+  user: z.union([z.boolean(),z.lazy(() => UserArgsSchema)]).optional(),
+  bank: z.union([z.boolean(),z.lazy(() => BankArgsSchema)]).optional(),
 }).strict()
 
 export const TransactionFindUniqueOrThrowArgsSchema: z.ZodType<Prisma.TransactionFindUniqueOrThrowArgs> = z.object({

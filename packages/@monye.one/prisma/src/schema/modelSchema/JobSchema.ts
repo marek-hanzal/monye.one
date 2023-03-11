@@ -37,6 +37,18 @@ export const JobPartialSchema = JobSchema.partial()
 
 export type JobPartial = z.infer<typeof JobPartialSchema>
 
+// JOB OPTIONAL DEFAULTS SCHEMA
+//------------------------------------------------------
+
+export const JobOptionalDefaultsSchema = JobSchema.merge(z.object({
+  status: JobStatusSchema.optional(),
+  id: z.string().cuid().optional(),
+  total: z.number().int().optional(),
+  progress: z.number().optional(),
+}))
+
+export type JobOptionalDefaults = z.infer<typeof JobOptionalDefaultsSchema>
+
 // JOB RELATION SCHEMA
 //------------------------------------------------------
 
@@ -48,6 +60,16 @@ export type JobRelations = {
 export type JobWithRelations = z.infer<typeof JobSchema> & JobRelations
 
 export const JobWithRelationsSchema: z.ZodType<JobWithRelations> = JobSchema.merge(z.object({
+  user: z.lazy(() => UserWithRelationsSchema).nullish(),
+  logs: z.lazy(() => JobLogWithRelationsSchema).array(),
+}))
+
+// JOB OPTIONAL DEFAULTS RELATION SCHEMA
+//------------------------------------------------------
+
+export type JobOptionalDefaultsWithRelations = z.infer<typeof JobOptionalDefaultsSchema> & JobRelations
+
+export const JobOptionalDefaultsWithRelationsSchema: z.ZodType<JobOptionalDefaultsWithRelations> = JobOptionalDefaultsSchema.merge(z.object({
   user: z.lazy(() => UserWithRelationsSchema).nullish(),
   logs: z.lazy(() => JobLogWithRelationsSchema).array(),
 }))

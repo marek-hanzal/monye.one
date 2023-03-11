@@ -22,6 +22,15 @@ export const SessionPartialSchema = SessionSchema.partial()
 
 export type SessionPartial = z.infer<typeof SessionPartialSchema>
 
+// SESSION OPTIONAL DEFAULTS SCHEMA
+//------------------------------------------------------
+
+export const SessionOptionalDefaultsSchema = SessionSchema.merge(z.object({
+  id: z.string().cuid().optional(),
+}))
+
+export type SessionOptionalDefaults = z.infer<typeof SessionOptionalDefaultsSchema>
+
 // SESSION RELATION SCHEMA
 //------------------------------------------------------
 
@@ -32,6 +41,15 @@ export type SessionRelations = {
 export type SessionWithRelations = z.infer<typeof SessionSchema> & SessionRelations
 
 export const SessionWithRelationsSchema: z.ZodType<SessionWithRelations> = SessionSchema.merge(z.object({
+  user: z.lazy(() => UserWithRelationsSchema),
+}))
+
+// SESSION OPTIONAL DEFAULTS RELATION SCHEMA
+//------------------------------------------------------
+
+export type SessionOptionalDefaultsWithRelations = z.infer<typeof SessionOptionalDefaultsSchema> & SessionRelations
+
+export const SessionOptionalDefaultsWithRelationsSchema: z.ZodType<SessionOptionalDefaultsWithRelations> = SessionOptionalDefaultsSchema.merge(z.object({
   user: z.lazy(() => UserWithRelationsSchema),
 }))
 

@@ -23,6 +23,15 @@ export const BankPartialSchema = BankSchema.partial()
 
 export type BankPartial = z.infer<typeof BankPartialSchema>
 
+// BANK OPTIONAL DEFAULTS SCHEMA
+//------------------------------------------------------
+
+export const BankOptionalDefaultsSchema = BankSchema.merge(z.object({
+  id: z.string().cuid().optional(),
+}))
+
+export type BankOptionalDefaults = z.infer<typeof BankOptionalDefaultsSchema>
+
 // BANK RELATION SCHEMA
 //------------------------------------------------------
 
@@ -34,6 +43,16 @@ export type BankRelations = {
 export type BankWithRelations = z.infer<typeof BankSchema> & BankRelations
 
 export const BankWithRelationsSchema: z.ZodType<BankWithRelations> = BankSchema.merge(z.object({
+  user: z.lazy(() => UserWithRelationsSchema),
+  Transaction: z.lazy(() => TransactionWithRelationsSchema).array(),
+}))
+
+// BANK OPTIONAL DEFAULTS RELATION SCHEMA
+//------------------------------------------------------
+
+export type BankOptionalDefaultsWithRelations = z.infer<typeof BankOptionalDefaultsSchema> & BankRelations
+
+export const BankOptionalDefaultsWithRelationsSchema: z.ZodType<BankOptionalDefaultsWithRelations> = BankOptionalDefaultsSchema.merge(z.object({
   user: z.lazy(() => UserWithRelationsSchema),
   Transaction: z.lazy(() => TransactionWithRelationsSchema).array(),
 }))

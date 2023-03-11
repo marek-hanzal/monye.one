@@ -35,6 +35,15 @@ export const UserPartialSchema = UserSchema.partial()
 
 export type UserPartial = z.infer<typeof UserPartialSchema>
 
+// USER OPTIONAL DEFAULTS SCHEMA
+//------------------------------------------------------
+
+export const UserOptionalDefaultsSchema = UserSchema.merge(z.object({
+  id: z.string().cuid().optional(),
+}))
+
+export type UserOptionalDefaults = z.infer<typeof UserOptionalDefaultsSchema>
+
 // USER RELATION SCHEMA
 //------------------------------------------------------
 
@@ -51,6 +60,21 @@ export type UserRelations = {
 export type UserWithRelations = z.infer<typeof UserSchema> & UserRelations
 
 export const UserWithRelationsSchema: z.ZodType<UserWithRelations> = UserSchema.merge(z.object({
+  accounts: z.lazy(() => AccountWithRelationsSchema).array(),
+  sessions: z.lazy(() => SessionWithRelationsSchema).array(),
+  UserToken: z.lazy(() => UserTokenWithRelationsSchema).array(),
+  Transaction: z.lazy(() => TransactionWithRelationsSchema).array(),
+  Job: z.lazy(() => JobWithRelationsSchema).array(),
+  File: z.lazy(() => FileWithRelationsSchema).array(),
+  Bank: z.lazy(() => BankWithRelationsSchema).array(),
+}))
+
+// USER OPTIONAL DEFAULTS RELATION SCHEMA
+//------------------------------------------------------
+
+export type UserOptionalDefaultsWithRelations = z.infer<typeof UserOptionalDefaultsSchema> & UserRelations
+
+export const UserOptionalDefaultsWithRelationsSchema: z.ZodType<UserOptionalDefaultsWithRelations> = UserOptionalDefaultsSchema.merge(z.object({
   accounts: z.lazy(() => AccountWithRelationsSchema).array(),
   sessions: z.lazy(() => SessionWithRelationsSchema).array(),
   UserToken: z.lazy(() => UserTokenWithRelationsSchema).array(),

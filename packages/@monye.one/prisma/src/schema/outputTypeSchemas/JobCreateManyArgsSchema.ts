@@ -3,7 +3,7 @@ import type { Prisma } from '@prisma/client';
 import { JobCreateManyInputSchema } from '../inputTypeSchemas/JobCreateManyInputSchema'
 
 export const JobCreateManyArgsSchema: z.ZodType<Prisma.JobCreateManyArgs> = z.object({
-  data: JobCreateManyInputSchema.array(),
+  data: z.union([ JobCreateManyInputSchema,JobCreateManyInputSchema.array() ]),
   skipDuplicates: z.boolean().optional(),
 }).strict()
 

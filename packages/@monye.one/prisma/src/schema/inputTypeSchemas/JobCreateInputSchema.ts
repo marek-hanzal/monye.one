@@ -19,8 +19,8 @@ export const JobCreateInputSchema: z.ZodType<Prisma.JobCreateInput> = z.object({
   created: z.coerce.date(),
   started: z.coerce.date().optional().nullable(),
   finished: z.coerce.date().optional().nullable(),
-  user: z.lazy(() => UserCreateNestedOneWithoutJobInputSchema).optional(),
   params: z.string().optional().nullable(),
+  user: z.lazy(() => UserCreateNestedOneWithoutJobInputSchema).optional(),
   logs: z.lazy(() => JobLogCreateNestedManyWithoutJobInputSchema).optional(),
 }).strict();
 

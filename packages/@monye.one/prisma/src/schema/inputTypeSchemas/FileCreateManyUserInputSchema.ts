@@ -6,9 +6,9 @@ export const FileCreateManyUserInputSchema: z.ZodType<Prisma.FileCreateManyUserI
   path: z.string(),
   name: z.string(),
   mime: z.string(),
-  size: z.number(),
+  size: z.number().int(),
   location: z.string(),
-  ttl: z.number().optional().nullable(),
+  ttl: z.number().int().optional().nullable(),
   created: z.coerce.date(),
   updated: z.coerce.date().optional().nullable(),
 }).strict();

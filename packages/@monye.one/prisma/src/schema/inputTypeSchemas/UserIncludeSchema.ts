@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { type Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 import { AccountFindManyArgsSchema } from "../outputTypeSchemas/AccountFindManyArgsSchema"
 import { SessionFindManyArgsSchema } from "../outputTypeSchemas/SessionFindManyArgsSchema"
 import { UserTokenFindManyArgsSchema } from "../outputTypeSchemas/UserTokenFindManyArgsSchema"

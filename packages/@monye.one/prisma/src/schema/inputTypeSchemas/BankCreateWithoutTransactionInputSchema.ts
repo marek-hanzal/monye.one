@@ -4,8 +4,8 @@ import { UserCreateNestedOneWithoutBankInputSchema } from './UserCreateNestedOne
 
 export const BankCreateWithoutTransactionInputSchema: z.ZodType<Prisma.BankCreateWithoutTransactionInput> = z.object({
   id: z.string().optional(),
-  user: z.lazy(() => UserCreateNestedOneWithoutBankInputSchema),
   account: z.string(),
+  user: z.lazy(() => UserCreateNestedOneWithoutBankInputSchema),
 }).strict();
 
 export default BankCreateWithoutTransactionInputSchema;

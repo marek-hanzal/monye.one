@@ -18,8 +18,8 @@ export const JobCreateWithoutLogsInputSchema: z.ZodType<Prisma.JobCreateWithoutL
   created: z.coerce.date(),
   started: z.coerce.date().optional().nullable(),
   finished: z.coerce.date().optional().nullable(),
-  user: z.lazy(() => UserCreateNestedOneWithoutJobInputSchema).optional(),
   params: z.string().optional().nullable(),
+  user: z.lazy(() => UserCreateNestedOneWithoutJobInputSchema).optional(),
 }).strict();
 
 export default JobCreateWithoutLogsInputSchema;

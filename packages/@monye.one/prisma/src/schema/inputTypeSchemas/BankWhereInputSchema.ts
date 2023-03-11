@@ -11,8 +11,8 @@ export const BankWhereInputSchema: z.ZodType<Prisma.BankWhereInput> = z.object({
   NOT: z.union([ z.lazy(() => BankWhereInputSchema),z.lazy(() => BankWhereInputSchema).array() ]).optional(),
   id: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   userId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
-  user: z.union([ z.lazy(() => UserRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional(),
   account: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  user: z.union([ z.lazy(() => UserRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional(),
   Transaction: z.lazy(() => TransactionListRelationFilterSchema).optional(),
 }).strict();
 

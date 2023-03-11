@@ -10,8 +10,8 @@ export const JobLogWhereInputSchema: z.ZodType<Prisma.JobLogWhereInput> = z.obje
   NOT: z.union([ z.lazy(() => JobLogWhereInputSchema),z.lazy(() => JobLogWhereInputSchema).array() ]).optional(),
   id: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   jobId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
-  job: z.union([ z.lazy(() => JobRelationFilterSchema),z.lazy(() => JobWhereInputSchema) ]).optional(),
   message: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  job: z.union([ z.lazy(() => JobRelationFilterSchema),z.lazy(() => JobWhereInputSchema) ]).optional(),
 }).strict();
 
 export default JobLogWhereInputSchema;

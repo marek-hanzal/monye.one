@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { type Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 import { JobArgsSchema } from "../outputTypeSchemas/JobArgsSchema"
 
 export const JobLogIncludeSchema: z.ZodType<Prisma.JobLogInclude> = z.object({

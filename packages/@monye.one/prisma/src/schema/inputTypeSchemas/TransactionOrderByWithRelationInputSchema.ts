@@ -8,9 +8,7 @@ export const TransactionOrderByWithRelationInputSchema: z.ZodType<Prisma.Transac
   id: z.lazy(() => SortOrderSchema).optional(),
   reference: z.lazy(() => SortOrderSchema).optional(),
   userId: z.lazy(() => SortOrderSchema).optional(),
-  user: z.lazy(() => UserOrderByWithRelationInputSchema).optional(),
   bankId: z.lazy(() => SortOrderSchema).optional(),
-  bank: z.lazy(() => BankOrderByWithRelationInputSchema).optional(),
   amount: z.lazy(() => SortOrderSchema).optional(),
   variable: z.lazy(() => SortOrderSchema).optional(),
   symbol: z.lazy(() => SortOrderSchema).optional(),
@@ -18,6 +16,8 @@ export const TransactionOrderByWithRelationInputSchema: z.ZodType<Prisma.Transac
   date: z.lazy(() => SortOrderSchema).optional(),
   target: z.lazy(() => SortOrderSchema).optional(),
   note: z.lazy(() => SortOrderSchema).optional(),
+  user: z.lazy(() => UserOrderByWithRelationInputSchema).optional(),
+  bank: z.lazy(() => BankOrderByWithRelationInputSchema).optional(),
 }).strict();
 
 export default TransactionOrderByWithRelationInputSchema;

@@ -16,7 +16,7 @@ export const TransactionSchema = z.object({
   reference: z.string(),
   userId: z.string(),
   bankId: z.string(),
-  amount: z.union([z.number(),z.string(),DecimalJSLikeSchema,]).refine((v) => isValidDecimalInput(v), { message: 'Field "amount" must be a Decimal', path: ['Models', 'Transaction'] }),
+  amount: z.union([z.number(),z.string(),DecimalJSLikeSchema,]).refine((v) => isValidDecimalInput(v), { message: "Field 'amount' must be a Decimal. Location: ['Models', 'Transaction']",  }),
   variable: z.string().nullish(),
   symbol: z.string().nullish(),
   static: z.string().nullish(),
@@ -34,6 +34,15 @@ export const TransactionPartialSchema = TransactionSchema.partial()
 
 export type TransactionPartial = z.infer<typeof TransactionPartialSchema>
 
+// TRANSACTION OPTIONAL DEFAULTS SCHEMA
+//------------------------------------------------------
+
+export const TransactionOptionalDefaultsSchema = TransactionSchema.merge(z.object({
+  id: z.string().cuid().optional(),
+}))
+
+export type TransactionOptionalDefaults = z.infer<typeof TransactionOptionalDefaultsSchema>
+
 // TRANSACTION RELATION SCHEMA
 //------------------------------------------------------
 
@@ -45,6 +54,16 @@ export type TransactionRelations = {
 export type TransactionWithRelations = z.infer<typeof TransactionSchema> & TransactionRelations
 
 export const TransactionWithRelationsSchema: z.ZodType<TransactionWithRelations> = TransactionSchema.merge(z.object({
+  user: z.lazy(() => UserWithRelationsSchema),
+  bank: z.lazy(() => BankWithRelationsSchema),
+}))
+
+// TRANSACTION OPTIONAL DEFAULTS RELATION SCHEMA
+//------------------------------------------------------
+
+export type TransactionOptionalDefaultsWithRelations = z.infer<typeof TransactionOptionalDefaultsSchema> & TransactionRelations
+
+export const TransactionOptionalDefaultsWithRelationsSchema: z.ZodType<TransactionOptionalDefaultsWithRelations> = TransactionOptionalDefaultsSchema.merge(z.object({
   user: z.lazy(() => UserWithRelationsSchema),
   bank: z.lazy(() => BankWithRelationsSchema),
 }))

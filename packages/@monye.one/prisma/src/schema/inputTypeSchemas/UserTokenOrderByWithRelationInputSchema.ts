@@ -7,8 +7,8 @@ import { TokenOrderByWithRelationInputSchema } from './TokenOrderByWithRelationI
 export const UserTokenOrderByWithRelationInputSchema: z.ZodType<Prisma.UserTokenOrderByWithRelationInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
   userId: z.lazy(() => SortOrderSchema).optional(),
-  user: z.lazy(() => UserOrderByWithRelationInputSchema).optional(),
   tokenId: z.lazy(() => SortOrderSchema).optional(),
+  user: z.lazy(() => UserOrderByWithRelationInputSchema).optional(),
   token: z.lazy(() => TokenOrderByWithRelationInputSchema).optional(),
 }).strict();
 

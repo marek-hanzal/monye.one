@@ -5,8 +5,8 @@ import { UserUpdateOneRequiredWithoutBankNestedInputSchema } from './UserUpdateO
 
 export const BankUpdateWithoutTransactionInputSchema: z.ZodType<Prisma.BankUpdateWithoutTransactionInput> = z.object({
   id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  user: z.lazy(() => UserUpdateOneRequiredWithoutBankNestedInputSchema).optional(),
   account: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  user: z.lazy(() => UserUpdateOneRequiredWithoutBankNestedInputSchema).optional(),
 }).strict();
 
 export default BankUpdateWithoutTransactionInputSchema;

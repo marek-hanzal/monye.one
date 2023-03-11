@@ -15,8 +15,8 @@ import { BankCountOutputTypeArgsSchema } from "../outputTypeSchemas/BankCountOut
 export const BankSelectSchema: z.ZodType<Prisma.BankSelect> = z.object({
   id: z.boolean().optional(),
   userId: z.boolean().optional(),
-  user: z.union([z.boolean(),z.lazy(() => UserArgsSchema)]).optional(),
   account: z.boolean().optional(),
+  user: z.union([z.boolean(),z.lazy(() => UserArgsSchema)]).optional(),
   Transaction: z.union([z.boolean(),z.lazy(() => TransactionFindManyArgsSchema)]).optional(),
   _count: z.union([z.boolean(),z.lazy(() => BankCountOutputTypeArgsSchema)]).optional(),
 }).strict()

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { type Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 import { UserTokenSelectSchema } from '../inputTypeSchemas/UserTokenSelectSchema';
 import { UserTokenIncludeSchema } from '../inputTypeSchemas/UserTokenIncludeSchema';
 

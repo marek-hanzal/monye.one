@@ -28,6 +28,15 @@ export const FilePartialSchema = FileSchema.partial()
 
 export type FilePartial = z.infer<typeof FilePartialSchema>
 
+// FILE OPTIONAL DEFAULTS SCHEMA
+//------------------------------------------------------
+
+export const FileOptionalDefaultsSchema = FileSchema.merge(z.object({
+  id: z.string().cuid().optional(),
+}))
+
+export type FileOptionalDefaults = z.infer<typeof FileOptionalDefaultsSchema>
+
 // FILE RELATION SCHEMA
 //------------------------------------------------------
 
@@ -38,6 +47,15 @@ export type FileRelations = {
 export type FileWithRelations = z.infer<typeof FileSchema> & FileRelations
 
 export const FileWithRelationsSchema: z.ZodType<FileWithRelations> = FileSchema.merge(z.object({
+  user: z.lazy(() => UserWithRelationsSchema).nullish(),
+}))
+
+// FILE OPTIONAL DEFAULTS RELATION SCHEMA
+//------------------------------------------------------
+
+export type FileOptionalDefaultsWithRelations = z.infer<typeof FileOptionalDefaultsSchema> & FileRelations
+
+export const FileOptionalDefaultsWithRelationsSchema: z.ZodType<FileOptionalDefaultsWithRelations> = FileOptionalDefaultsSchema.merge(z.object({
   user: z.lazy(() => UserWithRelationsSchema).nullish(),
 }))
 

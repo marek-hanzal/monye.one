@@ -13,8 +13,8 @@ import { JobArgsSchema } from "../outputTypeSchemas/JobArgsSchema"
 export const JobLogSelectSchema: z.ZodType<Prisma.JobLogSelect> = z.object({
   id: z.boolean().optional(),
   jobId: z.boolean().optional(),
-  job: z.union([z.boolean(),z.lazy(() => JobArgsSchema)]).optional(),
   message: z.boolean().optional(),
+  job: z.union([z.boolean(),z.lazy(() => JobArgsSchema)]).optional(),
 }).strict()
 
 export const JobLogUpsertArgsSchema: z.ZodType<Prisma.JobLogUpsertArgs> = z.object({

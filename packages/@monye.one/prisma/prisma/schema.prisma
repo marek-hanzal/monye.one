@@ -14,7 +14,7 @@ generator zod {
   addSelectType                    = true
   validateWhereUniqueInput         = true
   writeNullishInModelTypes         = true
-  createOptionalDefaultValuesTypes = false
+  createOptionalDefaultValuesTypes = true
   createRelationValuesTypes        = true
   useDefaultValidators             = true
 }

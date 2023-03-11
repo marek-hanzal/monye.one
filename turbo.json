@@ -17,6 +17,9 @@
             "outputMode": "new-only",
             "dependsOn": [
                 "prisma:format"
+            ],
+            "inputs": [
+                "prisma/schema.prisma"
             ]
         },
         "prisma:migrate-reset": {
@@ -25,6 +28,7 @@
         "depcheck": {
             "outputMode": "new-only",
             "inputs": [
+                ".depcheckrc.json",
                 "package.json"
             ],
             "outputs": []
@@ -33,16 +37,15 @@
             "outputMode": "new-only",
             "outputs": [],
             "inputs": [
-                "src"
+                "src/**"
             ]
         },
         "build": {
             "outputMode": "new-only",
             "dependsOn": [
-                "^prisma:generate",
                 "^build",
-                "depcheck",
-                "lint"
+                "prisma:generate",
+                "depcheck"
             ],
             "outputs": [
                 "lib/**",
@@ -50,7 +53,7 @@
             ],
             "inputs": [
                 "prisma/schema.prisma",
-                "src",
+                "src/**",
                 "package.json",
                 "tsconfig.json"
             ],

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { type Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 import { TokenCountOutputTypeSelectSchema } from './TokenCountOutputTypeSelectSchema';
 
 export const TokenCountOutputTypeArgsSchema: z.ZodType<Prisma.TokenCountOutputTypeArgs> = z.object({

@@ -12,8 +12,8 @@ export const UserTokenWhereInputSchema: z.ZodType<Prisma.UserTokenWhereInput> = 
   NOT: z.union([ z.lazy(() => UserTokenWhereInputSchema),z.lazy(() => UserTokenWhereInputSchema).array() ]).optional(),
   id: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   userId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
-  user: z.union([ z.lazy(() => UserRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional(),
   tokenId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  user: z.union([ z.lazy(() => UserRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional(),
   token: z.union([ z.lazy(() => TokenRelationFilterSchema),z.lazy(() => TokenWhereInputSchema) ]).optional(),
 }).strict();
 

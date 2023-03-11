@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { type Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 import { JobSelectSchema } from '../inputTypeSchemas/JobSelectSchema';
 import { JobIncludeSchema } from '../inputTypeSchemas/JobIncludeSchema';
 

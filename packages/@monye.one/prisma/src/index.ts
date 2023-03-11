@@ -1,6 +1,5 @@
 export {
     PrismaClient as IPrismaClient,
     Prisma as IPrisma,
-}                  from "@prisma/client";
-export * as Prisma from "@prisma/client";
-export * as Schema from "./schema";
+}                        from "@prisma/client";
+export * as PrismaSchema from "./schema";

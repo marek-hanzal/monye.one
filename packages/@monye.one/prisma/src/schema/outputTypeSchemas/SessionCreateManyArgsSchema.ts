@@ -3,7 +3,7 @@ import type { Prisma } from '@prisma/client';
 import { SessionCreateManyInputSchema } from '../inputTypeSchemas/SessionCreateManyInputSchema'
 
 export const SessionCreateManyArgsSchema: z.ZodType<Prisma.SessionCreateManyArgs> = z.object({
-  data: SessionCreateManyInputSchema.array(),
+  data: z.union([ SessionCreateManyInputSchema,SessionCreateManyInputSchema.array() ]),
   skipDuplicates: z.boolean().optional(),
 }).strict()
 

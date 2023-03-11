@@ -52,6 +52,8 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/prisma/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/bank-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/bank/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -146,6 +148,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/prisma/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/prisma/lib" />
       <excludeFolder url="file://$MODULE_DIR$/apps/monye.one/.next" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/bank-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/bank/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/bank-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/bank/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

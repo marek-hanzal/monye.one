@@ -3,7 +3,7 @@ import type { Prisma } from '@prisma/client';
 import { TokenCreateManyInputSchema } from '../inputTypeSchemas/TokenCreateManyInputSchema'
 
 export const TokenCreateManyArgsSchema: z.ZodType<Prisma.TokenCreateManyArgs> = z.object({
-  data: TokenCreateManyInputSchema.array(),
+  data: z.union([ TokenCreateManyInputSchema,TokenCreateManyInputSchema.array() ]),
   skipDuplicates: z.boolean().optional(),
 }).strict()
 
