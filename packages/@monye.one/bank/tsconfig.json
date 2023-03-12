@@ -2,11 +2,7 @@
     "extends": "@leight/tsconfig/esbuild.json",
     "compilerOptions": {
         "rootDir": "src",
-        "baseUrl": "src",
-        "types": [
-            "@prisma/client",
-            "zod"
-        ]
+        "baseUrl": "src"
     },
     "include": [
         "src/**/*",

@@ -1,11 +1,11 @@
-import {$PrismaClient}      from "@leight/prisma";
-import {AbstractSource}     from "@leight/source-server";
-import {type IPrismaClient} from "@monye.one/prisma";
+import {$PrismaClient}     from "@leight/prisma";
+import {AbstractSource}    from "@leight/source-server";
+import {type PrismaClient} from "@monye.one/prisma";
 import {
     $TransactionSource,
     type ITransactionSource,
     type ITransactionSourceSchema
-}                           from "@monye.one/transaction";
+}                          from "@monye.one/transaction";
 
 export class TransactionSource extends AbstractSource<ITransactionSourceSchema> implements ITransactionSource {
     static inject = [
@@ -13,7 +13,7 @@ export class TransactionSource extends AbstractSource<ITransactionSourceSchema> 
     ];
 
     constructor(
-        protected prismaClient: IPrismaClient,
+        protected prismaClient: PrismaClient,
     ) {
         super($TransactionSource);
     }

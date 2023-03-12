@@ -23,12 +23,10 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@babel/core": "^7.21.0",
-        "@emotion/react": "^11.10.6",
         "@leight/i18n-client": "^0.5.29",
         "@mantine/core": "^6.0.1",
         "@mantine/hooks": "^6.0.1",
-        "@monye.one/ui": "workspace:^0.5.0",
+        "@monye.one/ui": "^0.5.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
@@ -38,14 +36,10 @@
         "@leight/tsconfig": "^0.5.30",
         "@types/node": "^18.15.0",
         "@types/react": "^18.0.28",
-        "@types/react-dom": "^18.0.11",
-        "@typescript-eslint/eslint-plugin": "^5.54.1",
-        "@typescript-eslint/parser": "^5.54.1",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
         "depcheck": "^1.4.3",
         "eslint": "^8.36.0",
-        "eslint-plugin-unicorn": "^46.0.0",
         "typescript": "^4.9.5"
     },
     "bugs": {

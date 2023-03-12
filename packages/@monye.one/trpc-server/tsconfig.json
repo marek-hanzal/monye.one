@@ -2,10 +2,7 @@
     "extends": "@leight/tsconfig/esbuild.json",
     "compilerOptions": {
         "rootDir": "src",
-        "baseUrl": "src",
-        "types": [
-            "@monye.one/transaction"
-        ]
+        "baseUrl": "src"
     },
     "include": [
         "src/**/*",

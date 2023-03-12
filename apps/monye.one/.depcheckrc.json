@@ -1,28 +1,11 @@
 {
     "ignores": [
-        "zod",
-        "@tailwindcss/*",
-        "@types/*",
-        "del-cli",
-        "dotenv-cli",
+        "@leight/tsconfig",
+        "@types/node",
         "autoprefixer",
         "postcss",
         "tailwindcss",
-        "eslint",
-        "eslint-config-next",
-        "@monye.one/tsconfig",
-        "@emotion/*",
-        "@babel/core",
-        "concurrently",
-        "zod-prisma-types",
-        "@monye.one/prisma",
-        "@typescript-eslint/*",
-        "typescript",
-        "@leight/i18n",
-        "@leight/tsconfig",
-        "depcheck"
-    ],
-    "specials": [
-        "prettier"
+        "zod",
+        "@tailwindcss/*"
     ]
 }

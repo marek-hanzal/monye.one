@@ -1,11 +1,11 @@
-import {$PrismaClient}      from "@leight/prisma";
-import {AbstractSource}     from "@leight/source-server";
+import {$PrismaClient}     from "@leight/prisma";
+import {AbstractSource}    from "@leight/source-server";
 import {
     $BankSource,
     type IBankSource,
     IBankSourceSchema,
-}                           from "@monye.one/bank";
-import {type IPrismaClient} from "@monye.one/prisma";
+}                          from "@monye.one/bank";
+import {type PrismaClient} from "@monye.one/prisma";
 
 export class BankSource extends AbstractSource<IBankSourceSchema> implements IBankSource {
     static inject = [
@@ -13,7 +13,7 @@ export class BankSource extends AbstractSource<IBankSourceSchema> implements IBa
     ];
 
     constructor(
-        protected prismaClient: IPrismaClient,
+        protected prismaClient: PrismaClient,
     ) {
         super($BankSource);
     }

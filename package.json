@@ -1,7 +1,8 @@
 {
+    "packageManager": "npm@9.6.1",
     "name": "@marek-hanzal/monye.one",
     "private": true,
-    "description": "Simple app for analyziing hosehold financial flow (and optimization).",
+    "description": "Simple app for analyzing household financial flow (and optimization).",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -11,7 +12,7 @@
         "node": ">=16.0.0"
     },
     "scripts": {
-        "build": "turbo run build --no-daemon",
+        "build": "turbo run build --no-cache --force --no-daemon",
         "lint": "turbo run lint --no-daemon",
         "dev": "turbo run dev --parallel --no-daemon",
         "depcheck": "turbo run depcheck --parallel --no-daemon",
@@ -29,5 +30,9 @@
         "prettier-plugin-tailwindcss": "^0.2.4",
         "turbo": "^1.8.3",
         "typescript": "^4.9.5"
-    }
+    },
+    "workspaces": [
+        "apps/**/*",
+        "packages/**/*"
+    ]
 }

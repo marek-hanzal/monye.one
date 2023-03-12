@@ -2,10 +2,7 @@
     "extends": "@leight/tsconfig/esbuild.json",
     "compilerOptions": {
         "rootDir": "src",
-        "baseUrl": "src",
-        "types": [
-            "@leight/i18n"
-        ]
+        "baseUrl": "src"
     },
     "include": [
         "src/**/*",

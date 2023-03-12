@@ -1,31 +1,8 @@
 {
     "ignores": [
-        "zod",
-        "@tailwindcss/*",
-        "@types/*",
-        "del-cli",
-        "dotenv-cli",
-        "autoprefixer",
-        "postcss",
-        "tailwindcss",
-        "@monye.one/tsconfig",
-        "@emotion/*",
-        "@babel/core",
-        "@monye.one/eslint-config-eslint",
-        "depcheck",
-        "@leight/tsconfig",
-        "@leight/eslint-config-eslint",
-        "@typescript-eslint/*",
-        "concurrently",
-        "typescript",
-        "eslint",
         "@leight/esbuild",
-        "zod-prisma-types",
-        "eslint-plugin-unicorn",
-        "prisma",
-        "react-dom"
-    ],
-    "specials": [
-        "prettier"
+        "@leight/tsconfig",
+        "@types/node",
+        "zod-prisma-types"
     ]
 }

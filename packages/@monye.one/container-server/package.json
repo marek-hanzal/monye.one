@@ -24,8 +24,8 @@
     },
     "dependencies": {
         "@leight/container": "^0.5.27",
-        "@monye.one/bank-server": "workspace:^0.5.0",
-        "@monye.one/transaction-server": "workspace:^0.5.0"
+        "@monye.one/bank-server": "^0.5.0",
+        "@monye.one/transaction-server": "^0.5.0"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.7",
