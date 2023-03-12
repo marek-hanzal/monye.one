@@ -1,20 +1,16 @@
-import {bootstrap}            from "@/monye.one/bootstrap/bootstrap";
-import {emotionCache}         from "@/monye.one/emotion-cache";
+import {bootstrap}          from "@/monye.one/bootstrap/bootstrap";
+import {emotionCache}       from "@/monye.one/emotion-cache";
 import "@/monye.one/styles/globals.css";
-import type {IPageWithLayout} from "@leight/layout";
-import {RouterTransition}     from "@leight/mantine";
-import type {ColorScheme}     from "@mantine/core";
-import {MantineProvider}      from "@mantine/core";
-import {Notifications}        from "@mantine/notifications";
-import {trpc}                 from "@monye.one/trpc-client";
-import {SessionProvider}      from "next-auth/react";
-import {appWithTranslation}   from "next-i18next";
-import type {AppProps}        from "next/app";
-import Head                   from "next/head";
-import {useRouter}            from "next/router";
-import {useEffect}            from "react";
+import {App}                from "@leight/mantine";
+import type {ColorScheme}   from "@mantine/core";
+import {trpc}               from "@monye.one/trpc-client";
+import i18next              from "i18next";
+import {appWithTranslation} from "next-i18next";
+import type {AppProps}      from "next/app";
+import {useRouter}          from "next/router";
+import {useEffect}          from "react";
 
-export function PuffSmith(
+export function MonyeOne(
     {
         Component,
         pageProps,
@@ -29,38 +25,13 @@ export function PuffSmith(
         router.defaultLocale
     ]);
 
-    return (
-        <>
-            <Head>
-                <title>monye.one</title>
-                <meta
-                    name={"viewport"}
-                    content={
-                        "minimum-scale=1, initial-scale=1, width=device-width"
-                    }
-                />
-                <link rel={"shortcut icon"} href={"/favicon.ico"}/>
-            </Head>
-            <MantineProvider
-                theme={{colorScheme: "light"}}
-                withGlobalStyles
-                withNormalizeCSS
-                emotionCache={emotionCache}
-            >
-                <Notifications/>
-                <RouterTransition/>
-                <SessionProvider
-                    refetchInterval={30}
-                    refetchOnWindowFocus
-                >
-                    {(
-                        (Component as unknown as IPageWithLayout)
-                            .layout || ((page) => page)
-                    )(<Component {...pageProps} />)}
-                </SessionProvider>
-            </MantineProvider>
-        </>
-    );
+    return <App
+        title={"monye.one"}
+        i18next={i18next}
+        emotionCache={emotionCache}
+        Component={Component}
+        pageProps={pageProps}
+    />;
 }
 
-export default trpc.withTRPC(appWithTranslation(PuffSmith));
+export default trpc.withTRPC(appWithTranslation(MonyeOne));
