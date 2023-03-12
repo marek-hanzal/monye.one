@@ -18,7 +18,7 @@ export const UserCreateWithoutFileInputSchema: z.ZodType<Prisma.UserCreateWithou
   UserToken: z.lazy(() => UserTokenCreateNestedManyWithoutUserInputSchema).optional(),
   Transaction: z.lazy(() => TransactionCreateNestedManyWithoutUserInputSchema).optional(),
   Job: z.lazy(() => JobCreateNestedManyWithoutUserInputSchema).optional(),
-  Bank: z.lazy(() => BankCreateNestedManyWithoutUserInputSchema).optional(),
+  Bank: z.lazy(() => BankCreateNestedManyWithoutUserInputSchema).optional()
 }).strict();
 
 export default UserCreateWithoutFileInputSchema;

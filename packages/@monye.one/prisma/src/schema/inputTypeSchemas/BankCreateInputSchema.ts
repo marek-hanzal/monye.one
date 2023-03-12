@@ -7,7 +7,7 @@ export const BankCreateInputSchema: z.ZodType<Prisma.BankCreateInput> = z.object
   id: z.string().cuid().optional(),
   account: z.string(),
   user: z.lazy(() => UserCreateNestedOneWithoutBankInputSchema),
-  Transaction: z.lazy(() => TransactionCreateNestedManyWithoutBankInputSchema).optional(),
+  Transaction: z.lazy(() => TransactionCreateNestedManyWithoutBankInputSchema).optional()
 }).strict();
 
 export default BankCreateInputSchema;

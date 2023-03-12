@@ -8,7 +8,7 @@ import { JobWhereUniqueInputSchema } from './JobWhereUniqueInputSchema';
 export const JobCreateNestedOneWithoutLogsInputSchema: z.ZodType<Prisma.JobCreateNestedOneWithoutLogsInput> = z.object({
   create: z.union([ z.lazy(() => JobCreateWithoutLogsInputSchema),z.lazy(() => JobUncheckedCreateWithoutLogsInputSchema) ]).optional(),
   connectOrCreate: z.lazy(() => JobCreateOrConnectWithoutLogsInputSchema).optional(),
-  connect: z.lazy(() => JobWhereUniqueInputSchema).optional(),
+  connect: z.lazy(() => JobWhereUniqueInputSchema).optional()
 }).strict();
 
 export default JobCreateNestedOneWithoutLogsInputSchema;

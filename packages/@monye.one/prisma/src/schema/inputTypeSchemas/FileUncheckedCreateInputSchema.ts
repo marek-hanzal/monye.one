@@ -11,7 +11,7 @@ export const FileUncheckedCreateInputSchema: z.ZodType<Prisma.FileUncheckedCreat
   ttl: z.number().int().optional().nullable(),
   created: z.coerce.date(),
   updated: z.coerce.date().optional().nullable(),
-  userId: z.string().optional().nullable(),
+  userId: z.string().optional().nullable()
 }).strict();
 
 export default FileUncheckedCreateInputSchema;

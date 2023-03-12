@@ -12,7 +12,7 @@ export const FileMinOrderByAggregateInputSchema: z.ZodType<Prisma.FileMinOrderBy
   ttl: z.lazy(() => SortOrderSchema).optional(),
   created: z.lazy(() => SortOrderSchema).optional(),
   updated: z.lazy(() => SortOrderSchema).optional(),
-  userId: z.lazy(() => SortOrderSchema).optional(),
+  userId: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default FileMinOrderByAggregateInputSchema;

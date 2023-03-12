@@ -4,7 +4,7 @@ import type { Prisma } from '@prisma/client';
 export const VerificationTokenCreateInputSchema: z.ZodType<Prisma.VerificationTokenCreateInput> = z.object({
   identifier: z.string(),
   token: z.string(),
-  expires: z.coerce.date(),
+  expires: z.coerce.date()
 }).strict();
 
 export default VerificationTokenCreateInputSchema;

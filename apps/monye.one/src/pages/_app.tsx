@@ -1,10 +1,9 @@
 import {bootstrap}          from "@/monye.one/bootstrap/bootstrap";
 import {emotionCache}       from "@/monye.one/emotion-cache";
 import "@/monye.one/styles/globals.css";
-import {App}                from "@leight/mantine";
+import {PageShell}          from "@leight/mantine";
 import type {ColorScheme}   from "@mantine/core";
 import {trpc}               from "@monye.one/trpc-client";
-import i18next              from "i18next";
 import {appWithTranslation} from "next-i18next";
 import type {AppProps}      from "next/app";
 import {useRouter}          from "next/router";
@@ -25,9 +24,8 @@ export function MonyeOne(
         router.defaultLocale
     ]);
 
-    return <App
+    return <PageShell
         title={"monye.one"}
-        i18next={i18next}
         emotionCache={emotionCache}
         Component={Component}
         pageProps={pageProps}

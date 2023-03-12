@@ -11,7 +11,7 @@ export const NestedEnumJobStatusWithAggregatesFilterSchema: z.ZodType<Prisma.Nes
   not: z.union([ z.lazy(() => JobStatusSchema),z.lazy(() => NestedEnumJobStatusWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumJobStatusFilterSchema).optional(),
-  _max: z.lazy(() => NestedEnumJobStatusFilterSchema).optional(),
+  _max: z.lazy(() => NestedEnumJobStatusFilterSchema).optional()
 }).strict();
 
 export default NestedEnumJobStatusWithAggregatesFilterSchema;

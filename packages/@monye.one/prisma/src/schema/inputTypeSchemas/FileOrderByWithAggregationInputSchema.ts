@@ -22,7 +22,7 @@ export const FileOrderByWithAggregationInputSchema: z.ZodType<Prisma.FileOrderBy
   _avg: z.lazy(() => FileAvgOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => FileMaxOrderByAggregateInputSchema).optional(),
   _min: z.lazy(() => FileMinOrderByAggregateInputSchema).optional(),
-  _sum: z.lazy(() => FileSumOrderByAggregateInputSchema).optional(),
+  _sum: z.lazy(() => FileSumOrderByAggregateInputSchema).optional()
 }).strict();
 
 export default FileOrderByWithAggregationInputSchema;

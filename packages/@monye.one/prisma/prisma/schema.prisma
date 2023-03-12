@@ -91,16 +91,6 @@ model UserToken {
   @@unique([userId, tokenId])
 }
 
-model Translation {
-  id     String @id @default(cuid())
-  locale String @db.VarChar(32)
-  label  String @db.Text
-  text   String @db.Text
-  hash   String @db.VarChar(128)
-
-  @@unique([locale, hash])
-}
-
 model File {
   id       String    @id @default(cuid())
   path     String
@@ -115,6 +105,16 @@ model File {
   user     User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, path, name])
+}
+
+model Translation {
+  id     String @id @default(cuid())
+  locale String @db.VarChar(32)
+  label  String @db.Text
+  text   String @db.Text
+  hash   String @db.VarChar(128)
+
+  @@unique([locale, hash])
 }
 
 model Job {
@@ -134,7 +134,7 @@ model Job {
   finished     DateTime?
   userId       String?
   user         User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  params       String?
+  params       Json?
 
   logs JobLog[]
 }
@@ -159,6 +159,11 @@ enum JobStatus {
   REVIEW
   //  When everything is OK, it's done: goes from review->done and failure->done
   DONE
+}
+
+model Keyword {
+  id   String @id @default(cuid())
+  text String @unique @db.Text
 }
 
 // === -----

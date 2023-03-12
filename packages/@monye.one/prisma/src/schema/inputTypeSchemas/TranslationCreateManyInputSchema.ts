@@ -6,7 +6,7 @@ export const TranslationCreateManyInputSchema: z.ZodType<Prisma.TranslationCreat
   locale: z.string(),
   label: z.string(),
   text: z.string(),
-  hash: z.string(),
+  hash: z.string()
 }).strict();
 
 export default TranslationCreateManyInputSchema;

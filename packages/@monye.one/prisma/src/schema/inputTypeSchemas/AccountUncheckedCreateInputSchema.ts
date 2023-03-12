@@ -13,7 +13,7 @@ export const AccountUncheckedCreateInputSchema: z.ZodType<Prisma.AccountUnchecke
   token_type: z.string().optional().nullable(),
   scope: z.string().optional().nullable(),
   id_token: z.string().optional().nullable(),
-  session_state: z.string().optional().nullable(),
+  session_state: z.string().optional().nullable()
 }).strict();
 
 export default AccountUncheckedCreateInputSchema;

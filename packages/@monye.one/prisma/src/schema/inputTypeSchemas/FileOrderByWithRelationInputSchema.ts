@@ -14,7 +14,7 @@ export const FileOrderByWithRelationInputSchema: z.ZodType<Prisma.FileOrderByWit
   created: z.lazy(() => SortOrderSchema).optional(),
   updated: z.lazy(() => SortOrderSchema).optional(),
   userId: z.lazy(() => SortOrderSchema).optional(),
-  user: z.lazy(() => UserOrderByWithRelationInputSchema).optional(),
+  user: z.lazy(() => UserOrderByWithRelationInputSchema).optional()
 }).strict();
 
 export default FileOrderByWithRelationInputSchema;

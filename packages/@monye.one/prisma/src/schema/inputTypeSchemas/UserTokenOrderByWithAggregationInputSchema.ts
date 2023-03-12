@@ -11,7 +11,7 @@ export const UserTokenOrderByWithAggregationInputSchema: z.ZodType<Prisma.UserTo
   tokenId: z.lazy(() => SortOrderSchema).optional(),
   _count: z.lazy(() => UserTokenCountOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => UserTokenMaxOrderByAggregateInputSchema).optional(),
-  _min: z.lazy(() => UserTokenMinOrderByAggregateInputSchema).optional(),
+  _min: z.lazy(() => UserTokenMinOrderByAggregateInputSchema).optional()
 }).strict();
 
 export default UserTokenOrderByWithAggregationInputSchema;

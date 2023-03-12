@@ -5,7 +5,7 @@ export const SessionCreateManyInputSchema: z.ZodType<Prisma.SessionCreateManyInp
   id: z.string().cuid().optional(),
   sessionToken: z.string(),
   userId: z.string(),
-  expires: z.coerce.date(),
+  expires: z.coerce.date()
 }).strict();
 
 export default SessionCreateManyInputSchema;

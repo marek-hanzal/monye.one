@@ -11,7 +11,7 @@ export const JobLogOrderByWithAggregationInputSchema: z.ZodType<Prisma.JobLogOrd
   message: z.lazy(() => SortOrderSchema).optional(),
   _count: z.lazy(() => JobLogCountOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => JobLogMaxOrderByAggregateInputSchema).optional(),
-  _min: z.lazy(() => JobLogMinOrderByAggregateInputSchema).optional(),
+  _min: z.lazy(() => JobLogMinOrderByAggregateInputSchema).optional()
 }).strict();
 
 export default JobLogOrderByWithAggregationInputSchema;

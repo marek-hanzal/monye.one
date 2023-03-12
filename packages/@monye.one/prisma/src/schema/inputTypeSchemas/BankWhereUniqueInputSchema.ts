@@ -4,7 +4,7 @@ import { BankUserIdAccountCompoundUniqueInputSchema } from './BankUserIdAccountC
 
 export const BankWhereUniqueInputSchema: z.ZodType<Prisma.BankWhereUniqueInput> = z.object({
   id: z.string().cuid().optional(),
-  userId_account: z.lazy(() => BankUserIdAccountCompoundUniqueInputSchema).optional(),
+  userId_account: z.lazy(() => BankUserIdAccountCompoundUniqueInputSchema).optional()
 }).strict();
 
 export default BankWhereUniqueInputSchema;

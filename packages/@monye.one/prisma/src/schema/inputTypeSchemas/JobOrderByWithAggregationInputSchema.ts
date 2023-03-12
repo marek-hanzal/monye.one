@@ -28,7 +28,7 @@ export const JobOrderByWithAggregationInputSchema: z.ZodType<Prisma.JobOrderByWi
   _avg: z.lazy(() => JobAvgOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => JobMaxOrderByAggregateInputSchema).optional(),
   _min: z.lazy(() => JobMinOrderByAggregateInputSchema).optional(),
-  _sum: z.lazy(() => JobSumOrderByAggregateInputSchema).optional(),
+  _sum: z.lazy(() => JobSumOrderByAggregateInputSchema).optional()
 }).strict();
 
 export default JobOrderByWithAggregationInputSchema;

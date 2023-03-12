@@ -7,7 +7,7 @@ export const TranslationCountOrderByAggregateInputSchema: z.ZodType<Prisma.Trans
   locale: z.lazy(() => SortOrderSchema).optional(),
   label: z.lazy(() => SortOrderSchema).optional(),
   text: z.lazy(() => SortOrderSchema).optional(),
-  hash: z.lazy(() => SortOrderSchema).optional(),
+  hash: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default TranslationCountOrderByAggregateInputSchema;

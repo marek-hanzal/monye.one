@@ -5,7 +5,7 @@ import { TokenUpdateOneRequiredWithoutUserTokenNestedInputSchema } from './Token
 
 export const UserTokenUpdateWithoutUserInputSchema: z.ZodType<Prisma.UserTokenUpdateWithoutUserInput> = z.object({
   id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  token: z.lazy(() => TokenUpdateOneRequiredWithoutUserTokenNestedInputSchema).optional(),
+  token: z.lazy(() => TokenUpdateOneRequiredWithoutUserTokenNestedInputSchema).optional()
 }).strict();
 
 export default UserTokenUpdateWithoutUserInputSchema;

@@ -6,7 +6,7 @@ export const IntFieldUpdateOperationsInputSchema: z.ZodType<Prisma.IntFieldUpdat
   increment: z.number().optional(),
   decrement: z.number().optional(),
   multiply: z.number().optional(),
-  divide: z.number().optional(),
+  divide: z.number().optional()
 }).strict();
 
 export default IntFieldUpdateOperationsInputSchema;

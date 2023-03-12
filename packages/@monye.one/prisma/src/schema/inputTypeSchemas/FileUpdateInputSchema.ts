@@ -17,7 +17,7 @@ export const FileUpdateInputSchema: z.ZodType<Prisma.FileUpdateInput> = z.object
   ttl: z.union([ z.number().int(),z.lazy(() => NullableIntFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   created: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   updated: z.union([ z.coerce.date(),z.lazy(() => NullableDateTimeFieldUpdateOperationsInputSchema) ]).optional().nullable(),
-  user: z.lazy(() => UserUpdateOneWithoutFileNestedInputSchema).optional(),
+  user: z.lazy(() => UserUpdateOneWithoutFileNestedInputSchema).optional()
 }).strict();
 
 export default FileUpdateInputSchema;

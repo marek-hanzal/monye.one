@@ -17,8 +17,7 @@ export const JobMinOrderByAggregateInputSchema: z.ZodType<Prisma.JobMinOrderByAg
   created: z.lazy(() => SortOrderSchema).optional(),
   started: z.lazy(() => SortOrderSchema).optional(),
   finished: z.lazy(() => SortOrderSchema).optional(),
-  userId: z.lazy(() => SortOrderSchema).optional(),
-  params: z.lazy(() => SortOrderSchema).optional(),
+  userId: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default JobMinOrderByAggregateInputSchema;

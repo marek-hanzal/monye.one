@@ -4,7 +4,7 @@ import { AccountProviderProviderAccountIdCompoundUniqueInputSchema } from './Acc
 
 export const AccountWhereUniqueInputSchema: z.ZodType<Prisma.AccountWhereUniqueInput> = z.object({
   id: z.string().cuid().optional(),
-  provider_providerAccountId: z.lazy(() => AccountProviderProviderAccountIdCompoundUniqueInputSchema).optional(),
+  provider_providerAccountId: z.lazy(() => AccountProviderProviderAccountIdCompoundUniqueInputSchema).optional()
 }).strict();
 
 export default AccountWhereUniqueInputSchema;

@@ -19,7 +19,7 @@ export const NestedDecimalWithAggregatesFilterSchema: z.ZodType<Prisma.NestedDec
   _avg: z.lazy(() => NestedDecimalFilterSchema).optional(),
   _sum: z.lazy(() => NestedDecimalFilterSchema).optional(),
   _min: z.lazy(() => NestedDecimalFilterSchema).optional(),
-  _max: z.lazy(() => NestedDecimalFilterSchema).optional(),
+  _max: z.lazy(() => NestedDecimalFilterSchema).optional()
 }).strict();
 
 export default NestedDecimalWithAggregatesFilterSchema;

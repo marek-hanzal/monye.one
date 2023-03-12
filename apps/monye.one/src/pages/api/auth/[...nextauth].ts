@@ -1,33 +1,27 @@
-import {env}               from "@/monye.one/env/server.mjs";
+import {env}               from "@/monye.one/env.mjs";
+import {container}         from "@/monye.one/server/container";
+import {NextAuthEndpoint}  from "@leight/next.js-server";
 import {
-    LeightServerContainer,
-    MonyeOneContainer
-}                          from "@/monye.one/server/container";
-import {PrismaAdapter}     from "@leight/next.js-server";
-import {Logger}            from "@leight/winston";
-import NextAuth            from "next-auth";
-import type {Provider}     from "next-auth/providers";
+    $UserSource,
+    type IUserSource
+}                          from "@leight/user";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHub              from "next-auth/providers/github";
 
-const logger = Logger("auth");
-
-const providers: Provider[] = [
-    GitHub({
-        name:         "github",
-        clientId:     env.NEXTAUTH_GITHUB_CLIENT_ID,
-        clientSecret: env.NEXTAUTH_GITHUB_CLIENT_SECRET,
-    }),
-    // Google({
-    //     name:         "google",
-    //     clientId:     env.NEXTAUTH_GOOGLE_CLIENT_ID,
-    //     clientSecret: env.NEXTAUTH_GOOGLE_CLIENT_SECRET,
-    // }),
-];
-
-if (env.NODE_ENV === "development") {
-    providers.push(
-        CredentialsProvider({
+export default NextAuthEndpoint({
+    container,
+    providers: [
+        GitHub({
+            name:         "github",
+            clientId:     env.NEXTAUTH_GITHUB_CLIENT_ID,
+            clientSecret: env.NEXTAUTH_GITHUB_CLIENT_SECRET,
+        }),
+        // Google({
+        //     name:         "google",
+        //     clientId:     env.NEXTAUTH_GOOGLE_CLIENT_ID,
+        //     clientSecret: env.NEXTAUTH_GOOGLE_CLIENT_SECRET,
+        // }),
+        env.NODE_ENV === "development" && CredentialsProvider({
             name:        "Credentials",
             credentials: {
                 secret: {label: "Dark Secret", type: "text"},
@@ -37,59 +31,15 @@ if (env.NODE_ENV === "development") {
                 if (!secret) {
                     return null;
                 }
-                return LeightServerContainer.UserContainer.UserSource.findByEmail(secret);
+                return container.resolve<IUserSource>($UserSource).findByEmail(secret);
             },
-        })
-    );
-}
-
-export default NextAuth({
-    theme:     {
-        logo:        "/logo.png",
-        brandColor:  "#1890ff",
-        colorScheme: "light",
-    },
-    events:    {
-        signIn:  ({user}) => {
-            logger.debug("User sign-in", {label: {userId: user.id}});
-        },
-        signOut: ({token: {sub}}) => {
-            logger.debug("User sign-out", {label: {userId: sub}});
-        },
-    },
-    adapter:   PrismaAdapter(MonyeOneContainer.PrismaClient),
-    session:   {
-        strategy: "jwt",
-    },
-    providers,
-    callbacks: {
-        jwt:     async (token) => {
-            const {UserContainer} = LeightServerContainer;
-            try {
-                await UserContainer.RegistrationService.handle(
-                    token
-                );
-                return await UserContainer.UserJwtService.token(
-                    token.token
-                );
-            } catch (e) {
-                if (e instanceof Error) {
-                    logger.error(e.message);
-                    logger.error(e.stack);
-                }
-                throw e;
-            }
-        },
-        session: async ({session, token}) => {
-            const $session = {...session};
-            if ($session && token?.sub) {
-                $session.user = {
-                    userId: token.sub,
-                    tokens: token.tokens,
-                    ...session.user,
-                };
-            }
-            return $session;
+        }),
+    ],
+    options:   {
+        theme: {
+            logo:        "/assets/logo.png",
+            brandColor:  "#1890ff",
+            colorScheme: "light",
         },
     },
 });

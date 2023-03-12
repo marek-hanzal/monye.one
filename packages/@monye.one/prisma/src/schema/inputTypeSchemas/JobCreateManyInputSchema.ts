@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import type { Prisma } from '@prisma/client';
 import { JobStatusSchema } from './JobStatusSchema';
+import { NullableJsonNullValueInputSchema } from './NullableJsonNullValueInputSchema';
+import { InputJsonValue } from './InputJsonValue';
 
 export const JobCreateManyInputSchema: z.ZodType<Prisma.JobCreateManyInput> = z.object({
   id: z.string().cuid().optional(),
@@ -18,7 +20,7 @@ export const JobCreateManyInputSchema: z.ZodType<Prisma.JobCreateManyInput> = z.
   started: z.coerce.date().optional().nullable(),
   finished: z.coerce.date().optional().nullable(),
   userId: z.string().optional().nullable(),
-  params: z.string().optional().nullable(),
+  params: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
 }).strict();
 
 export default JobCreateManyInputSchema;

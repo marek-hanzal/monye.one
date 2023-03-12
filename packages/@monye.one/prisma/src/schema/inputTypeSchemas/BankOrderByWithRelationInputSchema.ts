@@ -9,7 +9,7 @@ export const BankOrderByWithRelationInputSchema: z.ZodType<Prisma.BankOrderByWit
   userId: z.lazy(() => SortOrderSchema).optional(),
   account: z.lazy(() => SortOrderSchema).optional(),
   user: z.lazy(() => UserOrderByWithRelationInputSchema).optional(),
-  Transaction: z.lazy(() => TransactionOrderByRelationAggregateInputSchema).optional(),
+  Transaction: z.lazy(() => TransactionOrderByRelationAggregateInputSchema).optional()
 }).strict();
 
 export default BankOrderByWithRelationInputSchema;

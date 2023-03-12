@@ -6,7 +6,7 @@ export const BankUncheckedCreateInputSchema: z.ZodType<Prisma.BankUncheckedCreat
   id: z.string().cuid().optional(),
   userId: z.string(),
   account: z.string(),
-  Transaction: z.lazy(() => TransactionUncheckedCreateNestedManyWithoutBankInputSchema).optional(),
+  Transaction: z.lazy(() => TransactionUncheckedCreateNestedManyWithoutBankInputSchema).optional()
 }).strict();
 
 export default BankUncheckedCreateInputSchema;

@@ -23,7 +23,7 @@ export const TransactionOrderByWithAggregationInputSchema: z.ZodType<Prisma.Tran
   _avg: z.lazy(() => TransactionAvgOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => TransactionMaxOrderByAggregateInputSchema).optional(),
   _min: z.lazy(() => TransactionMinOrderByAggregateInputSchema).optional(),
-  _sum: z.lazy(() => TransactionSumOrderByAggregateInputSchema).optional(),
+  _sum: z.lazy(() => TransactionSumOrderByAggregateInputSchema).optional()
 }).strict();
 
 export default TransactionOrderByWithAggregationInputSchema;

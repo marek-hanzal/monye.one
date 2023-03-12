@@ -8,7 +8,7 @@ import { UserWhereUniqueInputSchema } from './UserWhereUniqueInputSchema';
 export const UserCreateNestedOneWithoutTransactionInputSchema: z.ZodType<Prisma.UserCreateNestedOneWithoutTransactionInput> = z.object({
   create: z.union([ z.lazy(() => UserCreateWithoutTransactionInputSchema),z.lazy(() => UserUncheckedCreateWithoutTransactionInputSchema) ]).optional(),
   connectOrCreate: z.lazy(() => UserCreateOrConnectWithoutTransactionInputSchema).optional(),
-  connect: z.lazy(() => UserWhereUniqueInputSchema).optional(),
+  connect: z.lazy(() => UserWhereUniqueInputSchema).optional()
 }).strict();
 
 export default UserCreateNestedOneWithoutTransactionInputSchema;

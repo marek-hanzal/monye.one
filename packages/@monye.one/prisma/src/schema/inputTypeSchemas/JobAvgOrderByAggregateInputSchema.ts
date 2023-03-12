@@ -10,7 +10,7 @@ export const JobAvgOrderByAggregateInputSchema: z.ZodType<Prisma.JobAvgOrderByAg
   failure: z.lazy(() => SortOrderSchema).optional(),
   failureRatio: z.lazy(() => SortOrderSchema).optional(),
   skip: z.lazy(() => SortOrderSchema).optional(),
-  skipRatio: z.lazy(() => SortOrderSchema).optional(),
+  skipRatio: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default JobAvgOrderByAggregateInputSchema;

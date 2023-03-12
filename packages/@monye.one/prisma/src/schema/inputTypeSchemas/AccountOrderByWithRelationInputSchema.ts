@@ -16,7 +16,7 @@ export const AccountOrderByWithRelationInputSchema: z.ZodType<Prisma.AccountOrde
   scope: z.lazy(() => SortOrderSchema).optional(),
   id_token: z.lazy(() => SortOrderSchema).optional(),
   session_state: z.lazy(() => SortOrderSchema).optional(),
-  user: z.lazy(() => UserOrderByWithRelationInputSchema).optional(),
+  user: z.lazy(() => UserOrderByWithRelationInputSchema).optional()
 }).strict();
 
 export default AccountOrderByWithRelationInputSchema;

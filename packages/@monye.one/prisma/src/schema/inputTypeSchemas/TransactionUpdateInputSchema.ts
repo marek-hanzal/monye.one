@@ -20,7 +20,7 @@ export const TransactionUpdateInputSchema: z.ZodType<Prisma.TransactionUpdateInp
   target: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   note: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   user: z.lazy(() => UserUpdateOneRequiredWithoutTransactionNestedInputSchema).optional(),
-  bank: z.lazy(() => BankUpdateOneRequiredWithoutTransactionNestedInputSchema).optional(),
+  bank: z.lazy(() => BankUpdateOneRequiredWithoutTransactionNestedInputSchema).optional()
 }).strict();
 
 export default TransactionUpdateInputSchema;

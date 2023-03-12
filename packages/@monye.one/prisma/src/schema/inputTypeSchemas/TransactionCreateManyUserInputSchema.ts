@@ -13,7 +13,7 @@ export const TransactionCreateManyUserInputSchema: z.ZodType<Prisma.TransactionC
   static: z.string().optional().nullable(),
   date: z.coerce.date(),
   target: z.string().optional().nullable(),
-  note: z.string().optional().nullable(),
+  note: z.string().optional().nullable()
 }).strict();
 
 export default TransactionCreateManyUserInputSchema;

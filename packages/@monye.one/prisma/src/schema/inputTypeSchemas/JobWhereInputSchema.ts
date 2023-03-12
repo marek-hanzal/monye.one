@@ -10,6 +10,7 @@ import { FloatNullableFilterSchema } from './FloatNullableFilterSchema';
 import { DateTimeFilterSchema } from './DateTimeFilterSchema';
 import { DateTimeNullableFilterSchema } from './DateTimeNullableFilterSchema';
 import { StringNullableFilterSchema } from './StringNullableFilterSchema';
+import { JsonNullableFilterSchema } from './JsonNullableFilterSchema';
 import { UserRelationFilterSchema } from './UserRelationFilterSchema';
 import { UserWhereInputSchema } from './UserWhereInputSchema';
 import { JobLogListRelationFilterSchema } from './JobLogListRelationFilterSchema';
@@ -33,9 +34,9 @@ export const JobWhereInputSchema: z.ZodType<Prisma.JobWhereInput> = z.object({
   started: z.union([ z.lazy(() => DateTimeNullableFilterSchema),z.coerce.date() ]).optional().nullable(),
   finished: z.union([ z.lazy(() => DateTimeNullableFilterSchema),z.coerce.date() ]).optional().nullable(),
   userId: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
-  params: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
+  params: z.lazy(() => JsonNullableFilterSchema).optional(),
   user: z.union([ z.lazy(() => UserRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional().nullable(),
-  logs: z.lazy(() => JobLogListRelationFilterSchema).optional(),
+  logs: z.lazy(() => JobLogListRelationFilterSchema).optional()
 }).strict();
 
 export default JobWhereInputSchema;

@@ -6,7 +6,7 @@ import { UserTokenOrderByRelationAggregateInputSchema } from './UserTokenOrderBy
 export const TokenOrderByWithRelationInputSchema: z.ZodType<Prisma.TokenOrderByWithRelationInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
   name: z.lazy(() => SortOrderSchema).optional(),
-  UserToken: z.lazy(() => UserTokenOrderByRelationAggregateInputSchema).optional(),
+  UserToken: z.lazy(() => UserTokenOrderByRelationAggregateInputSchema).optional()
 }).strict();
 
 export default TokenOrderByWithRelationInputSchema;

@@ -7,7 +7,7 @@ export const JobLogOrderByWithRelationInputSchema: z.ZodType<Prisma.JobLogOrderB
   id: z.lazy(() => SortOrderSchema).optional(),
   jobId: z.lazy(() => SortOrderSchema).optional(),
   message: z.lazy(() => SortOrderSchema).optional(),
-  job: z.lazy(() => JobOrderByWithRelationInputSchema).optional(),
+  job: z.lazy(() => JobOrderByWithRelationInputSchema).optional()
 }).strict();
 
 export default JobLogOrderByWithRelationInputSchema;

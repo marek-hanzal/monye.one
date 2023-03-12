@@ -6,7 +6,7 @@ export const SessionMaxOrderByAggregateInputSchema: z.ZodType<Prisma.SessionMaxO
   id: z.lazy(() => SortOrderSchema).optional(),
   sessionToken: z.lazy(() => SortOrderSchema).optional(),
   userId: z.lazy(() => SortOrderSchema).optional(),
-  expires: z.lazy(() => SortOrderSchema).optional(),
+  expires: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default SessionMaxOrderByAggregateInputSchema;

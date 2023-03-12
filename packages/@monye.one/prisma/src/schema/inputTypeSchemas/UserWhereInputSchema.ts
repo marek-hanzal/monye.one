@@ -26,7 +26,7 @@ export const UserWhereInputSchema: z.ZodType<Prisma.UserWhereInput> = z.object({
   Transaction: z.lazy(() => TransactionListRelationFilterSchema).optional(),
   Job: z.lazy(() => JobListRelationFilterSchema).optional(),
   File: z.lazy(() => FileListRelationFilterSchema).optional(),
-  Bank: z.lazy(() => BankListRelationFilterSchema).optional(),
+  Bank: z.lazy(() => BankListRelationFilterSchema).optional()
 }).strict();
 
 export default UserWhereInputSchema;

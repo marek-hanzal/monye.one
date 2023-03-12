@@ -12,7 +12,7 @@ export const FileCreateInputSchema: z.ZodType<Prisma.FileCreateInput> = z.object
   ttl: z.number().int().optional().nullable(),
   created: z.coerce.date(),
   updated: z.coerce.date().optional().nullable(),
-  user: z.lazy(() => UserCreateNestedOneWithoutFileInputSchema).optional(),
+  user: z.lazy(() => UserCreateNestedOneWithoutFileInputSchema).optional()
 }).strict();
 
 export default FileCreateInputSchema;

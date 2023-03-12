@@ -14,7 +14,7 @@ export const TransactionUncheckedCreateInputSchema: z.ZodType<Prisma.Transaction
   static: z.string().optional().nullable(),
   date: z.coerce.date(),
   target: z.string().optional().nullable(),
-  note: z.string().optional().nullable(),
+  note: z.string().optional().nullable()
 }).strict();
 
 export default TransactionUncheckedCreateInputSchema;

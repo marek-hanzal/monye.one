@@ -17,7 +17,7 @@ export const AccountUpdateInputSchema: z.ZodType<Prisma.AccountUpdateInput> = z.
   scope: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   id_token: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   session_state: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
-  user: z.lazy(() => UserUpdateOneRequiredWithoutAccountsNestedInputSchema).optional(),
+  user: z.lazy(() => UserUpdateOneRequiredWithoutAccountsNestedInputSchema).optional()
 }).strict();
 
 export default AccountUpdateInputSchema;

@@ -21,7 +21,7 @@ export const UserOrderByWithRelationInputSchema: z.ZodType<Prisma.UserOrderByWit
   Transaction: z.lazy(() => TransactionOrderByRelationAggregateInputSchema).optional(),
   Job: z.lazy(() => JobOrderByRelationAggregateInputSchema).optional(),
   File: z.lazy(() => FileOrderByRelationAggregateInputSchema).optional(),
-  Bank: z.lazy(() => BankOrderByRelationAggregateInputSchema).optional(),
+  Bank: z.lazy(() => BankOrderByRelationAggregateInputSchema).optional()
 }).strict();
 
 export default UserOrderByWithRelationInputSchema;

@@ -4,7 +4,7 @@ import { UserTokenCreateManyUserInputSchema } from './UserTokenCreateManyUserInp
 
 export const UserTokenCreateManyUserInputEnvelopeSchema: z.ZodType<Prisma.UserTokenCreateManyUserInputEnvelope> = z.object({
   data: z.union([ z.lazy(() => UserTokenCreateManyUserInputSchema),z.lazy(() => UserTokenCreateManyUserInputSchema).array() ]),
-  skipDuplicates: z.boolean().optional(),
+  skipDuplicates: z.boolean().optional()
 }).strict();
 
 export default UserTokenCreateManyUserInputEnvelopeSchema;

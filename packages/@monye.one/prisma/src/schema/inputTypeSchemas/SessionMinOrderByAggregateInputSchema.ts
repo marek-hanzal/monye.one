@@ -6,7 +6,7 @@ export const SessionMinOrderByAggregateInputSchema: z.ZodType<Prisma.SessionMinO
   id: z.lazy(() => SortOrderSchema).optional(),
   sessionToken: z.lazy(() => SortOrderSchema).optional(),
   userId: z.lazy(() => SortOrderSchema).optional(),
-  expires: z.lazy(() => SortOrderSchema).optional(),
+  expires: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default SessionMinOrderByAggregateInputSchema;

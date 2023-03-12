@@ -6,7 +6,7 @@ export const FloatFieldUpdateOperationsInputSchema: z.ZodType<Prisma.FloatFieldU
   increment: z.number().optional(),
   decrement: z.number().optional(),
   multiply: z.number().optional(),
-  divide: z.number().optional(),
+  divide: z.number().optional()
 }).strict();
 
 export default FloatFieldUpdateOperationsInputSchema;

@@ -11,7 +11,7 @@ export const BankOrderByWithAggregationInputSchema: z.ZodType<Prisma.BankOrderBy
   account: z.lazy(() => SortOrderSchema).optional(),
   _count: z.lazy(() => BankCountOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => BankMaxOrderByAggregateInputSchema).optional(),
-  _min: z.lazy(() => BankMinOrderByAggregateInputSchema).optional(),
+  _min: z.lazy(() => BankMinOrderByAggregateInputSchema).optional()
 }).strict();
 
 export default BankOrderByWithAggregationInputSchema;

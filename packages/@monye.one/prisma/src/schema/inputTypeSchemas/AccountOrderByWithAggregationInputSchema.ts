@@ -24,7 +24,7 @@ export const AccountOrderByWithAggregationInputSchema: z.ZodType<Prisma.AccountO
   _avg: z.lazy(() => AccountAvgOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => AccountMaxOrderByAggregateInputSchema).optional(),
   _min: z.lazy(() => AccountMinOrderByAggregateInputSchema).optional(),
-  _sum: z.lazy(() => AccountSumOrderByAggregateInputSchema).optional(),
+  _sum: z.lazy(() => AccountSumOrderByAggregateInputSchema).optional()
 }).strict();
 
 export default AccountOrderByWithAggregationInputSchema;

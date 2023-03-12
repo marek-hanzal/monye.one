@@ -12,7 +12,7 @@ export const SessionOrderByWithAggregationInputSchema: z.ZodType<Prisma.SessionO
   expires: z.lazy(() => SortOrderSchema).optional(),
   _count: z.lazy(() => SessionCountOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => SessionMaxOrderByAggregateInputSchema).optional(),
-  _min: z.lazy(() => SessionMinOrderByAggregateInputSchema).optional(),
+  _min: z.lazy(() => SessionMinOrderByAggregateInputSchema).optional()
 }).strict();
 
 export default SessionOrderByWithAggregationInputSchema;

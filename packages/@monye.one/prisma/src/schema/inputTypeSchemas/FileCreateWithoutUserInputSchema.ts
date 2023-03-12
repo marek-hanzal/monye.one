@@ -10,7 +10,7 @@ export const FileCreateWithoutUserInputSchema: z.ZodType<Prisma.FileCreateWithou
   location: z.string(),
   ttl: z.number().optional().nullable(),
   created: z.coerce.date(),
-  updated: z.coerce.date().optional().nullable(),
+  updated: z.coerce.date().optional().nullable()
 }).strict();
 
 export default FileCreateWithoutUserInputSchema;

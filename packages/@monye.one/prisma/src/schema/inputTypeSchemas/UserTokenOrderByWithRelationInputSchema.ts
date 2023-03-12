@@ -9,7 +9,7 @@ export const UserTokenOrderByWithRelationInputSchema: z.ZodType<Prisma.UserToken
   userId: z.lazy(() => SortOrderSchema).optional(),
   tokenId: z.lazy(() => SortOrderSchema).optional(),
   user: z.lazy(() => UserOrderByWithRelationInputSchema).optional(),
-  token: z.lazy(() => TokenOrderByWithRelationInputSchema).optional(),
+  token: z.lazy(() => TokenOrderByWithRelationInputSchema).optional()
 }).strict();
 
 export default UserTokenOrderByWithRelationInputSchema;

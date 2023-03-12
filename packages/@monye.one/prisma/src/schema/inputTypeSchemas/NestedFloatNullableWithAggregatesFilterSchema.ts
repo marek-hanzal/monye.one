@@ -16,7 +16,7 @@ export const NestedFloatNullableWithAggregatesFilterSchema: z.ZodType<Prisma.Nes
   _avg: z.lazy(() => NestedFloatNullableFilterSchema).optional(),
   _sum: z.lazy(() => NestedFloatNullableFilterSchema).optional(),
   _min: z.lazy(() => NestedFloatNullableFilterSchema).optional(),
-  _max: z.lazy(() => NestedFloatNullableFilterSchema).optional(),
+  _max: z.lazy(() => NestedFloatNullableFilterSchema).optional()
 }).strict();
 
 export default NestedFloatNullableWithAggregatesFilterSchema;

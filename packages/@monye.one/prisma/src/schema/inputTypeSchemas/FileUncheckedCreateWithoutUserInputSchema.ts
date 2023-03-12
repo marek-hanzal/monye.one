@@ -10,7 +10,7 @@ export const FileUncheckedCreateWithoutUserInputSchema: z.ZodType<Prisma.FileUnc
   location: z.string(),
   ttl: z.number().optional().nullable(),
   created: z.coerce.date(),
-  updated: z.coerce.date().optional().nullable(),
+  updated: z.coerce.date().optional().nullable()
 }).strict();
 
 export default FileUncheckedCreateWithoutUserInputSchema;

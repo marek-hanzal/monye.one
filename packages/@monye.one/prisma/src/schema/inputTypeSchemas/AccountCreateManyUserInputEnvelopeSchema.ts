@@ -4,7 +4,7 @@ import { AccountCreateManyUserInputSchema } from './AccountCreateManyUserInputSc
 
 export const AccountCreateManyUserInputEnvelopeSchema: z.ZodType<Prisma.AccountCreateManyUserInputEnvelope> = z.object({
   data: z.union([ z.lazy(() => AccountCreateManyUserInputSchema),z.lazy(() => AccountCreateManyUserInputSchema).array() ]),
-  skipDuplicates: z.boolean().optional(),
+  skipDuplicates: z.boolean().optional()
 }).strict();
 
 export default AccountCreateManyUserInputEnvelopeSchema;

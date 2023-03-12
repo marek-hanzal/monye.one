@@ -14,7 +14,7 @@ export const AccountMaxOrderByAggregateInputSchema: z.ZodType<Prisma.AccountMaxO
   token_type: z.lazy(() => SortOrderSchema).optional(),
   scope: z.lazy(() => SortOrderSchema).optional(),
   id_token: z.lazy(() => SortOrderSchema).optional(),
-  session_state: z.lazy(() => SortOrderSchema).optional(),
+  session_state: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default AccountMaxOrderByAggregateInputSchema;

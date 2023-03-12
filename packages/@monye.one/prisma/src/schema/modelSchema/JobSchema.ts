@@ -1,5 +1,7 @@
 import { z } from 'zod';
+import { NullableJsonValue } from "../inputTypeSchemas/NullableJsonValue"
 import { JobStatusSchema } from '../inputTypeSchemas/JobStatusSchema'
+import { type NullableJsonInput } from '../inputTypeSchemas/transformJsonNull';
 import { type UserWithRelations, UserWithRelationsSchema } from './UserSchema'
 import { type JobLogWithRelations, JobLogWithRelationsSchema } from './JobLogSchema'
 import { type UserPartialWithRelations, UserPartialWithRelationsSchema } from './UserSchema'
@@ -25,7 +27,7 @@ export const JobSchema = z.object({
   started: z.coerce.date().nullish(),
   finished: z.coerce.date().nullish(),
   userId: z.string().nullish(),
-  params: z.string().nullish(),
+  params: NullableJsonValue.optional(),
 })
 
 export type Job = z.infer<typeof JobSchema>
@@ -57,7 +59,9 @@ export type JobRelations = {
   logs: JobLogWithRelations[];
 };
 
-export type JobWithRelations = z.infer<typeof JobSchema> & JobRelations
+export type JobWithRelations = Omit<z.infer<typeof JobSchema>, "params"> & {
+  params?: NullableJsonInput;
+} & JobRelations
 
 export const JobWithRelationsSchema: z.ZodType<JobWithRelations> = JobSchema.merge(z.object({
   user: z.lazy(() => UserWithRelationsSchema).nullish(),
@@ -67,7 +71,9 @@ export const JobWithRelationsSchema: z.ZodType<JobWithRelations> = JobSchema.mer
 // JOB OPTIONAL DEFAULTS RELATION SCHEMA
 //------------------------------------------------------
 
-export type JobOptionalDefaultsWithRelations = z.infer<typeof JobOptionalDefaultsSchema> & JobRelations
+export type JobOptionalDefaultsWithRelations = Omit<z.infer<typeof JobOptionalDefaultsSchema>, "params"> & {
+  params?: NullableJsonInput;
+} & JobRelations
 
 export const JobOptionalDefaultsWithRelationsSchema: z.ZodType<JobOptionalDefaultsWithRelations> = JobOptionalDefaultsSchema.merge(z.object({
   user: z.lazy(() => UserWithRelationsSchema).nullish(),
@@ -82,7 +88,9 @@ export type JobPartialRelations = {
   logs?: JobLogPartialWithRelations[];
 };
 
-export type JobPartialWithRelations = z.infer<typeof JobPartialSchema> & JobPartialRelations
+export type JobPartialWithRelations = Omit<z.infer<typeof JobPartialSchema>, "params"> & {
+  params?: NullableJsonInput;
+} & JobPartialRelations
 
 export const JobPartialWithRelationsSchema: z.ZodType<JobPartialWithRelations> = JobPartialSchema.merge(z.object({
   user: z.lazy(() => UserPartialWithRelationsSchema).nullish(),

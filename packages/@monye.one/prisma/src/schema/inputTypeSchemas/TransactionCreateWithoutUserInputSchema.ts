@@ -14,7 +14,7 @@ export const TransactionCreateWithoutUserInputSchema: z.ZodType<Prisma.Transacti
   date: z.coerce.date(),
   target: z.string().optional().nullable(),
   note: z.string().optional().nullable(),
-  bank: z.lazy(() => BankCreateNestedOneWithoutTransactionInputSchema),
+  bank: z.lazy(() => BankCreateNestedOneWithoutTransactionInputSchema)
 }).strict();
 
 export default TransactionCreateWithoutUserInputSchema;

@@ -12,7 +12,7 @@ export const FileCountOrderByAggregateInputSchema: z.ZodType<Prisma.FileCountOrd
   ttl: z.lazy(() => SortOrderSchema).optional(),
   created: z.lazy(() => SortOrderSchema).optional(),
   updated: z.lazy(() => SortOrderSchema).optional(),
-  userId: z.lazy(() => SortOrderSchema).optional(),
+  userId: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default FileCountOrderByAggregateInputSchema;

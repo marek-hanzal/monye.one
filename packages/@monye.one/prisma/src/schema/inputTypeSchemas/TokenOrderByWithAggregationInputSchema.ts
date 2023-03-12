@@ -10,7 +10,7 @@ export const TokenOrderByWithAggregationInputSchema: z.ZodType<Prisma.TokenOrder
   name: z.lazy(() => SortOrderSchema).optional(),
   _count: z.lazy(() => TokenCountOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => TokenMaxOrderByAggregateInputSchema).optional(),
-  _min: z.lazy(() => TokenMinOrderByAggregateInputSchema).optional(),
+  _min: z.lazy(() => TokenMinOrderByAggregateInputSchema).optional()
 }).strict();
 
 export default TokenOrderByWithAggregationInputSchema;

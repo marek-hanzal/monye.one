@@ -11,10 +11,11 @@ export interface IActionButtonProps
     withTranslation: IWithTranslation;
 }
 
-export const ActionButton: FC<IActionButtonProps> = ({
-                                                         withTranslation,
-                                                         ...props
-                                                     }) => {
+export const ActionButton: FC<IActionButtonProps> = (
+    {
+        withTranslation,
+        ...props
+    }) => {
     return (
         <Button
             variant={"gradient"}

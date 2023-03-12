@@ -7,7 +7,7 @@ export const BankUncheckedUpdateInputSchema: z.ZodType<Prisma.BankUncheckedUpdat
   id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   userId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   account: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
-  Transaction: z.lazy(() => TransactionUncheckedUpdateManyWithoutBankNestedInputSchema).optional(),
+  Transaction: z.lazy(() => TransactionUncheckedUpdateManyWithoutBankNestedInputSchema).optional()
 }).strict();
 
 export default BankUncheckedUpdateInputSchema;

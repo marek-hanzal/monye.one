@@ -4,7 +4,7 @@ import { BankCreateManyUserInputSchema } from './BankCreateManyUserInputSchema';
 
 export const BankCreateManyUserInputEnvelopeSchema: z.ZodType<Prisma.BankCreateManyUserInputEnvelope> = z.object({
   data: z.union([ z.lazy(() => BankCreateManyUserInputSchema),z.lazy(() => BankCreateManyUserInputSchema).array() ]),
-  skipDuplicates: z.boolean().optional(),
+  skipDuplicates: z.boolean().optional()
 }).strict();
 
 export default BankCreateManyUserInputEnvelopeSchema;

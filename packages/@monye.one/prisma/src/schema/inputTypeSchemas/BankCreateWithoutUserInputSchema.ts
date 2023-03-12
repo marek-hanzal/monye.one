@@ -5,7 +5,7 @@ import { TransactionCreateNestedManyWithoutBankInputSchema } from './Transaction
 export const BankCreateWithoutUserInputSchema: z.ZodType<Prisma.BankCreateWithoutUserInput> = z.object({
   id: z.string().optional(),
   account: z.string(),
-  Transaction: z.lazy(() => TransactionCreateNestedManyWithoutBankInputSchema).optional(),
+  Transaction: z.lazy(() => TransactionCreateNestedManyWithoutBankInputSchema).optional()
 }).strict();
 
 export default BankCreateWithoutUserInputSchema;

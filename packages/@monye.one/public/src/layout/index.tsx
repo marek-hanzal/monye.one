@@ -1,24 +1,25 @@
-import {switchScheme}   from "@leight/mantine";
+import {type IPageWithLayout} from "@leight/layout";
+import {switchScheme}         from "@leight/mantine";
 import {
     Box,
     createStyles,
     Group,
     Header
-}                       from "@mantine/core";
+}                             from "@mantine/core";
 import {
     PrimaryButton,
     SessionOverlay,
     useAuthenticatedSession,
-}                       from "@monye.one/ui";
-import {signIn}         from "next-auth/react";
-import {useTranslation} from "next-i18next";
-import Image            from "next/image";
-import Link             from "next/link";
+}                             from "@monye.one/ui";
+import {signIn}               from "next-auth/react";
+import {useTranslation}       from "next-i18next";
+import Image                  from "next/image";
+import Link                   from "next/link";
 import {
-    ComponentProps,
+    type ComponentProps,
     type FC,
     type PropsWithChildren
-}                       from "react";
+}                             from "react";
 
 const useStyles = createStyles((theme) => ({
     link: {
@@ -86,3 +87,11 @@ export const PublicLayout: FC<IPublicLayoutProps> = ({logo, children}) => {
         </>
     );
 };
+
+export function withPublicLayout(Component: FC, props: IPublicLayoutProps) {
+    // eslint-disable-next-line no-param-reassign
+    (Component as unknown as IPageWithLayout).layout = (children) => {
+        return <PublicLayout {...props}>{children}</PublicLayout>;
+    };
+    return Component;
+}

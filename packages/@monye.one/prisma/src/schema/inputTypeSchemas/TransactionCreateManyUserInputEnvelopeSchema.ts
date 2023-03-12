@@ -4,7 +4,7 @@ import { TransactionCreateManyUserInputSchema } from './TransactionCreateManyUse
 
 export const TransactionCreateManyUserInputEnvelopeSchema: z.ZodType<Prisma.TransactionCreateManyUserInputEnvelope> = z.object({
   data: z.union([ z.lazy(() => TransactionCreateManyUserInputSchema),z.lazy(() => TransactionCreateManyUserInputSchema).array() ]),
-  skipDuplicates: z.boolean().optional(),
+  skipDuplicates: z.boolean().optional()
 }).strict();
 
 export default TransactionCreateManyUserInputEnvelopeSchema;

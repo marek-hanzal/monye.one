@@ -13,7 +13,7 @@ export const UserOrderByWithAggregationInputSchema: z.ZodType<Prisma.UserOrderBy
   image: z.lazy(() => SortOrderSchema).optional(),
   _count: z.lazy(() => UserCountOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => UserMaxOrderByAggregateInputSchema).optional(),
-  _min: z.lazy(() => UserMinOrderByAggregateInputSchema).optional(),
+  _min: z.lazy(() => UserMinOrderByAggregateInputSchema).optional()
 }).strict();
 
 export default UserOrderByWithAggregationInputSchema;

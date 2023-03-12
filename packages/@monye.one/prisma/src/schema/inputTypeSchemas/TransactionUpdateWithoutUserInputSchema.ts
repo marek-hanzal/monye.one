@@ -18,7 +18,7 @@ export const TransactionUpdateWithoutUserInputSchema: z.ZodType<Prisma.Transacti
   date: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   target: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   note: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
-  bank: z.lazy(() => BankUpdateOneRequiredWithoutTransactionNestedInputSchema).optional(),
+  bank: z.lazy(() => BankUpdateOneRequiredWithoutTransactionNestedInputSchema).optional()
 }).strict();
 
 export default TransactionUpdateWithoutUserInputSchema;

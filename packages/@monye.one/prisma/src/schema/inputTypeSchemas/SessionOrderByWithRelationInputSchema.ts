@@ -8,7 +8,7 @@ export const SessionOrderByWithRelationInputSchema: z.ZodType<Prisma.SessionOrde
   sessionToken: z.lazy(() => SortOrderSchema).optional(),
   userId: z.lazy(() => SortOrderSchema).optional(),
   expires: z.lazy(() => SortOrderSchema).optional(),
-  user: z.lazy(() => UserOrderByWithRelationInputSchema).optional(),
+  user: z.lazy(() => UserOrderByWithRelationInputSchema).optional()
 }).strict();
 
 export default SessionOrderByWithRelationInputSchema;

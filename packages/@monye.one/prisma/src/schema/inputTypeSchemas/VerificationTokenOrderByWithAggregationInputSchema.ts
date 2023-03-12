@@ -11,7 +11,7 @@ export const VerificationTokenOrderByWithAggregationInputSchema: z.ZodType<Prism
   expires: z.lazy(() => SortOrderSchema).optional(),
   _count: z.lazy(() => VerificationTokenCountOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => VerificationTokenMaxOrderByAggregateInputSchema).optional(),
-  _min: z.lazy(() => VerificationTokenMinOrderByAggregateInputSchema).optional(),
+  _min: z.lazy(() => VerificationTokenMinOrderByAggregateInputSchema).optional()
 }).strict();
 
 export default VerificationTokenOrderByWithAggregationInputSchema;

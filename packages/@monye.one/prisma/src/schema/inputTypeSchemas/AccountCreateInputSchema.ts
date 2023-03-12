@@ -14,7 +14,7 @@ export const AccountCreateInputSchema: z.ZodType<Prisma.AccountCreateInput> = z.
   scope: z.string().optional().nullable(),
   id_token: z.string().optional().nullable(),
   session_state: z.string().optional().nullable(),
-  user: z.lazy(() => UserCreateNestedOneWithoutAccountsInputSchema),
+  user: z.lazy(() => UserCreateNestedOneWithoutAccountsInputSchema)
 }).strict();
 
 export default AccountCreateInputSchema;

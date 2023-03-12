@@ -20,7 +20,7 @@ export const UserCreateInputSchema: z.ZodType<Prisma.UserCreateInput> = z.object
   Transaction: z.lazy(() => TransactionCreateNestedManyWithoutUserInputSchema).optional(),
   Job: z.lazy(() => JobCreateNestedManyWithoutUserInputSchema).optional(),
   File: z.lazy(() => FileCreateNestedManyWithoutUserInputSchema).optional(),
-  Bank: z.lazy(() => BankCreateNestedManyWithoutUserInputSchema).optional(),
+  Bank: z.lazy(() => BankCreateNestedManyWithoutUserInputSchema).optional()
 }).strict();
 
 export default UserCreateInputSchema;

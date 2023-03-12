@@ -4,7 +4,7 @@ import { TransactionCreateManyBankInputSchema } from './TransactionCreateManyBan
 
 export const TransactionCreateManyBankInputEnvelopeSchema: z.ZodType<Prisma.TransactionCreateManyBankInputEnvelope> = z.object({
   data: z.union([ z.lazy(() => TransactionCreateManyBankInputSchema),z.lazy(() => TransactionCreateManyBankInputSchema).array() ]),
-  skipDuplicates: z.boolean().optional(),
+  skipDuplicates: z.boolean().optional()
 }).strict();
 
 export default TransactionCreateManyBankInputEnvelopeSchema;

@@ -13,7 +13,7 @@ export const TransactionCountOrderByAggregateInputSchema: z.ZodType<Prisma.Trans
   static: z.lazy(() => SortOrderSchema).optional(),
   date: z.lazy(() => SortOrderSchema).optional(),
   target: z.lazy(() => SortOrderSchema).optional(),
-  note: z.lazy(() => SortOrderSchema).optional(),
+  note: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default TransactionCountOrderByAggregateInputSchema;

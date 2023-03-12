@@ -13,7 +13,7 @@ export const TranslationOrderByWithAggregationInputSchema: z.ZodType<Prisma.Tran
   hash: z.lazy(() => SortOrderSchema).optional(),
   _count: z.lazy(() => TranslationCountOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => TranslationMaxOrderByAggregateInputSchema).optional(),
-  _min: z.lazy(() => TranslationMinOrderByAggregateInputSchema).optional(),
+  _min: z.lazy(() => TranslationMinOrderByAggregateInputSchema).optional()
 }).strict();
 
 export default TranslationOrderByWithAggregationInputSchema;

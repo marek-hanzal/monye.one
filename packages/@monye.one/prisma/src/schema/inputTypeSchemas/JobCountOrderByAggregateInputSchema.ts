@@ -18,7 +18,7 @@ export const JobCountOrderByAggregateInputSchema: z.ZodType<Prisma.JobCountOrder
   started: z.lazy(() => SortOrderSchema).optional(),
   finished: z.lazy(() => SortOrderSchema).optional(),
   userId: z.lazy(() => SortOrderSchema).optional(),
-  params: z.lazy(() => SortOrderSchema).optional(),
+  params: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default JobCountOrderByAggregateInputSchema;

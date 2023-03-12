@@ -6,7 +6,7 @@ export const TranslationUncheckedCreateInputSchema: z.ZodType<Prisma.Translation
   locale: z.string(),
   label: z.string(),
   text: z.string(),
-  hash: z.string(),
+  hash: z.string()
 }).strict();
 
 export default TranslationUncheckedCreateInputSchema;

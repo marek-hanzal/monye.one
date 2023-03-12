@@ -21,7 +21,7 @@ export const UserUncheckedUpdateWithoutJobInputSchema: z.ZodType<Prisma.UserUnch
   UserToken: z.lazy(() => UserTokenUncheckedUpdateManyWithoutUserNestedInputSchema).optional(),
   Transaction: z.lazy(() => TransactionUncheckedUpdateManyWithoutUserNestedInputSchema).optional(),
   File: z.lazy(() => FileUncheckedUpdateManyWithoutUserNestedInputSchema).optional(),
-  Bank: z.lazy(() => BankUncheckedUpdateManyWithoutUserNestedInputSchema).optional(),
+  Bank: z.lazy(() => BankUncheckedUpdateManyWithoutUserNestedInputSchema).optional()
 }).strict();
 
 export default UserUncheckedUpdateWithoutJobInputSchema;

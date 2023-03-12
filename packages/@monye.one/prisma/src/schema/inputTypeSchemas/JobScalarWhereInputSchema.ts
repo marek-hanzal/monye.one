@@ -10,6 +10,7 @@ import { FloatNullableFilterSchema } from './FloatNullableFilterSchema';
 import { DateTimeFilterSchema } from './DateTimeFilterSchema';
 import { DateTimeNullableFilterSchema } from './DateTimeNullableFilterSchema';
 import { StringNullableFilterSchema } from './StringNullableFilterSchema';
+import { JsonNullableFilterSchema } from './JsonNullableFilterSchema';
 
 export const JobScalarWhereInputSchema: z.ZodType<Prisma.JobScalarWhereInput> = z.object({
   AND: z.union([ z.lazy(() => JobScalarWhereInputSchema),z.lazy(() => JobScalarWhereInputSchema).array() ]).optional(),
@@ -30,7 +31,7 @@ export const JobScalarWhereInputSchema: z.ZodType<Prisma.JobScalarWhereInput> = 
   started: z.union([ z.lazy(() => DateTimeNullableFilterSchema),z.coerce.date() ]).optional().nullable(),
   finished: z.union([ z.lazy(() => DateTimeNullableFilterSchema),z.coerce.date() ]).optional().nullable(),
   userId: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
-  params: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
+  params: z.lazy(() => JsonNullableFilterSchema).optional()
 }).strict();
 
 export default JobScalarWhereInputSchema;

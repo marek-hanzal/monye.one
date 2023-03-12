@@ -6,7 +6,7 @@ export const SessionCreateInputSchema: z.ZodType<Prisma.SessionCreateInput> = z.
   id: z.string().cuid().optional(),
   sessionToken: z.string(),
   expires: z.coerce.date(),
-  user: z.lazy(() => UserCreateNestedOneWithoutSessionsInputSchema),
+  user: z.lazy(() => UserCreateNestedOneWithoutSessionsInputSchema)
 }).strict();
 
 export default SessionCreateInputSchema;
