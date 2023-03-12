@@ -55,6 +55,11 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/env/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/bank-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/bank/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/cursor/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/next.js/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/query/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/source-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/source/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -154,6 +159,14 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/bank-server/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/bank/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/env/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/source-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/source-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/cursor/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/cursor/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/query/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/query/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/source/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/source/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

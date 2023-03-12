@@ -35,11 +35,4 @@ export default NextAuthEndpoint({
             },
         }),
     ],
-    options:   {
-        theme: {
-            logo:        "/assets/logo.png",
-            brandColor:  "#1890ff",
-            colorScheme: "light",
-        },
-    },
 });

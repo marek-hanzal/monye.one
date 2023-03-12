@@ -34,11 +34,11 @@ export const BookLayout: FC<IBookLayoutProps> = ({logo, href, children}) => {
                     <Group position={"apart"} sx={{height: "100%"}}>
                         <Link href={"/"}>
                             <Image
-                                width={96}
-                                height={138}
+                                width={138}
+                                height={64}
                                 src={logo}
-                                className="mr-3 h-6 sm:h-9"
-                                alt="logo"
+                                className={"h-6"}
+                                alt={"logo"}
                             />
                         </Link>
                         <BookMenu active={href}/>

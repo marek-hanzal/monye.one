@@ -1,27 +1,37 @@
 import {
     type IContainer,
     PumpIt,
+    SCOPE,
     wrapContainer
 }                                                    from "@leight/container";
 import {ServerContainer as $LeightServerContainer}   from "@leight/container-server";
 import {$PrismaClient}                               from "@leight/prisma";
+import {BootstrapLogger}                             from "@leight/winston";
 import {ServerContainer as $MonyeOneServerContainer} from "@monye.one/container-server";
 import {PrismaClient}                                from "@monye.one/prisma";
+
+BootstrapLogger({
+    loggers: [
+        "auth",
+    ],
+});
 
 export const container = new PumpIt();
 
 export const MonyeOneContainer = ((container: IContainer) => {
-    wrapContainer(container);
-    container.bindFactory($PrismaClient, () => {
-        console.log("New Prisma stuff");
-        return new PrismaClient({
-            errorFormat: "pretty",
-            // log:
-            //     env.NODE_ENV === "development"
-            //         ? ["query", "error", "warn"]
-            //         : ["error"],
+    wrapContainer(container)
+        .bindFactory($PrismaClient, () => {
+            console.log("New Prisma stuff");
+            return new PrismaClient({
+                errorFormat: "pretty",
+                // log:
+                //     env.NODE_ENV === "development"
+                //         ? ["query", "error", "warn"]
+                //         : ["error"],
+            });
+        }, {
+            scope: SCOPE.SINGLETON,
         });
-    });
 
     return {
         get PrismaClient() {

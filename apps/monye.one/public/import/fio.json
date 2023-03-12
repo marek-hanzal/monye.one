@@ -3,7 +3,7 @@
         {
             "tab": "transakce",
             "services": [
-                "@monye.one/transaction/TransactionImportService"
+                "@monye.one/transaction/ITransactionImportService"
             ]
         }
     ],
