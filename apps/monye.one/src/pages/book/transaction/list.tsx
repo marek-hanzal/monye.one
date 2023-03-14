@@ -4,6 +4,7 @@ import {Box}             from "@mantine/core";
 import {withBookLayout}  from "@monye.one/book";
 import {
     TransactionMenu,
+    TransactionQueryProvider,
     TransactionTable,
 }                        from "@monye.one/transaction-client";
 
@@ -13,7 +14,9 @@ export default withBookLayout(
             <>
                 <Box p={"md"}>
                     <TransactionMenu/>
-                    <TransactionTable/>
+                    <TransactionQueryProvider>
+                        <TransactionTable/>
+                    </TransactionQueryProvider>
                 </Box>
             </>
         );

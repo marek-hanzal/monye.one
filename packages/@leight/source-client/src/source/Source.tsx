@@ -5,32 +5,34 @@ import {
     type IEntitySchema,
     type IUseQuery
 }                               from "@leight/source";
+import {isCallable}             from "@leight/utils";
 import {type IStoreApi}         from "@leight/zustand";
 import {
-    type PropsWithChildren,
+    ReactNode,
     useEffect
 }                               from "react";
 import {z}                      from "zod";
 import {type ISourceStoreProps} from "../hook";
 
-export type ISourceProps<
+export interface ISourceProps<
     TQuerySchema extends IQuerySchema,
     TSchema extends IEntitySchema,
-> = PropsWithChildren<{
+> {
     readonly schema: TSchema;
     readonly useQuery: IUseQuery<z.infer<TQuerySchema> | undefined, z.infer<TSchema>[]>;
     readonly useQueryStore: IUseQueryStore<TQuerySchema>;
     readonly SourceProvider: IStoreProvider<ISourceStoreProps<TSchema>>;
+    readonly children?: ((store: IStoreApi<ISourceStoreProps<TSchema>>) => ReactNode) | ReactNode;
 
     onSuccess?(entities: z.infer<TSchema>[]): void;
-}>;
+}
 
-type ISourceInternalProps<
+interface ISourceInternalProps<
     TQuerySchema extends IQuerySchema,
     TSchema extends IEntitySchema,
-> = PropsWithChildren<Pick<ISourceProps<TQuerySchema, TSchema>, "schema" | "useQuery" | "useQueryStore" | "onSuccess" | "children"> & {
+> extends Pick<ISourceProps<TQuerySchema, TSchema>, "schema" | "useQuery" | "useQueryStore" | "onSuccess" | "children"> {
     readonly sourceContext: IStoreApi<ISourceStoreProps<TSchema>>;
-}>
+}
 
 const SourceInternal = <
     TQuerySchema extends IQuerySchema,
@@ -61,7 +63,7 @@ const SourceInternal = <
         sourceContext.state.setIsFetching(result.isFetching);
     }, [result.isFetching]);
 
-    return <>{children}</>;
+    return <>{isCallable(children) ? children(sourceContext) : children}</>;
 };
 
 export const Source = <
