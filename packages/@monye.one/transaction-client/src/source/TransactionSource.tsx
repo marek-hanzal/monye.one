@@ -9,7 +9,7 @@ import {
 import {type FC}             from "react";
 import {TransactionProvider} from "../hook";
 
-export interface ITransactionSourceProps extends Partial<ISourceProps<ITransactionSchema>> {
+export interface ITransactionSourceProps extends Omit<ISourceProps<ITransactionSchema>, "schema" | "SourceProvider"> {
 }
 
 export const TransactionSource: FC<ITransactionSourceProps> = props => {

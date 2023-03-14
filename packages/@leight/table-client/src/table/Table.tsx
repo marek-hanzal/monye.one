@@ -2,6 +2,7 @@ import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
 import {Paper}                 from "@leight/mantine";
 import {type IEntitySchema}    from "@leight/source";
+import {type IUseSourceStore}  from "@leight/source-client";
 import {
     Center,
     Divider,
@@ -31,6 +32,7 @@ export interface ITableProps<
      * Table schema used to infer all internal types.
      */
     readonly schema: TSchema;
+    readonly useSource: IUseSourceStore<TSchema>;
     readonly withTranslation: IWithTranslation;
     readonly withCaption?: boolean;
     readonly columns: Record<TColumns, ITableColumn<TSchema>>;
@@ -46,12 +48,21 @@ export interface ITableProps<
     readonly order?: TColumns[];
 }
 
+/**
+ * Public props which any component could extend from (non-partial).
+ */
+export type ITableExProps<
+    TSchema extends IEntitySchema,
+    TColumns extends string,
+> = Omit<ITableProps<TSchema, TColumns>, "schema" | "useSource" | "columns" | "withTranslation">;
+
 export const Table = <
     TSchema extends IEntitySchema,
     TColumns extends string,
 >(
     {
         schema,
+        useSource,
         withTranslation,
         withCaption = true,
         columns,
@@ -59,14 +70,11 @@ export const Table = <
         order = Object.keys(columns) as any,
         ...props
     }: ITableProps<TSchema, TColumns>) => {
-
-    const entities: z.infer<TSchema>[] = [];
-
+    const entities                                    = useSource(({entities}) => entities);
     const $columns: [string, ITableColumn<TSchema>][] = order.filter(column => !hidden.includes(column)).map(column => [
         column,
         (columns as any)[column],
     ]);
-
     return <Paper>
         <CoolTable
             striped

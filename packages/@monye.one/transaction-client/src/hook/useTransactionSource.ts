@@ -15,4 +15,7 @@ export const {
                  useOptionalState: useOptionalTransactionSource,
                  useStore:         useTransactionStore,
                  useOptionalStore: useOptionalTransactionStore,
-             } = createSourceContext<ITransactionSchema>({schema: TransactionSchema});
+             } = createSourceContext<ITransactionSchema>({
+    name:   "Transaction",
+    schema: TransactionSchema,
+});

@@ -1,4 +1,7 @@
-import {type IStoreApi}     from "@leight/zustand";
+import {
+    type IStoreApi,
+    type IStoreProps
+}                           from "@leight/zustand";
 import {
     createStore,
     type StateCreator,
@@ -7,44 +10,44 @@ import {
 import {createContext}      from "./createContext";
 import {
     createProvider,
-    type IStoreProviderFactory
+    type IStoreProvider
 }                           from "./createProvider";
 import {
-    hookOptionalState,
-    hookState,
-    type IHookStateFactory,
-}                           from "./hookState";
+    createOptionalUseState,
+    createUseState,
+    type IUseState,
+}                           from "./createUseState";
 import {useContext}         from "./useContext";
 import {useOptionalContext} from "./useOptionalContext";
 
-export interface ICrateStoreContext<TProps> {
-    Provider: IStoreProviderFactory<TProps>;
-    useState: IHookStateFactory<TProps>;
-    useOptionalState: IHookStateFactory<TProps | null>;
-    useStore: () => StoreApi<TProps>;
-    useOptionalStore: () => StoreApi<TProps> | null;
+export interface ICrateStoreContext<TStoreProps extends IStoreProps> {
+    Provider: IStoreProvider<TStoreProps>;
+    useState: IUseState<TStoreProps>;
+    useOptionalState: IUseState<TStoreProps | null>;
+    useStore: () => StoreApi<TStoreProps>;
+    useOptionalStore: () => StoreApi<TStoreProps> | null;
 }
 
 /**
  * Creates store hook and provider of Zustand.
  */
-export const createStoreContext = <TProps>(
-    store: StateCreator<TProps>,
+export const createStoreContext = <TStoreProps extends IStoreProps>(
+    store: StateCreator<TStoreProps>,
     name: string,
     hint?: string
-): ICrateStoreContext<TProps> => {
-    const Context = createContext<IStoreApi<TProps>>();
+): ICrateStoreContext<TStoreProps> => {
+    const Context = createContext<IStoreApi<TStoreProps>>();
     return {
         Provider:         createProvider({
             Context,
             createStore: (defaults) => {
-                const $store = createStore<TProps>(store);
+                const $store = createStore<TStoreProps>(store);
                 defaults && $store.setState(defaults);
                 return $store;
             },
         }),
-        useState:         hookState(Context, name, hint),
-        useOptionalState: hookOptionalState(Context),
+        useState:         createUseState(Context, name, hint),
+        useOptionalState: createOptionalUseState(Context),
         useStore:         () => useContext(Context, name, hint).store,
         useOptionalStore: () => useOptionalContext(Context)?.store || null,
     };
