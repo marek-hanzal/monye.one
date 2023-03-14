@@ -14,10 +14,7 @@ import {
 }                              from "react";
 import {z}                     from "zod";
 
-export type IColumns<TSchema extends IEntitySchema> = { [index in string]: ITableColumn<TSchema> };
-
 export interface ITableColumn<TSchema extends IEntitySchema> {
-    readonly key: string;
     /**
      * Explicitly override column title (by default column name is taken from Record<> in Table)
      */
@@ -25,6 +22,8 @@ export interface ITableColumn<TSchema extends IEntitySchema> {
 
     render(entity: z.infer<TSchema>): ReactNode;
 }
+
+export type IColumns<TSchema extends IEntitySchema> = { [index in string]: ITableColumn<TSchema> };
 
 export interface ITableProps<
     TSchema extends IEntitySchema,
@@ -67,7 +66,7 @@ export const Table = <
 
     const $columns: [string, ITableColumn<TSchema>][] = order.filter(column => !hidden.includes(column)).map(column => [
         column as string,
-        columns[column],
+        (columns as any)[column],
     ]);
 
     return <Paper>

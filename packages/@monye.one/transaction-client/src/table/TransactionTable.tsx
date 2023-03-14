@@ -31,7 +31,10 @@ export const TransactionTable: FC<ITransactionTableProps> = ({...props}) => {
         }}
         hidden={[
             "reference",
+            "reference",
             "reference2",
+            "reference23",
+            "reference233",
             "reference2",
         ]}
         order={[
