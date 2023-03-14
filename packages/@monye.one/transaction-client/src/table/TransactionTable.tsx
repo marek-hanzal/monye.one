@@ -8,7 +8,11 @@ import {
 }                from "@monye.one/transaction";
 import {type FC} from "react";
 
-export interface ITransactionTableProps extends Partial<ITableProps<ITransactionSchema>> {
+export type ITransactionTableColumns =
+    "reference"
+    | "amount";
+
+export interface ITransactionTableProps extends Partial<ITableProps<ITransactionSchema, ITransactionTableColumns>> {
 }
 
 export const TransactionTable: FC<ITransactionTableProps> = ({...props}) => {
@@ -29,18 +33,9 @@ export const TransactionTable: FC<ITransactionTableProps> = ({...props}) => {
                 },
             },
         }}
-        hidden={[
-            "reference",
-            "reference",
-            "reference2",
-            "reference23",
-            "reference233",
-            "reference2",
-        ]}
         order={[
             "amount",
             "reference",
-            "reference2",
         ]}
         {...props}
     />;

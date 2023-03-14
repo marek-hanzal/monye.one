@@ -23,11 +23,9 @@ export interface ITableColumn<TSchema extends IEntitySchema> {
     render(entity: z.infer<TSchema>): ReactNode;
 }
 
-export type IColumns<TSchema extends IEntitySchema> = { [index in string]: ITableColumn<TSchema> };
-
 export interface ITableProps<
     TSchema extends IEntitySchema,
-    TColumns extends IColumns<TSchema> = IColumns<TSchema>,
+    TColumns extends string,
 > extends Partial<Omit<ComponentProps<typeof CoolTable>, "hidden">> {
     /**
      * Table schema used to infer all internal types.
@@ -35,22 +33,22 @@ export interface ITableProps<
     readonly schema: TSchema;
     readonly withTranslation: IWithTranslation;
     readonly withCaption?: boolean;
-    readonly columns: TColumns;
+    readonly columns: Record<TColumns, ITableColumn<TSchema>>;
 
     /**
      * Specify hidden columns.
      */
-    readonly hidden?: (keyof TColumns)[];
+    readonly hidden?: TColumns[];
 
     /**
      * Optionally return column order.
      */
-    readonly order?: (keyof TColumns)[];
+    readonly order?: TColumns[];
 }
 
 export const Table = <
     TSchema extends IEntitySchema,
-    TColumns extends IColumns<TSchema>,
+    TColumns extends string,
 >(
     {
         schema,
@@ -65,7 +63,7 @@ export const Table = <
     const entities: z.infer<TSchema>[] = [];
 
     const $columns: [string, ITableColumn<TSchema>][] = order.filter(column => !hidden.includes(column)).map(column => [
-        column as string,
+        column,
         (columns as any)[column],
     ]);
 
