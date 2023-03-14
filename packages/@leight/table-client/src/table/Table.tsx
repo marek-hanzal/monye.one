@@ -3,6 +3,7 @@ import {Translation}           from "@leight/i18n-client";
 import {Paper}                 from "@leight/mantine";
 import {type IEntitySchema}    from "@leight/source";
 import {type IUseSourceStore}  from "@leight/source-client";
+import {isCallable}            from "@leight/utils";
 import {
     Center,
     Divider,
@@ -22,7 +23,7 @@ export interface ITableColumn<TSchema extends IEntitySchema> {
      */
     readonly title?: string;
 
-    render(entity: z.infer<TSchema>): ReactNode;
+    render: ((entity: z.infer<TSchema>) => ReactNode) | (keyof (z.infer<TSchema>));
 }
 
 export interface ITableProps<
@@ -37,6 +38,7 @@ export interface ITableProps<
     readonly withTranslation: IWithTranslation;
     readonly withCaption?: boolean;
     readonly columns: Record<TColumns, ITableColumn<TSchema>>;
+    readonly overrideColumns?: Partial<Record<TColumns, ITableColumn<TSchema>>>;
 
     /**
      * Specify hidden columns.
@@ -67,15 +69,32 @@ export const Table = <
         withTranslation,
         withCaption = true,
         columns,
+        overrideColumns = {},
         hidden = [],
         order = Object.keys(columns) as any,
         ...props
     }: ITableProps<TSchema, TColumns>) => {
-    const {entities, isFetching, isLoading}           = useSource(({entities, isFetching, isLoading}) => ({entities, isFetching, isLoading}));
+    const {
+              entities,
+              isFetching,
+              isLoading,
+          } = useSource((
+        {
+            entities,
+            isFetching,
+            isLoading,
+        }) => (
+        {
+            entities,
+            isFetching,
+            isLoading,
+        }));
+
     const $columns: [string, ITableColumn<TSchema>][] = order.filter(column => !hidden.includes(column)).map(column => [
         column,
-        (columns as any)[column],
+        (overrideColumns as any)[column] || (columns as any)[column],
     ]);
+
     return <Paper>
         <LoadingOverlay
             visible={isFetching || isLoading}
@@ -102,7 +121,7 @@ export const Table = <
                     .filter(entity => schema.safeParse(entity).success)
                     .map(entity => <tr key={entity.id}>
                         {$columns.map(([name, column]) => <td key={name}>
-                            {column.render(entity)}
+                            {isCallable(column.render) ? column.render(entity) : (entity as any)[column.render]}
                         </td>)}
                     </tr>)}
             </tbody>

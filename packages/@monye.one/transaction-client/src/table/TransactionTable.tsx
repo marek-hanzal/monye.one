@@ -12,6 +12,10 @@ import {TransactionSource}    from "../source";
 
 export type ITransactionTableColumns =
     "reference"
+    | "note"
+    | "variable"
+    | "static"
+    | "symbol"
     | "amount";
 
 export interface ITransactionTableProps extends ITableExProps<ITransactionSchema, ITransactionTableColumns> {
@@ -27,14 +31,24 @@ export const TransactionTable: FC<ITransactionTableProps> = ({...props}) => {
             }}
             columns={{
                 "reference": {
-                    render({reference}) {
-                        return reference;
-                    },
+                    render: "reference",
                 },
                 "amount":    {
                     render({amount}) {
                         return `${amount}`;
                     },
+                },
+                "variable":  {
+                    render: "variable",
+                },
+                "static":    {
+                    render: "static",
+                },
+                "symbol":    {
+                    render: "symbol",
+                },
+                "note":      {
+                    render: "note",
                 },
             }}
             {...props}
