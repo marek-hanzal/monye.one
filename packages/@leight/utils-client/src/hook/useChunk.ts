@@ -2,7 +2,7 @@ import {
     type IOnTickProps,
     type IUseLoopProps,
     useLoop
-} from "../loop";
+} from "./useLoop";
 
 export interface IUseChunkTickProps {
     current: number;

@@ -10,10 +10,12 @@ import {
 import {type IProviderChildren} from "../api";
 import {withConsumer}           from "./withConsumer";
 
-export type IStoreProviderFactory<TProps> = FC<{
+export interface IStoreProviderFactoryProps<TProps> {
     children: IProviderChildren<IStoreApi<TProps>>;
     defaults?: Partial<TProps>;
-}>;
+}
+
+export type IStoreProviderFactory<TProps> = FC<IStoreProviderFactoryProps<TProps>>;
 
 export interface ICreateProviderProps<TStoreProps> {
     createStore: ICreateStore<TStoreProps>;

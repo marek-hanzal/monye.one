@@ -60,6 +60,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/query/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/source-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/source/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/source-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/table-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
@@ -172,6 +173,8 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/table-client/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/sort/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/sort/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/source-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/source-client/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

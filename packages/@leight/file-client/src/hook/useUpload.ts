@@ -5,7 +5,7 @@ import {
 }                        from "@leight/file";
 import {type IHrefProps} from "@leight/utils";
 import {
-    IOnFinishProps,
+    type IOnFinishProps,
     type IUseChunkProps,
     toHref,
     useChunk

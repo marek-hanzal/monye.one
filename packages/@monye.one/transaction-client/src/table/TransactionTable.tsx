@@ -1,12 +1,13 @@
 import {
     type ITableProps,
     Table
-}                from "@leight/table-client";
+}                          from "@leight/table-client";
 import {
     type ITransactionSchema,
     TransactionSchema
-}                from "@monye.one/transaction";
-import {type FC} from "react";
+}                          from "@monye.one/transaction";
+import {type FC}           from "react";
+import {TransactionSource} from "../source";
 
 export type ITransactionTableColumns =
     "reference"
@@ -16,27 +17,29 @@ export interface ITransactionTableProps extends Partial<ITableProps<ITransaction
 }
 
 export const TransactionTable: FC<ITransactionTableProps> = ({...props}) => {
-    return <Table
-        schema={TransactionSchema}
-        withTranslation={{
-            namespace: "transaction",
-        }}
-        columns={{
-            "reference": {
-                render(entity) {
-                    return entity.reference;
+    return <TransactionSource>
+        <Table
+            schema={TransactionSchema}
+            withTranslation={{
+                namespace: "transaction",
+            }}
+            columns={{
+                "reference": {
+                    render(entity) {
+                        return entity.reference;
+                    },
                 },
-            },
-            "amount":    {
-                render(entity) {
-                    return `${entity.amount}`;
+                "amount":    {
+                    render(entity) {
+                        return `${entity.amount}`;
+                    },
                 },
-            },
-        }}
-        order={[
-            "amount",
-            "reference",
-        ]}
-        {...props}
-    />;
+            }}
+            order={[
+                "amount",
+                "reference",
+            ]}
+            {...props}
+        />
+    </TransactionSource>;
 };
