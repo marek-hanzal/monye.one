@@ -62,6 +62,8 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/source/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/source-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/table-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/cursor-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/query-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -175,6 +177,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/sort/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/source-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/source-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/cursor-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/cursor-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/query-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/query-client/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -1,5 +1,6 @@
 import {type IStoreProvider}    from "@leight/context-client";
 import {type IQuerySchema}      from "@leight/query";
+import {type IUseQueryStore}    from "@leight/query-client";
 import {
     type IEntitySchema,
     type IUseQuery
@@ -16,9 +17,10 @@ export type ISourceProps<
     TQuerySchema extends IQuerySchema,
     TSchema extends IEntitySchema,
 > = PropsWithChildren<{
-    schema: TSchema;
-    useQuery: IUseQuery<z.infer<TQuerySchema> | undefined, z.infer<TSchema>[]>;
-    SourceProvider: IStoreProvider<ISourceStoreProps<TSchema>>;
+    readonly schema: TSchema;
+    readonly useQuery: IUseQuery<z.infer<TQuerySchema> | undefined, z.infer<TSchema>[]>;
+    readonly useQueryStore: IUseQueryStore<TQuerySchema>;
+    readonly SourceProvider: IStoreProvider<ISourceStoreProps<TSchema>>;
 
     onSuccess?(entities: z.infer<TSchema>[]): void;
 }>;
@@ -26,8 +28,8 @@ export type ISourceProps<
 type ISourceInternalProps<
     TQuerySchema extends IQuerySchema,
     TSchema extends IEntitySchema,
-> = PropsWithChildren<Pick<ISourceProps<TQuerySchema, TSchema>, "schema" | "useQuery" | "onSuccess" | "children"> & {
-    sourceContext: IStoreApi<ISourceStoreProps<TSchema>>;
+> = PropsWithChildren<Pick<ISourceProps<TQuerySchema, TSchema>, "schema" | "useQuery" | "useQueryStore" | "onSuccess" | "children"> & {
+    readonly sourceContext: IStoreApi<ISourceStoreProps<TSchema>>;
 }>
 
 const SourceInternal = <
@@ -37,13 +39,12 @@ const SourceInternal = <
       sourceContext,
       schema,
       useQuery,
+      useQueryStore,
       onSuccess,
       children,
   }: ISourceInternalProps<TQuerySchema, TSchema>) => {
-    /**
-     * @TODO create QueryProvider (with subselects to cursor and so on)
-     */
-    const result = useQuery({}, {
+    const getQuery = useQueryStore(({getQuery}) => getQuery);
+    const result   = useQuery(getQuery(), {
         onSuccess,
     });
     useEffect(() => {
@@ -70,6 +71,7 @@ export const Source = <
     {
         schema,
         useQuery,
+        useQueryStore,
         onSuccess,
         SourceProvider,
         children,
@@ -82,6 +84,7 @@ export const Source = <
             sourceContext={sourceContext}
             schema={schema}
             useQuery={useQuery}
+            useQueryStore={useQueryStore}
             onSuccess={onSuccess}
         >
             {children}

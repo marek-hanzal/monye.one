@@ -23,8 +23,8 @@ export interface ITransactionTableProps extends ITableExProps<ITransactionSchema
 
 export const TransactionTable: FC<ITransactionTableProps> = ({...props}) => {
     return <TransactionSource>
-        <Table
-            useSource={useTransactionSource}
+        {source => <Table
+            useSource={source}
             schema={TransactionSchema}
             withTranslation={{
                 namespace: "transaction",
@@ -52,6 +52,6 @@ export const TransactionTable: FC<ITransactionTableProps> = ({...props}) => {
                 },
             }}
             {...props}
-        />
+        />}
     </TransactionSource>;
 };
