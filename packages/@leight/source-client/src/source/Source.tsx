@@ -5,7 +5,10 @@ import {
     type IUseQuery
 }                               from "@leight/source";
 import {type IStoreApi}         from "@leight/zustand";
-import {type PropsWithChildren} from "react";
+import {
+    type PropsWithChildren,
+    useEffect
+}                               from "react";
 import {z}                      from "zod";
 import {type ISourceStoreProps} from "../hook";
 
@@ -38,16 +41,24 @@ const SourceInternal = <
       children,
   }: ISourceInternalProps<TQuerySchema, TSchema>) => {
     /**
-     * @TODO useFilter and so on
+     * @TODO create QueryProvider (with subselects to cursor and so on)
      */
-
-    useQuery({}, {
-        onSuccess: data => {
-            const $data = data.filter(item => schema.safeParse(item).success);
+    const result = useQuery({}, {
+        onSuccess,
+    });
+    useEffect(() => {
+        if (result.isSuccess) {
+            const $data = result.data.filter(item => schema.safeParse(item).success);
             onSuccess?.($data);
             sourceContext.state.setEntities($data);
-        },
-    });
+        }
+    }, [result.isSuccess]);
+    useEffect(() => {
+        sourceContext.state.setIsLoading(result.isLoading);
+    }, [result.isLoading]);
+    useEffect(() => {
+        sourceContext.state.setIsFetching(result.isFetching);
+    }, [result.isFetching]);
 
     return <>{children}</>;
 };

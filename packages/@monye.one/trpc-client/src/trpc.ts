@@ -31,7 +31,7 @@ export const trpc: CreateTRPCNext<IApi, any, any> = createTRPCNext<IApi>({
             queryClientConfig: {
                 defaultOptions: {
                     queries: {
-                        staleTime:        5 * 1000,
+                        staleTime:        15 * 1000,
                         keepPreviousData: true,
                     },
                 },

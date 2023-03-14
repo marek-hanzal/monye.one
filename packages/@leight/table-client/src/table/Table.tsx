@@ -6,6 +6,7 @@ import {type IUseSourceStore}  from "@leight/source-client";
 import {
     Center,
     Divider,
+    LoadingOverlay,
     Pagination,
     Table as CoolTable
 }                              from "@mantine/core";
@@ -70,12 +71,17 @@ export const Table = <
         order = Object.keys(columns) as any,
         ...props
     }: ITableProps<TSchema, TColumns>) => {
-    const entities                                    = useSource(({entities}) => entities);
+    const {entities, isFetching, isLoading}           = useSource(({entities, isFetching, isLoading}) => ({entities, isFetching, isLoading}));
     const $columns: [string, ITableColumn<TSchema>][] = order.filter(column => !hidden.includes(column)).map(column => [
         column,
         (columns as any)[column],
     ]);
     return <Paper>
+        <LoadingOverlay
+            visible={isFetching || isLoading}
+            overlayBlur={2}
+            transitionDuration={250}
+        />
         <CoolTable
             striped
             highlightOnHover
@@ -96,7 +102,7 @@ export const Table = <
                     .filter(entity => schema.safeParse(entity).success)
                     .map(entity => <tr key={entity.id}>
                         {$columns.map(([name, column]) => <td key={name}>
-                            {column.render(null as any)}
+                            {column.render(entity)}
                         </td>)}
                     </tr>)}
             </tbody>

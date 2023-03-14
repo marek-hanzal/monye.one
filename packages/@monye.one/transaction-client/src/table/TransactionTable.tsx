@@ -27,13 +27,13 @@ export const TransactionTable: FC<ITransactionTableProps> = ({...props}) => {
             }}
             columns={{
                 "reference": {
-                    render(entity) {
-                        return entity.reference;
+                    render({reference}) {
+                        return reference;
                     },
                 },
                 "amount":    {
-                    render(entity) {
-                        return `${entity.amount}`;
+                    render({amount}) {
+                        return `${amount}`;
                     },
                 },
             }}
