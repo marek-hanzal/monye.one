@@ -3,11 +3,12 @@ import {
     type ISourceProps
 } from "@leight/source-client";
 import {
+    ITransactionQuerySchema,
     type ITransactionSchema,
     TransactionSchema
 } from "@monye.one/transaction";
 
-export type ITransactionSource = ISourceProps<ITransactionSchema>;
+export type ITransactionSource = ISourceProps<ITransactionQuerySchema, ITransactionSchema>;
 
 export const {
                  Provider:         TransactionProvider,

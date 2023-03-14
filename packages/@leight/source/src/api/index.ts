@@ -4,6 +4,12 @@ import {
     type IQuerySchema
 }                           from "@leight/query";
 import {type IToString}     from "@leight/utils";
+import {
+    UseMutationOptions,
+    UseMutationResult,
+    UseQueryOptions,
+    UseQueryResult
+}                           from "@tanstack/react-query";
 import {z}                  from "zod";
 
 export type ISourceName =
@@ -56,7 +62,7 @@ export interface ISourceSchema<
     CursorSchema: ICursorSchema;
     Cursor: z.infer<ICursorSchema>;
     QuerySchema: IQuerySchema<TFilterSchema, TSortSchema, TParamsSchema>;
-    Query: IQuery<TFilterSchema, TSortSchema, TParamsSchema>;
+    Query: IQuery<TFilterSchema, TSortSchema, TParamsSchema> | undefined;
 }
 
 /**
@@ -89,3 +95,13 @@ export namespace ISource {
         filter: TSourceSchema["Filter"];
     }
 }
+
+export type IUseQuery<
+    TRequest,
+    TResponse,
+> = (request?: TRequest, options?: UseQueryOptions<any, any, TResponse, any>) => UseQueryResult<TResponse>;
+
+export type IUseMutation<
+    TRequest,
+    TResponse,
+> = (options?: UseMutationOptions<TResponse, any, TRequest>) => UseMutationResult<TResponse, any, TRequest>;

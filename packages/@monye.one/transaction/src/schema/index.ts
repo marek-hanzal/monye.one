@@ -1,3 +1,4 @@
+import {QuerySchema}        from "@leight/query";
 import {WithIdentitySchema} from "@leight/source";
 import {PrismaSchema}       from "@monye.one/prisma";
 import {z}                  from "zod";
@@ -13,6 +14,10 @@ export type ITransactionCreate = z.infer<ITransactionCreateSchema>;
 export const TransactionPatchSchema = PrismaSchema.TransactionPartialSchema.merge(WithIdentitySchema);
 export type ITransactionPatchSchema = typeof TransactionPatchSchema;
 export type ITransactionPatch = z.infer<ITransactionPatchSchema>;
+
+export const TransactionQuerySchema = QuerySchema({});
+export type ITransactionQuerySchema = typeof TransactionQuerySchema;
+export type ITransactionQuery = z.infer<ITransactionQuerySchema>;
 
 /**
  * Schema used for importing transaction from any source.

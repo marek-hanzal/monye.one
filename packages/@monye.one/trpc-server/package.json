@@ -26,6 +26,7 @@
         "@leight/trpc": "^0.5.27",
         "@leight/xlsx-import": "^0.5.28",
         "@leight/xlsx-import-server": "^0.5.27",
+        "@monye.one/transaction": "^0.5.0",
         "@monye.one/transaction-server": "^0.5.0",
         "@trpc/server": "^10.15.0",
         "superjson": "^1.12.2"

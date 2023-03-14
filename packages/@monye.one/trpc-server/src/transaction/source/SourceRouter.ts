@@ -1,3 +1,4 @@
+import {TransactionQuerySchema}    from "@monye.one/transaction";
 import {TransactionQueryProcedure} from "@monye.one/transaction-server";
 import {
     procedure,
@@ -5,5 +6,5 @@ import {
 }                                  from "../../router";
 
 export const SourceRouter = router({
-    query: procedure.query(TransactionQueryProcedure),
+    query: procedure.input(TransactionQuerySchema.optional()).query(TransactionQueryProcedure),
 });
