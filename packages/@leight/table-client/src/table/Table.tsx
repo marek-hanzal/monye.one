@@ -87,7 +87,7 @@ export const Table = <
             <thead>
                 <tr>
                     {$columns?.map(([name, column]) => <th key={name}>
-                        <Translation {...withTranslation} label={`column.${column?.title || name}`}/>
+                        <Translation {...withTranslation} label={`table.column.${column?.title || name}`}/>
                     </th>)}
                 </tr>
             </thead>

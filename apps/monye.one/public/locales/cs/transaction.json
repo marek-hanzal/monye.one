@@ -6,5 +6,7 @@
     "dropzone.import.file": "Soubor",
     "dropzone.import.progress": "Průběh",
     "dropzone.import.actions": "Akce",
-    "table.caption": "Seznam všech vašich transakcí"
+    "table.caption": "Seznam všech vašich transakcí",
+    "table.column.reference": "ID transakce",
+    "table.column.amount": "Částka"
 }
