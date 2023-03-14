@@ -1,0 +1,44 @@
+{
+    "version": "0.5.35",
+    "name": "@leight/i18n",
+    "description": "Common i18n stuff shared across @leight/i18n packages.",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/leight-core/viv.git"
+    },
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "sideEffects": false,
+    "type": "module",
+    "module": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "files": [
+        "lib",
+        "src"
+    ],
+    "scripts": {
+        "build": "concurrently npm:build:*",
+        "build:esbuild": "node esbuild.mjs",
+        "build:types": "tsc --outDir lib",
+        "depcheck": "depcheck",
+        "lint": "eslint src",
+        "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
+    },
+    "devDependencies": {
+        "@leight/esbuild": "^0.5.14",
+        "@leight/eslint-config-eslint": "^0.5.23",
+        "@leight/tsconfig": "^0.5.37",
+        "@types/node": "^18.15.0",
+        "concurrently": "^7.6.0",
+        "del-cli": "^5.0.0",
+        "depcheck": "^1.4.3",
+        "eslint": "^8.36.0",
+        "typescript": "^4.9.5"
+    },
+    "bugs": {
+        "url": "https://github.com/leight-core/viv/issues"
+    },
+    "homepage": "https://github.com/leight-core/viv#readme"
+}
