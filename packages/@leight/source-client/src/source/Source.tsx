@@ -45,6 +45,13 @@ const SourceInternal = <
       onSuccess,
       children,
   }: ISourceInternalProps<TQuerySchema, TSchema>) => {
+
+    /**
+     * @TODO Change getQuery to just query and update query state directly (that means store would have final query shape).
+     */
+
+    console.log("SourceInternal: See todo here");
+
     const getQuery = useQueryStore(({getQuery}) => getQuery);
     const result   = useQuery(getQuery(), {
         onSuccess,

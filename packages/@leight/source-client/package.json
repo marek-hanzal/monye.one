@@ -19,6 +19,7 @@
         "src"
     ],
     "scripts": {
+        "dev": "turbowatch",
         "build": "concurrently npm:build:*",
         "build:esbuild": "node esbuild.mjs",
         "build:types": "tsc --outDir lib",
@@ -27,12 +28,12 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/context-client": "^0.5.0",
+        "@leight/context-client": "^0.5.42",
         "@leight/query": "^0.5.0",
         "@leight/query-client": "^0.5.0",
         "@leight/source": "^0.5.0",
         "@leight/utils": "^0.5.0",
-        "@leight/zustand": "^0.5.0",
+        "@leight/zustand": "^0.5.36",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "zod": "3.21.1"

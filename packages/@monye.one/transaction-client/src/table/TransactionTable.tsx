@@ -7,6 +7,10 @@ import {
     TransactionSchema
 }                          from "@monye.one/transaction";
 import {type FC}           from "react";
+import {
+    useTransactionQuery,
+    useTransactionSource
+}                          from "../hook";
 import {TransactionSource} from "../source";
 
 export type ITransactionTableColumns =
@@ -22,8 +26,9 @@ export interface ITransactionTableProps extends ITableExProps<ITransactionSchema
 
 export const TransactionTable: FC<ITransactionTableProps> = ({...props}) => {
     return <TransactionSource>
-        {sourceContext => <Table
-            useSource={() => sourceContext.state}
+        <Table
+            useSource={useTransactionSource}
+            useQuery={useTransactionQuery}
             schema={TransactionSchema}
             withTranslation={{
                 namespace: "transaction",
@@ -51,6 +56,6 @@ export const TransactionTable: FC<ITransactionTableProps> = ({...props}) => {
                 },
             }}
             {...props}
-        />}
+        />
     </TransactionSource>;
 };

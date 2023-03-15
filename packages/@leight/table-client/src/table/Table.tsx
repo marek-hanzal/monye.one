@@ -1,6 +1,8 @@
 import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
 import {Paper}                 from "@leight/mantine";
+import {type IQuerySchema}     from "@leight/query";
+import {type IUseQueryStore}   from "@leight/query-client";
 import {type IEntitySchema}    from "@leight/source";
 import {type IUseSourceStore}  from "@leight/source-client";
 import {isCallable}            from "@leight/utils";
@@ -35,6 +37,7 @@ export interface ITableProps<
      */
     readonly schema: TSchema;
     readonly useSource: IUseSourceStore<TSchema>;
+    readonly useQuery: IUseQueryStore<IQuerySchema>;
     readonly withTranslation: IWithTranslation;
     readonly withCaption?: boolean;
     readonly columns: Record<TColumns, ITableColumn<TSchema>>;
@@ -57,7 +60,7 @@ export interface ITableProps<
 export type ITableExProps<
     TSchema extends IEntitySchema,
     TColumns extends string,
-> = Omit<ITableProps<TSchema, TColumns>, "schema" | "useSource" | "columns" | "withTranslation">;
+> = Omit<ITableProps<TSchema, TColumns>, "schema" | "useSource" | "useQuery" | "columns" | "withTranslation">;
 
 export const Table = <
     TSchema extends IEntitySchema,
@@ -66,6 +69,7 @@ export const Table = <
     {
         schema,
         useSource,
+        useQuery,
         withTranslation,
         withCaption = true,
         columns,
@@ -89,6 +93,8 @@ export const Table = <
             isFetching,
             isLoading,
         }));
+
+    const {setPage} = useQuery(({setPage}) => ({setPage}));
 
     const $columns: [string, ITableColumn<TSchema>][] = order.filter(column => !hidden.includes(column)).map(column => [
         column,
@@ -132,6 +138,7 @@ export const Table = <
                 total={20}
                 siblings={1}
                 defaultValue={0}
+                onChange={setPage}
             />
         </Center>
     </Paper>;
