@@ -1,5 +1,5 @@
 import {
-    type ISourceExProps,
+    type ISourceProps,
     Source
 }                            from "@leight/source-client";
 import {
@@ -11,7 +11,7 @@ import {trpc}                from "@monye.one/trpc-client";
 import {type FC}             from "react";
 import {TransactionProvider} from "../context";
 
-export interface ITransactionSourceProps extends ISourceExProps<ITransactionQuerySchema, ITransactionSchema> {
+export interface ITransactionSourceProps extends ISourceProps<ITransactionQuerySchema, ITransactionSchema> {
 }
 
 export const TransactionSource: FC<ITransactionSourceProps> = props => {
