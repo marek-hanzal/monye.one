@@ -14,7 +14,7 @@
     "scripts": {
         "build": "turbo run build --no-daemon",
         "lint": "turbo run lint --no-daemon",
-        "dev": "turbo run dev --parallel --no-daemon",
+        "dev": "turbo run dev --parallel --no-daemon | roarr",
         "depcheck": "turbo run depcheck --parallel --no-daemon",
         "cleanup": "turbo run cleanup --parallel --no-daemon",
         "start": "turbo run start --no-daemon --parallel --no-daemon",
@@ -26,6 +26,7 @@
         "npkill": "npx npkill"
     },
     "devDependencies": {
+        "@roarr/cli": "^5.10.4",
         "prettier": "^2.8.4",
         "prettier-plugin-tailwindcss": "^0.2.4",
         "turbo": "^1.8.3",

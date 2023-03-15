@@ -70,10 +70,11 @@
             "cache": false
         },
         "dev": {
+            "cache": false,
+            "persistent": true,
             "dependsOn": [
                 "^prisma:generate"
-            ],
-            "cache": false
+            ]
         },
         "migration": {
             "cache": false
