@@ -3,9 +3,11 @@ import {
     type IUseState
 }                          from "@leight/context-client";
 import {type IQuerySchema} from "@leight/query";
+import {createId}          from "@paralleldrive/cuid2";
 import {z}                 from "zod";
 
 export interface IQueryStoreProps<TQuerySchema extends IQuerySchema> {
+    readonly id: string;
     readonly schema: TQuerySchema;
     readonly query: z.infer<TQuerySchema>;
 
@@ -28,15 +30,17 @@ export const createQueryContext = <TQuerySchema extends IQuerySchema>(
     }: ICreateQueryContextProps<TQuerySchema>) => {
     return createStoreContext<IQueryStoreProps<TQuerySchema>>(
         (set) => ({
+            id:    createId(),
             schema,
             query: {
                 cursor: {
                     page: 0,
-                    size: 15,
+                    size: 20,
                 },
             },
             setSize(size) {
                 set(({query}) => ({
+                        id:    createId(),
                         query: {
                             ...query,
                             cursor: {...query.cursor, size}
@@ -46,6 +50,7 @@ export const createQueryContext = <TQuerySchema extends IQuerySchema>(
             },
             setPage(page) {
                 set(({query}) => ({
+                        id:    createId(),
                         query: {
                             ...query,
                             cursor: {...query.cursor, page}

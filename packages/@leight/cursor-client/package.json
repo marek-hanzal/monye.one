@@ -1,7 +1,7 @@
 {
-    "version": "0.5.35",
-    "name": "@leight/sql",
-    "description": "Some SQL related helper tools.",
+    "version": "0.5.0",
+    "name": "@leight/cursor-client",
+    "description": "Client-side for Cursor.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -28,7 +28,11 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/prisma": "^0.5.45"
+        "@leight/query": "^0.5.0",
+        "@leight/query-client": "^0.5.0",
+        "@mantine/core": "^6.0.1",
+        "@mantine/hooks": "^6.0.1",
+        "react": "^18.2.0"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.14",
@@ -36,6 +40,7 @@
         "@leight/tsconfig": "^0.5.37",
         "@leight/turbowatch": "^0.5.0",
         "@types/node": "^18.15.0",
+        "@types/react": "^18.0.28",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
         "depcheck": "^1.4.3",

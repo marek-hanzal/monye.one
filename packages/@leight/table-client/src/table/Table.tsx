@@ -1,3 +1,4 @@
+import {Pagination}            from "@leight/cursor-client";
 import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
 import {Paper}                 from "@leight/mantine";
@@ -10,7 +11,6 @@ import {
     Center,
     Divider,
     LoadingOverlay,
-    Pagination,
     Table as CoolTable
 }                              from "@mantine/core";
 import {
@@ -94,10 +94,6 @@ export const Table = <
             isLoading,
         }));
 
-    console.log("Entities", entities);
-
-    const {setPage} = useQuery(({setPage}) => ({setPage}));
-
     const $columns: [string, ITableColumn<TSchema>][] = order.filter(column => !hidden.includes(column)).map(column => [
         column,
         (overrideColumns as any)[column] || (columns as any)[column],
@@ -137,11 +133,9 @@ export const Table = <
         <Divider m={"md"}/>
         <Center>
             <Pagination
-                total={20}
-                siblings={1}
-                defaultValue={1}
-                onChange={setPage}
+                useQuery={useQuery}
             />
         </Center>
     </Paper>;
 };
+``;

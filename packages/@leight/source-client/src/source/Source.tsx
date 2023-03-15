@@ -45,26 +45,24 @@ const SourceInternal = <
       onSuccess,
       children,
   }: ISourceInternalProps<TQuerySchema, TSchema>) => {
-
-    /**
-     * @TODO Change getQuery to just query and update query state directly (that means store would have final query shape).
-     */
-
-    console.log("SourceInternal: See todo here");
-
-    const query = useQueryStore(({query}) => query);
-    console.log("Query", query);
-    const result = useQuery(query, {
+    const {query, id: queryId} = useQueryStore(({query, id}) => ({query, id}));
+    const result               = useQuery(query, {
         onSuccess,
     });
+
     useEffect(() => {
         if (result.isSuccess) {
-            console.log("Source Entities", result.data);
+            console.log("Source update", result?.data?.[0]?.id, query.cursor);
             const $data = result.data.filter(item => schema.safeParse(item).success);
             onSuccess?.($data);
             sourceContext.state.setEntities($data);
         }
-    }, [result.isSuccess]);
+    }, [
+        queryId,
+        result.isSuccess,
+        result.isLoading,
+        result.isFetching,
+    ]);
     useEffect(() => {
         sourceContext.state.setIsLoading(result.isLoading);
     }, [result.isLoading]);
