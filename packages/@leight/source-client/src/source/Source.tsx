@@ -52,12 +52,14 @@ const SourceInternal = <
 
     console.log("SourceInternal: See todo here");
 
-    const getQuery = useQueryStore(({getQuery}) => getQuery);
-    const result   = useQuery(getQuery(), {
+    const query = useQueryStore(({query}) => query);
+    console.log("Query", query);
+    const result = useQuery(query, {
         onSuccess,
     });
     useEffect(() => {
         if (result.isSuccess) {
+            console.log("Source Entities", result.data);
             const $data = result.data.filter(item => schema.safeParse(item).success);
             onSuccess?.($data);
             sourceContext.state.setEntities($data);

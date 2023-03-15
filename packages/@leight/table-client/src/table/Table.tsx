@@ -94,6 +94,8 @@ export const Table = <
             isLoading,
         }));
 
+    console.log("Entities", entities);
+
     const {setPage} = useQuery(({setPage}) => ({setPage}));
 
     const $columns: [string, ITableColumn<TSchema>][] = order.filter(column => !hidden.includes(column)).map(column => [
@@ -137,7 +139,7 @@ export const Table = <
             <Pagination
                 total={20}
                 siblings={1}
-                defaultValue={0}
+                defaultValue={1}
                 onChange={setPage}
             />
         </Center>
