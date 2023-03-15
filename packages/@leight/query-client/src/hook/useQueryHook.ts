@@ -40,23 +40,21 @@ export const createQueryContext = <TQuerySchema extends IQuerySchema>(
             },
             setSize(size) {
                 set(({query}) => ({
-                        id:    createId(),
-                        query: {
-                            ...query,
-                            cursor: {...query.cursor, size}
-                        },
-                    }
-                ));
+                    id:    createId(),
+                    query: {
+                        ...query,
+                        cursor: {...query.cursor, size}
+                    },
+                }));
             },
             setPage(page) {
                 set(({query}) => ({
-                        id:    createId(),
-                        query: {
-                            ...query,
-                            cursor: {...query.cursor, page}
-                        },
-                    }
-                ));
+                    id:    createId(),
+                    query: {
+                        ...query,
+                        cursor: {...query.cursor, page}
+                    },
+                }));
             },
         }),
         `[${name}] QueryContext`,
