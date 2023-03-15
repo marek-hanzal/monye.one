@@ -2,8 +2,6 @@ import {Pagination}            from "@leight/cursor-client";
 import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
 import {Paper}                 from "@leight/mantine";
-import {type IQuerySchema}     from "@leight/query";
-import {type IUseQueryStore}   from "@leight/query-client";
 import {type IEntitySchema}    from "@leight/source";
 import {type IUseSourceStore}  from "@leight/source-client";
 import {isCallable}            from "@leight/utils";
@@ -28,7 +26,7 @@ export interface ITableColumn<TSchema extends IEntitySchema> {
     render: ((entity: z.infer<TSchema>) => ReactNode) | (keyof (z.infer<TSchema>));
 }
 
-export interface ITableProps<
+export interface ITableInternalProps<
     TSchema extends IEntitySchema,
     TColumns extends string,
 > extends Partial<Omit<ComponentProps<typeof CoolTable>, "hidden">> {
@@ -37,7 +35,6 @@ export interface ITableProps<
      */
     readonly schema: TSchema;
     readonly useSource: IUseSourceStore<TSchema>;
-    readonly useQuery: IUseQueryStore<IQuerySchema>;
     readonly withTranslation: IWithTranslation;
     readonly withCaption?: boolean;
     readonly columns: Record<TColumns, ITableColumn<TSchema>>;
@@ -57,10 +54,10 @@ export interface ITableProps<
 /**
  * Public props which any component could extend from (non-partial).
  */
-export type ITableExProps<
+export type ITableProps<
     TSchema extends IEntitySchema,
     TColumns extends string,
-> = Omit<ITableProps<TSchema, TColumns>, "schema" | "useSource" | "useQuery" | "columns" | "withTranslation">;
+> = Omit<ITableInternalProps<TSchema, TColumns>, "schema" | "useSource" | "columns" | "withTranslation">;
 
 export const Table = <
     TSchema extends IEntitySchema,
@@ -69,7 +66,6 @@ export const Table = <
     {
         schema,
         useSource,
-        useQuery,
         withTranslation,
         withCaption = true,
         columns,
@@ -77,7 +73,7 @@ export const Table = <
         hidden = [],
         order = Object.keys(columns) as any,
         ...props
-    }: ITableProps<TSchema, TColumns>) => {
+    }: ITableInternalProps<TSchema, TColumns>) => {
     const {
               entities,
               isFetching,
@@ -132,9 +128,7 @@ export const Table = <
         </CoolTable>
         <Divider m={"md"}/>
         <Center>
-            <Pagination
-                useQuery={useQuery}
-            />
+            <Pagination/>
         </Center>
     </Paper>;
 };

@@ -14,11 +14,7 @@ export default withBookLayout(
             <>
                 <Box p={"md"}>
                     <TransactionMenu/>
-                    <TransactionQueryProvider
-                        defaults={{
-
-                        }}
-                    >
+                    <TransactionQueryProvider>
                         <TransactionTable/>
                     </TransactionQueryProvider>
                 </Box>

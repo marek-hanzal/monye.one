@@ -1,6 +1,6 @@
 import {type IStoreProvider}    from "@leight/context-client";
+import {useCursorState}         from "@leight/cursor-client";
 import {type IQuerySchema}      from "@leight/query";
-import {type IUseQueryStore}    from "@leight/query-client";
 import {
     type IEntitySchema,
     type IUseQuery
@@ -20,17 +20,21 @@ export interface ISourceProps<
 > {
     readonly schema: TSchema;
     readonly useQuery: IUseQuery<z.infer<TQuerySchema> | undefined, z.infer<TSchema>[]>;
-    readonly useQueryStore: IUseQueryStore<TQuerySchema>;
     readonly SourceProvider: IStoreProvider<ISourceStoreProps<TSchema>>;
     readonly children?: ((store: IStoreApi<ISourceStoreProps<TSchema>>) => ReactNode) | ReactNode;
 
     onSuccess?(entities: z.infer<TSchema>[]): void;
 }
 
+export type ISourceExProps<
+    TQuerySchema extends IQuerySchema,
+    TSchema extends IEntitySchema,
+> = Omit<ISourceProps<TQuerySchema, TSchema>, "schema" | "SourceProvider" | "useQuery">;
+
 interface ISourceInternalProps<
     TQuerySchema extends IQuerySchema,
     TSchema extends IEntitySchema,
-> extends Pick<ISourceProps<TQuerySchema, TSchema>, "schema" | "useQuery" | "useQueryStore" | "onSuccess" | "children"> {
+> extends Pick<ISourceProps<TQuerySchema, TSchema>, "schema" | "useQuery" | "onSuccess" | "children"> {
     readonly sourceContext: IStoreApi<ISourceStoreProps<TSchema>>;
 }
 
@@ -41,24 +45,28 @@ const SourceInternal = <
       sourceContext,
       schema,
       useQuery,
-      useQueryStore,
       onSuccess,
       children,
   }: ISourceInternalProps<TQuerySchema, TSchema>) => {
-    const {query, id: queryId} = useQueryStore(({query, id}) => ({query, id}));
-    const result               = useQuery(query, {
+    const {page, size} = useCursorState(({page, size}) => ({page, size}));
+    const result       = useQuery({
+        cursor: {
+            page,
+            size,
+        }
+    }, {
         onSuccess,
     });
 
     useEffect(() => {
         if (result.isSuccess) {
-            console.log("Source update", result?.data?.[0]?.id, query.cursor);
             const $data = result.data.filter(item => schema.safeParse(item).success);
             onSuccess?.($data);
             sourceContext.state.setEntities($data);
         }
     }, [
-        queryId,
+        page,
+        size,
         result.isSuccess,
         result.isLoading,
         result.isFetching,
@@ -80,7 +88,6 @@ export const Source = <
     {
         schema,
         useQuery,
-        useQueryStore,
         onSuccess,
         SourceProvider,
         children,
@@ -93,7 +100,6 @@ export const Source = <
             sourceContext={sourceContext}
             schema={schema}
             useQuery={useQuery}
-            useQueryStore={useQueryStore}
             onSuccess={onSuccess}
         >
             {children}

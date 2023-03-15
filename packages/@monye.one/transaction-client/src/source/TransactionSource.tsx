@@ -1,20 +1,17 @@
 import {
-    type ISourceProps,
+    type ISourceExProps,
     Source
-}                from "@leight/source-client";
+}                            from "@leight/source-client";
 import {
     type ITransactionQuerySchema,
     type ITransactionSchema,
     TransactionSchema
-}                from "@monye.one/transaction";
-import {trpc}    from "@monye.one/trpc-client";
-import {type FC} from "react";
-import {
-    TransactionProvider,
-    useTransactionQuery
-}                from "../hook";
+}                            from "@monye.one/transaction";
+import {trpc}                from "@monye.one/trpc-client";
+import {type FC}             from "react";
+import {TransactionProvider} from "../context";
 
-export interface ITransactionSourceProps extends Omit<ISourceProps<ITransactionQuerySchema, ITransactionSchema>, "schema" | "SourceProvider" | "useQuery" | "useQueryStore"> {
+export interface ITransactionSourceProps extends ISourceExProps<ITransactionQuerySchema, ITransactionSchema> {
 }
 
 export const TransactionSource: FC<ITransactionSourceProps> = props => {
@@ -22,7 +19,6 @@ export const TransactionSource: FC<ITransactionSourceProps> = props => {
         schema={TransactionSchema}
         SourceProvider={TransactionProvider}
         useQuery={trpc.transaction.source.query.useQuery}
-        useQueryStore={useTransactionQuery}
         {...props}
     />;
 };
