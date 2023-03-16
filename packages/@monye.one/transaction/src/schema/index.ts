@@ -1,3 +1,4 @@
+import { FilterSchema } from "@leight/filter";
 import { QuerySchema } from "@leight/query";
 import { SortSchema } from "@leight/sort";
 import { WithIdentitySchema } from "@leight/source";
@@ -9,7 +10,7 @@ export type ITransactionSchema = typeof TransactionSchema;
 export type ITransaction = z.infer<ITransactionSchema>;
 
 export const TransactionCreateSchema =
-    PrismaSchema.TransactionOptionalDefaultsSchema;
+                 PrismaSchema.TransactionOptionalDefaultsSchema;
 export type ITransactionCreateSchema = typeof TransactionCreateSchema;
 export type ITransactionCreate = z.infer<ITransactionCreateSchema>;
 
@@ -21,6 +22,10 @@ export type ITransactionPatch = z.infer<ITransactionPatchSchema>;
 export const TransactionQuerySchema = QuerySchema({});
 export type ITransactionQuerySchema = typeof TransactionQuerySchema;
 export type ITransactionQuery = z.infer<ITransactionQuerySchema>;
+
+export const TransactionFilterSchema = FilterSchema;
+export type ITransactionFilterSchema = typeof TransactionFilterSchema;
+export type ITransactionFilter = z.infer<ITransactionFilterSchema>;
 
 export const TransactionSortSchema = SortSchema;
 export type ITransactionSortSchema = typeof TransactionSortSchema;
