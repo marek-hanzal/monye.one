@@ -3,12 +3,11 @@ import {
     type ISourceProps
 } from "@leight/source-client";
 import {
-    ITransactionQuerySchema,
-    type ITransactionSchema,
+    type ITransactionSourceSchema,
     TransactionSchema
 } from "@monye.one/transaction";
 
-export type ITransactionSource = ISourceProps<ITransactionQuerySchema, ITransactionSchema>;
+export type ITransactionSource = ISourceProps<ITransactionSourceSchema>;
 
 export const {
                  Provider:         TransactionProvider,
@@ -16,7 +15,7 @@ export const {
                  useOptionalState: useOptionalTransactionSource,
                  useStore:         useTransactionStore,
                  useOptionalStore: useOptionalTransactionStore,
-             } = createSourceContext<ITransactionSchema>({
+             } = createSourceContext<ITransactionSourceSchema>({
     name:   "Transaction",
     schema: TransactionSchema,
 });
