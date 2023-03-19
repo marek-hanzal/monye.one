@@ -1,4 +1,3 @@
-import {IFilterSchema}       from "@leight/filter";
 import {type IImportService} from "@leight/import";
 import {
     type ISource,
@@ -6,10 +5,12 @@ import {
 }                            from "@leight/source";
 import {
     type ITransactionCreateSchema,
+    type ITransactionFilterSchema,
     type ITransactionImport,
+    type ITransactionParamSchema,
     type ITransactionPatchSchema,
     type ITransactionSchema,
-    ITransactionSortSchema,
+    type ITransactionSortSchema,
 }                            from "../schema";
 
 export interface ITransactionImportService extends IImportService<ITransactionImport> {
@@ -30,7 +31,8 @@ export interface ITransactionSourceSchema extends ISourceSchema<
     ITransactionSchema,
     ITransactionCreateSchema,
     ITransactionPatchSchema,
-    IFilterSchema,
-    ITransactionSortSchema
+    ITransactionFilterSchema,
+    ITransactionSortSchema,
+    ITransactionParamSchema
 > {
 }

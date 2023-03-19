@@ -20,7 +20,11 @@ export const TransactionPatchSchema = PrismaSchema.TransactionPartialSchema.merg
 export type ITransactionPatchSchema = typeof TransactionPatchSchema;
 export type ITransactionPatch = z.infer<ITransactionPatchSchema>;
 
-export const TransactionFilterSchema = FilterSchema;
+export const TransactionFilterSchema = z.union([
+    PrismaSchema.TransactionWhereInputSchema,
+    PrismaSchema.TransactionWhereUniqueInputSchema,
+    FilterSchema,
+]);
 export type ITransactionFilterSchema = typeof TransactionFilterSchema;
 export type ITransactionFilter = z.infer<ITransactionFilterSchema>;
 
@@ -29,8 +33,10 @@ export type ITransactionParamSchema = typeof TransactionParamSchema;
 export type ITransactionParam = z.infer<ITransactionParamSchema>;
 
 export const TransactionSortSchema = z.object({
-    date: SortOrderSchema,
-}).optional();
+    date:      SortOrderSchema,
+    amount:    SortOrderSchema,
+    reference: SortOrderSchema,
+});
 export type ITransactionSortSchema = typeof TransactionSortSchema;
 export type ITransactionSort = z.infer<ITransactionSortSchema>;
 

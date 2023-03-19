@@ -2,15 +2,20 @@ import {Pagination}            from "@leight/cursor-client";
 import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
 import {Paper}                 from "@leight/mantine";
+import {type IUseSortState}    from "@leight/sort";
+import {SortIcon}              from "@leight/sort-client";
 import {
     type ISourceSchema,
     type IUseSourceState
 }                              from "@leight/source";
 import {isCallable}            from "@leight/utils";
 import {
+    Box,
     Center,
     Divider,
+    Group,
     LoadingOverlay,
+    ScrollArea,
     Table as CoolTable
 }                              from "@mantine/core";
 import {
@@ -23,6 +28,8 @@ export interface ITableColumn<TSourceSchema extends ISourceSchema> {
      * Explicitly override column title (by default column name is taken from Record<> in Table)
      */
     readonly title?: string;
+    readonly width?: number;
+    readonly sort?: keyof TSourceSchema["Sort"];
 
     render: ((entity: TSourceSchema["Entity"]) => ReactNode) | (keyof TSourceSchema["Entity"]);
 }
@@ -36,10 +43,11 @@ export interface ITableInternalProps<
      */
     readonly schema: TSourceSchema["EntitySchema"];
     readonly useSource: IUseSourceState<TSourceSchema>;
+    readonly useSort: IUseSortState<TSourceSchema["SortSchema"]>;
     readonly withTranslation: IWithTranslation;
-    readonly withCaption?: boolean;
     readonly columns: Record<TColumns, ITableColumn<TSourceSchema>>;
     readonly overrideColumns?: Partial<Record<TColumns, ITableColumn<TSourceSchema>>>;
+    readonly scrollX?: number;
 
     /**
      * Specify hidden columns.
@@ -52,13 +60,27 @@ export interface ITableInternalProps<
     readonly order?: TColumns[];
 }
 
+export const chain = (value: any, chain: any[]) => {
+    if (!chain.length) {
+        console.warn("Chain does not have chaining values (an empty array).");
+        return value;
+    }
+    const index = chain.indexOf(value);
+    if (index === -1) {
+        return chain[0];
+    } else if ((index + 1) === chain.length) {
+        return chain[0];
+    }
+    return chain[index + 1];
+};
+
 /**
  * Public props which any component could extend from (non-partial).
  */
 export type ITableProps<
     TSourceSchema extends ISourceSchema,
     TColumns extends string,
-> = Omit<ITableInternalProps<TSourceSchema, TColumns>, "schema" | "useSource" | "columns" | "withTranslation">;
+> = Omit<ITableInternalProps<TSourceSchema, TColumns>, "schema" | "useSource" | "useSort" | "columns" | "withTranslation">;
 
 export const Table = <
     TSourceSchema extends ISourceSchema,
@@ -67,8 +89,9 @@ export const Table = <
     {
         schema,
         useSource,
+        useSort,
         withTranslation,
-        withCaption = true,
+        scrollX,
         columns,
         overrideColumns = {},
         hidden = [],
@@ -79,7 +102,7 @@ export const Table = <
               entities,
               isFetching,
               isLoading,
-          } = useSource((
+          }               = useSource((
         {
             entities,
             isFetching,
@@ -90,6 +113,7 @@ export const Table = <
             isFetching,
             isLoading,
         }));
+    const {sort, setSort} = useSort(({sort, setSort}) => ({sort, setSort}));
 
     const $columns: [string, ITableColumn<TSourceSchema>][] = order.filter(column => !hidden.includes(column)).map(column => [
         column,
@@ -97,40 +121,56 @@ export const Table = <
     ]);
 
     return <Paper>
-        <LoadingOverlay
-            visible={isFetching || isLoading}
-            overlayBlur={2}
-            transitionDuration={250}
-        />
         <Center>
             <Pagination/>
         </Center>
         <Divider m={"md"}/>
-        <CoolTable
-            striped
-            highlightOnHover
-            withBorder
-            withColumnBorders
-            {...props}
-        >
-            {withCaption && <caption><Translation {...withTranslation} label={"table.caption"}/></caption>}
-            <thead>
-                <tr>
-                    {$columns?.map(([name, column]) => <th key={name}>
-                        <Translation {...withTranslation} label={`table.column.${column?.title || name}`}/>
-                    </th>)}
-                </tr>
-            </thead>
-            <tbody>
-                {entities
-                    .filter(entity => schema.safeParse(entity).success)
-                    .map(entity => <tr key={entity.id}>
-                        {$columns.map(([name, column]) => <td key={name}>
-                            {isCallable(column.render) ? column.render(entity) : (entity as any)[column.render]}
-                        </td>)}
-                    </tr>)}
-            </tbody>
-        </CoolTable>
+        <ScrollArea w={"100%"}>
+            <Box w={scrollX}>
+                <LoadingOverlay
+                    visible={isFetching || isLoading}
+                    overlayBlur={2}
+                    transitionDuration={250}
+                />
+                <CoolTable
+                    striped
+                    highlightOnHover
+                    withBorder
+                    withColumnBorders
+                    {...props}
+                >
+                    <thead>
+                        <tr>
+                            {$columns?.map(([name, column]) => <th
+                                key={name}
+                                style={column.width ? {width: `${column.width}rem`} : undefined}
+                                onClick={() => {
+                                    column.sort && setSort(column.sort, chain(sort[column.sort], [
+                                        "asc",
+                                        "desc",
+                                        undefined,
+                                    ]));
+                                }}
+                            >
+                                <Group>
+                                    {column.sort ? <SortIcon<TSourceSchema["Sort"]> sort={sort} index={column.sort}/> : null}
+                                    <Translation {...withTranslation} label={`table.column.${column?.title || name}`}/>
+                                </Group>
+                            </th>)}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {entities
+                            .filter(entity => schema.safeParse(entity).success)
+                            .map(entity => <tr key={entity.id}>
+                                {$columns.map(([name, column]) => <td key={name}>
+                                    {isCallable(column.render) ? column.render(entity) : (entity as any)[column.render]}
+                                </td>)}
+                            </tr>)}
+                    </tbody>
+                </CoolTable>
+            </Box>
+        </ScrollArea>
         <Divider m={"md"}/>
         <Center>
             <Pagination/>

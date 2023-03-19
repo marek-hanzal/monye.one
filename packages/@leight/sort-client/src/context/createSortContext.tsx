@@ -18,11 +18,12 @@ export const createSortContext = <TSortSchema extends ISortSchema>(
         (set) => ({
             schema,
             sort: {},
-            setSort(sort, order) {
-                set(({sort}) => ({
-                    ...sort,
-                    [sort as any]: order,
-                }));
+            setSort(key, order) {
+                set({
+                    sort: {
+                        [key as any]: order,
+                    }
+                });
             }
         }),
         `[${name}] SortContext`,

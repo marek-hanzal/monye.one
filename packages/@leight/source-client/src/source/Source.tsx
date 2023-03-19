@@ -56,22 +56,16 @@ const InternalSource = <TSourceSchema extends ISourceSchema>(
         },
         sort,
     }, {
-        onSuccess,
-    });
-
-    useEffect(() => {
-        if (result.isSuccess) {
-            const $data = result.data.filter(item => schema.safeParse(item).success);
+        staleTime: undefined,
+        cacheTime: undefined,
+        onSuccess: data => {
+            const $data = data.filter(item => schema.safeParse(item).success);
             onSuccess?.($data);
             sourceContext.state.setEntities($data);
-        }
-    }, [
-        page,
-        size,
-        result.isSuccess,
-        result.isLoading,
-        result.isFetching,
-    ]);
+            onSuccess?.($data);
+        },
+    });
+
     useEffect(() => {
         sourceContext.state.setIsLoading(result.isLoading);
     }, [result.isLoading]);

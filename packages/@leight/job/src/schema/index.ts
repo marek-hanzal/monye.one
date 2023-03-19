@@ -46,7 +46,7 @@ export type IJobParam = z.infer<IJobParamSchema>;
 
 export const JobSortSchema = z.object({
     started: SortOrderSchema,
-}).optional();
+});
 export type IJobSortSchema = typeof JobSortSchema;
 export type IJobSort = z.infer<IJobSortSchema>;
 
@@ -61,6 +61,9 @@ export type IJobQuery = z.infer<IJobQuerySchema>;
 export interface IJobSourceSchema extends ISourceSchema<
     IJobSchema,
     IJobCreateSchema,
-    IJobPatchSchema
+    IJobPatchSchema,
+    IJobFilterSchema,
+    IJobSortSchema,
+    IJobParamSchema
 > {
 }
