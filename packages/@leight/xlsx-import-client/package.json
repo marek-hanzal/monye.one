@@ -28,18 +28,20 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
+        "@leight/job-client": "^0.5.0",
         "@leight/mantine": "^0.5.46",
-        "@leight/tsconfig": "^0.5.44",
         "@mantine/core": "^6.0.1",
         "@mantine/dropzone": "^6.0.1",
         "@mantine/hooks": "^6.0.1",
+        "@mantine/notifications": "^6.0.1",
+        "@monye.one/job-client": "^0.5.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.21",
         "@leight/eslint-config-eslint": "^0.5.30",
-        "@leight/tsconfig": "*",
+        "@leight/tsconfig": "^0.5.44",
         "@leight/turbowatch": "^0.5.7",
         "@leight/xlsx-import": "^0.5.42",
         "@types/node": "^18.15.0",

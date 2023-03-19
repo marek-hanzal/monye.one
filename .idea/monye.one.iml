@@ -66,7 +66,9 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/query-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/esbuild/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/turbowatch/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/job-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/sort-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/job-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -193,6 +195,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/turbowatch/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/sort-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/sort-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/job-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/job-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/job-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/job-client/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

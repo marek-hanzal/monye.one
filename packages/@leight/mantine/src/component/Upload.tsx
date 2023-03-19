@@ -17,24 +17,19 @@ export interface IUploadProps {
  */
 export const Upload: FC<IUploadProps> = ({upload}) => {
     const {isRunning, isSuccess, isError, percent} = useUpload(upload);
-
-    return (
-        <>
-            <Progress
-                color={
-                    isError
-                        ? "red"
-                        : isRunning
-                            ? "blue"
-                            : isSuccess
-                                ? "green"
-                                : undefined
-                }
-                radius={"md"}
-                size={"md"}
-                value={percent()}
-                animate={isRunning}
-            />
-        </>
-    );
+    return <Progress
+        color={
+            isError
+                ? "red"
+                : isRunning
+                    ? "blue"
+                    : isSuccess
+                        ? "green"
+                        : undefined
+        }
+        radius={"md"}
+        size={"md"}
+        value={percent()}
+        animate={isRunning}
+    />;
 };

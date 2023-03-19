@@ -1,4 +1,8 @@
-import {type ISource} from "@leight/source";
+import {IUseQuery}    from "@leight/react-query";
+import {
+    type ISource,
+    IWithIdentity
+}                     from "@leight/source";
 import {type ILogger} from "@leight/winston";
 import {
     type IJob,
@@ -71,3 +75,6 @@ export namespace IJobExecutor {
 export const $JobExecutor = Symbol.for(
     "@leight/job/IJobExecutor"
 );
+
+export type IUseJobFetchQuery = IUseQuery<IJobSourceSchema["Query"], IJobSourceSchema["Entity"]>;
+export type IUseJobFindQuery = IUseQuery<IWithIdentity, IJobSourceSchema["Entity"]>;

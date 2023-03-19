@@ -1,11 +1,11 @@
 {
     "version": "0.5.0",
-    "name": "@monye.one/trpc-server",
-    "description": "Server-side TRPC stuff.",
+    "name": "@leight/job-client",
+    "description": "Client-side job stuff.",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git://github.com/marek-hanzal/monye.one.git"
+        "url": "git://github.com/leight-core/viv.git"
     },
     "engines": {
         "node": ">=16.0.0"
@@ -14,6 +14,10 @@
     "type": "module",
     "module": "lib/index.js",
     "types": "lib/index.d.ts",
+    "files": [
+        "lib",
+        "src"
+    ],
     "scripts": {
         "dev": "turbowatch",
         "build": "concurrently npm:build:*",
@@ -25,22 +29,19 @@
     },
     "dependencies": {
         "@leight/job": "^0.5.0",
-        "@leight/job-server": "^0.5.0",
-        "@leight/source": "^0.5.0",
-        "@leight/trpc": "^0.5.27",
-        "@leight/xlsx-import": "^0.5.28",
-        "@leight/xlsx-import-server": "^0.5.27",
-        "@monye.one/transaction": "^0.5.0",
-        "@monye.one/transaction-server": "^0.5.0",
-        "@trpc/server": "^10.15.0",
-        "superjson": "^1.12.2"
+        "@mantine/core": "^6.0.1",
+        "@mantine/hooks": "^6.0.1",
+        "@mantine/notifications": "^6.0.1",
+        "@tabler/icons-react": "^2.10.0",
+        "react": "^18.2.0"
     },
     "devDependencies": {
-        "@leight/esbuild": "^0.5.7",
-        "@leight/eslint-config-eslint": "^0.5.16",
-        "@leight/tsconfig": "^0.5.30",
-        "@leight/turbowatch": "^0.5.0",
+        "@leight/esbuild": "^0.5.21",
+        "@leight/eslint-config-eslint": "^0.5.30",
+        "@leight/tsconfig": "^0.5.44",
+        "@leight/turbowatch": "^0.5.7",
         "@types/node": "^18.15.0",
+        "@types/react": "^18.0.28",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
         "depcheck": "^1.4.3",
@@ -49,10 +50,7 @@
         "typescript": "^4.9.5"
     },
     "bugs": {
-        "url": "https://github.com/marek-hanzal/monye.one/issues"
+        "url": "https://github.com/leight-core/viv/issues"
     },
-    "homepage": "https://github.com/marek-hanzal/monye.one#readme",
-    "directories": {
-        "lib": "lib"
-    }
+    "homepage": "https://github.com/leight-core/viv#readme"
 }

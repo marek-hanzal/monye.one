@@ -1,6 +1,7 @@
 import {z} from "zod";
 
 export const FilterSchema = z.object({
+    id:       z.string().optional(),
     fulltext: z.string().optional(),
 });
 export type IFilterSchema =

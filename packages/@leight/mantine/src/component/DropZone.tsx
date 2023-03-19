@@ -3,8 +3,14 @@ import {
     type IFileWithPath
 }                                 from "@leight/file";
 import {type IWithTranslation}    from "@leight/i18n";
-import {Translation}              from "@leight/i18n-client";
-import {LoopProvider}             from "@leight/utils-client";
+import {
+    Translation,
+    useTranslation
+}                                 from "@leight/i18n-client";
+import {
+    LoopProvider,
+    useLoopsState
+}                                 from "@leight/utils-client";
 import {
     Divider,
     Group,
@@ -13,19 +19,21 @@ import {
     useMantineTheme
 }                                 from "@mantine/core";
 import {Dropzone as CoolDropzone} from "@mantine/dropzone";
+import {notifications}            from "@mantine/notifications";
 import {
+    IconCheck,
     IconUpload,
     IconX
 }                                 from "@tabler/icons-react";
 import {
     type ComponentProps,
     type FC,
+    useEffect,
     useState
 }                                 from "react";
 import {switchScheme}             from "../utils";
 import {Paper}                    from "./Paper";
 import {Upload}                   from "./Upload";
-import {UploadControls}           from "./UploadControls";
 
 export interface IDropZoneProps
     extends Partial<
@@ -56,136 +64,139 @@ export const DropZone: FC<IDropZoneProps> = (
         ...props
     }) => {
     const theme             = useMantineTheme();
+    const {t}               = useTranslation(withTranslation.namespace);
     const [files, setFiles] = useState<IFileWithPath[]>([]);
-    return (
-        <>
-            {!files.length && (
-                <Paper>
-                    <CoolDropzone
-                        maxSize={8 * 1024 ** 2}
-                        onDrop={(files) => {
-                            console.log("files", files);
-                            setFiles(files.slice(0, limit));
-                            onDrop?.(files, () => {
-                                // nope
-                            });
-                        }}
-                        {...props}
+    const {current: loops}  = useLoopsState();
+
+    useEffect(() => {
+        if (files.length > 0 && !loops) {
+            setTimeout(() => {
+                notifications.show({
+                    icon:    <IconCheck size={"1.1rem"}/>,
+                    color:   "teal",
+                    title:   t("dropzone.upload.success.title"),
+                    message: t("dropzone.upload.success.message"),
+                });
+                setFiles([]);
+            }, 750);
+        }
+    }, [loops]);
+
+    return <>
+        {!files.length && (
+            <Paper>
+                <CoolDropzone
+                    maxSize={8 * 1024 ** 2}
+                    onDrop={(files) => {
+                        setFiles(files.slice(0, limit));
+                        onDrop?.(files, () => {
+                            // nope
+                        });
+                    }}
+                    {...props}
+                >
+                    <Group
+                        position={"center"}
+                        spacing={"xl"}
+                        style={{minHeight: 220, pointerEvents: "none"}}
                     >
-                        <Group
-                            position={"center"}
-                            spacing={"xl"}
-                            style={{minHeight: 220, pointerEvents: "none"}}
-                        >
-                            <CoolDropzone.Accept>
-                                <IconUpload
-                                    size={50}
-                                    stroke={"1.5"}
-                                    color={switchScheme(
-                                        theme,
-                                        theme.colors.green[4],
-                                        theme.colors.green[6]
-                                    )}
+                        <CoolDropzone.Accept>
+                            <IconUpload
+                                size={50}
+                                stroke={"1.5"}
+                                color={switchScheme(
+                                    theme,
+                                    theme.colors.green[4],
+                                    theme.colors.green[6]
+                                )}
+                            />
+                        </CoolDropzone.Accept>
+                        <CoolDropzone.Reject>
+                            <IconX
+                                size={50}
+                                stroke={"1.5"}
+                                color={switchScheme(
+                                    theme,
+                                    theme.colors.red[4],
+                                    theme.colors.red[6]
+                                )}
+                            />
+                        </CoolDropzone.Reject>
+                        <CoolDropzone.Idle>
+                            <IconUpload
+                                size={50}
+                                stroke={"1.5"}
+                                color={switchScheme(
+                                    theme,
+                                    theme.colors.gray[4],
+                                    theme.colors.gray[6]
+                                )}
+                            />
+                        </CoolDropzone.Idle>
+                        <div>
+                            <Text size={"xl"} inline>
+                                <Translation {...withTranslation} />
+                            </Text>
+                            <Text
+                                size={"sm"}
+                                color={"dimmed"}
+                                inline
+                                mt={7}
+                            >
+                                <Translation
+                                    {...withTranslation}
+                                    label={`${withTranslation.label}.hint`}
                                 />
-                            </CoolDropzone.Accept>
-                            <CoolDropzone.Reject>
-                                <IconX
-                                    size={50}
-                                    stroke={"1.5"}
-                                    color={switchScheme(
-                                        theme,
-                                        theme.colors.red[4],
-                                        theme.colors.red[6]
-                                    )}
-                                />
-                            </CoolDropzone.Reject>
-                            <CoolDropzone.Idle>
-                                <IconUpload
-                                    size={50}
-                                    stroke={"1.5"}
-                                    color={switchScheme(
-                                        theme,
-                                        theme.colors.gray[4],
-                                        theme.colors.gray[6]
-                                    )}
-                                />
-                            </CoolDropzone.Idle>
-                            <div>
-                                <Text size={"xl"} inline>
-                                    <Translation {...withTranslation} />
-                                </Text>
-                                <Text
-                                    size={"sm"}
-                                    color={"dimmed"}
-                                    inline
-                                    mt={7}
-                                >
+                            </Text>
+                        </div>
+                    </Group>
+                </CoolDropzone>
+            </Paper>
+        )}
+        {files.length > 0 && (
+            <>
+                <Divider m={"md"}/>
+                <Paper>
+                    <Table fontSize={"xs"} highlightOnHover>
+                        <thead>
+                            <tr>
+                                <th style={{width: "420px"}}>
                                     <Translation
                                         {...withTranslation}
-                                        label={`${withTranslation.label}.hint`}
+                                        label={`${withTranslation.label}.file`}
                                     />
-                                </Text>
-                            </div>
-                        </Group>
-                    </CoolDropzone>
+                                </th>
+                                <th>
+                                    <Translation
+                                        {...withTranslation}
+                                        label={`${withTranslation.label}.progress`}
+                                    />
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {files.map((file) => (
+                                <LoopProvider key={file.path}>
+                                    <tr>
+                                        <td>{file.path}</td>
+                                        <td>
+                                            <Upload
+                                                upload={{
+                                                    file,
+                                                    path,
+                                                    async onFinish({file}) {
+                                                        onUpload?.(file);
+                                                    },
+                                                }}
+                                            />
+                                        </td>
+                                    </tr>
+                                </LoopProvider>
+                            ))}
+                        </tbody>
+                    </Table>
                 </Paper>
-            )}
-            {files.length > 0 && (
-                <>
-                    <Divider m={"md"}/>
-                    <Paper>
-                        <Table fontSize={"xs"} highlightOnHover>
-                            <thead>
-                                <tr>
-                                    <th style={{width: "420px"}}>
-                                        <Translation
-                                            {...withTranslation}
-                                            label={`${withTranslation.label}.file`}
-                                        />
-                                    </th>
-                                    <th>
-                                        <Translation
-                                            {...withTranslation}
-                                            label={`${withTranslation.label}.progress`}
-                                        />
-                                    </th>
-                                    <th style={{width: "140px"}}>
-                                        <Translation
-                                            {...withTranslation}
-                                            label={`${withTranslation.label}.actions`}
-                                        />
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {files.map((file) => (
-                                    <LoopProvider key={file.path}>
-                                        <tr>
-                                            <td>{file.path}</td>
-                                            <td>
-                                                <Upload
-                                                    upload={{
-                                                        file,
-                                                        path,
-                                                        async onFinish({
-                                                                           file,
-                                                                       }) {
-                                                            onUpload?.(file);
-                                                        },
-                                                    }}
-                                                />
-                                            </td>
-                                            <td>
-                                                <UploadControls/>
-                                            </td>
-                                        </tr>
-                                    </LoopProvider>
-                                ))}
-                            </tbody>
-                        </Table>
-                    </Paper>
-                </>
-            )}
-        </>
-    );
+            </>
+        )}
+    </>;
 };

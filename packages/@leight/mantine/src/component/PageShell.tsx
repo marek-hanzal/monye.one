@@ -71,7 +71,7 @@ export const PageShell: FC<IPageShellProps> = (
                     dayjs: bootstrap?.dayjs,
                 }}
             >
-                <Notifications/>
+                <Notifications position={"top-right"}/>
                 <RouterTransition/>
                 <SessionProvider
                     refetchInterval={30}

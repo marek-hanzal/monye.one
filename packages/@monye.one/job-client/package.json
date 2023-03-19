@@ -1,7 +1,7 @@
 {
     "version": "0.5.0",
-    "name": "@monye.one/trpc-server",
-    "description": "Server-side TRPC stuff.",
+    "name": "@monye.one/job-client",
+    "description": "Client-side job wrapping stuff.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -24,16 +24,9 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/job": "^0.5.0",
-        "@leight/job-server": "^0.5.0",
-        "@leight/source": "^0.5.0",
-        "@leight/trpc": "^0.5.27",
-        "@leight/xlsx-import": "^0.5.28",
-        "@leight/xlsx-import-server": "^0.5.27",
-        "@monye.one/transaction": "^0.5.0",
-        "@monye.one/transaction-server": "^0.5.0",
-        "@trpc/server": "^10.15.0",
-        "superjson": "^1.12.2"
+        "@leight/job-client": "^0.5.0",
+        "@monye.one/trpc-client": "^0.5.0",
+        "react": "^18.2.0"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.7",
@@ -41,6 +34,7 @@
         "@leight/tsconfig": "^0.5.30",
         "@leight/turbowatch": "^0.5.0",
         "@types/node": "^18.15.0",
+        "@types/react": "^18.0.28",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
         "depcheck": "^1.4.3",
@@ -51,8 +45,5 @@
     "bugs": {
         "url": "https://github.com/marek-hanzal/monye.one/issues"
     },
-    "homepage": "https://github.com/marek-hanzal/monye.one#readme",
-    "directories": {
-        "lib": "lib"
-    }
+    "homepage": "https://github.com/marek-hanzal/monye.one#readme"
 }

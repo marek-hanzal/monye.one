@@ -60,7 +60,16 @@ export abstract class AbstractSource<TSourceSchema extends ISourceSchema> implem
         throw new SourceError(`Source [${this.name}] does not support querying items.`);
     }
 
-    find(id: string): Promise<TSourceSchema["Entity"]> {
+    async fetch(query: TSourceSchema["Query"]): Promise<TSourceSchema["Entity"]> {
+        return this.runFetch(query);
+    }
+
+    async runFetch(query: TSourceSchema["Query"]): Promise<TSourceSchema["Entity"]> {
+        console.error(`Source [${this.name}] does not support querying item by query.`, query);
+        throw new SourceError(`Source [${this.name}] does not support querying item by query.`);
+    }
+
+    async find(id: string): Promise<TSourceSchema["Entity"]> {
         return this.runFind(id);
     }
 

@@ -16,7 +16,7 @@ export type ISourceName =
     | IToString;
 
 export const WithIdentitySchema = z.object({
-    id: z.string().cuid(),
+    id: z.string(),
 });
 export type IWithIdentitySchema = typeof WithIdentitySchema;
 export type IWithIdentity = z.infer<IWithIdentitySchema>;
@@ -83,6 +83,8 @@ export interface ISource<TSourceSchema extends ISourceSchema> {
      * Query items.
      */
     query(query?: TSourceSchema["Query"]): Promise<TSourceSchema["Entity"][]>;
+
+    fetch(query: TSourceSchema["Query"]): Promise<TSourceSchema["Entity"]>;
 
     find(id: string): Promise<TSourceSchema["Entity"]>;
 }

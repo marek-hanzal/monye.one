@@ -1,14 +1,11 @@
+import {withSourceProcedure} from "@leight/trpc-server";
 import {
-    withSourceCountHandler,
-    withSourceHandler
-}                                      from "@leight/trpc-server";
-import {type ITransactionSourceSchema} from "@monye.one/transaction";
-import {TransactionSourceContext}      from "../context";
+    $TransactionSource,
+    type ITransactionSourceSchema,
+    TransactionQuerySchema
+}                            from "@monye.one/transaction";
 
-export const TransactionQueryProcedure = withSourceHandler<ITransactionSourceSchema>({
-    handler: async ({container, request}) => TransactionSourceContext(container).resolve().query(request),
-});
-
-export const TransactionQueryCountProcedure = withSourceCountHandler<ITransactionSourceSchema>({
-    handler: async ({container, request}) => TransactionSourceContext(container).resolve().count(request),
+export const TransactionSourceProcedure = withSourceProcedure<ITransactionSourceSchema>({
+    source: $TransactionSource,
+    schema: TransactionQuerySchema,
 });

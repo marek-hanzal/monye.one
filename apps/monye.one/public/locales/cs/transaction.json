@@ -13,5 +13,8 @@
     "table.column.variable": "Variabilní symbol",
     "table.column.static": "Konstantní symbol",
     "table.column.symbol": "Specifický symbol",
-    "table.column.date": "Datum"
+    "table.column.date": "Datum",
+    "dropzone.upload.success.title": "Nahrávání dokončeno",
+    "dropzone.upload.success.message": "Všechny soubory byly úspěšně nahrané.",
+    "import.job.title": "Probíhá import transakcí"
 }
