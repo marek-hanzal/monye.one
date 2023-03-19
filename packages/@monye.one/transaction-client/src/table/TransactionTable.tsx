@@ -1,4 +1,5 @@
 import {Date}              from "@leight/i18n-client";
+import {Decimal}           from "@leight/prisma";
 import {
     type ITableProps,
     Table
@@ -53,7 +54,7 @@ export const TransactionTable: FC<ITransactionTableProps> = ({...props}) => {
                 amount:    {
                     width: 8,
                     render({amount}) {
-                        return toHumanNumber({number: });
+                        return toHumanNumber({number: (new Decimal(`${amount}`)).toNumber()});
                     },
                     sort: "amount",
                 },

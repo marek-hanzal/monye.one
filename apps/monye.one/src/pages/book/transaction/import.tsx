@@ -12,6 +12,7 @@ export default withBookLayout(
         return <Box p={"md"}>
             <TransactionMenu/>
             <ImportZone
+                useJobFindQuery={trpc.job.source.find.useQuery}
                 mutation={trpc.import.xlsx.job}
                 onSuccess={() => {
                     context.transaction.source.query.invalidate();

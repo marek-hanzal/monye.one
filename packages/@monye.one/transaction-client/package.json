@@ -26,6 +26,7 @@
     "dependencies": {
         "@leight/i18n-client": "^0.5.0",
         "@leight/mantine": "^0.5.29",
+        "@leight/prisma": "^0.5.0",
         "@leight/query-client": "^0.5.0",
         "@leight/react-query": "^0.5.0",
         "@leight/sort-client": "^0.5.0",
