@@ -1,5 +1,5 @@
 import {withTurbowatch} from "@leight/turbowatch";
 
-void withTurbowatch({
+export default withTurbowatch({
     project: __dirname,
 });

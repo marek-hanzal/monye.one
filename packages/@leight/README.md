@@ -1,0 +1,46 @@
+# @Leight Core: Viv
+
+Here you can find all the packages broken into really tiny pieces to keep the stuff separated. In general it could be
+treated as kind of
+meta-framework which enhances a lot of other libraries to keep full-stack development much easier. Even just some pieces
+you
+can use in whatever way you want (for example, IQuery to shape queries into a repository).
+
+[container](container)
+[container-server](container-server)
+[context-client](context-client)
+[cursor](cursor)
+[eslint-config-eslint](eslint-config-eslint)
+[file](file)
+[file-client](file-client)
+[file-server](file-server)
+[filter](filter)
+[i18n](i18n)
+[i18n-client](i18n-client)
+[i18n-server](i18n-server)
+[import](import)
+[import-server](import-server)
+[job](job)
+[job-server](job-server)
+[layout](layout)
+[mantine](mantine)
+[next.js-server](next.js-server)
+[prisma](prisma)
+[query](query)
+[sort](sort)
+[source](source)
+[source-server](source-server)
+[sql](sql)
+[trpc](trpc)
+[trpc-server](trpc-server)
+[tsconfig](tsconfig)
+[user](user)
+[user-server](user-server)
+[utils](utils)
+[utils-client](utils-client)
+[utils-server](utils-server)
+[winston](winston)
+[xlsx-import](xlsx-import)
+[xlsx-import-client](xlsx-import-client)
+[xlsx-import-server](xlsx-import-server)
+[zustand](zustand)

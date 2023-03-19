@@ -1,3 +1,7 @@
 {
-    "backend.maxHeapSizeMb": 2744
+    "backend.maxHeapSizeMb": 2744,
+    "excluded": [
+        "lib",
+        ".turbo"
+    ]
 }

@@ -37,7 +37,8 @@ export class TransactionSource extends AbstractSource<ITransactionSourceSchema> 
         return this.prismaClient.transaction.findMany(withCursor({
             query,
             arg: {
-                where: query?.filter,
+                where:   query?.filter,
+                orderBy: query?.sort,
             }
         }));
     }

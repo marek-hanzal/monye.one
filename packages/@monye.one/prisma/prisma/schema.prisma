@@ -5,7 +5,7 @@ generator client {
 generator zod {
     provider                         = "zod-prisma-types"
     output                           = "../src/schema"
-    useMultipleFiles                 = true
+    useMultipleFiles                 = false
     createInputTypes                 = true
     createModelTypes                 = true
     addInputTypeValidation           = true

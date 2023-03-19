@@ -189,6 +189,7 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/react-cmdk/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/react-cmdk/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/env/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/turbowatch/.turbo" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -7,8 +7,7 @@ import {trpc}                          from "@monye.one/trpc-client";
 import {type FC}                       from "react";
 import {TransactionSortProvider}       from "./TransactionSortProvider";
 
-export interface ITransactionQueryProviderProps
-    extends IQueryProviderProps<ITransactionSourceSchema> {
+export interface ITransactionQueryProviderProps extends IQueryProviderProps<ITransactionSourceSchema> {
 }
 
 export const TransactionQueryProvider: FC<ITransactionQueryProviderProps> = props => {
@@ -18,3 +17,4 @@ export const TransactionQueryProvider: FC<ITransactionQueryProviderProps> = prop
         {...props}
     />;
 };
+
