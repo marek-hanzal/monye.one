@@ -1,18 +1,22 @@
-import {IWithTranslation} from "@leight/i18n";
-import {useTranslation}   from "@leight/i18n-client";
+import {type IWithTranslation} from "@leight/i18n";
+import {useTranslation}        from "@leight/i18n-client";
 import {
     type IJob,
     type IUseJobFindQuery,
     JobDoneStatus
-}                         from "@leight/job";
-import {toHumanNumber}    from "@leight/utils";
-import {Progress}         from "@mantine/core";
-import {notifications}    from "@mantine/notifications";
-import {IconCheck}        from "@tabler/icons-react";
+}                              from "@leight/job";
+import {toHumanNumber}         from "@leight/utils";
+import {Progress}              from "@mantine/core";
+import {notifications}         from "@mantine/notifications";
+import {
+    IconAlertTriangle,
+    IconCheck,
+    IconExclamationCircle
+}                              from "@tabler/icons-react";
 import {
     type FC,
     useState
-}                         from "react";
+}                              from "react";
 
 export interface IJobInlineInternalProps {
     withTranslation: IWithTranslation;
@@ -31,13 +35,37 @@ export const JobInline: FC<IJobInlineInternalProps> = ({job, useJobFindQuery, wi
         onSuccess:       job => {
             const isDone = JobDoneStatus.includes(job.status);
             isDone && setTimeout(() => {
-                notifications.show({
-                    id:      job.id,
-                    icon:    <IconCheck size={"1.1rem"}/>,
-                    color:   "teal",
-                    title:   t("job.success.title"),
-                    message: t("job.success.message"),
-                });
+                switch (job.status) {
+                    case "SUCCESS":
+                        notifications.update({
+                            id:      job.id,
+                            icon:    <IconCheck size={"1.1rem"}/>,
+                            color:   "teal",
+                            title:   t("job.success.title"),
+                            message: t("job.success.message"),
+                        });
+                        break;
+                    case "REVIEW":
+                        notifications.update({
+                            id:        job.id,
+                            icon:      <IconAlertTriangle size={"1.1rem"}/>,
+                            color:     "orange",
+                            title:     t("job.review.title"),
+                            message:   t("job.review.message"),
+                            autoClose: false,
+                        });
+                        break;
+                    case "FAILURE":
+                        notifications.update({
+                            id:        job.id,
+                            icon:      <IconExclamationCircle size={"1.1rem"}/>,
+                            color:     "red",
+                            title:     t("job.failure.title"),
+                            message:   t("job.failure.message"),
+                            autoClose: false,
+                        });
+                        break;
+                }
             }, 750);
             setRefresh(!isDone);
         }

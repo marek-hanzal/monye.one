@@ -16,5 +16,7 @@
     "table.column.date": "Datum",
     "dropzone.upload.success.title": "Nahrávání dokončeno",
     "dropzone.upload.success.message": "Všechny soubory byly úspěšně nahrané.",
-    "import.job.title": "Probíhá import transakcí"
+    "import.job.title": "Probíhá import transakcí",
+    "job.success.title": "Import dokončen",
+    "job.success.message": "Transakce byly úspěšně naimportovány"
 }

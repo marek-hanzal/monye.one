@@ -35,8 +35,7 @@ import {switchScheme}             from "../utils";
 import {Paper}                    from "./Paper";
 import {Upload}                   from "./Upload";
 
-export interface IDropZoneProps
-    extends Partial<
+export interface IDropZoneProps extends Partial<
         Omit<ComponentProps<typeof CoolDropzone>, "children" | "onDrop">
     > {
     withTranslation: IWithTranslation;
