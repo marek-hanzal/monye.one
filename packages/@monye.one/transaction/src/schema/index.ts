@@ -1,5 +1,8 @@
 import {FilterSchema}       from "@leight/filter";
-import {QuerySchema}        from "@leight/query";
+import {
+    ParamsSchema,
+    QuerySchema
+}                           from "@leight/query";
 import {SortOrderSchema}    from "@leight/sort";
 import {WithIdentitySchema} from "@leight/source";
 import {PrismaSchema}       from "@monye.one/prisma";
@@ -17,19 +20,27 @@ export const TransactionPatchSchema = PrismaSchema.TransactionPartialSchema.merg
 export type ITransactionPatchSchema = typeof TransactionPatchSchema;
 export type ITransactionPatch = z.infer<ITransactionPatchSchema>;
 
-export const TransactionQuerySchema = QuerySchema({});
-export type ITransactionQuerySchema = typeof TransactionQuerySchema;
-export type ITransactionQuery = z.infer<ITransactionQuerySchema>;
-
 export const TransactionFilterSchema = FilterSchema;
 export type ITransactionFilterSchema = typeof TransactionFilterSchema;
 export type ITransactionFilter = z.infer<ITransactionFilterSchema>;
+
+export const TransactionParamSchema = ParamsSchema;
+export type ITransactionParamSchema = typeof TransactionParamSchema;
+export type ITransactionParam = z.infer<ITransactionParamSchema>;
 
 export const TransactionSortSchema = z.object({
     date: SortOrderSchema,
 }).optional();
 export type ITransactionSortSchema = typeof TransactionSortSchema;
 export type ITransactionSort = z.infer<ITransactionSortSchema>;
+
+export const TransactionQuerySchema = QuerySchema({
+    filterSchema: TransactionFilterSchema,
+    sortSchema:   TransactionSortSchema,
+    paramsSchema: TransactionParamSchema,
+});
+export type ITransactionQuerySchema = typeof TransactionQuerySchema;
+export type ITransactionQuery = z.infer<ITransactionQuerySchema>;
 
 /**
  * Schema used for importing transaction from any source.

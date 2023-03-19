@@ -1,5 +1,9 @@
+import {DayjsProvider}        from "@leight/i18n-client";
 import {type IPageWithLayout} from "@leight/layout";
-import {MantineProvider}      from "@mantine/core";
+import {
+    LoadingOverlay,
+    MantineProvider
+}                             from "@mantine/core";
 import {Notifications}        from "@mantine/notifications";
 import {SessionProvider}      from "next-auth/react";
 import {type AppProps}        from "next/app";
@@ -8,6 +12,7 @@ import {
     type ComponentProps,
     type FC
 }                             from "react";
+import {useBootstrap}         from "../hook";
 import {RouterTransition}     from "../RouterTransition";
 
 export interface IPageShellProps {
@@ -25,6 +30,7 @@ export interface IPageShellProps {
      */
     pageProps?: AppProps["pageProps"];
     emotionCache?: ComponentProps<typeof MantineProvider>["emotionCache"];
+    isLoading?: boolean;
 }
 
 /**
@@ -38,7 +44,12 @@ export const PageShell: FC<IPageShellProps> = (
         Component,
         pageProps,
     }) => {
-    return <>
+    const {isLoading, bootstrap} = useBootstrap();
+    return isLoading ? <LoadingOverlay
+        visible
+        transitionDuration={500}
+        loaderProps={{variant: "bars"}}
+    /> : <>
         <Head>
             <title>{title}</title>
             <meta
@@ -55,17 +66,22 @@ export const PageShell: FC<IPageShellProps> = (
             withNormalizeCSS
             emotionCache={emotionCache}
         >
-            <Notifications/>
-            <RouterTransition/>
-            <SessionProvider
-                refetchInterval={30}
-                refetchOnWindowFocus
+            <DayjsProvider
+                defaults={{
+                    dayjs: bootstrap?.dayjs,
+                }}
             >
-                {(
-                    (Component as unknown as IPageWithLayout)
-                        .layout || ((page) => page)
-                )(<Component {...pageProps}/>)}
-            </SessionProvider>
+                <Notifications/>
+                <RouterTransition/>
+                <SessionProvider
+                    refetchInterval={30}
+                    refetchOnWindowFocus
+                >
+                    {(
+                        (Component as unknown as IPageWithLayout).layout || ((page) => page)
+                    )(<Component {...pageProps}/>)}
+                </SessionProvider>
+            </DayjsProvider>
         </MantineProvider>
     </>;
 };

@@ -1,6 +1,8 @@
-import {useEffect}             from "react";
-import {useOptionalLoopsState} from "./useLoopsState";
-import {useLoopState}          from "./useLoopState";
+import {useEffect} from "react";
+import {
+    useLoopState,
+    useOptionalLoopsState
+}                  from "../context";
 
 export interface IOnStartProps {
     total: number;

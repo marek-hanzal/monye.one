@@ -16,7 +16,7 @@ export default withBookLayout(
                     <TransactionMenu/>
                     <TransactionQueryProvider
                         defaultSort={{
-
+                            date: "desc",
                         }}
                     >
                         <TransactionTable/>

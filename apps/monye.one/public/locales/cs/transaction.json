@@ -12,5 +12,6 @@
     "table.column.note": "Poznámka",
     "table.column.variable": "Variabilní symbol",
     "table.column.static": "Konstantní symbol",
-    "table.column.symbol": "Specifický symbol"
+    "table.column.symbol": "Specifický symbol",
+    "table.column.date": "Datum"
 }

@@ -11,34 +11,33 @@ export interface IImportZoneProps extends Omit<IDropZoneProps, "path"> {
     path?: string;
 }
 
-export const ImportZone: FC<IImportZoneProps> = ({
-                                                     mutation: {useMutation},
-                                                     ...       props
-                                                 }) => {
+export const ImportZone: FC<IImportZoneProps> = (
+    {
+        mutation: {useMutation},
+        ...       props
+    }) => {
     const mutation = useMutation();
-    return (
-        <DropZone
-            path={"/import"}
-            onUpload={(file) => {
-                mutation.mutate(
-                    {fileId: file.id},
-                    {
-                        onSuccess: (job) => {
-                            console.log(
-                                "Import started of ",
-                                file,
-                                job,
-                                job.created
-                            );
-                        },
-                    }
-                );
-            }}
-            accept={[
-                MIME_TYPES.xls,
-                MIME_TYPES.xlsx
-            ]}
-            {...props}
-        />
-    );
+    return <DropZone
+        path={"/import"}
+        onUpload={(file) => {
+            mutation.mutate(
+                {fileId: file.id},
+                {
+                    onSuccess: (job) => {
+                        console.log(
+                            "Import started of ",
+                            file,
+                            job,
+                            job.created
+                        );
+                    },
+                }
+            );
+        }}
+        accept={[
+            MIME_TYPES.xls,
+            MIME_TYPES.xlsx
+        ]}
+        {...props}
+    />;
 };
