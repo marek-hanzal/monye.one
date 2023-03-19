@@ -1,4 +1,5 @@
 import {useTranslation}     from "@leight/i18n-client";
+import {IJobInlineProps}    from "@leight/job-client";
 import {
     DropZone,
     type IDropZoneProps
@@ -12,12 +13,14 @@ import {type FC}            from "react";
 
 export interface IImportZoneProps extends Omit<IDropZoneProps, "path"> {
     mutation: IWithMutation;
+    onSuccess?: IJobInlineProps["onSuccess"];
     path?: string;
 }
 
 export const ImportZone: FC<IImportZoneProps> = (
     {
         withTranslation,
+        onSuccess,
         mutation: {useMutation},
         ...       props
     }) => {
@@ -38,6 +41,7 @@ export const ImportZone: FC<IImportZoneProps> = (
                                 title:     t("import.job.title"),
                                 message:   <JobInline
                                                withTranslation={withTranslation}
+                                               onSuccess={onSuccess}
                                                job={job}
                                            />,
                             });

@@ -8,10 +8,15 @@ import {trpc}            from "@monye.one/trpc-client";
 
 export default withBookLayout(
     function Import() {
+        const context = trpc.useContext();
         return <Box p={"md"}>
             <TransactionMenu/>
             <ImportZone
                 mutation={trpc.import.xlsx.job}
+                onSuccess={() => {
+                    context.transaction.source.query.invalidate();
+                    context.transaction.source.count.invalidate();
+                }}
                 withTranslation={{
                     label:     "dropzone.import",
                     namespace: "transaction",

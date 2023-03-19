@@ -22,11 +22,25 @@ export interface IJobInlineInternalProps {
     withTranslation: IWithTranslation;
     job: IJob;
     useJobFindQuery: IUseJobFindQuery;
+
+    onSuccess?(props: IJobInlineInternalProps.IOnSuccessProps): void;
+}
+
+export namespace IJobInlineInternalProps {
+    export interface IOnSuccessProps {
+        job: IJob;
+    }
 }
 
 export type IJobInlineProps = Omit<IJobInlineInternalProps, "useJobFindQuery">;
 
-export const JobInline: FC<IJobInlineInternalProps> = ({job, useJobFindQuery, withTranslation: {namespace}}) => {
+export const JobInline: FC<IJobInlineInternalProps> = (
+    {
+        job,
+        useJobFindQuery,
+        onSuccess,
+        withTranslation: {namespace},
+    }) => {
     const {t}                   = useTranslation(namespace);
     const [refresh, setRefresh] = useState(true);
     const result                = useJobFindQuery({id: job.id}, {
@@ -37,6 +51,7 @@ export const JobInline: FC<IJobInlineInternalProps> = ({job, useJobFindQuery, wi
             isDone && setTimeout(() => {
                 switch (job.status) {
                     case "SUCCESS":
+                        onSuccess?.({job});
                         notifications.update({
                             id:      job.id,
                             icon:    <IconCheck size={"1.1rem"}/>,
