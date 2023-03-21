@@ -16,14 +16,15 @@
     "types": "lib/index.d.ts",
     "scripts": {
         "dev": "dotenv -e ROARR_LOG=true -- turbowatch",
+        "generate": "concurrently npm:generate:*",
+        "generate:prisma": "npx dotenv -c development -- npx prisma generate",
         "build": "concurrently npm:build:*",
         "build:esbuild": "node esbuild.mjs",
         "build:types": "tsc --outDir lib",
         "depcheck": "depcheck",
         "lint": "eslint src",
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}",
-        "prisma:format": "npx dotenv -c development -- npx prisma format",
-        "prisma:generate": "npx dotenv -c development -- npx prisma generate"
+        "prisma:format": "npx dotenv -c development -- npx prisma format"
     },
     "dependencies": {
         "@prisma/client": "^4.11.0",

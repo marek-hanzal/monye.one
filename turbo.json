@@ -12,16 +12,6 @@
                 "prisma/schema.prisma"
             ]
         },
-        "prisma:generate": {
-            "cache": false,
-            "outputMode": "new-only",
-            "outputs": [
-                "src/schema"
-            ],
-            "inputs": [
-                "prisma/schema.prisma"
-            ]
-        },
         "prisma:migrate-reset": {
             "cache": false
         },
@@ -40,11 +30,14 @@
                 "src/**"
             ]
         },
+        "generate": {
+            "cache": false
+        },
         "build": {
             "outputMode": "new-only",
             "dependsOn": [
                 "^build",
-                "prisma:generate"
+                "generate"
             ],
             "outputs": [
                 "lib/**",
