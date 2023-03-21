@@ -12,15 +12,13 @@
     },
     "sideEffects": false,
     "type": "module",
+    "main": "lib/index.js",
     "module": "lib/index.js",
     "types": "lib/index.d.ts",
     "files": [
         "lib",
         "src"
     ],
-    "bin": {
-        "leight-sdk": "lib/bin.js"
-    },
     "scripts": {
         "build": "concurrently npm:build:*",
         "build:esbuild": "node esbuild.mjs",
@@ -30,9 +28,11 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "chalk": "^5.2.0",
+        "@digitak/esrun": "^3.2.21",
         "boxen": "^7.0.2",
-        "yargs": "^17.7.1"
+        "chalk": "^5.2.0",
+        "yargs": "^17.7.1",
+        "zod": "^3.21.1"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.25",
