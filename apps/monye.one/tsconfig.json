@@ -1,34 +1,31 @@
 {
-  "extends": "@leight/tsconfig/common.json",
-  "compilerOptions": {
-    "paths": {
-      "@/monye.one": [
-        "."
-      ],
-      "@/monye.one/*": [
-        "./src/*"
-      ],
-      "@/monye.one/assets/*": [
-        "./public/assets/*"
-      ]
+    "extends": "@leight/tsconfig/common.json",
+    "compilerOptions": {
+        "paths": {
+            "@/monye.one": [
+                "."
+            ],
+            "@/monye.one/*": [
+                "./src/*"
+            ],
+            "@/monye.one/assets/*": [
+                "./public/assets/*"
+            ]
+        },
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ],
+        "noEmit": true,
+        "module": "esnext",
+        "jsx": "preserve"
     },
-    "plugins": [
-      {
-        "name": "next"
-      }
+    "include": [
+        "src/**/*",
+        "src/**/*.json"
     ],
-    "types": [
-      "@leight/i18n"
-    ],
-    "noEmit": true,
-    "module": "esnext",
-    "jsx": "preserve"
-  },
-  "include": [
-    "src/**/*",
-    "src/**/*.json"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "exclude": [
+        "node_modules"
+    ]
 }
