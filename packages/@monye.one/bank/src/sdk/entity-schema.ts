@@ -1,3 +1,4 @@
+// Generated file
 import {PrismaSchema} from "@monye.one/prisma";
 import {FilterSchema} from "@leight/filter";
 import {

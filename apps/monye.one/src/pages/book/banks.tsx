@@ -8,10 +8,9 @@ import {
 import {withBookLayout}  from "@monye.one/book";
 
 export default withBookLayout(
-    function Accounts() {
+    function Banks() {
         return (
             <>
-                <h1>Accounts here!!</h1>
                 <Box p={"md"}>
                     <BankQueryProvider
                         defaultSort={{
@@ -24,11 +23,11 @@ export default withBookLayout(
             </>
         );
     },
-    {logo, href: "/book/accounts"}
+    {logo, href: "/book/banks"}
 );
 
 export const getServerSideProps = withTranslation([
     "common",
     "book",
-    "account",
+    "bank",
 ]);

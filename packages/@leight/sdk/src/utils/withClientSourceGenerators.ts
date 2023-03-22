@@ -8,8 +8,8 @@ export interface IWithClientSourceGeneratorsProps {
     packageName?: string;
     sdk?: string;
     modelName: string;
-    trpcPackage: string;
-    trpcPath: string;
+    trpcPackage: string | false;
+    trpcPath: string | false;
     schemaPackage: string;
 }
 

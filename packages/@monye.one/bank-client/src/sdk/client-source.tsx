@@ -1,3 +1,4 @@
+// Generated file
 import {
 	type ISourceProps,
 	Source
@@ -10,13 +11,13 @@ import {
 	type IBankSourceSchema,
 	BankSchema
 } from "@monye.one/bank";
-import {trpc} from "@monye.one/trpc-client";
 import {type FC} from "react";
 import {
 	BankProvider,
 	BankSortProvider,
 	useBankSort
 } from "./client-context";
+import {trpc} from "@monye.one/trpc-client";
 
 export interface IBankSourceProps extends ISourceProps<IBankSourceSchema> {
 }

@@ -41,37 +41,37 @@ export class SourceFile implements IExportable {
         this.$consts     = new Consts();
     }
 
-    public withImports({imports}: IWithImports) {
+    public withImports({imports}: IWithImports | undefined = {imports: {}}) {
         Object.entries(imports).map(([key, value]) => this.$imports.withImport(key, value));
         return this;
     }
 
-    public withConsts({consts = {}, exports = {}}: IWithConsts) {
+    public withConsts({consts = {}, exports = {}}: IWithConsts | undefined = {consts: {}, exports: {}}) {
         Object.entries(consts).map(([key, value]) => this.$consts.const(key, value, false));
         Object.entries(exports).map(([key, value]) => this.$consts.const(key, value, true));
         return this;
     }
 
-    public withTypes({types = {}, exports = {}}: IWithTypes) {
+    public withTypes({types = {}, exports = {}}: IWithTypes | undefined = {types: {}, exports: {}}) {
         Object.entries(types).map(([key, value]) => this.$types.type(key, value, false));
         Object.entries(exports).map(([key, value]) => this.$types.type(key, value, true));
         return this;
     }
 
-    public withInterfaces({interfaces = {}, exports = {}}: IWithInterfaces) {
+    public withInterfaces({interfaces = {}, exports = {}}: IWithInterfaces | undefined = {interfaces: {}, exports: {}}) {
         Object.entries(interfaces).map(([key, value]) => this.$interfaces.interface(key, value, false));
         Object.entries(exports).map(([key, value]) => this.$interfaces.interface(key, value, true));
         return this;
     }
 
-    public withClasses({classes = {}, exports = {}}: IWithClasses) {
+    public withClasses({classes = {}, exports = {}}: IWithClasses | undefined = {classes: {}, exports: {}}) {
         Object.entries(classes).map(([key, value]) => this.$classes.interface(key, value, false));
         Object.entries(exports).map(([key, value]) => this.$classes.interface(key, value, true));
         return this;
     }
 
     public export() {
-        return ([
+        return "// Generated file\n" + ([
             this.$imports,
             this.$types,
             this.$interfaces,

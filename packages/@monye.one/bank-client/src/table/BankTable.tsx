@@ -31,6 +31,7 @@ export const BankTable: FC<IBankTableProps> = ({...props}) => {
             columns={{
                 account: {
                     render: "account",
+                    sort:   "account",
                 },
             }}
             {...props}

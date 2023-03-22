@@ -20,6 +20,8 @@
     ],
     "scripts": {
         "dev": "turbowatch",
+        "generate": "concurrently npm:generate:*",
+        "generate:sdk": "tsx src/leight-sdk.ts",
         "build": "concurrently npm:build:*",
         "build:esbuild": "node esbuild.mjs",
         "build:types": "tsc --outDir lib",
@@ -33,8 +35,10 @@
         "@leight/next.js": "^0.5.12",
         "@leight/next.js-server": "^0.5.52",
         "@leight/prisma": "^0.5.58",
+        "@leight/query": "^0.5.0",
         "@leight/source": "^0.5.46",
         "@leight/source-server": "^0.5.46",
+        "@leight/trpc-server": "^0.5.0",
         "depcheck": "^1.4.3",
         "fs-extra": "^11.1.0",
         "mime-detect": "^1.1.4",
@@ -44,6 +48,7 @@
     "devDependencies": {
         "@leight/esbuild": "^0.5.25",
         "@leight/eslint-config-eslint": "^0.5.34",
+        "@leight/sdk": "^0.5.0",
         "@leight/tsconfig": "^0.5.48",
         "@leight/turbowatch": "^0.5.13",
         "@types/fs-extra": "^11.0.1",

@@ -49,23 +49,27 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
                 "@leight/source-server": [
                     "AbstractSource",
                 ],
-                '@leight/trpc-server':[
-                    'withSourceProcedure',
+                "@leight/trpc-server":   [
+                    "withSourceProcedure",
                 ],
-                [schemaPackage]:         [
+            },
+        })
+        .withImports({
+            imports: {
+                [schemaPackage]: [
                     `$${modelName}Source`,
                     `${modelName}QuerySchema`,
                     `type I${modelName}Source`,
                     `type I${modelName}SourceSchema`,
                 ],
-                [prismaPackage]:         [
+                [prismaPackage]: [
                     "type PrismaClient",
                 ],
             },
         })
         .withConsts({
             exports: {
-                [`${modelName}SourceContext`]: {
+                [`${modelName}SourceContext`]:   {
                     body: `(container: IContainer) => new ServiceContext<I${modelName}Source>(container, $${modelName}Source)`,
                 },
                 [`${modelName}SourceProcedure`]: {

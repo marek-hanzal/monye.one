@@ -10,11 +10,11 @@ export interface IGeneratorClientSourceParams {
     /**
      * Package (import) of client-side TRPC (should export named trpc)
      */
-    trpcPackage: string;
+    trpcPackage: string | false;
     /**
      * Part of the trpc call chain (base is `trpc`.${trpcPath}.`...rest of standard trpc router`
      */
-    trpcPath: string;
+    trpcPath: string | false;
     modelName: string;
 }
 
@@ -44,9 +44,6 @@ export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = a
                     `type I${modelName}SourceSchema`,
                     `${modelName}Schema`,
                 ],
-                [trpcPackage]:           [
-                    "trpc",
-                ],
                 "react":                 [
                     "type FC",
                 ],
@@ -57,7 +54,14 @@ export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = a
                 ]
             }
         })
-        .withInterfaces({
+        .withImports(trpcPackage ? {
+            imports: {
+                [trpcPackage]: [
+                    "trpc",
+                ],
+            },
+        } : undefined)
+        .withInterfaces((trpcPackage && trpcPath) ? {
             exports: {
                 [`I${modelName}SourceProps`]:        {
                     extends: `ISourceProps<I${modelName}SourceSchema>`,
@@ -66,8 +70,8 @@ export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = a
                     extends: `IQueryProviderProps<I${modelName}SourceSchema>`,
                 },
             },
-        })
-        .withConsts({
+        } : undefined)
+        .withConsts((trpcPackage && trpcPath) ? {
             exports: {
                 [`${modelName}Source`]:        {
                     type: `FC<I${modelName}SourceProps>`,
@@ -94,7 +98,7 @@ export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = a
                     `,
                 },
             },
-        })
+        } : undefined)
         .saveTo({
             file: normalize(`${process.cwd()}/${file}`),
             barrel,

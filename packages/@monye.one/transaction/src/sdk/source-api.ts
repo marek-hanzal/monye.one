@@ -1,3 +1,4 @@
+// Generated file
 import {
 	type ISource,
 	type ISourceSchema

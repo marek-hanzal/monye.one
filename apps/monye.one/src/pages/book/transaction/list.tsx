@@ -10,20 +10,16 @@ import {
 
 export default withBookLayout(
     function List() {
-        return (
-            <>
-                <Box p={"md"}>
-                    <TransactionMenu/>
-                    <TransactionQueryProvider
-                        defaultSort={{
-                            date: "desc",
-                        }}
-                    >
-                        <TransactionTable/>
-                    </TransactionQueryProvider>
-                </Box>
-            </>
-        );
+        return <Box p={"md"}>
+            <TransactionMenu/>
+            <TransactionQueryProvider
+                defaultSort={{
+                    date: "desc",
+                }}
+            >
+                <TransactionTable/>
+            </TransactionQueryProvider>
+        </Box>;
     },
     {logo, href: "/book/transaction/list"}
 );

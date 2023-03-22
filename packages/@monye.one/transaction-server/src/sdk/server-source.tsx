@@ -1,3 +1,4 @@
+// Generated file
 import {
 	type IContainer,
 	ServiceContext

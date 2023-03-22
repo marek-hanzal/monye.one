@@ -26,8 +26,8 @@ const links: ILink[] = [
         label: "link.filters",
     },
     {
-        href:  "/book/accounts",
-        label: "link.accounts",
+        href:  "/book/banks",
+        label: "link.banks",
     },
 ];
 
