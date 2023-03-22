@@ -6,4 +6,7 @@ import {
 void withSdk(withSourceGenerators({
     modelName:    "Bank",
     PrismaSchema: "@monye.one/prisma",
+    sorts:        [
+        "account",
+    ],
 }));

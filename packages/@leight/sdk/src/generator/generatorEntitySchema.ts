@@ -11,9 +11,19 @@ export interface IGeneratorEntitySchemaParams {
      * Model name being exported.
      */
     modelName: string;
+    sorts?: string[];
 }
 
-export const generatorEntitySchema: IGenerator<IGeneratorEntitySchemaParams> = async ({barrel, file, params: {PrismaSchema, modelName}}) => {
+export const generatorEntitySchema: IGenerator<IGeneratorEntitySchemaParams> = async (
+    {
+        barrel,
+        file,
+        params: {
+                    PrismaSchema,
+                    modelName,
+                    sorts = [],
+                },
+    }) => {
     withSourceFile()
         .withImports({
             imports: {
@@ -55,9 +65,7 @@ export const generatorEntitySchema: IGenerator<IGeneratorEntitySchemaParams> = a
                 [`${modelName}SortSchema`]:   {
                     body: `
 z.object({
-    date:      SortOrderSchema,
-    amount:    SortOrderSchema,
-    reference: SortOrderSchema,
+    ${sorts.map(sort => `${sort}: SortOrderSchema`).join(",\n\t")}
 })
                     `,
                 },

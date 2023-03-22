@@ -33,9 +33,9 @@ export const TransactionFilterSchema = z.union([
 ]);
 export const TransactionParamSchema = ParamsSchema;
 export const TransactionSortSchema = z.object({
-    date:      SortOrderSchema,
-    amount:    SortOrderSchema,
-    reference: SortOrderSchema,
+    date: SortOrderSchema,
+	amount: SortOrderSchema,
+	reference: SortOrderSchema
 });
 export const TransactionQuerySchema = QuerySchema({
     filterSchema: TransactionFilterSchema,

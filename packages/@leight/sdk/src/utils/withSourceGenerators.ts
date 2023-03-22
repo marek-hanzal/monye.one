@@ -9,6 +9,7 @@ export interface IWithSourceGeneratorsProps {
     sdk?: string;
     PrismaSchema: string;
     modelName: string;
+    sorts?: string[];
 }
 
 export const withSourceGenerators = (
@@ -17,6 +18,7 @@ export const withSourceGenerators = (
         sdk = "src/sdk",
         modelName,
         PrismaSchema,
+        sorts,
     }: IWithSourceGeneratorsProps) => {
     if (!packageName) {
         throw new Error("Cannot resolve packageName");
@@ -31,6 +33,7 @@ export const withSourceGenerators = (
             params: {
                 PrismaSchema,
                 modelName,
+                sorts,
             },
         }),
         async () => generatorSourceApi({

@@ -33,9 +33,7 @@ export const BankFilterSchema = z.union([
 ]);
 export const BankParamSchema = ParamsSchema;
 export const BankSortSchema = z.object({
-    date:      SortOrderSchema,
-    amount:    SortOrderSchema,
-    reference: SortOrderSchema,
+    account: SortOrderSchema
 });
 export const BankQuerySchema = QuerySchema({
     filterSchema: BankFilterSchema,

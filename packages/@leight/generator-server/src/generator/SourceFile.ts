@@ -90,7 +90,7 @@ export class SourceFile implements IExportable {
             const filename = basename(file).replace(".tsx", "").replace(".ts", "");
             const index    = normalize(`${dirname(file)}/index.ts`);
             if (!existsSync(index) || !readFileSync(index, {encoding: "utf8"})?.includes(filename)) {
-                appendFileSync(index, `export * from "./${filename}"\n`, {
+                appendFileSync(index, `export * from "./${filename}";\n`, {
                     encoding: "utf8",
                 });
             }

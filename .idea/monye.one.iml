@@ -72,6 +72,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/generator/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/sdk/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/generator-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/bank-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -208,6 +209,8 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/generator-server/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/generator/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/generator/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/bank-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/bank-client/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

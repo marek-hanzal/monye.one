@@ -1,7 +1,7 @@
 {
     "version": "0.5.0",
-    "name": "@monye.one/bank-server",
-    "description": "Server-side bank stuff.",
+    "name": "@monye.one/bank-client",
+    "description": "Client-side bank stuff.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -26,14 +26,23 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/container": "^0.5.27",
-        "@leight/prisma": "^0.5.35",
-        "@leight/query": "^0.5.0",
+        "@leight/i18n-client": "^0.5.0",
+        "@leight/mantine": "^0.5.29",
+        "@leight/prisma": "^0.5.0",
+        "@leight/query-client": "^0.5.0",
+        "@leight/react-query": "^0.5.0",
+        "@leight/sort-client": "^0.5.0",
         "@leight/source": "^0.5.0",
-        "@leight/source-server": "^0.5.26",
-        "@leight/trpc-server": "^0.5.28",
+        "@leight/source-client": "^0.5.0",
+        "@leight/table-client": "^0.5.0",
+        "@leight/utils": "^0.5.0",
+        "@mantine/core": "^6.0.1",
+        "@mantine/hooks": "^6.0.1",
         "@monye.one/bank": "^0.5.0",
-        "@monye.one/prisma": "^0.5.0"
+        "@monye.one/trpc-client": "^0.5.0",
+        "@tabler/icons-react": "^2.10.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.7",
@@ -43,6 +52,7 @@
         "@leight/turbowatch": "^0.5.0",
         "@roarr/cli": "^5.10.6",
         "@types/node": "^18.15.0",
+        "@types/react": "^18.0.28",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
         "depcheck": "^1.4.3",
