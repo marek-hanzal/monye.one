@@ -18,6 +18,16 @@ export interface IWithTypes {
     exports?: Record<string, string>;
 }
 
+export interface IInterface {
+    extends?: string;
+    body?: string;
+}
+
+export interface IWithInterfaces {
+    interfaces?: Record<string, IInterface>;
+    exports?: Record<string, IInterface>;
+}
+
 export interface IExportable {
     export(): string;
 }

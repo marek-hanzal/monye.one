@@ -18,7 +18,9 @@ export class Import implements IExportable {
     }
 
     public export() {
-        return `import {${[...this.$import.values()].join(", ")}} from "${this.file}";`;
+        const $join    = this.$import.size > 1 ? "\n\t" : "";
+        const $newline = this.$import.size > 1 ? "\n" : "";
+        return `import {${$join}${[...this.$import.values()].join(`,${$join}`)}${$newline}} from "${this.file}";`;
     }
 }
 

@@ -2,35 +2,37 @@ import {
     type IExportable,
     type IWithConsts,
     type IWithImports,
+    type IWithInterfaces,
     type IWithTypes
-}                from "@leight/generator";
+}                   from "@leight/generator";
 import {
     appendFileSync,
     existsSync,
     mkdirSync,
     readFileSync,
     writeFileSync
-}                from "node:fs";
+}                   from "node:fs";
 import {
     basename,
     dirname,
     normalize
-}                from "node:path";
-import {Consts}  from "./Consts";
-import {Imports} from "./Imports";
-import {Types}   from "./Types";
+}                   from "node:path";
+import {Consts}     from "./Consts";
+import {Imports}    from "./Imports";
+import {Interfaces} from "./Interfaces";
+import {Types}      from "./Types";
 
-export class File implements IExportable {
+export class SourceFile implements IExportable {
     public readonly $imports: Imports;
     public readonly $consts: Consts;
     public readonly $types: Types;
-    public readonly $blocks: string[];
+    public readonly $interfaces: Interfaces;
 
     constructor() {
-        this.$imports = new Imports();
-        this.$consts  = new Consts();
-        this.$types   = new Types();
-        this.$blocks  = [];
+        this.$imports    = new Imports();
+        this.$consts     = new Consts();
+        this.$types      = new Types();
+        this.$interfaces = new Interfaces();
     }
 
     public withImports({imports}: IWithImports) {
@@ -50,24 +52,22 @@ export class File implements IExportable {
         return this;
     }
 
-    public block(block: string) {
-        this.$blocks.push(block.trim());
+    public withInterfaces({interfaces = {}, exports = {}}: IWithInterfaces) {
+        Object.entries(interfaces).map(([key, value]) => this.$interfaces.interface(key, value, false));
+        Object.entries(exports).map(([key, value]) => this.$interfaces.interface(key, value, true));
         return this;
     }
 
     public export() {
-        return `
-${this.$imports.export()}
-
-${this.$consts.export()}
-
-${this.$types.export()}
-
-${this.$blocks.join("\n")}
-        `.trim();
+        return ([
+            this.$imports,
+            this.$consts,
+            this.$types,
+            this.$interfaces,
+        ] as const).map(item => item.export().trim()).filter(Boolean).join("\n\n");
     }
 
-    public saveTo({file, barrel}: File.ISaveToProps) {
+    public saveTo({file, barrel}: SourceFile.ISaveToProps) {
         mkdirSync(dirname(file), {recursive: true});
         writeFileSync(file, this.export(), {
             flag:     "w+",
@@ -86,9 +86,13 @@ ${this.$blocks.join("\n")}
     }
 }
 
-export namespace File {
+export namespace SourceFile {
     export interface ISaveToProps {
         file: string;
         barrel: boolean;
     }
 }
+
+export const withSourceFile = () => {
+    return new SourceFile();
+};

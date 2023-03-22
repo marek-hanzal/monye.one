@@ -1,18 +1,23 @@
-import {FilterSchema}   from "@leight/filter";
-import {File}           from "@leight/generator-server";
-import {normalize}      from "node:path";
-import {type ITemplate} from "../index";
+import {withSourceFile}  from "@leight/generator-server";
+import {normalize}       from "node:path";
+import {type IGenerator} from "../index";
 
-export interface IGeneratorSourceParams {
-    prismaPackage: string;
+export interface IGeneratorEntitySchemaParams {
+    /**
+     * Source package exporting "PrismaSchema" namespace containing "modelName"
+     */
+    PrismaSchema: string;
+    /**
+     * Model name being exported.
+     */
     modelName: string;
 }
 
-export const generatorSource = ({barrel, file, params: {prismaPackage, modelName}}: ITemplate<IGeneratorSourceParams>) => {
-    (new File())
+export const generatorEntitySchema: IGenerator<IGeneratorEntitySchemaParams> = async ({barrel, file, params: {PrismaSchema, modelName}}) => {
+    withSourceFile()
         .withImports({
             imports: {
-                [prismaPackage]:  [
+                [PrismaSchema]:   [
                     "PrismaSchema",
                 ],
                 "@leight/filter": [

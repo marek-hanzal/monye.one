@@ -1,6 +1,9 @@
 import {PrismaSchema} from "@monye.one/prisma";
 import {FilterSchema} from "@leight/filter";
-import {ParamsSchema, QuerySchema} from "@leight/query";
+import {
+	ParamsSchema,
+	QuerySchema
+} from "@leight/query";
 import {SortOrderSchema} from "@leight/sort";
 import {WithIdentitySchema} from "@leight/source";
 import {z} from "zod";
