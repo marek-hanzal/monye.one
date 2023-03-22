@@ -47,3 +47,17 @@ export interface IWithClasses {
 export interface IExportable {
     export(): string;
 }
+
+/**
+ * Reference to a type in a package.
+ */
+export interface IPackageType {
+    /**
+     * Type
+     */
+    type: string;
+    /**
+     * Where it comes from
+     */
+    package: string;
+}

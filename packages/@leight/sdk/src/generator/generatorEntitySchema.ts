@@ -1,6 +1,7 @@
-import {withSourceFile}  from "@leight/generator-server";
-import {normalize}       from "node:path";
-import {type IGenerator} from "../api";
+import {type IPackageType} from "@leight/generator";
+import {withSourceFile}    from "@leight/generator-server";
+import {normalize}         from "node:path";
+import {type IGenerator}   from "../api";
 
 export interface IGeneratorEntitySchemaParams {
     /**
@@ -11,6 +12,9 @@ export interface IGeneratorEntitySchemaParams {
      * Model name being exported.
      */
     modelName: string;
+    schemaEx?: {
+        model: IPackageType;
+    },
     sorts?: string[];
 }
 
@@ -22,6 +26,7 @@ export const generatorEntitySchema: IGenerator<IGeneratorEntitySchemaParams> = a
                     PrismaSchema,
                     modelName,
                     sorts = [],
+                    schemaEx,
                 },
     }) => {
     withSourceFile()
@@ -48,9 +53,16 @@ export const generatorEntitySchema: IGenerator<IGeneratorEntitySchemaParams> = a
                 ],
             },
         })
+        .withImports(schemaEx?.model ? {
+            imports: {
+                [schemaEx.model.package]: [
+                    schemaEx.model.type,
+                ],
+            },
+        } : undefined)
         .withConsts({
             exports: {
-                [`${modelName}Schema`]:       {body: `PrismaSchema.${modelName}Schema`},
+                [`${modelName}Schema`]:       {body: schemaEx?.model ? `PrismaSchema.${modelName}Schema.merge(${schemaEx.model.type})` : `PrismaSchema.${modelName}Schema`},
                 [`${modelName}CreateSchema`]: {body: `PrismaSchema.${modelName}OptionalDefaultsSchema`},
                 [`${modelName}PatchSchema`]:  {body: `PrismaSchema.${modelName}PartialSchema.merge(WithIdentitySchema)`},
                 [`${modelName}FilterSchema`]: {

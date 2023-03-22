@@ -37,7 +37,7 @@ export class Imports implements IExportable {
     }
 
     public list() {
-        return [...this.$imports.keys()].filter(item => !item.startsWith("./"));
+        return [...this.$imports.keys()].filter(item => !item.startsWith("."));
     }
 
     public export() {

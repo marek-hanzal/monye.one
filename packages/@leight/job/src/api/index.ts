@@ -1,14 +1,11 @@
-import {IUseQuery}    from "@leight/react-query";
-import {
-    type ISource,
-    IWithIdentity
-}                     from "@leight/source";
-import {type ILogger} from "@leight/winston";
+import {type IUseQuery}     from "@leight/react-query";
+import {type IWithIdentity} from "@leight/source";
+import {type ILogger}       from "@leight/winston";
+import {type IJobStatus}    from "../schema";
 import {
     type IJob,
     type IJobSourceSchema,
-    type IJobStatus
-}                     from "../schema";
+}                           from "../sdk";
 
 export interface IJobProgress {
     readonly jobId: string;
@@ -43,11 +40,6 @@ export interface IJobProgressService {
 export const $JobProgressService = Symbol.for(
     "@leight/job/IJobProgressService"
 );
-
-export interface IJobSource extends ISource<IJobSourceSchema> {
-}
-
-export const $JobSource = Symbol.for("@leight/job/JobSource");
 
 export interface IJobExecutor {
     execute<TJob extends IJob>(props: IJobExecutor.ExecuteProps<TJob>): Promise<TJob>;

@@ -1,16 +1,16 @@
 import {resolvePackageJson} from "@leight/utils-server";
 import {
     generatorEntitySchema,
-    generatorSourceApi
+    generatorSourceApi,
+    IGeneratorEntitySchemaParams
 }                           from "../generator";
 
-export interface IWithSourceGeneratorsProps {
-    packageName?: string;
-    sdk?: string;
-    PrismaSchema: string;
-    modelName: string;
-    sorts?: string[];
-}
+export type IWithSourceGeneratorsProps =
+    IGeneratorEntitySchemaParams
+    & {
+        packageName?: string;
+        sdk?: string;
+    }
 
 export const withSourceGenerators = (
     {
@@ -18,6 +18,7 @@ export const withSourceGenerators = (
         sdk = "src/sdk",
         modelName,
         PrismaSchema,
+        schemaEx,
         sorts,
     }: IWithSourceGeneratorsProps) => {
     if (!packageName) {
@@ -34,6 +35,7 @@ export const withSourceGenerators = (
                 PrismaSchema,
                 modelName,
                 sorts,
+                schemaEx,
             },
         }),
         async () => generatorSourceApi({
