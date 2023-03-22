@@ -1,8 +1,15 @@
-import {withSdk} from "@leight/sdk";
+import {
+    generatorQuerySchema,
+    withSdk
+} from "@leight/sdk";
 
 void withSdk([
-    {
-        name: "generate-somethin 2",
-        file: "/dsfdf",
-    }
+    async () => generatorQuerySchema({
+        name:   "query-schema",
+        file:   "src/sdk/query-schema.ts",
+        params: {
+            prismaPackage: "@monye.one/prisma",
+            modelName:     "Transaction",
+        },
+    }),
 ]);

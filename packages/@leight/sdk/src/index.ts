@@ -1,14 +1,17 @@
-import boxen from "boxen";
-import chalk from "chalk";
-import {z}   from "zod";
+import {type IfExtends} from "@leight/utils";
+import boxen            from "boxen";
+import chalk            from "chalk";
 
-export const SdkSchema = z.object({
-    name: z.string().min(1),
-    file: z.string().min(1),
-});
-export type ISdkSchema = z.infer<typeof SdkSchema>;
+export type ITemplate<TParams = void> = IfExtends<
+    {
+        name: string;
+        file: string;
+        barell?: boolean;
+    },
+    { params: TParams }
+>;
 
-export const withSdk = async (sdk: ISdkSchema[]): Promise<void> => {
+export const withSdk = async (generators: (() => Promise<void>)[]): Promise<void> => {
     console.log(boxen(
         chalk.yellowBright.inverse.bold("-= -=:    Leight SDK Generator    :=- =-"),
         {
@@ -20,7 +23,11 @@ export const withSdk = async (sdk: ISdkSchema[]): Promise<void> => {
         }
     ));
 
-    console.log("Yaaay!", sdk);
+    for await (const generator of generators) {
+        await generator();
+    }
 
     console.log(chalk.greenBright(`- Done`));
 };
+
+export * from "./template";

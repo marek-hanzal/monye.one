@@ -1,7 +1,7 @@
 {
     "version": "0.5.0",
-    "name": "@leight/sdk",
-    "description": "SDK generator.",
+    "name": "@leight/generator-server",
+    "description": "Set of tools used for source code generation from... source code :).",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -28,12 +28,7 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@digitak/esrun": "^3.2.21",
-        "@leight/generator-server": "^0.5.0",
-        "boxen": "^7.0.2",
-        "chalk": "^5.2.0",
-        "yargs": "^17.7.1",
-        "zod": "^3.21.1"
+        "@leight/generator": "^0.5.0"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.25",

@@ -1,17 +1,17 @@
-import {type IImportService} from "@leight/import";
+import {type IImportService}     from "@leight/import";
 import {
     type ISource,
     type ISourceSchema
-}                            from "@leight/source";
+}                                from "@leight/source";
+import {type ITransactionImport} from "../schema";
 import {
     type ITransactionCreateSchema,
     type ITransactionFilterSchema,
-    type ITransactionImport,
     type ITransactionParamSchema,
     type ITransactionPatchSchema,
     type ITransactionSchema,
     type ITransactionSortSchema,
-}                            from "../schema";
+}                                from "../sdk";
 
 export interface ITransactionImportService extends IImportService<ITransactionImport> {
 }
