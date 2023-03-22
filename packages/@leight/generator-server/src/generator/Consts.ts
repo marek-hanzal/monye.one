@@ -1,18 +1,21 @@
-import {type IExportable} from "@leight/generator";
+import {
+    type IConst,
+    type IExportable
+} from "@leight/generator";
 
 export class Const implements IExportable {
     public readonly name: string;
-    public readonly code: string;
+    public readonly code: IConst;
     public readonly isExported: boolean;
 
-    constructor(name: string, code: string, isExported: boolean) {
+    constructor(name: string, code: IConst, isExported: boolean) {
         this.name       = name;
         this.code       = code;
         this.isExported = isExported;
     }
 
     public export() {
-        return `${this.isExported ? "export" : ""} const ${this.name} = ${this.code};`;
+        return `${this.isExported ? "export" : ""} const ${this.name}${this.code.type ? `:${this.code.type}` : ""} = ${this.code.body.trim()};`;
     }
 }
 
@@ -23,8 +26,8 @@ export class Consts implements IExportable {
         this.$consts = new Map();
     }
 
-    public const(name: string, code: string, isExported: boolean) {
-        this.$consts.set(name, new Const(name, code.trim(), isExported));
+    public const(name: string, code: IConst, isExported: boolean) {
+        this.$consts.set(name, new Const(name, code, isExported));
         return this;
     }
 

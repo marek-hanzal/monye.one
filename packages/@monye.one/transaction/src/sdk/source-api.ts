@@ -11,8 +11,6 @@ import {
 	type ITransactionSortSchema
 } from "./entity-schema";
 
-export const $TransactionSource = Symbol.for("@monye.one/transaction/ITransactionSource");
-
 export interface ITransactionSource extends ISource<ITransactionSourceSchema> {
 }
 
@@ -25,3 +23,5 @@ export interface ITransactionSourceSchema extends ISourceSchema<
     ITransactionParamSchema
  > {
 }
+
+export const $TransactionSource = Symbol.for("@monye.one/transaction/ITransactionSource");

@@ -1,6 +1,6 @@
 import {withSourceFile}  from "@leight/generator-server";
 import {normalize}       from "node:path";
-import {type IGenerator} from "../index";
+import {type IGenerator} from "../api";
 
 export interface IGeneratorEntitySchemaParams {
     /**
@@ -40,28 +40,36 @@ export const generatorEntitySchema: IGenerator<IGeneratorEntitySchemaParams> = a
         })
         .withConsts({
             exports: {
-                [`${modelName}Schema`]:       `PrismaSchema.${modelName}Schema`,
-                [`${modelName}CreateSchema`]: `PrismaSchema.${modelName}OptionalDefaultsSchema`,
-                [`${modelName}PatchSchema`]:  `PrismaSchema.${modelName}PartialSchema.merge(WithIdentitySchema)`,
-                [`${modelName}FilterSchema`]: `z.union([
+                [`${modelName}Schema`]:       {body: `PrismaSchema.${modelName}Schema`},
+                [`${modelName}CreateSchema`]: {body: `PrismaSchema.${modelName}OptionalDefaultsSchema`},
+                [`${modelName}PatchSchema`]:  {body: `PrismaSchema.${modelName}PartialSchema.merge(WithIdentitySchema)`},
+                [`${modelName}FilterSchema`]: {
+                    body: `z.union([
     PrismaSchema.${modelName}WhereInputSchema,
     PrismaSchema.${modelName}WhereUniqueInputSchema,
     FilterSchema,
-])`,
-                [`${modelName}ParamSchema`]:  `ParamsSchema`,
-                [`${modelName}SortSchema`]:   `
+])
+                    `,
+                },
+                [`${modelName}ParamSchema`]:  {body: `ParamsSchema`},
+                [`${modelName}SortSchema`]:   {
+                    body: `
 z.object({
     date:      SortOrderSchema,
     amount:    SortOrderSchema,
     reference: SortOrderSchema,
-})`,
-                [`${modelName}QuerySchema`]:  `
+})
+                    `,
+                },
+                [`${modelName}QuerySchema`]:  {
+                    body: `
 QuerySchema({
     filterSchema: ${modelName}FilterSchema,
     sortSchema:   ${modelName}SortSchema,
     paramsSchema: ${modelName}ParamSchema,
 })
-                `,
+                    `,
+                },
             },
         })
         .withTypes({

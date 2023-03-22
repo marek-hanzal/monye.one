@@ -4,23 +4,25 @@ import {
     type IWithImports,
     type IWithInterfaces,
     type IWithTypes
-}                   from "@leight/generator";
+}                           from "@leight/generator";
+import {diffOf}             from "@leight/utils";
+import {resolvePackageJson} from "@leight/utils-server";
 import {
     appendFileSync,
     existsSync,
     mkdirSync,
     readFileSync,
     writeFileSync
-}                   from "node:fs";
+}                           from "node:fs";
 import {
     basename,
     dirname,
     normalize
-}                   from "node:path";
-import {Consts}     from "./Consts";
-import {Imports}    from "./Imports";
-import {Interfaces} from "./Interfaces";
-import {Types}      from "./Types";
+}                           from "node:path";
+import {Consts}             from "./Consts";
+import {Imports}            from "./Imports";
+import {Interfaces}         from "./Interfaces";
+import {Types}              from "./Types";
 
 export class SourceFile implements IExportable {
     public readonly $imports: Imports;
@@ -61,20 +63,20 @@ export class SourceFile implements IExportable {
     public export() {
         return ([
             this.$imports,
-            this.$consts,
-            this.$types,
             this.$interfaces,
+            this.$types,
+            this.$consts,
         ] as const).map(item => item.export().trim()).filter(Boolean).join("\n\n");
     }
 
-    public saveTo({file, barrel}: SourceFile.ISaveToProps) {
+    public saveTo({file, barrel, silent = false}: SourceFile.ISaveToProps) {
         mkdirSync(dirname(file), {recursive: true});
         writeFileSync(file, this.export(), {
             flag:     "w+",
             encoding: "utf8",
         });
         if (barrel) {
-            const filename = basename(file).replace(".ts", "").replace(".tsx", "");
+            const filename = basename(file).replace(".tsx", "").replace(".ts", "");
             const index    = normalize(`${dirname(file)}/index.ts`);
             if (!existsSync(index) || !readFileSync(index, {encoding: "utf8"})?.includes(filename)) {
                 appendFileSync(index, `export * from "./${filename}"\n`, {
@@ -82,6 +84,20 @@ export class SourceFile implements IExportable {
                 });
             }
         }
+
+        const dependencies = Object.keys(resolvePackageJson().dependencies || {});
+        const required     = this.$imports.list();
+        const diff         = diffOf(required, dependencies);
+
+        if (diff.length) {
+            console.log("Current packages", dependencies);
+            console.log("Required packages", required);
+            console.log("- You should install", diff, "\n\n");
+            if (!silent) {
+                throw new Error("Missing dependencies");
+            }
+        }
+
         return this;
     }
 }
@@ -90,6 +106,10 @@ export namespace SourceFile {
     export interface ISaveToProps {
         file: string;
         barrel: boolean;
+        /**
+         * Suppress an exception if there are missing dependencies; defaults to false
+         */
+        silent?: boolean;
     }
 }
 

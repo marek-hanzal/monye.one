@@ -65,7 +65,7 @@
             "cache": false,
             "persistent": true,
             "dependsOn": [
-                "^prisma:generate"
+                "generate"
             ]
         },
         "migration": {

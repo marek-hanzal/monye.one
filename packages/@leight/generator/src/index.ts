@@ -2,15 +2,20 @@ export interface IWithImports {
     imports: Record<string, string[]>;
 }
 
+export interface IConst {
+    type?: string;
+    body: string;
+}
+
 export interface IWithConsts {
     /**
      * Consts just laying around the file
      */
-    consts?: Record<string, string>;
+    consts?: Record<string, IConst>;
     /**
      * Consts being exported
      */
-    exports?: Record<string, string>;
+    exports?: Record<string, IConst>;
 }
 
 export interface IWithTypes {

@@ -1,6 +1,6 @@
 import {withSourceFile}  from "@leight/generator-server";
 import {normalize}       from "node:path";
-import {type IGenerator} from "../index";
+import {type IGenerator} from "../api";
 
 export interface IGeneratorSourceApiParams {
     /**
@@ -54,9 +54,7 @@ ISourceSchema<
         })
         .withConsts({
             exports: {
-                [`$${modelName}Source`]: `
-Symbol.for("${packageName}/I${modelName}Source")
-                `
+                [`$${modelName}Source`]: {body: `Symbol.for("${packageName}/I${modelName}Source")`},
             }
         })
         .saveTo({

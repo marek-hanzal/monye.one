@@ -12,6 +12,7 @@
     },
     "sideEffects": false,
     "type": "module",
+    "main": "lib/index.js",
     "module": "lib/index.js",
     "types": "lib/index.d.ts",
     "files": [
@@ -27,6 +28,9 @@
         "lint": "eslint src",
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
+    "dependencies": {
+        "@leight/utils": "^0.5.0"
+    },
     "devDependencies": {
         "@leight/esbuild": "^0.5.25",
         "@leight/eslint-config-eslint": "^0.5.34",
@@ -38,6 +42,7 @@
         "depcheck": "^1.4.3",
         "eslint": "^8.36.0",
         "turbowatch": "^2.3.2",
+        "type-fest": "^3.6.1",
         "typescript": "^5.0.2"
     },
     "bugs": {

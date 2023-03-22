@@ -36,6 +36,10 @@ export class Imports implements IExportable {
         return this;
     }
 
+    public list() {
+        return [...this.$imports.keys()].filter(item => !item.startsWith("./"));
+    }
+
     public export() {
         return [...this.$imports.values()].map(item => item.export()).join("\n");
     }

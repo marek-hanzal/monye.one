@@ -28,7 +28,8 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/generator": "^0.5.0"
+        "@leight/generator": "^0.5.0",
+        "@leight/utils": "^0.5.0"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.25",

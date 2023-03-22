@@ -4,6 +4,6 @@ import {
 } from "@leight/sdk";
 
 void withSdk(withSourceGenerators({
-    modelName:    "Transaction",
+    modelName:    "Bank",
     PrismaSchema: "@monye.one/prisma",
 }));

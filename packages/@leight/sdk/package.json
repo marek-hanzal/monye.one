@@ -30,6 +30,7 @@
     "dependencies": {
         "@digitak/esrun": "^3.2.21",
         "@leight/generator-server": "^0.5.0",
+        "@leight/utils-server": "^0.5.0",
         "boxen": "^7.0.2",
         "chalk": "^5.2.0",
         "yargs": "^17.7.1",
@@ -44,7 +45,6 @@
         "del-cli": "^5.0.0",
         "depcheck": "^1.4.3",
         "eslint": "^8.36.0",
-        "type-fest": "^3.6.1",
         "typescript": "^5.0.2"
     },
     "bugs": {
