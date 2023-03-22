@@ -1,18 +1,8 @@
-import boxen                from "boxen";
 import chalk                from "chalk";
 import {type ISdkGenerator} from "./api";
 
 export const withSdk = async (generators: ISdkGenerator[]): Promise<void> => {
-    console.log(boxen(
-        chalk.yellowBright.inverse.bold("-= -=:    Leight SDK Generator    :=- =-"),
-        {
-            padding:         1,
-            margin:          0,
-            borderStyle:     "round",
-            borderColor:     "yellow",
-            backgroundColor: "black",
-        }
-    ));
+    console.log(chalk.yellowBright.bold("Leight SDK Generator"));
 
     for await (const generator of generators) {
         try {
