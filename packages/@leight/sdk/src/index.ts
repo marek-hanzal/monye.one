@@ -6,7 +6,7 @@ export type ITemplate<TParams = void> = IfExtends<
     {
         name: string;
         file: string;
-        barell?: boolean;
+        barrel: boolean;
     },
     { params: TParams }
 >;

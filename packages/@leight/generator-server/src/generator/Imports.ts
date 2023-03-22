@@ -1,18 +1,40 @@
-export class Imports {
-    protected imports: Map<string, Set<string>>;
+import {type IExportable} from "@leight/generator";
 
-    constructor() {
-        this.imports = new Map();
+/**
+ * This class represents import items (thus already under a file).
+ */
+export class Import implements IExportable {
+    public readonly file: string;
+    public readonly $import: Set<string>;
+
+    constructor(file: string) {
+        this.file    = file;
+        this.$import = new Set();
     }
 
-    public withImports(file: string, imports: string[]) {
-        const $imports = (this.imports.get(file) || new Set());
-        this.imports.set(file, $imports);
-        imports.map($imports.add, $imports);
+    public withItems(items: string[]) {
+        items.map(this.$import.add, this.$import);
         return this;
     }
 
     public export() {
-        return [...this.imports.entries()].map(([file, imports]) => `import {${[...imports.values()].join(", ")}} from "${file}";`).join("\n");
+        return `import {${[...this.$import.values()].join(", ")}} from "${this.file}";`;
+    }
+}
+
+export class Imports implements IExportable {
+    protected $imports: Map<string, Import>;
+
+    constructor() {
+        this.$imports = new Map();
+    }
+
+    public withImport(file: string, items: string[]) {
+        this.$imports.set(file, (this.$imports.get(file) || new Import(file)).withItems(items));
+        return this;
+    }
+
+    public export() {
+        return [...this.$imports.values()].map(item => item.export()).join("\n");
     }
 }

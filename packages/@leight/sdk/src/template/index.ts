@@ -1,1 +1,1 @@
-export * from "./generatorQuerySchema";
+export * from "./generatorSource";
