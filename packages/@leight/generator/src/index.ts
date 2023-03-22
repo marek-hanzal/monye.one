@@ -33,6 +33,17 @@ export interface IWithInterfaces {
     exports?: Record<string, IInterface>;
 }
 
+export interface IClass {
+    extends?: string;
+    implements?: string;
+    body?: string;
+}
+
+export interface IWithClasses {
+    classes?: Record<string, IClass>;
+    exports?: Record<string, IClass>;
+}
+
 export interface IExportable {
     export(): string;
 }

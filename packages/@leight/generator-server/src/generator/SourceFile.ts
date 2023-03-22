@@ -1,5 +1,6 @@
 import {
     type IExportable,
+    type IWithClasses,
     type IWithConsts,
     type IWithImports,
     type IWithInterfaces,
@@ -19,6 +20,7 @@ import {
     dirname,
     normalize
 }                           from "node:path";
+import {Classes}            from "./Classes";
 import {Consts}             from "./Consts";
 import {Imports}            from "./Imports";
 import {Interfaces}         from "./Interfaces";
@@ -26,15 +28,17 @@ import {Types}              from "./Types";
 
 export class SourceFile implements IExportable {
     public readonly $imports: Imports;
-    public readonly $consts: Consts;
     public readonly $types: Types;
     public readonly $interfaces: Interfaces;
+    public readonly $classes: Classes;
+    public readonly $consts: Consts;
 
     constructor() {
         this.$imports    = new Imports();
-        this.$consts     = new Consts();
         this.$types      = new Types();
         this.$interfaces = new Interfaces();
+        this.$classes    = new Classes();
+        this.$consts     = new Consts();
     }
 
     public withImports({imports}: IWithImports) {
@@ -60,11 +64,18 @@ export class SourceFile implements IExportable {
         return this;
     }
 
+    public withClasses({classes = {}, exports = {}}: IWithClasses) {
+        Object.entries(classes).map(([key, value]) => this.$classes.interface(key, value, false));
+        Object.entries(exports).map(([key, value]) => this.$classes.interface(key, value, true));
+        return this;
+    }
+
     public export() {
         return ([
             this.$imports,
-            this.$interfaces,
             this.$types,
+            this.$interfaces,
+            this.$classes,
             this.$consts,
         ] as const).map(item => item.export().trim()).filter(Boolean).join("\n\n");
     }
