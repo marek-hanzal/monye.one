@@ -3,7 +3,7 @@ import {
     $BankSource,
     type IBankSource
 }                        from "@monye.one/bank";
-import {BankSource}      from "./source";
+import {BankSource}      from "./sdk";
 
 export interface IBankContainer {
     BankSource: IBankSource;

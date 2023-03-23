@@ -5,8 +5,8 @@ import {
     type ITransactionImportService,
     type ITransactionSource
 }                                 from "@monye.one/transaction";
+import {TransactionSource}        from "./sdk";
 import {TransactionImportService} from "./service";
-import {TransactionSource}        from "./source";
 
 export interface ITransactionContainer {
     TransactionImportService: ITransactionImportService;

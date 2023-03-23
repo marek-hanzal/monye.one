@@ -1,2 +1,3 @@
-export * from "./entity-schema";
-export * from "./source-api";
+export * from "./Source";
+export * from "./Schema";
+export * from "./SourceSchema";

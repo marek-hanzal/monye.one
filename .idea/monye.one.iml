@@ -72,6 +72,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/generator/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/sdk/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/generator-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/trpc-source-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/bank-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />

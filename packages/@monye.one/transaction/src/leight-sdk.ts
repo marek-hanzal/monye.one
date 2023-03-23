@@ -4,9 +4,11 @@ import {
 } from "@leight/sdk";
 
 void withSdk(withSourceGenerators({
-    modelName:    "Transaction",
-    PrismaSchema: "@monye.one/prisma",
-    sorts:        [
+    entity:   "Transaction",
+    packages: {
+        prisma: "@monye.one/prisma",
+    },
+    sorts:    [
         "date",
         "amount",
         "reference",
