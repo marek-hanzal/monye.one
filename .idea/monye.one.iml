@@ -74,6 +74,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/generator-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/trpc-source-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/bank-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/calendar-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -212,6 +213,8 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/generator/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/bank-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/bank-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/calendar-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/calendar-client/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

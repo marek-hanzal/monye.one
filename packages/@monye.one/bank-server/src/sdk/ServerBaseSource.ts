@@ -11,12 +11,12 @@ import {
 import {AbstractSource} from "@leight/source-server";
 import {
 	$BankSource,
+	type IBankWhere,
+	type IBankWhereUnique,
+	type IBankOrderBy,
 	type IBankSourceSchema
 } from "@monye.one/bank";
 import {type PrismaClient} from "@monye.one/prisma";
-
-type IEntity = IBankSourceSchema["Entity"];
-type IQuery = IBankSourceSchema["Query"];
 
 export class BankBaseSource extends AbstractSource<IBankSourceSchema> {
 	static inject = [
@@ -29,27 +29,39 @@ export class BankBaseSource extends AbstractSource<IBankSourceSchema> {
         super($BankSource);
     }
 
-    async runUpsert(props: ISource.IUpsert<IBankSourceSchema>): Promise<IEntity> {
+    async runUpsert(props: ISource.IUpsert<IBankSourceSchema>): Promise<IBankSourceSchema["Entity"]> {
         return this.prisma().upsert(withUpsert(props));
     }
 
-    async runCount(query?: IQuery): Promise<number> {
+    async runCount(query?: IBankSourceSchema["Query"]): Promise<number> {
         return this.prisma().count({
-            where: query?.filter,
+            where: this.toWhere(query?.filter),
         });
     }
 
-    async runQuery(query?: IQuery): Promise<IEntity[]> {
+    async runQuery(query?: IBankSourceSchema["Query"]): Promise<IBankSourceSchema["Entity"][]> {
         return this.prisma().findMany(withCursor({
             query,
             arg: {
-                where:   query?.filter,
-                orderBy: query?.sort,
+                where:   this.toWhere(query?.filter),
+                orderBy: this.toOrderBy(query?.sort),
             }
         }));
     }
     
     prisma() {
         return this.prismaClient.bank;
+    }
+    
+    toWhere(filter?: IBankSourceSchema["Filter"]): IBankWhere | undefined {
+        return undefined;
+    }
+    
+    toWhereUnique(filter?: IBankSourceSchema["Filter"]): IBankWhereUnique | undefined {
+        return undefined;
+    }
+    
+    toOrderBy(sort?: IBankSourceSchema["Sort"]): IBankOrderBy | undefined {
+        return sort as IBankOrderBy;
     }
 }

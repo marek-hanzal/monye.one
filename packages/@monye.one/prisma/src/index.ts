@@ -1,4 +1,2 @@
-export {
-    PrismaClient,
-}                        from "@prisma/client";
-export * as PrismaSchema from "./schema";
+export {PrismaClient} from "@prisma/client";
+export *              from "./schema";
