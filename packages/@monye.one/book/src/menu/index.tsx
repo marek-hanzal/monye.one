@@ -18,6 +18,10 @@ const links: ILink[] = [
         label: "link.home",
     },
     {
+        href:  "/book/calendar",
+        label: "link.calendar",
+    },
+    {
         href:  "/book/transaction/list",
         label: "link.transactions",
     },

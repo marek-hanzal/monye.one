@@ -10,28 +10,36 @@ const supported = [
 ];
 
 module.exports = {
-    i18n: {
+    i18n:                     {
         /** "|| en" because compile error for string | undefined */
         defaultLocale: supported[0] || "en",
-        locales: supported,
+        locales:       supported,
     },
-    fallbackLng: supported[0],
-    preload: supported,
-    lowerCaseLng: true,
-    debug: false,
-    initImmediate: true,
-    keySeparator: false,
-    nsSeparator: ":",
-    interpolation: {
-        prefix: "{",
-        suffix: "}",
+    fallbackLng:              supported[0],
+    preload:                  supported,
+    lowerCaseLng:             true,
+    debug:                    false,
+    initImmediate:            true,
+    keySeparator:             false,
+    nsSeparator:              ":",
+    interpolation:            {
+        prefix:      "{",
+        suffix:      "}",
         escapeValue: false,
     },
-    localeStructure: "{lng}/{ns}",
+    localeStructure:          "{lng}/{ns}",
     nonExplicitSupportedLngs: true,
-    ns: ["common", "public", "book", "account", "filter", "transaction"],
-    supportedLngs: supported,
-    detection: {
+    ns:                       [
+        "common",
+        "public",
+        "book",
+        "bank",
+        "calendar",
+        "filter",
+        "transaction",
+    ],
+    supportedLngs:            supported,
+    detection:                {
         order: [
             "querystring",
             "cookie",
