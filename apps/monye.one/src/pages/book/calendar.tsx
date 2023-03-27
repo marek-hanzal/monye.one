@@ -13,16 +13,7 @@ export default withBookLayout(
         return (
             <>
                 <Box p={"md"}>
-                    <CalendarProvider
-                        options={{
-                            // minDate:        new Date("2020-01-01"),
-                            // maxDate:        new Date("2030-31-12"),
-                            firstDayOfWeek: 1,
-                            onDateSelected: date => {
-                                console.log(date);
-                            },
-                        }}
-                    >
+                    <CalendarProvider>
                         <Calendar/>
                     </CalendarProvider>
                 </Box>
