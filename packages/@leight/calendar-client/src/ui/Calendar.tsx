@@ -16,12 +16,11 @@ export interface ICalendarProps {
 export const Calendar: FC<ICalendarProps> = () => {
     const input = DateTime.fromObject({month: 3});
 
-    const now       = DateTime.now();
     const dateStart = input.startOf("month").minus({week: 1});
     const dateEnd   = input.endOf("month").plus({week: 1});
     const weekStart = dateStart.startOf("week");
-    const interval  = Interval.fromDateTimes(dateStart, dateEnd);
-    const calendar  = Array.from({length: interval.count("weeks")}, (_, week) => {
+    const now       = DateTime.now();
+    const calendar  = Array.from({length: Interval.fromDateTimes(dateStart, dateEnd).count("weeks")}, (_, week) => {
         const $week = weekStart.plus({week});
         const id    = `week-${$week.weekNumber}`;
         return {
