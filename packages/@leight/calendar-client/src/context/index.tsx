@@ -1,20 +1,12 @@
 import {createStoreContext} from "@leight/context-client";
-import {
-    type IStoreProps,
-    type IStorePropsType
-}                           from "@leight/zustand";
-import {
-    type ICalendarProps,
-    type IUseCalendarOptions,
-    useCalendar
-}                           from "@tuplo/use-calendar";
+import {type IStoreProps}   from "@leight/zustand";
 import {
     type ComponentProps,
     type FC
 }                           from "react";
 
-export type ICalendarStoreStoreProps = IStoreProps<IStorePropsType, {
-    calendar: ICalendarProps;
+export type ICalendarStoreStoreProps = IStoreProps<{
+    foo: string;
 }>
 
 export const {
@@ -24,23 +16,18 @@ export const {
                  useStore:         useCalendarStoreStore,
                  useOptionalStore: useOptionalCalendarStoreStore,
              } = createStoreContext<ICalendarStoreStoreProps>({
-    state: ({state}) => () => ({
-        ...state,
+    state: () => () => ({
+        foo: "",
     }),
     name:  "CalendarStoreContext",
     hint:  "Add CalendarStoreProvider.",
 });
 
 export interface ICalendarProviderProps extends Omit<ComponentProps<typeof CalendarStoreProvider>, "state"> {
-    options?: Partial<IUseCalendarOptions>;
 }
 
-export const CalendarProvider: FC<ICalendarProviderProps> = ({options, ...props}) => {
-    const calendar = useCalendar(options);
+export const CalendarProvider: FC<ICalendarProviderProps> = ({...props}) => {
     return <CalendarStoreProvider
-        state={{
-            calendar,
-        }}
         {...props}
     />;
 };

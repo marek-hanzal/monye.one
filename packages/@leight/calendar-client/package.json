@@ -34,7 +34,6 @@
         "@leight/zustand": "^0.5.48",
         "@mantine/core": "^6.0.1",
         "@mantine/hooks": "^6.0.1",
-        "@tuplo/use-calendar": "^1.6.0",
         "react": "^18.2.0"
     },
     "devDependencies": {
