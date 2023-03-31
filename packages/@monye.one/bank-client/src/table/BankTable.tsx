@@ -1,6 +1,6 @@
 import {
-    type ITableProps,
-    Table
+    type ISourceTableProps,
+    SourceTable
 }                from "@leight/table-client";
 import {
     BankSchema,
@@ -16,12 +16,12 @@ import {
 export type IBankTableColumns =
     | "account";
 
-export interface IBankTableProps extends ITableProps<IBankSourceSchema, IBankTableColumns> {
+export interface IBankTableProps extends ISourceTableProps<IBankSourceSchema, IBankTableColumns> {
 }
 
 export const BankTable: FC<IBankTableProps> = ({...props}) => {
     return <BankSource>
-        <Table
+        <SourceTable
             useSource={useBankSource}
             useSort={useBankSort}
             schema={BankSchema}

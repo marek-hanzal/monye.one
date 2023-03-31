@@ -1,8 +1,8 @@
 import {Date}          from "@leight/i18n-client";
 import {decimalOf}     from "@leight/prisma";
 import {
-    type ITableProps,
-    Table
+    type ISourceTableProps,
+    SourceTable
 }                      from "@leight/table-client";
 import {toHumanNumber} from "@leight/utils";
 import {
@@ -26,19 +26,19 @@ export type ITransactionTableColumns =
     | "symbol"
     | "amount";
 
-export interface ITransactionTableProps extends ITableProps<ITransactionSourceSchema, ITransactionTableColumns> {
+export interface ITransactionTableProps extends ISourceTableProps<ITransactionSourceSchema, ITransactionTableColumns> {
 }
 
 export const TransactionTable: FC<ITransactionTableProps> = ({...props}) => {
     return <TransactionSource>
-        <Table
+        <SourceTable
             useSource={useTransactionSource}
             useSort={useTransactionSort}
             schema={TransactionSchema}
             withTranslation={{
                 namespace: "transaction",
             }}
-            scrollX={2400}
+            scrollWidth={2400}
             columns={{
                 date:      {
                     width: 8,
