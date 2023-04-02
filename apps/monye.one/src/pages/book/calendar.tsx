@@ -4,7 +4,6 @@ import {
     CalendarProvider
 }                        from "@leight/calendar-client";
 import {withTranslation} from "@leight/i18n-server";
-import {Box}             from "@mantine/core";
 import {withBookLayout}  from "@monye.one/book";
 import React             from "react";
 
@@ -12,11 +11,9 @@ export default withBookLayout(
     function CalendarPage() {
         return (
             <>
-                <Box p={"md"}>
-                    <CalendarProvider>
-                        <Calendar/>
-                    </CalendarProvider>
-                </Box>
+                <CalendarProvider>
+                    <Calendar/>
+                </CalendarProvider>
             </>
         );
     },
