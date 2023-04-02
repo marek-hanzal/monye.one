@@ -8,11 +8,13 @@ import i18n from "./next-i18next.config.js";
 !process.env.SKIP_ENV_VALIDATION && await import("./src/env.mjs");
 
 /** @type {import("next").NextConfig} */
-const config = {
+export default {
+    experimental:      {
+        turbo: {},
+    },
     reactStrictMode:   true,
     swcMinify:         true,
     i18n:              i18n.i18n,
     transpilePackages: [],
     modularizeImports: {}
 };
-export default config;

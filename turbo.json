@@ -46,6 +46,7 @@
             "inputs": [
                 "prisma/schema.prisma",
                 "src/**",
+                "next.config.mjs",
                 "package.json",
                 "tsconfig.json"
             ],

@@ -1,4 +1,4 @@
-import {Date}          from "@leight/i18n-client";
+import {DateInline}    from "@leight/i18n-client";
 import {decimalOf}     from "@leight/prisma";
 import {
     type ISourceTableProps,
@@ -43,7 +43,7 @@ export const TransactionTable: FC<ITransactionTableProps> = ({...props}) => {
                 date:      {
                     width: 8,
                     render({date}) {
-                        return <Date input={date}/>;
+                        return <DateInline input={date}/>;
                     },
                     sort: "date",
                 },
