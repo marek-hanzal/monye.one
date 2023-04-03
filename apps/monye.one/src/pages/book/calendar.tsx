@@ -9,13 +9,11 @@ import React             from "react";
 
 export default withBookLayout(
     function CalendarPage() {
-        return (
-            <>
-                <CalendarProvider>
-                    <Calendar/>
-                </CalendarProvider>
-            </>
-        );
+        return <>
+            <CalendarProvider>
+                <Calendar/>
+            </CalendarProvider>
+        </>;
     },
     {logo, href: "/book/calendar"}
 );

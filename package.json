@@ -26,9 +26,9 @@
         "npkill": "npx npkill"
     },
     "devDependencies": {
-        "@roarr/cli": "^5.10.4",
-        "turbo": "^1.8.5",
-        "typescript": "^5.0.2"
+        "@roarr/cli": "^5.11.0",
+        "turbo": "^1.8.8",
+        "typescript": "^5.0.3"
     },
     "workspaces": [
         "apps/**/*",
