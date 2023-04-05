@@ -34,10 +34,10 @@
         "@leight/trpc-server": "^0.5.28",
         "@leight/trpc-source-server": "^0.5.0",
         "@leight/user": "^0.5.29",
+        "@leight/zod": "^0.5.0",
         "@monye.one/bank": "^0.5.0",
         "@monye.one/prisma": "^0.5.0",
-        "@monye.one/transaction": "^0.5.0",
-        "zod": "3.21.1"
+        "@monye.one/transaction": "^0.5.0"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.7",

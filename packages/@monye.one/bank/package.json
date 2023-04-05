@@ -32,8 +32,8 @@
         "@leight/react-query": "^0.5.0",
         "@leight/sort": "^0.5.0",
         "@leight/source": "^0.5.25",
-        "@monye.one/prisma": "^0.5.0",
-        "zod": "3.21.1"
+        "@leight/zod": "^0.5.0",
+        "@monye.one/prisma": "^0.5.0"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.7",

@@ -2,6 +2,7 @@ import {
     $UserService,
     type IUserService
 }               from "@leight/user";
+import {type z} from "@leight/zod";
 import {
     $BankSource,
     type IBankSource
@@ -13,7 +14,6 @@ import {
     type ITransactionSource,
     TransactionImportSchema
 }               from "@monye.one/transaction";
-import {type z} from "zod";
 
 export class TransactionImportService implements ITransactionImportService {
     static inject = [
