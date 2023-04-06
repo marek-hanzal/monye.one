@@ -14,3 +14,8 @@ export const TransactionSourceProcedure = withSourceProcedure<ITransactionSource
     source: $TransactionSource,
     schema: TransactionQuerySchema,
 });
+/**
+ * Default export marking a file it's generated and also preventing failing
+ * an empty file export (every module "must" have an export).
+ */
+export const $leight_icsmamn9ebn0h0h5q7uf4ngb = true;

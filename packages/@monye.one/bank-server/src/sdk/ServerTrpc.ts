@@ -14,3 +14,8 @@ export const BankSourceProcedure = withSourceProcedure<IBankSourceSchema>({
     source: $BankSource,
     schema: BankQuerySchema,
 });
+/**
+ * Default export marking a file it's generated and also preventing failing
+ * an empty file export (every module "must" have an export).
+ */
+export const $leight_qv4u5ddu4n2c46wmh5iulb63 = true;

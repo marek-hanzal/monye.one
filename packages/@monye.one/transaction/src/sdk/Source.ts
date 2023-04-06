@@ -15,3 +15,8 @@ export interface ITransactionSource extends ISource<ITransactionSourceSchema> {
 
 export const $TransactionSource = Symbol.for("@monye.one/transaction/ITransactionSource");
 export const TransactionSourceContext = (container: IContainer) => new ServiceContext<ITransactionSource>(container, $TransactionSource);
+/**
+ * Default export marking a file it's generated and also preventing failing
+ * an empty file export (every module "must" have an export).
+ */
+export const $leight_jtjl5500yhfng37pks917qwn = true;

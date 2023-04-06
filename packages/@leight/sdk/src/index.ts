@@ -8,6 +8,9 @@ export const withSdk = async (generators: ISdkGenerator[]): Promise<void> => {
         try {
             await generator();
         } catch (e) {
+            if (e instanceof Error && e.message !== "Missing dependencies") {
+                console.error(e);
+            }
             process.exit(1);
         }
     }

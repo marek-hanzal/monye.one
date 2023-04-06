@@ -4,12 +4,16 @@ import {
 } from "@leight/sdk";
 
 void withSdk(withClientSourceGenerators({
-    entity:   "Transaction",
+    entities: [
+        {
+            name: "Transaction",
+            trpc: {
+                package: "@monye.one/trpc-client",
+                path:    "transaction",
+            },
+        }
+    ],
     packages: {
         schema: "@monye.one/transaction",
-    },
-    trpc:     {
-        package: "@monye.one/trpc-client",
-        path:    "transaction",
     },
 }));

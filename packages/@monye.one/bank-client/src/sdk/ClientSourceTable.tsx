@@ -23,6 +23,10 @@ export interface IBankSourceTableInternalProps<TColumnKeys extends string> exten
 export interface IBankSourceTableProps<TColumnKeys extends string> extends Omit<IBankSourceTableInternalProps<TColumnKeys>, "columns" | "withTranslation"> {
 }
 
+/**
+ * Base implementation of a table providing Bank data already connected to a source; just extend this table with
+ * columns and other props as you wish.
+ */
 export const BankSourceTable = <TColumnKeys extends string>(props: IBankSourceTableInternalProps<TColumnKeys>) => {
     return <BankSource>
         <SourceTable
@@ -33,3 +37,8 @@ export const BankSourceTable = <TColumnKeys extends string>(props: IBankSourceTa
         />
     </BankSource>;
 };
+/**
+ * Default export marking a file it's generated and also preventing failing
+ * an empty file export (every module "must" have an export).
+ */
+export const $leight_nixpdqmch21us6t2p2izc6y5 = true;

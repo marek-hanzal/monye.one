@@ -13,20 +13,29 @@ export interface IGeneratorClientSourceParams {
          */
         schema: string;
     };
-    trpc?: {
-        /**
-         * Package (import) of client-side TRPC (should export named trpc)
-         */
-        package: string;
-        /**
-         * Part of the trpc call chain (base is `trpc`.${trpcPath}.`...rest of standard trpc router`
-         */
-        path: string;
-    };
     /**
-     * Entity name this generator works with
+     * Definition of entities being generated
      */
-    entity: string;
+    entities: {
+        /**
+         * Entity name this generator works with
+         */
+        name: string;
+        /**
+         * Explicitly disable specific generator
+         */
+        disabled?: ("source" | "table")[];
+        trpc?: {
+            /**
+             * Package (import) of client-side TRPC (should export named trpc)
+             */
+            package: string;
+            /**
+             * Part of the trpc call chain (base is `trpc`.${trpcPath}.`...rest of standard trpc router`
+             */
+            path: string;
+        };
+    }[];
 }
 
 export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = async props => {

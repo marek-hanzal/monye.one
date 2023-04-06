@@ -28,6 +28,9 @@ export interface IBankSourceProps extends ISourceProps<IBankSourceSchema> {
 export interface IBankQueryProviderProps extends IQueryProviderProps<IBankSourceSchema> {
 }
 
+/**
+ * Provides access to Bank data with a connection to filtering and sorting. 
+ */
 export const BankSource:FC<IBankSourceProps> = props => {
     return <Source<IBankSourceSchema>
         schema={BankSchema}
@@ -37,6 +40,9 @@ export const BankSource:FC<IBankSourceProps> = props => {
 		{...props}
     />;
 };
+/**
+ * Provides all Query parts for Bank used in fetching and sorting its data. 
+ */
 export const BankQueryProvider:FC<IBankQueryProviderProps> = props => {
     return <QueryProvider<IBankSourceSchema>
         SortProvider={BankSortStore.Provider}
@@ -44,3 +50,8 @@ export const BankQueryProvider:FC<IBankQueryProviderProps> = props => {
 		{...props}
     />;
 };
+/**
+ * Default export marking a file it's generated and also preventing failing
+ * an empty file export (every module "must" have an export).
+ */
+export const $leight_cww3fn5m5r0vrg8so6bik8b7 = true;

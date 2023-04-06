@@ -44,6 +44,9 @@ export type ITransactionQuery = z.infer<ITransactionQuerySchema>;
 export const TransactionWhereSchema = TransactionWhereInputSchema;
 export const TransactionWhereUniqueSchema = TransactionWhereUniqueInputSchema;
 export const TransactionOrderBySchema = TransactionOrderByWithRelationInputSchema;
+/**
+ * Schema definition for Transaction
+ */
 export const TransactionSchema = $EntitySchema;
 export const TransactionCreateSchema = TransactionOptionalDefaultsSchema;
 export const TransactionPatchSchema = TransactionPartialSchema.merge(WithIdentitySchema);
@@ -58,8 +61,16 @@ export const TransactionSortSchema = z.object({
 	amount: SortOrderSchema,
 	reference: SortOrderSchema
 });
+/**
+ * Query definition for Transaction
+ */
 export const TransactionQuerySchema = QuerySchema({
     filterSchema: TransactionFilterSchema,
     sortSchema:   TransactionSortSchema,
     paramsSchema: TransactionParamSchema,
 });
+/**
+ * Default export marking a file it's generated and also preventing failing
+ * an empty file export (every module "must" have an export).
+ */
+export const $leight_zu61uxxfiqlxvn2o1resmisn = true;

@@ -65,3 +65,9 @@ export class BankBaseSource extends AbstractSource<IBankSourceSchema> {
         return sort as IBankOrderBy;
     }
 }
+
+/**
+ * Default export marking a file it's generated and also preventing failing
+ * an empty file export (every module "must" have an export).
+ */
+export const $leight_gyeceax49qn1z9yr8pponf9v = true;

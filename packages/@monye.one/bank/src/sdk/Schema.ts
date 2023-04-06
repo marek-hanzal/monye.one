@@ -44,6 +44,9 @@ export type IBankQuery = z.infer<IBankQuerySchema>;
 export const BankWhereSchema = BankWhereInputSchema;
 export const BankWhereUniqueSchema = BankWhereUniqueInputSchema;
 export const BankOrderBySchema = BankOrderByWithRelationInputSchema;
+/**
+ * Schema definition for Bank
+ */
 export const BankSchema = $EntitySchema;
 export const BankCreateSchema = BankOptionalDefaultsSchema;
 export const BankPatchSchema = BankPartialSchema.merge(WithIdentitySchema);
@@ -56,8 +59,16 @@ export const BankParamSchema = ParamsSchema;
 export const BankSortSchema = z.object({
     account: SortOrderSchema
 });
+/**
+ * Query definition for Bank
+ */
 export const BankQuerySchema = QuerySchema({
     filterSchema: BankFilterSchema,
     sortSchema:   BankSortSchema,
     paramsSchema: BankParamSchema,
 });
+/**
+ * Default export marking a file it's generated and also preventing failing
+ * an empty file export (every module "must" have an export).
+ */
+export const $leight_a5px4ioiftgcp3t5dr9kx4d4 = true;

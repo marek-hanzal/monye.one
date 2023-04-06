@@ -28,6 +28,9 @@ export interface ITransactionSourceProps extends ISourceProps<ITransactionSource
 export interface ITransactionQueryProviderProps extends IQueryProviderProps<ITransactionSourceSchema> {
 }
 
+/**
+ * Provides access to Transaction data with a connection to filtering and sorting. 
+ */
 export const TransactionSource:FC<ITransactionSourceProps> = props => {
     return <Source<ITransactionSourceSchema>
         schema={TransactionSchema}
@@ -37,6 +40,9 @@ export const TransactionSource:FC<ITransactionSourceProps> = props => {
 		{...props}
     />;
 };
+/**
+ * Provides all Query parts for Transaction used in fetching and sorting its data. 
+ */
 export const TransactionQueryProvider:FC<ITransactionQueryProviderProps> = props => {
     return <QueryProvider<ITransactionSourceSchema>
         SortProvider={TransactionSortStore.Provider}
@@ -44,3 +50,8 @@ export const TransactionQueryProvider:FC<ITransactionQueryProviderProps> = props
 		{...props}
     />;
 };
+/**
+ * Default export marking a file it's generated and also preventing failing
+ * an empty file export (every module "must" have an export).
+ */
+export const $leight_szm5lp40e2xuhszti74dsk69 = true;

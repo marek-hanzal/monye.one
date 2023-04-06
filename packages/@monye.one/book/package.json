@@ -29,6 +29,7 @@
     "devDependencies": {
         "@leight/esbuild": "^0.5.7",
         "@leight/eslint-config-eslint": "^0.5.16",
+        "@leight/sort": "^0.5.0",
         "@leight/source": "^0.5.0",
         "@leight/tsconfig": "^0.5.30",
         "@leight/turbowatch": "^0.5.0",

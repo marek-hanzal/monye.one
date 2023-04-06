@@ -38,7 +38,7 @@ export const generatorCommonEntitySchema: IGenerator<IGeneratorCommonParams> = a
                 "@leight/source":  [
                     "WithIdentitySchema",
                 ],
-                "@leight/zod": [
+                "@leight/zod":     [
                     "z",
                 ],
             },
@@ -71,7 +71,14 @@ export const generatorCommonEntitySchema: IGenerator<IGeneratorCommonParams> = a
         })
         .withConsts({
             exports: {
-                [`${entity}Schema`]:       {body: schemaEx?.entity ? `$EntitySchema.merge(${schemaEx.entity.type})` : "$EntitySchema"},
+                [`${entity}Schema`]:       {
+                    body: schemaEx?.entity ? `$EntitySchema.merge(${schemaEx.entity.type})` : "$EntitySchema",
+                    comment: `
+/**
+ * Schema definition for ${entity}
+ */
+                    `,
+                },
                 [`${entity}CreateSchema`]: {body: `${entity}OptionalDefaultsSchema`},
                 [`${entity}PatchSchema`]:  {body: `${entity}PartialSchema.merge(WithIdentitySchema)`},
                 [`${entity}FilterSchema`]: {
@@ -91,6 +98,11 @@ z.object({
                     `,
                 },
                 [`${entity}QuerySchema`]:  {
+                    comment: `
+/**
+ * Query definition for ${entity}
+ */
+                    `,
                     body: `
 QuerySchema({
     filterSchema: ${entity}FilterSchema,

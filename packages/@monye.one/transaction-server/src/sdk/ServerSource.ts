@@ -8,3 +8,9 @@ import {TransactionBaseSource} from "./ServerBaseSource";
 
 export class TransactionSource extends TransactionBaseSource implements ITransactionSource {
 }
+
+/**
+ * Default export marking a file it's generated and also preventing failing
+ * an empty file export (every module "must" have an export).
+ */
+export const $leight_m2okmiqp4z16rftpnxq9e6o9 = true;

@@ -9,57 +9,74 @@ export const generatorClientSourceStore: IGenerator<IGeneratorClientSourceParams
         barrel,
         params: {
                     packages,
-                    entity,
+                    entities,
                 }
     }) => {
-    withSourceFile()
+    const file = withSourceFile()
         .withHeader(`
     Source code containing improved Zustand store stuff for Source support (client-side).
-        `)
-        .withImports({
-            imports: {
-                "@leight/source-client": [
-                    "createSourceContext",
-                    "type ISourceProps",
-                ],
-                "@leight/sort-client":   [
-                    "createSortContext",
-                ],
-                [packages.schema]:       [
-                    `type I${entity}SourceSchema`,
-                    `${entity}Schema`,
-                    `type I${entity}SortSchema`,
-                    `${entity}SortSchema`,
-                ],
-            },
-        })
-        .withTypes({
-            exports: {
-                [`I${entity}Source`]: `ISourceProps<I${entity}SourceSchema>`,
-            },
-        })
-        .withConsts({
-            exports: {
-                [`${entity}SourceStore`]: {
-                    body: `
+        `);
+
+    entities.forEach(({name: entity, disabled = []}) => {
+        if (disabled.includes("source")) {
+            return;
+        }
+        file.withImports({
+                imports: {
+                    "@leight/source-client": [
+                        "createSourceContext",
+                        "type ISourceProps",
+                    ],
+                    "@leight/sort-client":   [
+                        "createSortContext",
+                    ],
+                    [packages.schema]:       [
+                        `type I${entity}SourceSchema`,
+                        `${entity}Schema`,
+                        `type I${entity}SortSchema`,
+                        `${entity}SortSchema`,
+                    ],
+                },
+            })
+            .withTypes({
+                exports: {
+                    [`I${entity}Source`]: `ISourceProps<I${entity}SourceSchema>`,
+                },
+            })
+            .withConsts({
+                exports: {
+                    [`${entity}SourceStore`]: {
+                        comment: `
+/**
+ * Defines Store for ${entity}, so you can access it's data.
+ */
+                        `,
+                        body: `
 createSourceContext<I${entity}SourceSchema>({
     name:   "${entity}",
     schema: ${entity}Schema,
 })
                     `,
-                },
-                [`${entity}SortStore`]:   {
-                    body: `
+                    },
+                    [`${entity}SortStore`]:   {
+                        comment: `
+/**
+ * Defines Store for ${entity} sorting data.
+ */
+                        `,
+                        body: `
 createSortContext<I${entity}SortSchema>({
     name:   "${entity}Sort",
     schema: ${entity}SortSchema,
 })
                     `,
+                    },
                 },
-            },
-        })
-        .saveTo({
-            file: normalize(`${process.cwd()}/${folder}/ClientStore.ts`),
-            barrel,
-        });
+            });
+    });
+
+    file.saveTo({
+        file: normalize(`${process.cwd()}/${folder}/ClientStore.ts`),
+        barrel,
+    });
 };

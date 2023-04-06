@@ -23,6 +23,10 @@ export interface ITransactionSourceTableInternalProps<TColumnKeys extends string
 export interface ITransactionSourceTableProps<TColumnKeys extends string> extends Omit<ITransactionSourceTableInternalProps<TColumnKeys>, "columns" | "withTranslation"> {
 }
 
+/**
+ * Base implementation of a table providing Transaction data already connected to a source; just extend this table with
+ * columns and other props as you wish.
+ */
 export const TransactionSourceTable = <TColumnKeys extends string>(props: ITransactionSourceTableInternalProps<TColumnKeys>) => {
     return <TransactionSource>
         <SourceTable
@@ -33,3 +37,8 @@ export const TransactionSourceTable = <TColumnKeys extends string>(props: ITrans
         />
     </TransactionSource>;
 };
+/**
+ * Default export marking a file it's generated and also preventing failing
+ * an empty file export (every module "must" have an export).
+ */
+export const $leight_xxgmafzkqxkpbi5sa3yly3vu = true;
