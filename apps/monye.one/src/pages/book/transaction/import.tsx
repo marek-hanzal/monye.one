@@ -2,7 +2,7 @@ import logo              from "@/monye.one/assets/logo/logo.svg";
 import {withTranslation} from "@leight/i18n-server";
 import {ImportZone}      from "@leight/xlsx-import-client";
 import {Box}             from "@mantine/core";
-import {withBookLayout}  from "@monye.one/book";
+import {withBookLayout}  from "@monye.one/book-client";
 import {TransactionMenu} from "@monye.one/transaction-client";
 import {trpc}            from "@monye.one/trpc-client";
 

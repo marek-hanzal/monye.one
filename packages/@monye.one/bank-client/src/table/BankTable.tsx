@@ -1,40 +1,26 @@
-import {
-    type ISourceTableProps,
-    SourceTable
-}                from "@leight/table-client";
-import {
-    BankSchema,
-    type IBankSourceSchema,
-}                from "@monye.one/bank";
 import {type FC} from "react";
 import {
-    BankSource,
-    useBankSort,
-    useBankSource
+    BankSourceTable,
+    type IBankSourceTableProps
 }                from "../sdk";
 
 export type IBankTableColumns =
     | "account";
 
-export interface IBankTableProps extends ISourceTableProps<IBankSourceSchema, IBankTableColumns> {
+export interface IBankTableProps extends IBankSourceTableProps<IBankTableColumns> {
 }
 
-export const BankTable: FC<IBankTableProps> = ({...props}) => {
-    return <BankSource>
-        <SourceTable
-            useSource={useBankSource}
-            useSort={useBankSort}
-            schema={BankSchema}
-            withTranslation={{
-                namespace: "bank",
-            }}
-            columns={{
-                account: {
-                    render: "account",
-                    sort:   "account",
-                },
-            }}
-            {...props}
-        />
-    </BankSource>;
+export const BankTable: FC<IBankTableProps> = props => {
+    return <BankSourceTable
+        withTranslation={{
+            namespace: "bank",
+        }}
+        columns={{
+            account: {
+                render: "account",
+                sort:   "account",
+            },
+        }}
+        {...props}
+    />;
 };

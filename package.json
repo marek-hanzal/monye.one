@@ -12,7 +12,7 @@
         "node": ">=16.0.0"
     },
     "scripts": {
-        "build": "turbo run build --no-daemon",
+        "build": "turbo run build --force --no-daemon",
         "lint": "turbo run lint --no-daemon",
         "dev": "turbo run dev --concurrency 100 --parallel --no-daemon | roarr",
         "depcheck": "turbo run depcheck --parallel --no-daemon",

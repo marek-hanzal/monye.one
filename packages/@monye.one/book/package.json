@@ -1,7 +1,7 @@
 {
     "version": "0.5.0",
     "name": "@monye.one/book",
-    "description": "User-land components used in the @monye.one application (authenticated users).",
+    "description": "Shared stuff of the Book business logick.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -24,26 +24,16 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/i18n-client": "^0.5.29",
-        "@leight/layout": "^0.5.28",
-        "@leight/mantine": "^0.5.29",
-        "@leight/utils-client": "^0.5.31",
-        "@mantine/core": "^6.0.1",
-        "@mantine/hooks": "^6.0.1",
-        "@monye.one/ui": "^0.5.0",
-        "next": "^13.2.4",
-        "next-auth": "^4.20.1",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "@leight/calendar": "^0.5.0"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.7",
         "@leight/eslint-config-eslint": "^0.5.16",
+        "@leight/source": "^0.5.0",
         "@leight/tsconfig": "^0.5.30",
         "@leight/turbowatch": "^0.5.0",
-        "@roarr/cli": "^5.10.6",
+        "@leight/zod": "^0.5.0",
         "@types/node": "^18.15.0",
-        "@types/react": "^18.0.28",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
         "depcheck": "^1.4.3",

@@ -20,7 +20,6 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/user/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/ui/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/account-client/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/book/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc/src" isTestSource="false" />
@@ -75,6 +74,10 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/trpc-source-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/bank-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/calendar-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/calendar/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/book-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/book/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/public-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -114,8 +117,6 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/utils-server/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/account-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/account-client/lib" />
-      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/book/.turbo" />
-      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/book/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-client/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/trpc-server/.turbo" />
@@ -215,6 +216,14 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/bank-client/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/calendar-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/calendar-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/calendar/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/calendar/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/book-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/book-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/book/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/book/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/public-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/public-client/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

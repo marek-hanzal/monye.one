@@ -1,4 +1,4 @@
-import {z} from "zod";
+import {z} from "@leight/zod";
 
 /**
  * Schema used for importing transaction from any source.

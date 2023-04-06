@@ -1,5 +1,7 @@
 {
     "ignores": [
+        "@leight/i18n-client",
+        "@leight/i18n",
         "@leight/esbuild",
         "@leight/tsconfig",
         "@types/node"

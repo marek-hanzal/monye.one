@@ -1,7 +1,7 @@
 import logo              from "@/monye.one/assets/logo/logo.svg";
 import {withTranslation} from "@leight/i18n-server";
 import {Box}             from "@mantine/core";
-import {withBookLayout}  from "@monye.one/book";
+import {withBookLayout}  from "@monye.one/book-client";
 import {
     TransactionMenu,
     TransactionQueryProvider,

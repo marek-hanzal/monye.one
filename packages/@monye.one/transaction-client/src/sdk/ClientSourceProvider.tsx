@@ -17,9 +17,8 @@ import {
 } from "@monye.one/transaction";
 import {type FC} from "react";
 import {
-	TransactionProvider,
-	TransactionSortProvider,
-	useTransactionSort
+	TransactionSourceStore,
+	TransactionSortStore
 } from "./ClientStore";
 import {trpc} from "@monye.one/trpc-client";
 
@@ -32,16 +31,16 @@ export interface ITransactionQueryProviderProps extends IQueryProviderProps<ITra
 export const TransactionSource:FC<ITransactionSourceProps> = props => {
     return <Source<ITransactionSourceSchema>
         schema={TransactionSchema}
-        SourceProvider={TransactionProvider}
-        useSortState={useTransactionSort}
+        SourceProvider={TransactionSourceStore.Provider}
+        useSortState={TransactionSortStore.useState}
         useSourceQuery={trpc.transaction.source.query.useQuery}
-{...props}
+		{...props}
     />;
 };
 export const TransactionQueryProvider:FC<ITransactionQueryProviderProps> = props => {
     return <QueryProvider<ITransactionSourceSchema>
-        SortProvider={TransactionSortProvider}
+        SortProvider={TransactionSortStore.Provider}
         useCountQuery={trpc.transaction.source.count.useQuery}
-{...props}
+		{...props}
     />;
 };

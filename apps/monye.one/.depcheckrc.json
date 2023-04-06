@@ -1,6 +1,7 @@
 {
     "ignores": [
         "@leight/tsconfig",
+        "@leight/docs",
         "@leight/env",
         "@types/node",
         "autoprefixer",

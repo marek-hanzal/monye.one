@@ -5,7 +5,7 @@ import {
     BankQueryProvider,
     BankTable
 }                        from "@monye.one/bank-client";
-import {withBookLayout}  from "@monye.one/book";
+import {withBookLayout}  from "@monye.one/book-client";
 
 export default withBookLayout(
     function Banks() {

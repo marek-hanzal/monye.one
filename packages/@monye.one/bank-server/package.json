@@ -31,7 +31,6 @@
         "@leight/query": "^0.5.0",
         "@leight/source": "^0.5.0",
         "@leight/source-server": "^0.5.26",
-        "@leight/trpc-server": "^0.5.28",
         "@leight/trpc-source-server": "^0.5.0",
         "@monye.one/bank": "^0.5.0",
         "@monye.one/prisma": "^0.5.0"
@@ -42,7 +41,6 @@
         "@leight/sdk": "^0.5.0",
         "@leight/tsconfig": "^0.5.30",
         "@leight/turbowatch": "^0.5.0",
-        "@roarr/cli": "^5.10.6",
         "@types/node": "^18.15.0",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",

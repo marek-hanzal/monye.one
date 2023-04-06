@@ -37,7 +37,9 @@
             "outputMode": "new-only",
             "dependsOn": [
                 "^build",
-                "generate"
+                "generate",
+                "depcheck",
+                "lint"
             ],
             "outputs": [
                 "lib/**",

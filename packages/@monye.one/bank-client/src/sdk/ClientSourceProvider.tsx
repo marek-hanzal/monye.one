@@ -17,9 +17,8 @@ import {
 } from "@monye.one/bank";
 import {type FC} from "react";
 import {
-	BankProvider,
-	BankSortProvider,
-	useBankSort
+	BankSourceStore,
+	BankSortStore
 } from "./ClientStore";
 import {trpc} from "@monye.one/trpc-client";
 
@@ -32,16 +31,16 @@ export interface IBankQueryProviderProps extends IQueryProviderProps<IBankSource
 export const BankSource:FC<IBankSourceProps> = props => {
     return <Source<IBankSourceSchema>
         schema={BankSchema}
-        SourceProvider={BankProvider}
-        useSortState={useBankSort}
+        SourceProvider={BankSourceStore.Provider}
+        useSortState={BankSortStore.useState}
         useSourceQuery={trpc.bank.source.query.useQuery}
-{...props}
+		{...props}
     />;
 };
 export const BankQueryProvider:FC<IBankQueryProviderProps> = props => {
     return <QueryProvider<IBankSourceSchema>
-        SortProvider={BankSortProvider}
+        SortProvider={BankSortStore.Provider}
         useCountQuery={trpc.bank.source.count.useQuery}
-{...props}
+		{...props}
     />;
 };
