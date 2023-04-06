@@ -9,56 +9,61 @@ export const generatorServerBaseSource: IGenerator<IGeneratorServerParams> = asy
         folder,
         params: {
                     packages,
-                    entity,
-                    prisma,
+                    entities,
                     header,
                 },
     }) => {
-    withSourceFile()
-        .withHeader(header || `
+    const file = withSourceFile();
+
+    entities.forEach(({name: entity, prisma, packages: $packages}) => {
+        const packageSchema = $packages?.schema || packages?.schema;
+
+        file.withHeader(header || `
     Base Source contains default implementation of Source for entity ${entity}. This could be used for further extensions,
     also default export uses this as a parent class.
-        `)
-        .withImports({
-            imports: {
-                "@leight/query":         [
-                    "withCursor",
-                ],
-                "@leight/prisma":        [
-                    "$PrismaClient",
-                ],
-                "@leight/source":        [
-                    "type ISource",
-                    "withUpsert",
-                ],
-                "@leight/source-server": [
-                    "AbstractSource",
-                ],
-            },
-        })
-        .withImports({
-            imports: {
-                [packages.schema]: [
-                    `$${entity}Source`,
-                    `type I${entity}Where`,
-                    `type I${entity}WhereUnique`,
-                    `type I${entity}OrderBy`,
-                    `type I${entity}SourceSchema`,
-                ],
-            },
-        })
-        .withImports({
-            imports: {
-                [packages.prisma]: [
-                    "type PrismaClient",
-                ],
-            }
-        })
-        .withClasses({
-            exports: {
-                [`${entity}BaseSource`]: {
-                    extends: `AbstractSource<I${entity}SourceSchema>`,
-                    body:    `
+        `);
+
+        if (prisma && packages?.prisma && packageSchema) {
+            file.withImports({
+                    imports: {
+                        "@leight/query":         [
+                            "withCursor",
+                        ],
+                        "@leight/prisma":        [
+                            "$PrismaClient",
+                        ],
+                        "@leight/source":        [
+                            "type ISource",
+                            "withUpsert",
+                        ],
+                        "@leight/source-server": [
+                            "AbstractSource",
+                        ],
+                    },
+                })
+                .withImports({
+                    imports: {
+                        [packageSchema]: [
+                            `$${entity}Source`,
+                            `type I${entity}Where`,
+                            `type I${entity}WhereUnique`,
+                            `type I${entity}OrderBy`,
+                            `type I${entity}SourceSchema`,
+                        ],
+                    },
+                })
+                .withImports({
+                    imports: {
+                        [packages.prisma]: [
+                            "type PrismaClient",
+                        ],
+                    },
+                })
+                .withClasses({
+                    exports: {
+                        [`${entity}BaseSource`]: {
+                            extends: `AbstractSource<I${entity}SourceSchema>`,
+                            body:    `
     static inject = [
         $PrismaClient,
     ];
@@ -105,11 +110,43 @@ export const generatorServerBaseSource: IGenerator<IGeneratorServerParams> = asy
         return sort as I${entity}OrderBy;
     }
                     `,
+                        },
+                    },
+                });
+            return;
+        }
+
+        file.withImports({
+                imports: {
+                    "@leight/source-server": [
+                        "AbstractSource",
+                    ],
                 },
-            },
-        })
-        .saveTo({
-            file: normalize(`${process.cwd()}/${folder}/ServerBaseSource.ts`),
-            barrel,
-        });
+            })
+            .withImports({
+                imports: packageSchema ? {
+                    [packageSchema]: [
+                        `$${entity}Source`,
+                        `type I${entity}SourceSchema`,
+                    ],
+                } : {},
+            })
+            .withClasses({
+                exports: {
+                    [`${entity}BaseSource`]: {
+                        extends: `AbstractSource<I${entity}SourceSchema>`,
+                        body:    `
+    constructor() {
+        super($${entity}Source);
+    }
+                    `,
+                    },
+                },
+            });
+    });
+
+    file.saveTo({
+        file: normalize(`${process.cwd()}/${folder}/ServerBaseSource.ts`),
+        barrel,
+    });
 };

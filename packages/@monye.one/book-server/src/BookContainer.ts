@@ -1,19 +1,21 @@
-import {type IContainer} from "@leight/container";
+import {type IContainer}         from "@leight/container";
+import {
+    $CalendarEventSource,
+    type ICalendarEventSource
+}                                from "@monye.one/book";
+import {CalendarEventBaseSource} from "./sdk";
 
 export interface IBookContainer {
+    CalendarEventSource: ICalendarEventSource;
 }
 
 export const BookContainer = (container: IContainer): IBookContainer => {
-    // container
-    //     .bindClass($BookImportService, BookImportService)
-    //     .bindClass($BookSource, BookSource);
+    container
+        .bindClass($CalendarEventSource, CalendarEventBaseSource);
 
     return {
-        // get BookImportService() {
-        //     return container.resolve<IBookImportService>($BookImportService);
-        // },
-        // get BookSource() {
-        //     return container.resolve<IBookSource>($BookSource);
-        // },
+        get CalendarEventSource() {
+            return container.resolve<ICalendarEventSource>($CalendarEventSource);
+        },
     };
 };

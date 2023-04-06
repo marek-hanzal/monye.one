@@ -1,3 +1,15 @@
-import {withSdk} from "@leight/sdk";
+import {
+    withSdk,
+    withServerSourceGenerators
+} from "@leight/sdk";
 
-void withSdk([]);
+void withSdk(withServerSourceGenerators({
+    entities: [
+        {
+            name:     "CalendarEvent",
+            packages: {
+                schema: "@monye.one/book",
+            }
+        }
+    ],
+}));

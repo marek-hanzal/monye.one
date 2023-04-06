@@ -12,40 +12,40 @@ import {
 	QueryProvider
 } from "@leight/query-client";
 import {
-	type IBookCalendarEventSourceSchema,
-	BookCalendarEventSchema
+	type ICalendarEventSourceSchema,
+	CalendarEventSchema
 } from "@monye.one/book";
 import {type FC} from "react";
 import {
-	BookCalendarEventSourceStore,
-	BookCalendarEventSortStore
+	CalendarEventSourceStore,
+	CalendarEventSortStore
 } from "./ClientStore";
 import {trpc} from "@monye.one/trpc-client";
 
-export interface IBookCalendarEventSourceProps extends ISourceProps<IBookCalendarEventSourceSchema> {
+export interface ICalendarEventSourceProps extends ISourceProps<ICalendarEventSourceSchema> {
 }
 
-export interface IBookCalendarEventQueryProviderProps extends IQueryProviderProps<IBookCalendarEventSourceSchema> {
+export interface ICalendarEventQueryProviderProps extends IQueryProviderProps<ICalendarEventSourceSchema> {
 }
 
 /**
- * Provides access to BookCalendarEvent data with a connection to filtering and sorting. 
+ * Provides access to CalendarEvent data with a connection to filtering and sorting. 
  */
-export const BookCalendarEventSource:FC<IBookCalendarEventSourceProps> = props => {
-    return <Source<IBookCalendarEventSourceSchema>
-        schema={BookCalendarEventSchema}
-        SourceProvider={BookCalendarEventSourceStore.Provider}
-        useSortState={BookCalendarEventSortStore.useState}
+export const CalendarEventSource:FC<ICalendarEventSourceProps> = props => {
+    return <Source<ICalendarEventSourceSchema>
+        schema={CalendarEventSchema}
+        SourceProvider={CalendarEventSourceStore.Provider}
+        useSortState={CalendarEventSortStore.useState}
         useSourceQuery={trpc.book.calendar.event.source.query.useQuery}
 		{...props}
     />;
 };
 /**
- * Provides all Query parts for BookCalendarEvent used in fetching and sorting its data. 
+ * Provides all Query parts for CalendarEvent used in fetching and sorting its data. 
  */
-export const BookCalendarEventQueryProvider:FC<IBookCalendarEventQueryProviderProps> = props => {
-    return <QueryProvider<IBookCalendarEventSourceSchema>
-        SortProvider={BookCalendarEventSortStore.Provider}
+export const CalendarEventQueryProvider:FC<ICalendarEventQueryProviderProps> = props => {
+    return <QueryProvider<ICalendarEventSourceSchema>
+        SortProvider={CalendarEventSortStore.Provider}
         useCountQuery={trpc.book.calendar.event.source.count.useQuery}
 		{...props}
     />;
@@ -54,4 +54,4 @@ export const BookCalendarEventQueryProvider:FC<IBookCalendarEventQueryProviderPr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ckchmlrwp6mgz8btv7c3btlu = true;
+export const $leight_wf0gi24cak3j5vec42qnr2yk = true;

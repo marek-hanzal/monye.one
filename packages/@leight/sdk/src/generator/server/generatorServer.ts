@@ -8,32 +8,37 @@ export interface IGeneratorServerParams {
     /**
      * Package references (used for generating proper `import` statements
      */
-    packages: {
+    packages?: {
         /**
          * Source package exporting "PrismaSchema" namespace containing "entity"
          */
-        prisma: string;
+        prisma?: string;
         /**
          * Reference to package with generated Schemas (entity/sort/filter/...)
          */
-        schema: string;
+        schema?: string;
     };
-    /**
-     * Entity name this generator works with
-     */
-    entity: string;
-    /**
-     * Prisma repository (prismaClient.${prisma})
-     */
-    prisma: string;
-    /**
-     * Which parts of the generator are disabled (not used)
-     */
-    disabled?: ("trpc-procedure")[];
-    /**
-     * Optional extension of the source (if there are some custom methods)
-     */
-    sourceEx?: IPackageType;
+    entities: {
+        /**
+         * Entity name this generator works with
+         */
+        name: string;
+        /**
+         * Prisma repository (prismaClient.${prisma})
+         */
+        prisma?: string;
+        /**
+         * Which parts of the generator are disabled (not used)
+         */
+        disabled?: ("trpc-procedure")[];
+        /**
+         * Optional extension of the source (if there are some custom methods)
+         */
+        sourceEx?: IPackageType;
+        packages?: {
+            schema?: string;
+        };
+    }[];
     /**
      * File header, generated as a comment
      */

@@ -6,7 +6,7 @@ import {
 void withSdk(withClientSourceGenerators({
     entities: [
         {
-            name:     "BookCalendarEvent",
+            name:     "CalendarEvent",
             disabled: ["table"],
             trpc:     {
                 path:    "book.calendar.event",

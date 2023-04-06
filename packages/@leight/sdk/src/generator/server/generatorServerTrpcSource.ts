@@ -8,51 +8,57 @@ export const generatorServerTrpcSource: IGenerator<IGeneratorServerParams> = asy
         barrel,
         folder,
         params: {
-                    entity,
+                    entities,
                     packages,
-                    sourceEx,
-                    disabled = [],
                 },
     }) => {
-    if (disabled.includes("trpc-procedure")) {
-        return;
-    }
-    withSourceFile()
-        .withImports({
-            imports: {
-                "@leight/trpc-source-server": [
-                    "withSourceProcedure",
-                ],
-            }
-        })
-        .withImports({
-            imports: {
-                [packages.schema]: [
-                    `$${entity}Source`,
-                    `${entity}QuerySchema`,
-                    `type I${entity}SourceSchema`,
-                ],
-            },
-        })
-        .withImports(sourceEx?.package ? {
-            imports: {
-                [sourceEx.package]: [sourceEx.type],
-            },
-        } : undefined)
-        .withConsts({
-            exports: {
-                [`${entity}SourceProcedure`]: {
-                    body: `
+    const file = withSourceFile();
+
+    entities.forEach(({name: entity, sourceEx, packages: $packages, disabled = []}) => {
+        if (disabled.includes("trpc-procedure")) {
+            return;
+        }
+
+        const packageSchema = $packages?.schema || packages?.schema;
+
+        file.withImports({
+                imports: {
+                    "@leight/trpc-source-server": [
+                        "withSourceProcedure",
+                    ],
+                }
+            })
+            .withImports({
+                imports: packageSchema ? {
+                    [packageSchema]: [
+                        `$${entity}Source`,
+                        `${entity}QuerySchema`,
+                        `type I${entity}SourceSchema`,
+                    ],
+                } : {},
+            })
+            .withImports(sourceEx?.package ? {
+                imports: {
+                    [sourceEx.package]: [sourceEx.type],
+                },
+            } : undefined)
+            .withConsts({
+                exports: {
+                    [`${entity}SourceProcedure`]: {
+                        body: `
 withSourceProcedure<I${entity}SourceSchema>({
     source: $${entity}Source,
     schema: ${entity}QuerySchema,
 })
                     `,
+                    },
                 },
-            },
-        })
-        .saveTo({
-            file: normalize(`${process.cwd()}/${folder}/ServerTrpc.ts`),
-            barrel,
-        });
+            });
+    });
+
+
+    file.saveTo({
+        file: normalize(`${process.cwd()}/${folder}/ServerTrpc.ts`),
+        barrel,
+    });
 };

@@ -26,6 +26,7 @@
     "dependencies": {
         "@leight/container": "^0.5.27",
         "@monye.one/bank-server": "^0.5.0",
+        "@monye.one/book-server": "^0.5.0",
         "@monye.one/transaction-server": "^0.5.0"
     },
     "devDependencies": {

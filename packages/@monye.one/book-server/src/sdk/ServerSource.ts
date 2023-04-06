@@ -3,14 +3,14 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type ITransactionSource} from "@monye.one/transaction";
-import {TransactionBaseSource} from "./ServerBaseSource";
+import {type ICalendarEventSource} from "@monye.one/book";
+import {CalendarEventBaseSource} from "./ServerBaseSource";
 
-export class TransactionSource extends TransactionBaseSource implements ITransactionSource {
+export class CalendarEventSource extends CalendarEventBaseSource implements ICalendarEventSource {
 }
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_oq27ezst9bkof98298l6ph8o = true;
+export const $leight_raiqpljbuxdn91hcf3n6fw60 = true;
