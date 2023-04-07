@@ -13,4 +13,4 @@ export class CalendarEventSource extends CalendarEventBaseSource implements ICal
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_raiqpljbuxdn91hcf3n6fw60 = true;
+export const $leight_qpntrubik58dvipuikiwqq18 = true;

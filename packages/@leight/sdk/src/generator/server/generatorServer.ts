@@ -1,54 +1,66 @@
-import {type IPackageType}         from "@leight/generator";
-import {type IGenerator}           from "../../api";
-import {generatorServerBaseSource} from "./generatorServerBaseSource";
-import {generatorServerSource}     from "./generatorServerSource";
-import {generatorServerTrpcSource} from "./generatorServerTrpcSource";
+import {type IGenerator} from "../../api";
+import {
+    generatorServerBaseSource,
+    type IGeneratorServerBaseSourceParams
+}                        from "./generatorServerBaseSource";
+import {
+    generatorServerPrismaSource,
+    type IGeneratorServerPrismaSourceParams
+}                        from "./generatorServerPrismaSource";
+import {
+    generatorServerSource,
+    type IGeneratorServerSourceParams
+}                        from "./generatorServerSource";
+import {
+    generatorServerTrpcSource,
+    type IGeneratorServerTrpcSourceParams
+}                        from "./generatorServerTrpcSource";
 
 export interface IGeneratorServerParams {
     /**
-     * Package references (used for generating proper `import` statements
+     * Prisma source generator parameters.
      */
-    packages?: {
-        /**
-         * Source package exporting "PrismaSchema" namespace containing "entity"
-         */
-        prisma?: string;
-        /**
-         * Reference to package with generated Schemas (entity/sort/filter/...)
-         */
-        schema?: string;
-    };
-    entities: {
-        /**
-         * Entity name this generator works with
-         */
-        name: string;
-        /**
-         * Prisma repository (prismaClient.${prisma})
-         */
-        prisma?: string;
-        /**
-         * Which parts of the generator are disabled (not used)
-         */
-        disabled?: ("trpc-procedure")[];
-        /**
-         * Optional extension of the source (if there are some custom methods)
-         */
-        sourceEx?: IPackageType;
-        packages?: {
-            schema?: string;
-        };
-    }[];
+    PrismaSource?: IGeneratorServerPrismaSourceParams;
     /**
-     * File header, generated as a comment
+     * Generator for Source without Prisma connection.
      */
-    header?: string;
+    BaseSource?: IGeneratorServerBaseSourceParams;
+    /**
+     * Generates public Source (this should NOT be extended in userland)
+     */
+    Source?: IGeneratorServerSourceParams;
+    /**
+     * If you want to generate standard Source TRPC procedure API, put your entities
+     * here.
+     */
+    TrpcSource?: IGeneratorServerTrpcSourceParams;
 }
 
-export const generatorServer: IGenerator<IGeneratorServerParams> = async props => {
+export const generatorServer: IGenerator<IGeneratorServerParams> = async (
+    {
+        params: {
+                    PrismaSource,
+                    BaseSource,
+                    Source,
+                    TrpcSource,
+                }, ...props
+    }) => {
     await Promise.all([
-        generatorServerBaseSource(props),
-        generatorServerSource(props),
-        generatorServerTrpcSource(props),
-    ]);
+        BaseSource ? generatorServerBaseSource({
+            ...props,
+            params: BaseSource,
+        }) : undefined,
+        PrismaSource ? generatorServerPrismaSource({
+            ...props,
+            params: PrismaSource,
+        }) : undefined,
+        Source ? generatorServerSource({
+            ...props,
+            params: Source,
+        }) : undefined,
+        TrpcSource ? generatorServerTrpcSource({
+            ...props,
+            params: TrpcSource,
+        }) : undefined,
+    ].filter(Boolean));
 };

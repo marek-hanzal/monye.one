@@ -4,12 +4,34 @@ import {
 } from "@leight/sdk";
 
 void withSdk(withServerSourceGenerators({
-    entities: [
-        {
-            name:     "CalendarEvent",
-            packages: {
-                schema: "@monye.one/book",
+    BaseSource: {
+        entities: [
+            {
+                name:     "CalendarEvent",
+                packages: {
+                    schema: "@monye.one/book",
+                },
+            },
+        ],
+    },
+    Source:     {
+        entities: [
+            {
+                name:     "CalendarEvent",
+                packages: {
+                    schema: "@monye.one/book",
+                },
+            },
+        ],
+    },
+    TrpcSource: {
+        entities: [
+            {
+                name:     "CalendarEvent",
+                packages: {
+                    schema: "@monye.one/book",
+                },
             }
-        }
-    ],
+        ]
+    }
 }));

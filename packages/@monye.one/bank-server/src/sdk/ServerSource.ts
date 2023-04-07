@@ -4,13 +4,13 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {type IBankSource} from "@monye.one/bank";
-import {BankBaseSource} from "./ServerBaseSource";
+import {BankBasePrismaSource} from "./ServerPrismaSource";
 
-export class BankSource extends BankBaseSource implements IBankSource {
+export class BankSource extends BankBasePrismaSource implements IBankSource {
 }
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wiuhjex0j3ft7wgjzdy5uo6t = true;
+export const $leight_sb0t1eym7d1sfoh3miglhgvk = true;

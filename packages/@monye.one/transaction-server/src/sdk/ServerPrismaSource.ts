@@ -1,5 +1,5 @@
 /**
-	Base Source contains default implementation of Source for entity Transaction. This could be used for further extensions,
+	Base Prisma Source contains default implementation of Source for entity Transaction connected to Prisma. This could be used for further extensions,
     also default export uses this as a parent class.
  */
 import {withCursor} from "@leight/query";
@@ -18,7 +18,7 @@ import {
 } from "@monye.one/transaction";
 import {type PrismaClient} from "@monye.one/prisma";
 
-export class TransactionBaseSource extends AbstractSource<ITransactionSourceSchema> {
+export class TransactionBasePrismaSource extends AbstractSource<ITransactionSourceSchema> {
 	static inject = [
         $PrismaClient,
     ];
@@ -70,4 +70,4 @@ export class TransactionBaseSource extends AbstractSource<ITransactionSourceSche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_k8g977vpvb8gga61bgi4464h = true;
+export const $leight_x9bfa3h0y75jermzx4rltxn4 = true;

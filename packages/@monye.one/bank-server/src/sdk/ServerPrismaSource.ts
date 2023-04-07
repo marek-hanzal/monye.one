@@ -1,5 +1,5 @@
 /**
-	Base Source contains default implementation of Source for entity Bank. This could be used for further extensions,
+	Base Prisma Source contains default implementation of Source for entity Bank connected to Prisma. This could be used for further extensions,
     also default export uses this as a parent class.
  */
 import {withCursor} from "@leight/query";
@@ -18,7 +18,7 @@ import {
 } from "@monye.one/bank";
 import {type PrismaClient} from "@monye.one/prisma";
 
-export class BankBaseSource extends AbstractSource<IBankSourceSchema> {
+export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
 	static inject = [
         $PrismaClient,
     ];
@@ -70,4 +70,4 @@ export class BankBaseSource extends AbstractSource<IBankSourceSchema> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_o02l47kywsehc6cb8r8teulu = true;
+export const $leight_kxabrhkahz5mmlvv39zaf9kh = true;
