@@ -71,4 +71,4 @@ export const BankQuerySchema = QuerySchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_olm63txdew5z7vtsyz4k4pms = true;
+export const $leight_wqrr7t2d155d57airl42kr70 = true;

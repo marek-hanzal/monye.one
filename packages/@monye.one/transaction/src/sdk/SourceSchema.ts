@@ -34,4 +34,4 @@ export interface ITransactionSourceSchema extends ISourceSchema<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_afd06ob22otwp5r0uzg6s7sj = true;
+export const $leight_macdc0kxk227rb9mgn63ocdc = true;
