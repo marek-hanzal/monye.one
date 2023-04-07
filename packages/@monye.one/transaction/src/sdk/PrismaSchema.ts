@@ -73,4 +73,4 @@ export const TransactionQuerySchema = QuerySchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_eb86o2fk9izjgqj1v3obkunh = true;
+export const $leight_okt7ni8l5bk0xt34qdtl3vgz = true;

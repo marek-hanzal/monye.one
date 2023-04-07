@@ -78,7 +78,7 @@ export const weeksOf = (
                         return Array.from({length: 7}, (_, day) => {
                             const $day = $week.plus({day: day});
                             return {
-                                id:           `${id}-${day}`,
+                                id:           $day.toLocaleString({day: "numeric", month: "numeric", year: "numeric"}),
                                 day:          $day,
                                 isCurrent:    !Math.floor(now.diff($day, "day").days),
                                 isOutOfRange: $day.month !== date.month || $day.year !== date.year,
@@ -92,7 +92,7 @@ export const weeksOf = (
             return Array.from({length: days}, (_, day) => {
                 const $day = weekStart.plus({day: day});
                 return {
-                    id:           `${start.year}-${$day.weekNumber}-${$day.day}`,
+                    id:           $day.toLocaleString({day: "numeric", month: "numeric", year: "numeric"}),
                     day:          $day,
                     isCurrent:    !Math.floor(now.diff($day, "day").days),
                     isOutOfRange: $day.month !== date.month || $day.year !== date.year,

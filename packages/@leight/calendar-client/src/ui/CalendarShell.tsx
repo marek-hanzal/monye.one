@@ -192,7 +192,6 @@ const renderComponent = (component: ICalendarComponent | undefined, props: ICale
  */
 export const CalendarShell = <TSourceSchema extends ISourceSchema<ICalendarEventSchema> = ISourceSchema<ICalendarEventSchema>>(
     {
-
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         events,
         withControls = true,

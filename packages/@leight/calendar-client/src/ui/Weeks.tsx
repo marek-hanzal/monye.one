@@ -90,6 +90,17 @@ export const Weeks = <TSourceSchema extends ISourceSchema<ICalendarEventSchema> 
                          isCurrent,
                      }
           }                                                     = WeeksOfStore.useState();
+    const source                                                = events?.useSource();
+    const $events                                               = events && source?.entities
+        .filter(event => events.schema.safeParse(event))
+        .map(event => events.schema.parse(event))
+        .reduce<Record<string, TSourceSchema["Entity"][]>>((prev, current) => {
+            const stamp = current.date.toLocaleString({day: "numeric", month: "numeric", year: "numeric"});
+            return {
+                ...prev,
+                [stamp]: (prev[stamp] || []).concat(current),
+            };
+        }, {});
     const [isOverlay, {open: openOverlay, close: closeOverlay}] = useDisclosure(false);
     const overlay                                               = useRef<ReactNode>();
     const [withWeeks, setWithWeeks]                             = useState(defaultWithWeekNo);
@@ -269,7 +280,7 @@ export const Weeks = <TSourceSchema extends ISourceSchema<ICalendarEventSchema> 
                             {renderDayInline({
                                 schema: events.schema,
                                 day,
-                                events: [].filter(event => events.schema.safeParse(event)),
+                                events: $events?.[day.id] || [],
                             })}
                         </div> : null}
                     </Stack>

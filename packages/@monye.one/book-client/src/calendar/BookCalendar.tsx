@@ -25,7 +25,9 @@ export const BookCalendar: FC<IBookCalendarProps> = props => {
                     useSource: CalendarEventSourceStore.useState,
                 }}
                 renderDayInline={({events}) => {
-                    console.log("events", events);
+                    if (!events.length) {
+                        return null;
+                    }
                     return <>ahoj</>;
                 }}
                 {...props}
