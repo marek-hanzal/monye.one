@@ -3,35 +3,25 @@ import {withSourceFile}  from "@leight/generator-server";
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
-export interface IGeneratorCommonEntityPrismaSchemaParams {
-    entities: IGeneratorCommonEntityPrismaSchemaParams.IEntity[];
+export interface IGeneratorCommonEntitySchemaParams {
+    entities: IGeneratorCommonEntitySchemaParams.IEntity[];
 }
 
-export namespace IGeneratorCommonEntityPrismaSchemaParams {
+export namespace IGeneratorCommonEntitySchemaParams {
     export interface IEntity {
         /**
          * Base name exported (used to name all exported objects)
          */
         name: string;
-        /**
-         * Required package imports
-         */
-        packages: IPackages;
-        /**
-         * Optional extensions of individual parts of the schemas
-         */
-        withSchemaEx?: IWithSchemaEx;
+        withSchema: {
+            schema: IPackageType;
+            create?: IPackageType;
+            patch?: IPackageType;
+        },
         /**
          * Specify sort fields of the Sort query
          */
         sorts?: string[];
-    }
-
-    export interface IPackages {
-        /**
-         * Prisma package which exports PrismaClient.
-         */
-        prisma: string;
     }
 
     export interface IWithSchemaEx {
@@ -45,7 +35,7 @@ export namespace IGeneratorCommonEntityPrismaSchemaParams {
 /**
  * Generates Query stuff bound to Prisma schemas.
  */
-export const generatorCommonEntityPrismaSchema: IGenerator<IGeneratorCommonEntityPrismaSchemaParams> = async (
+export const generatorCommonEntitySchema: IGenerator<IGeneratorCommonEntitySchemaParams> = async (
     {
         barrel,
         folder,
@@ -53,80 +43,77 @@ export const generatorCommonEntityPrismaSchema: IGenerator<IGeneratorCommonEntit
     }) => {
     const file = withSourceFile();
 
-    entities.forEach(({name, withSchemaEx, sorts = ["id"], packages}) => {
-        file.withImports({
+    entities.forEach(({name, withSchema, sorts = ["id"]}) => {
+        file
+            .withImports({
                 imports: {
-                    [packages.prisma]: [
-                        `${name}Schema as $EntitySchema`,
-                        `${name}OptionalDefaultsSchema`,
-                        `${name}PartialSchema`,
-                        `${name}WhereInputSchema`,
-                        `${name}WhereUniqueInputSchema`,
-                        `${name}OrderByWithRelationInputSchema`,
-                    ],
-                    "@leight/filter":  [
+                    "@leight/filter": [
                         "FilterSchema",
                     ],
-                    "@leight/query":   [
+                    "@leight/query":  [
                         "ParamsSchema",
                         "QuerySchema",
                     ],
-                    "@leight/sort":    [
+                    "@leight/sort":   [
                         "SortOrderSchema",
                     ],
-                    "@leight/source":  [
+                    "@leight/source": [
                         "WithIdentitySchema",
                     ],
-                    "@leight/zod":     [
+                    "@leight/zod":    [
                         "z",
                     ],
                 },
             })
-            .withImports(withSchemaEx?.entity?.package ? {
+            .withImports(withSchema.create ? undefined : {
                 imports: {
-                    [withSchemaEx.entity.package]: [
-                        withSchemaEx.entity.type,
+                    "@leight/source": [
+                        "CreateSchema",
                     ],
-                },
-            } : undefined)
-            .withConsts({
-                exports: {
-                    [`${name}WhereSchema`]:       {body: `${name}WhereInputSchema`},
-                    [`${name}WhereUniqueSchema`]: {body: `${name}WhereUniqueInputSchema`},
-                    [`${name}OrderBySchema`]:     {body: `${name}OrderByWithRelationInputSchema`},
-                },
-            })
-            .withTypes({
-                exports: {
-                    [`I${name}WhereSchema`]: `typeof ${name}WhereSchema`,
-                    [`I${name}Where`]:       `z.infer<I${name}WhereSchema>`,
-
-                    [`I${name}WhereUniqueSchema`]: `typeof ${name}WhereUniqueSchema`,
-                    [`I${name}WhereUnique`]:       `z.infer<I${name}WhereUniqueSchema>`,
-
-                    [`I${name}OrderBySchema`]: `typeof ${name}OrderBySchema`,
-                    [`I${name}OrderBy`]:       `z.infer<I${name}OrderBySchema>`,
                 }
+            })
+            .withImports(withSchema.patch ? undefined : {
+                imports: {
+                    "@leight/source": [
+                        "WithIdentitySchema",
+                    ],
+                }
+            })
+            .withImports({
+                imports: withSchema.schema.package ? {
+                    [withSchema.schema.package]: [
+                        withSchema.schema.type,
+                    ],
+                } : {},
+            })
+            .withImports({
+                imports: withSchema.create?.package ? {
+                    [withSchema.create?.package]: [
+                        withSchema.create.type,
+                    ],
+                } : {},
+            })
+            .withImports({
+                imports: withSchema.patch?.package ? {
+                    [withSchema.patch?.package]: [
+                        withSchema.patch.type,
+                    ],
+                } : {},
             })
             .withConsts({
                 exports: {
                     [`${name}Schema`]:       {
-                        body:    withSchemaEx?.entity ? `$EntitySchema.merge(${withSchemaEx.entity.type})` : "$EntitySchema",
+                        body:    withSchema.schema.type,
                         comment: `
 /**
  * Schema definition for ${name}
  */
                     `,
                     },
-                    [`${name}CreateSchema`]: {body: `${name}OptionalDefaultsSchema`},
-                    [`${name}PatchSchema`]:  {body: `${name}PartialSchema.merge(WithIdentitySchema)`},
+                    [`${name}CreateSchema`]: {body: withSchema.create ? withSchema.create.type : "CreateSchema"},
+                    [`${name}PatchSchema`]:  {body: withSchema.patch ? withSchema.patch.type : "WithIdentitySchema"},
                     [`${name}FilterSchema`]: {
-                        body: `z.union([
-    ${name}WhereSchema,
-    ${name}WhereUniqueSchema,
-    FilterSchema,
-])
-                    `,
+                        body: `FilterSchema`,
                     },
                     [`${name}ParamSchema`]:  {body: `ParamsSchema`},
                     [`${name}SortSchema`]:   {
@@ -173,7 +160,7 @@ QuerySchema({
     });
 
     file.saveTo({
-        file: normalize(`${process.cwd()}/${folder}/PrismaSchema.ts`),
+        file: normalize(`${process.cwd()}/${folder}/EntitySchema.ts`),
         barrel,
     });
 };

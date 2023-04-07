@@ -13,7 +13,7 @@ import {
 	type IBankPatchSchema,
 	type IBankSchema,
 	type IBankSortSchema
-} from "./Schema";
+} from "./PrismaSchema";
 
 export type IUseBankQuery = IUseQuery<IBankSourceSchema["Query"] | undefined, IBankSourceSchema["Entity"][]>;
 export type IUseBankCountQuery = IUseQuery<IBankSourceSchema["Query"] | undefined, number>;
@@ -34,4 +34,4 @@ export interface IBankSourceSchema extends ISourceSchema<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tlzuvkm24h3ma5bt2utfp3qe = true;
+export const $leight_i61za9q1k02a4yco7a08ok2v = true;

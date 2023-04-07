@@ -13,7 +13,7 @@ import {
 	type ITransactionPatchSchema,
 	type ITransactionSchema,
 	type ITransactionSortSchema
-} from "./Schema";
+} from "./PrismaSchema";
 
 export type IUseTransactionQuery = IUseQuery<ITransactionSourceSchema["Query"] | undefined, ITransactionSourceSchema["Entity"][]>;
 export type IUseTransactionCountQuery = IUseQuery<ITransactionSourceSchema["Query"] | undefined, number>;
@@ -34,4 +34,4 @@ export interface ITransactionSourceSchema extends ISourceSchema<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zb5tn9br5o7e4c4rf80nh4k4 = true;
+export const $leight_afd06ob22otwp5r0uzg6s7sj = true;

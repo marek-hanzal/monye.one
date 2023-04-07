@@ -12,6 +12,7 @@ export namespace IGeneratorCommonSourceSchemaParams {
          * Base name exported (used to name all exported objects)
          */
         name: string;
+        withPrisma?: boolean;
     }
 }
 
@@ -23,20 +24,20 @@ export const generatorCommonSourceSchema: IGenerator<IGeneratorCommonSourceSchem
     }) => {
     const file = withSourceFile();
 
-    entities.forEach(({name}) => {
+    entities.forEach(({name, withPrisma = false}) => {
         file.withHeader(`
     Source code of the common stuff for ${name} which could be shared between server and client side.
         `)
             .withImports({
                 imports: {
-                    "@leight/source":      [
+                    "@leight/source":                                   [
                         "type IWithIdentity",
                         "type ISourceSchema"
                     ],
-                    "@leight/react-query": [
+                    "@leight/react-query":                              [
                         "type IUseQuery",
                     ],
-                    ["./Schema"]:          [
+                    [withPrisma ? "./PrismaSchema" : "./EntitySchema"]: [
                         `type I${name}CreateSchema`,
                         `type I${name}FilterSchema`,
                         `type I${name}ParamSchema`,

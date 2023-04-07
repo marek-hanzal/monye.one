@@ -8,15 +8,15 @@ import {
 	type IContainer,
 	ServiceContext
 } from "@leight/container";
-import {type IBankSourceSchema} from "./SourceSchema";
+import {type ICalendarEventSourceSchema} from "./SourceSchema";
 
-export interface IBankSource extends ISource<IBankSourceSchema> {
+export interface ICalendarEventSource extends ISource<ICalendarEventSourceSchema> {
 }
 
-export const $BankSource = Symbol.for("@monye.one/bank/IBankSource");
-export const BankSourceContext = (container: IContainer) => new ServiceContext<IBankSource>(container, $BankSource);
+export const $CalendarEventSource = Symbol.for("@monye.one/book/ICalendarEventSource");
+export const CalendarEventSourceContext = (container: IContainer) => new ServiceContext<ICalendarEventSource>(container, $CalendarEventSource);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_kgdic3tb43cryibfmr5pau8c = true;
+export const $leight_e3vr874b3vopjmch5mo1ok46 = true;

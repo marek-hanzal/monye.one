@@ -14,6 +14,7 @@ export const withSourceGeneratorsEntity = ({name, packages, sorts}: IWithSourceG
             entities: [
                 {
                     name,
+                    withPrisma: true,
                 },
             ],
         },

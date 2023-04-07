@@ -1,3 +1,3 @@
 export * from "./Source";
-export * from "./PrismaSchema";
+export * from "./EntitySchema";
 export * from "./SourceSchema";

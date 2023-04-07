@@ -3,18 +3,31 @@ import {
     withSdk
 } from "@leight/sdk";
 
-void withSdk(withClientSourceGenerators({
-    entities: [
-        {
-            name:     "CalendarEvent",
-            disabled: ["table"],
-            trpc:     {
-                path:    "book.calendar.event",
-                package: "@monye.one/trpc-client",
-            },
+void withSdk(
+    withClientSourceGenerators({
+        SourceStore:    {
+            entities: [
+                {
+                    name:     "CalendarEvent",
+                    packages: {
+                        schema: "@monye.one/book",
+                    },
+                },
+            ],
         },
-    ],
-    packages: {
-        schema: "@monye.one/book",
-    },
-}));
+        SourceProvider: {
+            entities: [
+                {
+                    name:     "CalendarEvent",
+                    withTrpc: {
+                        path:    "book.calendar.event",
+                        package: "@monye.one/trpc-client",
+                    },
+                    packages: {
+                        schema: "@monye.one/book",
+                    },
+                },
+            ],
+        },
+    })
+);
