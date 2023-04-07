@@ -1,16 +1,21 @@
 import {
     withSdk,
-    withSourceGenerators
+    withSourceGenerators,
+    withSourceGeneratorsEntity
 } from "@leight/sdk";
 
-void withSdk(withSourceGenerators({
-    entity:   "Transaction",
-    packages: {
-        prisma: "@monye.one/prisma",
-    },
-    sorts:    [
-        "date",
-        "amount",
-        "reference",
-    ],
-}));
+void withSdk(
+    withSourceGenerators(
+        withSourceGeneratorsEntity({
+            name:     "Transaction",
+            packages: {
+                prisma: "@monye.one/prisma",
+            },
+            sorts:    [
+                "date",
+                "amount",
+                "reference",
+            ],
+        })
+    )
+);

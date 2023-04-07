@@ -1,19 +1,20 @@
 import {
     withClientSourceGenerators,
+    withClientSourceGeneratorsEntity,
     withSdk
 } from "@leight/sdk";
 
-void withSdk(withClientSourceGenerators({
-    entities: [
-        {
-            name: "Bank",
-            trpc: {
+void withSdk(
+    withClientSourceGenerators(
+        withClientSourceGeneratorsEntity({
+            name:     "Bank",
+            packages: {
+                schema: "@monye.one/bank",
+            },
+            withTrpc: {
                 path:    "bank",
                 package: "@monye.one/trpc-client",
             },
-        }
-    ],
-    packages: {
-        schema: "@monye.one/bank",
-    },
-}));
+        })
+    )
+);

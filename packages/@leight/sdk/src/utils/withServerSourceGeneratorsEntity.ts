@@ -1,6 +1,6 @@
 import {type IGeneratorServerParams} from "../generator";
 
-export interface IWithPrismaSourceProps {
+export interface IWithServerSourceGeneratorsEntityProps {
     entity: string;
     prisma: string;
     packages: {
@@ -12,7 +12,7 @@ export interface IWithPrismaSourceProps {
 /**
  * Generates single Prisma entity source (just helper function, should be used alone).
  */
-export const withPrismaEntitySource = ({entity, prisma, packages}: IWithPrismaSourceProps): IGeneratorServerParams => {
+export const withServerSourceGeneratorsEntity = ({entity, prisma, packages}: IWithServerSourceGeneratorsEntityProps): IGeneratorServerParams => {
     return {
         PrismaSource: {
             entities: [

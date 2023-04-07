@@ -1,47 +1,44 @@
-import {type IGenerator}               from "../../api";
-import {generatorClientSourceProvider} from "./generatorClientSourceProvider";
-import {generatorClientSourceStore}    from "./generatorClientSourceStore";
-import {generatorClientSourceTable}    from "./generatorClientSourceTable";
+import {type IGenerator} from "../../api";
+import {
+    generatorClientSourceProvider,
+    type IGeneratorClientSourceProviderParams
+}                        from "./generatorClientSourceProvider";
+import {
+    generatorClientSourceStore,
+    type IGeneratorClientSourceStoreParams
+}                        from "./generatorClientSourceStore";
+import {
+    generatorClientSourceTable,
+    type IGeneratorClientSourceTableParams
+}                        from "./generatorClientSourceTable";
 
 export interface IGeneratorClientSourceParams {
-    /**
-     * Package names used for generating proper `import` statements
-     */
-    packages: {
-        /**
-         * Reference to package with generated Schemas (entity/sort/filter/...)
-         */
-        schema: string;
-    };
-    /**
-     * Definition of entities being generated
-     */
-    entities: {
-        /**
-         * Entity name this generator works with
-         */
-        name: string;
-        /**
-         * Explicitly disable specific generator
-         */
-        disabled?: ("source" | "table")[];
-        trpc?: {
-            /**
-             * Package (import) of client-side TRPC (should export named trpc)
-             */
-            package: string;
-            /**
-             * Part of the trpc call chain (base is `trpc`.${trpcPath}.`...rest of standard trpc router`
-             */
-            path: string;
-        };
-    }[];
+    SourceProvider?: IGeneratorClientSourceProviderParams;
+    SourceStore?: IGeneratorClientSourceStoreParams;
+    SourceTable?: IGeneratorClientSourceTableParams;
 }
 
-export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = async props => {
+export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = async (
+    {
+        params: {
+                    SourceProvider,
+                    SourceStore,
+                    SourceTable,
+                },
+        ...     props
+    }) => {
     await Promise.all([
-        generatorClientSourceProvider(props),
-        generatorClientSourceStore(props),
-        generatorClientSourceTable(props),
+        SourceProvider ? generatorClientSourceProvider({
+            ...props,
+            params: SourceProvider,
+        }) : undefined,
+        SourceStore ? generatorClientSourceStore({
+            ...props,
+            params: SourceStore,
+        }) : undefined,
+        SourceTable ? generatorClientSourceTable({
+            ...props,
+            params: SourceTable,
+        }) : undefined,
     ]);
 };

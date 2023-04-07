@@ -1,12 +1,12 @@
 import {
-    withPrismaEntitySource,
     withSdk,
-    withServerSourceGenerators
+    withServerSourceGenerators,
+    withServerSourceGeneratorsEntity
 } from "@leight/sdk";
 
 void withSdk(
     withServerSourceGenerators(
-        withPrismaEntitySource({
+        withServerSourceGeneratorsEntity({
             entity:   "Bank",
             prisma:   "bank",
             packages: {
