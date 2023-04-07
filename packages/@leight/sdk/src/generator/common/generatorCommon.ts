@@ -1,45 +1,44 @@
-import {type IPackageType}           from "@leight/generator";
-import {type IGenerator}             from "../../api";
-import {generatorCommonEntitySchema} from "./generatorCommonEntitySchema";
-import {generatorCommonSource}       from "./generatorCommonSource";
-import {generatorCommonSourceSchema} from "./generatorCommonSourceSchema";
+import {type IGenerator} from "../../api";
+import {
+    generatorCommonEntityPrismaSchema,
+    type IGeneratorCommonEntityPrismaSchemaParams
+}                        from "./generatorCommonEntityPrismaSchema";
+import {
+    generatorCommonSource,
+    type IGeneratorCommonSourceParams
+}                        from "./generatorCommonSource";
+import {
+    generatorCommonSourceSchema,
+    type IGeneratorCommonSourceSchemaParams
+}                        from "./generatorCommonSourceSchema";
 
 export interface IGeneratorCommonParams {
-    /**
-     * Package references (used for generating proper `import` statements
-     */
-    packages: {
-        /**
-         * Source package exporting "PrismaSchema" namespace containing "entity"
-         */
-        prisma: string;
-    };
-    /**
-     * Entity name this generator works with
-     */
-    entity: string;
-    /**
-     * Specify extension of schemas
-     */
-    schemaEx?: {
-        /**
-         * Entity schema extension (target type should be ZodSchema)
-         */
-        entity: IPackageType;
-    },
-    /**
-     * Provide fields generated for SortSchema
-     */
-    sorts?: string[];
-    sourceEx?: {
-        extends: IPackageType[];
-    };
+    PrismaEntity?: IGeneratorCommonEntityPrismaSchemaParams;
+    Source?: IGeneratorCommonSourceParams;
+    SourceSchema?: IGeneratorCommonSourceSchemaParams;
 }
 
-export const generatorCommon: IGenerator<IGeneratorCommonParams> = async props => {
+export const generatorCommon: IGenerator<IGeneratorCommonParams> = async (
+    {
+        params: {
+                    PrismaEntity,
+                    Source,
+                    SourceSchema,
+                },
+        ...     props
+    }) => {
     await Promise.all([
-        generatorCommonSource(props),
-        generatorCommonEntitySchema(props),
-        generatorCommonSourceSchema(props),
+        Source ? generatorCommonSource({
+            ...props,
+            params: Source,
+        }) : undefined,
+        PrismaEntity ? generatorCommonEntityPrismaSchema({
+            ...props,
+            params: PrismaEntity,
+        }) : undefined,
+        SourceSchema ? generatorCommonSourceSchema({
+            ...props,
+            params: SourceSchema,
+        }) : undefined,
     ]);
 };

@@ -1,68 +1,86 @@
-import {type IPackageType}           from "@leight/generator";
-import {withSourceFile}              from "@leight/generator-server";
-import {normalize}                   from "node:path";
-import {type IGenerator}             from "../../api";
-import {type IGeneratorCommonParams} from "./generatorCommon";
+import {IPackageType}    from "@leight/generator";
+import {withSourceFile}  from "@leight/generator-server";
+import {normalize}       from "node:path";
+import {type IGenerator} from "../../api";
 
-export const generatorCommonSource: IGenerator<IGeneratorCommonParams> = async (
+export interface IGeneratorCommonSourceParams {
+    entities: IGeneratorCommonSourceParams.IEntity[];
+}
+
+export namespace IGeneratorCommonSourceParams {
+    export interface IEntity {
+        /**
+         * Base name exported (used to name all exported objects)
+         */
+        name: string;
+        withSourceEx?: IWithSourceEx;
+    }
+
+    export interface IWithSourceEx {
+        extends?: IPackageType[];
+    }
+}
+
+export const generatorCommonSource: IGenerator<IGeneratorCommonSourceParams> = async (
     {
         packageName,
         folder,
         barrel,
-        params: {
-                    entity,
-                    sourceEx,
-                }
+        params: {entities}
     }) => {
-    withSourceFile()
-        .withImports({
-            imports: {
-                "@leight/source":    [
-                    "type ISource",
-                ],
-                "@leight/container": [
-                    "type IContainer",
-                    "ServiceContext",
-                ],
-                "./SourceSchema":    [
-                    `type I${entity}SourceSchema`,
-                ],
-            },
-        })
-        .withImports(sourceEx?.extends ? {
-            imports: sourceEx.extends
-                         .filter(((item): item is Required<IPackageType> => Boolean(item.package)))
-                         .reduce((prev, {type, package: $package}) => ({
-                             ...prev,
-                             [$package]: [
-                                 `type ${type}`,
-                                 ...(prev[$package] || [])
-                             ],
-                         }), {} as Record<string, any>),
-        } : undefined)
-        .withInterfaces({
-            exports: {
-                [`I${entity}Source`]: {
-                    extends: [
-                                 {type: `ISource<I${entity}SourceSchema>`},
-                             ].concat(sourceEx?.extends || []),
+    const file = withSourceFile();
+
+    entities.forEach(({name, withSourceEx}) => {
+        file.withImports({
+                imports: {
+                    "@leight/source":    [
+                        "type ISource",
+                    ],
+                    "@leight/container": [
+                        "type IContainer",
+                        "ServiceContext",
+                    ],
+                    "./SourceSchema":    [
+                        `type I${name}SourceSchema`,
+                    ],
                 },
-            }
-        })
-        .withConsts({
-            exports: {
-                [`$${entity}Source`]: {body: `Symbol.for("${packageName}/I${entity}Source")`},
-            }
-        })
-        .withConsts({
-            exports: {
-                [`${entity}SourceContext`]: {
-                    body: `(container: IContainer) => new ServiceContext<I${entity}Source>(container, $${entity}Source)`,
+            })
+            .withImports(withSourceEx?.extends ? {
+                imports: withSourceEx.extends
+                             .filter(((item): item is Required<IPackageType> => Boolean(item.package)))
+                             .reduce((prev, {type, package: $package}) => ({
+                                 ...prev,
+                                 [$package]: [
+                                     `type ${type}`,
+                                     ...(prev[$package] || [])
+                                 ],
+                             }), {} as Record<string, any>),
+            } : undefined)
+            .withInterfaces({
+                exports: {
+                    [`I${name}Source`]: {
+                        extends: [
+                                     {type: `ISource<I${name}SourceSchema>`},
+                                 ].concat(withSourceEx?.extends || []),
+                    },
+                }
+            })
+            .withConsts({
+                exports: {
+                    [`$${name}Source`]: {body: `Symbol.for("${packageName}/I${name}Source")`},
+                }
+            })
+            .withConsts({
+                exports: {
+                    [`${name}SourceContext`]: {
+                        body: `(container: IContainer) => new ServiceContext<I${name}Source>(container, $${name}Source)`,
+                    },
                 },
-            },
-        })
-        .saveTo({
-            file: normalize(`${process.cwd()}/${folder}/Source.ts`),
-            barrel,
-        });
+            });
+    });
+
+    file.saveTo({
+        file: normalize(`${process.cwd()}/${folder}/Source.ts`),
+        barrel,
+    });
 };

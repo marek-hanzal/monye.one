@@ -43,7 +43,8 @@ export const generatorServer: IGenerator<IGeneratorServerParams> = async (
                     BaseSource,
                     Source,
                     TrpcSource,
-                }, ...props
+                },
+        ...     props
     }) => {
     await Promise.all([
         BaseSource ? generatorServerBaseSource({
@@ -62,5 +63,5 @@ export const generatorServer: IGenerator<IGeneratorServerParams> = async (
             ...props,
             params: TrpcSource,
         }) : undefined,
-    ].filter(Boolean));
+    ]);
 };

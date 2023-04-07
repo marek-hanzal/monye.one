@@ -1,69 +1,83 @@
-import {withSourceFile}              from "@leight/generator-server";
-import {normalize}                   from "node:path";
-import {type IGenerator}             from "../../api";
-import {type IGeneratorCommonParams} from "../common";
+import {withSourceFile}  from "@leight/generator-server";
+import {normalize}       from "node:path";
+import {type IGenerator} from "../../api";
 
-export const generatorCommonSourceSchema: IGenerator<IGeneratorCommonParams> = async (
+export interface IGeneratorCommonSourceSchemaParams {
+    entities: IGeneratorCommonSourceSchemaParams.IEntity[];
+}
+
+export namespace IGeneratorCommonSourceSchemaParams {
+    export interface IEntity {
+        /**
+         * Base name exported (used to name all exported objects)
+         */
+        name: string;
+    }
+}
+
+export const generatorCommonSourceSchema: IGenerator<IGeneratorCommonSourceSchemaParams> = async (
     {
         folder,
         barrel,
-        params: {
-                    entity,
-                }
+        params: {entities}
     }) => {
-    withSourceFile()
-        .withHeader(`
-    Source code of the common stuff for ${entity} which could be shared between server and client side.
+    const file = withSourceFile();
+
+    entities.forEach(({name}) => {
+        file.withHeader(`
+    Source code of the common stuff for ${name} which could be shared between server and client side.
         `)
-        .withImports({
-            imports: {
-                "@leight/source":      [
-                    "type IWithIdentity",
-                    "type ISourceSchema"
-                ],
-                "@leight/react-query": [
-                    "type IUseQuery",
-                ],
-                ["./Schema"]:          [
-                    `type I${entity}CreateSchema`,
-                    `type I${entity}FilterSchema`,
-                    `type I${entity}ParamSchema`,
-                    `type I${entity}PatchSchema`,
-                    `type I${entity}Schema`,
-                    `type I${entity}SortSchema`,
-                ]
-            }
-        })
-        .withTypes({
-            exports: {
-                [`IUse${entity}Query`]:      `IUseQuery<I${entity}SourceSchema["Query"] | undefined, I${entity}SourceSchema["Entity"][]>`,
-                [`IUse${entity}CountQuery`]: `IUseQuery<I${entity}SourceSchema["Query"] | undefined, number>`,
-                [`IUse${entity}FetchQuery`]: `IUseQuery<I${entity}SourceSchema["Query"], I${entity}SourceSchema["Entity"]>`,
-                [`IUse${entity}FindQuery`]:  `IUseQuery<IWithIdentity, I${entity}SourceSchema["Entity"]>`,
-            }
-        })
-        .withInterfaces({
-            exports: {
-                [`I${entity}SourceSchema`]: {
-                    extends: [
-                        {
-                            type: `
+            .withImports({
+                imports: {
+                    "@leight/source":      [
+                        "type IWithIdentity",
+                        "type ISourceSchema"
+                    ],
+                    "@leight/react-query": [
+                        "type IUseQuery",
+                    ],
+                    ["./Schema"]:          [
+                        `type I${name}CreateSchema`,
+                        `type I${name}FilterSchema`,
+                        `type I${name}ParamSchema`,
+                        `type I${name}PatchSchema`,
+                        `type I${name}Schema`,
+                        `type I${name}SortSchema`,
+                    ]
+                }
+            })
+            .withTypes({
+                exports: {
+                    [`IUse${name}Query`]:      `IUseQuery<I${name}SourceSchema["Query"] | undefined, I${name}SourceSchema["Entity"][]>`,
+                    [`IUse${name}CountQuery`]: `IUseQuery<I${name}SourceSchema["Query"] | undefined, number>`,
+                    [`IUse${name}FetchQuery`]: `IUseQuery<I${name}SourceSchema["Query"], I${name}SourceSchema["Entity"]>`,
+                    [`IUse${name}FindQuery`]:  `IUseQuery<IWithIdentity, I${name}SourceSchema["Entity"]>`,
+                }
+            })
+            .withInterfaces({
+                exports: {
+                    [`I${name}SourceSchema`]: {
+                        extends: [
+                            {
+                                type: `
 ISourceSchema<
-    I${entity}Schema,
-    I${entity}CreateSchema,
-    I${entity}PatchSchema,
-    I${entity}FilterSchema,
-    I${entity}SortSchema,
-    I${entity}ParamSchema
+    I${name}Schema,
+    I${name}CreateSchema,
+    I${name}PatchSchema,
+    I${name}FilterSchema,
+    I${name}SortSchema,
+    I${name}ParamSchema
  >
                             `,
-                        },
-                    ],
+                            },
+                        ],
+                    }
                 }
-            }
-        })
-        .saveTo({
-            file: normalize(`${process.cwd()}/${folder}/SourceSchema.ts`),
-            barrel,
-        });
+            });
+    });
+
+    file.saveTo({
+        file: normalize(`${process.cwd()}/${folder}/SourceSchema.ts`),
+        barrel,
+    });
 };
