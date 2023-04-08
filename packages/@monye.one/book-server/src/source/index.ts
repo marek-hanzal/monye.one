@@ -1,6 +1,6 @@
 import {DateTime}                        from "@leight/i18n";
 import {type ICalendarEventSourceSchema} from "@monye.one/book";
-import {CalendarEventBaseSource}         from "../sdk";
+import {CalendarEventBaseSource}         from "../sdk/ServerBaseSource";
 
 export class CalendarEventBaseSourceEx extends CalendarEventBaseSource {
     async runCount(query: ICalendarEventSourceSchema["Query"]): Promise<number> {

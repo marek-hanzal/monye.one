@@ -7,7 +7,7 @@ import {
 void withSdk(
     withServerSourceGenerators(
         withServerSourceGeneratorsEntity({
-            entity:   "Transaction",
+            name:     "Transaction",
             prisma:   "transaction",
             packages: {
                 schema: "@monye.one/transaction",

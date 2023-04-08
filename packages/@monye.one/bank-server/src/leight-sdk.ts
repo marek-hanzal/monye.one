@@ -7,7 +7,7 @@ import {
 void withSdk(
     withServerSourceGenerators(
         withServerSourceGeneratorsEntity({
-            entity:   "Bank",
+            name:     "Bank",
             prisma:   "bank",
             packages: {
                 schema: "@monye.one/bank",
