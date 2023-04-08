@@ -13,4 +13,4 @@ export class TransactionSource extends TransactionBasePrismaSource implements IT
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hbwhkp5rondtc6t4ewhq3cmv = true;
+export const $leight_u9oh2gvv07w1rd9t089b1qfr = true;

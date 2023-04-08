@@ -15,6 +15,7 @@ import {
 } from "@leight/source";
 import {z} from "@leight/zod";
 import {CalendarEventBaseSchema} from "../api";
+import {CalendarEventFilterSchema} from "@leight/calendar";
 
 export type ICalendarEventSchema = typeof CalendarEventSchema;
 export type ICalendarEvent = z.infer<ICalendarEventSchema>;
@@ -37,7 +38,7 @@ export type ICalendarEventQuery = z.infer<ICalendarEventQuerySchema>;
 export const CalendarEventSchema = CalendarEventBaseSchema;
 export const CalendarEventCreateSchema = CreateSchema;
 export const CalendarEventPatchSchema = WithIdentitySchema;
-export const CalendarEventFilterSchema = FilterSchema;
+export const CalendarEventFilterSchema = CalendarEventFilterSchema;
 export const CalendarEventParamSchema = ParamsSchema;
 export const CalendarEventSortSchema = z.object({
     id: SortOrderSchema
@@ -54,4 +55,4 @@ export const CalendarEventQuerySchema = QuerySchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_q64725exlnqxctpda969mcl8 = true;
+export const $leight_ii0bqq6t69fmjlb1w3i892i0 = true;

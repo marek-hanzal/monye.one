@@ -27,10 +27,14 @@ void withSdk(
                         schema: {
                             type:    "CalendarEventBaseSchema",
                             package: "../api",
-                        }
-                    }
-                }
-            ]
-        }
+                        },
+                        filter: {
+                            type:    "CalendarEventFilterSchema",
+                            package: "@leight/calendar",
+                        },
+                    },
+                },
+            ],
+        },
     })
 );
