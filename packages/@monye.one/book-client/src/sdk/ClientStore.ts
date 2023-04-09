@@ -6,11 +6,14 @@ import {
 	type ISourceProps
 } from "@leight/source-client";
 import {createSortContext} from "@leight/sort-client";
+import {createFilterContext} from "@leight/filter-client";
 import {
 	type ICalendarEventSourceSchema,
 	CalendarEventSchema,
 	type ICalendarEventSortSchema,
-	CalendarEventSortSchema
+	CalendarEventSortSchema,
+	type ICalendarEventFilterSchema,
+	CalendarEventFilterSchema
 } from "@monye.one/book";
 
 export type ICalendarEventSource = ISourceProps<ICalendarEventSourceSchema>;
@@ -23,6 +26,13 @@ export const CalendarEventSourceStore = createSourceContext<ICalendarEventSource
     schema: CalendarEventSchema,
 });
 /**
+ * Defines Store for CalendarEvent filtering entities.
+ */
+export const CalendarEventFilterStore = createFilterContext<ICalendarEventFilterSchema>({
+    name:   "CalendarEventFilter",
+    schema: CalendarEventFilterSchema,
+});
+/**
  * Defines Store for CalendarEvent sorting data.
  */
 export const CalendarEventSortStore = createSortContext<ICalendarEventSortSchema>({
@@ -33,4 +43,4 @@ export const CalendarEventSortStore = createSortContext<ICalendarEventSortSchema
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_df34bkx5byfmv4wwoxj5kjyg = true;
+export const $leight_c105iyhip4qmfm35vfb0z1tt = true;

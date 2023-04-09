@@ -22,6 +22,8 @@ export class CalendarEventBaseSourceEx extends CalendarEventBaseSource {
     }
 
     async runQuery(query: ICalendarEventSourceSchema["Query"]): Promise<ICalendarEventSourceSchema["Entity"][]> {
+        console.log("Filtering on", query.filter);
+
         return [
             {
                 date: DateTime.now(),

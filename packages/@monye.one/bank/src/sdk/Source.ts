@@ -19,4 +19,4 @@ export const BankSourceContext = (container: IContainer) => new ServiceContext<I
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nvv01ts2lfqz5lqxxz4phyue = true;
+export const $leight_zw72g1zn7r72kpyqjjo4tbgs = true;

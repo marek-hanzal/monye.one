@@ -18,6 +18,7 @@ import {
 import {type FC} from "react";
 import {
 	TransactionSourceStore,
+	TransactionFilterStore,
 	TransactionSortStore
 } from "./ClientStore";
 import {trpc} from "@monye.one/trpc-client";
@@ -45,6 +46,7 @@ export const TransactionSource:FC<ITransactionSourceProps> = props => {
  */
 export const TransactionQueryProvider:FC<ITransactionQueryProviderProps> = props => {
     return <QueryProvider<ITransactionSourceSchema>
+        FilterProvider={TransactionFilterStore.Provider}
         SortProvider={TransactionSortStore.Provider}
         useCountQuery={trpc.transaction.source.count.useQuery}
 		{...props}
@@ -54,4 +56,4 @@ export const TransactionQueryProvider:FC<ITransactionQueryProviderProps> = props
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ope2byb4y6tqwx2sz7wn8lp2 = true;
+export const $leight_xslb2wl8dxzqg4fbn45nezat = true;

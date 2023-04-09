@@ -6,11 +6,14 @@ import {
 	type ISourceProps
 } from "@leight/source-client";
 import {createSortContext} from "@leight/sort-client";
+import {createFilterContext} from "@leight/filter-client";
 import {
 	type ITransactionSourceSchema,
 	TransactionSchema,
 	type ITransactionSortSchema,
-	TransactionSortSchema
+	TransactionSortSchema,
+	type ITransactionFilterSchema,
+	TransactionFilterSchema
 } from "@monye.one/transaction";
 
 export type ITransactionSource = ISourceProps<ITransactionSourceSchema>;
@@ -23,6 +26,13 @@ export const TransactionSourceStore = createSourceContext<ITransactionSourceSche
     schema: TransactionSchema,
 });
 /**
+ * Defines Store for Transaction filtering entities.
+ */
+export const TransactionFilterStore = createFilterContext<ITransactionFilterSchema>({
+    name:   "TransactionFilter",
+    schema: TransactionFilterSchema,
+});
+/**
  * Defines Store for Transaction sorting data.
  */
 export const TransactionSortStore = createSortContext<ITransactionSortSchema>({
@@ -33,4 +43,4 @@ export const TransactionSortStore = createSortContext<ITransactionSortSchema>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_p3b9arfts55inyp9usrgyfni = true;
+export const $leight_g46y1uqb4xbq6xis69co983r = true;

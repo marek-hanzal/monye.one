@@ -18,6 +18,7 @@ import {
 import {type FC} from "react";
 import {
 	BankSourceStore,
+	BankFilterStore,
 	BankSortStore
 } from "./ClientStore";
 import {trpc} from "@monye.one/trpc-client";
@@ -45,6 +46,7 @@ export const BankSource:FC<IBankSourceProps> = props => {
  */
 export const BankQueryProvider:FC<IBankQueryProviderProps> = props => {
     return <QueryProvider<IBankSourceSchema>
+        FilterProvider={BankFilterStore.Provider}
         SortProvider={BankSortStore.Provider}
         useCountQuery={trpc.bank.source.count.useQuery}
 		{...props}
@@ -54,4 +56,4 @@ export const BankQueryProvider:FC<IBankQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tognxhqxi1ws3k7okerk6v06 = true;
+export const $leight_fekb77qi7wtfipz5mtf58mwj = true;

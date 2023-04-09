@@ -25,12 +25,18 @@ void withSdk(
                     name:       "CalendarEvent",
                     withSchema: {
                         schema: {
-                            type:    "CalendarEventBaseSchema",
-                            package: "../api",
+                            type:        "CalendarEventBaseSchema",
+                            withPackage: {
+                                package: "../api",
+                                alias:   "CoolCalendarEventBaseSchema"
+                            },
                         },
                         filter: {
-                            type:    "CalendarEventFilterSchema",
-                            package: "@leight/calendar",
+                            type:        "CalendarEventFilterSchema",
+                            withPackage: {
+                                package: "@leight/calendar",
+                                alias:   "CoolCalendarEventFilterSchema",
+                            },
                         },
                     },
                 },

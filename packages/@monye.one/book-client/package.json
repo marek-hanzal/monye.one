@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "@leight/calendar-client": "^0.5.0",
+        "@leight/filter-client": "^0.5.0",
         "@leight/i18n-client": "^0.5.29",
         "@leight/layout": "^0.5.28",
         "@leight/mantine": "^0.5.29",

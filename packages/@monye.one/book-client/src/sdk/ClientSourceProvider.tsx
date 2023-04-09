@@ -18,6 +18,7 @@ import {
 import {type FC} from "react";
 import {
 	CalendarEventSourceStore,
+	CalendarEventFilterStore,
 	CalendarEventSortStore
 } from "./ClientStore";
 import {trpc} from "@monye.one/trpc-client";
@@ -45,6 +46,7 @@ export const CalendarEventSource:FC<ICalendarEventSourceProps> = props => {
  */
 export const CalendarEventQueryProvider:FC<ICalendarEventQueryProviderProps> = props => {
     return <QueryProvider<ICalendarEventSourceSchema>
+        FilterProvider={CalendarEventFilterStore.Provider}
         SortProvider={CalendarEventSortStore.Provider}
         useCountQuery={trpc.book.calendar.event.source.count.useQuery}
 		{...props}
@@ -54,4 +56,4 @@ export const CalendarEventQueryProvider:FC<ICalendarEventQueryProviderProps> = p
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vixhlj11984aucdvus4tu1pu = true;
+export const $leight_w8zqzg3ti31rh555cfgvyzea = true;

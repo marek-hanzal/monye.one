@@ -23,8 +23,10 @@ void withSdk(
                         schema: "@monye.one/book",
                     },
                     sourceEx: {
-                        type:    "CalendarEventBaseSourceEx",
-                        package: "../source",
+                        type:        "CalendarEventBaseSourceEx",
+                        withPackage: {
+                            package: "../source",
+                        },
                     },
                 },
             ],

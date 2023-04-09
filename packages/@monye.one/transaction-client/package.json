@@ -26,6 +26,7 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
+        "@leight/filter-client": "^0.5.0",
         "@leight/i18n-client": "^0.5.0",
         "@leight/mantine": "^0.5.29",
         "@leight/prisma": "^0.5.0",

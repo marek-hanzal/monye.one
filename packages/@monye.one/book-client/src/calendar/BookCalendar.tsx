@@ -9,6 +9,7 @@ import {
 }                from "@monye.one/book";
 import {type FC} from "react";
 import {
+    CalendarEventFilterStore,
     CalendarEventSource,
     CalendarEventSourceStore
 }                from "../sdk";
@@ -23,6 +24,7 @@ export const BookCalendar: FC<IBookCalendarProps> = props => {
                 events={{
                     schema:    CalendarEventSchema,
                     useSource: CalendarEventSourceStore.useState,
+                    useFilter: CalendarEventFilterStore.useState,
                 }}
                 renderDayInline={({events}) => {
                     if (!events.length) {
