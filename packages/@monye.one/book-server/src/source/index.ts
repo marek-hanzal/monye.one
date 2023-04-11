@@ -21,30 +21,35 @@ export class CalendarEventBaseSourceEx extends CalendarEventBaseSource {
         return 0;
     }
 
-    async runQuery(query: ICalendarEventSourceSchema["Query"]): Promise<ICalendarEventSourceSchema["Entity"][]> {
-        console.log("Filtering on", query.filter);
-
-        return [
-            {
-                date: DateTime.now(),
-                id:   "12345",
+    async runQuery({filter}: ICalendarEventSourceSchema["Query"]): Promise<ICalendarEventSourceSchema["Entity"][]> {
+        if (!filter) {
+            return [];
+        }
+        const {from, to} = filter;
+        return (await this.prismaClient.transaction.findMany({
+            where: {
+                AND: [
+                    {
+                        date: {
+                            gte: from.toJSDate(),
+                        },
+                    },
+                    {
+                        date: {
+                            lte: to.toJSDate(),
+                        },
+                    },
+                ],
             },
-            {
-                date: DateTime.now(),
-                id:   "123456",
-            },
-            {
-                date: DateTime.now(),
-                id:   "123457",
-            },
-            {
-                date: DateTime.now().minus({day: 2}),
-                id:   "123453",
-            },
-            {
-                date: DateTime.now().plus({day: 4}),
-                id:   "123459",
-            },
-        ];
+        })).map(transaction => {
+            const amount = transaction.amount.toNumber();
+            return {
+                id:      transaction.id,
+                date:    DateTime.fromJSDate(transaction.date),
+                amount,
+                outcome: amount < 0 ? Math.abs(amount) : 0,
+                income:  amount > 0 ? Math.abs(amount) : 0,
+            };
+        });
     }
 }

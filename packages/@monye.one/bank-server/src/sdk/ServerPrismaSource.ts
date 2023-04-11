@@ -4,11 +4,12 @@
  */
 import {withCursor} from "@leight/query";
 import {$PrismaClient} from "@leight/prisma";
+import {type ISource} from "@leight/source";
 import {
-	type ISource,
-	withUpsert
-} from "@leight/source";
-import {AbstractSource} from "@leight/source-server";
+	AbstractSource,
+	withUpsert,
+	withPatch
+} from "@leight/source-server";
 import {
 	$BankSource,
 	type IBankWhere,
@@ -27,6 +28,22 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
         protected prismaClient: PrismaClient,
     ) {
         super($BankSource);
+    }
+
+    async runFind(id: string): Promise<IBankSourceSchema["Entity"]> {
+        return this.prisma().findUniqueOrThrow({
+            where: {id},
+        });
+    }
+
+    async runCreate(entity: IBankSourceSchema["Create"]): Promise<IBankSourceSchema["Entity"]> {
+        return this.prisma().create({
+            data: entity,
+        });
+    }
+
+    async runPatch(patch: IBankSourceSchema["Patch"]): Promise<IBankSourceSchema["Entity"]> {
+        return this.prisma().update(withPatch(patch));
     }
 
     async runUpsert(props: ISource.IUpsert<IBankSourceSchema>): Promise<IBankSourceSchema["Entity"]> {
@@ -54,7 +71,7 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
     }
     
     toWhere(filter?: IBankSourceSchema["Filter"]): IBankWhere | undefined {
-        return undefined;
+        return filter;
     }
     
     toWhereUnique(filter?: IBankSourceSchema["Filter"]): IBankWhereUnique | undefined {
@@ -70,4 +87,4 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hsgz3smaqlb6k2tsjtsjdrn3 = true;
+export const $leight_r6d2svox69mxmodu1k4f74et = true;

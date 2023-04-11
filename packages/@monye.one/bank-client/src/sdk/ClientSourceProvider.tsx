@@ -36,6 +36,7 @@ export const BankSource:FC<IBankSourceProps> = props => {
     return <Source<IBankSourceSchema>
         schema={BankSchema}
         SourceProvider={BankSourceStore.Provider}
+        useFilterState={BankFilterStore.useState}
         useSortState={BankSortStore.useState}
         useSourceQuery={trpc.bank.source.query.useQuery}
 		{...props}
@@ -47,6 +48,7 @@ export const BankSource:FC<IBankSourceProps> = props => {
 export const BankQueryProvider:FC<IBankQueryProviderProps> = props => {
     return <QueryProvider<IBankSourceSchema>
         FilterProvider={BankFilterStore.Provider}
+        useFilterState={BankFilterStore.useState}
         SortProvider={BankSortStore.Provider}
         useCountQuery={trpc.bank.source.count.useQuery}
 		{...props}
@@ -56,4 +58,4 @@ export const BankQueryProvider:FC<IBankQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fekb77qi7wtfipz5mtf58mwj = true;
+export const $leight_a0t3hx7wh5s3acatjwf542zs = true;

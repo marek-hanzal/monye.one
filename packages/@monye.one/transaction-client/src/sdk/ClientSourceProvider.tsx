@@ -36,6 +36,7 @@ export const TransactionSource:FC<ITransactionSourceProps> = props => {
     return <Source<ITransactionSourceSchema>
         schema={TransactionSchema}
         SourceProvider={TransactionSourceStore.Provider}
+        useFilterState={TransactionFilterStore.useState}
         useSortState={TransactionSortStore.useState}
         useSourceQuery={trpc.transaction.source.query.useQuery}
 		{...props}
@@ -47,6 +48,7 @@ export const TransactionSource:FC<ITransactionSourceProps> = props => {
 export const TransactionQueryProvider:FC<ITransactionQueryProviderProps> = props => {
     return <QueryProvider<ITransactionSourceSchema>
         FilterProvider={TransactionFilterStore.Provider}
+        useFilterState={TransactionFilterStore.useState}
         SortProvider={TransactionSortStore.Provider}
         useCountQuery={trpc.transaction.source.count.useQuery}
 		{...props}
@@ -56,4 +58,4 @@ export const TransactionQueryProvider:FC<ITransactionQueryProviderProps> = props
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xslb2wl8dxzqg4fbn45nezat = true;
+export const $leight_y542wr0ztmzojmb3k8j049v6 = true;

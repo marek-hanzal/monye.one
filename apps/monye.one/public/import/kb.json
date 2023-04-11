@@ -1,0 +1,88 @@
+{
+    "tabs": [
+        {
+            "tab": "transakce",
+            "services": [
+                "@monye.one/transaction/ITransactionImportService"
+            ]
+        }
+    ],
+    "translations": [
+        {
+            "from": {
+                "source": [
+                    "Účet"
+                ]
+            },
+            "to": "bank"
+        },
+        {
+            "from": {
+                "source": [
+                    "Identifikace transakce"
+                ]
+            },
+            "to": "reference"
+        },
+        {
+            "from": {
+                "source": [
+                    "AV pole 1",
+                    "AV pole 2",
+                    "AV pole 3",
+                    "AV pole 4"
+                ],
+                "concat": " "
+            },
+            "to": "note"
+        },
+        {
+            "from": {
+                "source": [
+                    "Datum splatnosti"
+                ]
+            },
+            "to": "date"
+        },
+        {
+            "from": {
+                "source": [
+                    "Částka"
+                ]
+            },
+            "to": "amount"
+        },
+        {
+            "from": {
+                "source": [
+                    "KS"
+                ]
+            },
+            "to": "symbol"
+        },
+        {
+            "from": {
+                "source": [
+                    "VS"
+                ]
+            },
+            "to": "variable"
+        },
+        {
+            "from": {
+                "source": [
+                    "SS"
+                ]
+            },
+            "to": "static"
+        },
+        {
+            "from": {
+                "source": [
+                    "Protiúčet a kód banky"
+                ]
+            },
+            "to": "target"
+        }
+    ]
+}

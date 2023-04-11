@@ -4,11 +4,12 @@
  */
 import {withCursor} from "@leight/query";
 import {$PrismaClient} from "@leight/prisma";
+import {type ISource} from "@leight/source";
 import {
-	type ISource,
-	withUpsert
-} from "@leight/source";
-import {AbstractSource} from "@leight/source-server";
+	AbstractSource,
+	withUpsert,
+	withPatch
+} from "@leight/source-server";
 import {
 	$TransactionSource,
 	type ITransactionWhere,
@@ -27,6 +28,22 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
         protected prismaClient: PrismaClient,
     ) {
         super($TransactionSource);
+    }
+
+    async runFind(id: string): Promise<ITransactionSourceSchema["Entity"]> {
+        return this.prisma().findUniqueOrThrow({
+            where: {id},
+        });
+    }
+
+    async runCreate(entity: ITransactionSourceSchema["Create"]): Promise<ITransactionSourceSchema["Entity"]> {
+        return this.prisma().create({
+            data: entity,
+        });
+    }
+
+    async runPatch(patch: ITransactionSourceSchema["Patch"]): Promise<ITransactionSourceSchema["Entity"]> {
+        return this.prisma().update(withPatch(patch));
     }
 
     async runUpsert(props: ISource.IUpsert<ITransactionSourceSchema>): Promise<ITransactionSourceSchema["Entity"]> {
@@ -54,7 +71,7 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
     }
     
     toWhere(filter?: ITransactionSourceSchema["Filter"]): ITransactionWhere | undefined {
-        return undefined;
+        return filter;
     }
     
     toWhereUnique(filter?: ITransactionSourceSchema["Filter"]): ITransactionWhereUnique | undefined {
@@ -70,4 +87,4 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_dqqxye7xmw0oyfotcjpa60zh = true;
+export const $leight_a95jfuzgr8dalacpk7665x2l = true;
