@@ -26,6 +26,9 @@ export const TransactionTable: FC<ITransactionTableProps> = props => {
             namespace: "transaction",
         }}
         scrollWidth={2400}
+        withRowAction={({item}) => <>
+            {item.note}
+        </>}
         columns={{
             date:      {
                 width: 8,
