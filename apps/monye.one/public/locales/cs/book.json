@@ -4,5 +4,10 @@
     "link.banks": "Účty",
     "link.calendar": "Kalendář",
     "link.filters": "Filtry",
-    "button.sign-out": "Odhlásit se"
+    "button.sign-out": "Odhlásit se",
+    "calendar-overview.calendar.tab": "Kalendář",
+    "calendar-overview.transactions.tab": "Transakce",
+    "tab.calendar.days": "Denní přehled",
+    "tab.calendar.months": "Měsíční přehled",
+    "tab.calendar.years": "Roční přehled"
 }
