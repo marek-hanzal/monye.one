@@ -1,5 +1,6 @@
 import {DateTimeProvider} from "@leight/i18n-client";
 import {MantineProvider}  from "@mantine/core";
+import {ModalsProvider}   from "@mantine/modals";
 import {Notifications}    from "@mantine/notifications";
 import {
     type ComponentProps,
@@ -26,9 +27,11 @@ export const Shell: FC<IShellProps> = ({theme, emotionCache, children}) => {
         withNormalizeCSS
         emotionCache={emotionCache}
     >
-        <DateTimeProvider>
-            <Notifications position={"top-right"}/>
-            {children}
-        </DateTimeProvider>
+        <ModalsProvider>
+            <DateTimeProvider>
+                <Notifications position={"top-right"}/>
+                {children}
+            </DateTimeProvider>
+        </ModalsProvider>
     </MantineProvider>;
 };

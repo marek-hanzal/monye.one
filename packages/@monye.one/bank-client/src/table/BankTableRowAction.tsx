@@ -1,10 +1,9 @@
 import {Translation}          from "@leight/i18n-client";
 import {
     Menu,
-    Modal,
     Text
 }                             from "@mantine/core";
-import {useDisclosure}        from "@mantine/hooks";
+import {modals}               from "@mantine/modals";
 import {
     IconArrowsLeftRight,
     IconCash,
@@ -16,14 +15,15 @@ import {
 import {type IBankTableProps} from "./BankTable";
 
 export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => {
-    const [opened, {open, close}] = useDisclosure(false);
     return <>
-        <Modal opened={opened} onClose={close} title={`blabla import b labla fpr ${item.account}`}>
-            dfdsfsdf
-        </Modal>
         <Menu.Label>Application</Menu.Label>
         <Menu.Item
-            onClick={open}
+            onClick={() => modals.open({
+                title:    `blabla import b labla fpr ${item.account}`,
+                children: <>
+                              yodlkgjfkg
+                          </>
+            })}
             icon={<IconCash size={14}/>}
         >
             <Translation
