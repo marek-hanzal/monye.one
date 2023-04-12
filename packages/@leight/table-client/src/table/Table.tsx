@@ -125,7 +125,9 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
         (overrideColumns as any)[column] || (columns as any)[column],
     ]);
 
-    return <ScrollArea w={"100%"}>
+    return <ScrollArea
+        w={"100%"}
+    >
         <Box w={scrollWidth}>
             <LoadingOverlay
                 visible={isLoading}

@@ -12,11 +12,11 @@ export const Pagination: FC<IPaginationProps> = ({...props}) => {
     const {page, pages, setPage} = CursorStore.useState(({page, pages, setPage}) => ({page, pages, setPage}));
     return <CoolPagination
         withEdges
-        size={"lg"}
+        size={"md"}
         radius={"sm"}
         total={pages}
-        boundaries={3}
-        siblings={3}
+        boundaries={2}
+        siblings={2}
         value={page + 1}
         onChange={page => setPage(page - 1)}
         {...props}
