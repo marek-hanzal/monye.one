@@ -2,23 +2,20 @@ import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
 import {isCallable}            from "@leight/utils";
 import {
-    ActionIcon,
     Box,
     Group,
     LoadingOverlay,
-    Popover,
     ScrollArea,
     Table as CoolTable
 }                              from "@mantine/core";
 import {
-    IconLayoutBottombarCollapse,
-    IconMenu
-}                              from "@tabler/icons-react";
-import {
     type ComponentProps,
     type CSSProperties,
+    FC,
     type ReactNode
 }                              from "react";
+import {TableAction}           from "./TableAction";
+import {TableRowAction}        from "./TableRowAction";
 
 export interface ITableColumn<TItem = any> {
     /**
@@ -87,14 +84,13 @@ export interface ITableInternalProps<TColumn extends ITableColumn, TColumnKeys e
     items?: InferItem<TColumn>[];
 
     /**
-     * Renders action icon in table head; renders Popover with the content returned from this method.
+     * Component used to render actions over whole table
      */
-    withTableAction?(props: ITableInternalProps.IWithTableActionProps<TColumn>): ReactNode;
-
+    WithTableAction?: FC<ITableInternalProps.IWithTableActionProps<TColumn>>;
     /**
-     * Renders action icon for every row; renders Popover with the content returned from this method.
+     * Per-row component action handler
      */
-    withRowAction?(props: ITableInternalProps.IWithRowActionProps<TColumn>): ReactNode;
+    WithRowAction?: FC<ITableInternalProps.IWithRowActionProps<TColumn>>;
 }
 
 export namespace ITableInternalProps {
@@ -119,8 +115,8 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
         hidden = [],
         order = Object.keys(columns) as any,
         items = [],
-        withTableAction,
-        withRowAction,
+        WithTableAction,
+        WithRowAction,
         ...props
     }: ITableInternalProps<TColumn, TColumnKeys>) => {
 
@@ -146,28 +142,22 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
             >
                 <thead>
                     <tr>
-                        {withRowAction && !withTableAction && <th
+                        {WithRowAction && !WithTableAction && <th
                             style={{
                                 width: "2rem",
                             }}
                         />}
-                        {withTableAction && <th
+                        {WithTableAction && <th
                             style={{
                                 width: "2rem",
                             }}
                         >
-                            <Popover position={"bottom"} withArrow shadow={"md"}>
-                                <Popover.Target>
-                                    <ActionIcon>
-                                        <IconLayoutBottombarCollapse/>
-                                    </ActionIcon>
-                                </Popover.Target>
-                                <Popover.Dropdown>
-                                    {withTableAction({
-                                        items,
-                                    })}
-                                </Popover.Dropdown>
-                            </Popover>
+                            <TableAction
+                                WithTableAction={WithTableAction}
+                                props={{
+                                    items,
+                                }}
+                            />
                         </th>}
                         {$columns?.map(([name, column]) => {
                             const defaultContent              = <Translation
@@ -193,24 +183,14 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
                 <tbody>
                     {items
                         .map(item => <tr key={item.id}>
-                            {withTableAction && !withRowAction && <td></td>}
-                            {withRowAction && <td>
-                                <Popover
-                                    position={"bottom"}
-                                    withArrow
-                                    shadow={"md"}
-                                >
-                                    <Popover.Target>
-                                        <ActionIcon>
-                                            <IconMenu/>
-                                        </ActionIcon>
-                                    </Popover.Target>
-                                    <Popover.Dropdown>
-                                        {withRowAction({
-                                            item,
-                                        })}
-                                    </Popover.Dropdown>
-                                </Popover>
+                            {WithTableAction && !WithRowAction && <td></td>}
+                            {WithRowAction && <td>
+                                <TableRowAction
+                                    WithRowAction={WithRowAction}
+                                    props={{
+                                        item,
+                                    }}
+                                />
                             </td>}
                             {$columns.map(([name, column]) => <td key={name}>
                                 {isCallable(column.render) ? column.render(item) : (item as any)[column.render]}

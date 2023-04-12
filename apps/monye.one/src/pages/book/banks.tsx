@@ -1,5 +1,6 @@
 import logo              from "@/monye.one/assets/logo/logo.svg";
 import {withTranslation} from "@leight/i18n-server";
+import {Paper}           from "@leight/mantine";
 import {Box}             from "@mantine/core";
 import {
     BankQueryProvider,
@@ -17,7 +18,9 @@ export default withBookLayout(
                             account: "asc",
                         }}
                     >
-                        <BankTable/>
+                        <Paper>
+                            <BankTable/>
+                        </Paper>
                     </BankQueryProvider>
                 </Box>
             </>

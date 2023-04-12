@@ -1,8 +1,9 @@
-import {type FC} from "react";
+import {type FC}            from "react";
 import {
     BankSourceTable,
     type IBankSourceTableProps
-}                from "../sdk";
+}                           from "../sdk";
+import {BankTableRowAction} from "./BankTableRowAction";
 
 export type IBankTableColumns =
     | "account";
@@ -19,6 +20,7 @@ export const BankTable: FC<IBankTableProps> = props => {
                 withControls: false,
             },
         }}
+        WithRowAction={BankTableRowAction}
         withTranslation={{
             namespace: "bank",
         }}

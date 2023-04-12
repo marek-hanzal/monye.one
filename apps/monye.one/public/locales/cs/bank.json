@@ -1,4 +1,5 @@
 {
     "button.create": "Přidat účet",
-    "table.column.account": "Číslo účtu"
+    "table.column.account": "Číslo účtu",
+    "transaction.upload.button": "Nahrát transakce"
 }
