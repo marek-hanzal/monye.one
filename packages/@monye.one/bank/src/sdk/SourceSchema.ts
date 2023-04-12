@@ -34,4 +34,4 @@ export interface IBankSourceSchema extends ISourceSchema<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rryafdrqy7jmxfza9hxj1eol = true;
+export const $leight_f1xbspyx7n2hv58kv7qcf2wk = true;

@@ -13,4 +13,4 @@ export class CalendarEventSource extends CalendarEventBaseSourceEx implements IC
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jlzw9xsy1wlm0mf4sg150a0l = true;
+export const $leight_g2wx9u4ic7zcgq5en2z9uvnw = true;
