@@ -33,6 +33,17 @@
         "generate": {
             "cache": false
         },
+        "init": {
+            "dependsOn": [
+                "^init"
+            ],
+            "outputs": [
+                "lib/**"
+            ],
+            "inputs": [
+                "src/**"
+            ]
+        },
         "build": {
             "outputMode": "new-only",
             "dependsOn": [
