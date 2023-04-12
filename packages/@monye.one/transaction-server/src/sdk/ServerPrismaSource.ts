@@ -5,11 +5,7 @@
 import {withCursor} from "@leight/query";
 import {$PrismaClient} from "@leight/prisma";
 import {type ISource} from "@leight/source";
-import {
-	AbstractSource,
-	withUpsert,
-	withPatch
-} from "@leight/source-server";
+import {AbstractSource} from "@leight/source-server";
 import {
 	$TransactionSource,
 	type ITransactionWhere,
@@ -33,21 +29,32 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
     async runFind(id: string): Promise<ITransactionSourceSchema["Entity"]> {
         return this.prisma().findUniqueOrThrow({
             where: {id},
+            include: {"bank":true},
         });
     }
 
     async runCreate(entity: ITransactionSourceSchema["Create"]): Promise<ITransactionSourceSchema["Entity"]> {
         return this.prisma().create({
             data: entity,
+            include: {"bank":true},
         });
     }
 
-    async runPatch(patch: ITransactionSourceSchema["Patch"]): Promise<ITransactionSourceSchema["Entity"]> {
-        return this.prisma().update(withPatch(patch));
+    async runPatch({id, ...patch}: ITransactionSourceSchema["Patch"]): Promise<ITransactionSourceSchema["Entity"]> {
+        return this.prisma().update({
+            data: patch,
+            where: {id},
+            include: {"bank":true},
+        });
     }
 
-    async runUpsert(props: ISource.IUpsert<ITransactionSourceSchema>): Promise<ITransactionSourceSchema["Entity"]> {
-        return this.prisma().upsert(withUpsert(props));
+    async runUpsert({filter, patch: update, create}: ISource.IUpsert<ITransactionSourceSchema>): Promise<ITransactionSourceSchema["Entity"]> {
+        return this.prisma().upsert({
+            create,
+            update,
+            where: this.toWhereUnique(filter),
+            include: {"bank":true},
+        });
     }
 
     async runCount(query?: ITransactionSourceSchema["Query"]): Promise<number> {
@@ -62,7 +69,8 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
             arg: {
                 where:   this.toWhere(query?.filter),
                 orderBy: this.toOrderBy(query?.sort),
-            }
+                include: {"bank":true},
+            },
         }));
     }
     
@@ -74,8 +82,8 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
         return filter;
     }
     
-    toWhereUnique(filter?: ITransactionSourceSchema["Filter"]): ITransactionWhereUnique | undefined {
-        return undefined;
+    toWhereUnique(filter: ITransactionSourceSchema["Filter"]): ITransactionWhereUnique {
+        return filter as ITransactionWhereUnique;
     }
     
     toOrderBy(sort?: ITransactionSourceSchema["Sort"]): ITransactionOrderBy | undefined {
@@ -87,4 +95,4 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_najeewajrywsjt7atjz4rmae = true;
+export const $leight_uu0yqq4zfgzkfkfx33n2z2ud = true;

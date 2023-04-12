@@ -7,15 +7,23 @@ import {
 void withSdk(
     withSourceGenerators(
         withSourceGeneratorsEntity({
-            name:     "Transaction",
-            packages: {
+            name:               "Transaction",
+            packages:           {
                 prisma: "@monye.one/prisma",
             },
-            sorts:    [
+            sorts:              [
                 "date",
                 "amount",
                 "reference",
             ],
+            withPrismaSchemaEx: {
+                entity: {
+                    type:        "TransactionExSchema",
+                    withPackage: {
+                        package: "../schema",
+                    },
+                },
+            },
         })
     )
 );

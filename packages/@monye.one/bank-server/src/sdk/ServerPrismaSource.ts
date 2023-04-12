@@ -5,11 +5,7 @@
 import {withCursor} from "@leight/query";
 import {$PrismaClient} from "@leight/prisma";
 import {type ISource} from "@leight/source";
-import {
-	AbstractSource,
-	withUpsert,
-	withPatch
-} from "@leight/source-server";
+import {AbstractSource} from "@leight/source-server";
 import {
 	$BankSource,
 	type IBankWhere,
@@ -33,21 +29,32 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
     async runFind(id: string): Promise<IBankSourceSchema["Entity"]> {
         return this.prisma().findUniqueOrThrow({
             where: {id},
+            include: undefined,
         });
     }
 
     async runCreate(entity: IBankSourceSchema["Create"]): Promise<IBankSourceSchema["Entity"]> {
         return this.prisma().create({
             data: entity,
+            include: undefined,
         });
     }
 
-    async runPatch(patch: IBankSourceSchema["Patch"]): Promise<IBankSourceSchema["Entity"]> {
-        return this.prisma().update(withPatch(patch));
+    async runPatch({id, ...patch}: IBankSourceSchema["Patch"]): Promise<IBankSourceSchema["Entity"]> {
+        return this.prisma().update({
+            data: patch,
+            where: {id},
+            include: undefined,
+        });
     }
 
-    async runUpsert(props: ISource.IUpsert<IBankSourceSchema>): Promise<IBankSourceSchema["Entity"]> {
-        return this.prisma().upsert(withUpsert(props));
+    async runUpsert({filter, patch: update, create}: ISource.IUpsert<IBankSourceSchema>): Promise<IBankSourceSchema["Entity"]> {
+        return this.prisma().upsert({
+            create,
+            update,
+            where: this.toWhereUnique(filter),
+            include: undefined,
+        });
     }
 
     async runCount(query?: IBankSourceSchema["Query"]): Promise<number> {
@@ -62,7 +69,8 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
             arg: {
                 where:   this.toWhere(query?.filter),
                 orderBy: this.toOrderBy(query?.sort),
-            }
+                include: undefined,
+            },
         }));
     }
     
@@ -74,8 +82,8 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
         return filter;
     }
     
-    toWhereUnique(filter?: IBankSourceSchema["Filter"]): IBankWhereUnique | undefined {
-        return undefined;
+    toWhereUnique(filter: IBankSourceSchema["Filter"]): IBankWhereUnique {
+        return filter as IBankWhereUnique;
     }
     
     toOrderBy(sort?: IBankSourceSchema["Sort"]): IBankOrderBy | undefined {
@@ -87,4 +95,4 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_l3kgfr75gmd50o6dii55tc4h = true;
+export const $leight_n5vlxjooc4gjhrb3hhn5ydec = true;

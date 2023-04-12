@@ -19,6 +19,9 @@ void withSdk(
                 schema: "@monye.one/transaction",
                 prisma: "@monye.one/prisma",
             },
+            withInclude:  {
+                bank: true,
+            },
         })
     )
 );

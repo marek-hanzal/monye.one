@@ -8,6 +8,7 @@
     "dropzone.import.actions": "Akce",
     "table.column.reference": "ID transakce",
     "table.column.amount": "Částka",
+    "table.column.account": "Účet",
     "table.column.note": "Poznámka",
     "table.column.variable": "Variabilní symbol",
     "table.column.static": "Konstantní symbol",

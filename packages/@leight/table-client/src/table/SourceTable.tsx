@@ -3,7 +3,6 @@ import {
     Pagination
 }                              from "@leight/cursor-client";
 import {type IPaginationProps} from "@leight/cursor-client/src/cursor/Pagination";
-import {Paper}                 from "@leight/mantine";
 import {type IUseSortState}    from "@leight/sort";
 import {SortIcon}              from "@leight/sort-client";
 import {
@@ -90,7 +89,7 @@ export const SourceTable = <
     const {sort, setSort} = useSort(({sort, setSort}) => ({sort, setSort}));
     const {pages}         = CursorStore.useState(({pages}) => ({pages}));
 
-    return <Paper>
+    return <>
         {pagination?.position?.includes("top") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
             <Center>
                 <Pagination
@@ -137,5 +136,5 @@ export const SourceTable = <
                 />
             </Center>
         </>}
-    </Paper>;
+    </>;
 };

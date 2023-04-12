@@ -19,6 +19,7 @@ import {
 import {SortOrderSchema} from "@leight/sort";
 import {WithIdentitySchema} from "@leight/source";
 import {z} from "@leight/zod";
+import {TransactionExSchema} from "../schema";
 
 export type ITransactionWhereSchema = typeof TransactionWhereSchema;
 export type ITransactionWhere = z.infer<ITransactionWhereSchema>;
@@ -47,7 +48,7 @@ export const TransactionOrderBySchema = TransactionOrderByWithRelationInputSchem
 /**
  * Schema definition for Transaction
  */
-export const TransactionSchema = $EntitySchema;
+export const TransactionSchema = $EntitySchema.merge(TransactionExSchema);
 export const TransactionCreateSchema = TransactionOptionalDefaultsSchema;
 export const TransactionPatchSchema = TransactionPartialSchema.merge(WithIdentitySchema);
 export const TransactionFilterSchema = z.union([
@@ -73,4 +74,4 @@ export const TransactionQuerySchema = QuerySchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_t5qtv0zw2r9nbgh8t1hq4fyp = true;
+export const $leight_o1cgw5g1rzx6s3z4bb4a5hck = true;

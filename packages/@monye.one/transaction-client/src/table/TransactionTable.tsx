@@ -10,6 +10,7 @@ import {
 export type ITransactionTableColumns =
     | "date"
     | "reference"
+    | "account"
     | "target"
     | "note"
     | "variable"
@@ -43,6 +44,10 @@ export const TransactionTable: FC<ITransactionTableProps> = props => {
                     return toHumanNumber({number: decimalOf(amount)});
                 },
                 sort: "amount",
+            },
+            account:   {
+                width:  22,
+                render: transaction => transaction.bank.account,
             },
             target:    {
                 width:  22,

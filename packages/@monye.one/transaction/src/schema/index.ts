@@ -1,4 +1,5 @@
-import {z} from "@leight/zod";
+import {z}          from "@leight/zod";
+import {BankSchema} from "@monye.one/bank";
 
 /**
  * Schema used for importing transaction from any source.
@@ -16,3 +17,7 @@ export const TransactionImportSchema = z.object({
 });
 export type ITransactionImportSchema = typeof TransactionImportSchema;
 export type ITransactionImport = z.infer<ITransactionImportSchema>;
+
+export const TransactionExSchema = z.object({
+    bank: BankSchema,
+});
