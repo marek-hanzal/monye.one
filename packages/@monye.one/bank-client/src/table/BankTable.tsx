@@ -12,7 +12,13 @@ export interface IBankTableProps extends IBankSourceTableProps<IBankTableColumns
 
 export const BankTable: FC<IBankTableProps> = props => {
     return <BankSourceTable
-        pagination={["bottom"]}
+        pagination={{
+            hideOnSingle: true,
+            position:     ["bottom"],
+            props:        {
+                withControls: false,
+            },
+        }}
         withTranslation={{
             namespace: "bank",
         }}
