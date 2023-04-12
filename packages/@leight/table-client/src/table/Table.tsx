@@ -141,6 +141,7 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
                 highlightOnHover
                 withBorder
                 withColumnBorders
+                style={!items?.length ? {minHeight: "20em"} : undefined}
                 {...props}
             >
                 <thead>

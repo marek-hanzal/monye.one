@@ -1,5 +1,6 @@
 import logo              from "@/monye.one/assets/logo/logo.svg";
 import {withTranslation} from "@leight/i18n-server";
+import {Paper}           from "@leight/mantine";
 import {Box}             from "@mantine/core";
 import {withBookLayout}  from "@monye.one/book-client";
 import {
@@ -17,7 +18,9 @@ export default withBookLayout(
                     date: "desc",
                 }}
             >
-                <TransactionTable/>
+                <Paper>
+                    <TransactionTable/>
+                </Paper>
             </TransactionQueryProvider>
         </Box>;
     },
