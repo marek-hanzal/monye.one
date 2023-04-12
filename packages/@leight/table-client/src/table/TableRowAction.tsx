@@ -20,7 +20,7 @@ export const TableRowAction = <TColumn extends ITableColumn>({WithRowAction, pro
     return <Menu
         shadow="md"
         width={200}
-        zIndex={200}
+        withinPortal
     >
         <Menu.Target>
             <Button>Toggle menu</Button>
