@@ -82,7 +82,11 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
                 />
             </CalendarEventQueryProvider>
         </Paper>
-        <TransactionTable/>
+        <TransactionTable
+            pagination={{
+                hideOnSingle: true,
+            }}
+        />
     </>;
 };
 
