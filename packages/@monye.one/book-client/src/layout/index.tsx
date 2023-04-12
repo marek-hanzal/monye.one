@@ -9,6 +9,7 @@ import {
     SessionOverlay,
     useUnauthenticatedRedirect,
 }                             from "@monye.one/ui";
+import {IconLogout}           from "@tabler/icons-react";
 import {signOut}              from "next-auth/react";
 import Image                  from "next/image";
 import Link                   from "next/link";
@@ -32,19 +33,21 @@ export const BookLayout: FC<IBookLayoutProps> = ({logo, href, children}) => {
             <Box>
                 <Header height={72} px={"md"}>
                     <Group position={"apart"} sx={{height: "100%"}}>
-                        <Link href={"/"}>
+                        <Link href={"/book"}>
                             <Image
-                                width={138}
+                                width={200}
                                 height={64}
                                 src={logo}
-                                className={"h-6"}
                                 alt={"logo"}
                             />
                         </Link>
                         <BookMenu active={href}/>
                         <Group>
                             <PrimaryButton
+                                size={"sm"}
+                                variant={"outline"}
                                 onClick={() => signOut()}
+                                rightIcon={<IconLogout/>}
                                 withTranslation={{
                                     label:     "button.sign-out",
                                     namespace: "book",

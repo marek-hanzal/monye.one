@@ -16,6 +16,10 @@ export function MonyeOne(
         emotionCache={emotionCache}
         Component={Component}
         pageProps={pageProps}
+        theme={{
+            primaryColor: "blue",
+            primaryShade: 5,
+        }}
     />;
 }
 

@@ -19,7 +19,6 @@ export const PrimaryButton: FC<IPrimaryButtonProps> = (
     return (
         <Button
             variant={"gradient"}
-            gradient={{from: "red.7", to: "orange.7"}}
             {...props}
         >
             <Translation {...withTranslation} />

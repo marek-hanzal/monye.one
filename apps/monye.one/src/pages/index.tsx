@@ -4,7 +4,7 @@ import {withPublicLayout} from "@monye.one/public-client";
 
 export default withPublicLayout(
     function Index() {
-        return <h1>Bello!</h1>;
+        return null;
     },
     {logo}
 );

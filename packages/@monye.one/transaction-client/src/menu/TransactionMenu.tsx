@@ -12,31 +12,29 @@ export interface ITransactionMenuProps extends Partial<ITabLinkMenuProps> {
 }
 
 export const TransactionMenu: FC<ITransactionMenuProps> = (props) => {
-    return (
-        <TabLinkMenu
-            items={[
-                {
-                    icon:            <IconList/>,
-                    withTranslation: {
-                        label:     "tab.transactions",
-                        namespace: "transaction",
-                    },
-                    href:            {
-                        href: "/book/transaction/list",
-                    },
+    return <TabLinkMenu
+        items={[
+            {
+                icon:            <IconList/>,
+                withTranslation: {
+                    label:     "tab.transactions",
+                    namespace: "transaction",
                 },
-                {
-                    icon:            <IconFileImport/>,
-                    withTranslation: {
-                        label:     "tab.import",
-                        namespace: "transaction",
-                    },
-                    href:            {
-                        href: "/book/transaction/import",
-                    },
+                href:            {
+                    href: "/book/transaction/list",
                 },
-            ]}
-            {...props}
-        />
-    );
+            },
+            {
+                icon:            <IconFileImport/>,
+                withTranslation: {
+                    label:     "tab.import",
+                    namespace: "transaction",
+                },
+                href:            {
+                    href: "/book/transaction/import",
+                },
+            },
+        ]}
+        {...props}
+    />;
 };
