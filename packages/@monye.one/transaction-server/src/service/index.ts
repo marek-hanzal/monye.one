@@ -1,19 +1,21 @@
+import {type IImportHandler} from "@leight/import";
 import {
     $UserService,
     type IUserService
-}               from "@leight/user";
-import {type z} from "@leight/zod";
+}                            from "@leight/user";
+import {type z}              from "@leight/zod";
 import {
     $BankSource,
     type IBankSource
-}               from "@monye.one/bank";
+}                            from "@monye.one/bank";
 import {
     $TransactionSource,
     type ITransactionImport,
+    type ITransactionImportParams,
     type ITransactionImportService,
     type ITransactionSource,
     TransactionImportSchema
-}               from "@monye.one/transaction";
+}                            from "@monye.one/transaction";
 
 export class TransactionImportService implements ITransactionImportService {
     static inject = [
@@ -29,22 +31,27 @@ export class TransactionImportService implements ITransactionImportService {
     ) {
     }
 
-    async handler(item: ITransactionImport): Promise<any> {
+    async handler({item, params}: IImportHandler.IHandlerProps<ITransactionImport, ITransactionImportParams>): Promise<any> {
         const {bank: account, ...transaction} = item;
-        const bank                            = await this.bankSource.upsert({
+        const $account                        = params.account || account;
+        if (!$account) {
+            console.error("Missing bank account in import or import params.");
+            return;
+        }
+        const bank = await this.bankSource.upsert({
             filter: {
                 userId_account: {
-                    userId: this.userService.required(),
-                    account,
+                    userId:  this.userService.required(),
+                    account: $account,
                 },
             },
             create: {
-                userId: this.userService.required(),
-                account,
+                userId:  this.userService.required(),
+                account: $account,
             },
             patch:  {
-                userId: this.userService.required(),
-                account,
+                userId:  this.userService.required(),
+                account: $account,
             },
         });
 

@@ -1,7 +1,10 @@
-import {type IImportService}     from "@leight/import";
-import {type ITransactionImport} from "../schema";
+import {type IImportService} from "@leight/import";
+import {
+    type ITransactionImport,
+    type ITransactionImportParams
+}                            from "../schema";
 
-export interface ITransactionImportService extends IImportService<ITransactionImport> {
+export interface ITransactionImportService extends IImportService<ITransactionImport, ITransactionImportParams> {
 }
 
 export const $TransactionImportService = Symbol.for(

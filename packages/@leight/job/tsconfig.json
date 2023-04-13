@@ -1,0 +1,14 @@
+{
+    "extends": "@leight/tsconfig/esbuild.json",
+    "compilerOptions": {
+        "rootDir": "src",
+        "baseUrl": "src"
+    },
+    "include": [
+        "src/**/*",
+        "src/**/*.json"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

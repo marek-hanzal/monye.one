@@ -1,9 +1,11 @@
 import {Translation}          from "@leight/i18n-client";
 import {
+    Divider,
     Menu,
     Text
 }                             from "@mantine/core";
 import {modals}               from "@mantine/modals";
+import {TransactionImport}    from "@monye.one/transaction-client";
 import {
     IconArrowsLeftRight,
     IconCash,
@@ -19,9 +21,17 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
         <Menu.Label>Application</Menu.Label>
         <Menu.Item
             onClick={() => modals.open({
-                title:    `blabla import b labla fpr ${item.account}`,
+                title:    <Translation
+                              namespace={"bank"}
+                              label={"modal.transaction.import.title"}
+                              values={item}
+                          />,
+                size:     "lg",
                 children: <>
-                              yodlkgjfkg
+                              <Divider size={"sm"}/>
+                              <TransactionImport
+                                  account={item.account}
+                              />
                           </>
             })}
             icon={<IconCash size={14}/>}
