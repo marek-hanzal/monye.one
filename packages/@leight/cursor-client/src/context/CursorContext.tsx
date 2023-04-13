@@ -1,11 +1,9 @@
-import {
-    createStoreContext,
-    type IStoreProps
-} from "@leight/context-client";
+import {createStoreContext} from "@leight/context-client";
+import {type IStoreProps}   from "@leight/zustand";
 import {
     type ComponentProps,
     type FC
-} from "react";
+}                           from "react";
 
 export type ICursorStoreProps = IStoreProps<{
     readonly page: number;

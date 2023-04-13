@@ -1,4 +1,4 @@
-import {type IStoreProvider} from "@leight/context";
+import {type IStoreContext}  from "@leight/context";
 import {createStoreContext}  from "@leight/context-client";
 import {
     type IStoreProps,
@@ -19,6 +19,8 @@ export interface ICreateFormContextProps {
     name: string;
 }
 
+export type IFormStoreContext<TFormSchema extends IFormSchema> = IStoreContext<IFormStoreProps<TFormSchema>>;
+
 export const createFormContext = <TFormSchema extends IFormSchema>({name}: ICreateFormContextProps) => {
     return createStoreContext<IFormStoreProps<TFormSchema>>({
         state: ({state}) => () => ({
@@ -28,13 +30,13 @@ export const createFormContext = <TFormSchema extends IFormSchema>({name}: ICrea
     });
 };
 
-export interface IFormStoreProviderProps<TFormSchema extends IFormSchema> extends Omit<ComponentProps<IStoreProvider<IFormStoreProps<TFormSchema>>>, "state"> {
-    FormStoreProvider: IStoreProvider<IFormStoreProps<TFormSchema>>;
+export interface IFormStoreProviderProps<TFormSchema extends IFormSchema> extends Omit<ComponentProps<IFormStoreContext<TFormSchema>["Provider"]>, "state"> {
+    FormStoreContext: IFormStoreContext<TFormSchema>;
 }
 
-export const FormStoreProvider = <TFormSchema extends IFormSchema>({FormStoreProvider, ...props}: IFormStoreProviderProps<TFormSchema>) => {
+export const FormStoreProvider = <TFormSchema extends IFormSchema>({FormStoreContext, ...props}: IFormStoreProviderProps<TFormSchema>) => {
     const form = useForm<TFormSchema["Values"], TFormSchema["Request"]>();
-    return <FormStoreProvider
+    return <FormStoreContext.Provider
         state={{
             form,
         }}

@@ -230,6 +230,8 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/book-server/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/book-server/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/context/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/context/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/form-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/form-client/lib" />
     </content>
     <orderEntry type="inheritedJdk" />

@@ -1,5 +1,9 @@
 import {type IGenerator} from "../../api";
 import {
+    generatorClientForm,
+    IGeneratorClientFormParams
+}                        from "./generatorClientForm";
+import {
     generatorClientSourceProvider,
     type IGeneratorClientSourceProviderParams
 }                        from "./generatorClientSourceProvider";
@@ -16,6 +20,7 @@ export interface IGeneratorClientSourceParams {
     SourceProvider?: IGeneratorClientSourceProviderParams;
     SourceStore?: IGeneratorClientSourceStoreParams;
     SourceTable?: IGeneratorClientSourceTableParams;
+    Form?: IGeneratorClientFormParams;
 }
 
 export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = async (
@@ -24,6 +29,7 @@ export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = a
                     SourceProvider,
                     SourceStore,
                     SourceTable,
+                    Form,
                 },
         ...     props
     }) => {
@@ -39,6 +45,10 @@ export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = a
         SourceTable ? generatorClientSourceTable({
             ...props,
             params: SourceTable,
+        }) : undefined,
+        Form ? generatorClientForm({
+            ...props,
+            params: Form,
         }) : undefined,
     ]);
 };

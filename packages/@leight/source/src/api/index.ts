@@ -10,7 +10,10 @@ import {type IUseQuery}     from "@leight/react-query";
 import {type ISortSchema}   from "@leight/sort";
 import {type IToString}     from "@leight/utils";
 import {z}                  from "@leight/zod";
-import {type IStoreProps}   from "@leight/zustand";
+import {
+    type IStoreContext,
+    type IStoreProps
+}                           from "@leight/zustand";
 
 export type ISourceName =
     string
@@ -110,6 +113,8 @@ export type ISourceStoreProps<TSourceSchema extends ISourceSchema> = IStoreProps
 
     setIsFetching(isFetching: boolean): void;
 }>
+
+export type ISourceStoreContext<TSourceSchema extends ISourceSchema> = IStoreContext<ISourceStoreProps<TSourceSchema>>;
 
 export type IUseSourceState<TSourceSchema extends ISourceSchema> = IUseState<ISourceStoreProps<TSourceSchema>>;
 

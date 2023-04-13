@@ -1,7 +1,8 @@
 import {
     type IStateCreatorProps,
     type IStoreApi,
-    type IStoreProps
+    type IStoreProps,
+    type StoreApi
 } from "@leight/zustand";
 import {
     type FC,
@@ -35,4 +36,16 @@ export interface IUseOptionalState<TStoreProps extends IStoreProps> {
     <U>(selector: (state: TStoreProps["StoreProps"] | null) => U): U;
 
     (): TStoreProps["StoreProps"] | null;
+}
+
+/**
+ * Typed set of generated components used for working with Store; Provider, states and the others otherwise
+ * boilerplate code.
+ */
+export interface IStoreContext<TStoreProps extends IStoreProps> {
+    readonly Provider: IStoreProvider<TStoreProps>;
+    readonly useState: IUseState<TStoreProps>;
+    readonly useOptionalState: IUseOptionalState<TStoreProps>;
+    readonly useStore: () => StoreApi<TStoreProps["StoreProps"]>;
+    readonly useOptionalStore: () => StoreApi<TStoreProps["StoreProps"]> | null;
 }
