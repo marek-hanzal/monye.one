@@ -1,7 +1,10 @@
-import {ImportZone}                    from "@leight/xlsx-import-client";
-import {type ITransactionImportParams} from "@monye.one/transaction";
-import {trpc}                          from "@monye.one/trpc-client";
-import {type FC}                       from "react";
+import {ImportZone} from "@leight/xlsx-import-client";
+import {
+    $TransactionImportService,
+    type ITransactionImportParams
+}                   from "@monye.one/transaction";
+import {trpc}       from "@monye.one/trpc-client";
+import {type FC}    from "react";
 
 export interface ITransactionImportProps {
     account?: string;
@@ -17,6 +20,7 @@ export const TransactionImport: FC<ITransactionImportProps> = ({account}) => {
             context.transaction.source.count.invalidate();
         }}
         params={{
+            service: $TransactionImportService.toString(),
             account,
         }}
         withTranslation={{

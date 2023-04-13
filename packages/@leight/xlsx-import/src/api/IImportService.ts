@@ -21,6 +21,7 @@ export namespace IImportService {
     }
 
     export interface IAsyncProps {
+        service?: string;
         fileId: string;
     }
 }

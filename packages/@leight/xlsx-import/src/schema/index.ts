@@ -25,7 +25,8 @@ export type IMetaSchema = typeof MetaSchema;
 export type IMeta = z.infer<IMetaSchema>;
 
 export const RequestSchema = z.object({
-    fileId: z.string(),
+    service: z.string().optional(),
+    fileId:  z.string(),
 });
 export type IRequestSchema = typeof RequestSchema;
 export type IRequest = z.infer<IRequestSchema>;

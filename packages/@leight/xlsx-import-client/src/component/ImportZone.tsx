@@ -18,6 +18,10 @@ export interface IImportZoneProps<TParams extends Record<string, any>> extends O
     onSuccess?: IJobInlineProps["onSuccess"];
     useJobFindQuery: IUseJobFindQuery;
     path?: string;
+    /**
+     * Override import service name
+     */
+    service?: string;
     params?: Omit<TParams, "fileId">;
 }
 
@@ -27,6 +31,7 @@ export const ImportZone = <TParams extends Record<string, any>>(
         onSuccess,
         useJobFindQuery,
         mutation: {useMutation},
+        service,
         params,
         ...props
     }: IImportZoneProps<TParams>) => {
@@ -37,7 +42,11 @@ export const ImportZone = <TParams extends Record<string, any>>(
             path={"/import"}
             onUpload={(file) => {
                 mutation.mutate(
-                    {fileId: file.id, ...params},
+                    {
+                        service,
+                        fileId: file.id,
+                        ...params
+                    },
                     {
                         onSuccess: job => {
                             notifications.show({

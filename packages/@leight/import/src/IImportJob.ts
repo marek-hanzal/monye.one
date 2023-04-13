@@ -2,7 +2,8 @@ import {JobSchema} from "@leight/job";
 import {z}         from "@leight/zod";
 
 export const ImportJobParamsSchema = z.object({
-    fileId: z.string(),
+    service: z.string().optional(),
+    fileId:  z.string(),
 });
 export type IImportJobParamsSchema = typeof ImportJobParamsSchema;
 export type IImportJobParams = z.infer<IImportJobParamsSchema>;
