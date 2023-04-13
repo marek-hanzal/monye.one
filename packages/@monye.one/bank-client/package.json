@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "@leight/filter-client": "^0.5.0",
+        "@leight/form-client": "^0.5.0",
         "@leight/i18n-client": "^0.5.0",
         "@leight/query-client": "^0.5.0",
         "@leight/sort-client": "^0.5.0",

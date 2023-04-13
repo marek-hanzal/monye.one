@@ -4,7 +4,7 @@ import {withBookLayout}  from "@monye.one/book-client";
 
 export default withBookLayout(
     function Index() {
-        return <h1>Book here!!</h1>;
+        return null;
     },
     {logo, href: "/book"}
 );

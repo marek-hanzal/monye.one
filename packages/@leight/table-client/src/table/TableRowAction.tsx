@@ -32,7 +32,6 @@ export const TableRowAction = <TColumn extends ITableColumn>({WithRowAction, pro
                 <IconMenu2/>
             </ActionIcon>
         </Menu.Target>
-
         <Menu.Dropdown>
             <WithRowAction {...props}/>
         </Menu.Dropdown>

@@ -17,7 +17,12 @@ import {type IBankTableProps} from "./BankTable";
 
 export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => {
     return <>
-        <Menu.Label>[Importy]</Menu.Label>
+        <Menu.Label>
+            <Translation
+                namespace={"common"}
+                label={"actions.label"}
+            />
+        </Menu.Label>
         <Menu.Item
             onClick={() => modals.open({
                 modalId:  "import",

@@ -2,5 +2,7 @@
     "button.create": "Přidat účet",
     "table.column.account": "Číslo účtu",
     "transaction.upload.button": "Nahrát transakce",
-    "modal.transaction.import.title": "Import transakcí do účtu [{account}]"
+    "modal.transaction.import.title": "Import transakcí do účtu [{account}]",
+    "modal.account.create.title": "Přidat účet",
+    "account.create.button": "Přidat účet"
 }

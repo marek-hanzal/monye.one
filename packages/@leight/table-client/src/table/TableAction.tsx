@@ -1,6 +1,6 @@
 import {
     ActionIcon,
-    Popover
+    Menu
 }                                    from "@mantine/core";
 import {IconLayoutBottombarCollapse} from "@tabler/icons-react";
 import {type FC}                     from "react";
@@ -18,20 +18,19 @@ export const TableAction = <TColumn extends ITableColumn>({WithTableAction, prop
     if (!WithTableAction) {
         return null;
     }
-    return <Popover
-        position={"bottom"}
-        withArrow
+    return <Menu
         shadow={"md"}
+        width={200}
+        withinPortal
+        position={"bottom-start"}
     >
-        <Popover.Target>
+        <Menu.Target>
             <ActionIcon>
                 <IconLayoutBottombarCollapse/>
             </ActionIcon>
-        </Popover.Target>
-        <Popover.Dropdown>
-            <WithTableAction
-                {...props}
-            />
-        </Popover.Dropdown>
-    </Popover>;
+        </Menu.Target>
+        <Menu.Dropdown>
+            <WithTableAction {...props}/>
+        </Menu.Dropdown>
+    </Menu>;
 };
