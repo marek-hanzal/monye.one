@@ -1,23 +1,32 @@
-import {ImportZone} from "@leight/xlsx-import-client";
+import {
+    type IImportZoneProps,
+    ImportZone
+}                from "@leight/xlsx-import-client";
 import {
     $TransactionImportService,
     type ITransactionImportParams
-}                   from "@monye.one/transaction";
-import {trpc}       from "@monye.one/trpc-client";
-import {type FC}    from "react";
+}                from "@monye.one/transaction";
+import {trpc}    from "@monye.one/trpc-client";
+import {type FC} from "react";
 
-export interface ITransactionImportProps {
+export interface ITransactionImportProps extends Omit<IImportZoneProps<ITransactionImportParams>, "useJobFindQuery" | "withTranslation" | "mutation" | "params"> {
     account?: string;
 }
 
-export const TransactionImport: FC<ITransactionImportProps> = ({account}) => {
+export const TransactionImport: FC<ITransactionImportProps> = (
+    {
+        account,
+        onSuccess,
+        ...props
+    }) => {
     const context = trpc.useContext();
     return <ImportZone<ITransactionImportParams>
         useJobFindQuery={trpc.job.source.find.useQuery}
         mutation={trpc.transaction.import.xlsx.job}
-        onSuccess={() => {
+        onSuccess={props => {
             context.transaction.source.query.invalidate();
             context.transaction.source.count.invalidate();
+            onSuccess?.(props);
         }}
         params={{
             service: $TransactionImportService.description,
@@ -27,5 +36,6 @@ export const TransactionImport: FC<ITransactionImportProps> = ({account}) => {
             label:     "dropzone.import",
             namespace: "transaction",
         }}
+        {...props}
     />;
 };

@@ -1,6 +1,5 @@
 import {Translation}          from "@leight/i18n-client";
 import {
-    Divider,
     Menu,
     Text
 }                             from "@mantine/core";
@@ -18,9 +17,10 @@ import {type IBankTableProps} from "./BankTable";
 
 export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => {
     return <>
-        <Menu.Label>Application</Menu.Label>
+        <Menu.Label>[Importy]</Menu.Label>
         <Menu.Item
             onClick={() => modals.open({
+                modalId:  "import",
                 title:    <Translation
                               namespace={"bank"}
                               label={"modal.transaction.import.title"}
@@ -28,9 +28,9 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
                           />,
                 size:     "lg",
                 children: <>
-                              <Divider size={"sm"}/>
                               <TransactionImport
                                   account={item.account}
+                                  onUpload={() => setTimeout(() => modals.close("import"), 500)}
                               />
                           </>
             })}

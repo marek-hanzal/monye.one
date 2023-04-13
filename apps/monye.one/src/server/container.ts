@@ -21,7 +21,6 @@ export const container = new PumpIt();
 export const MonyeOneContainer = ((container: IContainer) => {
     wrapContainer(container)
         .bindFactory($PrismaClient, () => {
-            console.log("New Prisma stuff");
             return new PrismaClient({
                 errorFormat: "pretty",
                 // log:

@@ -29,6 +29,7 @@ export const ImportZone = <TParams extends Record<string, any>>(
     {
         withTranslation,
         onSuccess,
+        onUpload,
         useJobFindQuery,
         mutation: {useMutation},
         service,
@@ -40,7 +41,7 @@ export const ImportZone = <TParams extends Record<string, any>>(
     return <LoopsProvider>
         <DropZone
             path={"/import"}
-            onUpload={(file) => {
+            onUpload={file => {
                 mutation.mutate(
                     {
                         service,
@@ -64,10 +65,11 @@ export const ImportZone = <TParams extends Record<string, any>>(
                         },
                     }
                 );
+                onUpload?.(file);
             }}
             accept={[
                 MIME_TYPES.xls,
-                MIME_TYPES.xlsx
+                MIME_TYPES.xlsx,
             ]}
             withTranslation={withTranslation}
             {...props}
