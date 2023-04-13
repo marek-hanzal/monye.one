@@ -20,7 +20,7 @@ export const TransactionImport: FC<ITransactionImportProps> = ({account}) => {
             context.transaction.source.count.invalidate();
         }}
         params={{
-            service: $TransactionImportService.toString(),
+            service: $TransactionImportService.description,
             account,
         }}
         withTranslation={{
