@@ -19,7 +19,7 @@ export interface ICreateFormContextProps {
     name: string;
 }
 
-export type IFormStoreContext<TFormSchema extends IFormSchema> = IStoreContext<IFormStoreProps<TFormSchema>>;
+export type IFormStoreContext<TFormSchema extends IFormSchema> = IStoreContext<Omit<IFormStoreProps<TFormSchema>, "state">>;
 
 export const createFormContext = <TFormSchema extends IFormSchema>({name}: ICreateFormContextProps) => {
     return createStoreContext<IFormStoreProps<TFormSchema>>({

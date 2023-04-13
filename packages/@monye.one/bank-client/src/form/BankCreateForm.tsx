@@ -1,20 +1,21 @@
+import {TextInput} from "@leight/form-client";
+import {type FC}   from "react";
 import {
-    Form,
-    type IFormProps,
-    TextInput
-}                                   from "@leight/form-client";
-import {type FC}                    from "react";
-import {type IBankCreateFormSchema} from "../sdk";
+    BankCreateBaseForm,
+    type IBankCreateBaseFormProps
+}                  from "../sdk";
 
-export interface IBankCreateForm extends IFormProps<IBankCreateFormSchema> {
+export interface IBankCreateForm extends IBankCreateBaseFormProps {
 }
 
-export const BankCreateForm: FC<IBankCreateForm> = () => {
-    return <Form<IBankCreateFormSchema>>
+export const BankCreateForm: FC<IBankCreateForm> = props => {
+    return <BankCreateBaseForm
+        {...props}
+    >
         <TextInput
             placeholder={"Your name"}
             label={"Full name"}
             withAsterisk
         />
-    </Form>;
+    </BankCreateBaseForm>;
 };

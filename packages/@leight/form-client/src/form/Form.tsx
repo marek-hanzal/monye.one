@@ -1,6 +1,9 @@
 import {z}                      from "@leight/zod";
-import {useForm}                from "@mantine/form";
 import {type PropsWithChildren} from "react";
+import {
+    FormStoreProvider,
+    type IFormStoreContext
+}                               from "../context";
 
 /**
  * Defines form schema - all internal data are separated by a purpose
@@ -35,15 +38,20 @@ export interface IFormSchemas<TFormSchema extends IFormSchema = IFormSchema> {
 
 export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWithChildren<{
     schema?: IFormSchemas<TFormSchema>;
+    FormContext: IFormStoreContext<TFormSchema>;
 }>;
 
 export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
     {
         schema,
+        FormContext,
         children,
     }: IFormProps<TFormSchema>) => {
-    const form = useForm<TFormSchema["Values"], TFormSchema["Request"]>();
-    return <form>
-        {children}
-    </form>;
+    return <FormStoreProvider
+        FormStoreContext={FormContext}
+    >
+        <form>
+            {children}
+        </form>
+    </FormStoreProvider>;
 };

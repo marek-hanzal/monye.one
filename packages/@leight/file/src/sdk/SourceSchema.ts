@@ -34,4 +34,4 @@ export interface IFileSourceSchema extends ISourceSchema<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ole5eazfm0jondqpd40eqe2h = true;
+export const $leight_ukuwbkwrqsxz5xa9lssgut30 = true;

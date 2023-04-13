@@ -18,4 +18,4 @@ export const BankSourceProcedure = withSourceProcedure<IBankSourceSchema>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vpfi6xd9mu14abttg55hub5p = true;
+export const $leight_x1ip5o7lf4kxlkmnwd45b3b5 = true;

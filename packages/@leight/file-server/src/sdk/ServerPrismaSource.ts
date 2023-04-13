@@ -97,4 +97,4 @@ export class FileBasePrismaSource extends AbstractSource<IFileSourceSchema> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_s48u27s6j40m3l5akslmaztq = true;
+export const $leight_hl5njcnwornwoorkz116ep5f = true;
