@@ -79,6 +79,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/book/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/public-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/book-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/context/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/form-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
@@ -228,6 +229,7 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/public-client/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/book-server/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/book-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/context/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/form-client/lib" />
     </content>
     <orderEntry type="inheritedJdk" />

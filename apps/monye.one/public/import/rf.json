@@ -1,0 +1,86 @@
+{
+    "tabs": [
+        {
+            "tab": "transakce",
+            "services": [
+                "@monye.one/transaction/ITransactionImportService"
+            ]
+        }
+    ],
+    "translations": [
+        {
+            "from": {
+                "source": [
+                    "Číslo účtu"
+                ]
+            },
+            "to": "bank"
+        },
+        {
+            "from": {
+                "source": [
+                    "Id transakce"
+                ]
+            },
+            "to": "reference"
+        },
+        {
+            "from": {
+                "source": [
+                    "Zpráva",
+                    "Název obchodníka"
+                ],
+                "concat": " "
+            },
+            "to": "note"
+        },
+        {
+            "from": {
+                "source": [
+                    "Datum provedení"
+                ]
+            },
+            "to": "date"
+        },
+        {
+            "from": {
+                "source": [
+                    "Zaúčtovaná částka"
+                ]
+            },
+            "to": "amount"
+        },
+        {
+            "from": {
+                "source": [
+                    "KS"
+                ]
+            },
+            "to": "symbol"
+        },
+        {
+            "from": {
+                "source": [
+                    "VS"
+                ]
+            },
+            "to": "variable"
+        },
+        {
+            "from": {
+                "source": [
+                    "SS"
+                ]
+            },
+            "to": "static"
+        },
+        {
+            "from": {
+                "source": [
+                    "Číslo protiúčtu"
+                ]
+            },
+            "to": "target"
+        }
+    ]
+}

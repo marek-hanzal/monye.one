@@ -48,7 +48,6 @@
         "@leight/turbowatch": "^0.5.30",
         "@leight/xlsx-import": "^0.5.63",
         "@types/node": "^18.15.0",
-        "@types/react": "^18.0.28",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
         "depcheck": "^1.4.3",
