@@ -1,4 +1,7 @@
-import {type IUseState}   from "@leight/context";
+import {
+    type IStoreContext,
+    type IUseState
+}                         from "@leight/context";
 import {z}                from "@leight/zod";
 import {type IStoreProps} from "@leight/zustand";
 
@@ -19,4 +22,5 @@ export type ISortStoreProps<TSortSchema extends ISortSchema> = IStoreProps<{
     setSort(sort: keyof z.infer<TSortSchema>, order: ISortOrder): void;
 }>
 
+export type ISortStoreContext<TSortSchema extends ISortSchema> = IStoreContext<ISortStoreProps<TSortSchema>>;
 export type IUseSortState<TSortSchema extends ISortSchema> = IUseState<ISortStoreProps<TSortSchema>>;

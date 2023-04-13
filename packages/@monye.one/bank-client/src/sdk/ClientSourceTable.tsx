@@ -17,7 +17,7 @@ import {
 } from "./ClientStore";
 import {BankSource} from "./ClientSourceProvider";
 
-export interface IBankSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<IBankSourceSchema, TColumnKeys>, "useSource" | "useSort" | "schema"> {
+export interface IBankSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<IBankSourceSchema, TColumnKeys>, "Source" | "Sort" | "schema"> {
 }
 
 export interface IBankSourceTableProps<TColumnKeys extends string> extends Omit<IBankSourceTableInternalProps<TColumnKeys>, "columns" | "withTranslation"> {
@@ -30,8 +30,8 @@ export interface IBankSourceTableProps<TColumnKeys extends string> extends Omit<
 export const BankSourceTable = <TColumnKeys extends string>(props: IBankSourceTableInternalProps<TColumnKeys>) => {
     return <BankSource>
         <SourceTable
-            useSource={BankSourceStore.useState}
-            useSort={BankSortStore.useState}
+            Source={BankSourceStore}
+            Sort={BankSortStore}
             schema={BankSchema}
             {...props}
         />
@@ -41,4 +41,4 @@ export const BankSourceTable = <TColumnKeys extends string>(props: IBankSourceTa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_l86xndj1gg11z9i60s05av9k = true;
+export const $leight_u4c2rze4nx3y99xxjj5o0rj3 = true;

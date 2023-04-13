@@ -37,7 +37,7 @@ export interface ISourceInternalProps<TSourceSchema extends ISourceSchema> {
 export type ISourceProps<TSourceSchema extends ISourceSchema> = Omit<ISourceInternalProps<TSourceSchema>, "schema" | "SourceProvider" | "useSourceQuery" | "useSortState" | "useFilterState">;
 
 interface IInternalSourceProps<TSourceSchema extends ISourceSchema> extends Pick<ISourceInternalProps<TSourceSchema>, "schema" | "useSourceQuery" | "useSortState" | "useFilterState" | "onSuccess" | "children"> {
-    readonly sourceContext: IStoreApi<ISourceStoreProps<TSourceSchema>>;
+    sourceContext: IStoreApi<ISourceStoreProps<TSourceSchema>>;
 }
 
 const InternalSource = <TSourceSchema extends ISourceSchema>(

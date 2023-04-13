@@ -1,24 +1,24 @@
 import {
     CursorStore,
     Pagination
-}                              from "@leight/cursor-client";
-import {type IPaginationProps} from "@leight/cursor-client/src/cursor/Pagination";
-import {type IUseSortState}    from "@leight/sort";
-import {SortIcon}              from "@leight/sort-client";
+}                               from "@leight/cursor-client";
+import {type IPaginationProps}  from "@leight/cursor-client/src/cursor/Pagination";
+import {type ISortStoreContext} from "@leight/sort";
+import {SortIcon}               from "@leight/sort-client";
 import {
     type ISourceSchema,
-    type IUseSourceState
-}                              from "@leight/source";
-import {chain}                 from "@leight/utils";
+    type ISourceStoreContext
+}                               from "@leight/source";
+import {chain}                  from "@leight/utils";
 import {
     Center,
     Divider
-}                              from "@mantine/core";
+}                               from "@mantine/core";
 import {
     type ITableColumn,
     type ITableProps,
     Table
-}                              from "./Table";
+}                               from "./Table";
 
 export interface ISourceTableColumn<TSourceSchema extends ISourceSchema> extends ITableColumn<TSourceSchema["Entity"]> {
     readonly sort?: keyof TSourceSchema["Sort"];
@@ -32,8 +32,8 @@ export interface ISourceTableInternalProps<
      * Table schema used to infer all internal types.
      */
     schema: TSourceSchema["EntitySchema"];
-    useSource: IUseSourceState<TSourceSchema>;
-    useSort: IUseSortState<TSourceSchema["SortSchema"]>;
+    Source: ISourceStoreContext<TSourceSchema>;
+    Sort: ISortStoreContext<TSourceSchema["SortSchema"]>;
     pagination?: {
         hideOnSingle?: boolean;
         /**
@@ -51,7 +51,7 @@ export interface ISourceTableInternalProps<
 export type ISourceTableProps<
     TSourceSchema extends ISourceSchema,
     TColumnKeys extends string,
-> = Omit<ISourceTableInternalProps<TSourceSchema, TColumnKeys>, "schema" | "useSource" | "useSort" | "columns" | "withTranslation">;
+> = Omit<ISourceTableInternalProps<TSourceSchema, TColumnKeys>, "schema" | "Source" | "Sort" | "columns" | "withTranslation">;
 
 export const SourceTable = <
     TSourceSchema extends ISourceSchema,
@@ -59,8 +59,8 @@ export const SourceTable = <
 >(
     {
         schema,
-        useSource,
-        useSort,
+        Source,
+        Sort,
         columns,
         pagination = {
             hideOnSingle: false,
@@ -75,7 +75,7 @@ export const SourceTable = <
               entities,
               isFetching,
               isLoading,
-          }               = useSource((
+          }               = Source.useState((
         {
             entities,
             isFetching,
@@ -86,7 +86,7 @@ export const SourceTable = <
             isFetching,
             isLoading,
         }));
-    const {sort, setSort} = useSort(({sort, setSort}) => ({sort, setSort}));
+    const {sort, setSort} = Sort.useState(({sort, setSort}) => ({sort, setSort}));
     const {pages}         = CursorStore.useState(({pages}) => ({pages}));
 
     return <>

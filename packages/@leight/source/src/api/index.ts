@@ -1,4 +1,7 @@
-import {type IUseState}     from "@leight/context";
+import {
+    type IStoreContext,
+    type IUseState
+}                           from "@leight/context";
 import {type ICursorSchema} from "@leight/cursor";
 import {type IFilterSchema} from "@leight/filter";
 import {
@@ -10,10 +13,7 @@ import {type IUseQuery}     from "@leight/react-query";
 import {type ISortSchema}   from "@leight/sort";
 import {type IToString}     from "@leight/utils";
 import {z}                  from "@leight/zod";
-import {
-    type IStoreContext,
-    type IStoreProps
-}                           from "@leight/zustand";
+import {type IStoreProps}   from "@leight/zustand";
 
 export type ISourceName =
     string
