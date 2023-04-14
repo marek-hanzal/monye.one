@@ -9,10 +9,13 @@ import {
     type UseFormReturnType
 }                            from "@mantine/form";
 import {type ComponentProps} from "react";
-import {type IFormSchema}    from "../form";
+import {
+    type IFormMapper,
+    type IFormSchema
+}                            from "../form";
 
 export type IFormStoreProps<TFormSchema extends IFormSchema> = IStoreProps<IStorePropsType, {
-    form: UseFormReturnType<TFormSchema["Values"], TFormSchema["Request"]>;
+    form: UseFormReturnType<TFormSchema["Values"], IFormMapper<TFormSchema>>;
 }>;
 
 export interface ICreateFormContextProps {
@@ -35,7 +38,7 @@ export interface IFormStoreProviderProps<TFormSchema extends IFormSchema> extend
 }
 
 export const FormStoreProvider = <TFormSchema extends IFormSchema>({FormStoreContext, ...props}: IFormStoreProviderProps<TFormSchema>) => {
-    const form = useForm<TFormSchema["Values"], TFormSchema["Request"]>();
+    const form = useForm<TFormSchema["Values"], IFormMapper<TFormSchema>>();
     return <FormStoreContext.Provider
         state={{
             form,

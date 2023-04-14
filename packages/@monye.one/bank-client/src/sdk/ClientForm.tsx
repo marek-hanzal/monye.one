@@ -1,20 +1,29 @@
 import {
     createFormContext,
     Form,
+    FormResponseSchema,
     type IFormProps,
-    type IFormSchema
+    type IFormSchema,
+    type IFormSchemas
 }                from "@leight/form-client";
 import {type FC} from "react";
 import {
-    type IBankCreateFormCreateSchema,
+    BankCreateFormRequestSchema,
+    BankCreateFormValueSchema,
+    type IBankCreateFormRequestSchema,
     type IBankCreateFormValueSchema
 }                from "../schema";
 
-export interface IBankCreateFormSchema extends IFormSchema<
+export type IBankCreateFormSchema = IFormSchema<
     IBankCreateFormValueSchema,
-    IBankCreateFormCreateSchema
-> {
-}
+    IBankCreateFormRequestSchema
+>;
+
+export const IBankCreateFormSchemas: IFormSchemas<IBankCreateFormSchema> = {
+    ValueSchema:    BankCreateFormValueSchema,
+    RequestSchema:  BankCreateFormRequestSchema,
+    ResponseSchema: FormResponseSchema,
+};
 
 export const BankCreateFormStoreContext = createFormContext<IBankCreateFormSchema>({
     name: "BankCreateForm",

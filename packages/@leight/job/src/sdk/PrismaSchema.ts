@@ -72,4 +72,4 @@ export const JobQuerySchema = QuerySchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_c7sks17fzx7ouqpmym5h4az2 = true;
+export const $leight_tncon77salr0dzp6d0vpb56o = true;

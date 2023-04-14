@@ -1,27 +1,36 @@
 import {z}                      from "@leight/zod";
+import {Button}                 from "@mantine/core";
 import {type PropsWithChildren} from "react";
 import {
     FormStoreProvider,
     type IFormStoreContext
 }                               from "../context";
+import {
+    type IFormRequestSchema,
+    type IFormResponseSchema,
+    type IFormValuesSchema
+}                               from "../schema";
 
 /**
  * Defines form schema - all internal data are separated by a purpose
  */
-export interface IFormSchema<
-    TValues extends z.ZodType = z.ZodType,
-    TRequest extends z.ZodType = z.ZodType,
-    TResponse extends z.ZodType = z.ZodType,
-> {
-    ValuesSchema: TValues;
-    Values: z.infer<TValues>;
-    RequestSchema: TRequest;
-    Request: z.infer<TRequest>;
-    ResponseSchema: TResponse;
-    Response: z.infer<TResponse>;
+export type IFormSchema<
+    TValuesSchema extends IFormValuesSchema = IFormValuesSchema,
+    TRequestSchema extends IFormRequestSchema = IFormRequestSchema,
+    TResponseSchema extends IFormResponseSchema = IFormResponseSchema,
+> = {
+    ValuesSchema: TValuesSchema;
+    Values: z.infer<TValuesSchema>;
+    RequestSchema: TRequestSchema;
+    Request: z.infer<TRequestSchema>;
+    ResponseSchema: TResponseSchema;
+    Response: z.infer<TResponseSchema>;
 }
 
-export interface IFormSchemas<TFormSchema extends IFormSchema = IFormSchema> {
+export type IFormFields<TFormSchema extends IFormSchema> = keyof TFormSchema["Values"];
+export type IFormMapper<TFormSchema extends IFormSchema> = (values: TFormSchema["Values"]) => TFormSchema["Request"];
+
+export type IFormSchemas<TFormSchema extends IFormSchema = IFormSchema> = {
     /**
      * Value schema validation (internal form structure)
      */
@@ -45,13 +54,37 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
     {
         schema,
         FormContext,
-        children,
+        ...props
     }: IFormProps<TFormSchema>) => {
     return <FormStoreProvider
         FormStoreContext={FormContext}
     >
-        <form>
-            {children}
-        </form>
+        <FormInternal<TFormSchema>
+            FormContext={FormContext}
+            {...props}
+        />
     </FormStoreProvider>;
+};
+
+interface IFormInternalProps<TFormSchema extends IFormSchema = IFormSchema> extends IFormProps<TFormSchema> {
+}
+
+const FormInternal = <TFormSchema extends IFormSchema = IFormSchema>(
+    {
+        FormContext,
+        children,
+    }: IFormInternalProps<TFormSchema>) => {
+    const {form} = FormContext.useState(({form}) => ({form}));
+    return <form
+        onSubmit={form.onSubmit(values => {
+            console.log(values);
+        })}
+    >
+        {children}
+        <Button
+            type={"submit"}
+        >
+            Submit
+        </Button>
+    </form>;
 };

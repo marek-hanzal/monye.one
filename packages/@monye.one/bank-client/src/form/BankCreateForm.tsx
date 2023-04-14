@@ -2,6 +2,7 @@ import {TextInput} from "@leight/form-client";
 import {type FC}   from "react";
 import {
     BankCreateBaseForm,
+    BankCreateFormStoreContext,
     type IBankCreateBaseFormProps
 }                  from "../sdk";
 
@@ -13,6 +14,8 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
         {...props}
     >
         <TextInput
+            FormContext={BankCreateFormStoreContext}
+            path={"account"}
             placeholder={"Your name"}
             label={"Full name"}
             withAsterisk

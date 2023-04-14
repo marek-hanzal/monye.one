@@ -1,7 +1,10 @@
-import {z} from "@leight/zod";
+import {z}                from "@leight/zod";
+import {BankCreateSchema} from "@monye.one/bank";
 
-export const BankCreateFormValueSchema = z.object({});
+export const BankCreateFormValueSchema = z.object({
+    account: z.string().min(1),
+});
 export type IBankCreateFormValueSchema = typeof BankCreateFormValueSchema;
 
-export const BankCreateFormCreateSchema = z.object({});
-export type IBankCreateFormCreateSchema = typeof BankCreateFormCreateSchema;
+export const BankCreateFormRequestSchema = BankCreateSchema;
+export type IBankCreateFormRequestSchema = typeof BankCreateFormRequestSchema;
