@@ -5,6 +5,10 @@ import {
     Button,
     Group
 }                               from "@mantine/core";
+import {
+    useForm,
+    UseFormReturnType
+}                               from "@mantine/form";
 import {type PropsWithChildren} from "react";
 import {
     FormStoreProvider,
@@ -54,41 +58,53 @@ export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWit
     schema?: IFormSchemas<TFormSchema>;
     FormContext: IFormStoreContext<TFormSchema>;
     withTranslation: IWithTranslation;
+    withMapper: IFormMapper<TFormSchema>;
+    onSubmit?(props: IFormProps.IOnSubmitProps<TFormSchema>): void;
 }>;
+
+export namespace IFormProps {
+    export interface IOnSubmitProps<TFormSchema extends IFormSchema> {
+        request: TFormSchema["Request"];
+    }
+}
 
 export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
     {
         schema,
         FormContext,
         withTranslation,
+        withMapper,
         ...props
     }: IFormProps<TFormSchema>) => {
+    const form = useForm<TFormSchema["Values"], IFormMapper<TFormSchema>>({
+        transformValues: withMapper,
+    });
     return <FormStoreProvider
+        form={form}
         FormStoreContext={FormContext}
         withTranslation={withTranslation}
     >
         <FormInternal<TFormSchema>
-            FormContext={FormContext}
+            form={form}
             withTranslation={withTranslation}
             {...props}
         />
     </FormStoreProvider>;
 };
 
-interface IFormInternalProps<TFormSchema extends IFormSchema = IFormSchema> extends IFormProps<TFormSchema> {
+interface IFormInternalProps<TFormSchema extends IFormSchema = IFormSchema> extends Omit<IFormProps<TFormSchema>, "FormContext" | "withMapper"> {
+    form: UseFormReturnType<TFormSchema["Values"], IFormMapper<TFormSchema>>;
 }
 
 const FormInternal = <TFormSchema extends IFormSchema = IFormSchema>(
     {
-        FormContext,
+        form,
+        onSubmit,
         withTranslation,
         children,
     }: IFormInternalProps<TFormSchema>) => {
-    const {form} = FormContext.useState(({form}) => ({form}));
     return <form
-        onSubmit={form.onSubmit(values => {
-            console.log(values);
-        })}
+        onSubmit={form.onSubmit(request => onSubmit?.({request}))}
     >
         {children}
         <Group

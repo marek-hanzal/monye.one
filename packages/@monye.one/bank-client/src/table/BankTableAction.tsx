@@ -1,5 +1,6 @@
 import {Translation}          from "@leight/i18n-client";
 import {
+    Box,
     Divider,
     Menu
 }                             from "@mantine/core";
@@ -25,8 +26,10 @@ export const BankTableAction: IBankTableProps["WithTableAction"] = () => {
                           />,
                 size:     "lg",
                 children: <>
-                              <Divider size={"sm"}/>
-                              <BankCreateForm/>
+                              <Divider/>
+                              <Box m={"sm"}>
+                                  <BankCreateForm/>
+                              </Box>
                           </>
             })}
             icon={<IconCash size={14}/>}
