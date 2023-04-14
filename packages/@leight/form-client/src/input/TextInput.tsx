@@ -1,3 +1,7 @@
+import {
+    Translation,
+    useTranslation
+}                                   from "@leight/i18n-client";
 import {TextInput as CoolTextInput} from "@mantine/core";
 import {type ComponentProps}        from "react";
 import {type IFormStoreContext}     from "../context";
@@ -11,10 +15,20 @@ export interface ITextInputProps<TFormSchema extends IFormSchema> extends Compon
     path: IFormFields<TFormSchema>;
 }
 
-export const TextInput = <TFormSchema extends IFormSchema>({FormContext, path, ...props}: ITextInputProps<TFormSchema>) => {
-    const {form} = FormContext.useState(({form}) => ({form}));
+export const TextInput = <TFormSchema extends IFormSchema>(
+    {
+        FormContext,
+        path,
+        label,
+        placeholder,
+        ...props
+    }: ITextInputProps<TFormSchema>) => {
+    const {form, withTranslation} = FormContext.useState(({form, withTranslation}) => ({form, withTranslation}));
+    const {t}                     = useTranslation(withTranslation.namespace);
     return <CoolTextInput
         {...form.getInputProps(path)}
+        label={label ? <Translation {...withTranslation} label={`${withTranslation.label}.${label}`}/> : undefined}
+        placeholder={placeholder ? t(`${withTranslation.label}.${placeholder}`, withTranslation.values) : undefined}
         {...props}
     />;
 };

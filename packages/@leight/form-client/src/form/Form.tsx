@@ -1,5 +1,10 @@
+import {type IWithTranslation}  from "@leight/i18n";
+import {Translation}            from "@leight/i18n-client";
 import {z}                      from "@leight/zod";
-import {Button}                 from "@mantine/core";
+import {
+    Button,
+    Group
+}                               from "@mantine/core";
 import {type PropsWithChildren} from "react";
 import {
     FormStoreProvider,
@@ -48,19 +53,23 @@ export type IFormSchemas<TFormSchema extends IFormSchema = IFormSchema> = {
 export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWithChildren<{
     schema?: IFormSchemas<TFormSchema>;
     FormContext: IFormStoreContext<TFormSchema>;
+    withTranslation: IWithTranslation;
 }>;
 
 export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
     {
         schema,
         FormContext,
+        withTranslation,
         ...props
     }: IFormProps<TFormSchema>) => {
     return <FormStoreProvider
         FormStoreContext={FormContext}
+        withTranslation={withTranslation}
     >
         <FormInternal<TFormSchema>
             FormContext={FormContext}
+            withTranslation={withTranslation}
             {...props}
         />
     </FormStoreProvider>;
@@ -72,6 +81,7 @@ interface IFormInternalProps<TFormSchema extends IFormSchema = IFormSchema> exte
 const FormInternal = <TFormSchema extends IFormSchema = IFormSchema>(
     {
         FormContext,
+        withTranslation,
         children,
     }: IFormInternalProps<TFormSchema>) => {
     const {form} = FormContext.useState(({form}) => ({form}));
@@ -81,10 +91,18 @@ const FormInternal = <TFormSchema extends IFormSchema = IFormSchema>(
         })}
     >
         {children}
-        <Button
-            type={"submit"}
+        <Group
+            position={"center"}
+            mt={"md"}
         >
-            Submit
-        </Button>
+            <Button
+                type={"submit"}
+            >
+                <Translation
+                    {...withTranslation}
+                    label={`${withTranslation.label}.submit.button`}
+                />
+            </Button>
+        </Group>
     </form>;
 };

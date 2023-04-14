@@ -29,12 +29,16 @@ export const BankCreateFormStoreContext = createFormContext<IBankCreateFormSchem
     name: "BankCreateForm",
 });
 
-export interface IBankCreateBaseFormProps extends Omit<IFormProps<IBankCreateFormSchema>, "FormContext"> {
+export interface IBankCreateBaseFormProps extends Omit<IFormProps<IBankCreateFormSchema>, "FormContext" | "withTranslation"> {
 }
 
 export const BankCreateBaseForm: FC<IBankCreateBaseFormProps> = props => {
     return <Form<IBankCreateFormSchema>
         FormContext={BankCreateFormStoreContext}
+        withTranslation={{
+            namespace: "bank",
+            label:     "BankCreateBaseForm",
+        }}
         {...props}
     />;
 };

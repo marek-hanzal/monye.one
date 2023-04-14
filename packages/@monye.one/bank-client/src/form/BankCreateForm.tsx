@@ -16,8 +16,8 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
         <TextInput
             FormContext={BankCreateFormStoreContext}
             path={"account"}
-            placeholder={"Your name"}
-            label={"Full name"}
+            label={"account"}
+            placeholder={"account.placeholder"}
             withAsterisk
         />
     </BankCreateBaseForm>;

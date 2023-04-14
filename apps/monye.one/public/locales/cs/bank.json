@@ -4,5 +4,8 @@
     "transaction.upload.button": "Nahrát transakce",
     "modal.transaction.import.title": "Import transakcí do účtu [{account}]",
     "modal.account.create.title": "Přidat účet",
-    "account.create.button": "Přidat účet"
+    "account.create.button": "Přidat účet",
+    "BankCreateBaseForm.submit.button": "Uložit účet",
+    "BankCreateBaseForm.account": "Číslo účtu",
+    "BankCreateBaseForm.account.placeholder": "Zadejte prosím číslo bankovního účtu"
 }
