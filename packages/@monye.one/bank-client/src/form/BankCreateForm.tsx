@@ -2,11 +2,10 @@ import {TextInput} from "@leight/form-client";
 import {type FC}   from "react";
 import {
     BankCreateBaseForm,
-    BankCreateFormStoreContext,
     type IBankCreateBaseFormProps
 }                  from "../sdk";
 
-export interface IBankCreateForm extends Omit<IBankCreateBaseFormProps, "withMapper"> {
+export interface IBankCreateForm extends Omit<IBankCreateBaseFormProps, "withMapper" | "inputs"> {
 }
 
 export const BankCreateForm: FC<IBankCreateForm> = props => {
@@ -19,14 +18,20 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
         onSubmit={({request}) => {
             console.log("BankCreateBaseForm", request);
         }}
+        inputs={({FormContext}) => ({
+            "account":            <TextInput
+                                      FormContext={FormContext}
+                                      path={"account"}
+                                      label={"account"}
+                                      placeholder={"account.placeholder"}
+                                      withAsterisk
+                                  />,
+            "inner.foo":          null,
+            "inner":              null,
+            "inner.bar":          null,
+            "inner.bar.innerBar": null,
+        })}
         {...props}
     >
-        <TextInput
-            FormContext={BankCreateFormStoreContext}
-            path={"account"}
-            label={"account"}
-            placeholder={"account.placeholder"}
-            withAsterisk
-        />
     </BankCreateBaseForm>;
 };

@@ -1,20 +1,23 @@
-import {type IWithTranslation}  from "@leight/i18n";
-import {Translation}            from "@leight/i18n-client";
-import {type RecursiveKeyOf}    from "@leight/utils";
-import {z}                      from "@leight/zod";
+import {type IWithTranslation} from "@leight/i18n";
+import {Translation}           from "@leight/i18n-client";
+import {type RecursiveKeyOf}   from "@leight/utils";
+import {z}                     from "@leight/zod";
 import {
     Button,
     Group
-}                               from "@mantine/core";
+}                              from "@mantine/core";
 import {
     useForm,
     UseFormReturnType
-}                               from "@mantine/form";
-import {type PropsWithChildren} from "react";
+}                              from "@mantine/form";
+import {
+    type PropsWithChildren,
+    ReactNode
+}                              from "react";
 import {
     FormStoreProvider,
     type IFormStoreContext
-}                               from "../context";
+}                              from "../context";
 import {
     FormRequestSchema,
     FormResponseSchema,
@@ -22,7 +25,7 @@ import {
     type IFormRequestSchema,
     type IFormResponseSchema,
     type IFormValuesSchema
-}                               from "../schema";
+}                              from "../schema";
 
 /**
  * Defines form schema - all internal data are separated by a purpose
@@ -94,12 +97,21 @@ export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWit
     FormContext: IFormStoreContext<TFormSchema>;
     withTranslation: IWithTranslation;
     withMapper: IFormMapper<TFormSchema>;
+    /**
+     * Create typed form inputs based on the Values schema
+     */
+    inputs(props: IFormProps.IInputsProps<TFormSchema>): Record<IFormFields<TFormSchema>, ReactNode>;
     onSubmit?(props: IFormProps.IOnSubmitProps<TFormSchema>): void;
 }>;
 
 export namespace IFormProps {
     export interface IOnSubmitProps<TFormSchema extends IFormSchema> {
         request: TFormSchema["Request"];
+    }
+
+    export interface IInputsProps<TFormSchema extends IFormSchema> {
+        schemas?: IFormSchemas<TFormSchema>;
+        FormContext: IFormStoreContext<TFormSchema>;
     }
 }
 
@@ -109,6 +121,7 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
         FormContext,
         withTranslation,
         withMapper,
+        inputs,
         ...props
     }: IFormProps<TFormSchema>) => {
     const form = useForm<TFormSchema["Values"], IFormMapper<TFormSchema>>({
@@ -128,7 +141,7 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
     </FormStoreProvider>;
 };
 
-interface IFormInternalProps<TFormSchema extends IFormSchema = IFormSchema> extends Omit<IFormProps<TFormSchema>, "FormContext" | "withMapper"> {
+interface IFormInternalProps<TFormSchema extends IFormSchema = IFormSchema> extends Omit<IFormProps<TFormSchema>, "FormContext" | "withMapper" | "inputs"> {
     form: UseFormReturnType<TFormSchema["Values"], IFormMapper<TFormSchema>>;
 }
 
