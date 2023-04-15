@@ -43,4 +43,4 @@ export const TransactionSortStore = createSortContext<ITransactionSortSchema>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_i3is0b0c1y4i4uystjdrwz8b = true;
+export const $leight_sn29weuxyb1uwlfv0p5aaqi7 = true;

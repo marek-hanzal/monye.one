@@ -55,4 +55,4 @@ export const CalendarEventQuerySchema = QuerySchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jss3ef6awhva9xgcl0zep0mm = true;
+export const $leight_nensvr5f1yqsmkxur4w1c72h = true;

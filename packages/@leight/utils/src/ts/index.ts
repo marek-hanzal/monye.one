@@ -19,10 +19,6 @@ export type UndefinableWithOptional<T> =
 export type NullableOptional<T> = Partial<NullableWithOptional<T>>;
 export type UndefinableOptional<T> = Partial<UndefinableWithOptional<T>>;
 
-export interface IndexOf<T> {
-    [index: string]: T;
-}
-
 export type IfExtends<TType, TExtends = void> = TExtends extends void ? TType : TType & TExtends;
 export type IfVoid<TType, TDefault = void> = TType extends void ? TDefault : TType;
 export type CheckVoid<TCheck, TType, TElse = void> = TCheck extends void ? TElse : TType;
@@ -35,11 +31,22 @@ export type OmitIndex<T> = {
     [K in keyof T as string extends K ? never : number extends K ? never : K]: T[K]
 }
 
-export type RecursiveKeyOf<TObject extends object> = {
-    [TKey in keyof TObject & (string | number)]:
-    TObject[TKey] extends any[] ?
-        `${TKey}` :
-        TObject[TKey] extends object
-            ? `${TKey}` | `${TKey}.${RecursiveKeyOf<TObject[TKey]>}`
-            : `${TKey}`;
-}[keyof TObject & (string | number)];
+export namespace KeysOf {
+    export type Paths<TObject extends object> = {
+        [TKey in keyof TObject & (string | number)]:
+        TObject[TKey] extends any[] ?
+            `${TKey}` :
+            TObject[TKey] extends object
+                ? `${TKey}` | `${TKey}.${Paths<TObject[TKey]>}`
+                : `${TKey}`;
+    }[keyof TObject & (string | number)];
+
+    export type Leaves<TObject extends object> = {
+        [TKey in keyof TObject & (string | number)]:
+        TObject[TKey] extends any[] ?
+            `${TKey}` :
+            TObject[TKey] extends object
+                ? never | `${TKey}.${Leaves<TObject[TKey]>}`
+                : `${TKey}`;
+    }[keyof TObject & (string | number)];
+}

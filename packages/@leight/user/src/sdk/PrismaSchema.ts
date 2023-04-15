@@ -71,4 +71,4 @@ export const UserQuerySchema = QuerySchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_w6pcedi9m772shmz2y8v2yjh = true;
+export const $leight_w2f699vyskbxh24i4r16b06s = true;

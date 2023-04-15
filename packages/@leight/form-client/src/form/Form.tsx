@@ -1,6 +1,6 @@
 import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
-import {type RecursiveKeyOf}   from "@leight/utils";
+import {type KeysOf}           from "@leight/utils";
 import {z}                     from "@leight/zod";
 import {
     Button,
@@ -11,8 +11,8 @@ import {
     UseFormReturnType
 }                              from "@mantine/form";
 import {
-    FC,
-    type PropsWithChildren
+    type PropsWithChildren,
+    ReactNode
 }                              from "react";
 import {
     FormStoreProvider,
@@ -43,7 +43,7 @@ export type IFormSchema<
     Response: z.infer<TResponseSchema>;
 }
 
-export type IFormFields<TFormSchema extends IFormSchema> = RecursiveKeyOf<TFormSchema["Values"]>;
+export type IFormFields<TFormSchema extends IFormSchema> = KeysOf.Leaves<TFormSchema["Values"]>;
 export type IFormMapper<TFormSchema extends IFormSchema> = (values: TFormSchema["Values"]) => TFormSchema["Request"];
 
 export type IFormSchemas<TFormSchema extends IFormSchema = IFormSchema> = {
@@ -105,7 +105,7 @@ export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWit
     /**
      * Create typed form inputs based on the Values schema
      */
-    inputs(props: IFormProps.IInputsProps<TFormSchema>): Record<IFormFields<TFormSchema>, FC<IFormInputProps<TFormSchema>>>;
+    inputs(props: IFormProps.IInputsProps<TFormSchema>): Record<IFormFields<TFormSchema>, ReactNode>;
     onSubmit?(props: IFormProps.IOnSubmitProps<TFormSchema>): void;
 }>;
 
