@@ -11,8 +11,8 @@ import {
     UseFormReturnType
 }                              from "@mantine/form";
 import {
-    type PropsWithChildren,
-    ReactNode
+    FC,
+    type PropsWithChildren
 }                              from "react";
 import {
     FormStoreProvider,
@@ -92,6 +92,11 @@ export type InferFormSchemas<TFormSchemas extends IFormSchemas> = IFormSchema<
     TFormSchemas["ResponseSchema"]
 >;
 
+export type IFormInputProps<TFormSchema extends IFormSchema> = {
+    FormContext: IFormStoreContext<TFormSchema>;
+    path: IFormFields<TFormSchema>;
+}
+
 export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWithChildren<{
     schemas?: IFormSchemas<TFormSchema>;
     FormContext: IFormStoreContext<TFormSchema>;
@@ -100,7 +105,7 @@ export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWit
     /**
      * Create typed form inputs based on the Values schema
      */
-    inputs(props: IFormProps.IInputsProps<TFormSchema>): Record<IFormFields<TFormSchema>, ReactNode>;
+    inputs(props: IFormProps.IInputsProps<TFormSchema>): Record<IFormFields<TFormSchema>, FC<IFormInputProps<TFormSchema>>>;
     onSubmit?(props: IFormProps.IOnSubmitProps<TFormSchema>): void;
 }>;
 

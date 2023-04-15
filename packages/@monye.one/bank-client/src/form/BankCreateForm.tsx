@@ -19,13 +19,17 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
             console.log("BankCreateBaseForm", request);
         }}
         inputs={({FormContext}) => ({
-            "account":            <TextInput
-                                      FormContext={FormContext}
-                                      path={"account"}
-                                      label={"account"}
-                                      placeholder={"account.placeholder"}
-                                      withAsterisk
-                                  />,
+            /**
+             *
+             * Pass typed props, infer from FC
+             *
+             * label={"account"}
+             *                                       placeholder={"account.placeholder"}
+             *                                       withAsterisk
+             *
+             *
+             */
+            "account":            TextInput,
             "inner.foo":          null,
             "inner":              null,
             "inner.bar":          null,
