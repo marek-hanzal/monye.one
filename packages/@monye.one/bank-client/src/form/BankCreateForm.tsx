@@ -20,13 +20,11 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
             console.log("BankCreateBaseForm", request);
         }}
         inputs={() => ({
-            "account":            ({mandatory, withLabelPlaceholder}) => <TextInput
+            "account": ({mandatory, withLabelPlaceholder}) => <TextInput
                 {...mandatory}
                 {...withLabelPlaceholder}
                 withAsterisk
             />,
-            "inner.foo":          () => null,
-            "inner.bar.innerBar": () => null,
         })}
         {...props}
     >
