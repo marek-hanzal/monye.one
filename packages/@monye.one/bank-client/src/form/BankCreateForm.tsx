@@ -1,14 +1,10 @@
-import {
-    TextInput,
-    WithInput
-}                from "@leight/form-client";
-import {type FC} from "react";
+import {TextInput} from "@leight/form-client";
+import {type FC}   from "react";
 import {
     BankCreateBaseForm,
-    BankCreateFormStoreContext,
-    type IBankCreateBaseFormProps,
-    IBankCreateFormSchema
-}                from "../sdk";
+    BankCreateInput,
+    type IBankCreateBaseFormProps
+}                  from "../sdk";
 
 export interface IBankCreateForm extends Omit<IBankCreateBaseFormProps, "withMapper" | "inputs"> {
 }
@@ -34,9 +30,6 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
         })}
         {...props}
     >
-        <WithInput<IBankCreateFormSchema>
-            FormContext={BankCreateFormStoreContext}
-            path={"account"}
-        />
+        <BankCreateInput path={"account"}/>
     </BankCreateBaseForm>;
 };

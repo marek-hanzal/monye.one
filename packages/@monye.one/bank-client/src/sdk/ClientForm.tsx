@@ -2,7 +2,9 @@ import {
     createFormContext,
     Form,
     type IFormProps,
-    type InferFormSchemas
+    type InferFormSchemas,
+    type IWithInputProps,
+    WithInput
 }                              from "@leight/form-client";
 import {type FC}               from "react";
 import {BankCreateFormSchemas} from "../schema";
@@ -24,6 +26,13 @@ export const BankCreateBaseForm: FC<IBankCreateBaseFormProps> = props => {
             namespace: "bank",
             label:     "BankCreateBaseForm",
         }}
+        {...props}
+    />;
+};
+
+export const BankCreateInput: FC<Omit<IWithInputProps<IBankCreateFormSchema>, "FormContext">> = props => {
+    return <WithInput
+        FormContext={BankCreateFormStoreContext}
         {...props}
     />;
 };
