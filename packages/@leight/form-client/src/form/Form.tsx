@@ -106,6 +106,10 @@ export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWit
      * Create typed form inputs based on the Values schema
      */
     inputs(props: IFormProps.IInputsProps<TFormSchema>): Record<IFormFields<TFormSchema>, ReactNode>;
+    /**
+     * This enables end user to replace default fields defined by a base form (for example when generated)
+     */
+    inputsOverride?(props: IFormProps.IInputsProps<TFormSchema>): Partial<Record<IFormFields<TFormSchema>, ReactNode>>;
     onSubmit?(props: IFormProps.IOnSubmitProps<TFormSchema>): void;
 }>;
 
@@ -127,6 +131,7 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
         withTranslation,
         withMapper,
         inputs,
+        inputsOverride,
         ...props
     }: IFormProps<TFormSchema>) => {
     const form = useForm<TFormSchema["Values"], IFormMapper<TFormSchema>>({
@@ -146,7 +151,7 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
     </FormStoreProvider>;
 };
 
-interface IFormInternalProps<TFormSchema extends IFormSchema = IFormSchema> extends Omit<IFormProps<TFormSchema>, "FormContext" | "withMapper" | "inputs"> {
+interface IFormInternalProps<TFormSchema extends IFormSchema = IFormSchema> extends Omit<IFormProps<TFormSchema>, "FormContext" | "withMapper" | "inputs" | "inputsOverride"> {
     form: UseFormReturnType<TFormSchema["Values"], IFormMapper<TFormSchema>>;
 }
 

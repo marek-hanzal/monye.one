@@ -1,23 +1,34 @@
 import {
     IFormInputProps,
     IFormSchema,
-    IFormStoreContext,
     TextInput
 } from "@leight/form-client";
-import {type FC}   from "react";
+import {
+    ComponentProps,
+    type FC
+} from "react";
 import {
     BankCreateBaseForm,
-    type IBankCreateBaseFormProps
-}                  from "../sdk";
+    type IBankCreateBaseFormProps,
+    IBankCreateFormSchema
+} from "../sdk";
 
-export type IFormItemFactory<TFormSchema extends IFormSchema, TInputProps extends IFormInputProps<TFormSchema>> = [
-    FC<TInputProps>,
-    Omit<TInputProps, keyof IFormInputProps<TFormSchema>>,
+export type IFormItemFactory<TFormSchema extends IFormSchema, TComponent extends FC<IFormInputProps<TFormSchema>>> = [
+    TComponent,
+    Omit<ComponentProps<TComponent>, keyof IFormInputProps<TFormSchema>>,
 ];
 
-export const withItem = <TFormSchema extends IFormSchema>(): IFormItemFactory => {
-
+export interface IWithItemProps<TFormSchema extends IFormSchema> extends IFormInputProps<TFormSchema> {
 }
+
+export const withItem = <TFormSchema extends IFormSchema>(defaultProps: IWithItemProps<TFormSchema>) => {
+    return function FormInput<TComponent extends FC<IFormInputProps<TFormSchema>>>([Component, props]: IFormItemFactory<TFormSchema, TComponent>) {
+        return <Component
+            // FormContext={defaultProps.FormContext}
+            // path={defaultProps.path}
+        />;
+    };
+};
 
 export interface IBankCreateForm extends Omit<IBankCreateBaseFormProps, "withMapper" | "inputs"> {
 }
@@ -33,13 +44,14 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
             console.log("BankCreateBaseForm", request);
         }}
         inputs={({FormContext}) => ({
-            "account":            <TextInput
-                                      FormContext={FormContext}
-                                      path={"account"}
-                                      label={"account"}
-                                      placeholder={"account.placeholder"}
-                                      withAsterisk
-                                  />,
+            "account":            withItem<IBankCreateFormSchema>({FormContext, path: "account"})([
+                TextInput,
+                {
+                    label:        "account",
+                    placeholder:  "account.placeholder",
+                    withAsterisk: true,
+                }
+            ]),
             "inner.foo":          null,
             "inner.bar.innerBar": null,
         })}
