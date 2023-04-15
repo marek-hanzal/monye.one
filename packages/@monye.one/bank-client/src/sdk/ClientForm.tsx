@@ -18,6 +18,7 @@ export interface IBankCreateBaseFormProps extends Omit<IFormProps<IBankCreateFor
 
 export const BankCreateBaseForm: FC<IBankCreateBaseFormProps> = props => {
     return <Form<IBankCreateFormSchema>
+        schemas={BankCreateFormSchemas}
         FormContext={BankCreateFormStoreContext}
         withTranslation={{
             namespace: "bank",

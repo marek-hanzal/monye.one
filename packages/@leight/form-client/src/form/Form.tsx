@@ -56,9 +56,9 @@ export type IFormSchemas<TFormSchema extends IFormSchema = IFormSchema> = {
 }
 
 export interface IWithFormSchemasProps<
-    TValuesSchema extends IFormValuesSchema = IFormValuesSchema,
-    TRequestSchema extends IFormRequestSchema = IFormRequestSchema,
-    TResponseSchema extends IFormResponseSchema = IFormResponseSchema,
+    TValuesSchema extends IFormValuesSchema,
+    TRequestSchema extends IFormRequestSchema,
+    TResponseSchema extends IFormResponseSchema,
 > {
     ValueSchema: TValuesSchema,
     RequestSchema: TRequestSchema,
@@ -87,7 +87,7 @@ export type InferFormSchemas<TFormSchemas extends IFormSchemas> = IFormSchema<
 >;
 
 export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWithChildren<{
-    schema?: IFormSchemas<TFormSchema>;
+    schemas?: IFormSchemas<TFormSchema>;
     FormContext: IFormStoreContext<TFormSchema>;
     withTranslation: IWithTranslation;
     withMapper: IFormMapper<TFormSchema>;
@@ -102,7 +102,7 @@ export namespace IFormProps {
 
 export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
     {
-        schema,
+        schemas,
         FormContext,
         withTranslation,
         withMapper,

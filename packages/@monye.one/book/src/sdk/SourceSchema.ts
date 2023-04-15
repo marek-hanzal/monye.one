@@ -34,4 +34,4 @@ export interface ICalendarEventSourceSchema extends ISourceSchema<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ddo6ante5rr0a1j0myp1800d = true;
+export const $leight_f5xbpn7rppx2hzz2reao73ot = true;
