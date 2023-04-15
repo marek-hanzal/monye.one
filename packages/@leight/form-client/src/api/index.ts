@@ -1,12 +1,13 @@
-import {type KeysOf}    from "@leight/utils";
-import {z}              from "@leight/zod";
-import {type ReactNode} from "react";
-import {IFormProps}     from "../form";
+import {type KeysOf}       from "@leight/utils";
+import {z}                 from "@leight/zod";
+import {type ReactNode}    from "react";
+import {IFormStoreContext} from "../context";
+import {IFormProps}        from "../form";
 import {
     type IFormRequestSchema,
     type IFormResponseSchema,
     type IFormValuesSchema
-}                       from "../schema";
+}                          from "../schema";
 
 /**
  * Defines form schema - all internal data are separated by a purpose
@@ -48,7 +49,24 @@ export type InferFormSchemas<TFormSchemas extends IFormSchemas> = IFormSchema<
     TFormSchemas["ResponseSchema"]
 >;
 
-export type IFormInputs<TFormSchema extends IFormSchema> = Record<IFormFields<TFormSchema>, ReactNode>;
+export type IFormInputs<TFormSchema extends IFormSchema> = Record<IFormFields<TFormSchema>, (props: IFormInputs.IInputRenderProps<TFormSchema>) => ReactNode>;
+export namespace IFormInputs {
+    export interface IInputRenderProps<TFormSchema extends IFormSchema> {
+        mandatory: IInputProps<TFormSchema>;
+        withLabel: {
+            label: string;
+        };
+        withLabelPlaceholder: {
+            label: string;
+            placeholder: string;
+        };
+    }
+
+    export interface IInputProps<TFormSchema extends IFormSchema> {
+        FormContext: IFormStoreContext<TFormSchema>;
+        path: IFormFields<TFormSchema>;
+    }
+}
 
 export type IFormInputsFactory<TFormSchema extends IFormSchema> = (props: IFormProps.IInputsProps<TFormSchema>) => IFormInputs<TFormSchema>;
 export type IFormInputsOverrideFactory<TFormSchema extends IFormSchema> = (props: IFormProps.IInputsProps<TFormSchema>) => Partial<IFormInputs<TFormSchema>>;
