@@ -1,17 +1,24 @@
+import {
+    FormResponseSchema,
+    withFormSchemas
+}                         from "@leight/form-client";
 import {z}                from "@leight/zod";
 import {BankCreateSchema} from "@monye.one/bank";
 
-/**
- * @TODO Generate schemas from a typed method (return IFormSchemas and infer IFormSchema type)
- */
-
-export const BankCreateFormValueSchema = z.object({
-    account: z.string().min(1),
+export const BankCreateFormSchemas = withFormSchemas({
+    ValueSchema:    z.object({
+        account: z.string().min(1),
+        inner:   z.object({
+            foo: z.string().optional(),
+            bar: z.object({
+                innerBar: z.string(),
+            }),
+        }),
+    }),
+    RequestSchema:  BankCreateSchema,
+    ResponseSchema: FormResponseSchema,
 });
-export type IBankCreateFormValueSchema = typeof BankCreateFormValueSchema;
 
 /**
- * @TODO add / change Create of BankCreateSchema (by setting SDK parameter?)
+ * @TODO Add form fields to required schema (keys of) and render them separatly
  */
-export const BankCreateFormRequestSchema = BankCreateSchema;
-export type IBankCreateFormRequestSchema = typeof BankCreateFormRequestSchema;

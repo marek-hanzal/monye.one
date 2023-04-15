@@ -34,3 +34,12 @@ export type Unboxed<T> = T extends (infer U)[] ? U : T;
 export type OmitIndex<T> = {
     [K in keyof T as string extends K ? never : number extends K ? never : K]: T[K]
 }
+
+export type RecursiveKeyOf<TObject extends object> = {
+    [TKey in keyof TObject & (string | number)]:
+    TObject[TKey] extends any[] ?
+        `${TKey}` :
+        TObject[TKey] extends object
+            ? `${TKey}` | `${TKey}.${RecursiveKeyOf<TObject[TKey]>}`
+            : `${TKey}`;
+}[keyof TObject & (string | number)];

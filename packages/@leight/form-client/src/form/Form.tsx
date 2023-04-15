@@ -1,5 +1,6 @@
 import {type IWithTranslation}  from "@leight/i18n";
 import {Translation}            from "@leight/i18n-client";
+import {type RecursiveKeyOf}    from "@leight/utils";
 import {z}                      from "@leight/zod";
 import {
     Button,
@@ -36,7 +37,7 @@ export type IFormSchema<
     Response: z.infer<TResponseSchema>;
 }
 
-export type IFormFields<TFormSchema extends IFormSchema> = keyof TFormSchema["Values"];
+export type IFormFields<TFormSchema extends IFormSchema> = RecursiveKeyOf<TFormSchema["Values"]>;
 export type IFormMapper<TFormSchema extends IFormSchema> = (values: TFormSchema["Values"]) => TFormSchema["Request"];
 
 export type IFormSchemas<TFormSchema extends IFormSchema = IFormSchema> = {
@@ -53,6 +54,37 @@ export type IFormSchemas<TFormSchema extends IFormSchema = IFormSchema> = {
      */
     ResponseSchema: TFormSchema["ResponseSchema"];
 }
+
+export interface IWithFormSchemasProps<
+    TValuesSchema extends IFormValuesSchema = IFormValuesSchema,
+    TRequestSchema extends IFormRequestSchema = IFormRequestSchema,
+    TResponseSchema extends IFormResponseSchema = IFormResponseSchema,
+> {
+    ValueSchema: TValuesSchema,
+    RequestSchema: TRequestSchema,
+    ResponseSchema: TResponseSchema,
+}
+
+export const withFormSchemas = <
+    TValuesSchema extends IFormValuesSchema,
+    TRequestSchema extends IFormRequestSchema,
+    TResponseSchema extends IFormResponseSchema,
+>(
+    {
+        ValueSchema,
+        RequestSchema,
+        ResponseSchema,
+    }: IWithFormSchemasProps<TValuesSchema, TRequestSchema, TResponseSchema>): IFormSchemas<IFormSchema<TValuesSchema, TRequestSchema, TResponseSchema>> => ({
+    ValueSchema,
+    RequestSchema,
+    ResponseSchema,
+});
+
+export type InferFormSchemas<TFormSchemas extends IFormSchemas> = IFormSchema<
+    TFormSchemas["ValueSchema"],
+    TFormSchemas["RequestSchema"],
+    TFormSchemas["ResponseSchema"]
+>;
 
 export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWithChildren<{
     schema?: IFormSchemas<TFormSchema>;
