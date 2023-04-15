@@ -1,7 +1,4 @@
-import {
-    FormResponseSchema,
-    withFormSchemas
-}                         from "@leight/form-client";
+import {withFormSchemas}  from "@leight/form-client";
 import {z}                from "@leight/zod";
 import {BankCreateSchema} from "@monye.one/bank";
 
@@ -16,7 +13,6 @@ export const BankCreateFormSchemas = withFormSchemas({
         }),
     }),
     RequestSchema:  BankCreateSchema,
-    ResponseSchema: FormResponseSchema,
 });
 
 /**

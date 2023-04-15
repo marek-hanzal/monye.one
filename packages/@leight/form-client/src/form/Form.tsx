@@ -16,6 +16,9 @@ import {
     type IFormStoreContext
 }                               from "../context";
 import {
+    FormRequestSchema,
+    FormResponseSchema,
+    FormValuesSchema,
     type IFormRequestSchema,
     type IFormResponseSchema,
     type IFormValuesSchema
@@ -60,9 +63,9 @@ export interface IWithFormSchemasProps<
     TRequestSchema extends IFormRequestSchema,
     TResponseSchema extends IFormResponseSchema,
 > {
-    ValueSchema: TValuesSchema,
-    RequestSchema: TRequestSchema,
-    ResponseSchema: TResponseSchema,
+    ValueSchema?: TValuesSchema,
+    RequestSchema?: TRequestSchema,
+    ResponseSchema?: TResponseSchema,
 }
 
 export const withFormSchemas = <
@@ -71,9 +74,9 @@ export const withFormSchemas = <
     TResponseSchema extends IFormResponseSchema,
 >(
     {
-        ValueSchema,
-        RequestSchema,
-        ResponseSchema,
+        ValueSchema = FormValuesSchema as TValuesSchema,
+        RequestSchema = FormRequestSchema as TRequestSchema,
+        ResponseSchema = FormResponseSchema as TResponseSchema,
     }: IWithFormSchemasProps<TValuesSchema, TRequestSchema, TResponseSchema>): IFormSchemas<IFormSchema<TValuesSchema, TRequestSchema, TResponseSchema>> => ({
     ValueSchema,
     RequestSchema,
@@ -112,6 +115,7 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
         transformValues: withMapper,
     });
     return <FormStoreProvider
+        schemas={schemas}
         form={form}
         FormStoreContext={FormContext}
         withTranslation={withTranslation}
