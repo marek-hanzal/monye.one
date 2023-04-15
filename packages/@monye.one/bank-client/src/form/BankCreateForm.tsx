@@ -1,36 +1,14 @@
 import {
-    IFormInputProps,
-    IFormSchema,
-    TextInput
-} from "@leight/form-client";
-import {
-    ComponentProps,
-    ComponentType,
-    type FC
-} from "react";
+    TextInput,
+    WithInput
+}                from "@leight/form-client";
+import {type FC} from "react";
 import {
     BankCreateBaseForm,
+    BankCreateFormStoreContext,
     type IBankCreateBaseFormProps,
     IBankCreateFormSchema
-} from "../sdk";
-
-export type IFormItemFactory<TFormSchema extends IFormSchema, TComponent extends ComponentType<IFormInputProps<TFormSchema>>> = [
-    TComponent,
-    Omit<ComponentProps<TComponent>, keyof IFormInputProps<TFormSchema>>,
-];
-
-export interface IWithItemProps<TFormSchema extends IFormSchema> extends IFormInputProps<TFormSchema> {
-}
-
-export const withItem = <TFormSchema extends IFormSchema>(defaultProps: IWithItemProps<TFormSchema>) => {
-    return function FormInput<TComponent extends ComponentType<IFormInputProps<TFormSchema>>>([Component, props]: IFormItemFactory<TFormSchema, TComponent>) {
-        const $Component = Component as ComponentType<any>;
-        return <$Component
-            {...defaultProps}
-            {...props}
-        />;
-    };
-};
+}                from "../sdk";
 
 export interface IBankCreateForm extends Omit<IBankCreateBaseFormProps, "withMapper" | "inputs"> {
 }
@@ -46,18 +24,21 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
             console.log("BankCreateBaseForm", request);
         }}
         inputs={({FormContext}) => ({
-            "account":            withItem<IBankCreateFormSchema>({FormContext, path: "account"})([
-                TextInput,
-                {
-                    label:        "account",
-                    placeholder:  "account.placeholder",
-                    withAsterisk: true,
-                }
-            ]),
+            "account":            <TextInput
+                                      FormContext={FormContext}
+                                      path={"account"}
+                                      label={"account"}
+                                      placeholder={"account.placeholder"}
+                                      withAsterisk
+                                  />,
             "inner.foo":          null,
             "inner.bar.innerBar": null,
         })}
         {...props}
     >
+        <WithInput<IBankCreateFormSchema>
+            FormContext={BankCreateFormStoreContext}
+            path={"account"}
+        />
     </BankCreateBaseForm>;
 };

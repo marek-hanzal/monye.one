@@ -13,4 +13,4 @@ export class BankSource extends BankSourceEx implements IBankSource {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_w9egg59t16mn9xrg1fthcpsf = true;
+export const $leight_kqkzpr3em91t52oku5hqsfpt = true;

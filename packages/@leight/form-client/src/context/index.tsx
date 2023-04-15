@@ -8,14 +8,17 @@ import {
 import {type UseFormReturnType} from "@mantine/form";
 import {type ComponentProps}    from "react";
 import {
+    type IFormInputs,
     type IFormMapper,
     type IFormSchema,
     type IFormSchemas
-}                               from "../form";
+}                               from "../api";
 
 export type IFormStoreProps<TFormSchema extends IFormSchema> = IStoreProps<IStorePropsType, {
     schemas?: IFormSchemas<TFormSchema>;
     form: UseFormReturnType<TFormSchema["Values"], IFormMapper<TFormSchema>>;
+    inputs: IFormInputs<TFormSchema>;
+    inputsOverride?: Partial<IFormInputs<TFormSchema>>;
     withTranslation: IWithTranslation;
 }>;
 
@@ -37,6 +40,8 @@ export const createFormContext = <TFormSchema extends IFormSchema>({name}: ICrea
 export interface IFormStoreProviderProps<TFormSchema extends IFormSchema> extends Omit<ComponentProps<IFormStoreContext<TFormSchema>["Provider"]>, "state"> {
     schemas?: IFormSchemas<TFormSchema>;
     form: UseFormReturnType<TFormSchema["Values"], IFormMapper<TFormSchema>>;
+    inputs: IFormInputs<TFormSchema>;
+    inputsOverride?: Partial<IFormInputs<TFormSchema>>;
     FormStoreContext: IFormStoreContext<TFormSchema>;
     withTranslation: IWithTranslation;
 }
@@ -45,12 +50,16 @@ export const FormStoreProvider = <TFormSchema extends IFormSchema>(
     {
         schemas,
         form,
+        inputs,
+        inputsOverride,
         FormStoreContext,
         withTranslation,
         ...props
     }: IFormStoreProviderProps<TFormSchema>) => {
     return <FormStoreContext.Provider
         state={{
+            inputs,
+            inputsOverride,
             schemas,
             form,
             withTranslation,

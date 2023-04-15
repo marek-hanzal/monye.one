@@ -4,11 +4,11 @@ import {
 }                                   from "@leight/i18n-client";
 import {TextInput as CoolTextInput} from "@mantine/core";
 import {type ComponentProps}        from "react";
-import {type IFormStoreContext}     from "../context";
 import {
     type IFormFields,
     type IFormSchema
-}                                   from "../form";
+}                                   from "../api";
+import {type IFormStoreContext}     from "../context";
 
 export interface ITextInputProps<TFormSchema extends IFormSchema> extends ComponentProps<typeof CoolTextInput> {
     FormContext: IFormStoreContext<TFormSchema>;
