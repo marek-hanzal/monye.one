@@ -1,4 +1,7 @@
-import {type IGeneratorClientSourceParams} from "../generator";
+import {
+    type IGeneratorClientFormParams,
+    type IGeneratorClientSourceParams
+} from "../generator";
 
 export interface IWithClientSourceGeneratorsEntityProps {
     name: string;
@@ -10,9 +13,10 @@ export interface IWithClientSourceGeneratorsEntityProps {
         package: string;
     };
     disabled?: ("table")[];
+    Form?: IGeneratorClientFormParams;
 }
 
-export const withClientSourceGeneratorsEntity = ({name, disabled = [], packages, withTrpc}: IWithClientSourceGeneratorsEntityProps): IGeneratorClientSourceParams => {
+export const withClientSourceGeneratorsEntity = ({name, disabled = [], packages, withTrpc, Form}: IWithClientSourceGeneratorsEntityProps): IGeneratorClientSourceParams => {
     return {
         SourceProvider: {
             entities: [
@@ -38,6 +42,7 @@ export const withClientSourceGeneratorsEntity = ({name, disabled = [], packages,
                     packages,
                 }
             ]
-        }
+        },
+        Form,
     };
 };

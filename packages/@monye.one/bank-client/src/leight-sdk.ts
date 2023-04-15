@@ -15,6 +15,16 @@ void withSdk(
                 path:    "bank",
                 package: "@monye.one/trpc-client",
             },
+            Form:     {
+                forms: [
+                    {
+                        name:        "BankCreate",
+                        translation: {
+                            namespace: "bank",
+                        },
+                    },
+                ],
+            }
         })
     )
 );
