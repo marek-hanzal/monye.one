@@ -5,6 +5,7 @@ import {
 } from "@leight/form-client";
 import {
     ComponentProps,
+    ComponentType,
     type FC
 } from "react";
 import {
@@ -13,7 +14,7 @@ import {
     IBankCreateFormSchema
 } from "../sdk";
 
-export type IFormItemFactory<TFormSchema extends IFormSchema, TComponent extends FC<IFormInputProps<TFormSchema>>> = [
+export type IFormItemFactory<TFormSchema extends IFormSchema, TComponent extends ComponentType<IFormInputProps<TFormSchema>>> = [
     TComponent,
     Omit<ComponentProps<TComponent>, keyof IFormInputProps<TFormSchema>>,
 ];
@@ -22,10 +23,11 @@ export interface IWithItemProps<TFormSchema extends IFormSchema> extends IFormIn
 }
 
 export const withItem = <TFormSchema extends IFormSchema>(defaultProps: IWithItemProps<TFormSchema>) => {
-    return function FormInput<TComponent extends FC<IFormInputProps<TFormSchema>>>([Component, props]: IFormItemFactory<TFormSchema, TComponent>) {
-        return <Component
-            // FormContext={defaultProps.FormContext}
-            // path={defaultProps.path}
+    return function FormInput<TComponent extends ComponentType<IFormInputProps<TFormSchema>>>([Component, props]: IFormItemFactory<TFormSchema, TComponent>) {
+        const $Component = Component as ComponentType<any>;
+        return <$Component
+            {...defaultProps}
+            {...props}
         />;
     };
 };
