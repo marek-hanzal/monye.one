@@ -6,7 +6,8 @@ import {
 }                               from "@mantine/core";
 import {
     useForm,
-    UseFormReturnType
+    UseFormReturnType,
+    zodResolver
 }                               from "@mantine/form";
 import {type PropsWithChildren} from "react";
 import {
@@ -92,6 +93,7 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
         ...props
     }: IFormProps<TFormSchema>) => {
     const form = useForm<TFormSchema["Values"], IFormMapper<TFormSchema>>({
+        validate:        schemas?.ValueSchema ? zodResolver(schemas?.ValueSchema) : undefined,
         transformValues: withMapper,
     });
     return <FormStoreProvider
