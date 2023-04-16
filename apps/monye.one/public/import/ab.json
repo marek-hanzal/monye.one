@@ -1,0 +1,84 @@
+{
+    "tabs": [
+        {
+            "tab": "transakce",
+            "services": [
+                "@monye.one/transaction/ITransactionImportService"
+            ]
+        }
+    ],
+    "translations": [
+        {
+            "from": {
+                "source": [
+                    "Číslo účtu"
+                ]
+            },
+            "to": "bank"
+        },
+        {
+            "from": {
+                "source": [
+                    "Referen√®n√≠ √®√≠slo"
+                ]
+            },
+            "to": "reference"
+        },
+        {
+            "from": {
+                "source": [
+                    "Pozn√°mka k √ļhrad√¨"
+                ]
+            },
+            "to": "note"
+        },
+        {
+            "from": {
+                "source": [
+                    "Datum proveden√≠"
+                ]
+            },
+            "to": "date"
+        },
+        {
+            "from": {
+                "source": [
+                    "√ą√°stka v m√¨n√¨ √ļ√®tu"
+                ]
+            },
+            "to": "amount"
+        },
+        {
+            "from": {
+                "source": [
+                    "Konstantn√≠ symbol"
+                ]
+            },
+            "to": "symbol"
+        },
+        {
+            "from": {
+                "source": [
+                    "Variabiln√≠ symbol"
+                ]
+            },
+            "to": "variable"
+        },
+        {
+            "from": {
+                "source": [
+                    "Specifick√Ĺ symbol"
+                ]
+            },
+            "to": "static"
+        },
+        {
+            "from": {
+                "source": [
+                    "√ą√≠slo √ļ√®tu protistrany"
+                ]
+            },
+            "to": "target"
+        }
+    ]
+}
