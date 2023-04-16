@@ -93,8 +93,9 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
         ...props
     }: IFormProps<TFormSchema>) => {
     const form = useForm<TFormSchema["Values"], IFormMapper<TFormSchema>>({
-        validate:        schemas?.ValueSchema ? zodResolver(schemas?.ValueSchema) : undefined,
-        transformValues: withMapper,
+        validate:            schemas?.ValueSchema ? zodResolver(schemas?.ValueSchema) : undefined,
+        validateInputOnBlur: true,
+        transformValues:     withMapper,
     });
     return <FormStoreProvider
         schemas={schemas}
@@ -132,6 +133,7 @@ const FormInternal = <TFormSchema extends IFormSchema = IFormSchema>(
             mt={"md"}
         >
             <Button
+                disabled={!form.isValid()}
                 type={"submit"}
             >
                 <Translation
