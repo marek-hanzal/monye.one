@@ -18,4 +18,4 @@ export const CalendarEventSourceProcedure = withSourceProcedure<ICalendarEventSo
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_sy92ug9l4td7gzsltdzakwjg = true;
+export const $leight_ox2bhxq9abmbnrf7v3x850cq = true;
