@@ -24,9 +24,12 @@ import {
 	WithIdentitySchema,
 	type ISource,
 	type InferSourceSchema,
-	withSourceSchema
+	withSourceSchema,
+	ToCreateSchema,
+	ToPatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
+import {ParamsSchema} from "@leight/query";
 import {IUserSourceEx} from "../api";
 
 export type IUserSourceSchema = InferSourceSchema<typeof UserSourceSchema>;
@@ -43,13 +46,16 @@ export const UserPrismaSchema = withSourceExSchema({
 });
 export const UserSourceSchema = withSourceSchema({
     EntitySchema: $EntitySchema,
+    ToCreateSchema: ToCreateSchema,
     CreateSchema: UserOptionalDefaultsSchema,
+    ToPatchSchema: ToPatchSchema,
     PatchSchema: UserPartialSchema.merge(WithIdentitySchema),
     FilterSchema: z.union([
         UserWhereInputSchema,
         UserWhereUniqueInputSchema,
         FilterSchema,
     ]),
+    ParamsSchema: ParamsSchema,
     SortSchema: z.object({
         id: SortOrderSchema
     }),
@@ -60,4 +66,4 @@ export const UserSourceContext = (container: IContainer) => new ServiceContext<I
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_kuhl1qonj6mdefsk682914rc = true;
+export const $leight_ksla7kjfdi9bhfo71bu41m4u = true;

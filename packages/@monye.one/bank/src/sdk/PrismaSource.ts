@@ -24,9 +24,12 @@ import {
 	WithIdentitySchema,
 	type ISource,
 	type InferSourceSchema,
-	withSourceSchema
+	withSourceSchema,
+	ToPatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
+import {BankToCreateSchemaEx} from "../schema";
+import {ParamsSchema} from "@leight/query";
 
 export type IBankSourceSchema = InferSourceSchema<typeof BankSourceSchema>;
 export type IBankPrismaSchema = InferSourceExSchema<typeof BankPrismaSchema>;
@@ -42,13 +45,16 @@ export const BankPrismaSchema = withSourceExSchema({
 });
 export const BankSourceSchema = withSourceSchema({
     EntitySchema: $EntitySchema,
+    ToCreateSchema: BankToCreateSchemaEx,
     CreateSchema: BankOptionalDefaultsSchema,
+    ToPatchSchema: ToPatchSchema,
     PatchSchema: BankPartialSchema.merge(WithIdentitySchema),
     FilterSchema: z.union([
         BankWhereInputSchema,
         BankWhereUniqueInputSchema,
         FilterSchema,
     ]),
+    ParamsSchema: ParamsSchema,
     SortSchema: z.object({
         account: SortOrderSchema
     }),
@@ -59,4 +65,4 @@ export const BankSourceContext = (container: IContainer) => new ServiceContext<I
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_g0u85q49bumqdix06ny068yj = true;
+export const $leight_pejpurdh31l9rkopsxycjhdi = true;

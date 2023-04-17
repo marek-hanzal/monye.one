@@ -2,6 +2,7 @@ import {JobStatusSchema} from "@leight/prisma";
 import {z}               from "@leight/zod";
 
 export {JobStatusSchema} from "@leight/prisma";
+
 export type IJobStatusSchema = typeof JobStatusSchema;
 export type IJobStatus = z.infer<IJobStatusSchema>;
 
@@ -12,6 +13,6 @@ export const JobDoneStatus: IJobStatus[] = [
     "SUCCESS"
 ];
 
-export const JobSchemaOverride = z.object({
+export const JobSchemaEx = z.object({
     params: z.any().optional(),
 });

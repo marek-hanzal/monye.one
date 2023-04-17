@@ -17,7 +17,7 @@ void withSdk(
                 "reference",
             ],
             withPrismaSchemaEx: {
-                entity: {
+                schema: {
                     type:        "TransactionExSchema",
                     withPackage: {
                         package: "../schema",

@@ -24,10 +24,13 @@ import {
 	WithIdentitySchema,
 	type ISource,
 	type InferSourceSchema,
-	withSourceSchema
+	withSourceSchema,
+	ToCreateSchema,
+	ToPatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
 import {TransactionExSchema} from "../schema";
+import {ParamsSchema} from "@leight/query";
 
 export type ITransactionSourceSchema = InferSourceSchema<typeof TransactionSourceSchema>;
 export type ITransactionPrismaSchema = InferSourceExSchema<typeof TransactionPrismaSchema>;
@@ -43,13 +46,16 @@ export const TransactionPrismaSchema = withSourceExSchema({
 });
 export const TransactionSourceSchema = withSourceSchema({
     EntitySchema: $EntitySchema.merge(TransactionExSchema),
+    ToCreateSchema: ToCreateSchema,
     CreateSchema: TransactionOptionalDefaultsSchema,
+    ToPatchSchema: ToPatchSchema,
     PatchSchema: TransactionPartialSchema.merge(WithIdentitySchema),
     FilterSchema: z.union([
         TransactionWhereInputSchema,
         TransactionWhereUniqueInputSchema,
         FilterSchema,
     ]),
+    ParamsSchema: ParamsSchema,
     SortSchema: z.object({
         date: SortOrderSchema,
 	amount: SortOrderSchema,
@@ -62,4 +68,4 @@ export const TransactionSourceContext = (container: IContainer) => new ServiceCo
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qy0zs2v6j00uovin2fnvnryy = true;
+export const $leight_s7dh2pwudo4hwtbu56349yc8 = true;

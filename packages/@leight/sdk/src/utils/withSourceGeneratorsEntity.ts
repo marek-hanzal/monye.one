@@ -1,5 +1,7 @@
-import {type IPackageType}           from "@leight/generator";
-import {type IGeneratorCommonParams} from "../generator";
+import {
+    type IGeneratorCommonEntityPrismaSourceParams,
+    type IGeneratorCommonParams
+} from "../generator";
 
 export interface IWithSourceGeneratorsEntityProps {
     name: string;
@@ -7,12 +9,8 @@ export interface IWithSourceGeneratorsEntityProps {
         prisma: string;
     },
     sorts?: string[];
-    withPrismaSchemaEx?: {
-        entity: IPackageType;
-    };
-    withSourceSchemaEx?: {
-        extends?: IPackageType[];
-    };
+    withPrismaSchemaEx?: IGeneratorCommonEntityPrismaSourceParams.IWithSchemaEx;
+    withSourceSchemaEx?: IGeneratorCommonEntityPrismaSourceParams.IWithSourceEx;
 }
 
 export const withSourceGeneratorsEntity = ({name, packages, sorts, withSourceSchemaEx, withPrismaSchemaEx}: IWithSourceGeneratorsEntityProps): IGeneratorCommonParams => {

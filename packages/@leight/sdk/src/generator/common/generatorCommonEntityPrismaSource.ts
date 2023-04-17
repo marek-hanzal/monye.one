@@ -47,7 +47,13 @@ export namespace IGeneratorCommonEntityPrismaSourceParams {
         /**
          * Optional extension of entity schema
          */
-        entity?: IPackageType;
+        schema?: IPackageType;
+        create?: IPackageType;
+        toCreate?: IPackageType;
+        patch?: IPackageType;
+        toPatch?: IPackageType;
+        filter?: IPackageType;
+        params?: IPackageType;
     }
 }
 
@@ -98,13 +104,75 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
                     ],
                 },
             })
-            .withImports(withSchemaEx?.entity?.withPackage ? {
-                imports: {
-                    [withSchemaEx.entity.withPackage.package]: [
-                        withPackageImport(withSchemaEx.entity),
+            .withImports({
+                imports: withSchemaEx?.schema?.withPackage ? {
+                    [withSchemaEx.schema.withPackage.package]: [
+                        withPackageImport(withSchemaEx.schema),
+                    ],
+                } : {},
+            })
+            .withImports({
+                imports: withSchemaEx?.toCreate?.withPackage ? {
+                    [withSchemaEx.toCreate?.withPackage.package]: [
+                        withPackageImport(withSchemaEx.toCreate),
+                    ],
+                } : {
+                    "@leight/source": [
+                        "ToCreateSchema",
                     ],
                 },
-            } : undefined)
+            })
+            .withImports({
+                imports: withSchemaEx?.create?.withPackage ? {
+                    [withSchemaEx.create?.withPackage.package]: [
+                        withPackageImport(withSchemaEx.create),
+                    ],
+                } : {},
+            })
+            .withImports({
+                imports: withSchemaEx?.toPatch?.withPackage ? {
+                    [withSchemaEx.toPatch?.withPackage.package]: [
+                        withPackageImport(withSchemaEx.toPatch),
+                    ],
+                } : {
+                    "@leight/source": [
+                        "ToPatchSchema",
+                    ],
+                },
+            })
+            .withImports({
+                imports: withSchemaEx?.patch?.withPackage ? {
+                    [withSchemaEx.patch?.withPackage.package]: [
+                        withPackageImport(withSchemaEx.patch),
+                    ],
+                } : {
+                    "@leight/source": [
+                        "WithIdentitySchema",
+                    ],
+                },
+            })
+            .withImports({
+                imports: withSchemaEx?.filter?.withPackage ? {
+                    [withSchemaEx.filter?.withPackage.package]: [
+                        withPackageImport(withSchemaEx.filter),
+                    ],
+                } : {
+                    "@leight/filter": [
+                        "FilterSchema",
+                    ],
+                },
+            })
+            .withImports({
+                imports: withSchemaEx?.params?.withPackage ? {
+                    [withSchemaEx?.params?.withPackage.package]: [
+                        withPackageImport(withSchemaEx.params),
+                    ],
+                } : {
+                    "@leight/query": [
+                        "ParamsSchema",
+                    ],
+                },
+            })
             .withConsts({
                 exports: {
                     [`${name}PrismaSchema`]: {
@@ -131,14 +199,17 @@ withSourceExSchema({
                     [`${name}SourceSchema`]: {
                         body: `
 withSourceSchema({
-    EntitySchema: ${withSchemaEx?.entity ? `$EntitySchema.merge(${withPackageType(withSchemaEx.entity)})` : "$EntitySchema"},
-    CreateSchema: ${name}OptionalDefaultsSchema,
-    PatchSchema: ${name}PartialSchema.merge(WithIdentitySchema),
-    FilterSchema: z.union([
+    EntitySchema: ${withSchemaEx?.schema ? `$EntitySchema.merge(${withPackageType(withSchemaEx.schema)})` : "$EntitySchema"},
+    ToCreateSchema: ${withSchemaEx?.toCreate ? withPackageType(withSchemaEx.toCreate) : "ToCreateSchema"},
+    CreateSchema: ${withSchemaEx?.create ? withPackageType(withSchemaEx.create) : `${name}OptionalDefaultsSchema`},
+    ToPatchSchema: ${withSchemaEx?.toPatch ? withPackageType(withSchemaEx.toPatch) : "ToPatchSchema"},
+    PatchSchema: ${withSchemaEx?.patch ? withPackageType(withSchemaEx.patch) : `${name}PartialSchema.merge(WithIdentitySchema)`},
+    FilterSchema: ${withSchemaEx?.filter ? withPackageType(withSchemaEx.filter) : `z.union([
         ${name}WhereInputSchema,
         ${name}WhereUniqueInputSchema,
         FilterSchema,
-    ]),
+    ])`},
+    ParamsSchema: ${withSchemaEx?.params ? withPackageType(withSchemaEx.params) : "ParamsSchema"},
     SortSchema: z.object({
         ${sorts.map(sort => `${sort}: SortOrderSchema`).join(",\n\t")}
     }),

@@ -8,8 +8,8 @@ void withSdk(
         EntitySource: {
             entities: [
                 {
-                    name:       "CalendarEvent",
-                    withSchema: {
+                    name:         "CalendarEvent",
+                    withSchemaEx: {
                         schema: {
                             type:        "CoolCalendarEventBaseSchema",
                             withPackage: {

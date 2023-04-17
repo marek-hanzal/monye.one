@@ -17,13 +17,7 @@ export namespace IGeneratorCommonEntitySourceParams {
          * Base name exported (used to name all exported objects)
          */
         name: string;
-        withSchema: {
-            schema: IPackageType;
-            create?: IPackageType;
-            patch?: IPackageType;
-            filter?: IPackageType;
-            params?: IPackageType;
-        };
+        withSchemaEx: IWithSchemaEx;
         withSourceEx?: IWithSourceEx;
         /**
          * Specify sort fields of the Sort query
@@ -33,6 +27,19 @@ export namespace IGeneratorCommonEntitySourceParams {
 
     export interface IWithSourceEx {
         extends?: IPackageType[];
+    }
+
+    export interface IWithSchemaEx {
+        /**
+         * Optional extension of entity schema
+         */
+        schema: IPackageType;
+        create?: IPackageType;
+        toCreate?: IPackageType;
+        patch?: IPackageType;
+        toPatch?: IPackageType;
+        filter?: IPackageType;
+        params?: IPackageType;
     }
 }
 
@@ -48,7 +55,7 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
     }) => {
     const file = withSourceFile();
 
-    entities.forEach(({name, withSchema, withSourceEx, sorts = ["id"]}) => {
+    entities.forEach(({name, withSchemaEx, withSourceEx, sorts = ["id"]}) => {
         file
             .withImports({
                 imports: {
@@ -72,16 +79,16 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
                 },
             })
             .withImports({
-                imports: withSchema.schema.withPackage ? {
-                    [withSchema.schema.withPackage.package]: [
-                        withPackageImport(withSchema.schema),
+                imports: withSchemaEx.schema.withPackage ? {
+                    [withSchemaEx.schema.withPackage.package]: [
+                        withPackageImport(withSchemaEx.schema),
                     ],
                 } : {},
             })
             .withImports({
-                imports: withSchema.create?.withPackage ? {
-                    [withSchema.create?.withPackage.package]: [
-                        withPackageImport(withSchema.create),
+                imports: withSchemaEx.create?.withPackage ? {
+                    [withSchemaEx.create?.withPackage.package]: [
+                        withPackageImport(withSchemaEx.create),
                     ],
                 } : {
                     "@leight/source": [
@@ -90,9 +97,31 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
                 },
             })
             .withImports({
-                imports: withSchema.patch?.withPackage ? {
-                    [withSchema.patch?.withPackage.package]: [
-                        withPackageImport(withSchema.patch),
+                imports: withSchemaEx.toCreate?.withPackage ? {
+                    [withSchemaEx.toCreate?.withPackage.package]: [
+                        withPackageImport(withSchemaEx.toCreate),
+                    ],
+                } : {
+                    "@leight/source": [
+                        "ToCreateSchema",
+                    ],
+                },
+            })
+            .withImports({
+                imports: withSchemaEx.toPatch?.withPackage ? {
+                    [withSchemaEx.toPatch?.withPackage.package]: [
+                        withPackageImport(withSchemaEx.toPatch),
+                    ],
+                } : {
+                    "@leight/source": [
+                        "ToPatchSchema",
+                    ],
+                },
+            })
+            .withImports({
+                imports: withSchemaEx.patch?.withPackage ? {
+                    [withSchemaEx.patch?.withPackage.package]: [
+                        withPackageImport(withSchemaEx.patch),
                     ],
                 } : {
                     "@leight/source": [
@@ -101,9 +130,9 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
                 },
             })
             .withImports({
-                imports: withSchema.filter?.withPackage ? {
-                    [withSchema.filter?.withPackage.package]: [
-                        withPackageImport(withSchema.filter),
+                imports: withSchemaEx.filter?.withPackage ? {
+                    [withSchemaEx.filter?.withPackage.package]: [
+                        withPackageImport(withSchemaEx.filter),
                     ],
                 } : {
                     "@leight/filter": [
@@ -112,9 +141,9 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
                 },
             })
             .withImports({
-                imports: withSchema.params?.withPackage ? {
-                    [withSchema.params?.withPackage.package]: [
-                        withPackageImport(withSchema.params),
+                imports: withSchemaEx.params?.withPackage ? {
+                    [withSchemaEx.params?.withPackage.package]: [
+                        withPackageImport(withSchemaEx.params),
                     ],
                 } : {
                     "@leight/query": [
@@ -133,11 +162,17 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
                     [`${name}SourceSchema`]: {
                         body: `
 withSourceSchema({
-    EntitySchema: ${withPackageType(withSchema.schema)},
-    CreateSchema: ${withSchema.create ? withPackageType(withSchema.create) : "CreateSchema"},
-    PatchSchema: ${withSchema.patch ? withPackageType(withSchema.patch) : "WithIdentitySchema"},
-    FilterSchema: ${withSchema.filter ? withPackageType(withSchema.filter) : "FilterSchema"},
-    ParamsSchema: ${withSchema.params ? withPackageType(withSchema.params) : "ParamsSchema"},
+    EntitySchema: ${withSchemaEx?.schema ? withPackageType(withSchemaEx.schema) : "$EntitySchema"},
+    ToCreateSchema: ${withSchemaEx?.toCreate ? withPackageType(withSchemaEx.toCreate) : "ToCreateSchema"},
+    CreateSchema: ${withSchemaEx?.create ? withPackageType(withSchemaEx.create) : "CreateSchema"},
+    ToPatchSchema: ${withSchemaEx?.toPatch ? withPackageType(withSchemaEx.toPatch) : "ToPatchSchema"},
+    PatchSchema: ${withSchemaEx?.patch ? withPackageType(withSchemaEx.patch) : "WithIdentitySchema"},
+    FilterSchema: ${withSchemaEx?.filter ? withPackageType(withSchemaEx.filter) : `z.union([
+        ${name}WhereInputSchema,
+        ${name}WhereUniqueInputSchema,
+        FilterSchema,
+    ])`},
+    ParamsSchema: ${withSchemaEx?.params ? withPackageType(withSchemaEx.params) : "ParamsSchema"},
     SortSchema: z.object({
         ${sorts.map(sort => `${sort}: SortOrderSchema`).join(",\n\t")}
     }),

@@ -10,5 +10,5 @@ export const BankCreateFormSchema = withFormSchemas({
         //     date:  z.string(),
         // }).optional(),
     }),
-    RequestSchema: BankSourceSchema["CreateSchema"],
+    RequestSchema: BankSourceSchema.ToCreateSchema,
 });

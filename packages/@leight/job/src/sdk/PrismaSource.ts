@@ -24,10 +24,13 @@ import {
 	WithIdentitySchema,
 	type ISource,
 	type InferSourceSchema,
-	withSourceSchema
+	withSourceSchema,
+	ToCreateSchema,
+	ToPatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
-import {JobSchemaOverride} from "../schema";
+import {JobSchemaEx} from "../schema";
+import {ParamsSchema} from "@leight/query";
 
 export type IJobSourceSchema = InferSourceSchema<typeof JobSourceSchema>;
 export type IJobPrismaSchema = InferSourceExSchema<typeof JobPrismaSchema>;
@@ -42,14 +45,17 @@ export const JobPrismaSchema = withSourceExSchema({
     OrderBySchema:     JobOrderByWithRelationInputSchema,
 });
 export const JobSourceSchema = withSourceSchema({
-    EntitySchema: $EntitySchema.merge(JobSchemaOverride),
+    EntitySchema: $EntitySchema.merge(JobSchemaEx),
+    ToCreateSchema: ToCreateSchema,
     CreateSchema: JobOptionalDefaultsSchema,
+    ToPatchSchema: ToPatchSchema,
     PatchSchema: JobPartialSchema.merge(WithIdentitySchema),
     FilterSchema: z.union([
         JobWhereInputSchema,
         JobWhereUniqueInputSchema,
         FilterSchema,
     ]),
+    ParamsSchema: ParamsSchema,
     SortSchema: z.object({
         started: SortOrderSchema
     }),
@@ -60,4 +66,4 @@ export const JobSourceContext = (container: IContainer) => new ServiceContext<IJ
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ki3ffc6t4a1ffzm98qbfg5v1 = true;
+export const $leight_z6p5xebox0ybbq2ae2xyzyog = true;
