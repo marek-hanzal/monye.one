@@ -29,7 +29,6 @@
         "@leight/container": "^0.5.0",
         "@leight/filter": "^0.5.0",
         "@leight/query": "^0.5.0",
-        "@leight/react-query": "^0.5.0",
         "@leight/sort": "^0.5.0",
         "@leight/source": "^0.5.25",
         "@leight/zod": "^0.5.0",
