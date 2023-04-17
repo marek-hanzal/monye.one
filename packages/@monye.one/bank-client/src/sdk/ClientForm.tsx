@@ -12,9 +12,9 @@ import {
 	WithInput
 } from "@leight/form-client";
 import {type FC} from "react";
-import {BankCreateFormSchemas} from "../schema";
+import {BankCreateFormSchema} from "../schema";
 
-export type IBankCreateFormSchema = InferFormSchemas<typeof BankCreateFormSchemas>;
+export type IBankCreateFormSchema = InferFormSchemas<typeof BankCreateFormSchema>;
 
 export interface IBankCreateBaseFormProps extends Omit<IFormProps<IBankCreateFormSchema>, "FormContext" | "withTranslation"> {
 }
@@ -24,7 +24,7 @@ export const BankCreateFormStoreContext = createFormContext<IBankCreateFormSchem
 });
 export const BankCreateBaseForm: FC<IBankCreateBaseFormProps> = props => {
     return <Form<IBankCreateFormSchema>
-        schemas={BankCreateFormSchemas}
+        schemas={BankCreateFormSchema}
         FormContext={BankCreateFormStoreContext}
         withTranslation={{
             namespace: "bank",
@@ -43,4 +43,4 @@ export const BankCreateInput: FC<Omit<IWithInputProps<IBankCreateFormSchema>, "F
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_yqm7bhzw2wp8a0ldhmoq5aku = true;
+export const $leight_rnik6xn4qiogwmgvrehjws8k = true;

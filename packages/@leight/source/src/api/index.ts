@@ -34,9 +34,11 @@ import {
     type IEntitySchema,
     type IPatchSchema,
     type IToCreateSchema,
+    type IToPatchSchema,
     type IWithIdentity,
     PatchSchema,
-    ToCreateSchema
+    ToCreateSchema,
+    ToPatchSchema
 }                         from "../schema";
 
 export type ISourceName =
@@ -50,6 +52,7 @@ export type ISourceSchema<
     TEntitySchema extends IEntitySchema = IEntitySchema,
     TToCreateSchema extends IToCreateSchema = IToCreateSchema,
     TCreateSchema extends ICreateSchema = ICreateSchema,
+    TToPatchSchema extends IToPatchSchema = IToPatchSchema,
     TPatchSchema extends IPatchSchema = IPatchSchema,
     TFilterSchema extends IFilterSchema = IFilterSchema,
     TSortSchema extends ISortSchema = ISortSchema,
@@ -61,6 +64,8 @@ export type ISourceSchema<
     ToCreate: z.infer<TToCreateSchema>;
     CreateSchema: TCreateSchema;
     Create: z.infer<TCreateSchema>;
+    ToPatchSchema: TToPatchSchema;
+    ToPatch: z.infer<TToPatchSchema>;
     PatchSchema: TPatchSchema;
     Patch: z.infer<TPatchSchema>;
     FilterSchema: TFilterSchema;
@@ -79,6 +84,7 @@ export type ISourceSchemas<TSourceSchema extends ISourceSchema> = {
     EntitySchema: TSourceSchema["EntitySchema"];
     ToCreateSchema: TSourceSchema["ToCreateSchema"];
     CreateSchema: TSourceSchema["CreateSchema"];
+    ToPatchSchema: TSourceSchema["ToPatchSchema"];
     PatchSchema: TSourceSchema["PatchSchema"];
     FilterSchema: TSourceSchema["FilterSchema"];
     SortSchema: TSourceSchema["SortSchema"];
@@ -91,16 +97,18 @@ export type IWithSourceSchemaProps<
     TEntitySchema extends IEntitySchema,
     TToCreateSchema extends IToCreateSchema,
     TCreateSchema extends ICreateSchema,
+    TToPatchSchema extends IToPatchSchema,
     TPatchSchema extends IPatchSchema,
     TFilterSchema extends IFilterSchema,
     TSortSchema extends ISortSchema,
     TParamsSchema extends IParamsSchema,
-> = Partial<ISourceSchemas<ISourceSchema<TEntitySchema, TToCreateSchema, TCreateSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>>>;
+> = Partial<ISourceSchemas<ISourceSchema<TEntitySchema, TToCreateSchema, TCreateSchema, TToPatchSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>>>;
 
 export const withSourceSchema = <
     TEntitySchema extends IEntitySchema,
     TToCreateSchema extends IToCreateSchema,
     TCreateSchema extends ICreateSchema,
+    TToPatchSchema extends IToPatchSchema,
     TPatchSchema extends IPatchSchema,
     TFilterSchema extends IFilterSchema,
     TSortSchema extends ISortSchema,
@@ -110,15 +118,17 @@ export const withSourceSchema = <
         EntitySchema:   $EntitySchema = EntitySchema as TEntitySchema,
         ToCreateSchema: $ToCreateSchema = ToCreateSchema as TToCreateSchema,
         CreateSchema:   $CreateSchema = CreateSchema as TCreateSchema,
+        ToPatchSchema:  $ToPatchSchema = ToPatchSchema as TToPatchSchema,
         PatchSchema:    $PatchSchema = PatchSchema as TPatchSchema,
         FilterSchema:   $FilterSchema = FilterSchema as TFilterSchema,
         SortSchema:     $SortSchema = SortSchema as TSortSchema,
         ParamsSchema:   $ParamsSchema = ParamsSchema as TParamsSchema,
-    }: IWithSourceSchemaProps<TEntitySchema, TToCreateSchema, TCreateSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>): ISourceSchemas<ISourceSchema<TEntitySchema, TToCreateSchema, TCreateSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>> => {
+    }: IWithSourceSchemaProps<TEntitySchema, TToCreateSchema, TCreateSchema, TToPatchSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>): ISourceSchemas<ISourceSchema<TEntitySchema, TToCreateSchema, TCreateSchema, TToPatchSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>> => {
     return {
         EntitySchema:   $EntitySchema,
         ToCreateSchema: $ToCreateSchema,
         CreateSchema:   $CreateSchema,
+        ToPatchSchema:  $ToPatchSchema,
         PatchSchema:    $PatchSchema,
         FilterSchema:   $FilterSchema,
         SortSchema:     $SortSchema,
@@ -136,6 +146,7 @@ export type InferSourceSchema<TSourceSchema extends ISourceSchemas<ISourceSchema
     TSourceSchema["EntitySchema"],
     TSourceSchema["ToCreateSchema"],
     TSourceSchema["CreateSchema"],
+    TSourceSchema["ToPatchSchema"],
     TSourceSchema["PatchSchema"],
     TSourceSchema["FilterSchema"],
     TSourceSchema["SortSchema"],

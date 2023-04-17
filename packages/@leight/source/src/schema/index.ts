@@ -23,3 +23,9 @@ export const PatchSchema = z.object({
 });
 export type IPatchSchema = typeof PatchSchema;
 export type IPatch = z.infer<IPatchSchema>;
+
+export const ToPatchSchema = z.object({
+    id: z.string(),
+});
+export type IToPatchSchema = typeof ToPatchSchema;
+export type IToPatch = z.infer<IToPatchSchema>;

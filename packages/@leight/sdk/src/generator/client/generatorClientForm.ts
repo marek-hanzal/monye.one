@@ -55,13 +55,13 @@ export const generatorClientForm: IGenerator<IGeneratorClientFormParams> = async
             .withImports({
                 imports: {
                     [packages?.schema || `../schema`]: [
-                        `${name}FormSchemas`,
+                        `${name}FormSchema`,
                     ],
                 },
             })
             .withTypes({
                 exports: {
-                    [`I${name}FormSchema`]: `InferFormSchemas<typeof ${name}FormSchemas>`,
+                    [`I${name}FormSchema`]: `InferFormSchemas<typeof ${name}FormSchema>`,
                 }
             })
             .withConsts({
@@ -78,7 +78,7 @@ createFormContext<I${name}FormSchema>({
                         body: `
 props => {
     return <Form<I${name}FormSchema>
-        schemas={${name}FormSchemas}
+        schemas={${name}FormSchema}
         FormContext={${name}FormStoreContext}
         withTranslation={{
             namespace: "${translation.namespace}",
