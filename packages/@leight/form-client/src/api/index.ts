@@ -1,7 +1,7 @@
 import {type KeysOf}            from "@leight/utils";
 import {z}                      from "@leight/zod";
 import {type UseFormReturnType} from "@mantine/form";
-import {type ReactNode}         from "react";
+import {FC}                     from "react";
 import {type IFormStoreContext} from "../context";
 import {type IFormProps}        from "../form";
 import {
@@ -50,7 +50,7 @@ export type InferFormSchemas<TFormSchemas extends IFormSchemas> = IFormSchema<
     TFormSchemas["ResponseSchema"]
 >;
 
-export type IFormInputs<TFormSchema extends IFormSchema> = Record<IFormFields<TFormSchema>, (props: IFormInputs.IInputRenderProps<TFormSchema>) => ReactNode>;
+export type IFormInputs<TFormSchema extends IFormSchema> = Record<IFormFields<TFormSchema>, FC<IFormInputs.IInputRenderProps<TFormSchema>>>;
 export namespace IFormInputs {
     export interface IInputRenderProps<TFormSchema extends IFormSchema> {
         mandatory: IInputProps<TFormSchema>;

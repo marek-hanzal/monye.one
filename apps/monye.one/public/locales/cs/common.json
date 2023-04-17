@@ -1,3 +1,4 @@
 {
-    "actions.label": "Akce"
+    "actions.label": "Akce",
+    "form.error.Required": "Požadované políčko"
 }

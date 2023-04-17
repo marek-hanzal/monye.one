@@ -5,6 +5,8 @@
  */
 import {
 	createFormContext,
+	createMantineFormContext,
+	type IMantineFormContext,
 	Form,
 	type IFormProps,
 	type InferFormSchemas,
@@ -15,8 +17,9 @@ import {type FC} from "react";
 import {BankCreateFormSchema} from "../schema";
 
 export type IBankCreateFormSchema = InferFormSchemas<typeof BankCreateFormSchema>;
+export type IBankCreateMantineFormContext = IMantineFormContext<IBankCreateFormSchema>;
 
-export interface IBankCreateBaseFormProps extends Omit<IFormProps<IBankCreateFormSchema>, "FormContext" | "withTranslation"> {
+export interface IBankCreateBaseFormProps extends Omit<IFormProps<IBankCreateFormSchema>, "FormContext" | "MantineContext" | "withTranslation"> {
 }
 
 export const BankCreateFormStoreContext = createFormContext<IBankCreateFormSchema>({
@@ -24,6 +27,7 @@ export const BankCreateFormStoreContext = createFormContext<IBankCreateFormSchem
 });
 export const BankCreateBaseForm: FC<IBankCreateBaseFormProps> = props => {
     return <Form<IBankCreateFormSchema>
+        MantineContext={BankCreateMantineFormContext}
         schemas={BankCreateFormSchema}
         FormContext={BankCreateFormStoreContext}
         withTranslation={{
@@ -39,8 +43,9 @@ export const BankCreateInput: FC<Omit<IWithInputProps<IBankCreateFormSchema>, "F
         {...props}
     />;
 };
+export const BankCreateMantineFormContext = createMantineFormContext<IBankCreateFormSchema>();
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_i8qj82ecdffp1roknpbvwpss = true;
+export const $leight_xn0sp2w15qon5gm7j0hpnjtw = true;

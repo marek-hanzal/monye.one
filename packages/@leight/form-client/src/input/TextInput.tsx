@@ -19,12 +19,12 @@ export const TextInput = <TFormSchema extends IFormSchema>(
         description,
         ...props
     }: ITextInputProps<TFormSchema>) => {
-    const {form, withTranslation} = FormContext.useState(({form, withTranslation}) => ({form, withTranslation}));
-    const {t}                     = useTranslation(withTranslation.namespace);
+    const {MantineContext: [, useFormContext], withTranslation} = FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
+    const {t}                                              = useTranslation(withTranslation.namespace);
     return <CoolTextInput
         {...withDefaultInputProps<TFormSchema>({
             t,
-            form,
+            form: useFormContext(),
             withTranslation,
             label,
             placeholder,

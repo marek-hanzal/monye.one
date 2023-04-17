@@ -34,7 +34,11 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
                 {...withLabel}
                 {...withDescription}
             />,
-            "balance.date":  () => null,
+            "balance.date":  ({mandatory, withLabel, withDescription}) => <NumberInput
+                {...mandatory}
+                {...withLabel}
+                {...withDescription}
+            />,
         })}
         {...props}
     >

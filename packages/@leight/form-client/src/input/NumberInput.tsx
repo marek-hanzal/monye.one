@@ -19,12 +19,12 @@ export const NumberInput = <TFormSchema extends IFormSchema>(
         description,
         ...props
     }: INumberInputProps<TFormSchema>) => {
-    const {form, withTranslation} = FormContext.useState(({form, withTranslation}) => ({form, withTranslation}));
-    const {t}                     = useTranslation(withTranslation.namespace);
+    const {MantineContext: [, useFormContext], withTranslation} = FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
+    const {t}                                                   = useTranslation(withTranslation.namespace);
     return <CoolNumberInput
         {...withDefaultInputProps<TFormSchema>({
             t,
-            form,
+            form: useFormContext(),
             withTranslation,
             label,
             placeholder,

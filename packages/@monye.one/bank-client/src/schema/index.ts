@@ -4,7 +4,7 @@ import {BankSourceSchema} from "@monye.one/bank";
 
 export const BankCreateFormSchema = withFormSchemas({
     ValueSchema:   z.object({
-        account: z.string().trim().min(1, {message: "Please provide bank account!"}),
+        account: z.string().trim().min(1, {message: "account.empty"}),
         balance: z.object({
             value: z.number(),
             date:  z.string(),

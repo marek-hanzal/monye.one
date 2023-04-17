@@ -38,6 +38,8 @@ export const generatorClientForm: IGenerator<IGeneratorClientFormParams> = async
         imports: {
             "@leight/form-client": [
                 "createFormContext",
+                "createMantineFormContext",
+                "type IMantineFormContext",
                 "Form",
                 "type IFormProps",
                 "type InferFormSchemas",
@@ -61,23 +63,25 @@ export const generatorClientForm: IGenerator<IGeneratorClientFormParams> = async
             })
             .withTypes({
                 exports: {
-                    [`I${name}FormSchema`]: `InferFormSchemas<typeof ${name}FormSchema>`,
+                    [`I${name}FormSchema`]:         `InferFormSchemas<typeof ${name}FormSchema>`,
+                    [`I${name}MantineFormContext`]: `IMantineFormContext<I${name}FormSchema>`,
                 }
             })
             .withConsts({
                 exports: {
-                    [`${name}FormStoreContext`]: {
+                    [`${name}FormStoreContext`]:   {
                         body: `
 createFormContext<I${name}FormSchema>({
     name: "${name}Form",
 })
                         `,
                     },
-                    [`${name}BaseForm`]:         {
+                    [`${name}BaseForm`]:           {
                         type: `FC<I${name}BaseFormProps>`,
                         body: `
 props => {
     return <Form<I${name}FormSchema>
+        MantineContext={${name}MantineFormContext}
         schemas={${name}FormSchema}
         FormContext={${name}FormStoreContext}
         withTranslation={{
@@ -89,7 +93,7 @@ props => {
 }
                         `,
                     },
-                    [`${name}Input`]:            {
+                    [`${name}Input`]:              {
                         type: `FC<Omit<IWithInputProps<I${name}FormSchema>, "FormContext">>`,
                         body: `
 props => {
@@ -100,6 +104,9 @@ props => {
 }
                             `,
                     },
+                    [`${name}MantineFormContext`]: {
+                        body: `createMantineFormContext<I${name}FormSchema>()`,
+                    },
                 },
             })
             .withInterfaces({
@@ -107,7 +114,7 @@ props => {
                     [`I${name}BaseFormProps`]: {
                         extends: [
                             {
-                                type: `Omit<IFormProps<I${name}FormSchema>, "FormContext" | "withTranslation">`,
+                                type: `Omit<IFormProps<I${name}FormSchema>, "FormContext" | "MantineContext" | "withTranslation">`,
                             },
                         ],
                     },

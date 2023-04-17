@@ -8,6 +8,9 @@
     "BankCreateBaseForm.submit.button": "Uložit účet",
     "BankCreateBaseForm.account": "Číslo účtu",
     "BankCreateBaseForm.account.description": "Zadejte prosím číslo bankovního účtu",
-    "BankCreateBaseForm.deposit": "Aktuální zůstatek",
-    "BankCreateBaseForm.deposit.description": "Zadejte aktuální zůstatek, pokud chceete zobrazit odhady toku peněz"
+    "BankCreateBaseForm.balance.value": "Aktuální zůstatek",
+    "BankCreateBaseForm.balance.value.description": "Zadejte aktuální zůstatek, pokud chceete zobrazit odhady toku peněz",
+    "BankCreateBaseForm.balance.date": "Datum zůstatku",
+    "BankCreateBaseForm.balance.date.description": "Vyberte prosím datum platnosti zůstatku",
+    "BankCreateBaseForm.error.account.empty": "Vyplňte prosím číslo účtu"
 }
