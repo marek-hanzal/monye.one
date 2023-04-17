@@ -91,10 +91,7 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
         ...props
     }: IFormProps<TFormSchema>) => {
     const [FormProvider, , useForm] = MantineContext;
-    const {t}                       = useTranslation([
-        "common",
-        withTranslation.namespace,
-    ]);
+    const {t}                       = useTranslation(withTranslation.namespace);
     const form                      = useForm({
         validate:            values => {
             if (!schemas?.ValueSchema) {
@@ -106,10 +103,7 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
             }
             const errors: Record<string, string> = {};
             parsed.error.errors.forEach(error => {
-                errors[error.path.join(".")] = t([
-                    `${withTranslation.label}.error.${error.message}`,
-                    `form.error.${error.message}`,
-                ], withTranslation.values);
+                errors[error.path.join(".")] = t(`${withTranslation.label}.error.${error.message}`, withTranslation.values);
             });
             return errors;
         },

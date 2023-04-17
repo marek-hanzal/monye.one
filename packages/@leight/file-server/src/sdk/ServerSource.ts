@@ -13,4 +13,4 @@ export class FileSource extends FileBasePrismaSource implements IFileSource {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nfrerc32nm528hi6jnynwl3k = true;
+export const $leight_wivevvmuaaa54hgmlmja9k9b = true;
