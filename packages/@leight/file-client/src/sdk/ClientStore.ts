@@ -12,4 +12,4 @@ export const FileSourceStore = withSourceStore({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bw7avol7nx4pro5h1ok90k3g = true;
+export const $leight_x3ftna5ozbj8rn5qsfc79lez = true;
