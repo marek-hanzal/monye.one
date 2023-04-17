@@ -1,22 +1,21 @@
-import {type IStoreContext}     from "@leight/context";
-import {createStoreContext}     from "@leight/context-client";
-import {type IWithTranslation}  from "@leight/i18n";
+import {type IStoreContext}    from "@leight/context";
+import {createStoreContext}    from "@leight/context-client";
+import {type IWithTranslation} from "@leight/i18n";
 import {
     type IStoreProps,
     type IStorePropsType
-}                               from "@leight/zustand";
-import {type UseFormReturnType} from "@mantine/form";
-import {type ComponentProps}    from "react";
+}                              from "@leight/zustand";
+import {type ComponentProps}   from "react";
 import {
     type IFormInputs,
-    type IFormMapper,
     type IFormSchema,
-    type IFormSchemas
-}                               from "../api";
+    type IFormSchemas,
+    type IUseForm
+}                              from "../api";
 
 export type IFormStoreProps<TFormSchema extends IFormSchema> = IStoreProps<IStorePropsType, {
     schemas?: IFormSchemas<TFormSchema>;
-    form: UseFormReturnType<TFormSchema["Values"], IFormMapper<TFormSchema>>;
+    form: IUseForm<TFormSchema>;
     inputs: IFormInputs<TFormSchema>;
     inputsOverride?: Partial<IFormInputs<TFormSchema>>;
     withTranslation: IWithTranslation;
@@ -39,7 +38,7 @@ export const createFormContext = <TFormSchema extends IFormSchema>({name}: ICrea
 
 export interface IFormStoreProviderProps<TFormSchema extends IFormSchema> extends Omit<ComponentProps<IFormStoreContext<TFormSchema>["Provider"]>, "state"> {
     schemas?: IFormSchemas<TFormSchema>;
-    form: UseFormReturnType<TFormSchema["Values"], IFormMapper<TFormSchema>>;
+    form: IUseForm<TFormSchema>;
     inputs: IFormInputs<TFormSchema>;
     inputsOverride?: Partial<IFormInputs<TFormSchema>>;
     FormStoreContext: IFormStoreContext<TFormSchema>;

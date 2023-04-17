@@ -1,13 +1,14 @@
-import {type KeysOf}       from "@leight/utils";
-import {z}                 from "@leight/zod";
-import {type ReactNode}    from "react";
-import {IFormStoreContext} from "../context";
-import {IFormProps}        from "../form";
+import {type KeysOf}            from "@leight/utils";
+import {z}                      from "@leight/zod";
+import {type UseFormReturnType} from "@mantine/form";
+import {type ReactNode}         from "react";
+import {type IFormStoreContext} from "../context";
+import {type IFormProps}        from "../form";
 import {
     type IFormRequestSchema,
     type IFormResponseSchema,
     type IFormValuesSchema
-}                          from "../schema";
+}                               from "../schema";
 
 /**
  * Defines form schema - all internal data are separated by a purpose
@@ -60,6 +61,9 @@ export namespace IFormInputs {
             label: string;
             placeholder: string;
         };
+        withDescription: {
+            description: string;
+        },
     }
 
     export interface IInputProps<TFormSchema extends IFormSchema> {
@@ -70,3 +74,5 @@ export namespace IFormInputs {
 
 export type IFormInputsFactory<TFormSchema extends IFormSchema> = (props: IFormProps.IInputsProps<TFormSchema>) => IFormInputs<TFormSchema>;
 export type IFormInputsOverrideFactory<TFormSchema extends IFormSchema> = (props: IFormProps.IInputsProps<TFormSchema>) => Partial<IFormInputs<TFormSchema>>;
+
+export type IUseForm<TFormSchema extends IFormSchema> = UseFormReturnType<TFormSchema["Values"], IFormMapper<TFormSchema>>;

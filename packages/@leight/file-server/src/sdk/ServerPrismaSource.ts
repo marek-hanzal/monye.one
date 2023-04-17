@@ -11,10 +11,8 @@ import {type ISource} from "@leight/source";
 import {AbstractSource} from "@leight/source-server";
 import {
 	$FileSource,
-	type IFileWhere,
-	type IFileWhereUnique,
-	type IFileOrderBy,
-	type IFileSourceSchema
+	IFileSourceSchema,
+	type IFilePrismaSchema
 } from "@leight/file";
 
 export class FileBasePrismaSource extends AbstractSource<IFileSourceSchema> {
@@ -80,16 +78,16 @@ export class FileBasePrismaSource extends AbstractSource<IFileSourceSchema> {
         return this.prismaClient.file;
     }
     
-    toWhere(filter?: IFileSourceSchema["Filter"]): IFileWhere | undefined {
+    toWhere(filter?: IFileSourceSchema["Filter"]): IFilePrismaSchema['Where'] | undefined {
         return filter;
     }
     
-    toWhereUnique(filter: IFileSourceSchema["Filter"]): IFileWhereUnique {
-        return filter as IFileWhereUnique;
+    toWhereUnique(filter: IFileSourceSchema["Filter"]): IFilePrismaSchema['WhereUnique'] {
+        return filter as IFilePrismaSchema['WhereUnique'];
     }
     
-    toOrderBy(sort?: IFileSourceSchema["Sort"]): IFileOrderBy | undefined {
-        return sort as IFileOrderBy;
+    toOrderBy(sort?: IFileSourceSchema["Sort"]): IFilePrismaSchema['OrderBy'] | undefined {
+        return sort as IFilePrismaSchema['OrderBy'];
     }
 }
 
@@ -97,4 +95,4 @@ export class FileBasePrismaSource extends AbstractSource<IFileSourceSchema> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mag8tp4s06oxawo79ul188w1 = true;
+export const $leight_obw7xqrxg6sl3hnc6zi2qami = true;

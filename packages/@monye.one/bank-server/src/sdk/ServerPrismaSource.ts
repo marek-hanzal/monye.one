@@ -8,10 +8,8 @@ import {type ISource} from "@leight/source";
 import {AbstractSource} from "@leight/source-server";
 import {
 	$BankSource,
-	type IBankWhere,
-	type IBankWhereUnique,
-	type IBankOrderBy,
-	type IBankSourceSchema
+	IBankSourceSchema,
+	type IBankPrismaSchema
 } from "@monye.one/bank";
 import {type PrismaClient} from "@monye.one/prisma";
 
@@ -78,16 +76,16 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
         return this.prismaClient.bank;
     }
     
-    toWhere(filter?: IBankSourceSchema["Filter"]): IBankWhere | undefined {
+    toWhere(filter?: IBankSourceSchema["Filter"]): IBankPrismaSchema['Where'] | undefined {
         return filter;
     }
     
-    toWhereUnique(filter: IBankSourceSchema["Filter"]): IBankWhereUnique {
-        return filter as IBankWhereUnique;
+    toWhereUnique(filter: IBankSourceSchema["Filter"]): IBankPrismaSchema['WhereUnique'] {
+        return filter as IBankPrismaSchema['WhereUnique'];
     }
     
-    toOrderBy(sort?: IBankSourceSchema["Sort"]): IBankOrderBy | undefined {
-        return sort as IBankOrderBy;
+    toOrderBy(sort?: IBankSourceSchema["Sort"]): IBankPrismaSchema['OrderBy'] | undefined {
+        return sort as IBankPrismaSchema['OrderBy'];
     }
 }
 
@@ -95,4 +93,4 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_j2957z91dc7dpaee1dlmef9t = true;
+export const $leight_imlesldvyv4rgqqptqc4yroz = true;

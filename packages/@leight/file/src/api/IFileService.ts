@@ -1,4 +1,4 @@
-import {type IFile} from "../sdk";
+import {IFileSourceSchema} from "../sdk";
 
 export interface IFileServiceStoreProps {
     name: string;
@@ -15,9 +15,9 @@ export interface IFileService {
      */
     pathOf(fileId: string): string;
 
-    fetch(fileId: string): Promise<IFile>;
+    fetch(fileId: string): Promise<IFileSourceSchema["Entity"]>;
 
-    store(props: IFileServiceStoreProps): Promise<IFile>;
+    store(props: IFileServiceStoreProps): Promise<IFileSourceSchema["Entity"]>;
 }
 
 export const $FileService = Symbol.for("@leight/file/IFileService");

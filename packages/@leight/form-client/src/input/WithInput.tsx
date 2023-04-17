@@ -20,5 +20,8 @@ export const WithInput = <TFormSchema extends IFormSchema>({FormContext, path}: 
             label:       path,
             placeholder: `${path}.placeholder`,
         },
+        withDescription: {
+            description: `${path}.description`,
+        },
     });
 };

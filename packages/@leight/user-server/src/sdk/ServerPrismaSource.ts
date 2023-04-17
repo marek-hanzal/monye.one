@@ -11,10 +11,8 @@ import {type ISource} from "@leight/source";
 import {AbstractSource} from "@leight/source-server";
 import {
 	$UserSource,
-	type IUserWhere,
-	type IUserWhereUnique,
-	type IUserOrderBy,
-	type IUserSourceSchema
+	IUserSourceSchema,
+	type IUserPrismaSchema
 } from "@leight/user";
 
 export class UserBasePrismaSource extends AbstractSource<IUserSourceSchema> {
@@ -80,16 +78,16 @@ export class UserBasePrismaSource extends AbstractSource<IUserSourceSchema> {
         return this.prismaClient.user;
     }
     
-    toWhere(filter?: IUserSourceSchema["Filter"]): IUserWhere | undefined {
+    toWhere(filter?: IUserSourceSchema["Filter"]): IUserPrismaSchema['Where'] | undefined {
         return filter;
     }
     
-    toWhereUnique(filter: IUserSourceSchema["Filter"]): IUserWhereUnique {
-        return filter as IUserWhereUnique;
+    toWhereUnique(filter: IUserSourceSchema["Filter"]): IUserPrismaSchema['WhereUnique'] {
+        return filter as IUserPrismaSchema['WhereUnique'];
     }
     
-    toOrderBy(sort?: IUserSourceSchema["Sort"]): IUserOrderBy | undefined {
-        return sort as IUserOrderBy;
+    toOrderBy(sort?: IUserSourceSchema["Sort"]): IUserPrismaSchema['OrderBy'] | undefined {
+        return sort as IUserPrismaSchema['OrderBy'];
     }
 }
 
@@ -97,4 +95,4 @@ export class UserBasePrismaSource extends AbstractSource<IUserSourceSchema> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_e8efglis1c2aeb1fzmq2p1sr = true;
+export const $leight_jrmmsrm3yq8nbibv8512e5nf = true;

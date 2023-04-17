@@ -20,14 +20,23 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
             console.log("BankCreateBaseForm", request);
         }}
         inputs={() => ({
-            "account": ({mandatory, withLabelPlaceholder}) => <TextInput
+            "account":       ({mandatory, withLabel, withDescription}) => <TextInput
                 {...mandatory}
-                {...withLabelPlaceholder}
+                {...withLabel}
+                {...withDescription}
                 withAsterisk
             />,
+            // "balance.value": ({mandatory, withLabel, withDescription}) => <NumberInput
+            //     {...mandatory}
+            //     {...withLabel}
+            //     {...withDescription}
+            // />,
+            // "balance.date":  () => null,
         })}
         {...props}
     >
         <BankCreateInput path={"account"}/>
+        {/*<BankCreateInput path={"balance.value"}/>*/}
+        {/*<BankCreateInput path={"balance.date"}/>*/}
     </BankCreateBaseForm>;
 };

@@ -46,7 +46,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
     }) => {
     const file = withSourceFile();
 
-    entities.forEach(({name, prisma, packages, withInclude }) => {
+    entities.forEach(({name, prisma, packages, withInclude}) => {
         const $withInclude = withInclude ? JSON.stringify(withInclude) : "undefined";
 
         file.withHeader(`
@@ -74,10 +74,8 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
                 imports: {
                     [packages.schema]: [
                         `$${name}Source`,
-                        `type I${name}Where`,
-                        `type I${name}WhereUnique`,
-                        `type I${name}OrderBy`,
-                        `type I${name}SourceSchema`,
+                        `I${name}SourceSchema`,
+                        `type I${name}PrismaSchema`,
                     ],
                 },
             })
@@ -155,16 +153,16 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
         return this.prismaClient.${prisma};
     }
     
-    toWhere(filter?: I${name}SourceSchema["Filter"]): I${name}Where | undefined {
+    toWhere(filter?: I${name}SourceSchema["Filter"]): I${name}PrismaSchema['Where'] | undefined {
         return filter;
     }
     
-    toWhereUnique(filter: I${name}SourceSchema["Filter"]): I${name}WhereUnique {
-        return filter as I${name}WhereUnique;
+    toWhereUnique(filter: I${name}SourceSchema["Filter"]): I${name}PrismaSchema['WhereUnique'] {
+        return filter as I${name}PrismaSchema['WhereUnique'];
     }
     
-    toOrderBy(sort?: I${name}SourceSchema["Sort"]): I${name}OrderBy | undefined {
-        return sort as I${name}OrderBy;
+    toOrderBy(sort?: I${name}SourceSchema["Sort"]): I${name}PrismaSchema['OrderBy'] | undefined {
+        return sort as I${name}PrismaSchema['OrderBy'];
     }
                     `,
                     },

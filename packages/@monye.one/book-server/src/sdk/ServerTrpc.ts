@@ -6,16 +6,16 @@
 import {withSourceProcedure} from "@leight/trpc-source-server";
 import {
 	$CalendarEventSource,
-	CalendarEventQuerySchema,
+	CalendarEventSourceSchema,
 	type ICalendarEventSourceSchema
 } from "@monye.one/book";
 
 export const CalendarEventSourceProcedure = withSourceProcedure<ICalendarEventSourceSchema>({
     source: $CalendarEventSource,
-    schema: CalendarEventQuerySchema,
+    schema: CalendarEventSourceSchema['QuerySchema'],
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ax34t0nblce1k32c4cy080t5 = true;
+export const $leight_h9brorvsacd1oguxm62f3g5k = true;

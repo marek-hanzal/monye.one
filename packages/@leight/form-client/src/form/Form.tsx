@@ -30,15 +30,11 @@ import {
     type IFormValuesSchema
 }                               from "../schema";
 
-export interface IWithFormSchemasProps<
+export type IWithFormSchemasProps<
     TValuesSchema extends IFormValuesSchema,
     TRequestSchema extends IFormRequestSchema,
     TResponseSchema extends IFormResponseSchema,
-> {
-    ValueSchema?: TValuesSchema,
-    RequestSchema?: TRequestSchema,
-    ResponseSchema?: TResponseSchema,
-}
+> = Partial<IFormSchemas<IFormSchema<TValuesSchema, TRequestSchema, TResponseSchema>>>;
 
 export const withFormSchemas = <
     TValuesSchema extends IFormValuesSchema,
@@ -133,6 +129,7 @@ const FormInternal = <TFormSchema extends IFormSchema = IFormSchema>(
             mt={"md"}
         >
             <Button
+                size={"lg"}
                 disabled={!form.isValid()}
                 type={"submit"}
             >

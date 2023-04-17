@@ -11,10 +11,8 @@ import {type ISource} from "@leight/source";
 import {AbstractSource} from "@leight/source-server";
 import {
 	$JobSource,
-	type IJobWhere,
-	type IJobWhereUnique,
-	type IJobOrderBy,
-	type IJobSourceSchema
+	IJobSourceSchema,
+	type IJobPrismaSchema
 } from "@leight/job";
 
 export class JobBasePrismaSource extends AbstractSource<IJobSourceSchema> {
@@ -80,16 +78,16 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchema> {
         return this.prismaClient.job;
     }
     
-    toWhere(filter?: IJobSourceSchema["Filter"]): IJobWhere | undefined {
+    toWhere(filter?: IJobSourceSchema["Filter"]): IJobPrismaSchema['Where'] | undefined {
         return filter;
     }
     
-    toWhereUnique(filter: IJobSourceSchema["Filter"]): IJobWhereUnique {
-        return filter as IJobWhereUnique;
+    toWhereUnique(filter: IJobSourceSchema["Filter"]): IJobPrismaSchema['WhereUnique'] {
+        return filter as IJobPrismaSchema['WhereUnique'];
     }
     
-    toOrderBy(sort?: IJobSourceSchema["Sort"]): IJobOrderBy | undefined {
-        return sort as IJobOrderBy;
+    toOrderBy(sort?: IJobSourceSchema["Sort"]): IJobPrismaSchema['OrderBy'] | undefined {
+        return sort as IJobPrismaSchema['OrderBy'];
     }
 }
 
@@ -97,4 +95,4 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchema> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ori2n9hjaynj7z8glxcir6il = true;
+export const $leight_q6ndpf8bo60v2bkvh00bbdml = true;

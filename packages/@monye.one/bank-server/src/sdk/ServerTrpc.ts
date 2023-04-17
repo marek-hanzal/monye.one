@@ -6,16 +6,16 @@
 import {withSourceProcedure} from "@leight/trpc-source-server";
 import {
 	$BankSource,
-	BankQuerySchema,
+	BankSourceSchema,
 	type IBankSourceSchema
 } from "@monye.one/bank";
 
 export const BankSourceProcedure = withSourceProcedure<IBankSourceSchema>({
     source: $BankSource,
-    schema: BankQuerySchema,
+    schema: BankSourceSchema['QuerySchema'],
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rjaibpir0ewknfieajttjlyw = true;
+export const $leight_r19cfsk9jycrgtv93yoc74nz = true;

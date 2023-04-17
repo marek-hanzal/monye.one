@@ -22,7 +22,7 @@ export interface ISourceInternalProps<TSourceSchema extends ISourceSchema> {
     /**
      * React query used to actually query data
      */
-    useSourceQuery: IUseSourceQuery<TSourceSchema>;
+    useSourceQuery: IUseSourceQuery<TSourceSchema>["Query"];
     useFilterState: IUseFilterState<TSourceSchema["FilterSchema"]>;
     useSortState: IUseSortState<TSourceSchema["SortSchema"]>;
     SourceProvider: IStoreProvider<ISourceStoreProps<TSourceSchema>>;

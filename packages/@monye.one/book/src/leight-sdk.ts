@@ -5,20 +5,6 @@ import {
 
 void withSdk(
     withSourceGenerators({
-        Source:       {
-            entities: [
-                {
-                    name: "CalendarEvent",
-                },
-            ],
-        },
-        SourceSchema: {
-            entities: [
-                {
-                    name: "CalendarEvent",
-                },
-            ],
-        },
         EntitySchema: {
             entities: [
                 {

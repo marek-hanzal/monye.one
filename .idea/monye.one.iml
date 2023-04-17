@@ -234,6 +234,8 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/context/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/form-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/form-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/trpc-source-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/trpc-source-server/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -1,16 +1,16 @@
-import {useTranslation}             from "@leight/i18n-client";
-import {TextInput as CoolTextInput} from "@mantine/core";
-import {type ComponentProps}        from "react";
+import {useTranslation}                 from "@leight/i18n-client";
+import {NumberInput as CoolNumberInput} from "@mantine/core";
+import {type ComponentProps}            from "react";
 import {
     type IFormInputs,
     type IFormSchema
-}                                   from "../api";
-import {withDefaultInputProps}      from "../utils";
+}                                       from "../api";
+import {withDefaultInputProps}          from "../utils";
 
-export interface ITextInputProps<TFormSchema extends IFormSchema> extends ComponentProps<typeof CoolTextInput>, IFormInputs.IInputProps<TFormSchema> {
+export interface INumberInputProps<TFormSchema extends IFormSchema> extends ComponentProps<typeof CoolNumberInput>, IFormInputs.IInputProps<TFormSchema> {
 }
 
-export const TextInput = <TFormSchema extends IFormSchema>(
+export const NumberInput = <TFormSchema extends IFormSchema>(
     {
         FormContext,
         path,
@@ -18,10 +18,10 @@ export const TextInput = <TFormSchema extends IFormSchema>(
         placeholder,
         description,
         ...props
-    }: ITextInputProps<TFormSchema>) => {
+    }: INumberInputProps<TFormSchema>) => {
     const {form, withTranslation} = FormContext.useState(({form, withTranslation}) => ({form, withTranslation}));
     const {t}                     = useTranslation(withTranslation.namespace);
-    return <CoolTextInput
+    return <CoolNumberInput
         {...withDefaultInputProps<TFormSchema>({
             t,
             form,

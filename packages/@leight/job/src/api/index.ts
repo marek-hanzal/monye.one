@@ -1,6 +1,6 @@
-import {type ILogger}    from "@leight/winston";
-import {type IJobStatus} from "../schema";
-import {type IJob,}      from "../sdk";
+import {type ILogger}          from "@leight/winston";
+import {type IJobStatus}       from "../schema";
+import {type IJobSourceSchema} from "../sdk";
 
 export interface IJobProgress {
     readonly jobId: string;
@@ -37,17 +37,17 @@ export const $JobProgressService = Symbol.for(
 );
 
 export interface IJobExecutor {
-    execute<TJob extends IJob>(props: IJobExecutor.ExecuteProps<TJob>): Promise<TJob>;
+    execute<TJob extends IJobSourceSchema['Entity']>(props: IJobExecutor.ExecuteProps<TJob>): Promise<TJob>;
 }
 
 export namespace IJobExecutor {
-    export interface ExecuteProps<TJob extends IJob> {
+    export interface ExecuteProps<TJob extends IJobSourceSchema['Entity']> {
         name: string;
         params: any;
         handler: (request: HandlerRequest<TJob>) => Promise<any>;
     }
 
-    export interface HandlerRequest<TJob extends IJob> {
+    export interface HandlerRequest<TJob extends IJobSourceSchema['Entity']> {
         name: string;
         job: TJob;
         params: TJob["params"];

@@ -8,10 +8,8 @@ import {type ISource} from "@leight/source";
 import {AbstractSource} from "@leight/source-server";
 import {
 	$TransactionSource,
-	type ITransactionWhere,
-	type ITransactionWhereUnique,
-	type ITransactionOrderBy,
-	type ITransactionSourceSchema
+	ITransactionSourceSchema,
+	type ITransactionPrismaSchema
 } from "@monye.one/transaction";
 import {type PrismaClient} from "@monye.one/prisma";
 
@@ -78,16 +76,16 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
         return this.prismaClient.transaction;
     }
     
-    toWhere(filter?: ITransactionSourceSchema["Filter"]): ITransactionWhere | undefined {
+    toWhere(filter?: ITransactionSourceSchema["Filter"]): ITransactionPrismaSchema['Where'] | undefined {
         return filter;
     }
     
-    toWhereUnique(filter: ITransactionSourceSchema["Filter"]): ITransactionWhereUnique {
-        return filter as ITransactionWhereUnique;
+    toWhereUnique(filter: ITransactionSourceSchema["Filter"]): ITransactionPrismaSchema['WhereUnique'] {
+        return filter as ITransactionPrismaSchema['WhereUnique'];
     }
     
-    toOrderBy(sort?: ITransactionSourceSchema["Sort"]): ITransactionOrderBy | undefined {
-        return sort as ITransactionOrderBy;
+    toOrderBy(sort?: ITransactionSourceSchema["Sort"]): ITransactionPrismaSchema['OrderBy'] | undefined {
+        return sort as ITransactionPrismaSchema['OrderBy'];
     }
 }
 
@@ -95,4 +93,4 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_cz6bfc1int9l39grmop2jmea = true;
+export const $leight_eo0ac61maovmuypjl72e2fzd = true;

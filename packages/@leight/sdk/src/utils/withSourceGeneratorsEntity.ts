@@ -17,22 +17,6 @@ export interface IWithSourceGeneratorsEntityProps {
 
 export const withSourceGeneratorsEntity = ({name, packages, sorts, withSourceSchemaEx, withPrismaSchemaEx}: IWithSourceGeneratorsEntityProps): IGeneratorCommonParams => {
     return {
-        SourceSchema: {
-            entities: [
-                {
-                    name,
-                    withPrisma: true,
-                },
-            ],
-        },
-        Source:       {
-            entities: [
-                {
-                    name,
-                    withSourceEx: withSourceSchemaEx,
-                }
-            ]
-        },
         PrismaEntity: {
             entities: [
                 {
@@ -41,6 +25,7 @@ export const withSourceGeneratorsEntity = ({name, packages, sorts, withSourceSch
                         prisma: packages.prisma,
                     },
                     withSchemaEx: withPrismaSchemaEx,
+                    withSourceEx: withSourceSchemaEx,
                     sorts,
                 }
             ]

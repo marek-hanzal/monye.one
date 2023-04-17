@@ -7,5 +7,7 @@
     "account.create.button": "Přidat účet",
     "BankCreateBaseForm.submit.button": "Uložit účet",
     "BankCreateBaseForm.account": "Číslo účtu",
-    "BankCreateBaseForm.account.placeholder": "Zadejte prosím číslo bankovního účtu"
+    "BankCreateBaseForm.account.description": "Zadejte prosím číslo bankovního účtu",
+    "BankCreateBaseForm.deposit": "Aktuální zůstatek",
+    "BankCreateBaseForm.deposit.description": "Zadejte aktuální zůstatek, pokud chceete zobrazit odhady toku peněz"
 }

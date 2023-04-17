@@ -1,3 +1,3 @@
 export * from "./generatorCommon";
-export * from "./generatorCommonEntityPrismaSchema";
-export * from "./generatorCommonSource";
+export * from "./generatorCommonEntityPrismaSource";
+export * from "./generatorCommonEntitySchema";
