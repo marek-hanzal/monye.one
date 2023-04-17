@@ -87,11 +87,11 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
                     "@leight/source":    [
                         "withSourceExSchema",
                         "type InferSourceExSchema",
+                        "type IUseSourceQuery",
                         "WithIdentitySchema",
                         "type ISource",
                         "type InferSourceSchema",
                         "withSourceSchema",
-                        "type IUseSourceQuery",
                     ],
                     "@leight/zod":       [
                         "z",
@@ -120,8 +120,9 @@ withSourceExSchema({
             })
             .withTypes({
                 exports: {
-                    [`I${name}SourceSchema`]:   `InferSourceSchema<typeof ${name}SourceSchema>`,
-                    [`I${name}PrismaSchema`]:   `InferSourceExSchema<typeof ${name}PrismaSchema>`,
+                    [`I${name}SourceSchema`]: `InferSourceSchema<typeof ${name}SourceSchema>`,
+                    [`I${name}PrismaSchema`]: `InferSourceExSchema<typeof ${name}PrismaSchema>`,
+
                     [`IUse${name}SourceQuery`]: `IUseSourceQuery<I${name}SourceSchema>`,
                 },
             })

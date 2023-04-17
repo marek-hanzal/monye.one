@@ -5,23 +5,25 @@ import {
 
 void withSdk(
     withSourceGenerators({
-        EntitySchema: {
+        EntitySource: {
             entities: [
                 {
                     name:       "CalendarEvent",
                     withSchema: {
                         schema: {
-                            type:        "CalendarEventBaseSchema",
+                            type:        "CoolCalendarEventBaseSchema",
                             withPackage: {
-                                package: "../api",
-                                alias:   "CoolCalendarEventBaseSchema"
+                                import:  "CalendarEventBaseSchema",
+                                alias:   "CoolCalendarEventBaseSchema",
+                                package: "../api"
                             },
                         },
                         filter: {
-                            type:        "CalendarEventFilterSchema",
+                            type:        "CoolCalendarEventSourceSchema['FilterSchema']",
                             withPackage: {
+                                import:  "CalendarEventSourceSchema",
+                                alias:   "CoolCalendarEventSourceSchema",
                                 package: "@leight/calendar",
-                                alias:   "CoolCalendarEventFilterSchema",
                             },
                         },
                     },

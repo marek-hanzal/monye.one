@@ -10,8 +10,8 @@ import {
     ThemeIcon
 }                                   from "@mantine/core";
 import {
-    TransactionFilterStore,
     TransactionQueryProvider,
+    TransactionSourceStore,
     TransactionTable
 }                                   from "@monye.one/transaction-client";
 import {
@@ -33,7 +33,7 @@ export interface ICalendarOverviewProps {
 export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
     const [tab, setTab] = useState<string | null>("calendar");
     const {weeks}       = WeeksOfStore.useState(({weeks}) => ({weeks}));
-    const {setFilter}   = TransactionFilterStore.useState(({setFilter}) => ({setFilter}));
+    const {setFilter}   = TransactionSourceStore.Filter.useState(({setFilter}) => ({setFilter}));
 
     const $setFilter = useCallback(({range: {from, to}, withIncome = false, withOutcome = false}: { range: IDateRange; withIncome?: boolean; withOutcome?: boolean }) => {
         setFilter({

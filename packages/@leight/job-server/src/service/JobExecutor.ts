@@ -1,10 +1,10 @@
 import {
     $JobProgressService,
     $JobSource,
-    type IJob,
     type IJobExecutor,
     type IJobProgressService,
     type IJobSource,
+    type IJobSourceSchema,
 }               from "@leight/job";
 import {
     $UserService,
@@ -28,7 +28,7 @@ export class JobExecutor implements IJobExecutor {
     ) {
     }
 
-    async execute<TJob extends IJob>(
+    async execute<TJob extends IJobSourceSchema["Entity"]>(
         {
             name,
             handler,

@@ -1,18 +1,20 @@
-import {type IUseFilterState}      from "@leight/filter";
-import {type IUseCursorCountQuery} from "@leight/query";
-import {type ISourceSchema}        from "@leight/source";
+import {
+    type ISourceSchema,
+    type ISourceStore,
+    type IUseSourceQuery
+} from "@leight/source";
 import {
     type PropsWithChildren,
     useEffect
-}                                  from "react";
+} from "react";
 import {
     CursorProvider,
     CursorStore
-}                                  from "../context";
+} from "../context";
 
 export type ICursorControlProps<TSourceSchema extends ISourceSchema> = PropsWithChildren<{
-    useCountQuery: IUseCursorCountQuery<TSourceSchema["QuerySchema"]>;
-    useFilterState: IUseFilterState<TSourceSchema["FilterSchema"]>;
+    SourceStore: ISourceStore<TSourceSchema>;
+    USeSourceQuery: IUseSourceQuery<TSourceSchema>;
     defaultCursor?: TSourceSchema["Cursor"];
 }>;
 
@@ -20,13 +22,13 @@ type IInternalCursor<TSourceSchema extends ISourceSchema> = ICursorControlProps<
 
 const InternalCursor = <TSourceSchema extends ISourceSchema>(
     {
-        useCountQuery,
-        useFilterState,
+        SourceStore,
+        USeSourceQuery,
         children,
     }: IInternalCursor<TSourceSchema>) => {
     const {setTotal, setIsLoading} = CursorStore.useState(({setTotal, setIsLoading}) => ({setTotal, setIsLoading}));
-    const {filter}                 = useFilterState(({filter}) => ({filter}));
-    const query                    = useCountQuery({
+    const {filter}                 = SourceStore.Filter.useState(({filter}) => ({filter}));
+    const query                    = USeSourceQuery.useCount({
         filter,
     }, {
         staleTime: undefined,

@@ -13,15 +13,11 @@ import {
 } from "@leight/query-client";
 import {
 	type ICalendarEventSourceSchema,
-	CalendarEventSchema
+	CalendarEventSourceSchema
 } from "@monye.one/book";
 import {type FC} from "react";
-import {
-	CalendarEventSourceStore,
-	CalendarEventFilterStore,
-	CalendarEventSortStore
-} from "./ClientStore";
-import {trpc} from "@monye.one/trpc-client";
+import {CalendarEventSourceStore} from "./ClientStore";
+import {UseCalendarEventSourceQuery} from "./ClientTrpcSource";
 
 export interface ICalendarEventSourceProps extends ISourceProps<ICalendarEventSourceSchema> {
 }
@@ -32,25 +28,21 @@ export interface ICalendarEventQueryProviderProps extends IQueryProviderProps<IC
 /**
  * Provides access to CalendarEvent data with a connection to filtering and sorting. 
  */
-export const CalendarEventSource:FC<ICalendarEventSourceProps> = props => {
+export const CalendarEventSource: FC<ICalendarEventSourceProps> = props => {
     return <Source<ICalendarEventSourceSchema>
-        schema={CalendarEventSchema}
-        SourceProvider={CalendarEventSourceStore.Provider}
-        useFilterState={CalendarEventFilterStore.useState}
-        useSortState={CalendarEventSortStore.useState}
-        useSourceQuery={trpc.book.calendar.event.source.query.useQuery}
+        schema={CalendarEventSourceSchema["EntitySchema"]}
+        SourceStore={CalendarEventSourceStore}
+        UseSourceQuery={UseCalendarEventSourceQuery}
 		{...props}
     />;
 };
 /**
  * Provides all Query parts for CalendarEvent used in fetching and sorting its data. 
  */
-export const CalendarEventQueryProvider:FC<ICalendarEventQueryProviderProps> = props => {
+export const CalendarEventQueryProvider: FC<ICalendarEventQueryProviderProps> = props => {
     return <QueryProvider<ICalendarEventSourceSchema>
-        FilterProvider={CalendarEventFilterStore.Provider}
-        useFilterState={CalendarEventFilterStore.useState}
-        SortProvider={CalendarEventSortStore.Provider}
-        useCountQuery={trpc.book.calendar.event.source.count.useQuery}
+        SourceStore={CalendarEventSourceStore}
+        UseSourceQuery={UseCalendarEventSourceQuery}
 		{...props}
     />;
 };
@@ -58,4 +50,4 @@ export const CalendarEventQueryProvider:FC<ICalendarEventQueryProviderProps> = p
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_icdnkbviglmt2vhdmmz7dz53 = true;
+export const $leight_wszzwjin2p6mr92efjnnla3a = true;

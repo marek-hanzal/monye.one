@@ -4,31 +4,31 @@ import {
     type IGeneratorCommonEntityPrismaSourceParams
 }                        from "./generatorCommonEntityPrismaSource";
 import {
-    generatorCommonEntitySchema,
-    type IGeneratorCommonEntitySchemaParams
-}                        from "./generatorCommonEntitySchema";
+    generatorCommonEntitySource,
+    type IGeneratorCommonEntitySourceParams
+}                        from "./generatorCommonEntitySource";
 
 export interface IGeneratorCommonParams {
-    PrismaEntity?: IGeneratorCommonEntityPrismaSourceParams;
-    EntitySchema?: IGeneratorCommonEntitySchemaParams;
+    PrismaSource?: IGeneratorCommonEntityPrismaSourceParams;
+    EntitySource?: IGeneratorCommonEntitySourceParams;
 }
 
 export const generatorCommon: IGenerator<IGeneratorCommonParams> = async (
     {
         params: {
-                    PrismaEntity,
-                    EntitySchema,
+                    PrismaSource,
+                    EntitySource,
                 },
         ...     props
     }) => {
     await Promise.all([
-        PrismaEntity ? generatorCommonEntityPrismaSource({
+        PrismaSource ? generatorCommonEntityPrismaSource({
             ...props,
-            params: PrismaEntity,
+            params: PrismaSource,
         }) : undefined,
-        EntitySchema ? generatorCommonEntitySchema({
+        EntitySource ? generatorCommonEntitySource({
             ...props,
-            params: EntitySchema,
+            params: EntitySource,
         }) : undefined,
     ]);
 };

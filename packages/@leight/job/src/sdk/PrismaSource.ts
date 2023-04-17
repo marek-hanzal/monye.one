@@ -20,11 +20,11 @@ import {
 import {
 	withSourceExSchema,
 	type InferSourceExSchema,
+	type IUseSourceQuery,
 	WithIdentitySchema,
 	type ISource,
 	type InferSourceSchema,
-	withSourceSchema,
-	type IUseSourceQuery
+	withSourceSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
 import {JobSchemaOverride} from "../schema";
@@ -60,4 +60,4 @@ export const JobSourceContext = (container: IContainer) => new ServiceContext<IJ
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_g8e5xf37b5ca9e7ukj8q86ru = true;
+export const $leight_plli4i78eyobgeg8x13jbn1b = true;

@@ -3,3 +3,4 @@ export * from "./generatorClientSource";
 export * from "./generatorClientSourceProvider";
 export * from "./generatorClientSourceStore";
 export * from "./generatorClientSourceTable";
+export * from "./generatorClientTrpcSource";

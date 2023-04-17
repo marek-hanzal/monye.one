@@ -62,12 +62,16 @@ export interface IPackageType {
      */
     withPackage?: {
         /**
+         * Import "from"
+         */
+        package: string;
+        /**
+         * Optional item being imported
+         */
+        import?: string;
+        /**
          * Import alis
          */
         alias?: string;
-        /**
-         * Import from
-         */
-        package: string;
     };
 }

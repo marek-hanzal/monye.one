@@ -82,6 +82,8 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/context/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/form-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/sort/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/filter-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/filter/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -234,6 +236,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/context/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/form-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/form-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/filter-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/filter-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/filter/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/filter/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/trpc-source-server/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/trpc-source-server/lib" />
     </content>

@@ -13,45 +13,36 @@ import {
 } from "@leight/query-client";
 import {
 	type IJobSourceSchema,
-	JobSchema,
-	type IUseJobQuery,
-	type IUseJobCountQuery
+	JobSourceSchema
 } from "@leight/job";
 import {type FC} from "react";
-import {
-	JobSourceStore,
-	JobFilterStore,
-	JobSortStore
-} from "./ClientStore";
+import {JobSourceStore} from "./ClientStore";
+import {type IUseSourceQuery} from "@leight/source";
 
 export interface IJobSourceProps extends ISourceProps<IJobSourceSchema> {
-	useSourceQuery: IUseJobQuery;
+	UseSourceQuery: IUseSourceQuery<IJobSourceSchema>;
 }
 
 export interface IJobQueryProviderProps extends IQueryProviderProps<IJobSourceSchema> {
-	useCountQuery: IUseJobCountQuery;
+	UseSourceQuery: IUseSourceQuery<IJobSourceSchema>;
 }
 
 /**
  * Provides access to Job data with a connection to filtering and sorting. 
  */
-export const JobSource:FC<IJobSourceProps> = props => {
+export const JobSource: FC<IJobSourceProps> = props => {
     return <Source<IJobSourceSchema>
-        schema={JobSchema}
-        SourceProvider={JobSourceStore.Provider}
-        useFilterState={JobFilterStore.useState}
-        useSortState={JobSortStore.useState}
+        schema={JobSourceSchema["EntitySchema"]}
+        SourceStore={JobSourceStore}
         {...props}
     />;
 };
 /**
  * Provides all Query parts for Job used in fetching and sorting its data. 
  */
-export const JobQueryProvider:FC<IJobQueryProviderProps> = props => {
+export const JobQueryProvider: FC<IJobQueryProviderProps> = props => {
     return <QueryProvider<IJobSourceSchema>
-        FilterProvider={JobFilterStore.Provider}
-        useFilterState={JobFilterStore.useState}
-        SortProvider={JobSortStore.Provider}
+        SourceStore={JobSourceStore}
         {...props}
     />;
 };
@@ -59,4 +50,4 @@ export const JobQueryProvider:FC<IJobQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lkgtzph3e8l9e9thff1bihaz = true;
+export const $leight_gkhr40dwpyl4rbajthqapipx = true;

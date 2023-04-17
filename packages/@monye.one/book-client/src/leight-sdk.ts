@@ -19,6 +19,17 @@ void withSdk(
             entities: [
                 {
                     name:     "CalendarEvent",
+                    packages: {
+                        schema: "@monye.one/book",
+                    },
+                    withTrpc: true,
+                },
+            ],
+        },
+        Trpc:           {
+            entities: [
+                {
+                    name:     "CalendarEvent",
                     withTrpc: {
                         path:    "book.calendar.event",
                         package: "@monye.one/trpc-client",
@@ -28,6 +39,6 @@ void withSdk(
                     },
                 },
             ],
-        },
+        }
     })
 );

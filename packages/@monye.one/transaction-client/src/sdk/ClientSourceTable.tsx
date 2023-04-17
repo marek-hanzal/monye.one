@@ -9,15 +9,12 @@ import {
 } from "@leight/table-client";
 import {
 	type ITransactionSourceSchema,
-	TransactionSchema
+	TransactionSourceSchema
 } from "@monye.one/transaction";
-import {
-	TransactionSourceStore,
-	TransactionSortStore
-} from "./ClientStore";
+import {TransactionSourceStore} from "./ClientStore";
 import {TransactionSource} from "./ClientSourceProvider";
 
-export interface ITransactionSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<ITransactionSourceSchema, TColumnKeys>, "Source" | "Sort" | "schema"> {
+export interface ITransactionSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<ITransactionSourceSchema, TColumnKeys>, "SourceStore" | "schema"> {
 }
 
 export interface ITransactionSourceTableProps<TColumnKeys extends string> extends Omit<ITransactionSourceTableInternalProps<TColumnKeys>, "columns" | "withTranslation"> {
@@ -30,9 +27,8 @@ export interface ITransactionSourceTableProps<TColumnKeys extends string> extend
 export const TransactionSourceTable = <TColumnKeys extends string>(props: ITransactionSourceTableInternalProps<TColumnKeys>) => {
     return <TransactionSource>
         <SourceTable
-            Source={TransactionSourceStore}
-            Sort={TransactionSortStore}
-            schema={TransactionSchema}
+            SourceStore={TransactionSourceStore}
+            schema={TransactionSourceSchema['EntitySchema']}
             {...props}
         />
     </TransactionSource>;
@@ -41,4 +37,4 @@ export const TransactionSourceTable = <TColumnKeys extends string>(props: ITrans
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_h5dceb2vlcr2tgjb2tnj6z9m = true;
+export const $leight_beu8efn3mrl8ctddsc6sggcs = true;

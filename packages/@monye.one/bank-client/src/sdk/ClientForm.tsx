@@ -22,7 +22,7 @@ export interface IBankCreateBaseFormProps extends Omit<IFormProps<IBankCreateFor
 export const BankCreateFormStoreContext = createFormContext<IBankCreateFormSchema>({
     name: "BankCreateForm",
 });
-export const BankCreateBaseForm:FC<IBankCreateBaseFormProps> = props => {
+export const BankCreateBaseForm: FC<IBankCreateBaseFormProps> = props => {
     return <Form<IBankCreateFormSchema>
         schemas={BankCreateFormSchemas}
         FormContext={BankCreateFormStoreContext}
@@ -33,7 +33,7 @@ export const BankCreateBaseForm:FC<IBankCreateBaseFormProps> = props => {
         {...props}
     />;
 };
-export const BankCreateInput:FC<Omit<IWithInputProps<IBankCreateFormSchema>, "FormContext">> = props => {
+export const BankCreateInput: FC<Omit<IWithInputProps<IBankCreateFormSchema>, "FormContext">> = props => {
     return <WithInput
         FormContext={BankCreateFormStoreContext}
         {...props}
@@ -43,4 +43,4 @@ export const BankCreateInput:FC<Omit<IWithInputProps<IBankCreateFormSchema>, "Fo
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_j3usy2h0z9rez3ke3qkhe5je = true;
+export const $leight_io66r630dr27rc0qk47dc59r = true;

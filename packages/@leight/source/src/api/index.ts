@@ -8,7 +8,8 @@ import {
 }                         from "@leight/cursor";
 import {
     FilterSchema,
-    type IFilterSchema
+    type IFilterSchema,
+    type IFilterStoreContext
 }                         from "@leight/filter";
 import {
     type IParamsSchema,
@@ -20,39 +21,27 @@ import {
 import {type IUseQuery}   from "@leight/react-query";
 import {
     type ISortSchema,
+    type ISortStoreContext,
     SortSchema
 }                         from "@leight/sort";
 import {type IToString}   from "@leight/utils";
 import {z}                from "@leight/zod";
 import {type IStoreProps} from "@leight/zustand";
+import {
+    CreateSchema,
+    EntitySchema,
+    type ICreateSchema,
+    type IEntitySchema,
+    type IPatchSchema,
+    type IToCreateSchema,
+    type IWithIdentity,
+    PatchSchema,
+    ToCreateSchema
+}                         from "../schema";
 
 export type ISourceName =
     string
     | IToString;
-
-export const WithIdentitySchema = z.object({
-    id: z.string(),
-});
-export type IWithIdentitySchema = typeof WithIdentitySchema;
-export type IWithIdentity = z.infer<IWithIdentitySchema>;
-
-export const EntitySchema = z.object({}).merge(WithIdentitySchema);
-export type IEntitySchema = typeof EntitySchema;
-export type IEntity = z.infer<IEntitySchema>;
-
-export const CreateSchema = z.object({});
-export type ICreateSchema = z.ZodObject<any>;
-export type ICreate = z.infer<ICreateSchema>;
-
-export const ToCreateSchema = z.object({});
-export type IToCreateSchema = z.ZodObject<any>;
-export type IToCreate = z.infer<IToCreateSchema>;
-
-export const PatchSchema = z.object({
-    id: z.string(),
-});
-export type IPatchSchema = typeof PatchSchema;
-export type IPatch = z.infer<IPatchSchema>;
 
 /**
  * Source schema definition. Contains all the types used in the Source.
@@ -204,10 +193,10 @@ export type ISourceStoreContext<TSourceSchema extends ISourceSchema> = IStoreCon
 export type IUseSourceState<TSourceSchema extends ISourceSchema> = IUseState<ISourceStoreProps<TSourceSchema>>;
 
 export type IUseSourceQuery<TSourceSchema extends ISourceSchema> = {
-    Query: IUseQuery<TSourceSchema["Query"] | undefined, TSourceSchema["Entity"][]>;
-    Count: IUseQuery<TSourceSchema["Query"] | undefined, number>;
-    Fetch: IUseQuery<TSourceSchema["Query"], TSourceSchema["Entity"]>;
-    Find: IUseQuery<IWithIdentity, TSourceSchema["Entity"]>;
+    useQuery: IUseQuery<TSourceSchema["Query"] | undefined, TSourceSchema["Entity"][]>;
+    useCount: IUseQuery<TSourceSchema["Query"] | undefined, number>;
+    useFetch: IUseQuery<TSourceSchema["Query"], TSourceSchema["Entity"]>;
+    useFind: IUseQuery<IWithIdentity, TSourceSchema["Entity"]>;
 }
 
 /**
@@ -250,4 +239,10 @@ export const withSourceExSchema = <
     TOrderBySchema extends z.ZodType,
 >(props: IWithSourceExSchemaProps<TWhereSchema, TWhereUniqueSchema, TOrderBySchema>): ISourceExSchemas<TWhereSchema, TWhereUniqueSchema, TOrderBySchema> => {
     return props;
+};
+
+export type ISourceStore<TSourceSchema extends ISourceSchema> = {
+    Source: ISourceStoreContext<TSourceSchema>;
+    Filter: IFilterStoreContext<TSourceSchema["FilterSchema"]>;
+    Sort: ISortStoreContext<TSourceSchema["SortSchema"]>;
 };

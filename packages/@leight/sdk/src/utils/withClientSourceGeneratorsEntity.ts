@@ -23,7 +23,7 @@ export const withClientSourceGeneratorsEntity = ({name, disabled = [], packages,
                 {
                     name,
                     packages,
-                    withTrpc,
+                    withTrpc: !!withTrpc,
                 },
             ],
         },
@@ -44,5 +44,10 @@ export const withClientSourceGeneratorsEntity = ({name, disabled = [], packages,
             ]
         },
         Form,
+        Trpc:           withTrpc ? {
+            entities: [
+                {name, withTrpc, packages}
+            ]
+        } : undefined,
     };
 };

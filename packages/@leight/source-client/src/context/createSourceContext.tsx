@@ -1,9 +1,12 @@
-import {createStoreContext} from "@leight/context-client";
+import {createStoreContext}  from "@leight/context-client";
+import {createFilterContext} from "@leight/filter-client";
+import {createSortContext}   from "@leight/sort-client";
 import {
     type ISourceSchema,
+    type ISourceSchemas,
+    type ISourceStore,
     type ISourceStoreProps
-}                           from "@leight/source";
-
+}                            from "@leight/source";
 
 export interface ICreateSourceContextProps<TSourceSchema extends ISourceSchema> {
     readonly name: string;
@@ -36,4 +39,34 @@ export const createSourceContext = <TSourceSchema extends ISourceSchema>(
         name:  `[${name}] SourceContext`,
         hint:  `Add [${name}] SourceProvider`,
     });
+};
+
+export interface IWithSourceStoreProps<TSourceSchema extends ISourceSchema> {
+    name: string;
+    SourceSchema: ISourceSchemas<TSourceSchema>;
+}
+
+export const withSourceStore = <TSourceSchema extends ISourceSchema>(
+    {
+        name,
+        SourceSchema: {
+                          EntitySchema,
+                          FilterSchema,
+                          SortSchema,
+                      },
+    }: IWithSourceStoreProps<TSourceSchema>): ISourceStore<TSourceSchema> => {
+    return {
+        Source: createSourceContext<TSourceSchema>({
+            name,
+            schema: EntitySchema,
+        }),
+        Filter: createFilterContext<TSourceSchema["FilterSchema"]>({
+            name:   `${name}Filter`,
+            schema: FilterSchema,
+        }),
+        Sort:   createSortContext<TSourceSchema["SortSchema"]>({
+            name:   `${name}Sort`,
+            schema: SortSchema,
+        }),
+    };
 };

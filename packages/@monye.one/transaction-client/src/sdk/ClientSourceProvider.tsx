@@ -13,15 +13,11 @@ import {
 } from "@leight/query-client";
 import {
 	type ITransactionSourceSchema,
-	TransactionSchema
+	TransactionSourceSchema
 } from "@monye.one/transaction";
 import {type FC} from "react";
-import {
-	TransactionSourceStore,
-	TransactionFilterStore,
-	TransactionSortStore
-} from "./ClientStore";
-import {trpc} from "@monye.one/trpc-client";
+import {TransactionSourceStore} from "./ClientStore";
+import {UseTransactionSourceQuery} from "./ClientTrpcSource";
 
 export interface ITransactionSourceProps extends ISourceProps<ITransactionSourceSchema> {
 }
@@ -32,25 +28,21 @@ export interface ITransactionQueryProviderProps extends IQueryProviderProps<ITra
 /**
  * Provides access to Transaction data with a connection to filtering and sorting. 
  */
-export const TransactionSource:FC<ITransactionSourceProps> = props => {
+export const TransactionSource: FC<ITransactionSourceProps> = props => {
     return <Source<ITransactionSourceSchema>
-        schema={TransactionSchema}
-        SourceProvider={TransactionSourceStore.Provider}
-        useFilterState={TransactionFilterStore.useState}
-        useSortState={TransactionSortStore.useState}
-        useSourceQuery={trpc.transaction.source.query.useQuery}
+        schema={TransactionSourceSchema["EntitySchema"]}
+        SourceStore={TransactionSourceStore}
+        UseSourceQuery={UseTransactionSourceQuery}
 		{...props}
     />;
 };
 /**
  * Provides all Query parts for Transaction used in fetching and sorting its data. 
  */
-export const TransactionQueryProvider:FC<ITransactionQueryProviderProps> = props => {
+export const TransactionQueryProvider: FC<ITransactionQueryProviderProps> = props => {
     return <QueryProvider<ITransactionSourceSchema>
-        FilterProvider={TransactionFilterStore.Provider}
-        useFilterState={TransactionFilterStore.useState}
-        SortProvider={TransactionSortStore.Provider}
-        useCountQuery={trpc.transaction.source.count.useQuery}
+        SourceStore={TransactionSourceStore}
+        UseSourceQuery={UseTransactionSourceQuery}
 		{...props}
     />;
 };
@@ -58,4 +50,4 @@ export const TransactionQueryProvider:FC<ITransactionQueryProviderProps> = props
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_t1ttawr04ucr95ocvcvm02uf = true;
+export const $leight_vl0yyg4q75tm3fx7vs7uwmd3 = true;

@@ -1,14 +1,13 @@
-import {CursorSchema}   from "@leight/cursor";
+import {CursorSchema} from "@leight/cursor";
 import {
     FilterSchema,
     type IFilterSchema
-}                       from "@leight/filter";
-import {type IUseQuery} from "@leight/react-query";
+}                     from "@leight/filter";
 import {
     type ISortSchema,
     SortSchema
-}                       from "@leight/sort";
-import {z}              from "@leight/zod";
+}                     from "@leight/sort";
+import {z}            from "@leight/zod";
 
 export const ParamsSchema = z.object({});
 export type IParamsSchema = typeof ParamsSchema;
@@ -54,5 +53,3 @@ export interface IQuerySchemaProps<
     sortSchema?: TSortSchema;
     paramsSchema?: TParamsSchema;
 }
-
-export type IUseCursorCountQuery<TQuerySchema extends IQuerySchema> = IUseQuery<z.infer<TQuerySchema> | undefined, number>;

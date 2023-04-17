@@ -15,7 +15,7 @@ export class Const implements IExportable {
     }
 
     public export() {
-        return `${this.code.comment ? `${this.code.comment.trim()}\n` : ""}${this.isExported ? "export" : ""} const ${this.name}${this.code.type ? `:${this.code.type}` : ""} = ${this.code.body.trim()};`.trim();
+        return `${this.code.comment ? `${this.code.comment.trim()}\n` : ""}${this.isExported ? "export" : ""} const ${this.name}${this.code.type ? `: ${this.code.type}` : ""} = ${this.code.body.trim()};`.trim();
     }
 }
 

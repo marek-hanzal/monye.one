@@ -17,6 +17,7 @@ export class CalendarEventBaseSourceEx extends CalendarEventBaseSource {
         super();
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async runCount(query: ICalendarEventSourceSchema["Query"]): Promise<number> {
         return 0;
     }

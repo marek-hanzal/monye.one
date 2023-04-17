@@ -3,19 +3,16 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {withSourceProcedure} from "@leight/trpc-source-server";
+import {withSourceQuery} from "@leight/source-client";
 import {
-	$BankSource,
-	BankSourceSchema,
-	type IBankSourceSchema
+	type IBankSourceSchema,
+	type IUseBankSourceQuery
 } from "@monye.one/bank";
+import {trpc} from "@monye.one/trpc-client";
 
-export const BankSourceProcedure = withSourceProcedure<IBankSourceSchema>({
-    source: $BankSource,
-    schema: BankSourceSchema['QuerySchema'],
-});
+export const UseBankSourceQuery: IUseBankSourceQuery = withSourceQuery<IBankSourceSchema>(trpc.bank.source);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wtai7fhisp7p9scqov77kjdv = true;
+export const $leight_e4k6pyhdw9rc2e88vg6lczwa = true;

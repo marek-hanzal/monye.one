@@ -13,15 +13,11 @@ import {
 } from "@leight/query-client";
 import {
 	type IBankSourceSchema,
-	BankSchema
+	BankSourceSchema
 } from "@monye.one/bank";
 import {type FC} from "react";
-import {
-	BankSourceStore,
-	BankFilterStore,
-	BankSortStore
-} from "./ClientStore";
-import {trpc} from "@monye.one/trpc-client";
+import {BankSourceStore} from "./ClientStore";
+import {UseBankSourceQuery} from "./ClientTrpcSource";
 
 export interface IBankSourceProps extends ISourceProps<IBankSourceSchema> {
 }
@@ -32,25 +28,21 @@ export interface IBankQueryProviderProps extends IQueryProviderProps<IBankSource
 /**
  * Provides access to Bank data with a connection to filtering and sorting. 
  */
-export const BankSource:FC<IBankSourceProps> = props => {
+export const BankSource: FC<IBankSourceProps> = props => {
     return <Source<IBankSourceSchema>
-        schema={BankSchema}
-        SourceProvider={BankSourceStore.Provider}
-        useFilterState={BankFilterStore.useState}
-        useSortState={BankSortStore.useState}
-        useSourceQuery={trpc.bank.source.query.useQuery}
+        schema={BankSourceSchema["EntitySchema"]}
+        SourceStore={BankSourceStore}
+        UseSourceQuery={UseBankSourceQuery}
 		{...props}
     />;
 };
 /**
  * Provides all Query parts for Bank used in fetching and sorting its data. 
  */
-export const BankQueryProvider:FC<IBankQueryProviderProps> = props => {
+export const BankQueryProvider: FC<IBankQueryProviderProps> = props => {
     return <QueryProvider<IBankSourceSchema>
-        FilterProvider={BankFilterStore.Provider}
-        useFilterState={BankFilterStore.useState}
-        SortProvider={BankSortStore.Provider}
-        useCountQuery={trpc.bank.source.count.useQuery}
+        SourceStore={BankSourceStore}
+        UseSourceQuery={UseBankSourceQuery}
 		{...props}
     />;
 };
@@ -58,4 +50,4 @@ export const BankQueryProvider:FC<IBankQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lkdu0xpqo6eig21c11rk6w1n = true;
+export const $leight_kf3mz11jg216405en2rukxmy = true;

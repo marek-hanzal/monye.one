@@ -1,31 +1,14 @@
-import {type IStoreProvider}       from "@leight/context";
-import {CursorControl}             from "@leight/cursor-client";
+import {CursorControl}          from "@leight/cursor-client";
 import {
-    type IFilterStoreProps,
-    type IUseFilterState
-}                                  from "@leight/filter";
-import {type IUseCursorCountQuery} from "@leight/query";
-import {type ISortStoreProps}      from "@leight/sort";
-import {type ISourceSchema}        from "@leight/source";
-import {type PropsWithChildren}    from "react";
+    type ISourceSchema,
+    type ISourceStore,
+    type IUseSourceQuery
+}                               from "@leight/source";
+import {type PropsWithChildren} from "react";
 
 export type IQueryProviderInternalProps<TSourceSchema extends ISourceSchema> = PropsWithChildren<{
-    /**
-     * Typed filter provider
-     */
-    FilterProvider: IStoreProvider<IFilterStoreProps<TSourceSchema["FilterSchema"]>>;
-    /**
-     * Specify query filter state
-     */
-    useFilterState: IUseFilterState<TSourceSchema["FilterSchema"]>;
-    /**
-     * Typed sort provider
-     */
-    SortProvider: IStoreProvider<ISortStoreProps<TSourceSchema["SortSchema"]>>;
-    /**
-     * Typed query used to get entity count
-     */
-    useCountQuery: IUseCursorCountQuery<TSourceSchema["QuerySchema"]>;
+    SourceStore: ISourceStore<TSourceSchema>;
+    UseSourceQuery: IUseSourceQuery<TSourceSchema>;
     /**
      * The default filter could be replaced or merged, but it's not applied all the times
      */
@@ -36,32 +19,30 @@ export type IQueryProviderInternalProps<TSourceSchema extends ISourceSchema> = P
     defaultSort?: TSourceSchema["Sort"];
     defaultCursor?: TSourceSchema["Cursor"];
 }>;
-export type IQueryProviderProps<TSourceSchema extends ISourceSchema> = Omit<IQueryProviderInternalProps<TSourceSchema>, "useCountQuery" | "useFilterState" | "SortProvider" | "FilterProvider">;
+export type IQueryProviderProps<TSourceSchema extends ISourceSchema> = Omit<IQueryProviderInternalProps<TSourceSchema>, "SourceStore" | "UseSourceQuery">;
 
 export const QueryProvider = <TSourceSchema extends ISourceSchema>(
     {
-        FilterProvider,
-        useFilterState,
-        SortProvider,
+        SourceStore,
+        UseSourceQuery,
         defaultFilter,
         defaultSort,
         defaultCursor,
-        useCountQuery,
         children,
     }: IQueryProviderInternalProps<TSourceSchema>) => {
-    return <FilterProvider
+    return <SourceStore.Filter.Provider
         defaults={{filter: defaultFilter}}
     >
-        <SortProvider
+        <SourceStore.Sort.Provider
             defaults={{sort: defaultSort}}
         >
             <CursorControl
-                useCountQuery={useCountQuery}
-                useFilterState={useFilterState}
+                USeSourceQuery={UseSourceQuery}
+                SourceStore={SourceStore}
                 defaultCursor={defaultCursor}
             >
                 {children}
             </CursorControl>
-        </SortProvider>
-    </FilterProvider>;
+        </SourceStore.Sort.Provider>
+    </SourceStore.Filter.Provider>;
 };

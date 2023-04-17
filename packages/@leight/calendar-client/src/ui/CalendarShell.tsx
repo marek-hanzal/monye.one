@@ -1,15 +1,12 @@
 import {type ICalendarEventSourceSchema} from "@leight/calendar";
-import {
-    type IFilterStoreProps,
-    type IUseFilterState
-}                                        from "@leight/filter";
+import {type IFilterStoreProps}          from "@leight/filter";
 import {
     type InferSelectors,
     switchScheme
 }                                        from "@leight/mantine";
 import {
-    type ISourceStoreProps,
-    type IUseSourceState
+    ISourceStore,
+    type ISourceStoreProps
 }                                        from "@leight/source";
 import {
     isCallable,
@@ -176,8 +173,7 @@ export namespace ICalendarComponent {
 
 export interface ICalendarShellEvents<TSourceSchema extends ICalendarEventSourceSchema> {
     schema: TSourceSchema["EntitySchema"];
-    useSource: IUseSourceState<TSourceSchema>;
-    useFilter: IUseFilterState<TSourceSchema["FilterSchema"]>;
+    SourceStore: ISourceStore<TSourceSchema>;
 }
 
 export interface ICalendarShellProps<TSourceSchema extends ICalendarEventSourceSchema> extends Omit<ComponentProps<typeof Container>, "children"> {
@@ -211,8 +207,8 @@ export const CalendarShell = <TSourceSchema extends ICalendarEventSourceSchema =
         ...props
     }: ICalendarShellProps<TSourceSchema>) => {
     const blockStore         = BlockStore.useOptionalState();
-    const source             = events?.useSource();
-    const filter             = events?.useFilter();
+    const source             = events?.SourceStore.Source.useState();
+    const filter             = events?.SourceStore.Filter.useState();
     const {classes}          = useStyles();
     const controlColumnCount = 18;
     const controlWidth       = 7;
@@ -227,7 +223,7 @@ export const CalendarShell = <TSourceSchema extends ICalendarEventSourceSchema =
         className={classes.calendar}
         {...props}
     >
-        <LoadingOverlay visible={withBool(blockStore?.isBlock, events?.useSource().isFetching || false)}/>
+        <LoadingOverlay visible={withBool(blockStore?.isBlock, events?.SourceStore.Source.useState().isFetching || false)}/>
         {withControls && <Grid
             columns={controlColumnCount}
             className={classNames(

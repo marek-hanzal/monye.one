@@ -91,8 +91,8 @@ export const Weeks = <TSourceSchema extends ICalendarEventSourceSchema = ICalend
                          isCurrent,
                      }
           }                                                     = WeeksOfStore.useState();
-    const source                                                = events?.useSource();
-    const filter                                                = events?.useFilter();
+    const source                                                = events?.SourceStore.Source.useState();
+    const filter                                                = events?.SourceStore.Filter.useState();
     const $events                                               = events && source?.entities
         .filter(event => events.schema.safeParse(event))
         .map(event => events.schema.parse(event))

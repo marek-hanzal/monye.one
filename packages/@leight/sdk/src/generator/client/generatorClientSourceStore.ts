@@ -41,68 +41,20 @@ export const generatorClientSourceStore: IGenerator<IGeneratorClientSourceStoreP
         file.withImports({
                 imports: {
                     "@leight/source-client": [
-                        "createSourceContext",
-                        "type ISourceProps",
-                    ],
-                    "@leight/sort-client":   [
-                        "createSortContext",
-                    ],
-                    "@leight/filter-client": [
-                        "createFilterContext",
+                        "withSourceStore",
                     ],
                     [packages.schema]:       [
-                        `type I${name}SourceSchema`,
-                        `${name}Schema`,
-                        `type I${name}SortSchema`,
-                        `${name}SortSchema`,
-                        `type I${name}FilterSchema`,
-                        `${name}FilterSchema`,
+                        `${name}SourceSchema`,
                     ],
-                },
-            })
-            .withTypes({
-                exports: {
-                    [`I${name}Source`]: `ISourceProps<I${name}SourceSchema>`,
                 },
             })
             .withConsts({
                 exports: {
                     [`${name}SourceStore`]: {
-                        comment: `
-/**
- * Defines Store for ${name}, so you can access it's data.
- */
-                        `,
-                        body:    `
-createSourceContext<I${name}SourceSchema>({
-    name:   "${name}",
-    schema: ${name}Schema,
-})
-                    `,
-                    },
-                    [`${name}FilterStore`]: {
-                        comment: `
-/**
- * Defines Store for ${name} filtering entities.
- */
-                        `,
-                        body:    `
-createFilterContext<I${name}FilterSchema>({
-    name:   "${name}Filter",
-    schema: ${name}FilterSchema,
-})
-                    `,
-                    },
-                    [`${name}SortStore`]:   {
-                        comment: `
-/**
- * Defines Store for ${name} sorting data.
- */
-                        `,
-                        body:    `
-createSortContext<I${name}SortSchema>({
-    name:   "${name}Sort",
-    schema: ${name}SortSchema,
+                        body: `
+withSourceStore({
+    name: "${name}",
+    SourceSchema: ${name}SourceSchema,
 })
                     `,
                     },

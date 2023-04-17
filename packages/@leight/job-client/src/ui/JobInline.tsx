@@ -1,8 +1,8 @@
 import {type IWithTranslation} from "@leight/i18n";
 import {useTranslation}        from "@leight/i18n-client";
 import {
-    type IJob,
-    type IUseJobFindQuery,
+    type IJobSourceSchema,
+    type IUseJobSourceQuery,
     JobDoneStatus
 }                              from "@leight/job";
 import {toHumanNumber}         from "@leight/utils";
@@ -20,15 +20,15 @@ import {
 
 export interface IJobInlineInternalProps {
     withTranslation: IWithTranslation;
-    job: IJob;
-    useJobFindQuery: IUseJobFindQuery;
+    job: IJobSourceSchema["Entity"];
+    useJobFindQuery: IUseJobSourceQuery["useFind"];
 
     onSuccess?(props: IJobInlineInternalProps.IOnSuccessProps): void;
 }
 
 export namespace IJobInlineInternalProps {
     export interface IOnSuccessProps {
-        job: IJob;
+        job: IJobSourceSchema["Entity"];
     }
 }
 

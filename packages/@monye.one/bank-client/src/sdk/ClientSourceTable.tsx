@@ -9,15 +9,12 @@ import {
 } from "@leight/table-client";
 import {
 	type IBankSourceSchema,
-	BankSchema
+	BankSourceSchema
 } from "@monye.one/bank";
-import {
-	BankSourceStore,
-	BankSortStore
-} from "./ClientStore";
+import {BankSourceStore} from "./ClientStore";
 import {BankSource} from "./ClientSourceProvider";
 
-export interface IBankSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<IBankSourceSchema, TColumnKeys>, "Source" | "Sort" | "schema"> {
+export interface IBankSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<IBankSourceSchema, TColumnKeys>, "SourceStore" | "schema"> {
 }
 
 export interface IBankSourceTableProps<TColumnKeys extends string> extends Omit<IBankSourceTableInternalProps<TColumnKeys>, "columns" | "withTranslation"> {
@@ -30,9 +27,8 @@ export interface IBankSourceTableProps<TColumnKeys extends string> extends Omit<
 export const BankSourceTable = <TColumnKeys extends string>(props: IBankSourceTableInternalProps<TColumnKeys>) => {
     return <BankSource>
         <SourceTable
-            Source={BankSourceStore}
-            Sort={BankSortStore}
-            schema={BankSchema}
+            SourceStore={BankSourceStore}
+            schema={BankSourceSchema['EntitySchema']}
             {...props}
         />
     </BankSource>;
@@ -41,4 +37,4 @@ export const BankSourceTable = <TColumnKeys extends string>(props: IBankSourceTa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bljnubch0rvyol4zhi9pfgze = true;
+export const $leight_llrf5llfhn0b4we4zyhpklr1 = true;

@@ -13,45 +13,36 @@ import {
 } from "@leight/query-client";
 import {
 	type IFileSourceSchema,
-	FileSchema,
-	type IUseFileQuery,
-	type IUseFileCountQuery
+	FileSourceSchema
 } from "@leight/file";
 import {type FC} from "react";
-import {
-	FileSourceStore,
-	FileFilterStore,
-	FileSortStore
-} from "./ClientStore";
+import {FileSourceStore} from "./ClientStore";
+import {type IUseSourceQuery} from "@leight/source";
 
 export interface IFileSourceProps extends ISourceProps<IFileSourceSchema> {
-	useSourceQuery: IUseFileQuery;
+	UseSourceQuery: IUseSourceQuery<IFileSourceSchema>;
 }
 
 export interface IFileQueryProviderProps extends IQueryProviderProps<IFileSourceSchema> {
-	useCountQuery: IUseFileCountQuery;
+	UseSourceQuery: IUseSourceQuery<IFileSourceSchema>;
 }
 
 /**
  * Provides access to File data with a connection to filtering and sorting. 
  */
-export const FileSource:FC<IFileSourceProps> = props => {
+export const FileSource: FC<IFileSourceProps> = props => {
     return <Source<IFileSourceSchema>
-        schema={FileSchema}
-        SourceProvider={FileSourceStore.Provider}
-        useFilterState={FileFilterStore.useState}
-        useSortState={FileSortStore.useState}
+        schema={FileSourceSchema["EntitySchema"]}
+        SourceStore={FileSourceStore}
         {...props}
     />;
 };
 /**
  * Provides all Query parts for File used in fetching and sorting its data. 
  */
-export const FileQueryProvider:FC<IFileQueryProviderProps> = props => {
+export const FileQueryProvider: FC<IFileQueryProviderProps> = props => {
     return <QueryProvider<IFileSourceSchema>
-        FilterProvider={FileFilterStore.Provider}
-        useFilterState={FileFilterStore.useState}
-        SortProvider={FileSortStore.Provider}
+        SourceStore={FileSourceStore}
         {...props}
     />;
 };
@@ -59,4 +50,4 @@ export const FileQueryProvider:FC<IFileQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_h3ro2zp2c9gr47yagw6ajt8a = true;
+export const $leight_tp4nxhz2ubmv767acr61gl3i = true;

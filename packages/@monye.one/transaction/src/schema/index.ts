@@ -1,6 +1,6 @@
 import {ImportJobParamsSchema} from "@leight/import";
 import {z}                     from "@leight/zod";
-import {BankSchema}            from "@monye.one/bank";
+import {BankSourceSchema}      from "@monye.one/bank";
 
 /**
  * Schema used for importing transaction from any source.
@@ -26,5 +26,5 @@ export type ITransactionImportParamsSchema = typeof TransactionImportParamsSchem
 export type ITransactionImportParams = z.infer<ITransactionImportParamsSchema>;
 
 export const TransactionExSchema = z.object({
-    bank: BankSchema,
+    bank: BankSourceSchema["EntitySchema"],
 });

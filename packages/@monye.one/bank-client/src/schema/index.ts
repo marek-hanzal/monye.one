@@ -1,6 +1,6 @@
 import {withFormSchemas}  from "@leight/form-client";
 import {z}                from "@leight/zod";
-import {BankCreateSchema} from "@monye.one/bank";
+import {BankSourceSchema} from "@monye.one/bank";
 
 export const BankCreateFormSchemas = withFormSchemas({
     ValueSchema:   z.object({
@@ -10,5 +10,5 @@ export const BankCreateFormSchemas = withFormSchemas({
         //     date:  z.date(),
         // }).optional(),
     }),
-    RequestSchema: BankCreateSchema,
+    RequestSchema: BankSourceSchema["CreateSchema"],
 });

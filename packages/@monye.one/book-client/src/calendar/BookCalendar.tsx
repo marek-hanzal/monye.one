@@ -4,12 +4,11 @@ import {
     WeeksOfStore
 }                from "@leight/calendar-client";
 import {
-    CalendarEventSchema,
+    CalendarEventSourceSchema,
     type ICalendarEventSourceSchema
 }                from "@monye.one/book";
 import {type FC} from "react";
 import {
-    CalendarEventFilterStore,
     CalendarEventSource,
     CalendarEventSourceStore
 }                from "../sdk";
@@ -39,9 +38,8 @@ export const BookCalendar: FC<IBookCalendarProps> = (
     return <CalendarEventSource>
         <Calendar<ICalendarEventSourceSchema>
             events={{
-                schema:    CalendarEventSchema,
-                useSource: CalendarEventSourceStore.useState,
-                useFilter: CalendarEventFilterStore.useState,
+                schema:      CalendarEventSourceSchema["EntitySchema"],
+                SourceStore: CalendarEventSourceStore,
             }}
             renderDayInline={({day, events}) => <IncomeOutcome
                 range={{

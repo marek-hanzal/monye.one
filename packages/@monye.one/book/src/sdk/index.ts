@@ -1,1 +1,1 @@
-export * from "./EntitySchema";
+export * from "./EntitySource";

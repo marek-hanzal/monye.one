@@ -20,11 +20,11 @@ import {
 import {
 	withSourceExSchema,
 	type InferSourceExSchema,
+	type IUseSourceQuery,
 	WithIdentitySchema,
 	type ISource,
 	type InferSourceSchema,
-	withSourceSchema,
-	type IUseSourceQuery
+	withSourceSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
 import {TransactionExSchema} from "../schema";
@@ -62,4 +62,4 @@ export const TransactionSourceContext = (container: IContainer) => new ServiceCo
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bik0ssqoshxlzb6gvdcmrdjw = true;
+export const $leight_pxx7xurhs0eqhn7d85xnxvmh = true;

@@ -1,11 +1,11 @@
 import {
     $FileServiceConfig,
     $FileSource,
-    type IFile,
     type IFileService,
     type IFileServiceConfig,
     type IFileServiceStoreProps,
     type IFileSource,
+    type IFileSourceSchema,
 }                   from "@leight/file";
 import {generateId} from "@leight/utils";
 import {copySync}   from "fs-extra";
@@ -31,7 +31,7 @@ export class FileService implements IFileService {
         );
     }
 
-    public fetch(fileId: string): Promise<IFile> {
+    public fetch(fileId: string): Promise<IFileSourceSchema["Entity"]> {
         return this.fileSource.find(fileId);
     }
 
@@ -43,7 +43,7 @@ export class FileService implements IFileService {
             userId,
             mime,
             replace = false,
-        }: IFileServiceStoreProps): Promise<IFile> {
+        }: IFileServiceStoreProps): Promise<IFileSourceSchema["Entity"]> {
         const id       = generateId();
         const location = this.pathOf(id);
         fs.mkdirSync(coolPath.dirname(location), {recursive: true});

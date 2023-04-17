@@ -20,11 +20,11 @@ import {
 import {
 	withSourceExSchema,
 	type InferSourceExSchema,
+	type IUseSourceQuery,
 	WithIdentitySchema,
 	type ISource,
 	type InferSourceSchema,
-	withSourceSchema,
-	type IUseSourceQuery
+	withSourceSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
 
@@ -59,4 +59,4 @@ export const FileSourceContext = (container: IContainer) => new ServiceContext<I
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_sd704d98xexv0xz6lj0l2cg3 = true;
+export const $leight_gpm894pnelo0p2ulqbouoz3p = true;
