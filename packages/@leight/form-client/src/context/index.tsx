@@ -20,6 +20,7 @@ export type IFormStoreProps<TFormSchema extends IFormSchema> = IStoreProps<IStor
     inputs: IFormInputs<TFormSchema>;
     inputsOverride?: Partial<IFormInputs<TFormSchema>>;
     withTranslation: IWithTranslation;
+    defaultValues?: TFormSchema["Values"];
 }>;
 
 export type IFormStoreContext<TFormSchema extends IFormSchema> = IStoreContext<Omit<IFormStoreProps<TFormSchema>, "state">>;
@@ -55,6 +56,7 @@ export interface IFormStoreProviderProps<TFormSchema extends IFormSchema> extend
     inputsOverride?: Partial<IFormInputs<TFormSchema>>;
     FormStoreContext: IFormStoreContext<TFormSchema>;
     withTranslation: IWithTranslation;
+    defaultValues?: TFormSchema["Values"];
 }
 
 export const FormStoreProvider = <TFormSchema extends IFormSchema>(
@@ -65,6 +67,7 @@ export const FormStoreProvider = <TFormSchema extends IFormSchema>(
         inputsOverride,
         FormStoreContext,
         withTranslation,
+        defaultValues,
         ...props
     }: IFormStoreProviderProps<TFormSchema>) => {
     return <FormStoreContext.Provider
@@ -74,6 +77,7 @@ export const FormStoreProvider = <TFormSchema extends IFormSchema>(
             inputs,
             inputsOverride,
             withTranslation,
+            defaultValues,
         }}
         {...props}
     />;

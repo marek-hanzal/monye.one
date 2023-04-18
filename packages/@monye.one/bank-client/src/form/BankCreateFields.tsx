@@ -10,6 +10,7 @@ import {
     useState
 }                      from "react";
 import {
+    BankCreateFormStoreContext,
     BankCreateInput,
     BankCreateMantineFormContext
 }                      from "../sdk";
@@ -20,6 +21,7 @@ export interface IBankCreateFieldsProps {
 export const BankCreateFields: FC<IBankCreateFieldsProps> = () => {
     const [withBalance, setWithBalance] = useState(true);
     const form                          = BankCreateMantineFormContext.useFormContext();
+    const {defaultValues}               = BankCreateFormStoreContext.useState(({defaultValues}) => ({defaultValues}));
     return <>
         <BankCreateInput path={"account"}/>
         <Divider mt={"md"}/>
@@ -34,10 +36,7 @@ export const BankCreateFields: FC<IBankCreateFieldsProps> = () => {
                     form,
                     bool:      event.currentTarget.checked,
                     whenTrue:  {
-                        balance: {
-                            value: 0,
-                            date:  "",
-                        },
+                        balance: defaultValues?.balance,
                     },
                     whenFalse: {
                         balance: undefined,

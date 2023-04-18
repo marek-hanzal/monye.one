@@ -129,6 +129,7 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
             inputsOverride={inputsOverride?.({schemas, FormContext})}
             FormStoreContext={FormContext}
             withTranslation={withTranslation}
+            defaultValues={defaultValues}
         >
             <FormInternal<TFormSchema>
                 form={form}
