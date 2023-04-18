@@ -3,6 +3,8 @@
         "@leight/esbuild",
         "@leight/context",
         "@leight/context-client",
+        "@leight/calendar-client",
+        "@tabler/icons-react",
         "@leight/zustand",
         "@leight/tsconfig",
         "@types/node"

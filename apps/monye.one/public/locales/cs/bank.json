@@ -12,6 +12,7 @@
     "BankCreateBaseForm.balance.value.description": "Zadejte aktuální zůstatek, pokud chceete zobrazit odhady toku peněz",
     "BankCreateBaseForm.balance.date": "Datum zůstatku",
     "BankCreateBaseForm.balance.date.description": "Vyberte prosím datum platnosti zůstatku",
+    "BankCreateBaseForm.balance.date.placeholder": "Vyberte prosím datum zůstatku",
     "BankCreateBaseForm.error.account.Required": "Vyplňte prosím číslo účtu",
     "BankCreateBaseForm.error.account.Empty": "Číslo účtu je nutné vyplnit",
     "BankCreateBaseForm.error.balance.value.Required": "Vyplňte prosím aktuální zůstatek",

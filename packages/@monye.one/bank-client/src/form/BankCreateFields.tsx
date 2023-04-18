@@ -1,7 +1,7 @@
 import {withCondition} from "@leight/form-client";
 import {Translation}   from "@leight/i18n-client";
 import {
-    Box,
+    Card,
     Divider,
     Switch
 }                      from "@mantine/core";
@@ -45,11 +45,12 @@ export const BankCreateFields: FC<IBankCreateFieldsProps> = () => {
                 });
             }}
         />
-        <Box
-            hidden={!withBalance}
+        {withBalance && <Card
+            withBorder
+            mt={"md"}
         >
-            <BankCreateInput path={"balance.value"}/>
             <BankCreateInput path={"balance.date"}/>
-        </Box>
+            <BankCreateInput path={"balance.value"}/>
+        </Card>}
     </>;
 };
