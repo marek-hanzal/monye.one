@@ -15,4 +15,4 @@ export const UseBankSourceQuery: IUseBankSourceQuery = withSourceQuery<IBankSour
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_sfmtgfl84xijjrhomk4p6zgo = true;
+export const $leight_wnxzkcan4oupj5t5vlfevo87 = true;

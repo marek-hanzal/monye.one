@@ -1,7 +1,9 @@
 import {
+    DateInput,
     NumberInput,
     TextInput
 }                         from "@leight/form-client";
+import {DateTime}         from "@leight/i18n";
 import {type FC}          from "react";
 import {IconBank}         from "../icon";
 import {
@@ -36,7 +38,8 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
                 {...withDescription}
                 withAsterisk
             />,
-            "balance.date":  ({mandatory, withLabel, withDescription}) => <TextInput
+            "balance.date":  ({mandatory, withLabel, withDescription}) => <DateInput
+                {...mandatory}
                 {...mandatory}
                 {...withLabel}
                 {...withDescription}
@@ -47,7 +50,7 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
             account: "",
             balance: {
                 value: 0,
-                date:  "",
+                date:  DateTime.now().toISODate() || "",
             },
         }}
         submitProps={{
