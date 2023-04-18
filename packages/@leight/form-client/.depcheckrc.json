@@ -1,0 +1,10 @@
+{
+    "ignores": [
+        "@leight/esbuild",
+        "@leight/context",
+        "@leight/context-client",
+        "@leight/zustand",
+        "@leight/tsconfig",
+        "@types/node"
+    ]
+}

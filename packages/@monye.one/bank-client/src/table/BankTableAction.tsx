@@ -19,6 +19,7 @@ export const BankTableAction: IBankTableProps["WithTableAction"] = () => {
         </Menu.Label>
         <Menu.Item
             onClick={() => modals.open({
+                zIndex:   500,
                 modalId:  "import",
                 title:    <Translation
                               namespace={"bank"}

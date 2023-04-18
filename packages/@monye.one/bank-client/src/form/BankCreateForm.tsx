@@ -1,13 +1,13 @@
 import {
     NumberInput,
     TextInput
-}                from "@leight/form-client";
-import {type FC} from "react";
+}                         from "@leight/form-client";
+import {type FC}          from "react";
 import {
     BankCreateBaseForm,
-    BankCreateInput,
     type IBankCreateBaseFormProps
-}                from "../sdk";
+}                         from "../sdk";
+import {BankCreateFields} from "./BankCreateFields";
 
 export interface IBankCreateForm extends Omit<IBankCreateBaseFormProps, "withMapper" | "inputs"> {
 }
@@ -33,17 +33,24 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
                 {...mandatory}
                 {...withLabel}
                 {...withDescription}
+                withAsterisk
             />,
             "balance.date":  ({mandatory, withLabel, withDescription}) => <TextInput
                 {...mandatory}
                 {...withLabel}
                 {...withDescription}
+                withAsterisk
             />,
         })}
+        defaultValues={{
+            account: "",
+            balance: {
+                value: undefined,
+                date:  undefined,
+            },
+        }}
         {...props}
     >
-        <BankCreateInput path={"account"}/>
-        <BankCreateInput path={"balance.value"}/>
-        <BankCreateInput path={"balance.date"}/>
+        <BankCreateFields/>
     </BankCreateBaseForm>;
 };
