@@ -35,15 +35,15 @@ export const BankCreateFields: FC<IBankCreateFieldsProps> = () => {
                     bool:      event.currentTarget.checked,
                     whenTrue:  {
                         balance: {
-                            value: undefined,
-                            date:  undefined,
+                            value: 0,
+                            date:  "",
                         },
                     },
                     whenFalse: {
                         balance: undefined,
                     },
+                    callback:  () => setWithBalance(event.currentTarget.checked),
                 });
-                setWithBalance(event.currentTarget.checked);
             }}
         />
         <Box

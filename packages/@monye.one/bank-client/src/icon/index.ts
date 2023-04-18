@@ -1,1 +1,1 @@
-export {IconMoneybag as IconBank} from "@tabler/icons-react";
+export {IconBuildingBank as IconBank} from "@tabler/icons-react";

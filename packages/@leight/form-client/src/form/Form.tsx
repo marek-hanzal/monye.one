@@ -69,7 +69,7 @@ export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWit
      * This enables end user to replace default fields defined by a base form (for example when generated)
      */
     inputsOverride?: IFormInputsOverrideFactory<TFormSchema>;
-    defaultValues?: TFormSchema["OptionalValues"];
+    defaultValues?: TFormSchema["Values"];
     onSubmit?(props: IFormProps.IOnSubmitProps<TFormSchema>): void;
     submitProps?: ComponentProps<typeof Button>;
 }>;

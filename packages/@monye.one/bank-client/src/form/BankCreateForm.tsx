@@ -44,10 +44,10 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
             />,
         })}
         defaultValues={{
-            account: undefined,
+            account: "",
             balance: {
-                value: undefined,
-                date:  undefined,
+                value: 0,
+                date:  "",
             },
         }}
         submitProps={{

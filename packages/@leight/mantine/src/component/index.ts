@@ -5,3 +5,4 @@ export * from "./Paper";
 export * from "./Shell";
 export * from "./TabLinkMenu";
 export * from "./Upload";
+export * from "./WithIcon";

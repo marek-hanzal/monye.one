@@ -11,6 +11,7 @@ import {
     switchScheme,
     withPrimaryColor
 }                              from "../utils";
+import {WithIcon}              from "./WithIcon";
 
 const useStyles = createStyles((theme) => ({
     link:       {
@@ -75,10 +76,17 @@ export const MainMenu = <TLinks extends IMainMenuLinks>(
                     [classes.linkActive]: $active.includes(link.href),
                 })}
             >
-                <Translation
-                    {...withTranslation}
-                    label={link.label || id}
-                />
+                <Group
+                    position={"apart"}
+                >
+                    <WithIcon
+                        icon={link.icon}
+                    />
+                    <Translation
+                        {...withTranslation}
+                        label={link.label || id}
+                    />
+                </Group>
             </Link>
         ))}
     </Group>;

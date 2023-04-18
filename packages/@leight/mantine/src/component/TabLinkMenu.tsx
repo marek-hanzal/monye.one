@@ -8,6 +8,7 @@ import {
     type FC,
     type ReactNode
 }                              from "react";
+import {WithIcon}              from "./WithIcon";
 
 export interface ITabLinkMenuItem {
     href: IHrefProps;
@@ -29,7 +30,11 @@ export const TabLinkMenu: FC<ITabLinkMenuProps> = ({active, items}) => {
         >
             <Tabs.List>
                 {items.map(({icon, href, withTranslation}) => (
-                    <Tabs.Tab icon={icon} key={href.href} value={toHref(href)}>
+                    <Tabs.Tab
+                        key={href.href}
+                        icon={<WithIcon icon={icon}/>}
+                        value={toHref(href)}
+                    >
                         {withTranslation && (
                             <Translation {...withTranslation} />
                         )}

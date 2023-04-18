@@ -44,6 +44,7 @@ export type IWithCondition<TFormSchema extends IFormSchema> = {
     bool: boolean | null | undefined;
     whenTrue?: TFormSchema["OptionalValues"];
     whenFalse?: TFormSchema["OptionalValues"];
+    callback?(): void;
 };
 
 export const withCondition = <TFormSchema extends IFormSchema>(
@@ -52,7 +53,14 @@ export const withCondition = <TFormSchema extends IFormSchema>(
         bool,
         whenTrue = {},
         whenFalse = {},
+        callback,
     }: IWithCondition<TFormSchema>) => {
-    bool && form.setValues(whenTrue);
-    !bool && form.setValues(whenFalse);
+    if (bool) {
+        callback?.();
+        form.setValues(whenTrue);
+    }
+    if (!bool) {
+        form.setValues(whenFalse);
+        callback?.();
+    }
 };
