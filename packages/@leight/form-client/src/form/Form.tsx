@@ -5,10 +5,14 @@ import {
 }                               from "@leight/i18n-client";
 import {
     Button,
+    Divider,
     Group
 }                               from "@mantine/core";
 import {type UseFormReturnType} from "@mantine/form";
-import {type PropsWithChildren} from "react";
+import {
+    ComponentProps,
+    type PropsWithChildren
+}                               from "react";
 import {
     type IFormInputsFactory,
     type IFormInputsOverrideFactory,
@@ -65,8 +69,9 @@ export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWit
      * This enables end user to replace default fields defined by a base form (for example when generated)
      */
     inputsOverride?: IFormInputsOverrideFactory<TFormSchema>;
-    defaultValues?: TFormSchema["Values"];
+    defaultValues?: TFormSchema["OptionalValues"];
     onSubmit?(props: IFormProps.IOnSubmitProps<TFormSchema>): void;
+    submitProps?: ComponentProps<typeof Button>;
 }>;
 
 export namespace IFormProps {
@@ -95,8 +100,8 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
     const {FormProvider, useForm} = MantineContext;
     const {t}                     = useTranslation(withTranslation.namespace);
     const form                    = useForm({
-        initialValues:       defaultValues,
-        validate:            values => {
+        initialValues: defaultValues,
+        validate:      values => {
             if (!schemas?.ValueSchema) {
                 return {};
             }
@@ -111,8 +116,8 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
             });
             return errors;
         },
-        validateInputOnBlur: true,
-        transformValues:     withMapper,
+        // validateInputOnBlur: true,
+        transformValues: withMapper,
     });
     return <FormProvider
         form={form}
@@ -143,20 +148,25 @@ const FormInternal = <TFormSchema extends IFormSchema = IFormSchema>(
         form,
         onSubmit,
         withTranslation,
+        submitProps,
         children,
     }: IFormInternalProps<TFormSchema>) => {
     return <form
         onSubmit={form.onSubmit(request => onSubmit?.({request}))}
     >
         {children}
+        <Divider
+            mt={"md"}
+        />
         <Group
             position={"center"}
             mt={"md"}
         >
             <Button
                 size={"lg"}
-                disabled={!form.isValid()}
+                // disabled={!form.isValid()}
                 type={"submit"}
+                {...submitProps}
             >
                 <Translation
                     {...withTranslation}

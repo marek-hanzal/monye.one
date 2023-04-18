@@ -3,6 +3,7 @@ import {
     TextInput
 }                         from "@leight/form-client";
 import {type FC}          from "react";
+import {IconBank}         from "../icon";
 import {
     BankCreateBaseForm,
     type IBankCreateBaseFormProps
@@ -43,11 +44,14 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
             />,
         })}
         defaultValues={{
-            account: "",
+            account: undefined,
             balance: {
                 value: undefined,
                 date:  undefined,
             },
+        }}
+        submitProps={{
+            leftIcon: <IconBank/>,
         }}
         {...props}
     >

@@ -12,4 +12,4 @@ export const BankSourceStore = withSourceStore({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_izgecyx283eycz2jn07xz7cv = true;
+export const $leight_h1lw4zevap29hjpff5onpscd = true;

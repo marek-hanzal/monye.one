@@ -22,7 +22,8 @@ export type IFormSchema<
     TResponseSchema extends IFormResponseSchema = IFormResponseSchema,
 > = {
     ValuesSchema: TValuesSchema;
-    Values: DeepPartial<z.infer<TValuesSchema>>;
+    Values: z.infer<TValuesSchema>;
+    OptionalValues: DeepPartial<z.infer<TValuesSchema>>;
     RequestSchema: TRequestSchema;
     Request: z.infer<TRequestSchema>;
     ResponseSchema: TResponseSchema;

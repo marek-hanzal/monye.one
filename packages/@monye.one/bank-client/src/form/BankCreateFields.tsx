@@ -1,17 +1,18 @@
-import {Translation} from "@leight/i18n-client";
+import {withCondition} from "@leight/form-client";
+import {Translation}   from "@leight/i18n-client";
 import {
     Box,
     Divider,
     Switch
-}                    from "@mantine/core";
+}                      from "@mantine/core";
 import {
     type FC,
     useState
-}                    from "react";
+}                      from "react";
 import {
     BankCreateInput,
     BankCreateMantineFormContext
-}                    from "../sdk";
+}                      from "../sdk";
 
 export interface IBankCreateFieldsProps {
 }
@@ -29,11 +30,18 @@ export const BankCreateFields: FC<IBankCreateFieldsProps> = () => {
             description={<Translation namespace={"bank"} label={"BankCreateForm.withBalance.switch.description"}/>}
             checked={withBalance}
             onChange={event => {
-                event.currentTarget.checked && form.setValues({
-                    balance: {},
-                });
-                !event.currentTarget.checked && form.setValues({
-                    balance: undefined,
+                withCondition({
+                    form,
+                    bool:      event.currentTarget.checked,
+                    whenTrue:  {
+                        balance: {
+                            value: undefined,
+                            date:  undefined,
+                        },
+                    },
+                    whenFalse: {
+                        balance: undefined,
+                    },
                 });
                 setWithBalance(event.currentTarget.checked);
             }}
