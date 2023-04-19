@@ -89,8 +89,12 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
                         extends:    sourceEx?.type ? withPackageType(sourceEx) : baseSource,
                         implements: `I${name}Source`,
                     },
-                    [`${name}SourceMapper`]: {
+                    [`${name}BaseSourceMapper`]: {
                         extends:    `AbstractSourceMapper<I${name}SourceSchema>`,
+                        implements: `I${name}SourceMapper`,
+                    },
+                    [`${name}SourceMapper`]: {
+                        extends:    `${name}BaseSourceMapper`,
                         implements: `I${name}SourceMapper`,
                     },
                 },

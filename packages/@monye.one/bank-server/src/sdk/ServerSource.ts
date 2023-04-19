@@ -18,11 +18,14 @@ export type IBankSourceMapper = ISourceMapper<IBankSourceSchema>;
 export class BankSource extends BankSourceEx implements IBankSource {
 }
 
-export class BankSourceMapper extends AbstractSourceMapper<IBankSourceSchema> implements IBankSourceMapper {
+export class BankBaseSourceMapper extends AbstractSourceMapper<IBankSourceSchema> implements IBankSourceMapper {
+}
+
+export class BankSourceMapper extends BankBaseSourceMapper implements IBankSourceMapper {
 }
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wxufgcbzqx8coql713faksgz = true;
+export const $leight_fw5vn7gkn4j2dyeyusm9vi0j = true;
