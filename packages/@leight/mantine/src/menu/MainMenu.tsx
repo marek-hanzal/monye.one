@@ -7,11 +7,11 @@ import {
 }                              from "@mantine/core";
 import Link                    from "next/link";
 import {useRouter}             from "next/router";
+import {WithIcon}              from "../component";
 import {
     switchScheme,
     withPrimaryColor
 }                              from "../utils";
-import {WithIcon}              from "./WithIcon";
 
 const useStyles = createStyles((theme) => ({
     link:       {
