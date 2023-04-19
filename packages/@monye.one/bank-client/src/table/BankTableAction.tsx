@@ -1,14 +1,13 @@
-import {Translation}          from "@leight/i18n-client";
 import {
     Drawer,
     DrawerMenuItem,
-    DrawerStoreProvider
+    DrawerStoreProvider,
+    MenuLabel
 }                             from "@leight/mantine";
 import {TableActionMenu}      from "@leight/table-client";
 import {
     Box,
-    Divider,
-    Menu
+    Divider
 }                             from "@mantine/core";
 import {IconCash}             from "@tabler/icons-react";
 import {BankCreateForm}       from "../form";
@@ -31,12 +30,12 @@ export const BankTableAction: IBankTableProps["WithTableAction"] = () => {
             </Box>
         </Drawer>
         <TableActionMenu>
-            <Menu.Label>
-                <Translation
-                    namespace={"common"}
-                    label={"actions.label"}
-                />
-            </Menu.Label>
+            <MenuLabel
+                withTranslation={{
+                    namespace: "common",
+                    label:     "actions.label",
+                }}
+            />
             <DrawerMenuItem
                 icon={<IconCash size={14}/>}
                 withTranslation={{

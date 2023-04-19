@@ -15,4 +15,4 @@ export const UseCalendarEventSourceQuery: IUseCalendarEventSourceQuery = withSou
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_abu9huai43spdtxgii21cdcq = true;
+export const $leight_dnakbpkhcbkgtfmmr6q2tv5c = true;

@@ -47,4 +47,4 @@ export const CalendarEventSourceContext = (container: IContainer) => new Service
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xd0fo3yuh9nazarq3zy70i7m = true;
+export const $leight_y65v89jh3quvv04pcmoxkvaz = true;
