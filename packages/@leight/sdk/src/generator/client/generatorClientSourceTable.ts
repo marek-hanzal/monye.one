@@ -28,27 +28,26 @@ export namespace IGeneratorClientSourceTableParams {
 
 export const generatorClientSourceTable: IGenerator<IGeneratorClientSourceTableParams> = async (
     {
-        folder,
         barrel,
+        directory,
         params: {entities}
     }) => {
-    const file = withSourceFile();
-
     entities.forEach(({name, packages}) => {
-        file.withImports({
+        withSourceFile()
+            .withImports({
                 imports: {
-                    "@leight/table-client":   [
+                    "@leight/table-client":                 [
                         "SourceTable",
                         "type ISourceTableInternalProps",
                     ],
-                    [packages.schema]:        [
+                    [packages.schema]:                      [
                         `type I${name}SourceSchema`,
                         `${name}SourceSchema`,
                     ],
-                    "./ClientStore":          [
+                    [`../ClientSource/${name}SourceStore`]: [
                         `${name}SourceStore`,
                     ],
-                    "./ClientSourceProvider": [
+                    [`../ClientSource/${name}Source`]:      [
                         `${name}Source`,
                     ],
                 }
@@ -88,11 +87,10 @@ export const generatorClientSourceTable: IGenerator<IGeneratorClientSourceTableP
                     `,
                     },
                 },
+            })
+            .saveTo({
+                file: normalize(`${directory}/ClientTable/${name}SourceTable.tsx`),
+                barrel,
             });
-    });
-
-    file.saveTo({
-        file: normalize(`${process.cwd()}/${folder}/ClientSourceTable.tsx`),
-        barrel,
     });
 };

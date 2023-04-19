@@ -11,8 +11,8 @@ import {
 	type IBankSourceSchema,
 	BankSourceSchema
 } from "@monye.one/bank";
-import {BankSourceStore} from "./ClientStore";
-import {BankSource} from "./ClientSourceProvider";
+import {BankSourceStore} from "../ClientSource/BankSourceStore";
+import {BankSource} from "../ClientSource/BankSource";
 
 export interface IBankSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<IBankSourceSchema, TColumnKeys>, "SourceStore" | "schema"> {
 }
@@ -37,4 +37,4 @@ export const BankSourceTable = <TColumnKeys extends string>(props: IBankSourceTa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bat7uagtshpgdxkslu3yxubd = true;
+export const $leight_zwf2djjem9k73c40mrv1rcpr = true;

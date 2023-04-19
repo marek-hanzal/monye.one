@@ -29,22 +29,17 @@ export namespace IGeneratorClientSourceProviderParams {
 
 export const generatorClientSourceProvider: IGenerator<IGeneratorClientSourceProviderParams> = async (
     {
-        folder,
         barrel,
+        directory,
         params: {entities}
     }) => {
-    const file = withSourceFile();
-
     entities.forEach(({name, withTrpc, packages}) => {
-        file.withImports({
+        withSourceFile()
+            .withImports({
                 imports: {
                     "@leight/source-client": [
                         "type ISourceProps",
                         "Source",
-                    ],
-                    "@leight/query-client":  [
-                        "type IQueryProviderProps",
-                        "QueryProvider",
                     ],
                     [packages.schema]:       [
                         `type I${name}SourceSchema`,
@@ -53,38 +48,30 @@ export const generatorClientSourceProvider: IGenerator<IGeneratorClientSourcePro
                     "react":                 [
                         "type FC",
                     ],
-                    "./ClientStore":         [
+                    [`./${name}SourceStore`]: [
                         `${name}SourceStore`,
-                    ]
+                    ],
                 }
             })
             .withImports(withTrpc ? undefined : {
                 imports: {
-                    '@leight/source': [
-                        'type IUseSourceQuery',
+                    "@leight/source": [
+                        "type IUseSourceQuery",
                     ],
                 },
             })
             .withImports(withTrpc ? {
                 imports: {
-                    ["./ClientTrpcSource"]: [
+                    [`../ClientTrpc/Use${name}SourceQuery`]: [
                         `Use${name}SourceQuery`,
                     ],
                 },
             } : undefined)
             .withInterfaces({
                 exports: {
-                    [`I${name}SourceProps`]:        {
+                    [`I${name}SourceProps`]: {
                         extends: [
                             {type: `ISourceProps<I${name}SourceSchema>`},
-                        ],
-                        body:    withTrpc ? undefined : `
-UseSourceQuery: IUseSourceQuery<I${name}SourceSchema>;
-                    `,
-                    },
-                    [`I${name}QueryProviderProps`]: {
-                        extends: [
-                            {type: `IQueryProviderProps<I${name}SourceSchema>`},
                         ],
                         body:    withTrpc ? undefined : `
 UseSourceQuery: IUseSourceQuery<I${name}SourceSchema>;
@@ -94,7 +81,7 @@ UseSourceQuery: IUseSourceQuery<I${name}SourceSchema>;
             })
             .withConsts({
                 exports: {
-                    [`${name}Source`]:        {
+                    [`${name}Source`]: {
                         type:    `FC<I${name}SourceProps>`,
                         comment: `
 /**
@@ -110,6 +97,52 @@ UseSourceQuery: IUseSourceQuery<I${name}SourceSchema>;
 }
                     `,
                     },
+                },
+            })
+            .saveTo({
+                file: normalize(`${directory}/ClientSource/${name}Source.tsx`),
+                barrel,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "@leight/query-client":   [
+                        "type IQueryProviderProps",
+                        "QueryProvider",
+                    ],
+                    [packages.schema]:        [
+                        `type I${name}SourceSchema`,
+                    ],
+                    "react":                  [
+                        "type FC",
+                    ],
+                    [`./${name}SourceStore`]: [
+                        `${name}SourceStore`,
+                    ],
+                }
+            })
+            .withImports(withTrpc ? {
+                imports: {
+                    [`../ClientTrpc/Use${name}SourceQuery`]: [
+                        `Use${name}SourceQuery`,
+                    ],
+                },
+            } : undefined)
+            .withInterfaces({
+                exports: {
+                    [`I${name}QueryProviderProps`]: {
+                        extends: [
+                            {type: `IQueryProviderProps<I${name}SourceSchema>`},
+                        ],
+                        body:    withTrpc ? undefined : `
+UseSourceQuery: IUseSourceQuery<I${name}SourceSchema>;
+                    `,
+                    },
+                },
+            })
+            .withConsts({
+                exports: {
                     [`${name}QueryProvider`]: {
                         type:    `FC<I${name}QueryProviderProps>`,
                         comment: `
@@ -125,12 +158,11 @@ UseSourceQuery: IUseSourceQuery<I${name}SourceSchema>;
 }
                     `,
                     },
-                },
+                }
+            })
+            .saveTo({
+                file: normalize(`${directory}/ClientSource/${name}QueryProvider.tsx`),
+                barrel,
             });
-    });
-
-    file.saveTo({
-        file: normalize(`${process.cwd()}/${folder}/ClientSourceProvider.tsx`),
-        barrel,
     });
 };

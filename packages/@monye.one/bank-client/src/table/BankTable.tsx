@@ -2,7 +2,7 @@ import {type FC}            from "react";
 import {
     BankSourceTable,
     type IBankSourceTableProps
-}                           from "../sdk";
+}                           from "../sdk/ClientTable/BankSourceTable";
 import {BankTableAction}    from "./BankTableAction";
 import {BankTableRowAction} from "./BankTableRowAction";
 

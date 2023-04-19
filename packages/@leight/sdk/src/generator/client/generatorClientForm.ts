@@ -1,5 +1,4 @@
 import {withSourceFile}  from "@leight/generator-server";
-import {BlockStore}      from "@leight/utils-client";
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
@@ -34,45 +33,22 @@ export namespace IGeneratorClientFormParams {
 
 export const generatorClientForm: IGenerator<IGeneratorClientFormParams> = async (
     {
-        folder,
         barrel,
+        directory,
         params: {forms}
     }) => {
-    const file = withSourceFile();
-
-    file.withImports({
-        imports: {
-            "@leight/form-client": [
-                "createFormContext",
-                "createMantineFormContext",
-                "type IMantineFormContext",
-                "Form",
-                "type IFormProps",
-                "type InferFormSchemas",
-                "type IWithInputProps",
-                "WithInput",
-            ],
-            "react":               [
-                "type FC",
-            ],
-        },
-    });
-
     forms.forEach(({name, translation, withTrpc, packages}) => {
-        file
+        withSourceFile()
             .withImports({
                 imports: {
-                    [packages?.schema || `../schema`]: [
+                    "@leight/form-client":                [
+                        "type IMantineFormContext",
+                        "type InferFormSchemas",
+                    ],
+                    [packages?.schema || `../../schema`]: [
                         `${name}FormSchema`,
                     ],
                 },
-            })
-            .withImports({
-                imports: withTrpc ? {
-                    ["./ClientTrpcSource"]: [
-                        `Use${withTrpc.source}SourceQuery`,
-                    ]
-                } : {},
             })
             .withTypes({
                 exports: {
@@ -80,16 +56,130 @@ export const generatorClientForm: IGenerator<IGeneratorClientFormParams> = async
                     [`I${name}MantineFormContext`]: `IMantineFormContext<I${name}FormSchema>`,
                 }
             })
+            .saveTo({
+                file:   normalize(`${directory}/api/index.tsx`),
+                barrel: false,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "@leight/form-client": [
+                        "createFormContext",
+                    ],
+                    "../api":              [
+                        `type I${name}FormSchema`,
+                    ],
+                },
+            })
             .withConsts({
                 exports: {
-                    [`${name}FormStoreContext`]:   {
+                    [`${name}FormStoreContext`]: {
                         body: `
 createFormContext<I${name}FormSchema>({
     name: "${name}Form",
 })
                         `,
                     },
-                    [`${name}BaseForm`]:           {
+                }
+            })
+            .saveTo({
+                file:   normalize(`${directory}/FormStoreContext/${name}FormStoreContext.tsx`),
+                barrel: false,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "@leight/form-client": [
+                        "createMantineFormContext",
+                    ],
+                    "../api":              [
+                        `type I${name}FormSchema`,
+                    ],
+                },
+            })
+            .withConsts({
+                exports: {
+                    [`${name}MantineFormContext`]: {
+                        body: `createMantineFormContext<I${name}FormSchema>()`,
+                    },
+                },
+            })
+            .saveTo({
+                file:   normalize(`${directory}/FormStoreContext/${name}MantineFormContext.tsx`),
+                barrel: false,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "@leight/form-client":                           [
+                        "type IWithInputProps",
+                        "WithInput",
+                    ],
+                    "../api":                                        [
+                        `type I${name}FormSchema`,
+                    ],
+                    "react":                                         [
+                        "type FC",
+                    ],
+                    [`../FormStoreContext/${name}FormStoreContext`]: [
+                        `${name}FormStoreContext`,
+                    ],
+                },
+            })
+            .withConsts({
+                exports: {
+                    [`${name}Input`]: {
+                        type: `FC<Omit<IWithInputProps<I${name}FormSchema>, "FormContext">>`,
+                        body: `
+props => {
+    return <WithInput
+        FormContext={${name}FormStoreContext}
+        {...props}
+    />;
+}
+                            `,
+                    },
+                },
+            })
+            .saveTo({
+                file:   normalize(`${directory}/ClientForm/${name}Input.tsx`),
+                barrel: false,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "@leight/form-client":                             [
+                        "Form",
+                        "type IFormProps",
+                    ],
+                    "react":                                           [
+                        "type FC",
+                    ],
+                    "../api":                                          [
+                        `type I${name}FormSchema`,
+                    ],
+                    [`../FormStoreContext/${name}FormStoreContext`]:   [
+                        `${name}FormStoreContext`,
+                    ],
+                    [`../FormStoreContext/${name}MantineFormContext`]: [
+                        `${name}MantineFormContext`,
+                    ],
+                },
+            })
+            .withImports({
+                imports: {
+                    [packages?.schema || `../../schema`]: [
+                        `${name}FormSchema`,
+                    ],
+                },
+            })
+            .withConsts({
+                exports: {
+                    [`${name}BaseForm`]: {
                         type: `FC<I${name}BaseFormProps>`,
                         body: `
 props => {
@@ -106,20 +196,6 @@ props => {
 }
                         `,
                     },
-                    [`${name}Input`]:              {
-                        type: `FC<Omit<IWithInputProps<I${name}FormSchema>, "FormContext">>`,
-                        body: `
-props => {
-    return <WithInput
-        FormContext={${name}FormStoreContext}
-        {...props}
-    />;
-}
-                            `,
-                    },
-                    [`${name}MantineFormContext`]: {
-                        body: `createMantineFormContext<I${name}FormSchema>()`,
-                    },
                 },
             })
             .withInterfaces({
@@ -132,9 +208,14 @@ props => {
                         ],
                     },
                 },
+            })
+            .saveTo({
+                file: normalize(`${directory}/ClientForm/${name}BaseForm.tsx`),
+                barrel,
             });
+
         if (withTrpc) {
-            file
+            withSourceFile()
                 .withImports({
                     imports: {
                         "@leight/form-client":  [
@@ -143,6 +224,23 @@ props => {
                         "@leight/utils-client": [
                             "BlockStore",
                         ],
+                        "../api":               [
+                            `type I${name}FormSchema`,
+                        ],
+                        "react":                [
+                            "type FC"
+                        ],
+                        [`./${name}BaseForm`]:  [
+                            `type I${name}BaseFormProps`,
+                            `${name}BaseForm`,
+                        ],
+                    },
+                })
+                .withImports({
+                    imports: {
+                        [`../ClientTrpc/Use${withTrpc.source}SourceQuery`]: [
+                            `Use${withTrpc.source}SourceQuery`,
+                        ]
                     },
                 })
                 .withInterfaces({
@@ -185,17 +283,15 @@ props => {
         }}
         {...props}
     />;
-};
+}
                             `,
                         }
                     },
+                })
+                .saveTo({
+                    file: normalize(`${directory}/ClientForm/${name}TrpcForm.tsx`),
+                    barrel,
                 });
-
         }
-    });
-
-    file.saveTo({
-        file: normalize(`${process.cwd()}/${folder}/ClientForm.tsx`),
-        barrel,
     });
 };

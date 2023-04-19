@@ -40,14 +40,13 @@ export namespace IGeneratorClientTrpcSourceParams {
 
 export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourceParams> = async (
     {
-        folder,
         barrel,
+        directory,
         params: {entities}
     }) => {
-    const file = withSourceFile();
-
     entities.forEach(({name, withTrpc, packages}) => {
-        file.withImports({
+        withSourceFile()
+            .withImports({
                 imports: {
                     "@leight/source-client": [
                         "withSourceQuery",
@@ -72,11 +71,10 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
                         body: `withSourceQuery<I${name}SourceSchema>(trpc.${withTrpc.path}.source)`,
                     }
                 }
-            });
-    });
-
-    file.saveTo({
-        file: normalize(`${process.cwd()}/${folder}/ClientTrpcSource.tsx`),
-        barrel,
+            })
+            .saveTo({
+                file: normalize(`${directory}/ClientTrpc/Use${name}SourceQuery.tsx`),
+                barrel,
+            })
     });
 };

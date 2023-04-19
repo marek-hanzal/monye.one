@@ -4,38 +4,17 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
-	type ISourceProps,
-	Source
-} from "@leight/source-client";
-import {
 	type IQueryProviderProps,
 	QueryProvider
 } from "@leight/query-client";
-import {
-	type IBankSourceSchema,
-	BankSourceSchema
-} from "@monye.one/bank";
+import {type IBankSourceSchema} from "@monye.one/bank";
 import {type FC} from "react";
-import {BankSourceStore} from "./ClientStore";
-import {UseBankSourceQuery} from "./ClientTrpcSource";
-
-export interface IBankSourceProps extends ISourceProps<IBankSourceSchema> {
-}
+import {BankSourceStore} from "./BankSourceStore";
+import {UseBankSourceQuery} from "../ClientTrpc/UseBankSourceQuery";
 
 export interface IBankQueryProviderProps extends IQueryProviderProps<IBankSourceSchema> {
 }
 
-/**
- * Provides access to Bank data with a connection to filtering and sorting. 
- */
-export const BankSource: FC<IBankSourceProps> = props => {
-    return <Source<IBankSourceSchema>
-        schema={BankSourceSchema["EntitySchema"]}
-        SourceStore={BankSourceStore}
-        UseSourceQuery={UseBankSourceQuery}
-		{...props}
-    />;
-};
 /**
  * Provides all Query parts for Bank used in fetching and sorting its data. 
  */
@@ -50,4 +29,4 @@ export const BankQueryProvider: FC<IBankQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ad6twjst3sby9bkqn0wwzrci = true;
+export const $leight_mf0xdv1luhwsbgf0sca48dse = true;
