@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {type IJobSource} from "@leight/job";
-import {JobBasePrismaSource} from "./ServerPrismaSource";
+import {JobBasePrismaSource} from "../PrismaSource/JobPrismaSource";
 
 export class JobSource extends JobBasePrismaSource implements IJobSource {
 }
@@ -13,4 +13,4 @@ export class JobSource extends JobBasePrismaSource implements IJobSource {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mi1st2pi2lj5mckmqx4qcqep = true;
+export const $leight_iumtjqr7apo8y882rku5awmx = true;

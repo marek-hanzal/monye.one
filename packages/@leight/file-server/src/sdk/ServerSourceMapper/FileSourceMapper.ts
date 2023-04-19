@@ -3,6 +3,9 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
+import {type IFileSourceMapper} from "../api";
+import {FileBaseSourceMapper} from "./FileBaseSourceMapper";
+
 export class FileSourceMapper extends FileBaseSourceMapper implements IFileSourceMapper {
 }
 
@@ -10,4 +13,4 @@ export class FileSourceMapper extends FileBaseSourceMapper implements IFileSourc
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_djjvtre96hd5f7jhjg82bvyj = true;
+export const $leight_ezg1bi0nldrj463njrbtlbcp = true;

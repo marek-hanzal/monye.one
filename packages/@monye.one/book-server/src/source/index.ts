@@ -4,7 +4,7 @@ import {
     PrismaClient
 }                                        from "@leight/prisma";
 import {type ICalendarEventSourceSchema} from "@monye.one/book";
-import {CalendarEventBaseSource}         from "../sdk/ServerBaseSource";
+import {CalendarEventBaseSource}         from "../sdk/BaseSource/CalendarEventBaseSource";
 
 export class CalendarEventBaseSourceEx extends CalendarEventBaseSource {
     static inject = [

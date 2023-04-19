@@ -20,4 +20,4 @@ export const $TransactionSourceMapper = Symbol.for("@monye.one/transaction/ITran
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lhz5r92o5ia39knrxt5bg79q = true;
+export const $leight_w190l20edhkcfcyacj0pxcxt = true;

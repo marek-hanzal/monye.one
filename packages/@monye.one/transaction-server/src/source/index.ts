@@ -10,7 +10,7 @@ import {
     type ITransactionPrismaSchema,
     type ITransactionSourceSchema,
 }                                    from "@monye.one/transaction";
-import {TransactionBasePrismaSource} from "../sdk/ServerPrismaSource";
+import {TransactionBasePrismaSource} from "../sdk/PrismaSource/TransactionPrismaSource";
 
 export class TransactionSourceEx extends TransactionBasePrismaSource {
     static inject = [

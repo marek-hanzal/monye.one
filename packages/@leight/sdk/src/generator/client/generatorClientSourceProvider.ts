@@ -37,15 +37,15 @@ export const generatorClientSourceProvider: IGenerator<IGeneratorClientSourcePro
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/source-client": [
+                    "@leight/source-client":  [
                         "type ISourceProps",
                         "Source",
                     ],
-                    [packages.schema]:       [
+                    [packages.schema]:        [
                         `type I${name}SourceSchema`,
                         `${name}SourceSchema`,
                     ],
-                    "react":                 [
+                    "react":                  [
                         "type FC",
                     ],
                     [`./${name}SourceStore`]: [
@@ -122,13 +122,17 @@ UseSourceQuery: IUseSourceQuery<I${name}SourceSchema>;
                     ],
                 }
             })
-            .withImports(withTrpc ? {
-                imports: {
+            .withImports({
+                imports: withTrpc ? {
                     [`../ClientTrpc/Use${name}SourceQuery`]: [
                         `Use${name}SourceQuery`,
                     ],
+                } : {
+                    "@leight/source":         [
+                        "type IUseSourceQuery",
+                    ],
                 },
-            } : undefined)
+            })
             .withInterfaces({
                 exports: {
                     [`I${name}QueryProviderProps`]: {

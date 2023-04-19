@@ -1,24 +1,25 @@
-import {type IGenerator} from "../../api";
+import {type IGenerator}    from "../../api";
+import {generatorSdkBarrel} from "../generatorSdkBarrel";
 import {
     generatorClientForm,
     type IGeneratorClientFormParams
-}                        from "./generatorClientForm";
+}                           from "./generatorClientForm";
 import {
     generatorClientSourceProvider,
     type IGeneratorClientSourceProviderParams
-}                        from "./generatorClientSourceProvider";
+}                           from "./generatorClientSourceProvider";
 import {
     generatorClientSourceStore,
     type IGeneratorClientSourceStoreParams
-}                        from "./generatorClientSourceStore";
+}                           from "./generatorClientSourceStore";
 import {
     generatorClientSourceTable,
     type IGeneratorClientSourceTableParams
-}                        from "./generatorClientSourceTable";
+}                           from "./generatorClientSourceTable";
 import {
     generatorClientTrpcSource,
     IGeneratorClientTrpcSourceParams
-}                        from "./generatorClientTrpcSource";
+}                           from "./generatorClientTrpcSource";
 
 export interface IGeneratorClientSourceParams {
     SourceProvider?: IGeneratorClientSourceProviderParams;
@@ -61,4 +62,9 @@ export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = a
             params: Trpc,
         }) : undefined,
     ]);
+    await generatorSdkBarrel({
+        ...props,
+        barrel: true,
+        params: {},
+    });
 };

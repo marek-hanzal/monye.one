@@ -1,6 +1,7 @@
-import {withSourceFile}  from "@leight/generator-server";
-import {normalize}       from "node:path";
-import {type IGenerator} from "../../api";
+import {withSourceFile}     from "@leight/generator-server";
+import {normalize}          from "node:path";
+import {type IGenerator}    from "../../api";
+import {generatorSdkBarrel} from "../generatorSdkBarrel";
 
 export interface IGeneratorServerTrpcRouterParams {
     procedures: IGeneratorServerTrpcRouterParams.IProcedure[];
@@ -26,6 +27,8 @@ export namespace IGeneratorServerTrpcRouterParams {
 
 export const generatorServerTrpcRouter: IGenerator<IGeneratorServerTrpcRouterParams> = async (
     {
+        packageName,
+        folder,
         barrel,
         directory,
         params: {procedures},
@@ -79,5 +82,12 @@ router({
                 file: normalize(`${directory}/ServerTrpc/${name}TrpcRouter.ts`),
                 barrel,
             });
+    });
+    await generatorSdkBarrel({
+        directory,
+        barrel: true,
+        packageName,
+        folder,
+        params: {},
     });
 };

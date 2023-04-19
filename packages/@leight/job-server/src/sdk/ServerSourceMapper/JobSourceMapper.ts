@@ -3,6 +3,9 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
+import {type IJobSourceMapper} from "../api";
+import {JobBaseSourceMapper} from "./JobBaseSourceMapper";
+
 export class JobSourceMapper extends JobBaseSourceMapper implements IJobSourceMapper {
 }
 
@@ -10,4 +13,4 @@ export class JobSourceMapper extends JobBaseSourceMapper implements IJobSourceMa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rmrrx08xzz2i3nget1ej039h = true;
+export const $leight_v2up82redevbqo6m411kkglk = true;

@@ -30,6 +30,7 @@
         "@leight/mantine": "^0.5.29",
         "@leight/prisma": "^0.5.0",
         "@leight/query-client": "^0.5.0",
+        "@leight/source": "^0.5.0",
         "@leight/source-client": "^0.5.0",
         "@leight/table-client": "^0.5.0",
         "@leight/utils": "^0.5.0",

@@ -10,6 +10,7 @@ import {
 import {type IJobSourceSchema} from "@leight/job";
 import {type FC} from "react";
 import {JobSourceStore} from "./JobSourceStore";
+import {type IUseSourceQuery} from "@leight/source";
 
 export interface IJobQueryProviderProps extends IQueryProviderProps<IJobSourceSchema> {
 	UseSourceQuery: IUseSourceQuery<IJobSourceSchema>;
@@ -28,4 +29,4 @@ export const JobQueryProvider: FC<IJobQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_t9mmektyjtoa74d3a6j62139 = true;
+export const $leight_h9xywbtslq7wqxn7yd148ijn = true;

@@ -24,7 +24,7 @@ export const withClientSourceGenerators = (
         async () => generatorClientSource({
             packageName,
             folder,
-            barrel:    true,
+            barrel:    false,
             params,
             directory: normalize(`${process.cwd()}/${folder}`),
         }),

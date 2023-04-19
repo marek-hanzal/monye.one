@@ -17,7 +17,7 @@ void withSdk(
             withSourceEx: {
                 type:        "UserSourceEx",
                 withPackage: {
-                    package: "../source",
+                    package: "../../source",
                 },
             },
         })

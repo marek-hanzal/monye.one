@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {type IUserSource} from "@leight/user";
-import {UserSourceEx} from "../source";
+import {UserSourceEx} from "../../source";
 
 export class UserSource extends UserSourceEx implements IUserSource {
 }
@@ -13,4 +13,4 @@ export class UserSource extends UserSourceEx implements IUserSource {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_e9vpn4nr01f3nq9y79sigoe4 = true;
+export const $leight_l1ed6c9rr1ocn2jens0lbnrt = true;

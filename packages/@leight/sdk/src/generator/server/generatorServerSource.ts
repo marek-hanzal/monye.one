@@ -81,7 +81,7 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
             })
             .withImports(sourceEx?.type ? undefined : {
                 imports: {
-                    [withPrisma ? "./ServerPrismaSource" : "./ServerBaseSource"]: [
+                    [withPrisma ? `../PrismaSource/${name}PrismaSource` : `../ServerBaseSource`]: [
                         baseSource,
                     ],
                 },
@@ -134,16 +134,24 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
             });
 
         withSourceFile()
-            .withImports(mapperEx?.withPackage ? {
+            .withImports({
                 imports: {
+                    "../api": [
+                        `type I${name}SourceMapper`,
+                    ],
+                }
+            })
+            .withImports({
+                imports: mapperEx?.withPackage ? {
                     [mapperEx.withPackage.package]: [
                         withPackageImport(mapperEx),
                     ],
-                    "../api":                       [
-                        `type I${name}SourceMapper`,
+                } : {
+                    [`./${name}BaseSourceMapper`]: [
+                        `${name}BaseSourceMapper`,
                     ],
                 },
-            } : undefined)
+            })
             .withClasses({
                 exports: {
                     [`${name}SourceMapper`]: {

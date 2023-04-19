@@ -3,6 +3,9 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
+import {type ITransactionSourceMapper} from "../api";
+import {TransactionBaseSourceMapper} from "./TransactionBaseSourceMapper";
+
 export class TransactionSourceMapper extends TransactionBaseSourceMapper implements ITransactionSourceMapper {
 }
 
@@ -10,4 +13,4 @@ export class TransactionSourceMapper extends TransactionBaseSourceMapper impleme
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_pr893uzmdnvjmneedm7e2f9p = true;
+export const $leight_ifok801qs0wls1uvq7fo7uhf = true;

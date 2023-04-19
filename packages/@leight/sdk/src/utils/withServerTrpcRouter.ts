@@ -25,7 +25,7 @@ export const withServerTrpcRouter = (
         async () => generatorServerTrpcRouter({
             packageName,
             folder,
-            barrel:    true,
+            barrel:    false,
             params,
             directory: normalize(`${process.cwd()}/${folder}`),
         }),

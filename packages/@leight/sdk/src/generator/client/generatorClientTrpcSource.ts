@@ -75,6 +75,6 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
             .saveTo({
                 file: normalize(`${directory}/ClientTrpc/Use${name}SourceQuery.tsx`),
                 barrel,
-            })
+            });
     });
 };

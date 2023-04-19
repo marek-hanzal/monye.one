@@ -25,7 +25,7 @@ void withSdk(
                     sourceEx: {
                         type:        "CalendarEventBaseSourceEx",
                         withPackage: {
-                            package: "../source",
+                            package: "../../source",
                         },
                     },
                 },

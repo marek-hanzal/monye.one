@@ -12,7 +12,7 @@ void withSdk(
             withSourceEx: {
                 type:        "TransactionSourceEx",
                 withPackage: {
-                    package: "../source",
+                    package: "../../source",
                 },
             },
             packages:     {

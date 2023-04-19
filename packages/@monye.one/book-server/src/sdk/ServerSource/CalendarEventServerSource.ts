@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {type ICalendarEventSource} from "@monye.one/book";
-import {CalendarEventBaseSourceEx} from "../source";
+import {CalendarEventBaseSourceEx} from "../../source";
 
 export class CalendarEventSource extends CalendarEventBaseSourceEx implements ICalendarEventSource {
 }
@@ -13,4 +13,4 @@ export class CalendarEventSource extends CalendarEventBaseSourceEx implements IC
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_gw70c4yzbhjdez14c8kmpfdj = true;
+export const $leight_vdxx8i85yl0q6m8h5369nhwz = true;

@@ -17,7 +17,7 @@ import {
 	PatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
-import {TransactionExSchema} from "../schema";
+import {TransactionExSchema} from "../../schema";
 import {FilterSchema} from "@leight/filter";
 import {ParamsSchema} from "@leight/query";
 
@@ -49,4 +49,4 @@ export const TransactionSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_f4xu8nhc9hi5bwl127lz85p6 = true;
+export const $leight_giyt7re9nwka07xtzyg1alvr = true;

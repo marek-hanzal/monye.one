@@ -1,4 +1,4 @@
-import {type IContainer}       from "@leight/container";
+import {type IContainer} from "@leight/container";
 import {
     $JobExecutor,
     $JobProgressService,
@@ -7,14 +7,16 @@ import {
     type IJobExecutor,
     type IJobProgressService,
     type IJobSource
-}                              from "@leight/job";
-import {type IJobSourceMapper} from "./sdk/api";
-import {JobSource}             from "./sdk/ServerSource/JobServerSource";
-import {JobSourceMapper}       from "./sdk/ServerSourceMapper/JobSourceMapper";
+}                        from "@leight/job";
+import {
+    type IJobSourceMapper,
+    JobSource,
+    JobSourceMapper
+}                        from "./sdk";
 import {
     JobExecutor,
     JobProgressService
-}                              from "./service";
+}                        from "./service";
 
 export interface IJobContainer {
     JobProgressService: IJobProgressService;

@@ -10,6 +10,7 @@ import {
 import {type IFileSourceSchema} from "@leight/file";
 import {type FC} from "react";
 import {FileSourceStore} from "./FileSourceStore";
+import {type IUseSourceQuery} from "@leight/source";
 
 export interface IFileQueryProviderProps extends IQueryProviderProps<IFileSourceSchema> {
 	UseSourceQuery: IUseSourceQuery<IFileSourceSchema>;
@@ -28,4 +29,4 @@ export const FileQueryProvider: FC<IFileQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xud7tixedtyndtkfknvy5u1s = true;
+export const $leight_fn9chyd9mf279a015xj9gx85 = true;
