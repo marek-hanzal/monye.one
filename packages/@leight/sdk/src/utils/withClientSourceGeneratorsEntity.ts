@@ -11,12 +11,20 @@ export interface IWithClientSourceGeneratorsEntityProps {
     withTrpc?: {
         path: string;
         package: string;
+        invalidators?: string[];
     };
     disabled?: ("table")[];
     Form?: IGeneratorClientFormParams;
 }
 
-export const withClientSourceGeneratorsEntity = ({name, disabled = [], packages, withTrpc, Form}: IWithClientSourceGeneratorsEntityProps): IGeneratorClientSourceParams => {
+export const withClientSourceGeneratorsEntity = (
+    {
+        name,
+        disabled = [],
+        packages,
+        withTrpc,
+        Form,
+    }: IWithClientSourceGeneratorsEntityProps): IGeneratorClientSourceParams => {
     return {
         SourceProvider: {
             entities: [
@@ -46,7 +54,11 @@ export const withClientSourceGeneratorsEntity = ({name, disabled = [], packages,
         Form,
         Trpc:           withTrpc ? {
             entities: [
-                {name, withTrpc, packages}
+                {
+                    name,
+                    withTrpc,
+                    packages,
+                }
             ]
         } : undefined,
     };

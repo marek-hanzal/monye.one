@@ -35,6 +35,7 @@ export namespace IGeneratorClientTrpcSourceParams {
          * Part of the trpc call chain (base is `trpc`.${trpcPath}.`...rest of standard trpc router`
          */
         path: string;
+        invalidators?: string[];
     }
 }
 
@@ -45,6 +46,33 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
         params: {entities}
     }) => {
     entities.forEach(({name, withTrpc, packages}) => {
+        withTrpc.invalidators && withSourceFile()
+            .withImports({
+                imports: {
+                    [withTrpc.package]: [
+                        "trpc",
+                    ],
+                },
+            })
+            .withConsts({
+                exports: {
+                    [`use${name}QueryInvalidator`]: {
+                        body: `
+() => {
+    const trpcContext = trpc.useContext();
+    return () => {
+        ${withTrpc.invalidators.map(invalidator => `trpcContext.${invalidator}.invalidate();`).join("\n\t\t")}
+    };
+}
+                        `,
+                    },
+                },
+            })
+            .saveTo({
+                file: normalize(`${directory}/ClientTrpc/use${name}QueryInvalidator.tsx`),
+                barrel,
+            });
+
         withSourceFile()
             .withImports({
                 imports: {
@@ -69,7 +97,7 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
                     [`Use${name}SourceQuery`]: {
                         type: `IUse${name}SourceQuery`,
                         body: `withSourceQuery<I${name}SourceSchema>(trpc.${withTrpc.path}.source)`,
-                    }
+                    },
                 }
             })
             .saveTo({

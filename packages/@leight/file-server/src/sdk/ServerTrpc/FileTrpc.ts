@@ -24,4 +24,4 @@ export const FileSourceProcedure = withSourceProcedure<IFileSourceSchema>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ba06fg4d2yho883xkjbniv22 = true;
+export const $leight_a2yxler7jhrdrsarycj4m0q8 = true;

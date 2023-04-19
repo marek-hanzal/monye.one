@@ -3,6 +3,10 @@ import {
     Translation,
     useTranslation
 }                               from "@leight/i18n-client";
+import {
+    DrawerStore,
+    ModalStore
+}                               from "@leight/mantine";
 import {BlockStore}             from "@leight/utils-client";
 import {
     Box,
@@ -75,11 +79,20 @@ export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWit
     defaultValues?: TFormSchema["Values"];
     onSubmit?(props: IFormProps.IOnSubmitProps<TFormSchema>): void;
     submitProps?: ComponentProps<typeof Button>;
+    /**
+     * If true, onSuccess also closes drawer/modal it's in (must be modal from @leight)
+     */
+    withAutoClose?: boolean;
 }>;
 
 export namespace IFormProps {
     export interface IOnSubmitProps<TFormSchema extends IFormSchema> {
         request: TFormSchema["Request"];
+
+        /**
+         * Calls default form submit stuff
+         */
+        onDefaultSubmit(): void;
     }
 
     export interface IInputsProps<TFormSchema extends IFormSchema> {
@@ -153,13 +166,26 @@ const FormInternal = <TFormSchema extends IFormSchema = IFormSchema>(
         onSubmit,
         withTranslation,
         submitProps,
+        withAutoClose = true,
         children,
     }: IFormInternalProps<TFormSchema>) => {
     const {isBlock} = BlockStore.useOptionalState() || {isBlock: false};
+    const modal     = ModalStore.useOptionalState();
+    const drawer    = DrawerStore.useOptionalState();
+
+    const onDefaultSubmit = () => {
+        if (withAutoClose) {
+            modal?.close();
+            drawer?.close();
+        }
+    };
+
     return <Box pos={"relative"}>
         <LoadingOverlay visible={isBlock}/>
         <form
-            onSubmit={form.onSubmit(request => onSubmit?.({request}))}
+            onSubmit={form.onSubmit(request => {
+                onSubmit?.({request, onDefaultSubmit});
+            })}
         >
             {children}
             <Divider

@@ -218,27 +218,30 @@ props => {
             withSourceFile()
                 .withImports({
                     imports: {
-                        "@leight/form-client":  [
+                        "@leight/form-client":                       [
                             "type ITrpcFormProps",
                         ],
-                        "@leight/utils-client": [
+                        "@leight/utils-client":                      [
                             "BlockStore",
                         ],
-                        "../api":               [
+                        "../api":                                    [
                             `type I${name}FormSchema`,
                         ],
-                        "react":                [
+                        "react":                                     [
                             "type FC"
                         ],
-                        [`./${name}BaseForm`]:  [
+                        [`../ClientForm/${name}BaseForm`]:           [
                             `type I${name}BaseFormProps`,
                             `${name}BaseForm`,
+                        ],
+                        [`./use${withTrpc.source}QueryInvalidator`]: [
+                            `use${withTrpc.source}QueryInvalidator`,
                         ],
                     },
                 })
                 .withImports({
                     imports: {
-                        [`../ClientTrpc/Use${withTrpc.source}SourceQuery`]: [
+                        [`./Use${withTrpc.source}SourceQuery`]: [
                             `Use${withTrpc.source}SourceQuery`,
                         ]
                     },
@@ -265,11 +268,14 @@ props => {
 ({onSuccess, onError, onSettled, ...props}) => {
     const {block} = BlockStore.useOptionalState() || {block: () => null};
     const mutation = Use${withTrpc.source}SourceQuery.useCreate();
+    const invalidator = use${withTrpc.source}QueryInvalidator();
     return <${name}BaseForm
-        onSubmit={({request}) => {
+        onSubmit={({request, onDefaultSubmit}) => {
             block(true);
             mutation.mutate(request, {
                 onSuccess: dto => {
+                    onDefaultSubmit();
+                    invalidator();
                     onSuccess?.({dto});
                 },
                 onError: error => {
@@ -289,7 +295,7 @@ props => {
                     },
                 })
                 .saveTo({
-                    file: normalize(`${directory}/ClientForm/${name}TrpcForm.tsx`),
+                    file: normalize(`${directory}/ClientTrpc/${name}TrpcForm.tsx`),
                     barrel,
                 });
         }

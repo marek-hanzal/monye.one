@@ -12,8 +12,12 @@ void withSdk(
                 schema: "@monye.one/bank",
             },
             withTrpc: {
-                path:    "bank",
-                package: "@monye.one/trpc-client",
+                path:         "bank",
+                package:      "@monye.one/trpc-client",
+                invalidators: [
+                    "bank.source.query",
+                    "bank.source.count",
+                ],
             },
             Form:     {
                 forms: [

@@ -14,4 +14,4 @@ export class BankBaseSourceMapper extends AbstractSourceMapper<IBankSourceSchema
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_j8qvebcqoj2ed4p5uuh7vfds = true;
+export const $leight_ichad5crrjqb0z63nyu5ptr3 = true;

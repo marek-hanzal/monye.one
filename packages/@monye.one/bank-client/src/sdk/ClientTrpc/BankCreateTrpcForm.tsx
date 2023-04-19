@@ -10,8 +10,9 @@ import {type FC} from "react";
 import {
 	type IBankCreateBaseFormProps,
 	BankCreateBaseForm
-} from "./BankCreateBaseForm";
-import {UseBankSourceQuery} from "../ClientTrpc/UseBankSourceQuery";
+} from "../ClientForm/BankCreateBaseForm";
+import {useBankQueryInvalidator} from "./useBankQueryInvalidator";
+import {UseBankSourceQuery} from "./UseBankSourceQuery";
 
 export interface IBankCreateTrpcFormProps extends IBankCreateBaseFormProps, ITrpcFormProps<IBankCreateFormSchema> {
 }
@@ -19,11 +20,14 @@ export interface IBankCreateTrpcFormProps extends IBankCreateBaseFormProps, ITrp
 export const BankCreateTrpcForm: FC<IBankCreateTrpcFormProps> = ({onSuccess, onError, onSettled, ...props}) => {
     const {block} = BlockStore.useOptionalState() || {block: () => null};
     const mutation = UseBankSourceQuery.useCreate();
+    const invalidator = useBankQueryInvalidator();
     return <BankCreateBaseForm
-        onSubmit={({request}) => {
+        onSubmit={({request, onDefaultSubmit}) => {
             block(true);
             mutation.mutate(request, {
                 onSuccess: dto => {
+                    onDefaultSubmit();
+                    invalidator();
                     onSuccess?.({dto});
                 },
                 onError: error => {
@@ -42,4 +46,4 @@ export const BankCreateTrpcForm: FC<IBankCreateTrpcFormProps> = ({onSuccess, onE
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_gaefosu92wweer6lndoxq1u1 = true;
+export const $leight_cwxu3m62u6rige9oisu1abmm = true;

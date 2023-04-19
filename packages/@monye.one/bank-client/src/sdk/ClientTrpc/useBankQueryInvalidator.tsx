@@ -3,13 +3,17 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IBankSourceSchema} from "@monye.one/bank";
-import {type ISourceMapper} from "@leight/source-server";
+import {trpc} from "@monye.one/trpc-client";
 
-export type IBankSourceMapper = ISourceMapper<IBankSourceSchema>;
-
+export const useBankQueryInvalidator = () => {
+    const trpcContext = trpc.useContext();
+    return () => {
+        trpcContext.bank.source.query.invalidate();
+		trpcContext.bank.source.count.invalidate();
+    };
+};
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_pi314jw3zzb869xg5m4db5ci = true;
+export const $leight_bztk5udq102t8yvq7iukktjc = true;
