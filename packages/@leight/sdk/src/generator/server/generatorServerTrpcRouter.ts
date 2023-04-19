@@ -61,6 +61,9 @@ router({
     patch:  procedure
                 .input(${name}SourceProcedure.PatchSchema)
                 .mutation(${name}SourceProcedure.Patch),
+    delete:  procedure
+                .input(${name}SourceProcedure.IdentitySchema)
+                .mutation(${name}SourceProcedure.Delete),
     query:  procedure
                 .input(${name}SourceProcedure.QueryOptionalSchema)
                 .query(${name}SourceProcedure.Query),

@@ -17,11 +17,7 @@ export interface IBankCreateForm extends Omit<IBankCreateBaseFormProps, "withMap
 
 export const BankCreateForm: FC<IBankCreateForm> = props => {
     return <BankCreateTrpcForm
-        withMapper={values => ({
-            ...values,
-            id:     "123",
-            userId: "123",
-        })}
+        withMapper={values => values}
         onSuccess={({dto}) => {
             console.log("Success: BankCreateTrpcForm", dto);
         }}

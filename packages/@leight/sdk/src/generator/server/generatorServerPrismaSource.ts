@@ -62,6 +62,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
                     ],
                     "@leight/source":        [
                         "type ISource",
+                        "type IWithIdentity",
                     ],
                     "@leight/source-server": [
                         "AbstractSource",
@@ -128,6 +129,14 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
             where: this.toWhereUnique(filter),
             include: ${$withInclude},
         });
+    }
+
+    async runDelete({id}: IWithIdentity): Promise<I${name}SourceSchema["Entity"]> {
+        const item = await this.find(id);
+        await this.prisma().delete({
+            where: {id},
+        });
+        return item;
     }
 
     async runCount(query?: I${name}SourceSchema["Query"]): Promise<number> {

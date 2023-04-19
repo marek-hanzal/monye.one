@@ -29,4 +29,4 @@ export const FileQueryProvider: FC<IFileQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fn9chyd9mf279a015xj9gx85 = true;
+export const $leight_spu76c2pwxi8ngd4va855cuv = true;

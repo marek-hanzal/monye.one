@@ -50,6 +50,14 @@ export const withSourceProcedure = <TSourceSchema extends ISourceSchema>(
                 );
             },
         }),
+        Delete:              withHandler<IWithIdentity, TSourceSchema["Dto"]>({
+            handler: async ({container, request}) => {
+                const $mapper = container.resolve<ISourceMapper<TSourceSchema>>(mapper);
+                return $mapper.toDto(
+                    container.resolve<ISource<TSourceSchema>>(source).delete(request)
+                );
+            },
+        }),
         Query:               withHandler<TSourceSchema["Query"] | undefined, TSourceSchema["Dto"][]>({
             handler: async ({container, request}) => {
                 const $mapper = container.resolve<ISourceMapper<TSourceSchema>>(mapper);

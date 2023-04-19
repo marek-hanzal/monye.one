@@ -7,7 +7,10 @@ import {
 	$PrismaClient,
 	type PrismaClient
 } from "@leight/prisma";
-import {type ISource} from "@leight/source";
+import {
+	type ISource,
+	type IWithIdentity
+} from "@leight/source";
 import {AbstractSource} from "@leight/source-server";
 import {
 	$UserSource,
@@ -57,6 +60,14 @@ export class UserBasePrismaSource extends AbstractSource<IUserSourceSchema> {
         });
     }
 
+    async runDelete({id}: IWithIdentity): Promise<IUserSourceSchema["Entity"]> {
+        const item = await this.find(id);
+        await this.prisma().delete({
+            where: {id},
+        });
+        return item;
+    }
+
     async runCount(query?: IUserSourceSchema["Query"]): Promise<number> {
         return this.prisma().count({
             where: this.toWhere(query?.filter),
@@ -95,4 +106,4 @@ export class UserBasePrismaSource extends AbstractSource<IUserSourceSchema> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ylv4qnibwnn8oaaeku2onqj4 = true;
+export const $leight_jp6j6glaw7yk8wk5tdv4hev9 = true;

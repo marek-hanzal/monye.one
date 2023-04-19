@@ -16,6 +16,9 @@ export const BankSourceRouter = router({
     patch:  procedure
                 .input(BankSourceProcedure.PatchSchema)
                 .mutation(BankSourceProcedure.Patch),
+    delete:  procedure
+                .input(BankSourceProcedure.IdentitySchema)
+                .mutation(BankSourceProcedure.Delete),
     query:  procedure
                 .input(BankSourceProcedure.QueryOptionalSchema)
                 .query(BankSourceProcedure.Query),
@@ -33,4 +36,4 @@ export const BankSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vn0aws0uos53agenehnttxrk = true;
+export const $leight_luq4v8upbwmlixzza3vkzy4s = true;

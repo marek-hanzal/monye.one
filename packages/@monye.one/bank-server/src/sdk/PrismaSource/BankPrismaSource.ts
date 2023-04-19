@@ -4,7 +4,10 @@
  */
 import {withCursor} from "@leight/query";
 import {$PrismaClient} from "@leight/prisma";
-import {type ISource} from "@leight/source";
+import {
+	type ISource,
+	type IWithIdentity
+} from "@leight/source";
 import {AbstractSource} from "@leight/source-server";
 import {
 	$BankSource,
@@ -55,6 +58,14 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
         });
     }
 
+    async runDelete({id}: IWithIdentity): Promise<IBankSourceSchema["Entity"]> {
+        const item = await this.find(id);
+        await this.prisma().delete({
+            where: {id},
+        });
+        return item;
+    }
+
     async runCount(query?: IBankSourceSchema["Query"]): Promise<number> {
         return this.prisma().count({
             where: this.toWhere(query?.filter),
@@ -93,4 +104,4 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lzjgpc2ulkic3vh5gj80cs1r = true;
+export const $leight_oxmnxx4sq71mev0yfgony2qh = true;

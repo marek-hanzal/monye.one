@@ -16,6 +16,9 @@ export const JobSourceRouter = router({
     patch:  procedure
                 .input(JobSourceProcedure.PatchSchema)
                 .mutation(JobSourceProcedure.Patch),
+    delete:  procedure
+                .input(JobSourceProcedure.IdentitySchema)
+                .mutation(JobSourceProcedure.Delete),
     query:  procedure
                 .input(JobSourceProcedure.QueryOptionalSchema)
                 .query(JobSourceProcedure.Query),
@@ -33,4 +36,4 @@ export const JobSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_oksc5ni7yzf85casuumrs1cv = true;
+export const $leight_hnutthwo1t0hya0pbqx0qza6 = true;

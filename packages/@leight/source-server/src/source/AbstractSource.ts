@@ -2,6 +2,7 @@ import {
     type ISource,
     type ISourceName,
     type ISourceSchema,
+    type IWithIdentity,
     SourceError
 } from "@leight/source";
 
@@ -40,6 +41,15 @@ export abstract class AbstractSource<TSourceSchema extends ISourceSchema> implem
     async runPatch(patch: TSourceSchema["Patch"]): Promise<TSourceSchema["Entity"]> {
         console.error(`Source [${this.name}] does not support patching.`, patch);
         throw new SourceError(`Source [${this.name}] does not support patching.`);
+    }
+
+    async delete(withIdentity: IWithIdentity): Promise<TSourceSchema["Entity"]> {
+        return this.runDelete(withIdentity);
+    }
+
+    async runDelete(withIdentity: IWithIdentity): Promise<TSourceSchema["Entity"]> {
+        console.error(`Source [${this.name}] does not support deleting by an ID.`, withIdentity);
+        throw new SourceError(`Source [${this.name}] does not support deleting by an ID.`);
     }
 
     async count(query?: TSourceSchema["Query"]): Promise<number> {

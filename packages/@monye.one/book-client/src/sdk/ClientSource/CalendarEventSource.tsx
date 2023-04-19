@@ -33,4 +33,4 @@ export const CalendarEventSource: FC<ICalendarEventSourceProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fu4eoax1bzn1xm9vr7qfn9wl = true;
+export const $leight_rdm2vgdoz6dj5uep2k62qqfl = true;

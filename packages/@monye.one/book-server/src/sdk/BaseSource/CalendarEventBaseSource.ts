@@ -18,4 +18,4 @@ export class CalendarEventBaseSource extends AbstractSource<ICalendarEventSource
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jmb2iwv3ruoy2z6dhz5kfe06 = true;
+export const $leight_ct1h71dsheuxrb9gorxnyks0 = true;

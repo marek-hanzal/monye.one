@@ -177,6 +177,8 @@ export interface ISource<TSourceSchema extends ISourceSchema> {
 
     patch(patch: TSourceSchema["Patch"]): Promise<TSourceSchema["Entity"]>;
 
+    delete(withIdentity: IWithIdentity): Promise<TSourceSchema["Entity"]>;
+
     /**
      * Count items based on an optional query.
      */
@@ -220,6 +222,7 @@ export type IUseSourceState<TSourceSchema extends ISourceSchema> = IUseState<ISo
 export type IUseSourceQuery<TSourceSchema extends ISourceSchema> = {
     useCreate: IUseMutation<TSourceSchema["ToCreate"], TSourceSchema["Dto"]>
     usePatch: IUseMutation<TSourceSchema["ToPatch"], TSourceSchema["Dto"]>
+    useDelete: IUseMutation<IWithIdentity, TSourceSchema["Dto"]>
     useQuery: IUseQuery<TSourceSchema["Query"] | undefined, TSourceSchema["Dto"][]>;
     useCount: IUseQuery<TSourceSchema["Query"] | undefined, number>;
     useFetch: IUseQuery<TSourceSchema["Query"], TSourceSchema["Dto"]>;
