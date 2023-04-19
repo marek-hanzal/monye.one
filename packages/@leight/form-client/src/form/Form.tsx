@@ -16,6 +16,8 @@ import {
     LoadingOverlay
 }                               from "@mantine/core";
 import {type UseFormReturnType} from "@mantine/form";
+import {notifications}          from "@mantine/notifications";
+import {IconCheck}              from "@tabler/icons-react";
 import {
     ComponentProps,
     type PropsWithChildren
@@ -178,6 +180,12 @@ const FormInternal = <TFormSchema extends IFormSchema = IFormSchema>(
             modal?.close();
             drawer?.close();
         }
+        notifications.show({
+            title:   <Translation {...withTranslation} label={`${withTranslation.label}.success.title`}/>,
+            message: <Translation {...withTranslation} label={`${withTranslation.label}.success.message`}/>,
+            icon:    <IconCheck size={"1.1rem"}/>,
+            color:   "teal",
+        });
     };
 
     return <Box pos={"relative"}>

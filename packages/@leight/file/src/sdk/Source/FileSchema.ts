@@ -46,4 +46,4 @@ export const FileSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tonka2f4nb3hwo8wfha9vs45 = true;
+export const $leight_d380kvi1ycho023reop0m56t = true;

@@ -49,4 +49,4 @@ export const TransactionSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_sp53n26o0l7exklkl6nttb8n = true;
+export const $leight_muf3ppquq37g6vf692gl5th5 = true;
