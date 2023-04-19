@@ -41,20 +41,18 @@ export namespace IGeneratorServerPrismaSourceParams {
 export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourceParams> = async (
     {
         barrel,
-        folder,
+        directory,
         params: {entities},
     }) => {
-    const file = withSourceFile();
-
     entities.forEach(({name, prisma, packages, withInclude}) => {
         const $withInclude = withInclude ? JSON.stringify(withInclude) : "undefined";
 
-        file.withHeader(`
+        withSourceFile()
+            .withHeader(`
     Base Prisma Source contains default implementation of Source for entity ${name} connected to Prisma. This could be used for further extensions,
     also default export uses this as a parent class.
-        `);
-
-        file.withImports({
+        `)
+            .withImports({
                 imports: {
                     "@leight/query":         [
                         "withCursor",
@@ -74,7 +72,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
                 imports: {
                     [packages.schema]: [
                         `$${name}Source`,
-                        `I${name}SourceSchema`,
+                        `type I${name}SourceSchema`,
                         `type I${name}PrismaSchema`,
                     ],
                 },
@@ -167,11 +165,10 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
                     `,
                     },
                 },
+            })
+            .saveTo({
+                file: normalize(`${directory}/PrismaSource/${name}PrismaSource.ts`),
+                barrel,
             });
-    });
-
-    file.saveTo({
-        file: normalize(`${process.cwd()}/${folder}/ServerPrismaSource.ts`),
-        barrel,
     });
 };

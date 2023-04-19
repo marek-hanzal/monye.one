@@ -8,7 +8,7 @@ import {type ISource} from "@leight/source";
 import {AbstractSource} from "@leight/source-server";
 import {
 	$BankSource,
-	IBankSourceSchema,
+	type IBankSourceSchema,
 	type IBankPrismaSchema
 } from "@monye.one/bank";
 import {type PrismaClient} from "@monye.one/prisma";
@@ -93,4 +93,4 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fb39svig0ofi3vh1djhsykou = true;
+export const $leight_x78dkcaz46otsmcmb9yv0159 = true;

@@ -45,24 +45,37 @@ export namespace IGeneratorServerSourceParams {
 export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = async (
     {
         barrel,
-        folder,
+        directory,
         params: {entities},
     }) => {
-    const ServerSource       = withSourceFile();
-    const ServerSourceMapper = withSourceFile();
-
     entities.forEach(({name, sourceEx, mapperEx, withPrisma, packages}) => {
         const baseSource = withPrisma ? `${name}BasePrismaSource` : `${name}BaseSource`;
-
-        ServerSource.withImports({
+        withSourceFile()
+            .withImports({
                 imports: {
                     [packages.schema]:       [
-                        `type I${name}Source`,
                         `type I${name}SourceSchema`,
                     ],
                     "@leight/source-server": [
-                        "AbstractSourceMapper",
                         "type ISourceMapper",
+                    ],
+                },
+            })
+            .withTypes({
+                exports: {
+                    [`I${name}SourceMapper`]: `ISourceMapper<I${name}SourceSchema>`,
+                },
+            })
+            .saveTo({
+                file:   normalize(`${directory}/api/index.ts`),
+                barrel: false,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    [packages.schema]: [
+                        `type I${name}Source`,
                     ],
                 },
             })
@@ -82,27 +95,52 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
             } : undefined)
             .withClasses({
                 exports: {
-                    [`${name}Source`]:           {
+                    [`${name}Source`]: {
                         extends:    sourceEx?.type ? withPackageType(sourceEx) : baseSource,
                         implements: `I${name}Source`,
                     },
+                }
+            })
+            .saveTo({
+                file: normalize(`${directory}/ServerSource/${name}ServerSource.ts`),
+                barrel,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "../api":                [
+                        `type I${name}SourceMapper`,
+                    ],
+                    "@leight/source-server": [
+                        `AbstractSourceMapper`,
+                    ],
+                    [packages.schema]:       [
+                        `type I${name}SourceSchema`,
+                    ],
+                },
+            })
+            .withClasses({
+                exports: {
                     [`${name}BaseSourceMapper`]: {
                         extends:    `AbstractSourceMapper<I${name}SourceSchema>`,
                         implements: `I${name}SourceMapper`,
                     },
-                }
-            })
-            .withTypes({
-                exports: {
-                    [`I${name}SourceMapper`]: `ISourceMapper<I${name}SourceSchema>`,
                 },
+            })
+            .saveTo({
+                file: normalize(`${directory}/ServerSourceMapper/${name}BaseSourceMapper.ts`),
+                barrel,
             });
 
-        ServerSourceMapper
+        withSourceFile()
             .withImports(mapperEx?.withPackage ? {
                 imports: {
                     [mapperEx.withPackage.package]: [
                         withPackageImport(mapperEx),
+                    ],
+                    "../api":                       [
+                        `type I${name}SourceMapper`,
                     ],
                 },
             } : undefined)
@@ -113,15 +151,10 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
                         implements: `I${name}SourceMapper`,
                     },
                 },
+            })
+            .saveTo({
+                file: normalize(`${directory}/ServerSourceMapper/${name}SourceMapper.ts`),
+                barrel,
             });
-    });
-
-    ServerSource.saveTo({
-        file: normalize(`${process.cwd()}/${folder}/ServerSource.ts`),
-        barrel,
-    });
-    ServerSourceMapper.saveTo({
-        file: normalize(`${process.cwd()}/${folder}/ServerSourceMapper.ts`),
-        barrel,
     });
 };

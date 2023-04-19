@@ -16,7 +16,7 @@
     "types": "lib/index.d.ts",
     "scripts": {
         "dev": "dotenv -e ROARR_LOG=true -- turbowatch",
-        "generate": "concurrently npm:generate:*",
+        "generate": "del-cli src/sdk/** && concurrently npm:generate:*",
         "generate:sdk": "tsx src/leight-sdk.ts",
         "build": "concurrently npm:build:*",
         "build:esbuild": "node esbuild.mjs",

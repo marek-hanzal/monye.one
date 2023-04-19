@@ -1,10 +1,10 @@
 import {
     withSdk,
-    withServerProcedure
+    withServerTrpcRouter
 } from "@leight/sdk";
 
 void withSdk(
-    withServerProcedure({
+    withServerTrpcRouter({
         procedures: [
             {
                 name:     "Bank",

@@ -1,4 +1,5 @@
 import {resolvePackageJson}      from "@leight/utils-server";
+import {normalize}               from "node:path";
 import {type ISdkGeneratorProps} from "../api";
 import {
     generatorCommon,
@@ -24,8 +25,9 @@ export const withSourceGenerators = (
         async () => generatorCommon({
             packageName,
             folder,
-            barrel: true,
+            barrel:    false,
             params,
+            directory: normalize(`${process.cwd()}/${folder}`),
         }),
     ];
 };

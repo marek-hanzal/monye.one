@@ -2,11 +2,11 @@ import {withSourceFile}  from "@leight/generator-server";
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
-export interface IGeneratorServerTrpcProcedureParams {
-    procedures: IGeneratorServerTrpcProcedureParams.IProcedure[];
+export interface IGeneratorServerTrpcRouterParams {
+    procedures: IGeneratorServerTrpcRouterParams.IProcedure[];
 }
 
-export namespace IGeneratorServerTrpcProcedureParams {
+export namespace IGeneratorServerTrpcRouterParams {
     export interface IProcedure {
         /**
          * Base name exported (used to name all exported objects)
@@ -24,19 +24,17 @@ export namespace IGeneratorServerTrpcProcedureParams {
     }
 }
 
-export const generatorServerTrpcProcedure: IGenerator<IGeneratorServerTrpcProcedureParams> = async (
+export const generatorServerTrpcRouter: IGenerator<IGeneratorServerTrpcRouterParams> = async (
     {
         barrel,
-        folder,
+        directory,
         params: {procedures},
     }) => {
-    const file = withSourceFile();
-
     procedures.forEach(({name, packages}) => {
-        file
+        withSourceFile()
             .withImports({
                 imports: {
-                    [packages.router || '../router']: [
+                    [packages.router || "../../router"]: [
                         "router",
                         "procedure",
                     ],
@@ -76,12 +74,10 @@ router({
                     `,
                     },
                 },
+            })
+            .saveTo({
+                file: normalize(`${directory}/ServerTrpc/${name}TrpcRouter.ts`),
+                barrel,
             });
-    });
-
-
-    file.saveTo({
-        file: normalize(`${process.cwd()}/${folder}/ServerTrpcProcedure.ts`),
-        barrel,
     });
 };

@@ -29,18 +29,16 @@ export namespace IGeneratorServerBaseSourceParams {
 export const generatorServerBaseSource: IGenerator<IGeneratorServerBaseSourceParams> = async (
     {
         barrel,
-        folder,
+        directory,
         params: {entities},
     }) => {
-    const file = withSourceFile();
-
     entities.forEach(({name, packages}) => {
-        file.withHeader(`
+        withSourceFile()
+            .withHeader(`
     Base Source contains default implementation of Source for entity ${name}. This could be used for further extensions,
     also default export uses this as a parent class.
-        `);
-
-        file.withImports({
+        `)
+            .withImports({
                 imports: {
                     "@leight/source-server": [
                         "AbstractSource",
@@ -66,11 +64,10 @@ export const generatorServerBaseSource: IGenerator<IGeneratorServerBaseSourcePar
                     `,
                     },
                 },
+            })
+            .saveTo({
+                file: normalize(`${directory}/BaseSource/${name}BaseSource.ts`),
+                barrel,
             });
-    });
-
-    file.saveTo({
-        file: normalize(`${process.cwd()}/${folder}/ServerBaseSource.ts`),
-        barrel,
     });
 };

@@ -29,13 +29,11 @@ export namespace IGeneratorServerTrpcSourceParams {
 export const generatorServerTrpcSource: IGenerator<IGeneratorServerTrpcSourceParams> = async (
     {
         barrel,
-        folder,
+        directory,
         params: {entities},
     }) => {
-    const file = withSourceFile();
-
     entities.forEach(({name, packages}) => {
-        file
+        withSourceFile()
             .withImports({
                 imports: {
                     "@leight/trpc-source-server": [
@@ -69,12 +67,10 @@ withSourceProcedure<I${name}SourceSchema>({
                     `,
                     },
                 },
+            })
+            .saveTo({
+                file: normalize(`${directory}/ServerTrpc/${name}Trpc.ts`),
+                barrel,
             });
-    });
-
-
-    file.saveTo({
-        file: normalize(`${process.cwd()}/${folder}/ServerTrpc.ts`),
-        barrel,
     });
 };

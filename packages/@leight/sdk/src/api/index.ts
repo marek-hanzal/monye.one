@@ -11,6 +11,10 @@ export type ITemplate<TParams = void> = IfExtends<
          */
         folder: string;
         /**
+         * Precomputed normalized target path
+         */
+        directory: string;
+        /**
          * Should also index.ts be generated/updated?
          */
         barrel: boolean;

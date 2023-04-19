@@ -1,31 +1,33 @@
 import {resolvePackageJson}      from "@leight/utils-server";
+import {normalize}               from "node:path";
 import {type ISdkGeneratorProps} from "../api";
 import {
-    generatorServerTrpcProcedure,
-    type IGeneratorServerTrpcProcedureParams
+    generatorServerTrpcRouter,
+    type IGeneratorServerTrpcRouterParams
 }                                from "../generator";
 
-export type IWithServerProcedureProps =
-    IGeneratorServerTrpcProcedureParams
+export type IWithServerTrpcRouterProps =
+    IGeneratorServerTrpcRouterParams
     &
     ISdkGeneratorProps;
 
-export const withServerProcedure = (
+export const withServerTrpcRouter = (
     {
         packageName = resolvePackageJson().name,
         folder = "src/sdk",
         ...params
-    }: IWithServerProcedureProps) => {
+    }: IWithServerTrpcRouterProps) => {
     if (!packageName) {
         throw new Error("Cannot resolve packageName");
     }
 
     return [
-        async () => generatorServerTrpcProcedure({
+        async () => generatorServerTrpcRouter({
             packageName,
             folder,
-            barrel: true,
+            barrel:    false,
             params,
+            directory: normalize(`${process.cwd()}/${folder}`),
         }),
     ];
 };

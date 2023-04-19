@@ -12,13 +12,13 @@ void withSdk(
             withSourceEx: {
                 type:        "BankSourceEx",
                 withPackage: {
-                    package: "../source",
+                    package: "../../source",
                 },
             },
             withMapperEx: {
                 type:        "BankSourceMapperEx",
                 withPackage: {
-                    package: "../source",
+                    package: "../../source",
                 },
             },
             packages:     {
