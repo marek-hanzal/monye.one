@@ -30,7 +30,7 @@ import {Description}   from "./Description";
 import {Error}         from "./Error";
 import {Label}         from "./Label";
 
-export interface IDateInputProps<TFormSchema extends IFormSchema> extends ComponentProps<typeof Box>, IFormInputs.IInputProps<TFormSchema> {
+export interface IDateInputProps<TFormSchema extends IFormSchema> extends Omit<ComponentProps<typeof Box<"div">>, "placeholder">, IFormInputs.IInputProps<TFormSchema> {
     label?: string;
     description?: string;
     placeholder?: ReactNode;

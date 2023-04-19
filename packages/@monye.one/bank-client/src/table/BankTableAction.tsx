@@ -19,19 +19,20 @@ export const BankTableAction: IBankTableProps["WithTableAction"] = () => {
         </Menu.Label>
         <Menu.Item
             onClick={() => modals.open({
-                zIndex:   500,
-                modalId:  "import",
-                title:    <Translation
-                              namespace={"bank"}
-                              label={"modal.account.create.title"}
-                          />,
-                size:     "lg",
-                children: <>
-                              <Divider/>
-                              <Box m={"sm"}>
-                                  <BankCreateForm/>
-                              </Box>
-                          </>
+                zIndex:              500,
+                modalId:             "import",
+                closeOnClickOutside: false,
+                title:               <Translation
+                                         namespace={"bank"}
+                                         label={"modal.account.create.title"}
+                                     />,
+                size:                "lg",
+                children:            <>
+                                         <Divider/>
+                                         <Box m={"sm"}>
+                                             <BankCreateForm/>
+                                         </Box>
+                                     </>
             })}
             icon={<IconCash size={14}/>}
         >

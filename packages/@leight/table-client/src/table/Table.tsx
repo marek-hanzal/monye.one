@@ -12,7 +12,8 @@ import {
     type ComponentProps,
     type CSSProperties,
     FC,
-    type ReactNode
+    type ReactNode,
+    useMemo
 }                              from "react";
 import {TableAction}           from "./TableAction";
 import {TableRowAction}        from "./TableRowAction";
@@ -120,10 +121,10 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
         ...props
     }: ITableInternalProps<TColumn, TColumnKeys>) => {
 
-    const $columns: [string, TColumn][] = order.filter(column => !hidden.includes(column)).map(column => [
+    const $columns: [string, TColumn][] = useMemo(() => order.filter(column => !hidden.includes(column)).map(column => [
         column,
         (overrideColumns as any)[column] || (columns as any)[column],
-    ]);
+    ]), [JSON.stringify(order)]);
 
     return <ScrollArea
         w={"100%"}
