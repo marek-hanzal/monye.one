@@ -3,10 +3,13 @@ import {
     Translation,
     useTranslation
 }                               from "@leight/i18n-client";
+import {BlockStore}             from "@leight/utils-client";
 import {
+    Box,
     Button,
     Divider,
-    Group
+    Group,
+    LoadingOverlay
 }                               from "@mantine/core";
 import {type UseFormReturnType} from "@mantine/form";
 import {
@@ -152,28 +155,32 @@ const FormInternal = <TFormSchema extends IFormSchema = IFormSchema>(
         submitProps,
         children,
     }: IFormInternalProps<TFormSchema>) => {
-    return <form
-        onSubmit={form.onSubmit(request => onSubmit?.({request}))}
-    >
-        {children}
-        <Divider
-            mt={"md"}
-        />
-        <Group
-            position={"center"}
-            mt={"md"}
+    const {isBlock} = BlockStore.useOptionalState() || {isBlock: false};
+    return <Box pos={"relative"}>
+        <LoadingOverlay visible={isBlock}/>
+        <form
+            onSubmit={form.onSubmit(request => onSubmit?.({request}))}
         >
-            <Button
-                size={"lg"}
-                // disabled={!form.isValid()}
-                type={"submit"}
-                {...submitProps}
+            {children}
+            <Divider
+                mt={"md"}
+            />
+            <Group
+                position={"center"}
+                mt={"md"}
             >
-                <Translation
-                    {...withTranslation}
-                    label={`${withTranslation.label}.submit.button`}
-                />
-            </Button>
-        </Group>
-    </form>;
+                <Button
+                    size={"lg"}
+                    // disabled={!form.isValid()}
+                    type={"submit"}
+                    {...submitProps}
+                >
+                    <Translation
+                        {...withTranslation}
+                        label={`${withTranslation.label}.submit.button`}
+                    />
+                </Button>
+            </Group>
+        </form>
+    </Box>;
 };

@@ -7,7 +7,7 @@ import {DateTime}         from "@leight/i18n";
 import {type FC}          from "react";
 import {IconBank}         from "../icon";
 import {
-    BankCreateBaseForm,
+    BankCreateTrpcForm,
     type IBankCreateBaseFormProps
 }                         from "../sdk";
 import {BankCreateFields} from "./BankCreateFields";
@@ -16,14 +16,14 @@ export interface IBankCreateForm extends Omit<IBankCreateBaseFormProps, "withMap
 }
 
 export const BankCreateForm: FC<IBankCreateForm> = props => {
-    return <BankCreateBaseForm
+    return <BankCreateTrpcForm
         withMapper={values => ({
             ...values,
             id:     "123",
             userId: "123",
         })}
-        onSubmit={({request}) => {
-            console.log("BankCreateBaseForm", request);
+        onSuccess={({dto}) => {
+            console.log("Success: BankCreateTrpcForm", dto);
         }}
         inputs={() => ({
             "account":       ({mandatory, withLabel, withDescription}) => <TextInput
@@ -60,5 +60,5 @@ export const BankCreateForm: FC<IBankCreateForm> = props => {
         {...props}
     >
         <BankCreateFields/>
-    </BankCreateBaseForm>;
+    </BankCreateTrpcForm>;
 };

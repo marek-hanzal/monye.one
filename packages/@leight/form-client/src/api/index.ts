@@ -80,3 +80,24 @@ export type IFormInputsFactory<TFormSchema extends IFormSchema> = (props: IFormP
 export type IFormInputsOverrideFactory<TFormSchema extends IFormSchema> = (props: IFormProps.IInputsProps<TFormSchema>) => Partial<IFormInputs<TFormSchema>>;
 
 export type IUseForm<TFormSchema extends IFormSchema> = UseFormReturnType<TFormSchema["Values"], IFormMapper<TFormSchema>>;
+
+export interface ITrpcFormProps<TFormSchema extends IFormSchema> {
+    onSuccess?(props: ITrpcFormProps.IOnSuccess<TFormSchema>): void;
+
+    onError?(props: ITrpcFormProps.IOnError<TFormSchema>): void;
+
+    onSettled?(props: ITrpcFormProps.IOnSettled<TFormSchema>): void;
+}
+
+export namespace ITrpcFormProps {
+    export interface IOnSuccess<TFormSchema extends IFormSchema> {
+        dto: TFormSchema["Response"];
+    }
+
+    export interface IOnError<TFormSchema extends IFormSchema> {
+        error: any;
+    }
+
+    export interface IOnSettled<TFormSchema extends IFormSchema> {
+    }
+}

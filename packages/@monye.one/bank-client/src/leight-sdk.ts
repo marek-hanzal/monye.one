@@ -22,6 +22,9 @@ void withSdk(
                         translation: {
                             namespace: "bank",
                         },
+                        withTrpc:    {
+                            source: "Bank",
+                        },
                     },
                 ],
             }

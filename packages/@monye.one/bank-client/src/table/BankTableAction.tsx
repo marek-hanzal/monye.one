@@ -5,6 +5,7 @@ import {
     MenuLabel
 }                             from "@leight/mantine";
 import {TableActionMenu}      from "@leight/table-client";
+import {BlockProvider}        from "@leight/utils-client";
 import {
     Box,
     Divider
@@ -24,10 +25,12 @@ export const BankTableAction: IBankTableProps["WithTableAction"] = () => {
             icon={<IconBank/>}
             title={"modal.account.create.title"}
         >
-            <Divider/>
-            <Box m={"sm"}>
-                <BankCreateForm/>
-            </Box>
+            <BlockProvider>
+                <Divider/>
+                <Box m={"sm"}>
+                    <BankCreateForm/>
+                </Box>
+            </BlockProvider>
         </Drawer>
         <TableActionMenu>
             <MenuLabel

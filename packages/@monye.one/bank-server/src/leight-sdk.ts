@@ -15,6 +15,12 @@ void withSdk(
                     package: "../source",
                 },
             },
+            withMapperEx: {
+                type:        "BankSourceMapperEx",
+                withPackage: {
+                    package: "../source",
+                },
+            },
             packages:     {
                 schema: "@monye.one/bank",
                 prisma: "@monye.one/prisma",

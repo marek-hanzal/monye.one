@@ -9,6 +9,7 @@ export interface IWithServerSourceGeneratorsEntityProps {
         prisma: string;
     };
     withSourceEx?: IPackageType;
+    withMapperEx?: IPackageType;
     withInclude?: Record<string, any>;
     disabled?: ("trpc")[];
 }
@@ -23,7 +24,8 @@ export const withServerSourceGeneratorsEntity = (
         prisma,
         packages,
         withInclude,
-        withSourceEx
+        withSourceEx,
+        withMapperEx,
     }: IWithServerSourceGeneratorsEntityProps): IGeneratorServerParams => {
     return {
         PrismaSource: {
@@ -47,7 +49,8 @@ export const withServerSourceGeneratorsEntity = (
                     packages:   {
                         schema: packages.schema,
                     },
-                    sourceEx:   withSourceEx
+                    sourceEx:   withSourceEx,
+                    mapperEx:   withMapperEx,
                 },
             ],
         },

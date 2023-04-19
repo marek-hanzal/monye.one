@@ -11,15 +11,21 @@ import {
 	type IFormProps,
 	type InferFormSchemas,
 	type IWithInputProps,
-	WithInput
+	WithInput,
+	type ITrpcFormProps
 } from "@leight/form-client";
 import {type FC} from "react";
 import {BankCreateFormSchema} from "../schema";
+import {UseBankSourceQuery} from "./ClientTrpcSource";
+import {BlockStore} from "@leight/utils-client";
 
 export type IBankCreateFormSchema = InferFormSchemas<typeof BankCreateFormSchema>;
 export type IBankCreateMantineFormContext = IMantineFormContext<IBankCreateFormSchema>;
 
 export interface IBankCreateBaseFormProps extends Omit<IFormProps<IBankCreateFormSchema>, "FormContext" | "MantineContext" | "withTranslation"> {
+}
+
+export interface IBankCreateTrpcFormProps extends IBankCreateBaseFormProps, ITrpcFormProps<IBankCreateFormSchema> {
 }
 
 export const BankCreateFormStoreContext = createFormContext<IBankCreateFormSchema>({
@@ -44,8 +50,30 @@ export const BankCreateInput: FC<Omit<IWithInputProps<IBankCreateFormSchema>, "F
     />;
 };
 export const BankCreateMantineFormContext = createMantineFormContext<IBankCreateFormSchema>();
+export const BankCreateTrpcForm: FC<IBankCreateTrpcFormProps> = ({onSuccess, onError, onSettled, ...props}) => {
+    const {block} = BlockStore.useOptionalState() || {block: () => null};
+    const mutation = UseBankSourceQuery.useCreate();
+    return <BankCreateBaseForm
+        onSubmit={({request}) => {
+            block(true);
+            mutation.mutate(request, {
+                onSuccess: dto => {
+                    onSuccess?.({dto});
+                },
+                onError: error => {
+                    onError?.({error});                    
+                },
+                onSettled: () => {
+                    block(false);
+                    onSettled?.({});
+                },
+            });
+        }}
+        {...props}
+    />;
+};;
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ii3wpeysjsquscuzmsfkzwfg = true;
+export const $leight_egkr49wueslu8r1ywxqk4ban = true;

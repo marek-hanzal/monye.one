@@ -1,4 +1,5 @@
 import {withSourceFile}  from "@leight/generator-server";
+import {BlockStore}      from "@leight/utils-client";
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
@@ -16,6 +17,11 @@ export namespace IGeneratorClientFormParams {
             namespace: string;
         };
         packages?: IPackages;
+        withTrpc?: IWithTrpc;
+    }
+
+    export interface IWithTrpc {
+        source: string;
     }
 
     export interface IPackages {
@@ -52,7 +58,7 @@ export const generatorClientForm: IGenerator<IGeneratorClientFormParams> = async
         },
     });
 
-    forms.forEach(({name, translation, packages}) => {
+    forms.forEach(({name, translation, withTrpc, packages}) => {
         file
             .withImports({
                 imports: {
@@ -60,6 +66,13 @@ export const generatorClientForm: IGenerator<IGeneratorClientFormParams> = async
                         `${name}FormSchema`,
                     ],
                 },
+            })
+            .withImports({
+                imports: withTrpc ? {
+                    ["./ClientTrpcSource"]: [
+                        `Use${withTrpc.source}SourceQuery`,
+                    ]
+                } : {},
             })
             .withTypes({
                 exports: {
@@ -120,6 +133,65 @@ props => {
                     },
                 },
             });
+        if (withTrpc) {
+            file
+                .withImports({
+                    imports: {
+                        "@leight/form-client":  [
+                            "type ITrpcFormProps",
+                        ],
+                        "@leight/utils-client": [
+                            "BlockStore",
+                        ],
+                    },
+                })
+                .withInterfaces({
+                    exports: {
+                        [`I${name}TrpcFormProps`]: {
+                            extends: [
+                                {
+                                    type: `I${name}BaseFormProps`,
+                                },
+                                {
+                                    type: `ITrpcFormProps<I${name}FormSchema>`,
+                                },
+                            ],
+                        },
+                    },
+                })
+                .withConsts({
+                    exports: {
+                        [`${name}TrpcForm`]: {
+                            type: `FC<I${name}TrpcFormProps>`,
+                            body: `
+({onSuccess, onError, onSettled, ...props}) => {
+    const {block} = BlockStore.useOptionalState() || {block: () => null};
+    const mutation = Use${withTrpc.source}SourceQuery.useCreate();
+    return <${name}BaseForm
+        onSubmit={({request}) => {
+            block(true);
+            mutation.mutate(request, {
+                onSuccess: dto => {
+                    onSuccess?.({dto});
+                },
+                onError: error => {
+                    onError?.({error});                    
+                },
+                onSettled: () => {
+                    block(false);
+                    onSettled?.({});
+                },
+            });
+        }}
+        {...props}
+    />;
+};
+                            `,
+                        }
+                    },
+                });
+
+        }
     });
 
     file.saveTo({

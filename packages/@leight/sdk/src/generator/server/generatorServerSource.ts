@@ -26,6 +26,7 @@ export namespace IGeneratorServerSourceParams {
          * stuff, put here a type and package it's coming from
          */
         sourceEx?: IPackageType;
+        mapperEx?: IPackageType;
         /**
          * If the Source is using Prisma connection, you should put "true" here as it's included
          * from different package.
@@ -47,12 +48,13 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
         folder,
         params: {entities},
     }) => {
-    const file = withSourceFile();
+    const ServerSource       = withSourceFile();
+    const ServerSourceMapper = withSourceFile();
 
-    entities.forEach(({name, sourceEx, withPrisma, packages}) => {
+    entities.forEach(({name, sourceEx, mapperEx, withPrisma, packages}) => {
         const baseSource = withPrisma ? `${name}BasePrismaSource` : `${name}BaseSource`;
 
-        file.withImports({
+        ServerSource.withImports({
                 imports: {
                     [packages.schema]:       [
                         `type I${name}Source`,
@@ -78,14 +80,9 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
                     ],
                 },
             } : undefined)
-            .withTypes({
-                exports: {
-                    [`I${name}SourceMapper`]: `ISourceMapper<I${name}SourceSchema>`,
-                },
-            })
             .withClasses({
                 exports: {
-                    [`${name}Source`]:       {
+                    [`${name}Source`]:           {
                         extends:    sourceEx?.type ? withPackageType(sourceEx) : baseSource,
                         implements: `I${name}Source`,
                     },
@@ -93,16 +90,38 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
                         extends:    `AbstractSourceMapper<I${name}SourceSchema>`,
                         implements: `I${name}SourceMapper`,
                     },
+                }
+            })
+            .withTypes({
+                exports: {
+                    [`I${name}SourceMapper`]: `ISourceMapper<I${name}SourceSchema>`,
+                },
+            });
+
+        ServerSourceMapper
+            .withImports(mapperEx?.withPackage ? {
+                imports: {
+                    [mapperEx.withPackage.package]: [
+                        withPackageImport(mapperEx),
+                    ],
+                },
+            } : undefined)
+            .withClasses({
+                exports: {
                     [`${name}SourceMapper`]: {
-                        extends:    `${name}BaseSourceMapper`,
+                        extends:    mapperEx?.type ? withPackageType(mapperEx) : `${name}BaseSourceMapper`,
                         implements: `I${name}SourceMapper`,
                     },
                 },
             });
     });
 
-    file.saveTo({
+    ServerSource.saveTo({
         file: normalize(`${process.cwd()}/${folder}/ServerSource.ts`),
+        barrel,
+    });
+    ServerSourceMapper.saveTo({
+        file: normalize(`${process.cwd()}/${folder}/ServerSourceMapper.ts`),
         barrel,
     });
 };
