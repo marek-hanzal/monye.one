@@ -1,6 +1,6 @@
-import {router}       from "../../../router";
-import {SourceRouter} from "./source";
+import {router}                    from "../../../router";
+import {CalendarEventSourceRouter} from "../../../sdk";
 
 export const EventRouter = router({
-    source: SourceRouter,
+    source: CalendarEventSourceRouter,
 });

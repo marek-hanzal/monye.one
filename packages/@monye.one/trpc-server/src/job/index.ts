@@ -1,6 +1,6 @@
-import {router}       from "../router";
-import {SourceRouter} from "./source";
+import {router}          from "../router";
+import {JobSourceRouter} from "../sdk";
 
 export const JobRouter = router({
-    source: SourceRouter,
+    source: JobSourceRouter,
 });

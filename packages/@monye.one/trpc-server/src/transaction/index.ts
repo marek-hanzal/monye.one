@@ -1,8 +1,8 @@
-import {router}       from "../router";
-import {ImportRouter} from "./import";
-import {SourceRouter} from "./source";
+import {router}                  from "../router";
+import {TransactionSourceRouter} from "../sdk";
+import {ImportRouter}            from "./import";
 
 export const TransactionRouter = router({
-    source: SourceRouter,
+    source: TransactionSourceRouter,
     import: ImportRouter,
 });

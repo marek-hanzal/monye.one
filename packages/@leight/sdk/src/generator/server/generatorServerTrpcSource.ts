@@ -35,7 +35,8 @@ export const generatorServerTrpcSource: IGenerator<IGeneratorServerTrpcSourcePar
     const file = withSourceFile();
 
     entities.forEach(({name, packages}) => {
-        file.withImports({
+        file
+            .withImports({
                 imports: {
                     "@leight/trpc-source-server": [
                         "withSourceProcedure",

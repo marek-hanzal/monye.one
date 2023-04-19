@@ -1,6 +1,6 @@
-import {router}       from "../router";
-import {SourceRouter} from "./source";
+import {router}           from "../router";
+import {BankSourceRouter} from "../sdk";
 
 export const BankRouter = router({
-    source: SourceRouter,
+    source: BankSourceRouter,
 });
