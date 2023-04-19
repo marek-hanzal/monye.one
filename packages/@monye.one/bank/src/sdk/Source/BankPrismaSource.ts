@@ -20,4 +20,4 @@ export const $BankSourceMapper = Symbol.for("@monye.one/bank/IBankSourceMapper")
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_c7sxmappwy1hoyjy18dcq1uh = true;
+export const $leight_q5cnr8bknujoijpjilsc5w6l = true;

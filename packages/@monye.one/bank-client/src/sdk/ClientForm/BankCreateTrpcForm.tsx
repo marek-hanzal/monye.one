@@ -42,4 +42,4 @@ export const BankCreateTrpcForm: FC<IBankCreateTrpcFormProps> = ({onSuccess, onE
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lrj0o5ys9rj254x53n0l2g3g = true;
+export const $leight_gaefosu92wweer6lndoxq1u1 = true;
