@@ -64,6 +64,9 @@ router({
     delete:  procedure
                 .input(${name}SourceProcedure.IdentitySchema)
                 .mutation(${name}SourceProcedure.Delete),
+    deleteWith:  procedure
+                .input(${name}SourceProcedure.QuerySchema)
+                .mutation(${name}SourceProcedure.DeleteWith),
     query:  procedure
                 .input(${name}SourceProcedure.QueryOptionalSchema)
                 .query(${name}SourceProcedure.Query),

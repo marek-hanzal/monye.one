@@ -19,6 +19,9 @@ export const BankSourceRouter = router({
     delete:  procedure
                 .input(BankSourceProcedure.IdentitySchema)
                 .mutation(BankSourceProcedure.Delete),
+    deleteWith:  procedure
+                .input(BankSourceProcedure.QuerySchema)
+                .mutation(BankSourceProcedure.DeleteWith),
     query:  procedure
                 .input(BankSourceProcedure.QueryOptionalSchema)
                 .query(BankSourceProcedure.Query),
@@ -36,4 +39,4 @@ export const BankSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_luq4v8upbwmlixzza3vkzy4s = true;
+export const $leight_tcydcatx41ky19hxe2bdpb2m = true;

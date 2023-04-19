@@ -19,6 +19,9 @@ export const CalendarEventSourceRouter = router({
     delete:  procedure
                 .input(CalendarEventSourceProcedure.IdentitySchema)
                 .mutation(CalendarEventSourceProcedure.Delete),
+    deleteWith:  procedure
+                .input(CalendarEventSourceProcedure.QuerySchema)
+                .mutation(CalendarEventSourceProcedure.DeleteWith),
     query:  procedure
                 .input(CalendarEventSourceProcedure.QueryOptionalSchema)
                 .query(CalendarEventSourceProcedure.Query),
@@ -36,4 +39,4 @@ export const CalendarEventSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nh74by7dw141ej2p9qecbt6g = true;
+export const $leight_k7la71cn31nvqkjoueob6g8x = true;

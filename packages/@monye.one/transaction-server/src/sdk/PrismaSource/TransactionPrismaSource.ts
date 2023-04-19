@@ -6,7 +6,8 @@ import {withCursor} from "@leight/query";
 import {$PrismaClient} from "@leight/prisma";
 import {
 	type ISource,
-	type IWithIdentity
+	type IWithIdentity,
+	SourceError
 } from "@leight/source";
 import {AbstractSource} from "@leight/source-server";
 import {
@@ -60,10 +61,26 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
 
     async runDelete({id}: IWithIdentity): Promise<ITransactionSourceSchema["Entity"]> {
         const item = await this.find(id);
+        const where = this.toWhereUnique({id});
+        if(!where) {
+            throw new SourceError("Cannot delete an item with an empty where condition!");
+        }
         await this.prisma().delete({
-            where: {id},
+            where,
         });
         return item;
+    }
+    
+    async runDeleteWith(query: ITransactionSourceSchema["Query"]): Promise<ITransactionSourceSchema["Entity"][]> {
+        const items = await this.query(query);
+        const where = this.toWhereUnique(query.filter);
+        if(!where) {
+            throw new SourceError("Cannot delete an item with an empty where condition!");
+        } 
+        await this.prisma().delete({
+            where,
+        });
+        return items;
     }
 
     async runCount(query?: ITransactionSourceSchema["Query"]): Promise<number> {
@@ -104,4 +121,4 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_dxuy19q2rn4ikbhcpawrz115 = true;
+export const $leight_j9lswv4aipd81cka5c5jbqtb = true;

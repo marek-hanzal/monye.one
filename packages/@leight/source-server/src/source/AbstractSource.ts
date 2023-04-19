@@ -52,6 +52,15 @@ export abstract class AbstractSource<TSourceSchema extends ISourceSchema> implem
         throw new SourceError(`Source [${this.name}] does not support deleting by an ID.`);
     }
 
+    async deleteWith(query: TSourceSchema["Query"]): Promise<TSourceSchema["Entity"][]> {
+        return this.runDeleteWith(query);
+    }
+
+    async runDeleteWith(query: TSourceSchema["Query"]): Promise<TSourceSchema["Entity"][]> {
+        console.error(`Source [${this.name}] does not support deleting by a Query.`, query);
+        throw new SourceError(`Source [${this.name}] does not support deleting by a Query.`);
+    }
+
     async count(query?: TSourceSchema["Query"]): Promise<number> {
         return this.runCount(query || {});
     }

@@ -63,6 +63,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
                     "@leight/source":        [
                         "type ISource",
                         "type IWithIdentity",
+                        "SourceError",
                     ],
                     "@leight/source-server": [
                         "AbstractSource",
@@ -133,10 +134,26 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
 
     async runDelete({id}: IWithIdentity): Promise<I${name}SourceSchema["Entity"]> {
         const item = await this.find(id);
+        const where = this.toWhereUnique({id});
+        if(!where) {
+            throw new SourceError("Cannot delete an item with an empty where condition!");
+        }
         await this.prisma().delete({
-            where: {id},
+            where,
         });
         return item;
+    }
+    
+    async runDeleteWith(query: I${name}SourceSchema["Query"]): Promise<I${name}SourceSchema["Entity"][]> {
+        const items = await this.query(query);
+        const where = this.toWhereUnique(query.filter);
+        if(!where) {
+            throw new SourceError("Cannot delete an item with an empty where condition!");
+        } 
+        await this.prisma().delete({
+            where,
+        });
+        return items;
     }
 
     async runCount(query?: I${name}SourceSchema["Query"]): Promise<number> {
