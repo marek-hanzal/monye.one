@@ -14,14 +14,14 @@ void withSdk(
                             type:        "CalendarEventBaseSchema",
                             withPackage: {
                                 import:  "CalendarEventBaseSchema",
-                                package: "../schema"
+                                package: "../../schema"
                             },
                         },
                         dto:    {
                             type:        "CalendarEventBaseSchema",
                             withPackage: {
                                 import:  "CalendarEventBaseSchema",
-                                package: "../schema"
+                                package: "../../schema"
                             },
                         },
                         filter: {

@@ -6,6 +6,7 @@
         "@leight/calendar-client",
         "@tabler/icons-react",
         "@leight/zustand",
+        "@leight/mantine",
         "@leight/tsconfig",
         "@types/node"
     ]

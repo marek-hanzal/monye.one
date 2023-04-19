@@ -51,29 +51,69 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
     {
         packageName,
         barrel,
-        folder,
+        directory,
         params: {entities},
     }) => {
-    const file = withSourceFile();
-
     entities.forEach(({name, withSchemaEx, withSourceEx, sorts = ["id"]}) => {
-        file
+        withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/sort":      [
+                    "@leight/source":          [
+                        "type ISource",
+                        "type IUseSourceQuery",
+                    ],
+                    [`./${name}SourceSchema`]: [
+                        `type I${name}SourceSchema`,
+                    ],
+                },
+            })
+            .withImports(withSourceEx?.extends ? {
+                imports: withSourceEx.extends
+                             .filter(((item): item is Required<IPackageType> => Boolean(item.withPackage)))
+                             .reduce((prev, withPackage) => ({
+                                 ...prev,
+                                 [withPackage.withPackage.package]: [
+                                     withPackageImport(withPackage, "type"),
+                                     ...(prev[withPackage.withPackage.package] || [])
+                                 ],
+                             }), {} as Record<string, any>),
+            } : undefined)
+            .withInterfaces({
+                exports: {
+                    [`I${name}Source`]: {
+                        extends: [
+                                     {type: `ISource<I${name}SourceSchema>`},
+                                 ].concat(withSourceEx?.extends || []),
+                    },
+                }
+            })
+            .withTypes({
+                exports: {
+                    [`IUse${name}SourceQuery`]: `IUseSourceQuery<I${name}SourceSchema>`,
+                }
+            })
+            .withConsts({
+                exports: {
+                    [`$${name}Source`]:       {body: `Symbol.for("${packageName}/I${name}Source")`},
+                    [`$${name}SourceMapper`]: {body: `Symbol.for("${packageName}/I${name}SourceMapper")`},
+                }
+            })
+            .saveTo({
+                file: normalize(`${directory}/EntitySource/${name}Source.ts`),
+                barrel,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "@leight/sort":   [
                         "SortOrderSchema",
                     ],
-                    "@leight/source":    [
+                    "@leight/source": [
                         "type InferSourceSchema",
-                        "type IUseSourceQuery",
-                        "type ISource",
                         "withSourceSchema",
                     ],
-                    "@leight/container": [
-                        "type IContainer",
-                        "ServiceContext",
-                    ],
-                    "@leight/zod":       [
+                    "@leight/zod":    [
                         "z",
                     ],
                 },
@@ -152,8 +192,7 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
             })
             .withTypes({
                 exports: {
-                    [`I${name}SourceSchema`]:   `InferSourceSchema<typeof ${name}SourceSchema>`,
-                    [`IUse${name}SourceQuery`]: `IUseSourceQuery<I${name}SourceSchema>`,
+                    [`I${name}SourceSchema`]: `InferSourceSchema<typeof ${name}SourceSchema>`,
                 }
             })
             .withConsts({
@@ -188,43 +227,9 @@ withSourceSchema({
                     },
                 },
             })
-            .withConsts({
-                exports: {
-                    [`$${name}Source`]:       {body: `Symbol.for("${packageName}/I${name}Source")`},
-                    [`$${name}SourceMapper`]: {body: `Symbol.for("${packageName}/I${name}SourceMapper")`},
-                }
-            })
-            .withConsts({
-                exports: {
-                    [`${name}SourceContext`]: {
-                        body: `(container: IContainer) => new ServiceContext<I${name}Source>(container, $${name}Source)`,
-                    },
-                },
-            })
-            .withImports(withSourceEx?.extends ? {
-                imports: withSourceEx.extends
-                             .filter(((item): item is Required<IPackageType> => Boolean(item.withPackage)))
-                             .reduce((prev, withPackage) => ({
-                                 ...prev,
-                                 [withPackage.withPackage.package]: [
-                                     withPackageImport(withPackage, "type"),
-                                     ...(prev[withPackage.withPackage.package] || [])
-                                 ],
-                             }), {} as Record<string, any>),
-            } : undefined)
-            .withInterfaces({
-                exports: {
-                    [`I${name}Source`]: {
-                        extends: [
-                                     {type: `ISource<I${name}SourceSchema>`},
-                                 ].concat(withSourceEx?.extends || []),
-                    },
-                }
+            .saveTo({
+                file: normalize(`${directory}/EntitySource/${name}SourceSchema.ts`),
+                barrel,
             });
-    });
-
-    file.saveTo({
-        file: normalize(`${process.cwd()}/${folder}/EntitySource.ts`),
-        barrel,
     });
 };

@@ -15,7 +15,7 @@ void withSdk(
                 toCreate: {
                     type:        "BankToCreateSchemaEx",
                     withPackage: {
-                        package: "../schema",
+                        package: "../../schema",
                     }
                 },
             },

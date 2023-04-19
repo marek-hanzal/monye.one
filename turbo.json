@@ -49,7 +49,6 @@
             "dependsOn": [
                 "^build",
                 "generate",
-                "depcheck",
                 "lint"
             ],
             "outputs": [

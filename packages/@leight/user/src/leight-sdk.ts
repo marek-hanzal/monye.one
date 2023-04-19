@@ -16,7 +16,7 @@ void withSdk(
                     {
                         type:        "IUserSourceEx",
                         withPackage: {
-                            package: "../api",
+                            package: "../../api",
                         }
                     },
                 ],

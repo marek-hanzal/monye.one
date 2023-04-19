@@ -1,6 +1,6 @@
 import {type ILogger}          from "@leight/winston";
 import {type IJobStatus}       from "../schema";
-import {type IJobSourceSchema} from "../sdk";
+import {type IJobSourceSchema} from "../sdk/Source/JobSchema";
 
 export interface IJobProgress {
     readonly jobId: string;

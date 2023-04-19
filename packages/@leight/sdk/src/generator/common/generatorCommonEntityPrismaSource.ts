@@ -65,41 +65,76 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
     {
         packageName,
         barrel,
-        folder,
+        directory,
         params: {entities},
     }) => {
-    const file = withSourceFile();
-
     entities.forEach(({name, withSchemaEx, withSourceEx, sorts = ["id"], packages}) => {
-        file.withImports({
+        withSourceFile()
+            .withImports({
                 imports: {
-                    [packages.prisma]:   [
+                    "@leight/source":    [
+                        "type IUseSourceQuery",
+                        "type ISource",
+                    ],
+                    [`./${name}Schema`]: [
+                        `type I${name}SourceSchema`,
+                    ],
+                },
+            })
+            .withTypes({
+                exports: {
+                    [`IUse${name}SourceQuery`]: `IUseSourceQuery<I${name}SourceSchema>`,
+                },
+            })
+            .withImports(withSourceEx?.extends ? {
+                imports: withSourceEx.extends
+                             .filter(((item): item is Required<IPackageType> => Boolean(item.withPackage)))
+                             .reduce((prev, withPackage) => ({
+                                 ...prev,
+                                 [withPackage.withPackage.package]: [
+                                     withPackageImport(withPackage, "type"),
+                                     ...(prev[withPackage.withPackage.package] || [])
+                                 ],
+                             }), {} as Record<string, any>),
+            } : undefined)
+            .withInterfaces({
+                exports: {
+                    [`I${name}Source`]: {
+                        extends: [
+                                     {type: `ISource<I${name}SourceSchema>`},
+                                 ].concat(withSourceEx?.extends || []),
+                    },
+                }
+            })
+            .withConsts({
+                exports: {
+                    [`$${name}Source`]:       {body: `Symbol.for("${packageName}/I${name}Source")`},
+                    [`$${name}SourceMapper`]: {body: `Symbol.for("${packageName}/I${name}SourceMapper")`},
+                }
+            })
+            .saveTo({
+                file: normalize(`${directory}/Source/${name}PrismaSource.ts`),
+                barrel,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    [packages.prisma]: [
+                        `${name}WhereInputSchema`,
+                        `${name}WhereUniqueInputSchema`,
                         `${name}Schema as $EntitySchema`,
                         `${name}OptionalDefaultsSchema`,
                         `${name}PartialSchema`,
-                        `${name}WhereInputSchema`,
-                        `${name}WhereUniqueInputSchema`,
-                        `${name}OrderByWithRelationInputSchema`,
                     ],
-                    "@leight/filter":    [
-                        "FilterSchema",
-                    ],
-                    "@leight/sort":      [
+                    "@leight/sort":    [
                         "SortOrderSchema",
                     ],
-                    "@leight/container": [
-                        "type IContainer",
-                        "ServiceContext",
-                    ],
-                    "@leight/source":    [
-                        "withSourceExSchema",
-                        "type InferSourceExSchema",
-                        "type IUseSourceQuery",
-                        "type ISource",
-                        "type InferSourceSchema",
+                    "@leight/source":  [
                         "withSourceSchema",
+                        "type InferSourceSchema",
                     ],
-                    "@leight/zod":       [
+                    "@leight/zod":     [
                         "z",
                     ],
                 },
@@ -173,27 +208,6 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
                 },
             })
             .withConsts({
-                exports: {
-                    [`${name}PrismaSchema`]: {
-                        body: `
-withSourceExSchema({
-    WhereSchema:       ${name}WhereInputSchema,
-    WhereUniqueSchema: ${name}WhereUniqueInputSchema,
-    OrderBySchema:     ${name}OrderByWithRelationInputSchema,
-})
-                    `
-                    },
-                },
-            })
-            .withTypes({
-                exports: {
-                    [`I${name}SourceSchema`]: `InferSourceSchema<typeof ${name}SourceSchema>`,
-                    [`I${name}PrismaSchema`]: `InferSourceExSchema<typeof ${name}PrismaSchema>`,
-
-                    [`IUse${name}SourceQuery`]: `IUseSourceQuery<I${name}SourceSchema>`,
-                },
-            })
-            .withConsts({
                 consts:  {
                     [`$${name}Schema`]:       {
                         body: withSchemaEx?.schema ? `$EntitySchema.merge(${withPackageType(withSchemaEx.schema)})` : "$EntitySchema",
@@ -229,43 +243,51 @@ withSourceSchema({
                     },
                 },
             })
-            .withImports(withSourceEx?.extends ? {
-                imports: withSourceEx.extends
-                             .filter(((item): item is Required<IPackageType> => Boolean(item.withPackage)))
-                             .reduce((prev, withPackage) => ({
-                                 ...prev,
-                                 [withPackage.withPackage.package]: [
-                                     withPackageImport(withPackage, "type"),
-                                     ...(prev[withPackage.withPackage.package] || [])
-                                 ],
-                             }), {} as Record<string, any>),
-            } : undefined)
-            .withInterfaces({
+            .withTypes({
                 exports: {
-                    [`I${name}Source`]: {
-                        extends: [
-                                     {type: `ISource<I${name}SourceSchema>`},
-                                 ].concat(withSourceEx?.extends || []),
-                    },
-                }
+                    [`I${name}SourceSchema`]: `InferSourceSchema<typeof ${name}SourceSchema>`,
+                },
+            })
+            .saveTo({
+                file: normalize(`${directory}/Source/${name}Schema.ts`),
+                barrel,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "@leight/source":  [
+                        "withSourceExSchema",
+                        "type InferSourceExSchema",
+                    ],
+                    [packages.prisma]: [
+                        `${name}WhereInputSchema`,
+                        `${name}WhereUniqueInputSchema`,
+                        `${name}OrderByWithRelationInputSchema`,
+                    ],
+                },
+            })
+            .withTypes({
+                exports: {
+                    [`I${name}PrismaSchema`]: `InferSourceExSchema<typeof ${name}PrismaSchema>`,
+                },
             })
             .withConsts({
                 exports: {
-                    [`$${name}Source`]:       {body: `Symbol.for("${packageName}/I${name}Source")`},
-                    [`$${name}SourceMapper`]: {body: `Symbol.for("${packageName}/I${name}SourceMapper")`},
-                }
-            })
-            .withConsts({
-                exports: {
-                    [`${name}SourceContext`]: {
-                        body: `(container: IContainer) => new ServiceContext<I${name}Source>(container, $${name}Source)`,
+                    [`${name}PrismaSchema`]: {
+                        body: `
+withSourceExSchema({
+    WhereSchema:       ${name}WhereInputSchema,
+    WhereUniqueSchema: ${name}WhereUniqueInputSchema,
+    OrderBySchema:     ${name}OrderByWithRelationInputSchema,
+})
+                    `
                     },
                 },
+            })
+            .saveTo({
+                file: normalize(`${directory}/Source/${name}PrismaSchema.ts`),
+                barrel,
             });
-    });
-
-    file.saveTo({
-        file: normalize(`${process.cwd()}/${folder}/PrismaSource.ts`),
-        barrel,
     });
 };

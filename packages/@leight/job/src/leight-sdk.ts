@@ -18,7 +18,7 @@ void withSdk(
                 schema: {
                     type:        "JobSchemaEx",
                     withPackage: {
-                        package: "../schema",
+                        package: "../../schema",
                     },
                 }
             }

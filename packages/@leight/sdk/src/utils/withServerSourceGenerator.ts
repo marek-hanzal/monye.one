@@ -24,7 +24,7 @@ export const withServerSourceGenerators = (
         async () => generatorServer({
             packageName,
             folder,
-            barrel: false,
+            barrel: true,
             params,
             directory: normalize(`${process.cwd()}/${folder}`),
         }),
