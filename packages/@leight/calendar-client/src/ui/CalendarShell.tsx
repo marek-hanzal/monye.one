@@ -5,7 +5,7 @@ import {
     switchScheme
 }                                        from "@leight/mantine";
 import {
-    ISourceStore,
+    type ISourceStore,
     type ISourceStoreProps
 }                                        from "@leight/source";
 import {
@@ -183,7 +183,7 @@ export namespace ICalendarComponent {
 }
 
 export interface ICalendarShellEvents<TSourceSchema extends ICalendarEventSourceSchema> {
-    schema: TSourceSchema["EntitySchema"];
+    schema: TSourceSchema["DtoSchema"];
     SourceStore: ISourceStore<TSourceSchema>;
 }
 

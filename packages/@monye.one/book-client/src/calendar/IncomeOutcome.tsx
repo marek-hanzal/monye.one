@@ -16,7 +16,7 @@ import {
 
 export interface IIncomeOutcomeProps extends ComponentProps<typeof Group> {
     range: IDateRange;
-    events?: ICalendarEventSourceSchema["Entity"][];
+    events?: ICalendarEventSourceSchema["Dto"][];
     withSum?: boolean;
 
     onIncomeClick?(props: IIncomeOutcomeProps.IOnIncomeClickProps): void;
@@ -26,12 +26,12 @@ export interface IIncomeOutcomeProps extends ComponentProps<typeof Group> {
 
 export namespace IIncomeOutcomeProps {
     export interface IOnIncomeClickProps {
-        events?: ICalendarEventSourceSchema["Entity"][];
+        events?: ICalendarEventSourceSchema["Dto"][];
         range: IDateRange;
     }
 
     export interface IOnOutcomeClickProps {
-        events?: ICalendarEventSourceSchema["Entity"][];
+        events?: ICalendarEventSourceSchema["Dto"][];
         range: IDateRange;
     }
 }

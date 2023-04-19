@@ -8,18 +8,16 @@ import {
 	type InferSourceSchema,
 	type IUseSourceQuery,
 	type ISource,
-	WithIdentitySchema,
 	withSourceSchema,
 	CreateSchema,
-	ToCreateSchema,
-	ToPatchSchema
+	PatchSchema
 } from "@leight/source";
 import {
 	type IContainer,
 	ServiceContext
 } from "@leight/container";
 import {z} from "@leight/zod";
-import {CalendarEventBaseSchema as CoolCalendarEventBaseSchema} from "../api";
+import {CalendarEventBaseSchema} from "../schema";
 import {CalendarEventSourceSchema as CoolCalendarEventSourceSchema} from "@leight/calendar";
 import {ParamsSchema} from "@leight/query";
 
@@ -29,12 +27,16 @@ export type IUseCalendarEventSourceQuery = IUseSourceQuery<ICalendarEventSourceS
 export interface ICalendarEventSource extends ISource<ICalendarEventSourceSchema> {
 }
 
+const $CalendarEventSchema = CalendarEventBaseSchema;
+const $CalendarEventCreateSchema = CreateSchema;
+const $CalendarEventPatchSchema = PatchSchema;
 export const CalendarEventSourceSchema = withSourceSchema({
-    EntitySchema: CoolCalendarEventBaseSchema,
-    ToCreateSchema: ToCreateSchema,
-    CreateSchema: CreateSchema,
-    ToPatchSchema: ToPatchSchema,
-    PatchSchema: WithIdentitySchema,
+    EntitySchema: $CalendarEventSchema,
+    DtoSchema: CalendarEventBaseSchema,
+    ToCreateSchema: $CalendarEventCreateSchema,
+    CreateSchema: $CalendarEventCreateSchema,
+    ToPatchSchema: $CalendarEventPatchSchema,
+    PatchSchema: $CalendarEventPatchSchema,
     FilterSchema: CoolCalendarEventSourceSchema['FilterSchema'],
     ParamsSchema: ParamsSchema,
     SortSchema: z.object({
@@ -42,9 +44,10 @@ export const CalendarEventSourceSchema = withSourceSchema({
     }),
 });
 export const $CalendarEventSource = Symbol.for("@monye.one/book/ICalendarEventSource");
+export const $CalendarEventSourceMapper = Symbol.for("@monye.one/book/ICalendarEventSourceMapper");
 export const CalendarEventSourceContext = (container: IContainer) => new ServiceContext<ICalendarEventSource>(container, $CalendarEventSource);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_y65v89jh3quvv04pcmoxkvaz = true;
+export const $leight_mhvrgc8d8skfx7339lwlwi74 = true;

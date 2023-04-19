@@ -61,7 +61,7 @@ const InternalSource = <TSourceSchema extends ISourceSchema>(
         onSuccess: data => {
             const $data = data.filter(item => schema.safeParse(item).success);
             onSuccess?.($data);
-            sourceContext.state.setEntities($data);
+            sourceContext.state.setDtos($data);
             onSuccess?.($data);
         },
     });

@@ -21,11 +21,10 @@ import {
 	withSourceExSchema,
 	type InferSourceExSchema,
 	type IUseSourceQuery,
-	WithIdentitySchema,
 	type ISource,
 	type InferSourceSchema,
 	withSourceSchema,
-	ToPatchSchema
+	PatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
 import {BankToCreateSchemaEx} from "../schema";
@@ -43,12 +42,16 @@ export const BankPrismaSchema = withSourceExSchema({
     WhereUniqueSchema: BankWhereUniqueInputSchema,
     OrderBySchema:     BankOrderByWithRelationInputSchema,
 });
+const $BankSchema = $EntitySchema;
+const $BankCreateSchema = BankOptionalDefaultsSchema;
+const $BankPatchSchema = BankPartialSchema.merge(PatchSchema);
 export const BankSourceSchema = withSourceSchema({
-    EntitySchema: $EntitySchema,
+    EntitySchema: $BankSchema,
+    DtoSchema: $BankSchema,
     ToCreateSchema: BankToCreateSchemaEx,
-    CreateSchema: BankOptionalDefaultsSchema,
-    ToPatchSchema: ToPatchSchema,
-    PatchSchema: BankPartialSchema.merge(WithIdentitySchema),
+    CreateSchema: $BankCreateSchema,
+    ToPatchSchema: $BankPatchSchema,
+    PatchSchema: $BankPatchSchema,
     FilterSchema: z.union([
         BankWhereInputSchema,
         BankWhereUniqueInputSchema,
@@ -60,9 +63,10 @@ export const BankSourceSchema = withSourceSchema({
     }),
 });
 export const $BankSource = Symbol.for("@monye.one/bank/IBankSource");
+export const $BankSourceMapper = Symbol.for("@monye.one/bank/IBankSourceMapper");
 export const BankSourceContext = (container: IContainer) => new ServiceContext<IBankSource>(container, $BankSource);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nu5o3h2bc6bmrwfpa3lw33rg = true;
+export const $leight_coj8kqa0u0sv8gq6riqz8z5k = true;

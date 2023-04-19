@@ -18,7 +18,10 @@ import {
     ParamsSchema,
     QuerySchema
 }                         from "@leight/query";
-import {type IUseQuery}   from "@leight/react-query";
+import {
+    type IUseMutation,
+    type IUseQuery
+}                         from "@leight/react-query";
 import {
     type ISortSchema,
     type ISortStoreContext,
@@ -29,8 +32,10 @@ import {z}                from "@leight/zod";
 import {type IStoreProps} from "@leight/zustand";
 import {
     CreateSchema,
+    DtoSchema,
     EntitySchema,
     type ICreateSchema,
+    type IDtoSchema,
     type IEntitySchema,
     type IPatchSchema,
     type IToCreateSchema,
@@ -50,6 +55,7 @@ export type ISourceName =
  */
 export type ISourceSchema<
     TEntitySchema extends IEntitySchema = IEntitySchema,
+    TDtoSchema extends IDtoSchema = IDtoSchema,
     TToCreateSchema extends IToCreateSchema = IToCreateSchema,
     TCreateSchema extends ICreateSchema = ICreateSchema,
     TToPatchSchema extends IToPatchSchema = IToPatchSchema,
@@ -60,6 +66,8 @@ export type ISourceSchema<
 > = {
     EntitySchema: TEntitySchema;
     Entity: z.infer<TEntitySchema>;
+    DtoSchema: TDtoSchema;
+    Dto: z.infer<TDtoSchema>;
     ToCreateSchema: TToCreateSchema;
     ToCreate: z.infer<TToCreateSchema>;
     CreateSchema: TCreateSchema;
@@ -82,6 +90,7 @@ export type ISourceSchema<
 
 export type ISourceSchemas<TSourceSchema extends ISourceSchema> = {
     EntitySchema: TSourceSchema["EntitySchema"];
+    DtoSchema: TSourceSchema["DtoSchema"];
     ToCreateSchema: TSourceSchema["ToCreateSchema"];
     CreateSchema: TSourceSchema["CreateSchema"];
     ToPatchSchema: TSourceSchema["ToPatchSchema"];
@@ -95,6 +104,7 @@ export type ISourceSchemas<TSourceSchema extends ISourceSchema> = {
 
 export type IWithSourceSchemaProps<
     TEntitySchema extends IEntitySchema,
+    TDtoSchema extends IDtoSchema,
     TToCreateSchema extends IToCreateSchema,
     TCreateSchema extends ICreateSchema,
     TToPatchSchema extends IToPatchSchema,
@@ -102,10 +112,11 @@ export type IWithSourceSchemaProps<
     TFilterSchema extends IFilterSchema,
     TSortSchema extends ISortSchema,
     TParamsSchema extends IParamsSchema,
-> = Partial<ISourceSchemas<ISourceSchema<TEntitySchema, TToCreateSchema, TCreateSchema, TToPatchSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>>>;
+> = Partial<ISourceSchemas<ISourceSchema<TEntitySchema, TDtoSchema, TToCreateSchema, TCreateSchema, TToPatchSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>>>;
 
 export const withSourceSchema = <
     TEntitySchema extends IEntitySchema,
+    TDtoSchema extends IDtoSchema,
     TToCreateSchema extends IToCreateSchema,
     TCreateSchema extends ICreateSchema,
     TToPatchSchema extends IToPatchSchema,
@@ -116,6 +127,7 @@ export const withSourceSchema = <
 >(
     {
         EntitySchema:   $EntitySchema = EntitySchema as TEntitySchema,
+        DtoSchema:      $DtoSchema = DtoSchema as TDtoSchema,
         ToCreateSchema: $ToCreateSchema = ToCreateSchema as TToCreateSchema,
         CreateSchema:   $CreateSchema = CreateSchema as TCreateSchema,
         ToPatchSchema:  $ToPatchSchema = ToPatchSchema as TToPatchSchema,
@@ -123,9 +135,10 @@ export const withSourceSchema = <
         FilterSchema:   $FilterSchema = FilterSchema as TFilterSchema,
         SortSchema:     $SortSchema = SortSchema as TSortSchema,
         ParamsSchema:   $ParamsSchema = ParamsSchema as TParamsSchema,
-    }: IWithSourceSchemaProps<TEntitySchema, TToCreateSchema, TCreateSchema, TToPatchSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>): ISourceSchemas<ISourceSchema<TEntitySchema, TToCreateSchema, TCreateSchema, TToPatchSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>> => {
+    }: IWithSourceSchemaProps<TEntitySchema, TDtoSchema, TToCreateSchema, TCreateSchema, TToPatchSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>): ISourceSchemas<ISourceSchema<TEntitySchema, TDtoSchema, TToCreateSchema, TCreateSchema, TToPatchSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>> => {
     return {
         EntitySchema:   $EntitySchema,
+        DtoSchema:      $DtoSchema,
         ToCreateSchema: $ToCreateSchema,
         CreateSchema:   $CreateSchema,
         ToPatchSchema:  $ToPatchSchema,
@@ -144,6 +157,7 @@ export const withSourceSchema = <
 
 export type InferSourceSchema<TSourceSchema extends ISourceSchemas<ISourceSchema>> = ISourceSchema<
     TSourceSchema["EntitySchema"],
+    TSourceSchema["DtoSchema"],
     TSourceSchema["ToCreateSchema"],
     TSourceSchema["CreateSchema"],
     TSourceSchema["ToPatchSchema"],
@@ -187,12 +201,12 @@ export namespace ISource {
 }
 
 export type ISourceStoreProps<TSourceSchema extends ISourceSchema> = IStoreProps<{
-    readonly schema: TSourceSchema["EntitySchema"];
-    readonly entities: TSourceSchema["Entity"][];
+    readonly schema: TSourceSchema["DtoSchema"];
+    readonly dtos: TSourceSchema["Dto"][];
     readonly isLoading: boolean;
     readonly isFetching: boolean;
 
-    setEntities(entities?: TSourceSchema["Entity"][]): void;
+    setDtos(dto?: TSourceSchema["Dto"][]): void;
 
     setIsLoading(isLoading: boolean): void;
 
@@ -204,10 +218,12 @@ export type ISourceStoreContext<TSourceSchema extends ISourceSchema> = IStoreCon
 export type IUseSourceState<TSourceSchema extends ISourceSchema> = IUseState<ISourceStoreProps<TSourceSchema>>;
 
 export type IUseSourceQuery<TSourceSchema extends ISourceSchema> = {
-    useQuery: IUseQuery<TSourceSchema["Query"] | undefined, TSourceSchema["Entity"][]>;
+    useCreate: IUseMutation<TSourceSchema["ToCreate"], TSourceSchema["Dto"]>
+    usePatch: IUseMutation<TSourceSchema["ToPatch"], TSourceSchema["Dto"]>
+    useQuery: IUseQuery<TSourceSchema["Query"] | undefined, TSourceSchema["Dto"][]>;
     useCount: IUseQuery<TSourceSchema["Query"] | undefined, number>;
-    useFetch: IUseQuery<TSourceSchema["Query"], TSourceSchema["Entity"]>;
-    useFind: IUseQuery<IWithIdentity, TSourceSchema["Entity"]>;
+    useFetch: IUseQuery<TSourceSchema["Query"], TSourceSchema["Dto"]>;
+    useFind: IUseQuery<IWithIdentity, TSourceSchema["Dto"]>;
 }
 
 /**

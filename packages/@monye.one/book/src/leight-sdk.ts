@@ -10,12 +10,18 @@ void withSdk(
                 {
                     name:         "CalendarEvent",
                     withSchemaEx: {
-                        schema: {
-                            type:        "CoolCalendarEventBaseSchema",
+                        schema:    {
+                            type:        "CalendarEventBaseSchema",
                             withPackage: {
                                 import:  "CalendarEventBaseSchema",
-                                alias:   "CoolCalendarEventBaseSchema",
-                                package: "../api"
+                                package: "../schema"
+                            },
+                        },
+                        dto:    {
+                            type:        "CalendarEventBaseSchema",
+                            withPackage: {
+                                import:  "CalendarEventBaseSchema",
+                                package: "../schema"
                             },
                         },
                         filter: {

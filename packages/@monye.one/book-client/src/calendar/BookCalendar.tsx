@@ -38,7 +38,7 @@ export const BookCalendar: FC<IBookCalendarProps> = (
     return <CalendarEventSource>
         <Calendar<ICalendarEventSourceSchema>
             events={{
-                schema:      CalendarEventSourceSchema["EntitySchema"],
+                schema:      CalendarEventSourceSchema["DtoSchema"],
                 SourceStore: CalendarEventSourceStore,
             }}
             renderDayInline={({day, events}) => <IncomeOutcome
@@ -54,7 +54,7 @@ export const BookCalendar: FC<IBookCalendarProps> = (
                     from: weeks.start,
                     to:   weeks.end,
                 }}
-                events={source?.entities}
+                events={source?.dtos}
                 withSum
                 spacing={"sm"}
                 {...$month}

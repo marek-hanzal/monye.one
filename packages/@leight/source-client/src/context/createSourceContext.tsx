@@ -10,24 +10,24 @@ import {
 
 export interface ICreateSourceContextProps<TSourceSchema extends ISourceSchema> {
     readonly name: string;
-    readonly schema: TSourceSchema["EntitySchema"];
-    readonly entities?: TSourceSchema["Entity"][];
+    readonly schema: TSourceSchema["DtoSchema"];
+    readonly dtos?: TSourceSchema["Dto"][];
 }
 
 export const createSourceContext = <TSourceSchema extends ISourceSchema>(
     {
         name,
         schema,
-        entities = [],
+        dtos = [],
     }: ICreateSourceContextProps<TSourceSchema>) => {
     return createStoreContext<ISourceStoreProps<TSourceSchema>>({
         state: () => (set) => ({
             schema,
-            entities,
+            dtos:       dtos,
             isLoading:  false,
             isFetching: false,
-            setEntities(entities) {
-                set({entities});
+            setDtos(dtos) {
+                set({dtos});
             },
             setIsLoading(isLoading) {
                 set({isLoading});

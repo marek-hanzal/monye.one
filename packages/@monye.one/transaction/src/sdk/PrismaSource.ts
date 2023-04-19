@@ -21,12 +21,10 @@ import {
 	withSourceExSchema,
 	type InferSourceExSchema,
 	type IUseSourceQuery,
-	WithIdentitySchema,
 	type ISource,
 	type InferSourceSchema,
 	withSourceSchema,
-	ToCreateSchema,
-	ToPatchSchema
+	PatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
 import {TransactionExSchema} from "../schema";
@@ -44,12 +42,16 @@ export const TransactionPrismaSchema = withSourceExSchema({
     WhereUniqueSchema: TransactionWhereUniqueInputSchema,
     OrderBySchema:     TransactionOrderByWithRelationInputSchema,
 });
+const $TransactionSchema = $EntitySchema.merge(TransactionExSchema);
+const $TransactionCreateSchema = TransactionOptionalDefaultsSchema;
+const $TransactionPatchSchema = TransactionPartialSchema.merge(PatchSchema);
 export const TransactionSourceSchema = withSourceSchema({
-    EntitySchema: $EntitySchema.merge(TransactionExSchema),
-    ToCreateSchema: ToCreateSchema,
-    CreateSchema: TransactionOptionalDefaultsSchema,
-    ToPatchSchema: ToPatchSchema,
-    PatchSchema: TransactionPartialSchema.merge(WithIdentitySchema),
+    EntitySchema: $TransactionSchema,
+    DtoSchema: $TransactionSchema,
+    ToCreateSchema: $TransactionCreateSchema,
+    CreateSchema: $TransactionCreateSchema,
+    ToPatchSchema: $TransactionPatchSchema,
+    PatchSchema: $TransactionPatchSchema,
     FilterSchema: z.union([
         TransactionWhereInputSchema,
         TransactionWhereUniqueInputSchema,
@@ -63,9 +65,10 @@ export const TransactionSourceSchema = withSourceSchema({
     }),
 });
 export const $TransactionSource = Symbol.for("@monye.one/transaction/ITransactionSource");
+export const $TransactionSourceMapper = Symbol.for("@monye.one/transaction/ITransactionSourceMapper");
 export const TransactionSourceContext = (container: IContainer) => new ServiceContext<ITransactionSource>(container, $TransactionSource);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_omqgn2tatekei4eem4a1upmq = true;
+export const $leight_q3z2w5rhn8hv5f3t7wxr305l = true;

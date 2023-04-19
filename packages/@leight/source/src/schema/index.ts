@@ -10,6 +10,10 @@ export const EntitySchema = z.object({}).merge(WithIdentitySchema);
 export type IEntitySchema = typeof EntitySchema;
 export type IEntity = z.infer<IEntitySchema>;
 
+export const DtoSchema = z.object({}).merge(WithIdentitySchema);
+export type IDtoSchema = typeof DtoSchema;
+export type IDto = z.infer<IDtoSchema>;
+
 export const CreateSchema = z.object({});
 export type ICreateSchema = z.ZodObject<any>;
 export type ICreate = z.infer<ICreateSchema>;
@@ -18,14 +22,10 @@ export const ToCreateSchema = z.object({});
 export type IToCreateSchema = z.ZodObject<any>;
 export type IToCreate = z.infer<IToCreateSchema>;
 
-export const PatchSchema = z.object({
-    id: z.string(),
-});
+export const PatchSchema = WithIdentitySchema;
 export type IPatchSchema = typeof PatchSchema;
 export type IPatch = z.infer<IPatchSchema>;
 
-export const ToPatchSchema = z.object({
-    id: z.string(),
-});
+export const ToPatchSchema = WithIdentitySchema;
 export type IToPatchSchema = typeof ToPatchSchema;
 export type IToPatch = z.infer<IToPatchSchema>;

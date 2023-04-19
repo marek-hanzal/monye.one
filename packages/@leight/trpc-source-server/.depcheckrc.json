@@ -1,0 +1,9 @@
+{
+    "ignores": [
+        "@leight/esbuild",
+        "@leight/tsconfig",
+        "@leight/cursor",
+        "@types/node",
+        "zod"
+    ]
+}

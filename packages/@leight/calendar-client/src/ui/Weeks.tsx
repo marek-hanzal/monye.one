@@ -93,7 +93,7 @@ export const Weeks = <TSourceSchema extends ICalendarEventSourceSchema = ICalend
           }                                                     = WeeksOfStore.useState();
     const source                                                = events?.SourceStore.Source.useState();
     const filter                                                = events?.SourceStore.Filter.useState();
-    const $events                                               = events && source?.entities
+    const $events                                               = events && source?.dtos
         .filter(event => events.schema.safeParse(event))
         .map(event => events.schema.parse(event))
         .reduce<Record<string, TSourceSchema["Entity"][]>>((prev, current) => {

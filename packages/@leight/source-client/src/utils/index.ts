@@ -4,6 +4,8 @@ import {
 } from "@leight/source";
 
 export type IWithSourceQueryProps<TSourceSchema extends ISourceSchema> = {
+    create: { useMutation: IUseSourceQuery<TSourceSchema>["useCreate"] };
+    patch: { useMutation: IUseSourceQuery<TSourceSchema>["usePatch"] };
     query: { useQuery: IUseSourceQuery<TSourceSchema>["useQuery"] };
     count: { useQuery: IUseSourceQuery<TSourceSchema>["useCount"] };
     fetch: { useQuery: IUseSourceQuery<TSourceSchema>["useFetch"] };
@@ -12,12 +14,16 @@ export type IWithSourceQueryProps<TSourceSchema extends ISourceSchema> = {
 
 export const withSourceQuery = <TSourceSchema extends ISourceSchema>(
     {
-        query: {useQuery},
-        count: {useQuery: useCount},
-        fetch: {useQuery: useFetch},
-        find:  {useQuery: useFind},
+        create: {useMutation: useCreate},
+        patch:  {useMutation: usePatch},
+        query:  {useQuery},
+        count:  {useQuery: useCount},
+        fetch:  {useQuery: useFetch},
+        find:   {useQuery: useFind},
     }: IWithSourceQueryProps<TSourceSchema>
 ): IUseSourceQuery<TSourceSchema> => ({
+    useCreate,
+    usePatch,
     useQuery,
     useCount,
     useFetch,

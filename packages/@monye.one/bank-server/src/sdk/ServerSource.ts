@@ -3,14 +3,26 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IBankSource} from "@monye.one/bank";
+import {
+	type IBankSource,
+	type IBankSourceSchema
+} from "@monye.one/bank";
+import {
+	AbstractSourceMapper,
+	type ISourceMapper
+} from "@leight/source-server";
 import {BankSourceEx} from "../source";
 
+export type IBankSourceMapper = ISourceMapper<IBankSourceSchema>;
+
 export class BankSource extends BankSourceEx implements IBankSource {
+}
+
+export class BankSourceMapper extends AbstractSourceMapper<IBankSourceSchema> implements IBankSourceMapper {
 }
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ynm5kkkfvx0q01pxc50z43cf = true;
+export const $leight_ezjarsttrlsdubocfkjrqwmc = true;

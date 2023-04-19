@@ -19,7 +19,7 @@ import {
     Table
 }                              from "./Table";
 
-export interface ISourceTableColumn<TSourceSchema extends ISourceSchema> extends ITableColumn<TSourceSchema["Entity"]> {
+export interface ISourceTableColumn<TSourceSchema extends ISourceSchema> extends ITableColumn<TSourceSchema["Dto"]> {
     readonly sort?: keyof TSourceSchema["Sort"];
 }
 
@@ -30,7 +30,7 @@ export interface ISourceTableInternalProps<
     /**
      * Table schema used to infer all internal types.
      */
-    schema: TSourceSchema["EntitySchema"];
+    schema: TSourceSchema["DtoSchema"];
     SourceStore: ISourceStore<TSourceSchema>;
     pagination?: {
         hideOnSingle?: boolean;
@@ -69,17 +69,17 @@ export const SourceTable = <
         ...props
     }: ISourceTableInternalProps<TSourceSchema, TColumnKeys>) => {
     const {
-              entities,
+              dtos,
               isFetching,
               isLoading,
           }               = SourceStore.Source.useState((
         {
-            entities,
+            dtos,
             isFetching,
             isLoading,
         }) => (
         {
-            entities,
+            dtos,
             isFetching,
             isLoading,
         }));
@@ -122,7 +122,7 @@ export const SourceTable = <
                     },
                 };
             }, {})}
-            items={entities.filter(entity => schema.safeParse(entity).success)}
+            items={dtos.filter(dto => schema.safeParse(dto).success)}
             {...props}
         />
         {pagination?.position?.includes("bottom") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
