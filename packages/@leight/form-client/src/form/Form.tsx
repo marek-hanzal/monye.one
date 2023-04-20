@@ -28,7 +28,8 @@ import {
     type IFormSchema,
     type IFormSchemas,
     IFormToRequest,
-    IFormToRequestWithDto
+    IFormToRequestWithDto,
+    IFormToValues
 }                               from "../api";
 import {
     FormStoreProvider,
@@ -74,10 +75,6 @@ export type IFormProps<TFormSchema extends IFormSchema> = PropsWithChildren<{
      * Map form data (values) to request object required by a remote side
      */
     toRequest: IFormToRequest<TFormSchema>;
-    /**
-     * Use response to set default values from a remote object
-     */
-    response?: TFormSchema["Dto"];
     /**
      * Create typed form inputs based on the Values schema
      */
@@ -126,8 +123,7 @@ export const Form = <TFormSchema extends IFormSchema>(
         toRequest,
         inputs,
         inputsOverride,
-        response,
-        defaultValues = response,
+        defaultValues,
         ...props
     }: IFormProps<TFormSchema>) => {
     const {FormProvider, useForm} = MantineContext;
@@ -235,18 +231,20 @@ export interface IDtoFormProps<TFormSchema extends IFormSchema> extends Omit<IFo
      * Map form data (values) to request object required by a remote side
      */
     toRequest: IFormToRequestWithDto<TFormSchema>;
+    toValues: IFormToValues<TFormSchema>;
     /**
      * Use response to set default values from a remote object
      */
     dto: TFormSchema["Dto"];
 }
 
-export const DtoForm = <TFormSchema extends IFormSchema>({toRequest, dto, ...props}: IDtoFormProps<TFormSchema>) => {
+export const DtoForm = <TFormSchema extends IFormSchema>({toRequest, toValues, dto, ...props}: IDtoFormProps<TFormSchema>) => {
     return <Form
         toRequest={values => toRequest({
             values,
             dto,
         })}
+        defaultValues={toValues({dto})}
         {...props}
     />;
 };

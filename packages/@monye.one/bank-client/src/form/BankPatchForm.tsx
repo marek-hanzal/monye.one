@@ -2,22 +2,24 @@ import {
     DateInput,
     NumberInput,
     TextInput
-}                from "@leight/form-client";
-import {type FC} from "react";
+}                 from "@leight/form-client";
+import {type FC}  from "react";
+import {IconBank} from "../icon";
 import {
-    BankPatchBaseForm,
+    BankPatchTrpcForm,
     type IBankPatchBaseFormProps
-}                from "../sdk";
+}                 from "../sdk";
 
-export interface IBankPatchFormProps extends Omit<IBankPatchBaseFormProps, "toRequest" | "inputs"> {
+export interface IBankPatchFormProps extends Omit<IBankPatchBaseFormProps, "toRequest" | "toValues" | "inputs"> {
 }
 
 export const BankPatchForm: FC<IBankPatchFormProps> = props => {
-    return <BankPatchBaseForm
+    return <BankPatchTrpcForm
         toRequest={({values, dto}) => ({
             id: dto.id,
             ...values,
         })}
+        toValues={({dto}) => dto}
         inputs={() => ({
             "account":       ({mandatory, withLabel, withDescription}) => <TextInput
                 {...mandatory}
@@ -45,6 +47,9 @@ export const BankPatchForm: FC<IBankPatchFormProps> = props => {
                 mt={0}
             />,
         })}
+        submitProps={{
+            leftIcon: <IconBank/>,
+        }}
         {...props}
     />;
 };

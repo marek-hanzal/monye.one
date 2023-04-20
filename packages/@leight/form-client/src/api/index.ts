@@ -32,12 +32,17 @@ export type IFormSchema<
 
 export type IFormFields<TFormSchema extends IFormSchema> = KeysOf.Leaves<TFormSchema["Values"]>;
 export type IFormToRequest<TFormSchema extends IFormSchema> = (props: IFormMapper.TToRequestProps<TFormSchema>) => TFormSchema["Request"];
+export type IFormToValues<TFormSchema extends IFormSchema> = (props: IFormMapper.TToDtoProps<TFormSchema>) => TFormSchema["Values"];
 export type IFormToRequestWithDto<TFormSchema extends IFormSchema> = (props: IFormMapper.TToRequestWithEntityProps<TFormSchema>) => TFormSchema["Request"];
 export type IFormMapper<TFormSchema extends IFormSchema> = (value: TFormSchema["Values"]) => TFormSchema["Request"];
 
 export namespace IFormMapper {
     export interface TToRequestProps<TFormSchema extends IFormSchema> {
         values: TFormSchema["Values"];
+    }
+
+    export interface TToDtoProps<TFormSchema extends IFormSchema> {
+        dto: TFormSchema["Dto"];
     }
 
     export interface TToRequestWithEntityProps<TFormSchema extends IFormSchema> {

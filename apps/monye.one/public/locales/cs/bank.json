@@ -33,5 +33,12 @@
     "account.delete.confirm.button": "Odstranit účet",
     "account.delete.content": "Opravdu si přejete odstranit účet [{account}]? Tato akce je nevratná a může odstranit velké množství dat (transakce a další...).",
     "account.delete.success.title": "Účet [{account}] odstraněn.",
-    "account.delete.success.message": "Účet [{account}] a všechna navázaná data byl úspěšně odstraněn."
+    "account.delete.success.message": "Účet [{account}] a všechna navázaná data byl úspěšně odstraněn.",
+    "account.edit.button": "Upravit účet",
+    "modal.account.edit.title": "Upravit účet",
+    "BankPatchBaseForm.balance.date": "Datum zůstatku",
+    "BankPatchBaseForm.balance.date.description": "Vyberte prosím datum platnosti zůstatku",
+    "BankPatchBaseForm.balance.value": "Aktuální zůstatek",
+    "BankPatchBaseForm.balance.value.description": "Zadejte aktuální zůstatek, pokud chceete zobrazit odhady toku peněz",
+    "BankPatchBaseForm.submit.button": "Uložit"
 }

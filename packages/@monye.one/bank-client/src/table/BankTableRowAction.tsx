@@ -12,8 +12,11 @@ import {type IBankSourceSchema} from "@monye.one/bank";
 import {TransactionImport}      from "@monye.one/transaction-client";
 import {
     IconCash,
+    IconEdit,
     IconTrash
 }                               from "@tabler/icons-react";
+import {BankBalancePatchFields} from "../form/BankBalancePatchFields";
+import {BankPatchForm}          from "../form/BankPatchForm";
 import {
     useBankQueryInvalidator,
     UseBankSourceQuery
@@ -40,6 +43,32 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
                         label:     "actions.label",
                     }}
                 />
+                <Menu.Item
+                    onClick={() => modals.open({
+                        zIndex:              500,
+                        modalId:             "balance.patch",
+                        closeOnClickOutside: false,
+                        title:               <Translation
+                                                 namespace={"bank"}
+                                                 label={"modal.account.edit.title"}
+                                                 values={item}
+                                             />,
+                        size:                "lg",
+                        children:            <>
+                                                 <BankPatchForm
+                                                     dto={item}
+                                                 >
+                                                     <BankBalancePatchFields/>
+                                                 </BankPatchForm>
+                                             </>
+                    })}
+                    icon={<IconEdit size={14}/>}
+                >
+                    <Translation
+                        namespace={"bank"}
+                        label={"account.edit.button"}
+                    />
+                </Menu.Item>
                 <Menu.Item
                     onClick={() => modals.open({
                         zIndex:   500,
