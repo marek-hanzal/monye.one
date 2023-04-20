@@ -1,8 +1,12 @@
 import {FilterSchema} from "@leight/filter";
-import {DateTime}     from "@leight/i18n";
+import {
+    DateTime,
+    fromISO,
+    withISO
+}                     from "@leight/i18n";
 import {
     DtoSchema,
-    type InferSourceSchema,
+    type ISourceSchemaType,
     withSourceSchema
 }                     from "@leight/source";
 import {z}            from "@leight/zod";
@@ -12,16 +16,16 @@ export const CalendarEventSourceSchema = withSourceSchema({
      * Defines an individual calendar item being rendered/handled in a particular day.
      */
     DtoSchema:    DtoSchema.merge(z.object({
-        date: z.string().transform(input => DateTime.fromISO(input)),
-        prev: z.string().optional().transform(input => input ? DateTime.fromISO(input) : undefined),
-        next: z.string().optional().transform(input => input ? DateTime.fromISO(input) : undefined),
+        date: z.string().transform(withISO),
+        prev: z.string().optional().transform(fromISO),
+        next: z.string().optional().transform(fromISO),
     })),
     FilterSchema: FilterSchema.merge(z.object({
-        from: z.string().transform(input => DateTime.fromISO(input)),
-        to:   z.string().transform(input => DateTime.fromISO(input)),
+        from: z.string().transform(withISO),
+        to:   z.string().transform(withISO),
     })),
 });
-export type ICalendarEventSourceSchema = InferSourceSchema<typeof CalendarEventSourceSchema>;
+export type ICalendarEventSourceSchema = ISourceSchemaType.of<typeof CalendarEventSourceSchema>;
 
 export interface IDateRange {
     from: DateTime;

@@ -7,8 +7,8 @@ import {
     type IUserService
 }                                    from "@leight/user";
 import {
-    type ITransactionPrismaSchema,
-    type ITransactionSourceSchema,
+    type ITransactionPrismaSchemaType,
+    type ITransactionSourceSchemaType,
 }                                    from "@monye.one/transaction";
 import {TransactionBasePrismaSource} from "../sdk/PrismaSource/TransactionPrismaSource";
 
@@ -25,7 +25,7 @@ export class TransactionSourceEx extends TransactionBasePrismaSource {
         super(prismaClient);
     }
 
-    toWhere(filter?: ITransactionSourceSchema["Filter"]): ITransactionPrismaSchema["Where"] | undefined {
+    toWhere(filter?: ITransactionSourceSchemaType["Filter"]): ITransactionPrismaSchemaType["Where"] | undefined {
         if (!filter) {
             return;
         }

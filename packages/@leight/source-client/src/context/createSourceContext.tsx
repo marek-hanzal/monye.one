@@ -3,24 +3,24 @@ import {createFilterContext} from "@leight/filter-client";
 import {createSortContext}   from "@leight/sort-client";
 import {
     type ISourceSchema,
-    type ISourceSchemas,
+    type ISourceSchemaType,
     type ISourceStore,
     type ISourceStoreProps
 }                            from "@leight/source";
 
-export interface ICreateSourceContextProps<TSourceSchema extends ISourceSchema> {
-    readonly name: string;
-    readonly schema: TSourceSchema["DtoSchema"];
-    readonly dtos?: TSourceSchema["Dto"][];
+export interface ICreateSourceContextProps<TSourceSchemaType extends ISourceSchemaType> {
+    name: string;
+    schema: TSourceSchemaType["DtoSchema"];
+    dtos?: TSourceSchemaType["Dto"][];
 }
 
-export const createSourceContext = <TSourceSchema extends ISourceSchema>(
+export const createSourceContext = <TSourceSchemaType extends ISourceSchemaType>(
     {
         name,
         schema,
         dtos = [],
-    }: ICreateSourceContextProps<TSourceSchema>) => {
-    return createStoreContext<ISourceStoreProps<TSourceSchema>>({
+    }: ICreateSourceContextProps<TSourceSchemaType>) => {
+    return createStoreContext<ISourceStoreProps<TSourceSchemaType>>({
         state: () => (set) => ({
             schema,
             dtos:       dtos,
@@ -43,7 +43,7 @@ export const createSourceContext = <TSourceSchema extends ISourceSchema>(
 
 export interface IWithSourceStoreProps<TSourceSchema extends ISourceSchema> {
     name: string;
-    SourceSchema: ISourceSchemas<TSourceSchema>;
+    SourceSchema: TSourceSchema;
 }
 
 export const withSourceStore = <TSourceSchema extends ISourceSchema>(
@@ -54,9 +54,9 @@ export const withSourceStore = <TSourceSchema extends ISourceSchema>(
                           FilterSchema,
                           SortSchema,
                       },
-    }: IWithSourceStoreProps<TSourceSchema>): ISourceStore<TSourceSchema> => {
+    }: IWithSourceStoreProps<TSourceSchema>): ISourceStore<ISourceSchemaType.of<TSourceSchema>> => {
     return {
-        Source: createSourceContext<TSourceSchema>({
+        Source: createSourceContext<ISourceSchemaType.of<TSourceSchema>>({
             name,
             schema: EntitySchema,
         }),

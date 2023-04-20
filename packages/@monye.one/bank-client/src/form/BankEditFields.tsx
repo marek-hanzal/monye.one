@@ -1,4 +1,5 @@
 import {withCondition} from "@leight/form-client";
+import {DateTime}      from "@leight/i18n";
 import {Translation}   from "@leight/i18n-client";
 import {
     Card,
@@ -19,9 +20,9 @@ export interface IBankEditFieldsProps {
 }
 
 export const BankEditFields: FC<IBankEditFieldsProps> = () => {
-    const [withBalance, setWithBalance] = useState(true);
-    const form                          = BankEditMantineFormContext.useFormContext();
     const {defaultValues}               = BankEditFormStoreContext.useState(({defaultValues}) => ({defaultValues}));
+    const [withBalance, setWithBalance] = useState(!!defaultValues?.balance);
+    const form                          = BankEditMantineFormContext.useFormContext();
     return <>
         <BankEditInput path={"account"}/>
         <BankEditInput path={"description"}/>
@@ -37,7 +38,10 @@ export const BankEditFields: FC<IBankEditFieldsProps> = () => {
                     form,
                     bool:      event.currentTarget.checked,
                     whenTrue:  {
-                        balance: defaultValues?.balance,
+                        balance: defaultValues?.balance || {
+                            date:  DateTime.now().toISODate() || "",
+                            value: 0,
+                        },
                     },
                     whenFalse: {
                         balance: undefined,

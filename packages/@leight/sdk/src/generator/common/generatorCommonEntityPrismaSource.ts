@@ -77,13 +77,13 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
                         "type ISource",
                     ],
                     [`./${name}Schema`]: [
-                        `type I${name}SourceSchema`,
+                        `type I${name}SourceSchemaType`,
                     ],
                 },
             })
             .withTypes({
                 exports: {
-                    [`IUse${name}SourceQuery`]: `IUseSourceQuery<I${name}SourceSchema>`,
+                    [`IUse${name}SourceQuery`]: `IUseSourceQuery<I${name}SourceSchemaType>`,
                 },
             })
             .withImports(withSourceEx?.extends ? {
@@ -101,7 +101,7 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
                 exports: {
                     [`I${name}Source`]: {
                         extends: [
-                                     {type: `ISource<I${name}SourceSchema>`},
+                                     {type: `ISource<I${name}SourceSchemaType>`},
                                  ].concat(withSourceEx?.extends || []),
                     },
                 }
@@ -133,7 +133,7 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
                     ],
                     "@leight/source":  [
                         "withSourceSchema",
-                        "type InferSourceSchema",
+                        "type ISourceSchemaType",
                     ],
                     "@leight/zod":     [
                         "z",
@@ -246,7 +246,7 @@ withSourceSchema({
             })
             .withTypes({
                 exports: {
-                    [`I${name}SourceSchema`]: `InferSourceSchema<typeof ${name}SourceSchema>`,
+                    [`I${name}SourceSchemaType`]: `ISourceSchemaType.of<typeof ${name}SourceSchema>`,
                 },
             })
             .saveTo({
@@ -258,8 +258,8 @@ withSourceSchema({
             .withImports({
                 imports: {
                     "@leight/source":  [
-                        "withSourceExSchema",
-                        "type InferSourceExSchema",
+                        "withSourceSchemaEx",
+                        "type ISourceSchemaExType",
                     ],
                     [packages.prisma]: [
                         `${name}WhereInputSchema`,
@@ -270,14 +270,14 @@ withSourceSchema({
             })
             .withTypes({
                 exports: {
-                    [`I${name}PrismaSchema`]: `InferSourceExSchema<typeof ${name}PrismaSchema>`,
+                    [`I${name}PrismaSchemaType`]: `ISourceSchemaExType.of<typeof ${name}PrismaSchema>`,
                 },
             })
             .withConsts({
                 exports: {
                     [`${name}PrismaSchema`]: {
                         body: `
-withSourceExSchema({
+withSourceSchemaEx({
     WhereSchema:       ${name}WhereInputSchema,
     WhereUniqueSchema: ${name}WhereUniqueInputSchema,
     OrderBySchema:     ${name}OrderByWithRelationInputSchema,

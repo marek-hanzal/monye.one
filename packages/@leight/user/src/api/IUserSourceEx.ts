@@ -1,5 +1,5 @@
-import {type IUserSourceSchema} from "../sdk";
+import {type IUserSourceSchemaType} from "../sdk";
 
 export interface IUserSourceEx {
-    findByEmail(email: string): Promise<IUserSourceSchema["Entity"]>;
+    findByEmail(email: string): Promise<IUserSourceSchemaType["Entity"]>;
 }

@@ -5,13 +5,13 @@
  */
 import {type IJobSourceMapper} from "../api/JobTypes";
 import {AbstractSourceMapper} from "@leight/source-server";
-import {type IJobSourceSchema} from "@leight/job";
+import {type IJobSourceSchemaType} from "@leight/job";
 
-export class JobBaseSourceMapper extends AbstractSourceMapper<IJobSourceSchema> implements IJobSourceMapper {
+export class JobBaseSourceMapper extends AbstractSourceMapper<IJobSourceSchemaType> implements IJobSourceMapper {
 }
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vwqgj2p78of0eehos2g4sf1d = true;
+export const $leight_uzgjjyajfgfyfcqceia7ui0j = true;

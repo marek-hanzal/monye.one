@@ -5,13 +5,13 @@
  */
 import {type ICalendarEventSourceMapper} from "../api/CalendarEventTypes";
 import {AbstractSourceMapper} from "@leight/source-server";
-import {type ICalendarEventSourceSchema} from "@monye.one/book";
+import {type ICalendarEventSourceSchemaType} from "@monye.one/book";
 
-export class CalendarEventBaseSourceMapper extends AbstractSourceMapper<ICalendarEventSourceSchema> implements ICalendarEventSourceMapper {
+export class CalendarEventBaseSourceMapper extends AbstractSourceMapper<ICalendarEventSourceSchemaType> implements ICalendarEventSourceMapper {
 }
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hdlimdewccbs7zzbtuwbh57v = true;
+export const $leight_m5efix8unrkh6ael46dg229h = true;

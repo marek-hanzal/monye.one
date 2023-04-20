@@ -1,39 +1,39 @@
-import {type IWithIdentity} from "../schema";
-import {type ISourceSchema} from "./ISourceSchema";
+import {type IWithIdentity}     from "../schema";
+import {type ISourceSchemaType} from "./ISourceSchemaType";
 
 /**
  * Implementation of data source (general, not just a database one).
  */
-export interface ISource<TSourceSchema extends ISourceSchema> {
-    create(entity: TSourceSchema["Create"]): Promise<TSourceSchema["Entity"]>;
+export interface ISource<TSourceSchemaType extends ISourceSchemaType> {
+    create(entity: TSourceSchemaType["Create"]): Promise<TSourceSchemaType["Entity"]>;
 
-    upsert(props: ISource.IUpsert<TSourceSchema>): Promise<TSourceSchema["Entity"]>;
+    upsert(props: ISource.IUpsert<TSourceSchemaType>): Promise<TSourceSchemaType["Entity"]>;
 
-    patch(patch: TSourceSchema["Patch"]): Promise<TSourceSchema["Entity"]>;
+    patch(patch: TSourceSchemaType["Patch"]): Promise<TSourceSchemaType["Entity"]>;
 
-    delete(withIdentity: IWithIdentity): Promise<TSourceSchema["Entity"]>;
+    delete(withIdentity: IWithIdentity): Promise<TSourceSchemaType["Entity"]>;
 
-    deleteWith(query: TSourceSchema["Query"]): Promise<TSourceSchema["Entity"][]>;
+    deleteWith(query: TSourceSchemaType["Query"]): Promise<TSourceSchemaType["Entity"][]>;
 
     /**
      * Count items based on an optional query.
      */
-    count(query?: TSourceSchema["Query"]): Promise<number>;
+    count(query?: TSourceSchemaType["Query"]): Promise<number>;
 
     /**
      * Query items.
      */
-    query(query?: TSourceSchema["Query"]): Promise<TSourceSchema["Entity"][]>;
+    query(query?: TSourceSchemaType["Query"]): Promise<TSourceSchemaType["Entity"][]>;
 
-    fetch(query: TSourceSchema["Query"]): Promise<TSourceSchema["Entity"]>;
+    fetch(query: TSourceSchemaType["Query"]): Promise<TSourceSchemaType["Entity"]>;
 
-    find(id: string): Promise<TSourceSchema["Entity"]>;
+    find(id: string): Promise<TSourceSchemaType["Entity"]>;
 }
 
 export namespace ISource {
-    export interface IUpsert<TSourceSchema extends ISourceSchema> {
-        create: TSourceSchema["Create"];
-        patch: Omit<TSourceSchema["Patch"], "id">;
-        filter: TSourceSchema["Filter"];
+    export interface IUpsert<TSourceSchemaType extends ISourceSchemaType> {
+        create: TSourceSchemaType["Create"];
+        patch: Omit<TSourceSchemaType["Patch"], "id">;
+        filter: TSourceSchemaType["Filter"];
     }
 }

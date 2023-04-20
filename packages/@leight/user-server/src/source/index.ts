@@ -1,11 +1,11 @@
 import {
     type IUserSourceEx,
-    type IUserSourceSchema
+    type IUserSourceSchemaType
 }                             from "@leight/user";
 import {UserBasePrismaSource} from "../sdk";
 
 export class UserSourceEx extends UserBasePrismaSource implements IUserSourceEx {
-    public findByEmail(email: string): Promise<IUserSourceSchema["Entity"]> {
+    public findByEmail(email: string): Promise<IUserSourceSchemaType["Entity"]> {
         return this.prisma().findUniqueOrThrow({where: {email}});
     }
 }

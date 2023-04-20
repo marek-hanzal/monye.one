@@ -8,22 +8,22 @@ import {
 	Source
 } from "@leight/source-client";
 import {
-	type IFileSourceSchema,
+	type IFileSourceSchemaType,
 	FileSourceSchema
 } from "@leight/file";
 import {type FC} from "react";
 import {FileSourceStore} from "./FileSourceStore";
 import {type IUseSourceQuery} from "@leight/source";
 
-export interface IFileSourceProps extends ISourceProps<IFileSourceSchema> {
-	UseSourceQuery: IUseSourceQuery<IFileSourceSchema>;
+export interface IFileSourceProps extends ISourceProps<IFileSourceSchemaType> {
+	UseSourceQuery: IUseSourceQuery<IFileSourceSchemaType>;
 }
 
 /**
  * Provides access to File data with a connection to filtering and sorting. 
  */
 export const FileSource: FC<IFileSourceProps> = props => {
-    return <Source<IFileSourceSchema>
+    return <Source<IFileSourceSchemaType>
         schema={FileSourceSchema["EntitySchema"]}
         SourceStore={FileSourceStore}
         {...props}
@@ -33,4 +33,4 @@ export const FileSource: FC<IFileSourceProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tpd2kgv6fk2ek5du49v9kv8u = true;
+export const $leight_bs5zv3aydk6lwzyv3t16pg3y = true;

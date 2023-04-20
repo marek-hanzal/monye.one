@@ -13,7 +13,7 @@ import {
 import {SortOrderSchema} from "@leight/sort";
 import {
 	withSourceSchema,
-	type InferSourceSchema,
+	type ISourceSchemaType,
 	PatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
@@ -25,7 +25,7 @@ import {
 import {FilterSchema} from "@leight/filter";
 import {ParamsSchema} from "@leight/query";
 
-export type IBankSourceSchema = InferSourceSchema<typeof BankSourceSchema>;
+export type IBankSourceSchemaType = ISourceSchemaType.of<typeof BankSourceSchema>;
 
 const $BankSchema = $EntitySchema;
 const $BankCreateSchema = BankOptionalDefaultsSchema;
@@ -51,4 +51,4 @@ export const BankSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fciu4yzy545h0dbhi50q0ei4 = true;
+export const $leight_abnpnmwvbe3tj4zc33kem30n = true;

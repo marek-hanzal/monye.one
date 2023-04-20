@@ -24,20 +24,20 @@ import {
 }                      from "react";
 import {
     type IFormInputs,
-    type IFormSchema
+    type IFormSchemaType
 }                      from "../api";
 import {Description}   from "./Description";
 import {Error}         from "./Error";
 import {Label}         from "./Label";
 
-export interface IDateInputProps<TFormSchema extends IFormSchema> extends Omit<ComponentProps<typeof Box<"div">>, "placeholder">, IFormInputs.IInputProps<TFormSchema> {
+export interface IDateInputProps<TFormSchema extends IFormSchemaType> extends Omit<ComponentProps<typeof Box<"div">>, "placeholder">, IFormInputs.IInputProps<TFormSchema> {
     label?: string;
     description?: string;
     placeholder?: ReactNode;
     withAsterisk?: boolean;
 }
 
-export const DateInput = <TFormSchema extends IFormSchema>(
+export const DateInput = <TFormSchema extends IFormSchemaType>(
     {
         FormContext,
         path,

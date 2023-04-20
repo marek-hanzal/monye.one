@@ -5,7 +5,7 @@
  */
 import {SortOrderSchema} from "@leight/sort";
 import {
-	type InferSourceSchema,
+	type ISourceSchemaType,
 	withSourceSchema,
 	CreateSchema,
 	PatchSchema
@@ -15,7 +15,7 @@ import {CalendarEventBaseSchema} from "../../schema";
 import {CalendarEventSourceSchema as CoolCalendarEventSourceSchema} from "@leight/calendar";
 import {ParamsSchema} from "@leight/query";
 
-export type ICalendarEventSourceSchema = InferSourceSchema<typeof CalendarEventSourceSchema>;
+export type ICalendarEventSourceSchemaType = ISourceSchemaType.of<typeof CalendarEventSourceSchema>;
 
 const $CalendarEventSchema = CalendarEventBaseSchema;
 const $CalendarEventCreateSchema = CreateSchema;
@@ -37,4 +37,4 @@ export const CalendarEventSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tv2yss75ntbueh3ovw85bizw = true;
+export const $leight_agrtxfpxhb72e47ua6j8cvkn = true;

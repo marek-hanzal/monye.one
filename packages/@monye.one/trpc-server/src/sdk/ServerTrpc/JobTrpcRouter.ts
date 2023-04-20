@@ -3,40 +3,42 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
+import {WithIdentitySchema} from "@leight/source";
 import {
 	router,
 	procedure
 } from "../../router";
+import {JobSourceSchema} from "@leight/job";
 import {JobSourceProcedure} from "@leight/job-server";
 
 export const JobSourceRouter = router({
     create: procedure
-                .input(JobSourceProcedure.CreateSchema)
-                .mutation(JobSourceProcedure.Create),
+                .input(JobSourceSchema.ToCreateSchema)
+                .mutation(JobSourceProcedure.handleCreate),
     patch:  procedure
-                .input(JobSourceProcedure.PatchSchema)
-                .mutation(JobSourceProcedure.Patch),
+                .input(JobSourceSchema.ToPatchSchema)
+                .mutation(JobSourceProcedure.handlePatch),
     delete:  procedure
-                .input(JobSourceProcedure.IdentitySchema)
-                .mutation(JobSourceProcedure.Delete),
+                .input(WithIdentitySchema)
+                .mutation(JobSourceProcedure.handleDelete),
     deleteWith:  procedure
-                .input(JobSourceProcedure.QuerySchema)
-                .mutation(JobSourceProcedure.DeleteWith),
+                .input(JobSourceSchema.QuerySchema)
+                .mutation(JobSourceProcedure.handleDeleteWith),
     query:  procedure
-                .input(JobSourceProcedure.QueryOptionalSchema)
-                .query(JobSourceProcedure.Query),
+                .input(JobSourceSchema.QuerySchema)
+                .query(JobSourceProcedure.handleQuery),
     count:  procedure
-                .input(JobSourceProcedure.QueryOptionalSchema)
-                .query(JobSourceProcedure.QueryCount),
+                .input(JobSourceSchema.QuerySchema)
+                .query(JobSourceProcedure.handleCount),
     fetch:  procedure
-                .input(JobSourceProcedure.QuerySchema)
-                .query(JobSourceProcedure.Fetch),
+                .input(JobSourceSchema.QuerySchema)
+                .query(JobSourceProcedure.handleFetch),
     find:   procedure
-                .input(JobSourceProcedure.IdentitySchema)
-                .query(JobSourceProcedure.Find),
+                .input(WithIdentitySchema)
+                .query(JobSourceProcedure.handleFind),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_uun4q9dac5yznl4dj00ybpkq = true;
+export const $leight_xkxr254habjh8vzvbdu7dngf = true;

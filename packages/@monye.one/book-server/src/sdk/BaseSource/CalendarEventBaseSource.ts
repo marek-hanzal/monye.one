@@ -5,10 +5,10 @@
 import {AbstractSource} from "@leight/source-server";
 import {
 	$CalendarEventSource,
-	type ICalendarEventSourceSchema
+	type ICalendarEventSourceSchemaType
 } from "@monye.one/book";
 
-export class CalendarEventBaseSource extends AbstractSource<ICalendarEventSourceSchema> {
+export class CalendarEventBaseSource extends AbstractSource<ICalendarEventSourceSchemaType> {
 	constructor() {
         super($CalendarEventSource);
     }
@@ -18,4 +18,4 @@ export class CalendarEventBaseSource extends AbstractSource<ICalendarEventSource
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_iysxchzp1ppqn1ng8c9317ts = true;
+export const $leight_yv0qb7tbu5cgrq3mrl40x0kz = true;

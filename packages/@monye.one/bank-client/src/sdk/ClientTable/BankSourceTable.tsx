@@ -8,13 +8,13 @@ import {
 	type ISourceTableInternalProps
 } from "@leight/table-client";
 import {
-	type IBankSourceSchema,
+	type IBankSourceSchemaType,
 	BankSourceSchema
 } from "@monye.one/bank";
 import {BankSourceStore} from "../ClientSource/BankSourceStore";
 import {BankSource} from "../ClientSource/BankSource";
 
-export interface IBankSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<IBankSourceSchema, TColumnKeys>, "SourceStore" | "schema"> {
+export interface IBankSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<IBankSourceSchemaType, TColumnKeys>, "SourceStore" | "schema"> {
 }
 
 export interface IBankSourceTableProps<TColumnKeys extends string> extends Omit<IBankSourceTableInternalProps<TColumnKeys>, "columns" | "withTranslation"> {
@@ -37,4 +37,4 @@ export const BankSourceTable = <TColumnKeys extends string>(props: IBankSourceTa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tcrgmts1lyop761clxy5unn6 = true;
+export const $leight_kb14es9g4s5tixz6ge6qoq1z = true;

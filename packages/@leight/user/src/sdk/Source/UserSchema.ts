@@ -13,14 +13,14 @@ import {
 import {SortOrderSchema} from "@leight/sort";
 import {
 	withSourceSchema,
-	type InferSourceSchema,
+	type ISourceSchemaType,
 	PatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
 import {FilterSchema} from "@leight/filter";
 import {ParamsSchema} from "@leight/query";
 
-export type IUserSourceSchema = InferSourceSchema<typeof UserSourceSchema>;
+export type IUserSourceSchemaType = ISourceSchemaType.of<typeof UserSourceSchema>;
 
 const $UserSchema = $EntitySchema;
 const $UserCreateSchema = UserOptionalDefaultsSchema;
@@ -46,4 +46,4 @@ export const UserSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_oedpb632j45ub3hfe0ib3ivx = true;
+export const $leight_u91gmtlhsr6o6mzu6pydgnzr = true;

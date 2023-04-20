@@ -1,18 +1,18 @@
 import {
     type ISourceMapper,
-    type ISourceSchema
+    type ISourceSchemaType
 } from "@leight/source";
 
-export class AbstractSourceMapper<TSourceSchema extends ISourceSchema> implements ISourceMapper<TSourceSchema> {
-    async toCreate(create: TSourceSchema["ToCreate"]): Promise<TSourceSchema["Create"]> {
+export class AbstractSourceMapper<TSourceSchemaType extends ISourceSchemaType> implements ISourceMapper<TSourceSchemaType> {
+    async toCreate(create: TSourceSchemaType["ToCreate"]): Promise<TSourceSchemaType["Create"]> {
         return create;
     }
 
-    async toDto(entity: TSourceSchema["Entity"]): Promise<TSourceSchema["Dto"]> {
+    async toDto(entity: TSourceSchemaType["Entity"]): Promise<TSourceSchemaType["Dto"]> {
         return entity;
     }
 
-    async toPatch(patch: TSourceSchema["ToPatch"]): Promise<TSourceSchema["Patch"]> {
+    async toPatch(patch: TSourceSchemaType["ToPatch"]): Promise<TSourceSchemaType["Patch"]> {
         return patch;
     }
 }

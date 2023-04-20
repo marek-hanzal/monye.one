@@ -80,7 +80,7 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
                         "withSourceQuery",
                     ],
                     [packages.schema]:       [
-                        `type I${name}SourceSchema`,
+                        `type I${name}SourceSchemaType`,
                         `type IUse${name}SourceQuery`,
                     ],
                 }
@@ -96,7 +96,7 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
                 exports: {
                     [`Use${name}SourceQuery`]: {
                         type: `IUse${name}SourceQuery`,
-                        body: `withSourceQuery<I${name}SourceSchema>(trpc.${withTrpc.path}.source)`,
+                        body: `withSourceQuery<I${name}SourceSchemaType>(trpc.${withTrpc.path}.source)`,
                     },
                 }
             })

@@ -5,13 +5,13 @@
  */
 import {type IBankSourceMapper} from "../api/BankTypes";
 import {AbstractSourceMapper} from "@leight/source-server";
-import {type IBankSourceSchema} from "@monye.one/bank";
+import {type IBankSourceSchemaType} from "@monye.one/bank";
 
-export class BankBaseSourceMapper extends AbstractSourceMapper<IBankSourceSchema> implements IBankSourceMapper {
+export class BankBaseSourceMapper extends AbstractSourceMapper<IBankSourceSchemaType> implements IBankSourceMapper {
 }
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_alajmng741sn6y532gzox077 = true;
+export const $leight_n3dadkhjpdduvoyz2a1v9pga = true;

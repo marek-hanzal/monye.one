@@ -74,8 +74,8 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
                 imports: {
                     [packages.schema]: [
                         `$${name}Source`,
-                        `type I${name}SourceSchema`,
-                        `type I${name}PrismaSchema`,
+                        `type I${name}SourceSchemaType`,
+                        `type I${name}PrismaSchemaType`,
                     ],
                 },
             })
@@ -89,7 +89,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
             .withClasses({
                 exports: {
                     [`${name}BasePrismaSource`]: {
-                        extends: `AbstractSource<I${name}SourceSchema>`,
+                        extends: `AbstractSource<I${name}SourceSchemaType>`,
                         body:    `
     static inject = [
         $PrismaClient,
@@ -101,21 +101,21 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
         super($${name}Source);
     }
 
-    async runFind(id: string): Promise<I${name}SourceSchema["Entity"]> {
+    async runFind(id: string): Promise<I${name}SourceSchemaType["Entity"]> {
         return this.prisma().findUniqueOrThrow({
             where: {id},
             include: ${$withInclude},
         });
     }
 
-    async runCreate(entity: I${name}SourceSchema["Create"]): Promise<I${name}SourceSchema["Entity"]> {
+    async runCreate(entity: I${name}SourceSchemaType["Create"]): Promise<I${name}SourceSchemaType["Entity"]> {
         return this.prisma().create({
             data: entity,
             include: ${$withInclude},
         });
     }
 
-    async runPatch({id, ...patch}: I${name}SourceSchema["Patch"]): Promise<I${name}SourceSchema["Entity"]> {
+    async runPatch({id, ...patch}: I${name}SourceSchemaType["Patch"]): Promise<I${name}SourceSchemaType["Entity"]> {
         return this.prisma().update({
             data: patch,
             where: {id},
@@ -123,7 +123,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
         });
     }
 
-    async runUpsert({filter, patch: update, create}: ISource.IUpsert<I${name}SourceSchema>): Promise<I${name}SourceSchema["Entity"]> {
+    async runUpsert({filter, patch: update, create}: ISource.IUpsert<I${name}SourceSchemaType>): Promise<I${name}SourceSchemaType["Entity"]> {
         return this.prisma().upsert({
             create,
             update,
@@ -132,7 +132,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
         });
     }
 
-    async runDelete({id}: IWithIdentity): Promise<I${name}SourceSchema["Entity"]> {
+    async runDelete({id}: IWithIdentity): Promise<I${name}SourceSchemaType["Entity"]> {
         const item = await this.find(id);
         const where = this.toWhereUnique({id});
         if(!where) {
@@ -144,7 +144,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
         return item;
     }
     
-    async runDeleteWith(query: I${name}SourceSchema["Query"]): Promise<I${name}SourceSchema["Entity"][]> {
+    async runDeleteWith(query: I${name}SourceSchemaType["Query"]): Promise<I${name}SourceSchemaType["Entity"][]> {
         const items = await this.query(query);
         const where = this.toWhereUnique(query.filter);
         if(!where) {
@@ -156,13 +156,13 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
         return items;
     }
 
-    async runCount(query?: I${name}SourceSchema["Query"]): Promise<number> {
+    async runCount(query?: I${name}SourceSchemaType["Query"]): Promise<number> {
         return this.prisma().count({
             where: this.toWhere(query?.filter),
         });
     }
 
-    async runQuery(query?: I${name}SourceSchema["Query"]): Promise<I${name}SourceSchema["Entity"][]> {
+    async runQuery(query?: I${name}SourceSchemaType["Query"]): Promise<I${name}SourceSchemaType["Entity"][]> {
         return this.prisma().findMany(withCursor({
             query,
             arg: {
@@ -177,16 +177,16 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
         return this.prismaClient.${prisma};
     }
     
-    toWhere(filter?: I${name}SourceSchema["Filter"]): I${name}PrismaSchema['Where'] | undefined {
+    toWhere(filter?: I${name}SourceSchemaType["Filter"]): I${name}PrismaSchemaType['Where'] | undefined {
         return filter;
     }
     
-    toWhereUnique(filter: I${name}SourceSchema["Filter"]): I${name}PrismaSchema['WhereUnique'] {
-        return filter as I${name}PrismaSchema['WhereUnique'];
+    toWhereUnique(filter: I${name}SourceSchemaType["Filter"]): I${name}PrismaSchemaType['WhereUnique'] {
+        return filter as I${name}PrismaSchemaType['WhereUnique'];
     }
     
-    toOrderBy(sort?: I${name}SourceSchema["Sort"]): I${name}PrismaSchema['OrderBy'] | undefined {
-        return sort as I${name}PrismaSchema['OrderBy'];
+    toOrderBy(sort?: I${name}SourceSchemaType["Sort"]): I${name}PrismaSchemaType['OrderBy'] | undefined {
+        return sort as I${name}PrismaSchemaType['OrderBy'];
     }
                     `,
                     },

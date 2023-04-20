@@ -3,40 +3,42 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
+import {WithIdentitySchema} from "@leight/source";
 import {
 	router,
 	procedure
 } from "../../router";
+import {BankSourceSchema} from "@monye.one/bank";
 import {BankSourceProcedure} from "@monye.one/bank-server";
 
 export const BankSourceRouter = router({
     create: procedure
-                .input(BankSourceProcedure.CreateSchema)
-                .mutation(BankSourceProcedure.Create),
+                .input(BankSourceSchema.ToCreateSchema)
+                .mutation(BankSourceProcedure.handleCreate),
     patch:  procedure
-                .input(BankSourceProcedure.PatchSchema)
-                .mutation(BankSourceProcedure.Patch),
+                .input(BankSourceSchema.ToPatchSchema)
+                .mutation(BankSourceProcedure.handlePatch),
     delete:  procedure
-                .input(BankSourceProcedure.IdentitySchema)
-                .mutation(BankSourceProcedure.Delete),
+                .input(WithIdentitySchema)
+                .mutation(BankSourceProcedure.handleDelete),
     deleteWith:  procedure
-                .input(BankSourceProcedure.QuerySchema)
-                .mutation(BankSourceProcedure.DeleteWith),
+                .input(BankSourceSchema.QuerySchema)
+                .mutation(BankSourceProcedure.handleDeleteWith),
     query:  procedure
-                .input(BankSourceProcedure.QueryOptionalSchema)
-                .query(BankSourceProcedure.Query),
+                .input(BankSourceSchema.QuerySchema)
+                .query(BankSourceProcedure.handleQuery),
     count:  procedure
-                .input(BankSourceProcedure.QueryOptionalSchema)
-                .query(BankSourceProcedure.QueryCount),
+                .input(BankSourceSchema.QuerySchema)
+                .query(BankSourceProcedure.handleCount),
     fetch:  procedure
-                .input(BankSourceProcedure.QuerySchema)
-                .query(BankSourceProcedure.Fetch),
+                .input(BankSourceSchema.QuerySchema)
+                .query(BankSourceProcedure.handleFetch),
     find:   procedure
-                .input(BankSourceProcedure.IdentitySchema)
-                .query(BankSourceProcedure.Find),
+                .input(WithIdentitySchema)
+                .query(BankSourceProcedure.handleFind),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nnd295njupol7oi0jr8tdnkx = true;
+export const $leight_q8h3j8lscydrafalpwitwwj4 = true;

@@ -1,11 +1,11 @@
-import {DateTime}               from "@leight/i18n";
-import {decimalOf}              from "@leight/prisma";
+import {DateTime}                   from "@leight/i18n";
+import {decimalOf}                  from "@leight/prisma";
 import {
     $UserService,
     type IUserService
-}                               from "@leight/user";
-import {type IBankSourceSchema} from "@monye.one/bank";
-import {BankBaseSourceMapper}   from "../sdk/ServerSourceMapper/BankBaseSourceMapper";
+}                                   from "@leight/user";
+import {type IBankSourceSchemaType} from "@monye.one/bank";
+import {BankBaseSourceMapper}       from "../sdk/ServerSourceMapper/BankBaseSourceMapper";
 
 export class BankSourceMapperEx extends BankBaseSourceMapper {
     static inject = [
@@ -16,7 +16,7 @@ export class BankSourceMapperEx extends BankBaseSourceMapper {
         super();
     }
 
-    async toCreate({balance, ...create}: IBankSourceSchema["ToCreate"]): Promise<IBankSourceSchema["Create"]> {
+    async toCreate({balance, ...create}: IBankSourceSchemaType["ToCreate"]): Promise<IBankSourceSchemaType["Create"]> {
         return {
             ...create,
             balanceValue: balance?.value,
@@ -25,7 +25,7 @@ export class BankSourceMapperEx extends BankBaseSourceMapper {
         };
     }
 
-    async toPatch({balance, ...patch}: IBankSourceSchema["ToPatch"]): Promise<IBankSourceSchema["Patch"]> {
+    async toPatch({balance, ...patch}: IBankSourceSchemaType["ToPatch"]): Promise<IBankSourceSchemaType["Patch"]> {
         return {
             ...patch,
             balanceValue: balance?.value,
@@ -34,7 +34,7 @@ export class BankSourceMapperEx extends BankBaseSourceMapper {
         };
     }
 
-    async toDto({description, balanceDate, balanceValue, ...entity}: IBankSourceSchema["Entity"]): Promise<IBankSourceSchema["Dto"]> {
+    async toDto({description, balanceDate, balanceValue, ...entity}: IBankSourceSchemaType["Entity"]): Promise<IBankSourceSchemaType["Dto"]> {
         return {
             ...entity,
             description: description || undefined,

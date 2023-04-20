@@ -3,7 +3,7 @@
     "table.column.account": "Číslo účtu",
     "table.column.description": "Popisek",
     "table.column.balanceValue": "Zůstatek",
-    "table.column.balanceDate": "Datum yůstateku",
+    "table.column.balanceDate": "Datum zůstateku",
     "transaction.upload.button": "Nahrát transakce",
     "modal.transaction.import.title": "Import transakcí do účtu [{account}]",
     "modal.account.create.title": "Nový účet",

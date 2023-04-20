@@ -5,14 +5,14 @@
  */
 import {withSourceQuery} from "@leight/source-client";
 import {
-	type ICalendarEventSourceSchema,
+	type ICalendarEventSourceSchemaType,
 	type IUseCalendarEventSourceQuery
 } from "@monye.one/book";
 import {trpc} from "@monye.one/trpc-client";
 
-export const UseCalendarEventSourceQuery: IUseCalendarEventSourceQuery = withSourceQuery<ICalendarEventSourceSchema>(trpc.book.calendar.event.source);
+export const UseCalendarEventSourceQuery: IUseCalendarEventSourceQuery = withSourceQuery<ICalendarEventSourceSchemaType>(trpc.book.calendar.event.source);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_igdki0bcmao3ll6q7j2vl005 = true;
+export const $leight_tyw01j7z00waxjo15w7l1sg5 = true;

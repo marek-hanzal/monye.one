@@ -1,47 +1,35 @@
 import {
     type BindKey,
-    IContainer
+    type IContainer
 }                    from "@leight/container";
 import {
-    type ISourceSchema,
+    type ISourceSchemaType,
     type ISourceService,
-    type IWithIdentity,
-    WithIdentitySchema
+    type IWithIdentity
 }                    from "@leight/source";
 import {withHandler} from "@leight/trpc-server";
 
-export interface IWithSourceProcedureProps<TSourceSchema extends ISourceSchema> {
+export interface IWithSourceProcedureProps {
     sourceService: BindKey;
-    schema: {
-        create: TSourceSchema["ToCreateSchema"];
-        patch: TSourceSchema["ToPatchSchema"];
-        query: TSourceSchema["QuerySchema"];
-    };
 }
 
-export const withSourceProcedure = <TSourceSchema extends ISourceSchema>(
+export const withSourceProcedure = <TSourceSchemaType extends ISourceSchemaType>(
     {
         sourceService,
-        schema,
-    }: IWithSourceProcedureProps<TSourceSchema>) => {
+    }: IWithSourceProcedureProps) => {
 
     const withSourceService = (container: IContainer) => {
-        return container.resolve<ISourceService<TSourceSchema>>(sourceService);
+        return container.resolve<ISourceService<TSourceSchemaType>>(sourceService);
     };
 
     return {
-        QuerySchema:         schema.query,
-        QueryOptionalSchema: schema.query.optional(),
-        CreateSchema:        schema.create,
-        PatchSchema:         schema.patch,
-        IdentitySchema:      WithIdentitySchema,
-        Create:              withHandler<TSourceSchema["ToCreate"], TSourceSchema["Dto"]>({
+        handleCreate:     withHandler<TSourceSchemaType["ToCreate"], TSourceSchemaType["Dto"]>({
             handler: async ({container, request: toCreate}) => withSourceService(container).handleCreate({toCreate}),
         }),
-        Patch:               withHandler<TSourceSchema["ToPatch"], TSourceSchema["Dto"]>({
+        handlePatch:      withHandler<TSourceSchemaType["ToPatch"], TSourceSchemaType["Dto"]>({
             handler: async ({container, request: toPatch}) => withSourceService(container).handlePatch({toPatch}),
         }),
-        Delete:              withHandler<IWithIdentity, TSourceSchema["Dto"]>({
+        handleDelete:     withHandler<IWithIdentity, TSourceSchemaType["Dto"]>({
             handler: async ({container, request}) => {
                 const $sourceService = withSourceService(container);
                 return $sourceService.toDto(
@@ -49,7 +37,7 @@ export const withSourceProcedure = <TSourceSchema extends ISourceSchema>(
                 );
             },
         }),
-        DeleteWith:          withHandler<TSourceSchema["Query"], TSourceSchema["Dto"][]>({
+        handleDeleteWith: withHandler<TSourceSchemaType["Query"], TSourceSchemaType["Dto"][]>({
             handler: async ({container, request}) => {
                 const $sourceService = withSourceService(container);
                 return Promise.all(
@@ -57,18 +45,18 @@ export const withSourceProcedure = <TSourceSchema extends ISourceSchema>(
                 );
             },
         }),
-        Query:               withHandler<TSourceSchema["Query"] | undefined, TSourceSchema["Dto"][]>({
+        handleQuery:      withHandler<TSourceSchemaType["Query"] | undefined, TSourceSchemaType["Dto"][]>({
             handler: async ({container, request}) => {
                 const $sourceService = withSourceService(container);
                 return Promise.all(
-                    (await $sourceService.source().query(request)).map(item =>  $sourceService.toDto(item))
+                    (await $sourceService.source().query(request)).map(item => $sourceService.toDto(item))
                 );
             },
         }),
-        QueryCount:          withHandler<TSourceSchema["Query"] | undefined, number>({
+        handleCount:      withHandler<TSourceSchemaType["Query"] | undefined, number>({
             handler: async ({container, request}) => withSourceService(container).source().count(request),
         }),
-        Fetch:               withHandler<TSourceSchema["Query"], TSourceSchema["Dto"]>({
+        handleFetch:      withHandler<TSourceSchemaType["Query"], TSourceSchemaType["Dto"]>({
             handler: async ({container, request}) => {
                 const $sourceService = withSourceService(container);
                 return $sourceService.toDto(
@@ -76,7 +64,7 @@ export const withSourceProcedure = <TSourceSchema extends ISourceSchema>(
                 );
             },
         }),
-        Find:                withHandler<IWithIdentity, TSourceSchema["Dto"]>({
+        handleFind:       withHandler<IWithIdentity, TSourceSchemaType["Dto"]>({
             handler: async ({container, request: {id}}) => {
                 const $sourceService = withSourceService(container);
                 return $sourceService.toDto(

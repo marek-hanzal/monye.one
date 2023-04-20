@@ -20,6 +20,7 @@ export namespace IGeneratorServerTrpcRouterParams {
     }
 
     export interface IPackages {
+        schema: string;
         procedure: string;
         router?: string;
     }
@@ -37,11 +38,25 @@ export const generatorServerTrpcRouter: IGenerator<IGeneratorServerTrpcRouterPar
         withSourceFile()
             .withImports({
                 imports: {
+                    "@leight/source": [
+                        "WithIdentitySchema",
+                    ],
+                },
+            })
+            .withImports({
+                imports: {
                     [packages.router || "../../router"]: [
                         "router",
                         "procedure",
                     ],
-                }
+                },
+            })
+            .withImports({
+                imports: {
+                    [packages.schema]: [
+                        `${name}SourceSchema`,
+                    ],
+                },
             })
             .withImports({
                 imports: {
@@ -56,29 +71,29 @@ export const generatorServerTrpcRouter: IGenerator<IGeneratorServerTrpcRouterPar
                         body: `
 router({
     create: procedure
-                .input(${name}SourceProcedure.CreateSchema)
-                .mutation(${name}SourceProcedure.Create),
+                .input(${name}SourceSchema.ToCreateSchema)
+                .mutation(${name}SourceProcedure.handleCreate),
     patch:  procedure
-                .input(${name}SourceProcedure.PatchSchema)
-                .mutation(${name}SourceProcedure.Patch),
+                .input(${name}SourceSchema.ToPatchSchema)
+                .mutation(${name}SourceProcedure.handlePatch),
     delete:  procedure
-                .input(${name}SourceProcedure.IdentitySchema)
-                .mutation(${name}SourceProcedure.Delete),
+                .input(WithIdentitySchema)
+                .mutation(${name}SourceProcedure.handleDelete),
     deleteWith:  procedure
-                .input(${name}SourceProcedure.QuerySchema)
-                .mutation(${name}SourceProcedure.DeleteWith),
+                .input(${name}SourceSchema.QuerySchema)
+                .mutation(${name}SourceProcedure.handleDeleteWith),
     query:  procedure
-                .input(${name}SourceProcedure.QueryOptionalSchema)
-                .query(${name}SourceProcedure.Query),
+                .input(${name}SourceSchema.QuerySchema)
+                .query(${name}SourceProcedure.handleQuery),
     count:  procedure
-                .input(${name}SourceProcedure.QueryOptionalSchema)
-                .query(${name}SourceProcedure.QueryCount),
+                .input(${name}SourceSchema.QuerySchema)
+                .query(${name}SourceProcedure.handleCount),
     fetch:  procedure
-                .input(${name}SourceProcedure.QuerySchema)
-                .query(${name}SourceProcedure.Fetch),
+                .input(${name}SourceSchema.QuerySchema)
+                .query(${name}SourceProcedure.handleFetch),
     find:   procedure
-                .input(${name}SourceProcedure.IdentitySchema)
-                .query(${name}SourceProcedure.Find),
+                .input(WithIdentitySchema)
+                .query(${name}SourceProcedure.handleFind),
 })
                     `,
                     },

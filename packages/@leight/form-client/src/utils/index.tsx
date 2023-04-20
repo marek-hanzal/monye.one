@@ -5,11 +5,11 @@ import {
 import {Translation} from "@leight/i18n-client";
 import {ReactNode}   from "react";
 import {
-    type IFormSchema,
+    type IFormSchemaType,
     type IUseForm
 }                    from "../api";
 
-export type IWithDefaultInputProps<TFormSchema extends IFormSchema> = {
+export type IWithDefaultInputProps<TFormSchema extends IFormSchemaType> = {
     t: IWithTranslator;
     form: IUseForm<TFormSchema>;
     path: string;
@@ -19,7 +19,7 @@ export type IWithDefaultInputProps<TFormSchema extends IFormSchema> = {
     withTranslation: IWithTranslation;
 }
 
-export const withDefaultInputProps = <TFormSchema extends IFormSchema>(
+export const withDefaultInputProps = <TFormSchema extends IFormSchemaType>(
     {
         t,
         form,
@@ -39,7 +39,7 @@ export const withDefaultInputProps = <TFormSchema extends IFormSchema>(
     };
 };
 
-export type IWithCondition<TFormSchema extends IFormSchema> = {
+export type IWithCondition<TFormSchema extends IFormSchemaType> = {
     form: IUseForm<TFormSchema>;
     bool: boolean | null | undefined;
     whenTrue?: TFormSchema["OptionalValues"];
@@ -47,7 +47,7 @@ export type IWithCondition<TFormSchema extends IFormSchema> = {
     callback?(): void;
 };
 
-export const withCondition = <TFormSchema extends IFormSchema>(
+export const withCondition = <TFormSchema extends IFormSchemaType>(
     {
         form,
         bool,

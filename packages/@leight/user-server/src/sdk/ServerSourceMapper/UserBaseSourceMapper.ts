@@ -5,13 +5,13 @@
  */
 import {type IUserSourceMapper} from "../api/UserTypes";
 import {AbstractSourceMapper} from "@leight/source-server";
-import {type IUserSourceSchema} from "@leight/user";
+import {type IUserSourceSchemaType} from "@leight/user";
 
-export class UserBaseSourceMapper extends AbstractSourceMapper<IUserSourceSchema> implements IUserSourceMapper {
+export class UserBaseSourceMapper extends AbstractSourceMapper<IUserSourceSchemaType> implements IUserSourceMapper {
 }
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_m0kisbtk43z39r9gl84wto5w = true;
+export const $leight_usukesl3gughigvu256zefs3 = true;

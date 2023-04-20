@@ -1,12 +1,12 @@
 import {
     type ISource,
     type ISourceMapper,
-    type ISourceSchema,
+    type ISourceSchemaType,
     type ISourceService
 } from "@leight/source";
 
-export abstract class AbstractSourceService<TSourceSchema extends ISourceSchema> implements ISourceService<TSourceSchema> {
-    async handleCreate({toCreate}: ISourceService.IHandleCreateProps<TSourceSchema>): Promise<TSourceSchema["Dto"]> {
+export abstract class AbstractSourceService<TSourceSchemaType extends ISourceSchemaType> implements ISourceService<TSourceSchemaType> {
+    async handleCreate({toCreate}: ISourceService.IHandleCreateProps<TSourceSchemaType>): Promise<TSourceSchemaType["Dto"]> {
         return this.withDto(
             await this.toDto(
                 await this.withEntity(
@@ -17,15 +17,15 @@ export abstract class AbstractSourceService<TSourceSchema extends ISourceSchema>
         );
     }
 
-    async handleSourceCreate(create: TSourceSchema["Create"]): Promise<TSourceSchema["Entity"]> {
+    async handleSourceCreate(create: TSourceSchemaType["Create"]): Promise<TSourceSchemaType["Entity"]> {
         return this.source().create(create);
     }
 
-    async toCreate(toCreate: TSourceSchema["ToCreate"]): Promise<TSourceSchema["Create"]> {
+    async toCreate(toCreate: TSourceSchemaType["ToCreate"]): Promise<TSourceSchemaType["Create"]> {
         return this.mapper().toCreate(toCreate);
     }
 
-    async handlePatch({toPatch}: ISourceService.IHandlePatchProps<TSourceSchema>): Promise<TSourceSchema["Dto"]> {
+    async handlePatch({toPatch}: ISourceService.IHandlePatchProps<TSourceSchemaType>): Promise<TSourceSchemaType["Dto"]> {
         return this.withDto(
             await this.toDto(
                 await this.withEntity(
@@ -37,27 +37,27 @@ export abstract class AbstractSourceService<TSourceSchema extends ISourceSchema>
         );
     }
 
-    async handleSourcePatch(patch: TSourceSchema["Patch"]): Promise<TSourceSchema["Entity"]> {
+    async handleSourcePatch(patch: TSourceSchemaType["Patch"]): Promise<TSourceSchemaType["Entity"]> {
         return this.source().patch(patch);
     }
 
-    async toPatch(toPatch: TSourceSchema["ToPatch"]): Promise<TSourceSchema["Patch"]> {
+    async toPatch(toPatch: TSourceSchemaType["ToPatch"]): Promise<TSourceSchemaType["Patch"]> {
         return this.mapper().toPatch(toPatch);
     }
 
-    async toDto(entity: TSourceSchema["Entity"]): Promise<TSourceSchema["Dto"]> {
+    async toDto(entity: TSourceSchemaType["Entity"]): Promise<TSourceSchemaType["Dto"]> {
         return this.mapper().toDto(entity);
     }
 
-    async withDto(dto: TSourceSchema["Dto"]): Promise<TSourceSchema["Dto"]> {
+    async withDto(dto: TSourceSchemaType["Dto"]): Promise<TSourceSchemaType["Dto"]> {
         return dto;
     }
 
-    async withEntity(entity: TSourceSchema["Entity"]): Promise<TSourceSchema["Entity"]> {
+    async withEntity(entity: TSourceSchemaType["Entity"]): Promise<TSourceSchemaType["Entity"]> {
         return entity;
     }
 
-    abstract mapper(): ISourceMapper<TSourceSchema>;
+    abstract mapper(): ISourceMapper<TSourceSchemaType>;
 
-    abstract source(): ISource<TSourceSchema>;
+    abstract source(): ISource<TSourceSchemaType>;
 }

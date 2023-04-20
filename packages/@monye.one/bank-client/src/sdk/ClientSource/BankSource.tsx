@@ -8,21 +8,21 @@ import {
 	Source
 } from "@leight/source-client";
 import {
-	type IBankSourceSchema,
+	type IBankSourceSchemaType,
 	BankSourceSchema
 } from "@monye.one/bank";
 import {type FC} from "react";
 import {BankSourceStore} from "./BankSourceStore";
 import {UseBankSourceQuery} from "../ClientTrpc/UseBankSourceQuery";
 
-export interface IBankSourceProps extends ISourceProps<IBankSourceSchema> {
+export interface IBankSourceProps extends ISourceProps<IBankSourceSchemaType> {
 }
 
 /**
  * Provides access to Bank data with a connection to filtering and sorting. 
  */
 export const BankSource: FC<IBankSourceProps> = props => {
-    return <Source<IBankSourceSchema>
+    return <Source<IBankSourceSchemaType>
         schema={BankSourceSchema["EntitySchema"]}
         SourceStore={BankSourceStore}
         UseSourceQuery={UseBankSourceQuery}
@@ -33,4 +33,4 @@ export const BankSource: FC<IBankSourceProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_v53g9xewxv0qnj71045lmo33 = true;
+export const $leight_s85uciuuev5qvixuhnupoqf3 = true;

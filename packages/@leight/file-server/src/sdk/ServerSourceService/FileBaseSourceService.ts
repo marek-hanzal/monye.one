@@ -12,30 +12,30 @@ import {
 import {
 	$FileSource,
 	$FileSourceMapper,
-	type IFileSourceSchema
+	type IFileSourceSchemaType
 } from "@leight/file";
 
-export interface IFileSourceService extends ISourceService<IFileSourceSchema> {
+export interface IFileSourceService extends ISourceService<IFileSourceSchemaType> {
 }
 
-export class FileBaseSourceService extends AbstractSourceService<IFileSourceSchema> implements IFileSourceService {
+export class FileBaseSourceService extends AbstractSourceService<IFileSourceSchemaType> implements IFileSourceService {
 	static inject = [
         $FileSource,
         $FileSourceMapper,
     ];
     
     constructor(
-        protected $source: ISource<IFileSourceSchema>,
-        protected $mapper: ISourceMapper<IFileSourceSchema>,
+        protected $source: ISource<IFileSourceSchemaType>,
+        protected $mapper: ISourceMapper<IFileSourceSchemaType>,
     ) {
         super();
     }
     
-    source(): ISource<IFileSourceSchema> {
+    source(): ISource<IFileSourceSchemaType> {
         return this.$source;
     }
     
-    mapper(): ISourceMapper<IFileSourceSchema> {
+    mapper(): ISourceMapper<IFileSourceSchemaType> {
         return this.$mapper;
     }
 }
@@ -44,4 +44,4 @@ export class FileBaseSourceService extends AbstractSourceService<IFileSourceSche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_f4umdbdbw6rvy7k6ez4wufif = true;
+export const $leight_w8ozlmiiouok6ks469dwtjbc = true;

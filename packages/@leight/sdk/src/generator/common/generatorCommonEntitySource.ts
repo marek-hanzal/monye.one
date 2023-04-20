@@ -1,11 +1,11 @@
-import {IPackageType}    from "@leight/generator";
+import {type IPackageType} from "@leight/generator";
 import {
     withPackageImport,
     withPackageType,
     withSourceFile
-}                        from "@leight/generator-server";
-import {normalize}       from "node:path";
-import {type IGenerator} from "../../api";
+}                          from "@leight/generator-server";
+import {normalize}         from "node:path";
+import {type IGenerator}   from "../../api";
 
 export interface IGeneratorCommonEntitySourceParams {
     entities: IGeneratorCommonEntitySourceParams.IEntity[];
@@ -63,7 +63,7 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
                         "type IUseSourceQuery",
                     ],
                     [`./${name}SourceSchema`]: [
-                        `type I${name}SourceSchema`,
+                        `type I${name}SourceSchemaType`,
                     ],
                 },
             })
@@ -82,14 +82,14 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
                 exports: {
                     [`I${name}Source`]: {
                         extends: [
-                                     {type: `ISource<I${name}SourceSchema>`},
+                                     {type: `ISource<I${name}SourceSchemaType>`},
                                  ].concat(withSourceEx?.extends || []),
                     },
                 }
             })
             .withTypes({
                 exports: {
-                    [`IUse${name}SourceQuery`]: `IUseSourceQuery<I${name}SourceSchema>`,
+                    [`IUse${name}SourceQuery`]: `IUseSourceQuery<I${name}SourceSchemaType>`,
                 }
             })
             .withConsts({
@@ -111,7 +111,7 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
                         "SortOrderSchema",
                     ],
                     "@leight/source": [
-                        "type InferSourceSchema",
+                        "type ISourceSchemaType",
                         "withSourceSchema",
                     ],
                     "@leight/zod":    [
@@ -193,7 +193,7 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
             })
             .withTypes({
                 exports: {
-                    [`I${name}SourceSchema`]: `InferSourceSchema<typeof ${name}SourceSchema>`,
+                    [`I${name}SourceSchemaType`]: `ISourceSchemaType.of<typeof ${name}SourceSchema>`,
                 }
             })
             .withConsts({

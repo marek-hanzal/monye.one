@@ -35,15 +35,17 @@ export const BankTable: FC<IBankTableProps> = props => {
             account:      {
                 render: "account",
                 sort:   "account",
-                width:  14,
+                width:  16,
             },
             description:  {
                 render: "description",
             },
             balanceValue: {
+                width: 10,
                 render: ({balance}) => toHumanNumber({number: balance?.value}),
             },
             balanceDate:  {
+                width: 10,
                 render: ({balance}) => <DateInline date={balance?.date}/>,
             },
         }}

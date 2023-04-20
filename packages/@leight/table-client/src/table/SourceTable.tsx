@@ -5,7 +5,7 @@ import {
 import {type IPaginationProps} from "@leight/cursor-client/src/cursor/Pagination";
 import {SortIcon}              from "@leight/sort-client";
 import {
-    type ISourceSchema,
+    type ISourceSchemaType,
     type ISourceStore
 }                              from "@leight/source";
 import {chain}                 from "@leight/utils";
@@ -19,19 +19,19 @@ import {
     Table
 }                              from "./Table";
 
-export interface ISourceTableColumn<TSourceSchema extends ISourceSchema> extends ITableColumn<TSourceSchema["Dto"]> {
-    readonly sort?: keyof TSourceSchema["Sort"];
+export interface ISourceTableColumn<TSourceSchemaType extends ISourceSchemaType> extends ITableColumn<TSourceSchemaType["Dto"]> {
+    readonly sort?: keyof TSourceSchemaType["Sort"];
 }
 
 export interface ISourceTableInternalProps<
-    TSourceSchema extends ISourceSchema,
+    TSourceSchemaType extends ISourceSchemaType,
     TColumnKeys extends string,
-> extends ITableProps<ISourceTableColumn<TSourceSchema>, TColumnKeys> {
+> extends ITableProps<ISourceTableColumn<TSourceSchemaType>, TColumnKeys> {
     /**
      * Table schema used to infer all internal types.
      */
-    schema: TSourceSchema["DtoSchema"];
-    SourceStore: ISourceStore<TSourceSchema>;
+    schema: TSourceSchemaType["DtoSchema"];
+    SourceStore: ISourceStore<TSourceSchemaType>;
     pagination?: {
         hideOnSingle?: boolean;
         /**
@@ -47,12 +47,12 @@ export interface ISourceTableInternalProps<
  * Public props which any component could extend from (non-partial).
  */
 export type ISourceTableProps<
-    TSourceSchema extends ISourceSchema,
+    TSourceSchemaType extends ISourceSchemaType,
     TColumnKeys extends string,
-> = Omit<ISourceTableInternalProps<TSourceSchema, TColumnKeys>, "schema" | "SourceStore" | "columns" | "withTranslation">;
+> = Omit<ISourceTableInternalProps<TSourceSchemaType, TColumnKeys>, "schema" | "SourceStore" | "columns" | "withTranslation">;
 
 export const SourceTable = <
-    TSourceSchema extends ISourceSchema,
+    TSourceSchemaType extends ISourceSchemaType,
     TColumnKeys extends string,
 >(
     {
@@ -67,7 +67,7 @@ export const SourceTable = <
             ],
         },
         ...props
-    }: ISourceTableInternalProps<TSourceSchema, TColumnKeys>) => {
+    }: ISourceTableInternalProps<TSourceSchemaType, TColumnKeys>) => {
     const {
               dtos,
               isFetching,
@@ -95,9 +95,9 @@ export const SourceTable = <
             </Center>
             <Divider m={"md"}/>
         </>}
-        <Table<ISourceTableColumn<TSourceSchema>, TColumnKeys>
+        <Table<ISourceTableColumn<TSourceSchemaType>, TColumnKeys>
             isLoading={isLoading || isFetching}
-            columns={Object.entries<ISourceTableColumn<TSourceSchema>>(columns).reduce<any>((prev, [name, column]) => {
+            columns={Object.entries<ISourceTableColumn<TSourceSchemaType>>(columns).reduce<any>((prev, [name, column]) => {
                 return {
                     ...prev,
                     [name]: {
@@ -115,7 +115,7 @@ export const SourceTable = <
                         }),
                         headerRender:  column.headerRender || ((children) => {
                             return <>
-                                {column.sort ? <SortIcon<TSourceSchema["Sort"]> sort={sort} index={column.sort}/> : null}
+                                {column.sort ? <SortIcon<TSourceSchemaType["Sort"]> sort={sort} index={column.sort}/> : null}
                                 {children}
                             </>;
                         }),

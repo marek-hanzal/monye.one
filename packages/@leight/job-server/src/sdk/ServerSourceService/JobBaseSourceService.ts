@@ -12,30 +12,30 @@ import {
 import {
 	$JobSource,
 	$JobSourceMapper,
-	type IJobSourceSchema
+	type IJobSourceSchemaType
 } from "@leight/job";
 
-export interface IJobSourceService extends ISourceService<IJobSourceSchema> {
+export interface IJobSourceService extends ISourceService<IJobSourceSchemaType> {
 }
 
-export class JobBaseSourceService extends AbstractSourceService<IJobSourceSchema> implements IJobSourceService {
+export class JobBaseSourceService extends AbstractSourceService<IJobSourceSchemaType> implements IJobSourceService {
 	static inject = [
         $JobSource,
         $JobSourceMapper,
     ];
     
     constructor(
-        protected $source: ISource<IJobSourceSchema>,
-        protected $mapper: ISourceMapper<IJobSourceSchema>,
+        protected $source: ISource<IJobSourceSchemaType>,
+        protected $mapper: ISourceMapper<IJobSourceSchemaType>,
     ) {
         super();
     }
     
-    source(): ISource<IJobSourceSchema> {
+    source(): ISource<IJobSourceSchemaType> {
         return this.$source;
     }
     
-    mapper(): ISourceMapper<IJobSourceSchema> {
+    mapper(): ISourceMapper<IJobSourceSchemaType> {
         return this.$mapper;
     }
 }
@@ -44,4 +44,4 @@ export class JobBaseSourceService extends AbstractSourceService<IJobSourceSchema
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rza1qsv6y63mq5mqtxbarbd8 = true;
+export const $leight_ommtx24pqdo0p3budcejic56 = true;

@@ -8,21 +8,21 @@ import {
 	Source
 } from "@leight/source-client";
 import {
-	type ITransactionSourceSchema,
+	type ITransactionSourceSchemaType,
 	TransactionSourceSchema
 } from "@monye.one/transaction";
 import {type FC} from "react";
 import {TransactionSourceStore} from "./TransactionSourceStore";
 import {UseTransactionSourceQuery} from "../ClientTrpc/UseTransactionSourceQuery";
 
-export interface ITransactionSourceProps extends ISourceProps<ITransactionSourceSchema> {
+export interface ITransactionSourceProps extends ISourceProps<ITransactionSourceSchemaType> {
 }
 
 /**
  * Provides access to Transaction data with a connection to filtering and sorting. 
  */
 export const TransactionSource: FC<ITransactionSourceProps> = props => {
-    return <Source<ITransactionSourceSchema>
+    return <Source<ITransactionSourceSchemaType>
         schema={TransactionSourceSchema["EntitySchema"]}
         SourceStore={TransactionSourceStore}
         UseSourceQuery={UseTransactionSourceQuery}
@@ -33,4 +33,4 @@ export const TransactionSource: FC<ITransactionSourceProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fwlmhyxeekfv6z75mb2eqg26 = true;
+export const $leight_pal2xs073e0hl9ew0pbnbu3c = true;

@@ -4,8 +4,8 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
-	withSourceExSchema,
-	type InferSourceExSchema
+	withSourceSchemaEx,
+	type ISourceSchemaExType
 } from "@leight/source";
 import {
 	FileWhereInputSchema,
@@ -13,9 +13,9 @@ import {
 	FileOrderByWithRelationInputSchema
 } from "@leight/prisma";
 
-export type IFilePrismaSchema = InferSourceExSchema<typeof FilePrismaSchema>;
+export type IFilePrismaSchemaType = ISourceSchemaExType.of<typeof FilePrismaSchema>;
 
-export const FilePrismaSchema = withSourceExSchema({
+export const FilePrismaSchema = withSourceSchemaEx({
     WhereSchema:       FileWhereInputSchema,
     WhereUniqueSchema: FileWhereUniqueInputSchema,
     OrderBySchema:     FileOrderByWithRelationInputSchema,
@@ -24,4 +24,4 @@ export const FilePrismaSchema = withSourceExSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_x1lgwc5gvc6yt49g5qkc0b83 = true;
+export const $leight_hya3zkstfiao9r6z1ot2a06j = true;

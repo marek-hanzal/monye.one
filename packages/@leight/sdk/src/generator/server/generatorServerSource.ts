@@ -55,7 +55,7 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
             .withImports({
                 imports: {
                     [packages.schema]: [
-                        `type I${name}SourceSchema`,
+                        `type I${name}SourceSchemaType`,
                     ],
                     "@leight/source":  [
                         "type ISourceMapper",
@@ -64,7 +64,7 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
             })
             .withTypes({
                 exports: {
-                    [`I${name}SourceMapper`]: `ISourceMapper<I${name}SourceSchema>`,
+                    [`I${name}SourceMapper`]: `ISourceMapper<I${name}SourceSchemaType>`,
                 },
             })
             .saveTo({
@@ -117,14 +117,14 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
                         `AbstractSourceMapper`,
                     ],
                     [packages.schema]:       [
-                        `type I${name}SourceSchema`,
+                        `type I${name}SourceSchemaType`,
                     ],
                 },
             })
             .withClasses({
                 exports: {
                     [`${name}BaseSourceMapper`]: {
-                        extends:    `AbstractSourceMapper<I${name}SourceSchema>`,
+                        extends:    `AbstractSourceMapper<I${name}SourceSchemaType>`,
                         implements: `I${name}SourceMapper`,
                     },
                 },
@@ -180,7 +180,7 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
                     [packages.schema]:       [
                         `$${name}Source`,
                         `$${name}SourceMapper`,
-                        `type I${name}SourceSchema`,
+                        `type I${name}SourceSchemaType`,
                     ],
                 },
             })
@@ -189,7 +189,7 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
                     [`I${name}SourceService`]: {
                         extends: [
                             {
-                                type: `ISourceService<I${name}SourceSchema>`,
+                                type: `ISourceService<I${name}SourceSchemaType>`,
                             },
                         ],
                     },
@@ -199,7 +199,7 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
                 exports: {
                     [`${name}BaseSourceService`]: {
                         implements: `I${name}SourceService`,
-                        extends:    `AbstractSourceService<I${name}SourceSchema>`,
+                        extends:    `AbstractSourceService<I${name}SourceSchemaType>`,
                         body:       `
 static inject = [
         $${name}Source,
@@ -207,17 +207,17 @@ static inject = [
     ];
     
     constructor(
-        protected $source: ISource<I${name}SourceSchema>,
-        protected $mapper: ISourceMapper<I${name}SourceSchema>,
+        protected $source: ISource<I${name}SourceSchemaType>,
+        protected $mapper: ISourceMapper<I${name}SourceSchemaType>,
     ) {
         super();
     }
     
-    source(): ISource<I${name}SourceSchema> {
+    source(): ISource<I${name}SourceSchemaType> {
         return this.$source;
     }
     
-    mapper(): ISourceMapper<I${name}SourceSchema> {
+    mapper(): ISourceMapper<I${name}SourceSchemaType> {
         return this.$mapper;
     }
                         `

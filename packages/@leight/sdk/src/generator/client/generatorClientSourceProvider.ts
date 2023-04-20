@@ -42,7 +42,7 @@ export const generatorClientSourceProvider: IGenerator<IGeneratorClientSourcePro
                         "Source",
                     ],
                     [packages.schema]:        [
-                        `type I${name}SourceSchema`,
+                        `type I${name}SourceSchemaType`,
                         `${name}SourceSchema`,
                     ],
                     "react":                  [
@@ -71,10 +71,10 @@ export const generatorClientSourceProvider: IGenerator<IGeneratorClientSourcePro
                 exports: {
                     [`I${name}SourceProps`]: {
                         extends: [
-                            {type: `ISourceProps<I${name}SourceSchema>`},
+                            {type: `ISourceProps<I${name}SourceSchemaType>`},
                         ],
                         body:    withTrpc ? undefined : `
-UseSourceQuery: IUseSourceQuery<I${name}SourceSchema>;
+UseSourceQuery: IUseSourceQuery<I${name}SourceSchemaType>;
                     `,
                     },
                 },
@@ -89,7 +89,7 @@ UseSourceQuery: IUseSourceQuery<I${name}SourceSchema>;
  */
                         `,
                         body:    `props => {
-    return <Source<I${name}SourceSchema>
+    return <Source<I${name}SourceSchemaType>
         schema={${name}SourceSchema["EntitySchema"]}
         SourceStore={${name}SourceStore}
         ${withTrpc ? `UseSourceQuery={Use${name}SourceQuery}\n\t\t` : ""}{...props}
@@ -112,7 +112,7 @@ UseSourceQuery: IUseSourceQuery<I${name}SourceSchema>;
                         "QueryProvider",
                     ],
                     [packages.schema]:        [
-                        `type I${name}SourceSchema`,
+                        `type I${name}SourceSchemaType`,
                     ],
                     "react":                  [
                         "type FC",
@@ -137,10 +137,10 @@ UseSourceQuery: IUseSourceQuery<I${name}SourceSchema>;
                 exports: {
                     [`I${name}QueryProviderProps`]: {
                         extends: [
-                            {type: `IQueryProviderProps<I${name}SourceSchema>`},
+                            {type: `IQueryProviderProps<I${name}SourceSchemaType>`},
                         ],
                         body:    withTrpc ? undefined : `
-UseSourceQuery: IUseSourceQuery<I${name}SourceSchema>;
+UseSourceQuery: IUseSourceQuery<I${name}SourceSchemaType>;
                     `,
                     },
                 },
@@ -155,7 +155,7 @@ UseSourceQuery: IUseSourceQuery<I${name}SourceSchema>;
  */
                         `,
                         body:    `props => {
-    return <QueryProvider<I${name}SourceSchema>
+    return <QueryProvider<I${name}SourceSchemaType>
         SourceStore={${name}SourceStore}
         ${withTrpc ? `UseSourceQuery={Use${name}SourceQuery}\n\t\t` : ""}{...props}
     />;

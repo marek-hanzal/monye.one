@@ -7,19 +7,19 @@ import {
 	type IQueryProviderProps,
 	QueryProvider
 } from "@leight/query-client";
-import {type IBankSourceSchema} from "@monye.one/bank";
+import {type IBankSourceSchemaType} from "@monye.one/bank";
 import {type FC} from "react";
 import {BankSourceStore} from "./BankSourceStore";
 import {UseBankSourceQuery} from "../ClientTrpc/UseBankSourceQuery";
 
-export interface IBankQueryProviderProps extends IQueryProviderProps<IBankSourceSchema> {
+export interface IBankQueryProviderProps extends IQueryProviderProps<IBankSourceSchemaType> {
 }
 
 /**
  * Provides all Query parts for Bank used in fetching and sorting its data. 
  */
 export const BankQueryProvider: FC<IBankQueryProviderProps> = props => {
-    return <QueryProvider<IBankSourceSchema>
+    return <QueryProvider<IBankSourceSchemaType>
         SourceStore={BankSourceStore}
         UseSourceQuery={UseBankSourceQuery}
 		{...props}
@@ -29,4 +29,4 @@ export const BankQueryProvider: FC<IBankQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bhwwtwhumothary0sx1g86nj = true;
+export const $leight_zv9y3d0rtvf7cg4kilpfz1cd = true;

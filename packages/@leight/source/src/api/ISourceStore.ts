@@ -5,27 +5,27 @@ import {
 import {type IFilterStoreContext} from "@leight/filter";
 import {type ISortStoreContext}   from "@leight/sort";
 import {type IStoreProps}         from "@leight/zustand";
-import {type ISourceSchema}       from "./ISourceSchema";
+import {type ISourceSchemaType}   from "./ISourceSchemaType";
 
-export type ISourceStore<TSourceSchema extends ISourceSchema> = {
-    Source: ISourceStoreContext<TSourceSchema>;
-    Filter: IFilterStoreContext<TSourceSchema["FilterSchema"]>;
-    Sort: ISortStoreContext<TSourceSchema["SortSchema"]>;
+export type ISourceStore<TSourceSchemaType extends ISourceSchemaType> = {
+    Source: ISourceStoreContext<TSourceSchemaType>;
+    Filter: IFilterStoreContext<TSourceSchemaType["FilterSchema"]>;
+    Sort: ISortStoreContext<TSourceSchemaType["SortSchema"]>;
 };
 
-export type ISourceStoreProps<TSourceSchema extends ISourceSchema> = IStoreProps<{
-    readonly schema: TSourceSchema["DtoSchema"];
-    readonly dtos: TSourceSchema["Dto"][];
+export type ISourceStoreProps<TSourceSchemaType extends ISourceSchemaType> = IStoreProps<{
+    readonly schema: TSourceSchemaType["DtoSchema"];
+    readonly dtos: TSourceSchemaType["Dto"][];
     readonly isLoading: boolean;
     readonly isFetching: boolean;
 
-    setDtos(dto?: TSourceSchema["Dto"][]): void;
+    setDtos(dto?: TSourceSchemaType["Dto"][]): void;
 
     setIsLoading(isLoading: boolean): void;
 
     setIsFetching(isFetching: boolean): void;
 }>
 
-export type ISourceStoreContext<TSourceSchema extends ISourceSchema> = IStoreContext<ISourceStoreProps<TSourceSchema>>;
+export type ISourceStoreContext<TSourceSchemaType extends ISourceSchemaType> = IStoreContext<ISourceStoreProps<TSourceSchemaType>>;
 
-export type IUseSourceState<TSourceSchema extends ISourceSchema> = IUseState<ISourceStoreProps<TSourceSchema>>;
+export type IUseSourceState<TSourceSchemaType extends ISourceSchemaType> = IUseState<ISourceStoreProps<TSourceSchemaType>>;

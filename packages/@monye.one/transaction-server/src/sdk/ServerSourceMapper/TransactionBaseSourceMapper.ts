@@ -5,13 +5,13 @@
  */
 import {type ITransactionSourceMapper} from "../api/TransactionTypes";
 import {AbstractSourceMapper} from "@leight/source-server";
-import {type ITransactionSourceSchema} from "@monye.one/transaction";
+import {type ITransactionSourceSchemaType} from "@monye.one/transaction";
 
-export class TransactionBaseSourceMapper extends AbstractSourceMapper<ITransactionSourceSchema> implements ITransactionSourceMapper {
+export class TransactionBaseSourceMapper extends AbstractSourceMapper<ITransactionSourceSchemaType> implements ITransactionSourceMapper {
 }
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_v3oikznthu0fy74doyuxtyby = true;
+export const $leight_nyyjp3pcl678f8058rah9uum = true;

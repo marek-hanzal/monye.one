@@ -5,14 +5,14 @@
  */
 import {withSourceQuery} from "@leight/source-client";
 import {
-	type ITransactionSourceSchema,
+	type ITransactionSourceSchemaType,
 	type IUseTransactionSourceQuery
 } from "@monye.one/transaction";
 import {trpc} from "@monye.one/trpc-client";
 
-export const UseTransactionSourceQuery: IUseTransactionSourceQuery = withSourceQuery<ITransactionSourceSchema>(trpc.transaction.source);
+export const UseTransactionSourceQuery: IUseTransactionSourceQuery = withSourceQuery<ITransactionSourceSchemaType>(trpc.transaction.source);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xgbt82vg4niarudnckiptpze = true;
+export const $leight_bzp8stm9qen7kn33albtsjd6 = true;

@@ -3,40 +3,42 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
+import {WithIdentitySchema} from "@leight/source";
 import {
 	router,
 	procedure
 } from "../../router";
+import {CalendarEventSourceSchema} from "@monye.one/book";
 import {CalendarEventSourceProcedure} from "@monye.one/book-server";
 
 export const CalendarEventSourceRouter = router({
     create: procedure
-                .input(CalendarEventSourceProcedure.CreateSchema)
-                .mutation(CalendarEventSourceProcedure.Create),
+                .input(CalendarEventSourceSchema.ToCreateSchema)
+                .mutation(CalendarEventSourceProcedure.handleCreate),
     patch:  procedure
-                .input(CalendarEventSourceProcedure.PatchSchema)
-                .mutation(CalendarEventSourceProcedure.Patch),
+                .input(CalendarEventSourceSchema.ToPatchSchema)
+                .mutation(CalendarEventSourceProcedure.handlePatch),
     delete:  procedure
-                .input(CalendarEventSourceProcedure.IdentitySchema)
-                .mutation(CalendarEventSourceProcedure.Delete),
+                .input(WithIdentitySchema)
+                .mutation(CalendarEventSourceProcedure.handleDelete),
     deleteWith:  procedure
-                .input(CalendarEventSourceProcedure.QuerySchema)
-                .mutation(CalendarEventSourceProcedure.DeleteWith),
+                .input(CalendarEventSourceSchema.QuerySchema)
+                .mutation(CalendarEventSourceProcedure.handleDeleteWith),
     query:  procedure
-                .input(CalendarEventSourceProcedure.QueryOptionalSchema)
-                .query(CalendarEventSourceProcedure.Query),
+                .input(CalendarEventSourceSchema.QuerySchema)
+                .query(CalendarEventSourceProcedure.handleQuery),
     count:  procedure
-                .input(CalendarEventSourceProcedure.QueryOptionalSchema)
-                .query(CalendarEventSourceProcedure.QueryCount),
+                .input(CalendarEventSourceSchema.QuerySchema)
+                .query(CalendarEventSourceProcedure.handleCount),
     fetch:  procedure
-                .input(CalendarEventSourceProcedure.QuerySchema)
-                .query(CalendarEventSourceProcedure.Fetch),
+                .input(CalendarEventSourceSchema.QuerySchema)
+                .query(CalendarEventSourceProcedure.handleFetch),
     find:   procedure
-                .input(CalendarEventSourceProcedure.IdentitySchema)
-                .query(CalendarEventSourceProcedure.Find),
+                .input(WithIdentitySchema)
+                .query(CalendarEventSourceProcedure.handleFind),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_q9d65lzggvjiwblst82jbgt8 = true;
+export const $leight_ckug36t76zgqgvksga8cwmmn = true;

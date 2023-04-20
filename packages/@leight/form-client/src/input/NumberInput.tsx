@@ -3,14 +3,14 @@ import {NumberInput as CoolNumberInput} from "@mantine/core";
 import {type ComponentProps}            from "react";
 import {
     type IFormInputs,
-    type IFormSchema
+    type IFormSchemaType
 }                                       from "../api";
 import {withDefaultInputProps}          from "../utils";
 
-export interface INumberInputProps<TFormSchema extends IFormSchema> extends ComponentProps<typeof CoolNumberInput>, IFormInputs.IInputProps<TFormSchema> {
+export interface INumberInputProps<TFormSchema extends IFormSchemaType> extends ComponentProps<typeof CoolNumberInput>, IFormInputs.IInputProps<TFormSchema> {
 }
 
-export const NumberInput = <TFormSchema extends IFormSchema>(
+export const NumberInput = <TFormSchema extends IFormSchemaType>(
     {
         FormContext,
         path,

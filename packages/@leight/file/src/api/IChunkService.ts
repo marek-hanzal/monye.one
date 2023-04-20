@@ -1,9 +1,9 @@
-import {type IFileSourceSchema} from "../sdk";
+import {type IFileSourceSchemaType} from "../sdk";
 
 export interface IChunkService {
     chunk(chunkId: string, chunk: Promise<Buffer>): Promise<void>;
 
-    commit(props: IChunkService.CommitProps): Promise<IFileSourceSchema["Entity"]>;
+    commit(props: IChunkService.CommitProps): Promise<IFileSourceSchemaType["Entity"]>;
 }
 
 export namespace IChunkService {

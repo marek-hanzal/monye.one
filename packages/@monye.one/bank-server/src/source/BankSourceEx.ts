@@ -7,8 +7,8 @@ import {
     type IUserService
 }                             from "@leight/user";
 import {
-    type IBankPrismaSchema,
-    type IBankSourceSchema
+    type IBankPrismaSchemaType,
+    type IBankSourceSchemaType
 }                             from "@monye.one/bank";
 import {BankBasePrismaSource} from "../sdk/PrismaSource/BankPrismaSource";
 
@@ -25,7 +25,7 @@ export class BankSourceEx extends BankBasePrismaSource {
         super(prismaClient);
     }
 
-    toWhere(filter?: IBankSourceSchema["Filter"]): IBankPrismaSchema["Where"] | undefined {
+    toWhere(filter?: IBankSourceSchemaType["Filter"]): IBankPrismaSchemaType["Where"] | undefined {
         if (!filter) {
             return;
         }

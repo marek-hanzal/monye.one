@@ -16,8 +16,9 @@ export interface IBankEditFormProps extends Omit<IBankEditTrpcFormProps, "toRequ
 
 export const BankEditForm: FC<IBankEditFormProps> = props => {
     return <BankEditTrpcForm
-        toRequest={({values, dto}) => ({
+        toRequest={({values: {balance, ...values}, dto}) => ({
             id: dto.id,
+            balance: balance || null,
             ...values,
         })}
         toValues={({dto}) => dto}

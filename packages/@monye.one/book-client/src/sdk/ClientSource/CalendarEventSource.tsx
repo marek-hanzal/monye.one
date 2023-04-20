@@ -8,21 +8,21 @@ import {
 	Source
 } from "@leight/source-client";
 import {
-	type ICalendarEventSourceSchema,
+	type ICalendarEventSourceSchemaType,
 	CalendarEventSourceSchema
 } from "@monye.one/book";
 import {type FC} from "react";
 import {CalendarEventSourceStore} from "./CalendarEventSourceStore";
 import {UseCalendarEventSourceQuery} from "../ClientTrpc/UseCalendarEventSourceQuery";
 
-export interface ICalendarEventSourceProps extends ISourceProps<ICalendarEventSourceSchema> {
+export interface ICalendarEventSourceProps extends ISourceProps<ICalendarEventSourceSchemaType> {
 }
 
 /**
  * Provides access to CalendarEvent data with a connection to filtering and sorting. 
  */
 export const CalendarEventSource: FC<ICalendarEventSourceProps> = props => {
-    return <Source<ICalendarEventSourceSchema>
+    return <Source<ICalendarEventSourceSchemaType>
         schema={CalendarEventSourceSchema["EntitySchema"]}
         SourceStore={CalendarEventSourceStore}
         UseSourceQuery={UseCalendarEventSourceQuery}
@@ -33,4 +33,4 @@ export const CalendarEventSource: FC<ICalendarEventSourceProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tmsb9uxqcdl0o3d2gtu19gb9 = true;
+export const $leight_tbbzan355y41wb2oapye4xe5 = true;

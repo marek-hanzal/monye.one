@@ -41,7 +41,7 @@ export const generatorClientSourceTable: IGenerator<IGeneratorClientSourceTableP
                         "type ISourceTableInternalProps",
                     ],
                     [packages.schema]:                      [
-                        `type I${name}SourceSchema`,
+                        `type I${name}SourceSchemaType`,
                         `${name}SourceSchema`,
                     ],
                     [`../ClientSource/${name}SourceStore`]: [
@@ -56,7 +56,7 @@ export const generatorClientSourceTable: IGenerator<IGeneratorClientSourceTableP
                 exports: {
                     [`I${name}SourceTableInternalProps<TColumnKeys extends string>`]: {
                         extends: [
-                            {type: `Omit<ISourceTableInternalProps<I${name}SourceSchema, TColumnKeys>, "SourceStore" | "schema">`},
+                            {type: `Omit<ISourceTableInternalProps<I${name}SourceSchemaType, TColumnKeys>, "SourceStore" | "schema">`},
                         ],
                     },
                     [`I${name}SourceTableProps<TColumnKeys extends string>`]:         {

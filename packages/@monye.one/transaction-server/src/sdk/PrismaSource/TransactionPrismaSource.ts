@@ -12,12 +12,12 @@ import {
 import {AbstractSource} from "@leight/source-server";
 import {
 	$TransactionSource,
-	type ITransactionSourceSchema,
-	type ITransactionPrismaSchema
+	type ITransactionSourceSchemaType,
+	type ITransactionPrismaSchemaType
 } from "@monye.one/transaction";
 import {type PrismaClient} from "@monye.one/prisma";
 
-export class TransactionBasePrismaSource extends AbstractSource<ITransactionSourceSchema> {
+export class TransactionBasePrismaSource extends AbstractSource<ITransactionSourceSchemaType> {
 	static inject = [
         $PrismaClient,
     ];
@@ -28,21 +28,21 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
         super($TransactionSource);
     }
 
-    async runFind(id: string): Promise<ITransactionSourceSchema["Entity"]> {
+    async runFind(id: string): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().findUniqueOrThrow({
             where: {id},
             include: {"bank":true},
         });
     }
 
-    async runCreate(entity: ITransactionSourceSchema["Create"]): Promise<ITransactionSourceSchema["Entity"]> {
+    async runCreate(entity: ITransactionSourceSchemaType["Create"]): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().create({
             data: entity,
             include: {"bank":true},
         });
     }
 
-    async runPatch({id, ...patch}: ITransactionSourceSchema["Patch"]): Promise<ITransactionSourceSchema["Entity"]> {
+    async runPatch({id, ...patch}: ITransactionSourceSchemaType["Patch"]): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().update({
             data: patch,
             where: {id},
@@ -50,7 +50,7 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
         });
     }
 
-    async runUpsert({filter, patch: update, create}: ISource.IUpsert<ITransactionSourceSchema>): Promise<ITransactionSourceSchema["Entity"]> {
+    async runUpsert({filter, patch: update, create}: ISource.IUpsert<ITransactionSourceSchemaType>): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().upsert({
             create,
             update,
@@ -59,7 +59,7 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
         });
     }
 
-    async runDelete({id}: IWithIdentity): Promise<ITransactionSourceSchema["Entity"]> {
+    async runDelete({id}: IWithIdentity): Promise<ITransactionSourceSchemaType["Entity"]> {
         const item = await this.find(id);
         const where = this.toWhereUnique({id});
         if(!where) {
@@ -71,7 +71,7 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
         return item;
     }
     
-    async runDeleteWith(query: ITransactionSourceSchema["Query"]): Promise<ITransactionSourceSchema["Entity"][]> {
+    async runDeleteWith(query: ITransactionSourceSchemaType["Query"]): Promise<ITransactionSourceSchemaType["Entity"][]> {
         const items = await this.query(query);
         const where = this.toWhereUnique(query.filter);
         if(!where) {
@@ -83,13 +83,13 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
         return items;
     }
 
-    async runCount(query?: ITransactionSourceSchema["Query"]): Promise<number> {
+    async runCount(query?: ITransactionSourceSchemaType["Query"]): Promise<number> {
         return this.prisma().count({
             where: this.toWhere(query?.filter),
         });
     }
 
-    async runQuery(query?: ITransactionSourceSchema["Query"]): Promise<ITransactionSourceSchema["Entity"][]> {
+    async runQuery(query?: ITransactionSourceSchemaType["Query"]): Promise<ITransactionSourceSchemaType["Entity"][]> {
         return this.prisma().findMany(withCursor({
             query,
             arg: {
@@ -104,16 +104,16 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
         return this.prismaClient.transaction;
     }
     
-    toWhere(filter?: ITransactionSourceSchema["Filter"]): ITransactionPrismaSchema['Where'] | undefined {
+    toWhere(filter?: ITransactionSourceSchemaType["Filter"]): ITransactionPrismaSchemaType['Where'] | undefined {
         return filter;
     }
     
-    toWhereUnique(filter: ITransactionSourceSchema["Filter"]): ITransactionPrismaSchema['WhereUnique'] {
-        return filter as ITransactionPrismaSchema['WhereUnique'];
+    toWhereUnique(filter: ITransactionSourceSchemaType["Filter"]): ITransactionPrismaSchemaType['WhereUnique'] {
+        return filter as ITransactionPrismaSchemaType['WhereUnique'];
     }
     
-    toOrderBy(sort?: ITransactionSourceSchema["Sort"]): ITransactionPrismaSchema['OrderBy'] | undefined {
-        return sort as ITransactionPrismaSchema['OrderBy'];
+    toOrderBy(sort?: ITransactionSourceSchemaType["Sort"]): ITransactionPrismaSchemaType['OrderBy'] | undefined {
+        return sort as ITransactionPrismaSchemaType['OrderBy'];
     }
 }
 
@@ -121,4 +121,4 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_y4zolv10dke3t6eeu1qski8a = true;
+export const $leight_ynt1ibx1trtwr8q7enyzmzna = true;

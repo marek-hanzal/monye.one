@@ -3,13 +3,13 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IUserSourceSchema} from "@leight/user";
+import {type IUserSourceSchemaType} from "@leight/user";
 import {type ISourceMapper} from "@leight/source";
 
-export type IUserSourceMapper = ISourceMapper<IUserSourceSchema>;
+export type IUserSourceMapper = ISourceMapper<IUserSourceSchemaType>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_n7scapwmqz615zwh03uj7mdr = true;
+export const $leight_nf2dk35m2j8vlt9d95jh9mfw = true;

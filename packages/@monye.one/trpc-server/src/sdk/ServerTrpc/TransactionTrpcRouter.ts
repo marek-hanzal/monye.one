@@ -3,40 +3,42 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
+import {WithIdentitySchema} from "@leight/source";
 import {
 	router,
 	procedure
 } from "../../router";
+import {TransactionSourceSchema} from "@monye.one/transaction";
 import {TransactionSourceProcedure} from "@monye.one/transaction-server";
 
 export const TransactionSourceRouter = router({
     create: procedure
-                .input(TransactionSourceProcedure.CreateSchema)
-                .mutation(TransactionSourceProcedure.Create),
+                .input(TransactionSourceSchema.ToCreateSchema)
+                .mutation(TransactionSourceProcedure.handleCreate),
     patch:  procedure
-                .input(TransactionSourceProcedure.PatchSchema)
-                .mutation(TransactionSourceProcedure.Patch),
+                .input(TransactionSourceSchema.ToPatchSchema)
+                .mutation(TransactionSourceProcedure.handlePatch),
     delete:  procedure
-                .input(TransactionSourceProcedure.IdentitySchema)
-                .mutation(TransactionSourceProcedure.Delete),
+                .input(WithIdentitySchema)
+                .mutation(TransactionSourceProcedure.handleDelete),
     deleteWith:  procedure
-                .input(TransactionSourceProcedure.QuerySchema)
-                .mutation(TransactionSourceProcedure.DeleteWith),
+                .input(TransactionSourceSchema.QuerySchema)
+                .mutation(TransactionSourceProcedure.handleDeleteWith),
     query:  procedure
-                .input(TransactionSourceProcedure.QueryOptionalSchema)
-                .query(TransactionSourceProcedure.Query),
+                .input(TransactionSourceSchema.QuerySchema)
+                .query(TransactionSourceProcedure.handleQuery),
     count:  procedure
-                .input(TransactionSourceProcedure.QueryOptionalSchema)
-                .query(TransactionSourceProcedure.QueryCount),
+                .input(TransactionSourceSchema.QuerySchema)
+                .query(TransactionSourceProcedure.handleCount),
     fetch:  procedure
-                .input(TransactionSourceProcedure.QuerySchema)
-                .query(TransactionSourceProcedure.Fetch),
+                .input(TransactionSourceSchema.QuerySchema)
+                .query(TransactionSourceProcedure.handleFetch),
     find:   procedure
-                .input(TransactionSourceProcedure.IdentitySchema)
-                .query(TransactionSourceProcedure.Find),
+                .input(WithIdentitySchema)
+                .query(TransactionSourceProcedure.handleFind),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rk5s307pekkq5ru0lhgwlznq = true;
+export const $leight_zux0ur34kuc2gntwh8uxiqsh = true;

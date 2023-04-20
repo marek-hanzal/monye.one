@@ -1,51 +1,51 @@
-import {type ISource}       from "./ISource";
-import {type ISourceMapper} from "./ISourceMapper";
-import {type ISourceSchema} from "./ISourceSchema";
+import {type ISource}           from "./ISource";
+import {type ISourceMapper}     from "./ISourceMapper";
+import {type ISourceSchemaType} from "./ISourceSchemaType";
 
-export interface ISourceService<TSourceSchema extends ISourceSchema> {
-    handleCreate(props: ISourceService.IHandleCreateProps<TSourceSchema>): Promise<TSourceSchema["Dto"]>;
+export interface ISourceService<TSourceSchemaType extends ISourceSchemaType> {
+    handleCreate(props: ISourceService.IHandleCreateProps<TSourceSchemaType>): Promise<TSourceSchemaType["Dto"]>;
 
-    handleSourceCreate(create: TSourceSchema["Create"]): Promise<TSourceSchema["Entity"]>;
+    handleSourceCreate(create: TSourceSchemaType["Create"]): Promise<TSourceSchemaType["Entity"]>;
 
-    toCreate(toCreate: TSourceSchema["ToCreate"]): Promise<TSourceSchema["Create"]>;
+    toCreate(toCreate: TSourceSchemaType["ToCreate"]): Promise<TSourceSchemaType["Create"]>;
 
-    handlePatch(props: ISourceService.IHandlePatchProps<TSourceSchema>): Promise<TSourceSchema["Dto"]>;
+    handlePatch(props: ISourceService.IHandlePatchProps<TSourceSchemaType>): Promise<TSourceSchemaType["Dto"]>;
 
-    handleSourcePatch(patch: TSourceSchema["Patch"]): Promise<TSourceSchema["Entity"]>;
+    handleSourcePatch(patch: TSourceSchemaType["Patch"]): Promise<TSourceSchemaType["Entity"]>;
 
-    toPatch(toPatch: TSourceSchema["ToPatch"]): Promise<TSourceSchema["Patch"]>;
+    toPatch(toPatch: TSourceSchemaType["ToPatch"]): Promise<TSourceSchemaType["Patch"]>;
 
-    toDto(entity: TSourceSchema["Entity"]): Promise<TSourceSchema["Dto"]>;
+    toDto(entity: TSourceSchemaType["Entity"]): Promise<TSourceSchemaType["Dto"]>;
 
     /**
      * Do something with a DTO; schema modifications are not allowed as this should
      * handle SourceMapper
      */
-    withDto(dto: TSourceSchema["Dto"]): Promise<TSourceSchema["Dto"]>;
+    withDto(dto: TSourceSchemaType["Dto"]): Promise<TSourceSchemaType["Dto"]>;
 
     /**
      * Do something with an Entity; schema modifications are not allowed as this should
      * handle SourceMapper
      */
-    withEntity(entity: TSourceSchema["Entity"]): Promise<TSourceSchema["Entity"]>;
+    withEntity(entity: TSourceSchemaType["Entity"]): Promise<TSourceSchemaType["Entity"]>;
 
     /**
      * Get source mapper
      */
-    mapper(): ISourceMapper<TSourceSchema>;
+    mapper(): ISourceMapper<TSourceSchemaType>;
 
     /**
      * Get current source
      */
-    source(): ISource<TSourceSchema>;
+    source(): ISource<TSourceSchemaType>;
 }
 
 export namespace ISourceService {
-    export interface IHandleCreateProps<TSourceSchema extends ISourceSchema> {
-        toCreate: TSourceSchema["ToCreate"];
+    export interface IHandleCreateProps<TSourceSchemaType extends ISourceSchemaType> {
+        toCreate: TSourceSchemaType["ToCreate"];
     }
 
-    export interface IHandlePatchProps<TSourceSchema extends ISourceSchema> {
-        toPatch: TSourceSchema["ToPatch"];
+    export interface IHandlePatchProps<TSourceSchemaType extends ISourceSchemaType> {
+        toPatch: TSourceSchemaType["ToPatch"];
     }
 }

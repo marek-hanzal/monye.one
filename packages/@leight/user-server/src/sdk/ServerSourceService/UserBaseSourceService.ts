@@ -12,30 +12,30 @@ import {
 import {
 	$UserSource,
 	$UserSourceMapper,
-	type IUserSourceSchema
+	type IUserSourceSchemaType
 } from "@leight/user";
 
-export interface IUserSourceService extends ISourceService<IUserSourceSchema> {
+export interface IUserSourceService extends ISourceService<IUserSourceSchemaType> {
 }
 
-export class UserBaseSourceService extends AbstractSourceService<IUserSourceSchema> implements IUserSourceService {
+export class UserBaseSourceService extends AbstractSourceService<IUserSourceSchemaType> implements IUserSourceService {
 	static inject = [
         $UserSource,
         $UserSourceMapper,
     ];
     
     constructor(
-        protected $source: ISource<IUserSourceSchema>,
-        protected $mapper: ISourceMapper<IUserSourceSchema>,
+        protected $source: ISource<IUserSourceSchemaType>,
+        protected $mapper: ISourceMapper<IUserSourceSchemaType>,
     ) {
         super();
     }
     
-    source(): ISource<IUserSourceSchema> {
+    source(): ISource<IUserSourceSchemaType> {
         return this.$source;
     }
     
-    mapper(): ISourceMapper<IUserSourceSchema> {
+    mapper(): ISourceMapper<IUserSourceSchemaType> {
         return this.$mapper;
     }
 }
@@ -44,4 +44,4 @@ export class UserBaseSourceService extends AbstractSourceService<IUserSourceSche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_c1zkyz7yf3qcpif064wwtda6 = true;
+export const $leight_j7nre9o81qu20wm6sxxp0swz = true;

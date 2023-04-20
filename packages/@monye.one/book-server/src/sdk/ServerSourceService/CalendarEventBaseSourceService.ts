@@ -12,30 +12,30 @@ import {
 import {
 	$CalendarEventSource,
 	$CalendarEventSourceMapper,
-	type ICalendarEventSourceSchema
+	type ICalendarEventSourceSchemaType
 } from "@monye.one/book";
 
-export interface ICalendarEventSourceService extends ISourceService<ICalendarEventSourceSchema> {
+export interface ICalendarEventSourceService extends ISourceService<ICalendarEventSourceSchemaType> {
 }
 
-export class CalendarEventBaseSourceService extends AbstractSourceService<ICalendarEventSourceSchema> implements ICalendarEventSourceService {
+export class CalendarEventBaseSourceService extends AbstractSourceService<ICalendarEventSourceSchemaType> implements ICalendarEventSourceService {
 	static inject = [
         $CalendarEventSource,
         $CalendarEventSourceMapper,
     ];
     
     constructor(
-        protected $source: ISource<ICalendarEventSourceSchema>,
-        protected $mapper: ISourceMapper<ICalendarEventSourceSchema>,
+        protected $source: ISource<ICalendarEventSourceSchemaType>,
+        protected $mapper: ISourceMapper<ICalendarEventSourceSchemaType>,
     ) {
         super();
     }
     
-    source(): ISource<ICalendarEventSourceSchema> {
+    source(): ISource<ICalendarEventSourceSchemaType> {
         return this.$source;
     }
     
-    mapper(): ISourceMapper<ICalendarEventSourceSchema> {
+    mapper(): ISourceMapper<ICalendarEventSourceSchemaType> {
         return this.$mapper;
     }
 }
@@ -44,4 +44,4 @@ export class CalendarEventBaseSourceService extends AbstractSourceService<ICalen
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lqt1t5wfj8j8y5fvrag8uglh = true;
+export const $leight_smqz0wwc09qg3opqik6yktvz = true;

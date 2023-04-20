@@ -6,20 +6,14 @@
 import {withSourceProcedure} from "@leight/trpc-source-server";
 import {
 	$JobSourceService,
-	JobSourceSchema,
-	type IJobSourceSchema
+	type IJobSourceSchemaType
 } from "@leight/job";
 
-export const JobSourceProcedure = withSourceProcedure<IJobSourceSchema>({
+export const JobSourceProcedure = withSourceProcedure<IJobSourceSchemaType>({
     sourceService: $JobSourceService,
-    schema: {
-        create: JobSourceSchema["ToCreateSchema"],
-        patch: JobSourceSchema["ToPatchSchema"],
-        query: JobSourceSchema["QuerySchema"],
-    },
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_m5f8ppfrmlo1cp3idatwnsub = true;
+export const $leight_k8urbwhp84lt01u9be84uybr = true;

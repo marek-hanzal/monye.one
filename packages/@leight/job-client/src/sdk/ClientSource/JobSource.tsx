@@ -8,22 +8,22 @@ import {
 	Source
 } from "@leight/source-client";
 import {
-	type IJobSourceSchema,
+	type IJobSourceSchemaType,
 	JobSourceSchema
 } from "@leight/job";
 import {type FC} from "react";
 import {JobSourceStore} from "./JobSourceStore";
 import {type IUseSourceQuery} from "@leight/source";
 
-export interface IJobSourceProps extends ISourceProps<IJobSourceSchema> {
-	UseSourceQuery: IUseSourceQuery<IJobSourceSchema>;
+export interface IJobSourceProps extends ISourceProps<IJobSourceSchemaType> {
+	UseSourceQuery: IUseSourceQuery<IJobSourceSchemaType>;
 }
 
 /**
  * Provides access to Job data with a connection to filtering and sorting. 
  */
 export const JobSource: FC<IJobSourceProps> = props => {
-    return <Source<IJobSourceSchema>
+    return <Source<IJobSourceSchemaType>
         schema={JobSourceSchema["EntitySchema"]}
         SourceStore={JobSourceStore}
         {...props}
@@ -33,4 +33,4 @@ export const JobSource: FC<IJobSourceProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ui9iefb5eokhbzzoodkk6vgl = true;
+export const $leight_b5r67xc3y5no42m0nmoo0mvg = true;

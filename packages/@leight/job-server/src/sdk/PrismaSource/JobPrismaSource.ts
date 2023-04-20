@@ -15,11 +15,11 @@ import {
 import {AbstractSource} from "@leight/source-server";
 import {
 	$JobSource,
-	type IJobSourceSchema,
-	type IJobPrismaSchema
+	type IJobSourceSchemaType,
+	type IJobPrismaSchemaType
 } from "@leight/job";
 
-export class JobBasePrismaSource extends AbstractSource<IJobSourceSchema> {
+export class JobBasePrismaSource extends AbstractSource<IJobSourceSchemaType> {
 	static inject = [
         $PrismaClient,
     ];
@@ -30,21 +30,21 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchema> {
         super($JobSource);
     }
 
-    async runFind(id: string): Promise<IJobSourceSchema["Entity"]> {
+    async runFind(id: string): Promise<IJobSourceSchemaType["Entity"]> {
         return this.prisma().findUniqueOrThrow({
             where: {id},
             include: undefined,
         });
     }
 
-    async runCreate(entity: IJobSourceSchema["Create"]): Promise<IJobSourceSchema["Entity"]> {
+    async runCreate(entity: IJobSourceSchemaType["Create"]): Promise<IJobSourceSchemaType["Entity"]> {
         return this.prisma().create({
             data: entity,
             include: undefined,
         });
     }
 
-    async runPatch({id, ...patch}: IJobSourceSchema["Patch"]): Promise<IJobSourceSchema["Entity"]> {
+    async runPatch({id, ...patch}: IJobSourceSchemaType["Patch"]): Promise<IJobSourceSchemaType["Entity"]> {
         return this.prisma().update({
             data: patch,
             where: {id},
@@ -52,7 +52,7 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchema> {
         });
     }
 
-    async runUpsert({filter, patch: update, create}: ISource.IUpsert<IJobSourceSchema>): Promise<IJobSourceSchema["Entity"]> {
+    async runUpsert({filter, patch: update, create}: ISource.IUpsert<IJobSourceSchemaType>): Promise<IJobSourceSchemaType["Entity"]> {
         return this.prisma().upsert({
             create,
             update,
@@ -61,7 +61,7 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchema> {
         });
     }
 
-    async runDelete({id}: IWithIdentity): Promise<IJobSourceSchema["Entity"]> {
+    async runDelete({id}: IWithIdentity): Promise<IJobSourceSchemaType["Entity"]> {
         const item = await this.find(id);
         const where = this.toWhereUnique({id});
         if(!where) {
@@ -73,7 +73,7 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchema> {
         return item;
     }
     
-    async runDeleteWith(query: IJobSourceSchema["Query"]): Promise<IJobSourceSchema["Entity"][]> {
+    async runDeleteWith(query: IJobSourceSchemaType["Query"]): Promise<IJobSourceSchemaType["Entity"][]> {
         const items = await this.query(query);
         const where = this.toWhereUnique(query.filter);
         if(!where) {
@@ -85,13 +85,13 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchema> {
         return items;
     }
 
-    async runCount(query?: IJobSourceSchema["Query"]): Promise<number> {
+    async runCount(query?: IJobSourceSchemaType["Query"]): Promise<number> {
         return this.prisma().count({
             where: this.toWhere(query?.filter),
         });
     }
 
-    async runQuery(query?: IJobSourceSchema["Query"]): Promise<IJobSourceSchema["Entity"][]> {
+    async runQuery(query?: IJobSourceSchemaType["Query"]): Promise<IJobSourceSchemaType["Entity"][]> {
         return this.prisma().findMany(withCursor({
             query,
             arg: {
@@ -106,16 +106,16 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchema> {
         return this.prismaClient.job;
     }
     
-    toWhere(filter?: IJobSourceSchema["Filter"]): IJobPrismaSchema['Where'] | undefined {
+    toWhere(filter?: IJobSourceSchemaType["Filter"]): IJobPrismaSchemaType['Where'] | undefined {
         return filter;
     }
     
-    toWhereUnique(filter: IJobSourceSchema["Filter"]): IJobPrismaSchema['WhereUnique'] {
-        return filter as IJobPrismaSchema['WhereUnique'];
+    toWhereUnique(filter: IJobSourceSchemaType["Filter"]): IJobPrismaSchemaType['WhereUnique'] {
+        return filter as IJobPrismaSchemaType['WhereUnique'];
     }
     
-    toOrderBy(sort?: IJobSourceSchema["Sort"]): IJobPrismaSchema['OrderBy'] | undefined {
-        return sort as IJobPrismaSchema['OrderBy'];
+    toOrderBy(sort?: IJobSourceSchemaType["Sort"]): IJobPrismaSchemaType['OrderBy'] | undefined {
+        return sort as IJobPrismaSchemaType['OrderBy'];
     }
 }
 
@@ -123,4 +123,4 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchema> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qrsyx4ick12pphervqhnxs39 = true;
+export const $leight_ag3byjgvw06hvo486pkjnhgv = true;

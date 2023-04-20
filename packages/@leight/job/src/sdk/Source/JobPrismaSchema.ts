@@ -4,8 +4,8 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
-	withSourceExSchema,
-	type InferSourceExSchema
+	withSourceSchemaEx,
+	type ISourceSchemaExType
 } from "@leight/source";
 import {
 	JobWhereInputSchema,
@@ -13,9 +13,9 @@ import {
 	JobOrderByWithRelationInputSchema
 } from "@leight/prisma";
 
-export type IJobPrismaSchema = InferSourceExSchema<typeof JobPrismaSchema>;
+export type IJobPrismaSchemaType = ISourceSchemaExType.of<typeof JobPrismaSchema>;
 
-export const JobPrismaSchema = withSourceExSchema({
+export const JobPrismaSchema = withSourceSchemaEx({
     WhereSchema:       JobWhereInputSchema,
     WhereUniqueSchema: JobWhereUniqueInputSchema,
     OrderBySchema:     JobOrderByWithRelationInputSchema,
@@ -24,4 +24,4 @@ export const JobPrismaSchema = withSourceExSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nggzjuy8lnfjb58wj89no9d3 = true;
+export const $leight_e70ztpgr77m9sqbw668yd3tm = true;

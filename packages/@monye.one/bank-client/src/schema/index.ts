@@ -22,7 +22,7 @@ export const BankEditFormSchema = withFormSchemas({
     ValueSchema:   z.object({
         account:     z.string().trim().min(1, {message: "Empty"}),
         description: z.string().optional(),
-        balance:     z.object({
+        balance:      z.object({
             value: z.number({invalid_type_error: "Empty"}),
             date:  z.string().trim().min(1, {message: "Empty"}),
         }).optional(),

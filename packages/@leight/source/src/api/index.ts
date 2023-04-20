@@ -5,10 +5,9 @@ export type ISourceName =
     | IToString;
 
 export * from "./ISource";
-export * from "./ISourceExSchemas";
+export * from "./ISourceSchemaEx";
 export * from "./ISourceMapper";
-export * from "./ISourceSchema";
-export * from "./ISourceSchemas";
+export * from "./ISourceSchemaType";
 export * from "./ISourceService";
 export * from "./ISourceStore";
 export * from "./IUseSourceQuery";

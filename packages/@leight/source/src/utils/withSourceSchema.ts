@@ -1,21 +1,18 @@
-import {CursorSchema} from "@leight/cursor";
+import {CursorSchema}        from "@leight/cursor";
 import {
     FilterSchema,
     type IFilterSchema
-}                     from "@leight/filter";
+}                            from "@leight/filter";
 import {
     type IParamsSchema,
     ParamsSchema,
     QuerySchema
-}                     from "@leight/query";
+}                            from "@leight/query";
 import {
     type ISortSchema,
     SortSchema
-}                     from "@leight/sort";
-import {
-    type ISourceSchema,
-    type ISourceSchemas
-}                     from "../api";
+}                            from "@leight/sort";
+import {type ISourceSchema,} from "../api";
 import {
     CreateSchema,
     DtoSchema,
@@ -29,7 +26,7 @@ import {
     PatchSchema,
     ToCreateSchema,
     ToPatchSchema
-}                     from "../schema";
+}                            from "../schema";
 
 export type IWithSourceSchemaProps<
     TEntitySchema extends IEntitySchema,
@@ -41,7 +38,7 @@ export type IWithSourceSchemaProps<
     TFilterSchema extends IFilterSchema,
     TSortSchema extends ISortSchema,
     TParamsSchema extends IParamsSchema,
-> = Partial<ISourceSchemas<ISourceSchema<TEntitySchema, TDtoSchema, TToCreateSchema, TCreateSchema, TToPatchSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>>>;
+> = Partial<ISourceSchema<TEntitySchema, TDtoSchema, TToCreateSchema, TCreateSchema, TToPatchSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>>;
 
 export const withSourceSchema = <
     TEntitySchema extends IEntitySchema,
@@ -64,7 +61,27 @@ export const withSourceSchema = <
         FilterSchema:   $FilterSchema = FilterSchema as TFilterSchema,
         SortSchema:     $SortSchema = SortSchema as TSortSchema,
         ParamsSchema:   $ParamsSchema = ParamsSchema as TParamsSchema,
-    }: IWithSourceSchemaProps<TEntitySchema, TDtoSchema, TToCreateSchema, TCreateSchema, TToPatchSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>): ISourceSchemas<ISourceSchema<TEntitySchema, TDtoSchema, TToCreateSchema, TCreateSchema, TToPatchSchema, TPatchSchema, TFilterSchema, TSortSchema, TParamsSchema>> => {
+    }: IWithSourceSchemaProps<
+        TEntitySchema,
+        TDtoSchema,
+        TToCreateSchema,
+        TCreateSchema,
+        TToPatchSchema,
+        TPatchSchema,
+        TFilterSchema,
+        TSortSchema,
+        TParamsSchema
+    >): ISourceSchema<
+    TEntitySchema,
+    TDtoSchema,
+    TToCreateSchema,
+    TCreateSchema,
+    TToPatchSchema,
+    TPatchSchema,
+    TFilterSchema,
+    TSortSchema,
+    TParamsSchema
+> => {
     return {
         EntitySchema:   $EntitySchema,
         DtoSchema:      $DtoSchema,

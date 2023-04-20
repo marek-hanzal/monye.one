@@ -1,9 +1,9 @@
-import {type ISourceSchema} from "./ISourceSchema";
+import {type ISourceSchemaType} from "./ISourceSchemaType";
 
-export interface ISourceMapper<TSourceSchema extends ISourceSchema> {
-    toCreate(create: TSourceSchema["ToCreate"]): Promise<TSourceSchema["Create"]>;
+export interface ISourceMapper<TSourceSchemaType extends ISourceSchemaType> {
+    toCreate(create: TSourceSchemaType["ToCreate"]): Promise<TSourceSchemaType["Create"]>;
 
-    toPatch(patch: TSourceSchema["ToPatch"]): Promise<TSourceSchema["Patch"]>;
+    toPatch(patch: TSourceSchemaType["ToPatch"]): Promise<TSourceSchemaType["Patch"]>;
 
-    toDto(entity: TSourceSchema["Entity"]): Promise<TSourceSchema["Dto"]>;
+    toDto(entity: TSourceSchemaType["Entity"]): Promise<TSourceSchemaType["Dto"]>;
 }

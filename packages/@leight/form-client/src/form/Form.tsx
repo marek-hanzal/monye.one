@@ -25,8 +25,8 @@ import {
     type IFormInputsFactory,
     type IFormInputsOverrideFactory,
     type IFormMapper,
-    type IFormSchema,
     type IFormSchemas,
+    type IFormSchemaType,
     IFormToRequest,
     IFormToRequestWithDto,
     IFormToValues
@@ -49,7 +49,7 @@ export type IWithFormSchemasProps<
     TValuesSchema extends IFormValuesSchema,
     TRequestSchema extends IFormRequestSchema,
     TDtoSchema extends IFormDtoSchema,
-> = Partial<IFormSchemas<IFormSchema<TValuesSchema, TRequestSchema, TDtoSchema>>>;
+> = Partial<IFormSchemas<IFormSchemaType<TValuesSchema, TRequestSchema, TDtoSchema>>>;
 
 export const withFormSchemas = <
     TValuesSchema extends IFormValuesSchema,
@@ -60,13 +60,13 @@ export const withFormSchemas = <
         ValueSchema = FormValuesSchema as TValuesSchema,
         RequestSchema = FormRequestSchema as TRequestSchema,
         DtoSchema = FormDtoSchema as TDtoSchema,
-    }: IWithFormSchemasProps<TValuesSchema, TRequestSchema, TDtoSchema>): IFormSchemas<IFormSchema<TValuesSchema, TRequestSchema, TDtoSchema>> => ({
+    }: IWithFormSchemasProps<TValuesSchema, TRequestSchema, TDtoSchema>): IFormSchemas<IFormSchemaType<TValuesSchema, TRequestSchema, TDtoSchema>> => ({
     ValueSchema,
     RequestSchema,
     DtoSchema,
 });
 
-export type IFormProps<TFormSchema extends IFormSchema> = PropsWithChildren<{
+export type IFormProps<TFormSchema extends IFormSchemaType> = PropsWithChildren<{
     MantineContext: IMantineFormContext<TFormSchema>;
     schemas?: IFormSchemas<TFormSchema>;
     FormContext: IFormStoreContext<TFormSchema>;
@@ -99,7 +99,7 @@ export type IFormProps<TFormSchema extends IFormSchema> = PropsWithChildren<{
 }>
 
 export namespace IFormProps {
-    export interface IOnSubmitProps<TFormSchema extends IFormSchema> {
+    export interface IOnSubmitProps<TFormSchema extends IFormSchemaType> {
         request: TFormSchema["Request"];
 
         /**
@@ -108,13 +108,13 @@ export namespace IFormProps {
         onDefaultSubmit(): void;
     }
 
-    export interface IInputsProps<TFormSchema extends IFormSchema> {
+    export interface IInputsProps<TFormSchema extends IFormSchemaType> {
         schemas?: IFormSchemas<TFormSchema>;
         FormContext: IFormStoreContext<TFormSchema>;
     }
 }
 
-export const Form = <TFormSchema extends IFormSchema>(
+export const Form = <TFormSchema extends IFormSchemaType>(
     {
         MantineContext,
         schemas,
@@ -168,11 +168,11 @@ export const Form = <TFormSchema extends IFormSchema>(
     </FormProvider>;
 };
 
-interface IFormInternalProps<TFormSchema extends IFormSchema> extends Omit<IFormProps<TFormSchema>, "FormContext" | "MantineContext" | "toRequest" | "inputs" | "inputsOverride"> {
+interface IFormInternalProps<TFormSchema extends IFormSchemaType> extends Omit<IFormProps<TFormSchema>, "FormContext" | "MantineContext" | "toRequest" | "inputs" | "inputsOverride"> {
     form: UseFormReturnType<TFormSchema["Values"], IFormMapper<TFormSchema>>;
 }
 
-const FormInternal = <TFormSchema extends IFormSchema>(
+const FormInternal = <TFormSchema extends IFormSchemaType>(
     {
         form,
         onSubmit,
@@ -227,7 +227,7 @@ const FormInternal = <TFormSchema extends IFormSchema>(
     </Box>;
 };
 
-export interface IDtoFormProps<TFormSchema extends IFormSchema> extends Omit<IFormProps<TFormSchema>, "toRequest"> {
+export interface IDtoFormProps<TFormSchema extends IFormSchemaType> extends Omit<IFormProps<TFormSchema>, "toRequest"> {
     /**
      * Map form data (values) to request object required by a remote side
      */
@@ -239,7 +239,7 @@ export interface IDtoFormProps<TFormSchema extends IFormSchema> extends Omit<IFo
     dto: TFormSchema["Dto"];
 }
 
-export const DtoForm = <TFormSchema extends IFormSchema>({toRequest, toValues, dto, ...props}: IDtoFormProps<TFormSchema>) => {
+export const DtoForm = <TFormSchema extends IFormSchemaType>({toRequest, toValues, dto, ...props}: IDtoFormProps<TFormSchema>) => {
     return <Form
         toRequest={({values}) => toRequest({
             values,

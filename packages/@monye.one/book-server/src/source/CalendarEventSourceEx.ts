@@ -1,10 +1,10 @@
-import {DateTime}                        from "@leight/i18n";
+import {DateTime}                            from "@leight/i18n";
 import {
     $PrismaClient,
     PrismaClient
-}                                        from "@leight/prisma";
-import {type ICalendarEventSourceSchema} from "@monye.one/book";
-import {CalendarEventBaseSource}         from "../sdk/BaseSource/CalendarEventBaseSource";
+}                                            from "@leight/prisma";
+import {type ICalendarEventSourceSchemaType} from "@monye.one/book";
+import {CalendarEventBaseSource}             from "../sdk/BaseSource/CalendarEventBaseSource";
 
 export class CalendarEventSourceEx extends CalendarEventBaseSource {
     static inject = [
@@ -18,11 +18,11 @@ export class CalendarEventSourceEx extends CalendarEventBaseSource {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    async runCount(query: ICalendarEventSourceSchema["Query"]): Promise<number> {
+    async runCount(query: ICalendarEventSourceSchemaType["Query"]): Promise<number> {
         return 0;
     }
 
-    async runQuery({filter}: ICalendarEventSourceSchema["Query"]): Promise<ICalendarEventSourceSchema["Entity"][]> {
+    async runQuery({filter}: ICalendarEventSourceSchemaType["Query"]): Promise<ICalendarEventSourceSchemaType["Entity"][]> {
         if (!filter) {
             return [];
         }

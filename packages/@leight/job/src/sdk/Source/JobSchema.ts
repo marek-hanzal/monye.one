@@ -13,7 +13,7 @@ import {
 import {SortOrderSchema} from "@leight/sort";
 import {
 	withSourceSchema,
-	type InferSourceSchema,
+	type ISourceSchemaType,
 	PatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
@@ -21,7 +21,7 @@ import {JobSchemaEx} from "../../schema";
 import {FilterSchema} from "@leight/filter";
 import {ParamsSchema} from "@leight/query";
 
-export type IJobSourceSchema = InferSourceSchema<typeof JobSourceSchema>;
+export type IJobSourceSchemaType = ISourceSchemaType.of<typeof JobSourceSchema>;
 
 const $JobSchema = $EntitySchema.merge(JobSchemaEx);
 const $JobCreateSchema = JobOptionalDefaultsSchema;
@@ -47,4 +47,4 @@ export const JobSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_l9s3dwhmo8gfe4xghqwpn58d = true;
+export const $leight_fq96z52b65egswhqgy8oq60n = true;

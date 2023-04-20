@@ -13,7 +13,7 @@ import {
 import {SortOrderSchema} from "@leight/sort";
 import {
 	withSourceSchema,
-	type InferSourceSchema,
+	type ISourceSchemaType,
 	PatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
@@ -21,7 +21,7 @@ import {TransactionExSchema} from "../../schema";
 import {FilterSchema} from "@leight/filter";
 import {ParamsSchema} from "@leight/query";
 
-export type ITransactionSourceSchema = InferSourceSchema<typeof TransactionSourceSchema>;
+export type ITransactionSourceSchemaType = ISourceSchemaType.of<typeof TransactionSourceSchema>;
 
 const $TransactionSchema = $EntitySchema.merge(TransactionExSchema);
 const $TransactionCreateSchema = TransactionOptionalDefaultsSchema;
@@ -49,4 +49,4 @@ export const TransactionSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_on06tp5ljbrcwop72iu12ody = true;
+export const $leight_xxnx7sbul72yf5c4dnkxkghy = true;

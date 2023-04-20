@@ -4,8 +4,8 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
-	withSourceExSchema,
-	type InferSourceExSchema
+	withSourceSchemaEx,
+	type ISourceSchemaExType
 } from "@leight/source";
 import {
 	TransactionWhereInputSchema,
@@ -13,9 +13,9 @@ import {
 	TransactionOrderByWithRelationInputSchema
 } from "@monye.one/prisma";
 
-export type ITransactionPrismaSchema = InferSourceExSchema<typeof TransactionPrismaSchema>;
+export type ITransactionPrismaSchemaType = ISourceSchemaExType.of<typeof TransactionPrismaSchema>;
 
-export const TransactionPrismaSchema = withSourceExSchema({
+export const TransactionPrismaSchema = withSourceSchemaEx({
     WhereSchema:       TransactionWhereInputSchema,
     WhereUniqueSchema: TransactionWhereUniqueInputSchema,
     OrderBySchema:     TransactionOrderByWithRelationInputSchema,
@@ -24,4 +24,4 @@ export const TransactionPrismaSchema = withSourceExSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_osjtycgk5pvjxhiftpl3lnfm = true;
+export const $leight_mgz8pqhhnjmnvwkawe0zfm9g = true;

@@ -49,14 +49,14 @@ export const generatorServerBaseSource: IGenerator<IGeneratorServerBaseSourcePar
                 imports: {
                     [packages.schema]: [
                         `$${name}Source`,
-                        `type I${name}SourceSchema`,
+                        `type I${name}SourceSchemaType`,
                     ],
                 }
             })
             .withClasses({
                 exports: {
                     [`${name}BaseSource`]: {
-                        extends: `AbstractSource<I${name}SourceSchema>`,
+                        extends: `AbstractSource<I${name}SourceSchemaType>`,
                         body:    `
     constructor() {
         super($${name}Source);

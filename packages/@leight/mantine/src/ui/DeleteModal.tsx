@@ -1,6 +1,6 @@
 import {Translation}             from "@leight/i18n-client";
 import {
-    type ISourceSchema,
+    type ISourceSchemaType,
     type IUseSourceQuery
 }                                from "@leight/source";
 import {
@@ -16,20 +16,20 @@ import {
 import {ModalStore}              from "../context";
 import {withSuccessNotification} from "../utils";
 
-export interface IDeleteModalProps<TSourceSchema extends ISourceSchema> extends IModalProps {
+export interface IDeleteModalProps<TSourceSchemaType extends ISourceSchemaType> extends IModalProps {
     invalidator: () => void;
-    UseDeleteMutation: IUseSourceQuery<TSourceSchema>;
-    entity: TSourceSchema["Dto"];
+    UseDeleteMutation: IUseSourceQuery<TSourceSchemaType>;
+    entity: TSourceSchemaType["Dto"];
 }
 
-export const DeleteModal = <TSourceSchema extends ISourceSchema>(
+export const DeleteModal = <TSourceSchemaType extends ISourceSchemaType>(
     {
         invalidator,
         withTranslation,
         UseDeleteMutation,
         entity,
         ...props
-    }: IDeleteModalProps<TSourceSchema>) => {
+    }: IDeleteModalProps<TSourceSchemaType>) => {
     const {close}        = ModalStore.useState(({close}) => ({close}));
     const deleteMutation = UseDeleteMutation.useDelete();
     return <Modal

@@ -12,12 +12,12 @@ import {
 import {AbstractSource} from "@leight/source-server";
 import {
 	$BankSource,
-	type IBankSourceSchema,
-	type IBankPrismaSchema
+	type IBankSourceSchemaType,
+	type IBankPrismaSchemaType
 } from "@monye.one/bank";
 import {type PrismaClient} from "@monye.one/prisma";
 
-export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
+export class BankBasePrismaSource extends AbstractSource<IBankSourceSchemaType> {
 	static inject = [
         $PrismaClient,
     ];
@@ -28,21 +28,21 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
         super($BankSource);
     }
 
-    async runFind(id: string): Promise<IBankSourceSchema["Entity"]> {
+    async runFind(id: string): Promise<IBankSourceSchemaType["Entity"]> {
         return this.prisma().findUniqueOrThrow({
             where: {id},
             include: undefined,
         });
     }
 
-    async runCreate(entity: IBankSourceSchema["Create"]): Promise<IBankSourceSchema["Entity"]> {
+    async runCreate(entity: IBankSourceSchemaType["Create"]): Promise<IBankSourceSchemaType["Entity"]> {
         return this.prisma().create({
             data: entity,
             include: undefined,
         });
     }
 
-    async runPatch({id, ...patch}: IBankSourceSchema["Patch"]): Promise<IBankSourceSchema["Entity"]> {
+    async runPatch({id, ...patch}: IBankSourceSchemaType["Patch"]): Promise<IBankSourceSchemaType["Entity"]> {
         return this.prisma().update({
             data: patch,
             where: {id},
@@ -50,7 +50,7 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
         });
     }
 
-    async runUpsert({filter, patch: update, create}: ISource.IUpsert<IBankSourceSchema>): Promise<IBankSourceSchema["Entity"]> {
+    async runUpsert({filter, patch: update, create}: ISource.IUpsert<IBankSourceSchemaType>): Promise<IBankSourceSchemaType["Entity"]> {
         return this.prisma().upsert({
             create,
             update,
@@ -59,7 +59,7 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
         });
     }
 
-    async runDelete({id}: IWithIdentity): Promise<IBankSourceSchema["Entity"]> {
+    async runDelete({id}: IWithIdentity): Promise<IBankSourceSchemaType["Entity"]> {
         const item = await this.find(id);
         const where = this.toWhereUnique({id});
         if(!where) {
@@ -71,7 +71,7 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
         return item;
     }
     
-    async runDeleteWith(query: IBankSourceSchema["Query"]): Promise<IBankSourceSchema["Entity"][]> {
+    async runDeleteWith(query: IBankSourceSchemaType["Query"]): Promise<IBankSourceSchemaType["Entity"][]> {
         const items = await this.query(query);
         const where = this.toWhereUnique(query.filter);
         if(!where) {
@@ -83,13 +83,13 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
         return items;
     }
 
-    async runCount(query?: IBankSourceSchema["Query"]): Promise<number> {
+    async runCount(query?: IBankSourceSchemaType["Query"]): Promise<number> {
         return this.prisma().count({
             where: this.toWhere(query?.filter),
         });
     }
 
-    async runQuery(query?: IBankSourceSchema["Query"]): Promise<IBankSourceSchema["Entity"][]> {
+    async runQuery(query?: IBankSourceSchemaType["Query"]): Promise<IBankSourceSchemaType["Entity"][]> {
         return this.prisma().findMany(withCursor({
             query,
             arg: {
@@ -104,16 +104,16 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
         return this.prismaClient.bank;
     }
     
-    toWhere(filter?: IBankSourceSchema["Filter"]): IBankPrismaSchema['Where'] | undefined {
+    toWhere(filter?: IBankSourceSchemaType["Filter"]): IBankPrismaSchemaType['Where'] | undefined {
         return filter;
     }
     
-    toWhereUnique(filter: IBankSourceSchema["Filter"]): IBankPrismaSchema['WhereUnique'] {
-        return filter as IBankPrismaSchema['WhereUnique'];
+    toWhereUnique(filter: IBankSourceSchemaType["Filter"]): IBankPrismaSchemaType['WhereUnique'] {
+        return filter as IBankPrismaSchemaType['WhereUnique'];
     }
     
-    toOrderBy(sort?: IBankSourceSchema["Sort"]): IBankPrismaSchema['OrderBy'] | undefined {
-        return sort as IBankPrismaSchema['OrderBy'];
+    toOrderBy(sort?: IBankSourceSchemaType["Sort"]): IBankPrismaSchemaType['OrderBy'] | undefined {
+        return sort as IBankPrismaSchemaType['OrderBy'];
     }
 }
 
@@ -121,4 +121,4 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchema> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_cracejgjo6hgu0p79k13v5wu = true;
+export const $leight_cebf7a32ar4y8cxyf003ogr4 = true;
