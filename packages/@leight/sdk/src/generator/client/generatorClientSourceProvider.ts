@@ -128,7 +128,7 @@ UseSourceQuery: IUseSourceQuery<I${name}SourceSchema>;
                         `Use${name}SourceQuery`,
                     ],
                 } : {
-                    "@leight/source":         [
+                    "@leight/source": [
                         "type IUseSourceQuery",
                     ],
                 },

@@ -1,37 +1,36 @@
 import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
 import {
-    Drawer as CoolDrawer,
-    Group
+    Group,
+    Modal as CoolModal
 }                              from "@mantine/core";
 import {
     type ComponentProps,
     type FC,
     type ReactNode
 }                              from "react";
-import {DrawerStore}           from "../context";
+import {ModalStore}            from "../context";
 import {WithIcon}              from "./WithIcon";
 
-export interface IDrawerProps extends Omit<ComponentProps<typeof CoolDrawer>, "opened" | "onClose"> {
+export interface IModalProps extends Omit<ComponentProps<typeof CoolModal>, "opened" | "onClose"> {
     icon?: ReactNode;
-    withTranslation?: IWithTranslation;
+    withTranslation: IWithTranslation;
 }
 
-export const Drawer: FC<IDrawerProps> = (
+export const Modal: FC<IModalProps> = (
     {
         icon,
         withTranslation,
         title,
         ...props
     }) => {
-    const {isOpened, close} = DrawerStore.useState(({isOpened, close}) => ({isOpened, close}));
-    return <CoolDrawer
+    const {isOpened, close} = ModalStore.useState(({isOpened, close}) => ({isOpened, close}));
+    return <CoolModal
         opened={isOpened}
         onClose={close}
-        position={"right"}
         title={<Group spacing={4}>
             <WithIcon icon={icon}/>
-            <Translation {...withTranslation} label={title}/>
+            <Translation {...withTranslation} label={`${withTranslation?.label}.${title}`}/>
         </Group>}
         size={"lg"}
         zIndex={500}

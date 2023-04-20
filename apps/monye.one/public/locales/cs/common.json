@@ -1,4 +1,6 @@
 {
     "actions.label": "Akce",
-    "form.error.Required": "Požadované políčko"
+    "form.error.Required": "Požadované políčko",
+    "actions.danger.label": "Nebezpečné akce",
+    "cancel.button": "Zrušit"
 }

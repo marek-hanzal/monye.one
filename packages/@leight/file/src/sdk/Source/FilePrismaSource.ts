@@ -20,4 +20,4 @@ export const $FileSourceMapper = Symbol.for("@leight/file/IFileSourceMapper");
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bxauvjam0p6k43yguyvf3gdd = true;
+export const $leight_of317jds6ichj9vme0y0vb8k = true;

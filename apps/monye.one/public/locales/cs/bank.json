@@ -20,5 +20,13 @@
     "BankCreateBaseForm.error.balance.date.Required": "Vyberte prosím datum aktuálního zůstatku",
     "BankCreateBaseForm.error.balance.date.Empty": "Datum zůstatku je nutné vybrat",
     "BankCreateForm.withBalance.switch.label": "Zadat zůstatek",
-    "BankCreateForm.withBalance.switch.description": "Tato volba umožní zadat aktuální zůstatek na účtě"
+    "BankCreateForm.withBalance.switch.description": "Tato volba umožní zadat aktuální zůstatek na účtě",
+    "BankCreateBaseForm.success.title": "Účet vytvořen",
+    "BankCreateBaseForm.success.message": "Úspěšně jste vytvořili nový účet; nyní do něj můžete naimportovat transakce.",
+    "account.delete.button": "Odstranit účet",
+    "account.delete.title": "Odstranit účet",
+    "account.delete.confirm.button": "Odstranit účet",
+    "account.delete.content": "Opravdu si přejete odstranit účet [{account}]? Tato akce je nevratná a může odstranit velké množství dat (transakce a další...).",
+    "account.delete.success.title": "Účet [{account}] odstraněn.",
+    "account.delete.success.message": "Účet [{account}] a všechna navázaná data byl úspěšně odstraněn."
 }

@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xt1042ln99u5wv7skmg3yfd1 = true;
+export const $leight_uvv97kmjho9jg17tr3hu0kkd = true;
 
 export * from "./api/index";
 export * from "./PrismaSource/FilePrismaSource";

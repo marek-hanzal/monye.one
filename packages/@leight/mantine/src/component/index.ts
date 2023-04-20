@@ -1,5 +1,6 @@
 export * from "./Drawer";
 export * from "./DropZone";
+export * from "./Modal";
 export * from "./PageShell";
 export * from "./Paper";
 export * from "./Shell";
