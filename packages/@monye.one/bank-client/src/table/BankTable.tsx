@@ -1,3 +1,5 @@
+import {DateInline}         from "@leight/i18n-client";
+import {toHumanNumber}      from "@leight/utils";
 import {type FC}            from "react";
 import {
     BankSourceTable,
@@ -7,7 +9,10 @@ import {BankTableAction}    from "./BankTableAction";
 import {BankTableRowAction} from "./BankTableRowAction";
 
 export type IBankTableColumns =
-    | "account";
+    | "account"
+    | "description"
+    | "balanceValue"
+    | "balanceDate";
 
 export interface IBankTableProps extends IBankSourceTableProps<IBankTableColumns> {
 }
@@ -27,9 +32,19 @@ export const BankTable: FC<IBankTableProps> = props => {
             namespace: "bank",
         }}
         columns={{
-            account: {
+            account:      {
                 render: "account",
                 sort:   "account",
+                width:  14,
+            },
+            description:  {
+                render: "description",
+            },
+            balanceValue: {
+                render: ({balance}) => toHumanNumber({number: balance?.value}),
+            },
+            balanceDate:  {
+                render: ({balance}) => <DateInline date={balance?.date}/>,
             },
         }}
         {...props}

@@ -18,6 +18,18 @@ void withSdk(
                         package: "../../schema",
                     }
                 },
+                toPatch: {
+                    type:        "BankToPatchSchemaEx",
+                    withPackage: {
+                        package: "../../schema",
+                    }
+                },
+                dto:      {
+                    type:        "BankSchemaEx",
+                    withPackage: {
+                        package: "../../schema",
+                    },
+                },
             },
             sorts:              [
                 "account",

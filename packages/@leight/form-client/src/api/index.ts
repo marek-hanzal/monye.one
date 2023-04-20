@@ -8,8 +8,8 @@ import {FC}                     from "react";
 import {type IFormStoreContext} from "../context";
 import {type IFormProps}        from "../form";
 import {
+    type IFormDtoSchema,
     type IFormRequestSchema,
-    type IFormResponseSchema,
     type IFormValuesSchema
 }                               from "../schema";
 
@@ -19,19 +19,32 @@ import {
 export type IFormSchema<
     TValuesSchema extends IFormValuesSchema = IFormValuesSchema,
     TRequestSchema extends IFormRequestSchema = IFormRequestSchema,
-    TResponseSchema extends IFormResponseSchema = IFormResponseSchema,
+    TDtoSchema extends IFormDtoSchema = IFormDtoSchema,
 > = {
     ValuesSchema: TValuesSchema;
     Values: z.infer<TValuesSchema>;
     OptionalValues: DeepPartial<z.infer<TValuesSchema>>;
     RequestSchema: TRequestSchema;
     Request: z.infer<TRequestSchema>;
-    ResponseSchema: TResponseSchema;
-    Response: z.infer<TResponseSchema>;
+    DtoSchema: TDtoSchema;
+    Dto: z.infer<TDtoSchema>;
 }
 
 export type IFormFields<TFormSchema extends IFormSchema> = KeysOf.Leaves<TFormSchema["Values"]>;
-export type IFormMapper<TFormSchema extends IFormSchema> = (values: TFormSchema["Values"]) => TFormSchema["Request"];
+export type IFormToRequest<TFormSchema extends IFormSchema> = (props: IFormMapper.TToRequestProps<TFormSchema>) => TFormSchema["Request"];
+export type IFormToRequestWithDto<TFormSchema extends IFormSchema> = (props: IFormMapper.TToRequestWithEntityProps<TFormSchema>) => TFormSchema["Request"];
+export type IFormMapper<TFormSchema extends IFormSchema> = (value: TFormSchema["Values"]) => TFormSchema["Request"];
+
+export namespace IFormMapper {
+    export interface TToRequestProps<TFormSchema extends IFormSchema> {
+        values: TFormSchema["Values"];
+    }
+
+    export interface TToRequestWithEntityProps<TFormSchema extends IFormSchema> {
+        values: TFormSchema["Values"];
+        dto: TFormSchema["Dto"];
+    }
+}
 
 export type IFormSchemas<TFormSchema extends IFormSchema = IFormSchema> = {
     /**
@@ -45,13 +58,13 @@ export type IFormSchemas<TFormSchema extends IFormSchema = IFormSchema> = {
     /**
      * When used with a mutation, this is an external result schema
      */
-    ResponseSchema: TFormSchema["ResponseSchema"];
+    DtoSchema: TFormSchema["DtoSchema"];
 }
 
 export type InferFormSchemas<TFormSchemas extends IFormSchemas> = IFormSchema<
     TFormSchemas["ValueSchema"],
     TFormSchemas["RequestSchema"],
-    TFormSchemas["ResponseSchema"]
+    TFormSchemas["DtoSchema"]
 >;
 
 export type IFormInputs<TFormSchema extends IFormSchema> = Record<IFormFields<TFormSchema>, FC<IFormInputs.IInputRenderProps<TFormSchema>>>;
@@ -91,7 +104,7 @@ export interface ITrpcFormProps<TFormSchema extends IFormSchema> {
 
 export namespace ITrpcFormProps {
     export interface IOnSuccess<TFormSchema extends IFormSchema> {
-        dto: TFormSchema["Response"];
+        dto: TFormSchema["Dto"];
     }
 
     export interface IOnError<TFormSchema extends IFormSchema> {

@@ -8,7 +8,7 @@ import {
 	type IFormProps
 } from "@leight/form-client";
 import {type FC} from "react";
-import {type IBankCreateFormSchema} from "../api";
+import {type IBankCreateFormSchema} from "../api/BankCreateFormTypes";
 import {BankCreateFormStoreContext} from "../FormStoreContext/BankCreateFormStoreContext";
 import {BankCreateMantineFormContext} from "../FormStoreContext/BankCreateMantineFormContext";
 import {BankCreateFormSchema} from "../../schema";
@@ -32,4 +32,4 @@ export const BankCreateBaseForm: FC<IBankCreateBaseFormProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ql92wz7a24qnem70ub52rn71 = true;
+export const $leight_hq6v6tqvx6oted77j944vg72 = true;

@@ -34,6 +34,7 @@
         "@leight/source": "^0.5.0",
         "@leight/source-client": "^0.5.0",
         "@leight/table-client": "^0.5.0",
+        "@leight/utils": "^0.5.0",
         "@leight/utils-client": "^0.5.0",
         "@leight/zod": "^0.5.0",
         "@mantine/core": "^6.0.5",

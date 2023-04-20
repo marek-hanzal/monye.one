@@ -42,6 +42,7 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
                 />
                 <Menu.Item
                     onClick={() => modals.open({
+                        zIndex:   500,
                         modalId:  "import",
                         title:    <Translation
                                       namespace={"bank"}

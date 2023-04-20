@@ -1,6 +1,9 @@
 {
     "button.create": "Přidat účet",
     "table.column.account": "Číslo účtu",
+    "table.column.description": "Popisek",
+    "table.column.balanceValue": "Zůstatek",
+    "table.column.balanceDate": "Datum yůstateku",
     "transaction.upload.button": "Nahrát transakce",
     "modal.transaction.import.title": "Import transakcí do účtu [{account}]",
     "modal.account.create.title": "Přidat účet",
@@ -13,6 +16,8 @@
     "BankCreateBaseForm.balance.date": "Datum zůstatku",
     "BankCreateBaseForm.balance.date.description": "Vyberte prosím datum platnosti zůstatku",
     "BankCreateBaseForm.balance.date.placeholder": "Vyberte prosím datum zůstatku",
+    "BankCreateBaseForm.description": "Popisek",
+    "BankCreateBaseForm.description.description": "Můžete uvést dobrovolný popisek účtu",
     "BankCreateBaseForm.error.account.Required": "Vyplňte prosím číslo účtu",
     "BankCreateBaseForm.error.account.Empty": "Číslo účtu je nutné vyplnit",
     "BankCreateBaseForm.error.balance.value.Required": "Vyplňte prosím aktuální zůstatek",

@@ -1,48 +1,23 @@
-import {
-    DateInput,
-    NumberInput,
-    TextInput
-}                         from "@leight/form-client";
-import {DateTime}         from "@leight/i18n";
-import {type FC}          from "react";
-import {IconBank}         from "../icon";
+import {DateTime}                   from "@leight/i18n";
+import {type FC}                    from "react";
+import {IconBank}                   from "../icon";
 import {
     BankCreateTrpcForm,
     type IBankCreateBaseFormProps
-}                         from "../sdk";
-import {BankCreateFields} from "./BankCreateFields";
+}                                   from "../sdk";
+import {BankCreateFields}           from "./BankCreateFields";
+import {BankCreateFormInputFactory} from "./BankCreateFormInputFactory";
 
-export interface IBankCreateForm extends Omit<IBankCreateBaseFormProps, "withMapper" | "inputs"> {
+export interface IBankCreateForm extends Omit<IBankCreateBaseFormProps, "toRequest" | "inputs"> {
 }
 
 export const BankCreateForm: FC<IBankCreateForm> = props => {
     return <BankCreateTrpcForm
-        withMapper={values => values}
+        toRequest={({values}) => values}
         onSuccess={({dto}) => {
             console.log("Success: BankCreateTrpcForm", dto);
         }}
-        inputs={() => ({
-            "account":       ({mandatory, withLabel, withDescription}) => <TextInput
-                {...mandatory}
-                {...withLabel}
-                {...withDescription}
-                withAsterisk
-            />,
-            "balance.date":  ({mandatory, withLabelPlaceholder, withDescription}) => <DateInput
-                {...mandatory}
-                {...mandatory}
-                {...withLabelPlaceholder}
-                {...withDescription}
-                withAsterisk
-                mt={0}
-            />,
-            "balance.value": ({mandatory, withLabel, withDescription}) => <NumberInput
-                {...mandatory}
-                {...withLabel}
-                {...withDescription}
-                withAsterisk
-            />,
-        })}
+        inputs={BankCreateFormInputFactory}
         defaultValues={{
             account: "",
             balance: {

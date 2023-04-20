@@ -7,7 +7,7 @@ import {
 	type IWithInputProps,
 	WithInput
 } from "@leight/form-client";
-import {type IBankCreateFormSchema} from "../api";
+import {type IBankCreateFormSchema} from "../api/BankCreateFormTypes";
 import {type FC} from "react";
 import {BankCreateFormStoreContext} from "../FormStoreContext/BankCreateFormStoreContext";
 
@@ -21,4 +21,4 @@ export const BankCreateInput: FC<Omit<IWithInputProps<IBankCreateFormSchema>, "F
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lp8276upc6fb8nbjsh4u9cqj = true;
+export const $leight_xlorgvzqez1stcl9d6cduvpq = true;

@@ -1,3 +1,5 @@
+import {DateTime}               from "@leight/i18n";
+import {decimalOf}              from "@leight/prisma";
 import {
     $UserService,
     type IUserService
@@ -14,10 +16,23 @@ export class BankSourceMapperEx extends BankBaseSourceMapper {
         super();
     }
 
-    async toCreate(create: IBankSourceSchema["ToCreate"]): Promise<IBankSourceSchema["Create"]> {
+    async toCreate({balance, ...create}: IBankSourceSchema["ToCreate"]): Promise<IBankSourceSchema["Create"]> {
         return {
             ...create,
-            userId: this.userService.required(),
+            balanceValue: balance?.value,
+            balanceDate:  balance?.date ? DateTime.fromISO(balance.date).toJSDate() : undefined,
+            userId:       this.userService.required(),
+        };
+    }
+
+    async toDto({description, balanceDate, balanceValue, ...entity}: IBankSourceSchema["Entity"]): Promise<IBankSourceSchema["Dto"]> {
+        return {
+            ...entity,
+            description: description,
+            balance:     balanceDate && balanceValue !== undefined ? {
+                value: decimalOf(balanceValue),
+                date:  balanceDate.toISOString(),
+            } : undefined,
         };
     }
 }

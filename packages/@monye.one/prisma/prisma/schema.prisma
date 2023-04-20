@@ -170,10 +170,13 @@ model Keyword {
 // monye.one stuff from here
 
 model Bank {
-    id      String @id @default(cuid())
-    userId  String
-    user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-    account String
+    id           String    @id @default(cuid())
+    userId       String
+    user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+    account      String
+    description  String?
+    balanceValue Decimal?  @db.Decimal(16, 2)
+    balanceDate  DateTime?
 
     Transaction Transaction[]
 

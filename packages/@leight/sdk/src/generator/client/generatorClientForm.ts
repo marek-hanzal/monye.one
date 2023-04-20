@@ -12,6 +12,7 @@ export namespace IGeneratorClientFormParams {
          * Base name exported (used to name all exported objects)
          */
         name: string;
+        type?: "common" | "dto";
         translation: {
             namespace: string;
         };
@@ -20,7 +21,14 @@ export namespace IGeneratorClientFormParams {
     }
 
     export interface IWithTrpc {
+        /**
+         * Name of the Source provider
+         */
         source: string;
+        /**
+         * Which mutation to use
+         */
+        use: string;
     }
 
     export interface IPackages {
@@ -37,13 +45,14 @@ export const generatorClientForm: IGenerator<IGeneratorClientFormParams> = async
         directory,
         params: {forms}
     }) => {
-    forms.forEach(({name, translation, withTrpc, packages}) => {
+    forms.forEach(({name, type = "common", translation, withTrpc, packages}) => {
         withSourceFile()
             .withImports({
                 imports: {
                     "@leight/form-client":                [
                         "type IMantineFormContext",
                         "type InferFormSchemas",
+                        "type IFormInputsFactory",
                     ],
                     [packages?.schema || `../../schema`]: [
                         `${name}FormSchema`,
@@ -54,20 +63,21 @@ export const generatorClientForm: IGenerator<IGeneratorClientFormParams> = async
                 exports: {
                     [`I${name}FormSchema`]:         `InferFormSchemas<typeof ${name}FormSchema>`,
                     [`I${name}MantineFormContext`]: `IMantineFormContext<I${name}FormSchema>`,
+                    [`I${name}FormInputFactory`]:   `IFormInputsFactory<I${name}FormSchema>`,
                 }
             })
             .saveTo({
-                file:   normalize(`${directory}/api/index.tsx`),
+                file:   normalize(`${directory}/api/${name}FormTypes.tsx`),
                 barrel: false,
             });
 
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/form-client": [
+                    "@leight/form-client":       [
                         "createFormContext",
                     ],
-                    "../api":              [
+                    [`../api/${name}FormTypes`]: [
                         `type I${name}FormSchema`,
                     ],
                 },
@@ -91,10 +101,10 @@ createFormContext<I${name}FormSchema>({
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/form-client": [
+                    "@leight/form-client":       [
                         "createMantineFormContext",
                     ],
-                    "../api":              [
+                    [`../api/${name}FormTypes`]: [
                         `type I${name}FormSchema`,
                     ],
                 },
@@ -118,7 +128,7 @@ createFormContext<I${name}FormSchema>({
                         "type IWithInputProps",
                         "WithInput",
                     ],
-                    "../api":                                        [
+                    [`../api/${name}FormTypes`]:                     [
                         `type I${name}FormSchema`,
                     ],
                     "react":                                         [
@@ -152,14 +162,17 @@ props => {
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/form-client":                             [
+                    "@leight/form-client":                             type === "common" ? [
                         "Form",
                         "type IFormProps",
+                    ] : [
+                        "DtoForm as Form",
+                        "type IDtoFormProps as IFormProps",
                     ],
                     "react":                                           [
                         "type FC",
                     ],
-                    "../api":                                          [
+                    [`../api/${name}FormTypes`]:                       [
                         `type I${name}FormSchema`,
                     ],
                     [`../FormStoreContext/${name}FormStoreContext`]:   [
@@ -224,7 +237,7 @@ props => {
                         "@leight/utils-client":                      [
                             "BlockStore",
                         ],
-                        "../api":                                    [
+                        [`../api/${name}FormTypes`]:                 [
                             `type I${name}FormSchema`,
                         ],
                         "react":                                     [
@@ -267,7 +280,7 @@ props => {
                             body: `
 ({onSuccess, onError, onSettled, ...props}) => {
     const {block} = BlockStore.useOptionalState() || {block: () => null};
-    const mutation = Use${withTrpc.source}SourceQuery.useCreate();
+    const mutation = Use${withTrpc.source}SourceQuery.${withTrpc.use}();
     const invalidator = use${withTrpc.source}QueryInvalidator();
     return <${name}BaseForm
         onSubmit={({request, onDefaultSubmit}) => {

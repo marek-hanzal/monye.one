@@ -123,4 +123,4 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchema> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_kaf6v27grngjyg1pf6g1n1jr = true;
+export const $leight_yvb47oe5i6emspp8t6jqba8o = true;

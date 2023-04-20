@@ -21,7 +21,6 @@
         "migration": "turbo run migration --no-daemon",
         "prisma:format": "turbo run prisma:format --parallel --no-daemon",
         "prisma:generate": "turbo run prisma:generate --parallel --no-daemon",
-        "prisma:migrate-dev": "turbo run prisma:migrate-dev --parallel --no-daemon",
         "prisma:migrate-reset": "turbo run prisma:migrate-reset --parallel --no-daemon",
         "npkill": "npx npkill"
     },

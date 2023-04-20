@@ -79,7 +79,7 @@ export const generatorClientSourceTable: IGenerator<IGeneratorClientSourceTableP
     return <${name}Source>
         <SourceTable
             SourceStore={${name}SourceStore}
-            schema={${name}SourceSchema['EntitySchema']}
+            schema={${name}SourceSchema['DtoSchema']}
             {...props}
         />
     </${name}Source>;

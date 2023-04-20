@@ -28,7 +28,7 @@ export const TransactionSourceTable = <TColumnKeys extends string>(props: ITrans
     return <TransactionSource>
         <SourceTable
             SourceStore={TransactionSourceStore}
-            schema={TransactionSourceSchema['EntitySchema']}
+            schema={TransactionSourceSchema['DtoSchema']}
             {...props}
         />
     </TransactionSource>;
@@ -37,4 +37,4 @@ export const TransactionSourceTable = <TColumnKeys extends string>(props: ITrans
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hzp5afbruj0zckrwosqultgu = true;
+export const $leight_r3oexdg512cfhn06r9fnw4tz = true;

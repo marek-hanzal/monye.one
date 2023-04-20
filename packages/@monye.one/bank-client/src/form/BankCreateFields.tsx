@@ -24,6 +24,7 @@ export const BankCreateFields: FC<IBankCreateFieldsProps> = () => {
     const {defaultValues}               = BankCreateFormStoreContext.useState(({defaultValues}) => ({defaultValues}));
     return <>
         <BankCreateInput path={"account"}/>
+        <BankCreateInput path={"description"}/>
         <Divider mt={"md"}/>
         <Switch
             size={"md"}

@@ -1,5 +1,6 @@
 import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
+import {minMaxOf}              from "@leight/utils";
 import {type MantineTheme}     from "@mantine/core";
 import {
     NotificationProps,
@@ -16,8 +17,26 @@ export const switchScheme = <T, >(
     onLight: T
 ): T => (theme.colorScheme === "dark" ? onDark : onLight);
 
-export const withPrimaryColor = (theme: MantineTheme): string => {
-    return theme.colors[theme.primaryColor]?.[theme.primaryShade as number] as string;
+/**
+ * Resolves native primary color from Mantine; because typings are a bit crazy,
+ * this function just put them away.
+ */
+export const withPrimaryColor = (theme: MantineTheme, offset = 0): string => {
+    return theme.colors[theme.primaryColor]?.[
+        minMaxOf({value: theme.primaryShade as number + offset, max: 9})
+        ] as string;
+};
+
+/**
+ * Automatically makes "secondary" color of primary color visible; it can be used for
+ * example for texts and so on.
+ */
+export const withSecondaryPrimaryColor = (theme: MantineTheme, offset = 0): string => {
+    return theme.colors[theme.primaryColor]?.[
+        minMaxOf({value: theme.primaryShade as number + offset, max: 9}) >= 5 ?
+            0 :
+            9
+        ] as string;
 };
 
 export interface IWithSuccessNotificationProps extends Omit<NotificationProps, "title" | "message" | "color"> {

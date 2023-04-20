@@ -17,7 +17,11 @@ import {
 	PatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
-import {BankToCreateSchemaEx} from "../../schema";
+import {
+	BankSchemaEx,
+	BankToCreateSchemaEx,
+	BankToPatchSchemaEx
+} from "../../schema";
 import {FilterSchema} from "@leight/filter";
 import {ParamsSchema} from "@leight/query";
 
@@ -28,10 +32,10 @@ const $BankCreateSchema = BankOptionalDefaultsSchema;
 const $BankPatchSchema = BankPartialSchema.merge(PatchSchema);
 export const BankSourceSchema = withSourceSchema({
     EntitySchema: $BankSchema,
-    DtoSchema: $BankSchema,
+    DtoSchema: BankSchemaEx,
     ToCreateSchema: BankToCreateSchemaEx,
     CreateSchema: $BankCreateSchema,
-    ToPatchSchema: $BankPatchSchema,
+    ToPatchSchema: BankToPatchSchemaEx,
     PatchSchema: $BankPatchSchema,
     FilterSchema: z.union([
         BankWhereInputSchema,
@@ -47,4 +51,4 @@ export const BankSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wsxgjm8zyhdv3l2iw9rsdxgz = true;
+export const $leight_p5r3mh6d70d1kwuqhkunlhgz = true;

@@ -26,7 +26,9 @@ import {
     type IFormInputsOverrideFactory,
     type IFormMapper,
     type IFormSchema,
-    type IFormSchemas
+    type IFormSchemas,
+    IFormToRequest,
+    IFormToRequestWithDto
 }                               from "../api";
 import {
     FormStoreProvider,
@@ -34,41 +36,48 @@ import {
     type IMantineFormContext
 }                               from "../context";
 import {
+    FormDtoSchema,
     FormRequestSchema,
-    FormResponseSchema,
     FormValuesSchema,
+    type IFormDtoSchema,
     type IFormRequestSchema,
-    type IFormResponseSchema,
     type IFormValuesSchema
 }                               from "../schema";
 
 export type IWithFormSchemasProps<
     TValuesSchema extends IFormValuesSchema,
     TRequestSchema extends IFormRequestSchema,
-    TResponseSchema extends IFormResponseSchema,
-> = Partial<IFormSchemas<IFormSchema<TValuesSchema, TRequestSchema, TResponseSchema>>>;
+    TDtoSchema extends IFormDtoSchema,
+> = Partial<IFormSchemas<IFormSchema<TValuesSchema, TRequestSchema, TDtoSchema>>>;
 
 export const withFormSchemas = <
     TValuesSchema extends IFormValuesSchema,
     TRequestSchema extends IFormRequestSchema,
-    TResponseSchema extends IFormResponseSchema,
+    TDtoSchema extends IFormDtoSchema
 >(
     {
         ValueSchema = FormValuesSchema as TValuesSchema,
         RequestSchema = FormRequestSchema as TRequestSchema,
-        ResponseSchema = FormResponseSchema as TResponseSchema,
-    }: IWithFormSchemasProps<TValuesSchema, TRequestSchema, TResponseSchema>): IFormSchemas<IFormSchema<TValuesSchema, TRequestSchema, TResponseSchema>> => ({
+        DtoSchema = FormDtoSchema as TDtoSchema,
+    }: IWithFormSchemasProps<TValuesSchema, TRequestSchema, TDtoSchema>): IFormSchemas<IFormSchema<TValuesSchema, TRequestSchema, TDtoSchema>> => ({
     ValueSchema,
     RequestSchema,
-    ResponseSchema,
+    DtoSchema,
 });
 
-export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWithChildren<{
+export type IFormProps<TFormSchema extends IFormSchema> = PropsWithChildren<{
     MantineContext: IMantineFormContext<TFormSchema>;
     schemas?: IFormSchemas<TFormSchema>;
     FormContext: IFormStoreContext<TFormSchema>;
     withTranslation: IWithTranslation;
-    withMapper: IFormMapper<TFormSchema>;
+    /**
+     * Map form data (values) to request object required by a remote side
+     */
+    toRequest: IFormToRequest<TFormSchema>;
+    /**
+     * Use response to set default values from a remote object
+     */
+    response?: TFormSchema["Dto"];
     /**
      * Create typed form inputs based on the Values schema
      */
@@ -77,14 +86,20 @@ export type IFormProps<TFormSchema extends IFormSchema = IFormSchema> = PropsWit
      * This enables end user to replace default fields defined by a base form (for example when generated)
      */
     inputsOverride?: IFormInputsOverrideFactory<TFormSchema>;
+    /**
+     * Explicitly set default values; if not specified, "response" is used; defaultValues wins over "response"
+     */
     defaultValues?: TFormSchema["Values"];
     onSubmit?(props: IFormProps.IOnSubmitProps<TFormSchema>): void;
+    /**
+     * Props passed to submit button of the form
+     */
     submitProps?: ComponentProps<typeof Button>;
     /**
      * If true, onSuccess also closes drawer/modal it's in (must be modal from @leight)
      */
     withAutoClose?: boolean;
-}>;
+}>
 
 export namespace IFormProps {
     export interface IOnSubmitProps<TFormSchema extends IFormSchema> {
@@ -102,23 +117,24 @@ export namespace IFormProps {
     }
 }
 
-export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
+export const Form = <TFormSchema extends IFormSchema>(
     {
         MantineContext,
         schemas,
         FormContext,
         withTranslation,
-        withMapper,
+        toRequest,
         inputs,
         inputsOverride,
-        defaultValues,
+        response,
+        defaultValues = response,
         ...props
     }: IFormProps<TFormSchema>) => {
     const {FormProvider, useForm} = MantineContext;
     const {t}                     = useTranslation(withTranslation.namespace);
     const form                    = useForm({
-        initialValues: defaultValues,
-        validate:      values => {
+        initialValues:   defaultValues,
+        validate:        values => {
             if (!schemas?.ValueSchema) {
                 return {};
             }
@@ -133,8 +149,7 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
             });
             return errors;
         },
-        // validateInputOnBlur: true,
-        transformValues: withMapper,
+        transformValues: values => toRequest({values}),
     });
     return <FormProvider
         form={form}
@@ -157,11 +172,11 @@ export const Form = <TFormSchema extends IFormSchema = IFormSchema>(
     </FormProvider>;
 };
 
-interface IFormInternalProps<TFormSchema extends IFormSchema = IFormSchema> extends Omit<IFormProps<TFormSchema>, "FormContext" | "MantineContext" | "withMapper" | "inputs" | "inputsOverride"> {
+interface IFormInternalProps<TFormSchema extends IFormSchema> extends Omit<IFormProps<TFormSchema>, "FormContext" | "MantineContext" | "toRequest" | "inputs" | "inputsOverride"> {
     form: UseFormReturnType<TFormSchema["Values"], IFormMapper<TFormSchema>>;
 }
 
-const FormInternal = <TFormSchema extends IFormSchema = IFormSchema>(
+const FormInternal = <TFormSchema extends IFormSchema>(
     {
         form,
         onSubmit,
@@ -201,7 +216,7 @@ const FormInternal = <TFormSchema extends IFormSchema = IFormSchema>(
             >
                 <Button
                     size={"lg"}
-                    // disabled={!form.isValid()}
+                    disabled={!form.isValid()}
                     type={"submit"}
                     {...submitProps}
                 >
@@ -213,4 +228,25 @@ const FormInternal = <TFormSchema extends IFormSchema = IFormSchema>(
             </Group>
         </form>
     </Box>;
+};
+
+export interface IDtoFormProps<TFormSchema extends IFormSchema> extends Omit<IFormProps<TFormSchema>, "toRequest"> {
+    /**
+     * Map form data (values) to request object required by a remote side
+     */
+    toRequest: IFormToRequestWithDto<TFormSchema>;
+    /**
+     * Use response to set default values from a remote object
+     */
+    dto: TFormSchema["Dto"];
+}
+
+export const DtoForm = <TFormSchema extends IFormSchema>({toRequest, dto, ...props}: IDtoFormProps<TFormSchema>) => {
+    return <Form
+        toRequest={values => toRequest({
+            values,
+            dto,
+        })}
+        {...props}
+    />;
 };

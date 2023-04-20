@@ -2,7 +2,9 @@ import {type ICalendarEventSourceSchema} from "@leight/calendar";
 import {type IFilterStoreProps}          from "@leight/filter";
 import {
     type InferSelectors,
-    switchScheme
+    switchScheme,
+    withPrimaryColor,
+    withSecondaryPrimaryColor
 }                                        from "@leight/mantine";
 import {
     type ISourceStore,
@@ -150,11 +152,12 @@ const useStyles = createStyles(theme => ({
     },
     currentWeek:    {},
     currentDay:     {
-        backgroundColor: switchScheme(
-            theme,
-            theme.colors.gray[6],
-            theme.colors.gray[2]
-        ),
+        backgroundColor: withPrimaryColor(theme),
+        color:           withSecondaryPrimaryColor(theme),
+        "&:hover":       {
+            backgroundColor: withPrimaryColor(theme, -1),
+            color:           withSecondaryPrimaryColor(theme, -1),
+        },
     },
     inRange:        {
         fontWeight: "bold",

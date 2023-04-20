@@ -5,7 +5,7 @@ export interface ISourceMapper<TSourceSchema extends ISourceSchema> {
 
     toPatch(patch: TSourceSchema["ToPatch"]): Promise<TSourceSchema["Patch"]>;
 
-    toDto(entity: Promise<TSourceSchema["Entity"]>): Promise<TSourceSchema["Dto"]>;
+    toDto(entity: TSourceSchema["Entity"]): Promise<TSourceSchema["Dto"]>;
 }
 
 export class AbstractSourceMapper<TSourceSchema extends ISourceSchema> implements ISourceMapper<TSourceSchema> {
@@ -13,7 +13,7 @@ export class AbstractSourceMapper<TSourceSchema extends ISourceSchema> implement
         return create;
     }
 
-    async toDto(entity: Promise<TSourceSchema["Entity"]>): Promise<TSourceSchema["Dto"]> {
+    async toDto(entity: TSourceSchema["Entity"]): Promise<TSourceSchema["Dto"]> {
         return entity;
     }
 

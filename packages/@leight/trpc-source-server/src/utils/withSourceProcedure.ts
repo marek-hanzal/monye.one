@@ -34,7 +34,7 @@ export const withSourceProcedure = <TSourceSchema extends ISourceSchema>(
             handler: async ({container, request}) => {
                 const $mapper = container.resolve<ISourceMapper<TSourceSchema>>(mapper);
                 return $mapper.toDto(
-                    container.resolve<ISource<TSourceSchema>>(source).create(
+                    await container.resolve<ISource<TSourceSchema>>(source).create(
                         await $mapper.toCreate(request)
                     )
                 );
@@ -44,7 +44,7 @@ export const withSourceProcedure = <TSourceSchema extends ISourceSchema>(
             handler: async ({container, request}) => {
                 const $mapper = container.resolve<ISourceMapper<TSourceSchema>>(mapper);
                 return $mapper.toDto(
-                    container.resolve<ISource<TSourceSchema>>(source).patch(
+                    await container.resolve<ISource<TSourceSchema>>(source).patch(
                         await $mapper.toPatch(request)
                     )
                 );
@@ -54,7 +54,7 @@ export const withSourceProcedure = <TSourceSchema extends ISourceSchema>(
             handler: async ({container, request}) => {
                 const $mapper = container.resolve<ISourceMapper<TSourceSchema>>(mapper);
                 return $mapper.toDto(
-                    container.resolve<ISource<TSourceSchema>>(source).delete(request)
+                    await container.resolve<ISource<TSourceSchema>>(source).delete(request)
                 );
             },
         }),
@@ -62,7 +62,7 @@ export const withSourceProcedure = <TSourceSchema extends ISourceSchema>(
             handler: async ({container, request}) => {
                 const $mapper = container.resolve<ISourceMapper<TSourceSchema>>(mapper);
                 return Promise.all(
-                    (await container.resolve<ISource<TSourceSchema>>(source).deleteWith(request)).map(entity => $mapper.toDto(Promise.resolve(entity)))
+                    (await container.resolve<ISource<TSourceSchema>>(source).deleteWith(request)).map(entity => $mapper.toDto(entity))
                 );
             },
         }),
@@ -70,7 +70,7 @@ export const withSourceProcedure = <TSourceSchema extends ISourceSchema>(
             handler: async ({container, request}) => {
                 const $mapper = container.resolve<ISourceMapper<TSourceSchema>>(mapper);
                 return Promise.all(
-                    (await container.resolve<ISource<TSourceSchema>>(source).query(request)).map(entity => $mapper.toDto(Promise.resolve(entity)))
+                    (await container.resolve<ISource<TSourceSchema>>(source).query(request)).map(entity => $mapper.toDto(entity))
                 );
             },
         }),
@@ -81,7 +81,7 @@ export const withSourceProcedure = <TSourceSchema extends ISourceSchema>(
             handler: async ({container, request}) => {
                 const $mapper = container.resolve<ISourceMapper<TSourceSchema>>(mapper);
                 return $mapper.toDto(
-                    container.resolve<ISource<TSourceSchema>>(source).fetch(request)
+                    await container.resolve<ISource<TSourceSchema>>(source).fetch(request)
                 );
             },
         }),
@@ -89,7 +89,7 @@ export const withSourceProcedure = <TSourceSchema extends ISourceSchema>(
             handler: async ({container, request: {id}}) => {
                 const $mapper = container.resolve<ISourceMapper<TSourceSchema>>(mapper);
                 return $mapper.toDto(
-                    container.resolve<ISource<TSourceSchema>>(source).find(id)
+                    await container.resolve<ISource<TSourceSchema>>(source).find(id)
                 );
             },
         }),

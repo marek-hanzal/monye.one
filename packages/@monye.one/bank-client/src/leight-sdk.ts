@@ -28,6 +28,29 @@ void withSdk(
                         },
                         withTrpc:    {
                             source: "Bank",
+                            use:    "useCreate",
+                        },
+                    },
+                    {
+                        type:        "dto",
+                        name:        "BankEdit",
+                        translation: {
+                            namespace: "bank",
+                        },
+                        withTrpc:    {
+                            source: "Bank",
+                            use:    "usePatch",
+                        },
+                    },
+                    {
+                        type:        "dto",
+                        name:        "BankPatch",
+                        translation: {
+                            namespace: "bank",
+                        },
+                        withTrpc:    {
+                            source: "Bank",
+                            use:    "usePatch",
                         },
                     },
                 ],

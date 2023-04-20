@@ -1,6 +1,33 @@
-import {ToCreateSchema} from "@leight/source";
-import {z}              from "@leight/zod";
+import {
+    DtoSchema,
+    ToCreateSchema,
+    ToPatchSchema
+}          from "@leight/source";
+import {z} from "@leight/zod";
 
 export const BankToCreateSchemaEx = ToCreateSchema.merge(z.object({
-    account: z.string({required_error: "account.required"}),
+    account:     z.string({required_error: "account.required"}),
+    description: z.string().optional(),
+    balance:     z.object({
+        value: z.number(),
+        date:  z.string(),
+    }).optional(),
+}));
+
+export const BankToPatchSchemaEx = ToPatchSchema.merge(z.object({
+    account:     z.string().optional(),
+    description: z.string().optional(),
+    balance:     z.object({
+        value: z.number(),
+        date:  z.string(),
+    }).optional(),
+}));
+
+export const BankSchemaEx = DtoSchema.merge(z.object({
+    account:     z.string(),
+    description: z.string().optional().nullable(),
+    balance:     z.object({
+        value: z.number(),
+        date:  z.string(),
+    }).optional(),
 }));

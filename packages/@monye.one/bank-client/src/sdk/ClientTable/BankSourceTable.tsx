@@ -28,7 +28,7 @@ export const BankSourceTable = <TColumnKeys extends string>(props: IBankSourceTa
     return <BankSource>
         <SourceTable
             SourceStore={BankSourceStore}
-            schema={BankSourceSchema['EntitySchema']}
+            schema={BankSourceSchema['DtoSchema']}
             {...props}
         />
     </BankSource>;
@@ -37,4 +37,4 @@ export const BankSourceTable = <TColumnKeys extends string>(props: IBankSourceTa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rssgnecvsoodxksnlnzslzcg = true;
+export const $leight_p3r7fhzoa8hencq52twaks33 = true;
