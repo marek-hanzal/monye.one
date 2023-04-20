@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_p089yvrkhl3ht45w1y1k13ud = true;
+export const $leight_xqf52rwxf53ap5b3vcrtlltz = true;
 
 export * from "./Source/JobPrismaSchema";
 export * from "./Source/JobPrismaSource";

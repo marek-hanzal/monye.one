@@ -13,4 +13,4 @@ export const BankEditFormStoreContext = createFormContext<IBankEditFormSchema>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_snxpukbjpaekdsghgpfe7nua = true;
+export const $leight_lncpxeztac5pvmlzo5frfe3q = true;

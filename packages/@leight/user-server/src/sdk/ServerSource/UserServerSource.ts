@@ -13,4 +13,4 @@ export class UserSource extends UserSourceEx implements IUserSource {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_q4atgz1bbqqyhxpt28a1z2sb = true;
+export const $leight_kxhbhdcmej2bbk4nbksd24ia = true;

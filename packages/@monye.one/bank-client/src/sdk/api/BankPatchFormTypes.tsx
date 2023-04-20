@@ -18,4 +18,4 @@ export type IBankPatchFormInputFactory = IFormInputsFactory<IBankPatchFormSchema
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_u8x0qc1r4blzf77w9ohamxgp = true;
+export const $leight_mf9pkh6fk09412n09y4ujzgs = true;
