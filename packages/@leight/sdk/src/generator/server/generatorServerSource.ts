@@ -56,7 +56,7 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
                     [packages.schema]:       [
                         `type I${name}SourceSchema`,
                     ],
-                    "@leight/source-server": [
+                    "@leight/source": [
                         "type ISourceMapper",
                     ],
                 },
@@ -67,7 +67,7 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
                 },
             })
             .saveTo({
-                file:   normalize(`${directory}/api/index.ts`),
+                file:   normalize(`${directory}/api/${name}Types.ts`),
                 barrel: false,
             });
 
@@ -109,13 +109,13 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
         withSourceFile()
             .withImports({
                 imports: {
-                    "../api":                [
+                    [`../api/${name}Types`]: [
                         `type I${name}SourceMapper`,
                     ],
-                    "@leight/source-server": [
+                    "@leight/source-server":  [
                         `AbstractSourceMapper`,
                     ],
-                    [packages.schema]:       [
+                    [packages.schema]:        [
                         `type I${name}SourceSchema`,
                     ],
                 },
@@ -136,7 +136,7 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
         withSourceFile()
             .withImports({
                 imports: {
-                    "../api": [
+                    [`../api/${name}Types`]: [
                         `type I${name}SourceMapper`,
                     ],
                 }
@@ -162,6 +162,69 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
             })
             .saveTo({
                 file: normalize(`${directory}/ServerSourceMapper/${name}SourceMapper.ts`),
+                barrel,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "@leight/source-server": [
+                        "AbstractSourceService",
+                    ],
+                    "@leight/source":        [
+                        "type ISourceService",
+                        "type ISourceMapper",
+                        "type ISource",
+                    ],
+                    [packages.schema]:       [
+                        `$${name}Source`,
+                        `$${name}SourceMapper`,
+                        `type I${name}SourceSchema`,
+                    ],
+                },
+            })
+            .withInterfaces({
+                exports: {
+                    [`I${name}BaseSourceService`]: {
+                        extends: [
+                            {
+                                type: `ISourceService<I${name}SourceSchema>`,
+                            },
+                        ],
+                    },
+                },
+            })
+            .withClasses({
+                exports: {
+                    [`${name}SourceService`]: {
+                        implements: `I${name}BaseSourceService`,
+                        extends:    `AbstractSourceService<I${name}SourceSchema>`,
+                        body:       `
+static inject = [
+        $${name}Source,
+        $${name}SourceMapper,
+    ];
+    
+    constructor(
+        protected $source: ISource<I${name}SourceSchema>,
+        protected $mapper: ISourceMapper<I${name}SourceSchema>,
+    ) {
+        super();
+    }
+    
+    source(): ISource<I${name}SourceSchema> {
+        return this.$source;
+    }
+    
+    mapper(): ISourceMapper<I${name}SourceSchema> {
+        return this.$mapper;
+    }
+                        `
+                    },
+                },
+            })
+            .saveTo({
+                file: normalize(`${directory}/ServerSourceService/${name}BaseSourceService.ts`),
                 barrel,
             });
     });

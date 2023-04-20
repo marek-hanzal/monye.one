@@ -16,8 +16,9 @@ export interface IJobSource extends ISource<IJobSourceSchema> {
 
 export const $JobSource = Symbol.for("@leight/job/IJobSource");
 export const $JobSourceMapper = Symbol.for("@leight/job/IJobSourceMapper");
+export const $JobSourceService = Symbol.for("@leight/job/IJobSourceService");
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_d293qg5n8lr08p6jgidlmyte = true;
+export const $leight_yp8uz6qhj4d2sz1ciu7b02xt = true;

@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IJobSourceMapper} from "../api";
+import {type IJobSourceMapper} from "../api/JobTypes";
 import {AbstractSourceMapper} from "@leight/source-server";
 import {type IJobSourceSchema} from "@leight/job";
 
@@ -14,4 +14,4 @@ export class JobBaseSourceMapper extends AbstractSourceMapper<IJobSourceSchema> 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_gxw9ri4rzfk2pc7bfcp4duny = true;
+export const $leight_mgs2fikfovjpwmexwkrwyifz = true;

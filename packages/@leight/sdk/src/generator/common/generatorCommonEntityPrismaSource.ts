@@ -110,6 +110,7 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
                 exports: {
                     [`$${name}Source`]:       {body: `Symbol.for("${packageName}/I${name}Source")`},
                     [`$${name}SourceMapper`]: {body: `Symbol.for("${packageName}/I${name}SourceMapper")`},
+                    [`$${name}SourceService`]: {body: `Symbol.for("${packageName}/I${name}SourceService")`},
                 }
             })
             .saveTo({

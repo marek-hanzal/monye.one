@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IBankSourceMapper} from "../api";
+import {type IBankSourceMapper} from "../api/BankTypes";
 import {AbstractSourceMapper} from "@leight/source-server";
 import {type IBankSourceSchema} from "@monye.one/bank";
 
@@ -14,4 +14,4 @@ export class BankBaseSourceMapper extends AbstractSourceMapper<IBankSourceSchema
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_evdlj472myx9mhif8c91bksd = true;
+export const $leight_u7vbkvzu74g2fuadfo4uyh9n = true;

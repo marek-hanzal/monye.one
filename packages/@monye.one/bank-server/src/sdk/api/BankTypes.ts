@@ -3,13 +3,13 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type ICalendarEventSourceSchema} from "@monye.one/book";
-import {type ISourceMapper} from "@leight/source-server";
+import {type IBankSourceSchema} from "@monye.one/bank";
+import {type ISourceMapper} from "@leight/source";
 
-export type ICalendarEventSourceMapper = ISourceMapper<ICalendarEventSourceSchema>;
+export type IBankSourceMapper = ISourceMapper<IBankSourceSchema>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zy0hmt2eovri1xsx4ephcfgc = true;
+export const $leight_odqv42dntfff9j9rfie8czg0 = true;

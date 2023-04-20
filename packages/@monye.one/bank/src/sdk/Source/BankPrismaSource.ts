@@ -16,8 +16,9 @@ export interface IBankSource extends ISource<IBankSourceSchema> {
 
 export const $BankSource = Symbol.for("@monye.one/bank/IBankSource");
 export const $BankSourceMapper = Symbol.for("@monye.one/bank/IBankSourceMapper");
+export const $BankSourceService = Symbol.for("@monye.one/bank/IBankSourceService");
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_q9aej1lc69h5mom8i5akwoas = true;
+export const $leight_tgh64hhvrfdewtocb2f694in = true;

@@ -16,8 +16,9 @@ export interface ITransactionSource extends ISource<ITransactionSourceSchema> {
 
 export const $TransactionSource = Symbol.for("@monye.one/transaction/ITransactionSource");
 export const $TransactionSourceMapper = Symbol.for("@monye.one/transaction/ITransactionSourceMapper");
+export const $TransactionSourceService = Symbol.for("@monye.one/transaction/ITransactionSourceService");
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_i7c2wdlk4bs0xpx5hze5s79i = true;
+export const $leight_xfr2nruasgyyn5st963npn9p = true;

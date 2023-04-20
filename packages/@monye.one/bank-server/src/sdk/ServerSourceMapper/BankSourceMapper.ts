@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IBankSourceMapper} from "../api";
+import {type IBankSourceMapper} from "../api/BankTypes";
 import {BankSourceMapperEx} from "../../source";
 
 export class BankSourceMapper extends BankSourceMapperEx implements IBankSourceMapper {
@@ -13,4 +13,4 @@ export class BankSourceMapper extends BankSourceMapperEx implements IBankSourceM
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_pszimllytb6rjrexhyeg1ngj = true;
+export const $leight_adxfk4ehhp9ayqir9owr8wml = true;

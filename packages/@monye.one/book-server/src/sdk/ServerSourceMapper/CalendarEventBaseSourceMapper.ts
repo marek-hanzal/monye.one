@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type ICalendarEventSourceMapper} from "../api";
+import {type ICalendarEventSourceMapper} from "../api/CalendarEventTypes";
 import {AbstractSourceMapper} from "@leight/source-server";
 import {type ICalendarEventSourceSchema} from "@monye.one/book";
 
@@ -14,4 +14,4 @@ export class CalendarEventBaseSourceMapper extends AbstractSourceMapper<ICalenda
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vr025itciblx0kgtisav1q1j = true;
+export const $leight_atpsn2ynps48dbijs4n8sy23 = true;

@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IFileSourceMapper} from "../api";
+import {type IFileSourceMapper} from "../api/FileTypes";
 import {FileBaseSourceMapper} from "./FileBaseSourceMapper";
 
 export class FileSourceMapper extends FileBaseSourceMapper implements IFileSourceMapper {
@@ -13,4 +13,4 @@ export class FileSourceMapper extends FileBaseSourceMapper implements IFileSourc
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_omldh06pzbfbzt2u11x70jss = true;
+export const $leight_fea3rf7jsqxh2xedpq35txmo = true;

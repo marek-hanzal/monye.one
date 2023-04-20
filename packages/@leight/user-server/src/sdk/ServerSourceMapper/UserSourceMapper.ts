@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IUserSourceMapper} from "../api";
+import {type IUserSourceMapper} from "../api/UserTypes";
 import {UserBaseSourceMapper} from "./UserBaseSourceMapper";
 
 export class UserSourceMapper extends UserBaseSourceMapper implements IUserSourceMapper {
@@ -13,4 +13,4 @@ export class UserSourceMapper extends UserBaseSourceMapper implements IUserSourc
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wjk81rom35i1cjeyp5e15upe = true;
+export const $leight_jtmr2ktkdzl8imcdau2xfsbv = true;

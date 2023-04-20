@@ -3,13 +3,13 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IBankSourceSchema} from "@monye.one/bank";
-import {type ISourceMapper} from "@leight/source-server";
+import {type IFileSourceSchema} from "@leight/file";
+import {type ISourceMapper} from "@leight/source";
 
-export type IBankSourceMapper = ISourceMapper<IBankSourceSchema>;
+export type IFileSourceMapper = ISourceMapper<IFileSourceSchema>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_p4rique8sk6d1365bgw51eg6 = true;
+export const $leight_edg1wt7d6uukqxz7bcm0grt5 = true;

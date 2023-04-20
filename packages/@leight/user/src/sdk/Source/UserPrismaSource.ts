@@ -17,8 +17,9 @@ export interface IUserSource extends ISource<IUserSourceSchema>, IUserSourceEx {
 
 export const $UserSource = Symbol.for("@leight/user/IUserSource");
 export const $UserSourceMapper = Symbol.for("@leight/user/IUserSourceMapper");
+export const $UserSourceService = Symbol.for("@leight/user/IUserSourceService");
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_dnbtcfil9b0dk4bfj13qfyj2 = true;
+export const $leight_jl689o63frpd7dx3lq82slyf = true;

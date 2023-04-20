@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type ITransactionSourceMapper} from "../api";
+import {type ITransactionSourceMapper} from "../api/TransactionTypes";
 import {AbstractSourceMapper} from "@leight/source-server";
 import {type ITransactionSourceSchema} from "@monye.one/transaction";
 
@@ -14,4 +14,4 @@ export class TransactionBaseSourceMapper extends AbstractSourceMapper<ITransacti
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_otzhph1u8bjh9p7a90tu4uh1 = true;
+export const $leight_hf8ad8502aj74u66sot2qk2h = true;

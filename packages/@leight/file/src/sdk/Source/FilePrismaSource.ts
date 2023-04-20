@@ -16,8 +16,9 @@ export interface IFileSource extends ISource<IFileSourceSchema> {
 
 export const $FileSource = Symbol.for("@leight/file/IFileSource");
 export const $FileSourceMapper = Symbol.for("@leight/file/IFileSourceMapper");
+export const $FileSourceService = Symbol.for("@leight/file/IFileSourceService");
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hiosvjxhztgp45cjobxdv3ci = true;
+export const $leight_uxfdi2cyhwbx4zcmqavc5ami = true;
