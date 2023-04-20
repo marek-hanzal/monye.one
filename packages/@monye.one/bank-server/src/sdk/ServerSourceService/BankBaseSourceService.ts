@@ -15,10 +15,10 @@ import {
 	type IBankSourceSchema
 } from "@monye.one/bank";
 
-export interface IBankBaseSourceService extends ISourceService<IBankSourceSchema> {
+export interface IBankSourceService extends ISourceService<IBankSourceSchema> {
 }
 
-export class BankSourceService extends AbstractSourceService<IBankSourceSchema> implements IBankBaseSourceService {
+export class BankBaseSourceService extends AbstractSourceService<IBankSourceSchema> implements IBankSourceService {
 	static inject = [
         $BankSource,
         $BankSourceMapper,
@@ -44,4 +44,4 @@ export class BankSourceService extends AbstractSourceService<IBankSourceSchema> 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_r3dw5pnlr3eroonma9tgcp1v = true;
+export const $leight_s1g4re3of0dchuu4yr4au8f2 = true;

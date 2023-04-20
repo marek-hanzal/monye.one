@@ -15,10 +15,10 @@ import {
 	type IJobSourceSchema
 } from "@leight/job";
 
-export interface IJobBaseSourceService extends ISourceService<IJobSourceSchema> {
+export interface IJobSourceService extends ISourceService<IJobSourceSchema> {
 }
 
-export class JobSourceService extends AbstractSourceService<IJobSourceSchema> implements IJobBaseSourceService {
+export class JobBaseSourceService extends AbstractSourceService<IJobSourceSchema> implements IJobSourceService {
 	static inject = [
         $JobSource,
         $JobSourceMapper,
@@ -44,4 +44,4 @@ export class JobSourceService extends AbstractSourceService<IJobSourceSchema> im
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ahhxvcf922drv20zk3y6a8pj = true;
+export const $leight_rza1qsv6y63mq5mqtxbarbd8 = true;

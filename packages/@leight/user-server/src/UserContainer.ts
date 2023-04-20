@@ -5,15 +5,18 @@ import {
     $UserService,
     $UserSource,
     $UserSourceMapper,
+    $UserSourceService,
     type IRegistrationService,
     type IUserJwtService,
     type IUserService,
     type IUserSource,
 }                        from "@leight/user";
 import {
-    IUserSourceMapper,
+    type IUserSourceMapper,
+    type IUserSourceService,
     UserSource,
-    UserSourceMapper
+    UserSourceMapper,
+    UserSourceService
 }                        from "./sdk";
 import {
     RegistrationService,
@@ -26,6 +29,7 @@ export interface IUserContainer {
     UserJwtService: IUserJwtService;
     UserService: IUserService;
     UserSource: IUserSource;
+    UserSourceService: IUserSourceService;
     UserSourceMapper: IUserSourceMapper;
 }
 
@@ -35,6 +39,7 @@ export const UserContainer = (container: IContainer): IUserContainer => {
         .bindClass($UserJwtService, UserJwtService)
         .bindClass($UserService, UserService)
         .bindClass($UserSource, UserSource)
+        .bindClass($UserSourceService, UserSourceService)
         .bindClass($UserSourceMapper, UserSourceMapper);
 
     return {
@@ -49,6 +54,9 @@ export const UserContainer = (container: IContainer): IUserContainer => {
         },
         get UserSource() {
             return container.resolve<IUserSource>($UserSource);
+        },
+        get UserSourceService() {
+            return container.resolve<IUserSourceService>($UserSourceService);
         },
         get UserSourceMapper() {
             return container.resolve<IUserSourceMapper>($UserSourceMapper);

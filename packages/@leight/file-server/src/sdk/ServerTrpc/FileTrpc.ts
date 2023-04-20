@@ -5,15 +5,13 @@
  */
 import {withSourceProcedure} from "@leight/trpc-source-server";
 import {
-	$FileSourceMapper,
-	$FileSource,
+	$FileSourceService,
 	FileSourceSchema,
 	type IFileSourceSchema
 } from "@leight/file";
 
 export const FileSourceProcedure = withSourceProcedure<IFileSourceSchema>({
-    mapper: $FileSourceMapper,
-    source: $FileSource,
+    sourceService: $FileSourceService,
     schema: {
         create: FileSourceSchema["ToCreateSchema"],
         patch: FileSourceSchema["ToPatchSchema"],
@@ -24,4 +22,4 @@ export const FileSourceProcedure = withSourceProcedure<IFileSourceSchema>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_oob6b7v8vvvomwtnhx1aqor5 = true;
+export const $leight_r5sp6z985f37vfpwei3j21gu = true;

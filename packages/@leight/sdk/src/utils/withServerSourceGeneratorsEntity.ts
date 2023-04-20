@@ -9,6 +9,7 @@ export interface IWithServerSourceGeneratorsEntityProps {
         prisma: string;
     };
     withSourceEx?: IPackageType;
+    withServiceEx?: IPackageType;
     withMapperEx?: IPackageType;
     withInclude?: Record<string, any>;
     disabled?: ("trpc")[];
@@ -25,6 +26,7 @@ export const withServerSourceGeneratorsEntity = (
         packages,
         withInclude,
         withSourceEx,
+        withServiceEx,
         withMapperEx,
     }: IWithServerSourceGeneratorsEntityProps): IGeneratorServerParams => {
     return {
@@ -51,6 +53,7 @@ export const withServerSourceGeneratorsEntity = (
                     },
                     sourceEx:   withSourceEx,
                     mapperEx:   withMapperEx,
+                    serviceEx:  withServiceEx,
                 },
             ],
         },

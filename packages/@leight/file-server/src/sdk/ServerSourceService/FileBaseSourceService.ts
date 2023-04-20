@@ -15,10 +15,10 @@ import {
 	type IFileSourceSchema
 } from "@leight/file";
 
-export interface IFileBaseSourceService extends ISourceService<IFileSourceSchema> {
+export interface IFileSourceService extends ISourceService<IFileSourceSchema> {
 }
 
-export class FileSourceService extends AbstractSourceService<IFileSourceSchema> implements IFileBaseSourceService {
+export class FileBaseSourceService extends AbstractSourceService<IFileSourceSchema> implements IFileSourceService {
 	static inject = [
         $FileSource,
         $FileSourceMapper,
@@ -44,4 +44,4 @@ export class FileSourceService extends AbstractSourceService<IFileSourceSchema> 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_q4wyie2lkcd0ymdwc0i1bngc = true;
+export const $leight_f4umdbdbw6rvy7k6ez4wufif = true;

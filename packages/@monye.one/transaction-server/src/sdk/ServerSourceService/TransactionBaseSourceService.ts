@@ -15,10 +15,10 @@ import {
 	type ITransactionSourceSchema
 } from "@monye.one/transaction";
 
-export interface ITransactionBaseSourceService extends ISourceService<ITransactionSourceSchema> {
+export interface ITransactionSourceService extends ISourceService<ITransactionSourceSchema> {
 }
 
-export class TransactionSourceService extends AbstractSourceService<ITransactionSourceSchema> implements ITransactionBaseSourceService {
+export class TransactionBaseSourceService extends AbstractSourceService<ITransactionSourceSchema> implements ITransactionSourceService {
 	static inject = [
         $TransactionSource,
         $TransactionSourceMapper,
@@ -44,4 +44,4 @@ export class TransactionSourceService extends AbstractSourceService<ITransaction
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_antoxl09ynk9g7dfx73gcga0 = true;
+export const $leight_htqytb7nei3r47gsbcm5vu8m = true;

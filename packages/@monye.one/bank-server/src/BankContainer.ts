@@ -1,22 +1,29 @@
-import {type IContainer}        from "@leight/container";
+import {type IContainer} from "@leight/container";
 import {
     $BankSource,
     $BankSourceMapper,
+    $BankSourceService,
     type IBankSource
-}                               from "@monye.one/bank";
-import {type IBankSourceMapper} from "./sdk/api";
-import {BankSource}             from "./sdk/ServerSource/BankServerSource";
-import {BankSourceMapper}       from "./sdk/ServerSourceMapper/BankSourceMapper";
+}                        from "@monye.one/bank";
+import {
+    BankSource,
+    BankSourceMapper,
+    BankSourceService,
+    type IBankSourceMapper,
+    type IBankSourceService
+}                        from "./sdk";
 
 export interface IBankContainer {
     BankSource: IBankSource;
     BankSourceMapper: IBankSourceMapper;
+    BankSourceService: IBankSourceService;
 }
 
 export const BankContainer = (container: IContainer): IBankContainer => {
     container
         .bindClass($BankSource, BankSource)
-        .bindClass($BankSourceMapper, BankSourceMapper);
+        .bindClass($BankSourceMapper, BankSourceMapper)
+        .bindClass($BankSourceService, BankSourceService);
 
     return {
         get BankSource() {
@@ -24,6 +31,9 @@ export const BankContainer = (container: IContainer): IBankContainer => {
         },
         get BankSourceMapper() {
             return container.resolve<IBankSourceMapper>($BankSourceMapper);
+        },
+        get BankSourceService() {
+            return container.resolve<IBankSourceService>($BankSourceService);
         },
     };
 };

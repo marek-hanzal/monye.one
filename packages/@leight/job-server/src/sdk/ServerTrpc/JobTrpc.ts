@@ -5,15 +5,13 @@
  */
 import {withSourceProcedure} from "@leight/trpc-source-server";
 import {
-	$JobSourceMapper,
-	$JobSource,
+	$JobSourceService,
 	JobSourceSchema,
 	type IJobSourceSchema
 } from "@leight/job";
 
 export const JobSourceProcedure = withSourceProcedure<IJobSourceSchema>({
-    mapper: $JobSourceMapper,
-    source: $JobSource,
+    sourceService: $JobSourceService,
     schema: {
         create: JobSourceSchema["ToCreateSchema"],
         patch: JobSourceSchema["ToPatchSchema"],
@@ -24,4 +22,4 @@ export const JobSourceProcedure = withSourceProcedure<IJobSourceSchema>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lwchtgtk7vl35gp0n9ciyieg = true;
+export const $leight_m5f8ppfrmlo1cp3idatwnsub = true;

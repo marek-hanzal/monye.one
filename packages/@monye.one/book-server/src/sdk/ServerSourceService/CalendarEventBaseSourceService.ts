@@ -15,10 +15,10 @@ import {
 	type ICalendarEventSourceSchema
 } from "@monye.one/book";
 
-export interface ICalendarEventBaseSourceService extends ISourceService<ICalendarEventSourceSchema> {
+export interface ICalendarEventSourceService extends ISourceService<ICalendarEventSourceSchema> {
 }
 
-export class CalendarEventSourceService extends AbstractSourceService<ICalendarEventSourceSchema> implements ICalendarEventBaseSourceService {
+export class CalendarEventBaseSourceService extends AbstractSourceService<ICalendarEventSourceSchema> implements ICalendarEventSourceService {
 	static inject = [
         $CalendarEventSource,
         $CalendarEventSourceMapper,
@@ -44,4 +44,4 @@ export class CalendarEventSourceService extends AbstractSourceService<ICalendarE
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_a6yooqsaqoi981q29466bvtz = true;
+export const $leight_lqt1t5wfj8j8y5fvrag8uglh = true;

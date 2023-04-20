@@ -21,4 +21,4 @@ export const $FileSourceService = Symbol.for("@leight/file/IFileSourceService");
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_uxfdi2cyhwbx4zcmqavc5ami = true;
+export const $leight_oe4i7enp4nxycwy6h1epz2om = true;

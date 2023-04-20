@@ -5,15 +5,13 @@
  */
 import {withSourceProcedure} from "@leight/trpc-source-server";
 import {
-	$CalendarEventSourceMapper,
-	$CalendarEventSource,
+	$CalendarEventSourceService,
 	CalendarEventSourceSchema,
 	type ICalendarEventSourceSchema
 } from "@monye.one/book";
 
 export const CalendarEventSourceProcedure = withSourceProcedure<ICalendarEventSourceSchema>({
-    mapper: $CalendarEventSourceMapper,
-    source: $CalendarEventSource,
+    sourceService: $CalendarEventSourceService,
     schema: {
         create: CalendarEventSourceSchema["ToCreateSchema"],
         patch: CalendarEventSourceSchema["ToPatchSchema"],
@@ -24,4 +22,4 @@ export const CalendarEventSourceProcedure = withSourceProcedure<ICalendarEventSo
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_e1wdilz0nfi0awrvwynemdkv = true;
+export const $leight_lw0i6qgz95spsywt4ca47n7e = true;

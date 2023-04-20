@@ -6,6 +6,7 @@ import {
     $FileServiceConfig,
     $FileSource,
     $FileSourceMapper,
+    $FileSourceService,
     type IChunkService,
     type IChunkServiceConfig,
     type IFileService,
@@ -15,13 +16,14 @@ import {
 import {
     FileSource,
     FileSourceMapper,
-    IFileSourceMapper
+    FileSourceService,
+    type IFileSourceMapper,
+    type IFileSourceService
 }                        from "./sdk";
-
 import {
     ChunkService,
     FileService
-} from "./service";
+}                        from "./service";
 
 export interface IFileContainer {
     ChunkService: IChunkService;
@@ -29,6 +31,7 @@ export interface IFileContainer {
     FileService: IFileService;
     FileServiceConfig: IFileServiceConfig;
     FileSource: IFileSource;
+    FileSourceService: IFileSourceService;
     FileSourceMapper: IFileSourceMapper;
 }
 
@@ -48,6 +51,7 @@ export const FileContainer = (container: IContainer): IFileContainer => {
             defaultMimeType: "application/octet-stream",
         })
         .bindClass($FileSource, FileSource)
+        .bindClass($FileSourceService, FileSourceService)
         .bindClass($FileSourceMapper, FileSourceMapper);
 
     return {
@@ -65,6 +69,9 @@ export const FileContainer = (container: IContainer): IFileContainer => {
         },
         get FileSource() {
             return container.resolve<IFileSource>($FileSource);
+        },
+        get FileSourceService() {
+            return container.resolve<IFileSourceService>($FileSourceService);
         },
         get FileSourceMapper() {
             return container.resolve<IFileSourceMapper>($FileSourceMapper);

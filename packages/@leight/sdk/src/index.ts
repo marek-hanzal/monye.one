@@ -1,7 +1,7 @@
 import chalk                from "chalk";
 import {type ISdkGenerator} from "./api";
 
-export const withSdk = async (generators: ISdkGenerator[]): Promise<void> => {
+export const withSdk = async (generators: ISdkGenerator[], cleanup = 'src/sdk'): Promise<void> => {
     console.log(chalk.yellowBright.bold("Leight SDK Generator"));
 
     for await (const generator of generators) {

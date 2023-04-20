@@ -7,21 +7,27 @@ import {
 void withSdk(
     withServerSourceGenerators(
         withServerSourceGeneratorsEntity({
-            name:         "Bank",
-            prisma:       "bank",
-            withSourceEx: {
+            name:          "Bank",
+            prisma:        "bank",
+            withSourceEx:  {
                 type:        "BankSourceEx",
                 withPackage: {
                     package: "../../source",
                 },
             },
-            withMapperEx: {
+            withMapperEx:  {
                 type:        "BankSourceMapperEx",
                 withPackage: {
                     package: "../../source",
                 },
             },
-            packages:     {
+            withServiceEx: {
+                type:        "BankSourceServiceEx",
+                withPackage: {
+                    package: "../../source",
+                },
+            },
+            packages:      {
                 schema: "@monye.one/bank",
                 prisma: "@monye.one/prisma",
             },

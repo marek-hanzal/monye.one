@@ -2,7 +2,7 @@ import {
     type IUserSourceEx,
     type IUserSourceSchema
 }                             from "@leight/user";
-import {UserBasePrismaSource} from "../sdk/PrismaSource/UserPrismaSource";
+import {UserBasePrismaSource} from "../sdk";
 
 export class UserSourceEx extends UserBasePrismaSource implements IUserSourceEx {
     public findByEmail(email: string): Promise<IUserSourceSchema["Entity"]> {

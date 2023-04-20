@@ -5,15 +5,13 @@
  */
 import {withSourceProcedure} from "@leight/trpc-source-server";
 import {
-	$TransactionSourceMapper,
-	$TransactionSource,
+	$TransactionSourceService,
 	TransactionSourceSchema,
 	type ITransactionSourceSchema
 } from "@monye.one/transaction";
 
 export const TransactionSourceProcedure = withSourceProcedure<ITransactionSourceSchema>({
-    mapper: $TransactionSourceMapper,
-    source: $TransactionSource,
+    sourceService: $TransactionSourceService,
     schema: {
         create: TransactionSourceSchema["ToCreateSchema"],
         patch: TransactionSourceSchema["ToPatchSchema"],
@@ -24,4 +22,4 @@ export const TransactionSourceProcedure = withSourceProcedure<ITransactionSource
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jbv8lzs8et6u40dupitndwxm = true;
+export const $leight_wokidkcnxhivy54e6oe34u7i = true;
