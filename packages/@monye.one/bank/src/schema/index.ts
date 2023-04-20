@@ -7,7 +7,7 @@ import {z} from "@leight/zod";
 
 export const BankToCreateSchemaEx = ToCreateSchema.merge(z.object({
     account:     z.string({required_error: "account.required"}),
-    description: z.string().nullable().optional(),
+    description: z.string().optional(),
     balance:     z.object({
         value: z.number(),
         date:  z.string(),
@@ -16,7 +16,7 @@ export const BankToCreateSchemaEx = ToCreateSchema.merge(z.object({
 
 export const BankToPatchSchemaEx = ToPatchSchema.merge(z.object({
     account:     z.string().optional(),
-    description: z.string().nullable().optional(),
+    description: z.string().optional(),
     balance:     z.object({
         value: z.number(),
         date:  z.string(),
@@ -25,7 +25,7 @@ export const BankToPatchSchemaEx = ToPatchSchema.merge(z.object({
 
 export const BankSchemaEx = DtoSchema.merge(z.object({
     account:     z.string(),
-    description: z.string().nullable().optional(),
+    description: z.string().optional(),
     balance:     z.object({
         value: z.number(),
         date:  z.string(),

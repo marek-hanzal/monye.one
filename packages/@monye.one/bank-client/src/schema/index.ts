@@ -5,7 +5,7 @@ import {BankSourceSchema} from "@monye.one/bank";
 export const BankCreateFormSchema = withFormSchemas({
     ValueSchema:   z.object({
         account:     z.string().trim().min(1, {message: "Empty"}),
-        description: z.string().nullable().optional(),
+        description: z.string().optional(),
         balance:     z.object({
             value: z.number({invalid_type_error: "Empty"}),
             date:  z.string().trim().min(1, {message: "Empty"}),
@@ -21,7 +21,7 @@ export const BankCreateFormSchema = withFormSchemas({
 export const BankEditFormSchema = withFormSchemas({
     ValueSchema:   z.object({
         account:     z.string().trim().min(1, {message: "Empty"}),
-        description: z.string().nullable().optional(),
+        description: z.string().optional(),
         balance:     z.object({
             value: z.number({invalid_type_error: "Empty"}),
             date:  z.string().trim().min(1, {message: "Empty"}),
@@ -37,7 +37,7 @@ export const BankEditFormSchema = withFormSchemas({
 export const BankPatchFormSchema = withFormSchemas({
     ValueSchema:   z.object({
         account:     z.string().trim().optional(),
-        description: z.string().nullable().optional(),
+        description: z.string().optional(),
         balance:     z.object({
             value: z.number({invalid_type_error: "Empty"}),
             date:  z.string().trim().min(1, {message: "Empty"}),

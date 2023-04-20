@@ -15,8 +15,7 @@ import {
     IconEdit,
     IconTrash
 }                               from "@tabler/icons-react";
-import {BankBalancePatchFields} from "../form/BankBalancePatchFields";
-import {BankPatchForm}          from "../form/BankPatchForm";
+import {BankEditForm}           from "../form/BankEditForm";
 import {
     useBankQueryInvalidator,
     UseBankSourceQuery
@@ -46,7 +45,7 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
                 <Menu.Item
                     onClick={() => modals.open({
                         zIndex:              500,
-                        modalId:             "balance.patch",
+                        modalId:             "balance.edit",
                         closeOnClickOutside: false,
                         title:               <Translation
                                                  namespace={"bank"}
@@ -55,11 +54,10 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
                                              />,
                         size:                "lg",
                         children:            <>
-                                                 <BankPatchForm
+                                                 <BankEditForm
+                                                     onSuccess={() => modals.close("balance.edit")}
                                                      dto={item}
-                                                 >
-                                                     <BankBalancePatchFields/>
-                                                 </BankPatchForm>
+                                                 />
                                              </>
                     })}
                     icon={<IconEdit size={14}/>}

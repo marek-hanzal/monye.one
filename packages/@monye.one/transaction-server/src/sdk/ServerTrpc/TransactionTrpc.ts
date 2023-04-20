@@ -24,4 +24,4 @@ export const TransactionSourceProcedure = withSourceProcedure<ITransactionSource
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vnm7aes4gxijqyc11uujzqy2 = true;
+export const $leight_k6j70lja3en4nbxqbtnw4oi3 = true;

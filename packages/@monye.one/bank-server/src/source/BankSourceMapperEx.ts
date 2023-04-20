@@ -25,10 +25,19 @@ export class BankSourceMapperEx extends BankBaseSourceMapper {
         };
     }
 
+    async toPatch({balance, ...patch}: IBankSourceSchema["ToPatch"]): Promise<IBankSourceSchema["Patch"]> {
+        return {
+            ...patch,
+            balanceValue: balance?.value,
+            balanceDate:  balance?.date ? DateTime.fromISO(balance.date).toJSDate() : undefined,
+            userId:       this.userService.required(),
+        };
+    }
+
     async toDto({description, balanceDate, balanceValue, ...entity}: IBankSourceSchema["Entity"]): Promise<IBankSourceSchema["Dto"]> {
         return {
             ...entity,
-            description: description,
+            description: description || undefined,
             balance:     balanceDate && balanceValue !== undefined ? {
                 value: decimalOf(balanceValue),
                 date:  balanceDate.toISOString(),
