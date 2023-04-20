@@ -21,4 +21,4 @@ export const $UserSourceMapper = Symbol.for("@leight/user/IUserSourceMapper");
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_oym9e4nn4kk732d8sby6c4qk = true;
+export const $leight_leick937d5l7newmtnqg3c7i = true;

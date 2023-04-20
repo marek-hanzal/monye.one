@@ -6,6 +6,7 @@ import {
     ModalStoreProvider
 }                               from "@leight/mantine";
 import {TableRowMenu}           from "@leight/table-client";
+import {BlockProvider}          from "@leight/utils-client";
 import {Menu}                   from "@mantine/core";
 import {modals}                 from "@mantine/modals";
 import {type IBankSourceSchema} from "@monye.one/bank";
@@ -53,12 +54,12 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
                                                  values={item}
                                              />,
                         size:                "lg",
-                        children:            <>
+                        children:            <BlockProvider>
                                                  <BankEditForm
                                                      onSuccess={() => modals.close("balance.edit")}
                                                      dto={item}
                                                  />
-                                             </>
+                                             </BlockProvider>,
                     })}
                     icon={<IconEdit size={14}/>}
                 >

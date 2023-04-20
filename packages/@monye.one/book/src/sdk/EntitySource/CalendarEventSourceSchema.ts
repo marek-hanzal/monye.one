@@ -37,4 +37,4 @@ export const CalendarEventSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_gi5020ake9lgko1hnlxocixx = true;
+export const $leight_sr23b7144f24xmnuxgi1klnc = true;

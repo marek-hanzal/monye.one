@@ -214,6 +214,7 @@ const FormInternal = <TFormSchema extends IFormSchema>(
                     size={"lg"}
                     disabled={!form.isValid()}
                     type={"submit"}
+                    loading={isBlock}
                     {...submitProps}
                 >
                     <Translation
@@ -240,7 +241,7 @@ export interface IDtoFormProps<TFormSchema extends IFormSchema> extends Omit<IFo
 
 export const DtoForm = <TFormSchema extends IFormSchema>({toRequest, toValues, dto, ...props}: IDtoFormProps<TFormSchema>) => {
     return <Form
-        toRequest={values => toRequest({
+        toRequest={({values}) => toRequest({
             values,
             dto,
         })}
