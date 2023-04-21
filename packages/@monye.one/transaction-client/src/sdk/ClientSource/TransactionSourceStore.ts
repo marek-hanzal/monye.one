@@ -12,4 +12,4 @@ export const TransactionSourceStore = withSourceStore({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nkhsu16mhzgl3pg4btvoakdo = true;
+export const $leight_ao43jhasuso8akrvphwcd8x7 = true;
