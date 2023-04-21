@@ -1,4 +1,9 @@
-import {type IImportHandler} from "./IImportHandler";
+import {type IJobService}         from "@leight/job";
+import {type IImportParamsSchema} from "../schema";
+import {type IImportResult}       from "./IImportResult";
 
-export interface IImportService<TItem, TParams> extends IImportHandler<TItem, TParams> {
+/**
+ * Service used for importing files.
+ */
+export interface IImportService<TParamsSchema extends IImportParamsSchema = IImportParamsSchema> extends IJobService<TParamsSchema, IImportResult> {
 }

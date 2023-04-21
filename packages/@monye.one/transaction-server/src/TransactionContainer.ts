@@ -1,10 +1,10 @@
 import {type IContainer}          from "@leight/container";
 import {
-    $TransactionImportService,
+    $TransactionImportHandler,
     $TransactionSource,
     $TransactionSourceMapper,
     $TransactionSourceService,
-    type ITransactionImportService,
+    ITransactionImportHandler,
     type ITransactionSource
 }                                 from "@monye.one/transaction";
 import {
@@ -14,10 +14,10 @@ import {
     TransactionSourceMapper,
     TransactionSourceService
 }                                 from "./sdk";
-import {TransactionImportService} from "./service";
+import {TransactionImportHandler} from "./service";
 
 export interface ITransactionContainer {
-    TransactionImportService: ITransactionImportService;
+    TransactionImportHandler: ITransactionImportHandler;
     TransactionSource: ITransactionSource;
     TransactionSourceService: ITransactionSourceService;
     TransactionSourceMapper: ITransactionSourceMapper;
@@ -25,14 +25,14 @@ export interface ITransactionContainer {
 
 export const TransactionContainer = (container: IContainer): ITransactionContainer => {
     container
-        .bindClass($TransactionImportService, TransactionImportService)
+        .bindClass($TransactionImportHandler, TransactionImportHandler)
         .bindClass($TransactionSource, TransactionSource)
         .bindClass($TransactionSourceService, TransactionSourceService)
         .bindClass($TransactionSourceMapper, TransactionSourceMapper);
 
     return {
-        get TransactionImportService() {
-            return container.resolve<ITransactionImportService>($TransactionImportService);
+        get TransactionImportHandler() {
+            return container.resolve<ITransactionImportHandler>($TransactionImportHandler);
         },
         get TransactionSource() {
             return container.resolve<ITransactionSource>($TransactionSource);

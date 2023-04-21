@@ -3,7 +3,7 @@ import {
     ImportZone
 }                from "@leight/xlsx-import-client";
 import {
-    $TransactionImportService,
+    $TransactionImportHandler,
     type ITransactionImportParams
 }                from "@monye.one/transaction";
 import {trpc}    from "@monye.one/trpc-client";
@@ -29,7 +29,7 @@ export const TransactionImport: FC<ITransactionImportProps> = (
             onSuccess?.(props);
         }}
         params={{
-            service: $TransactionImportService.description,
+            service: $TransactionImportHandler.description,
             account,
         }}
         withTranslation={{

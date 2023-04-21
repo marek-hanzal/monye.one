@@ -1,10 +1,11 @@
+import {type BindKey} from "@leight/container";
 import {
     $JobExecutor,
     type IJobExecutor,
     type IJobParamsSchema,
     type IJobService,
     type IJobWithParams
-} from "@leight/job";
+}                     from "@leight/job";
 
 export abstract class AbstractJobService<TJobParamsSchema extends IJobParamsSchema, TResult> implements IJobService<TJobParamsSchema, TResult> {
     static inject = [
@@ -12,7 +13,7 @@ export abstract class AbstractJobService<TJobParamsSchema extends IJobParamsSche
     ];
 
     protected constructor(
-        public name: string,
+        public name: BindKey,
         protected jobExecutor: IJobExecutor,
     ) {
         this.name = name;

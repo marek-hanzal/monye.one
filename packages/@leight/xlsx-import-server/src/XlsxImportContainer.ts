@@ -1,25 +1,25 @@
-import {type IContainer} from "@leight/container";
+import {type IContainer}     from "@leight/container";
+import {type IImportService} from "@leight/import";
 import {
-    $ImportService,
     $MetaService,
     $MetaServiceConfig,
     $TabService,
     $TranslationService,
-    type IImportService,
+    $XlsxImportService,
     type IMetaService,
     type ITabService,
     type ITranslationService,
-}                        from "@leight/xlsx-import";
+}                            from "@leight/xlsx-import";
 import {
-    ImportService,
     MetaService,
     TabService,
-    TranslationService
-}                        from "./service";
+    TranslationService,
+    XlsxImportService
+}                            from "./service";
 
 export interface IXlsxImportContainer {
     TabService: ITabService;
-    ImportService: IImportService;
+    XlsxImportService: IImportService;
     MetaService: IMetaService;
     TranslationService: ITranslationService;
 }
@@ -31,7 +31,7 @@ export const XlsxImportContainer = (container: IContainer): IXlsxImportContainer
     container
         .bindClass($TabService, TabService)
         .bindClass($MetaService, MetaService)
-        .bindClass($ImportService, ImportService)
+        .bindClass($XlsxImportService, XlsxImportService)
         .bindClass($TranslationService, TranslationService)
         .bindValue($MetaServiceConfig, {
             templates: "public/import",
@@ -41,14 +41,14 @@ export const XlsxImportContainer = (container: IContainer): IXlsxImportContainer
         get TabService() {
             return container.resolve<ITabService>($TabService);
         },
-        get ImportService() {
-            return container.resolve<IImportService>($ImportService);
-        },
         get MetaService() {
             return container.resolve<IMetaService>($MetaService);
         },
         get TranslationService() {
             return container.resolve<ITranslationService>($TranslationService);
+        },
+        get XlsxImportService() {
+            return container.resolve<IImportService>($XlsxImportService);
         },
     };
 };

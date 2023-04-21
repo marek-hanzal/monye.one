@@ -1,39 +1,39 @@
 import {
     $FileService,
     type IFileService
-}                           from "@leight/file";
+}                              from "@leight/file";
 import {
     $ImportHandlerService,
     type IImportHandlerService,
     type IImportParamsSchema,
     type IImportResult,
+    type IImportService,
     ImportParamsSchema
-}                           from "@leight/import";
+}                              from "@leight/import";
+import {AbstractImportService} from "@leight/import-server";
 import {
     $JobExecutor,
     type IJobExecutor,
-    IJobService
-}                           from "@leight/job";
-import {AbstractJobService} from "@leight/job-server";
-import {cleanOf}            from "@leight/utils";
-import {streamOf}           from "@leight/utils-server";
+    type IJobService
+}                              from "@leight/job";
+import {cleanOf}               from "@leight/utils";
+import {streamOf}              from "@leight/utils-server";
 import {
-    $ImportService,
     $MetaService,
     $TranslationService,
-    type IImportService,
+    $XlsxImportService,
     type IMetaService,
     type ITranslationService
-}                           from "@leight/xlsx-import";
-import {measureTime}        from "measure-time";
-import {Readable}           from "node:stream";
+}                              from "@leight/xlsx-import";
+import {measureTime}           from "measure-time";
+import {Readable}              from "node:stream";
 import {
     readFile,
     stream,
     WorkSheet,
-}                           from "xlsx";
+}                              from "xlsx";
 
-export class ImportService extends AbstractJobService<IImportParamsSchema, IImportResult> implements IImportService {
+export class XlsxImportService extends AbstractImportService<IImportParamsSchema> implements IImportService {
     static inject = [
         $MetaService,
         $FileService,
@@ -50,7 +50,7 @@ export class ImportService extends AbstractJobService<IImportParamsSchema, IImpo
         protected importHandlerService: IImportHandlerService,
     ) {
         super(
-            $ImportService.description!,
+            $XlsxImportService,
             jobExecutor,
         );
     }

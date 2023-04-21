@@ -61,7 +61,7 @@ export class JobExecutor implements IJobExecutor {
         setTimeout(() => {
             (async () => {
                 try {
-                    const jobService = this.container.resolve<IJobService<TJobParamsSchema>>(name);
+                    const jobService = this.container.resolve<IJobService<TJobParamsSchema>>(service);
                     await this.jobSource.find(job.id);
                     await jobProgress.setStatus("RUNNING");
                     const $params = jobService.validator().parse(params);
