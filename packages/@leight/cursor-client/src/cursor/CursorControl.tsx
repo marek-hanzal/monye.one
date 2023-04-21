@@ -51,7 +51,6 @@ export const CursorControl = <TSourceSchemaType extends ISourceSchemaType>(
         defaultCursor,
         ...props
     }: ICursorControlProps<TSourceSchemaType>) => {
-    console.log("CursorControl");
     return <CursorProvider
         defaults={defaultCursor}
     >

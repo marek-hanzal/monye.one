@@ -25,10 +25,9 @@ export const createProvider = <TStoreProps extends IStoreProps>(
             defaults,
             state,
         }) {
-        console.log(`Re-render of [${name}] store provider`);
         const memo = useMemo(() => {
             const store = createStore({defaults, state});
-            return {state: store.getState(), store};
+            return {name, state: store.getState(), store};
         }, []);
         return (
             <Context.Provider value={memo}>

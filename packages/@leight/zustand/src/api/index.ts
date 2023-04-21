@@ -25,6 +25,7 @@ export interface IStoreProps<TStoreProps extends IStorePropsType = IStorePropsTy
 }
 
 export interface IStoreApi<TStoreProps extends IStoreProps> {
+    name: string;
     state: TStoreProps["StoreProps"];
     store: StoreApi<TStoreProps["StoreProps"]>;
 }

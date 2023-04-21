@@ -86,8 +86,6 @@ export const SourceTable = <
     const {sort, setSort} = SourceStore.Sort.useState(({sort, setSort}) => ({sort, setSort}));
     const {pages}         = CursorStore.useState(({pages}) => ({pages}));
 
-    console.log("Sort", sort);
-
     return <>
         {pagination?.position?.includes("top") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
             <Center>

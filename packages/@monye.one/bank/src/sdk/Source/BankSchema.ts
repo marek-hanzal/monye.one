@@ -51,4 +51,4 @@ export const BankSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tkd35x7xxw72xao3uzrc359r = true;
+export const $leight_wetj4zjtq8gn95aqgcqlx96f = true;
