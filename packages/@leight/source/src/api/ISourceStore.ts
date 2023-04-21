@@ -14,10 +14,11 @@ export type ISourceStore<TSourceSchemaType extends ISourceSchemaType> = {
 };
 
 export type ISourceStoreProps<TSourceSchemaType extends ISourceSchemaType> = IStoreProps<{
-    readonly schema: TSourceSchemaType["DtoSchema"];
-    readonly dtos: TSourceSchemaType["Dto"][];
-    readonly isLoading: boolean;
-    readonly isFetching: boolean;
+    id: string;
+    schema: TSourceSchemaType["DtoSchema"];
+    dtos: TSourceSchemaType["Dto"][];
+    isLoading: boolean;
+    isFetching: boolean;
 
     setDtos(dto?: TSourceSchemaType["Dto"][]): void;
 

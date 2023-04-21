@@ -7,6 +7,7 @@ import {
     type ISourceStore,
     type ISourceStoreProps
 }                            from "@leight/source";
+import {generateId}          from "@leight/utils";
 
 export interface ICreateSourceContextProps<TSourceSchemaType extends ISourceSchemaType> {
     name: string;
@@ -22,12 +23,16 @@ export const createSourceContext = <TSourceSchemaType extends ISourceSchemaType>
     }: ICreateSourceContextProps<TSourceSchemaType>) => {
     return createStoreContext<ISourceStoreProps<TSourceSchemaType>>({
         state: () => (set) => ({
+            id:         generateId(),
             schema,
             dtos:       dtos,
             isLoading:  false,
             isFetching: false,
             setDtos(dtos) {
-                set({dtos});
+                set({
+                    id: generateId(),
+                    dtos,
+                });
             },
             setIsLoading(isLoading) {
                 set({isLoading});
