@@ -4,6 +4,10 @@ import {
     type IFileContainer
 }                        from "@leight/file-server";
 import {
+    type IImportContainer,
+    ImportContainer as $ImportContainer
+}                        from "@leight/import-server";
+import {
     type IJobContainer,
     JobContainer as $JobContainer
 }                        from "@leight/job-server";
@@ -22,6 +26,7 @@ export interface IServerContainer {
     XlsxImportContainer: IXlsxImportContainer;
     UserContainer: IUserContainer;
     JobContainer: IJobContainer;
+    ImportContainer: IImportContainer;
 }
 
 export const ServerContainer = (container: IContainer): IServerContainer => {
@@ -30,5 +35,6 @@ export const ServerContainer = (container: IContainer): IServerContainer => {
         XlsxImportContainer: $XlsxImportContainer(container),
         UserContainer:       $UserContainer(container),
         JobContainer:        $JobContainer(container),
+        ImportContainer:     $ImportContainer(container),
     };
 };

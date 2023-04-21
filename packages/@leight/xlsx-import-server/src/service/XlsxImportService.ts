@@ -9,7 +9,7 @@ import {
     type IImportResult,
     type IImportService,
     ImportParamsSchema
-}                              from "@leight/import";
+} from "@leight/import";
 import {AbstractImportService} from "@leight/import-server";
 import {
     $JobExecutor,
