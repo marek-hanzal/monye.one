@@ -113,7 +113,7 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
         isLoading = false,
         scrollWidth,
         hidden = [],
-        order = Object.keys(columns) as any,
+        order = Object.keys(columns) as TColumnKeys[],
         items = [],
         WithTableAction,
         WithRowAction,
