@@ -3,3 +3,4 @@ export * from "./icon";
 export * from "./schema";
 export * from "./sdk";
 export * from "./table";
+export * from "./utils";

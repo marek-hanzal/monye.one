@@ -9,4 +9,9 @@ export default withBookLayout(
     {logo, href: "/book/filters"}
 );
 
-export const getServerSideProps = withTranslation(["common", "book", "filter"]);
+export const getServerSideProps = withTranslation([
+    "common",
+    "book",
+    "bank",
+    "filter"
+]);

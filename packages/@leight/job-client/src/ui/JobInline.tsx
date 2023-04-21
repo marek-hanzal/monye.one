@@ -1,5 +1,5 @@
 import {type IWithTranslation} from "@leight/i18n";
-import {useTranslation}        from "@leight/i18n-client";
+import {Translation}           from "@leight/i18n-client";
 import {
     type IJobSourceSchemaType,
     type IUseJobSourceQuery,
@@ -39,10 +39,10 @@ export const JobInline: FC<IJobInlineInternalProps> = (
         job,
         useJobFindQuery,
         onSuccess,
-        withTranslation: {namespace},
+        withTranslation,
     }) => {
-    const {t}                   = useTranslation(namespace);
     const [refresh, setRefresh] = useState(true);
+    const notificationId        = `job-${job.id}`;
     const result                = useJobFindQuery({id: job.id}, {
         initialData:     job,
         refetchInterval: refresh ? 750 : undefined,
@@ -53,30 +53,30 @@ export const JobInline: FC<IJobInlineInternalProps> = (
                     case "SUCCESS":
                         onSuccess?.({job});
                         notifications.update({
-                            id:      job.id,
+                            id:      notificationId,
                             icon:    <IconCheck size={"1.1rem"}/>,
                             color:   "teal",
-                            title:   t("job.success.title"),
-                            message: t("job.success.message"),
+                            title:   <Translation {...withTranslation} withLabel={"success.title"}/>,
+                            message: <Translation {...withTranslation} withLabel={"success.message"}/>,
                         });
                         break;
                     case "REVIEW":
                         notifications.update({
-                            id:        job.id,
+                            id:        notificationId,
                             icon:      <IconAlertTriangle size={"1.1rem"}/>,
                             color:     "orange",
-                            title:     t("job.review.title"),
-                            message:   t("job.review.message"),
+                            title:     <Translation {...withTranslation} withLabel={"review.title"}/>,
+                            message:   <Translation {...withTranslation} withLabel={"review.message"}/>,
                             autoClose: false,
                         });
                         break;
                     case "FAILURE":
                         notifications.update({
-                            id:        job.id,
+                            id:        notificationId,
                             icon:      <IconExclamationCircle size={"1.1rem"}/>,
                             color:     "red",
-                            title:     t("job.failure.title"),
-                            message:   t("job.failure.message"),
+                            title:     <Translation {...withTranslation} withLabel={"failure.title"}/>,
+                            message:   <Translation {...withTranslation} withLabel={"failure.message"}/>,
                             autoClose: false,
                         });
                         break;

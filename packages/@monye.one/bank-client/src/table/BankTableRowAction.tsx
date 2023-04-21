@@ -23,6 +23,7 @@ import {
     useBankQueryInvalidator,
     UseBankSourceQuery
 }                                   from "../sdk";
+import {withStatsJobNotification}   from "../utils";
 import {type IBankTableProps}       from "./BankTable";
 
 
@@ -98,13 +99,12 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
                 <Menu.Item
                     icon={<IconRefresh size={14}/>}
                     onClick={() => {
-                        bankStatsMutation.mutate({
-                            bankId: item.id,
-                        }, {
-                            onSuccess: job => {
-                                console.log("Jobee", job.id);
+                        bankStatsMutation.mutate(
+                            {
+                                bankId: item.id,
                             },
-                        });
+                            withStatsJobNotification({bank: item})
+                        );
                     }}
                     disabled={bankStatsMutation.isLoading}
                 >

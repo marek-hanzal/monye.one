@@ -1,9 +1,8 @@
-import {useTranslation}           from "@leight/i18n-client";
 import {type IWithImportMutation} from "@leight/import";
 import {type IUseJobSourceQuery}  from "@leight/job";
 import {
     type IJobInlineProps,
-    JobInline
+    withJobNotification
 }                                 from "@leight/job-client";
 import {
     DropZone,
@@ -11,7 +10,6 @@ import {
 }                                 from "@leight/mantine";
 import {LoopsProvider}            from "@leight/utils-client";
 import {MIME_TYPES}               from "@mantine/dropzone";
-import {notifications}            from "@mantine/notifications";
 
 export interface IImportZoneProps<TParams extends Record<string, any>> extends Omit<IDropZoneProps, "path"> {
     mutation: IWithImportMutation;
@@ -36,7 +34,6 @@ export const ImportZone = <TParams extends Record<string, any>>(
         params,
         ...props
     }: IImportZoneProps<TParams>) => {
-    const {t}      = useTranslation(withTranslation.namespace);
     const mutation = useMutation();
     return <LoopsProvider>
         <DropZone
@@ -50,17 +47,11 @@ export const ImportZone = <TParams extends Record<string, any>>(
                     },
                     {
                         onSuccess: job => {
-                            notifications.show({
-                                id:        job.id,
-                                loading:   true,
-                                autoClose: false,
-                                title:     t("import.job.title"),
-                                message:   <JobInline
-                                               withTranslation={withTranslation}
-                                               useJobFindQuery={useJobFindQuery}
-                                               onSuccess={onSuccess}
-                                               job={job}
-                                           />,
+                            withJobNotification({
+                                job,
+                                withTranslation,
+                                useJobFindQuery,
+                                onSuccess,
                             });
                         },
                     }
