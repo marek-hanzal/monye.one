@@ -19,12 +19,6 @@ export const createSortContext = <TSortSchema extends ISortSchema>(
             schema,
             sort: {},
             setSort(key, order) {
-                console.log(`Setting [${name}] sort`, {
-                    sort: {
-                        [key as any]: order,
-                    }
-                });
-
                 set({
                     sort: {
                         [key as any]: order,
