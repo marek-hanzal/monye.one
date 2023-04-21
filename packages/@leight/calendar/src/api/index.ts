@@ -25,7 +25,7 @@ export const CalendarEventSourceSchema = withSourceSchema({
         to:   z.string().transform(withISO),
     })),
 });
-export type ICalendarEventSourceSchema = ISourceSchemaType.of<typeof CalendarEventSourceSchema>;
+export type ICalendarEventSourceSchemaType = ISourceSchemaType.of<typeof CalendarEventSourceSchema>;
 
 export interface IDateRange {
     from: DateTime;

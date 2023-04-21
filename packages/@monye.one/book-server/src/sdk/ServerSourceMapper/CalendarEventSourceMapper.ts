@@ -13,4 +13,4 @@ export class CalendarEventSourceMapper extends CalendarEventBaseSourceMapper imp
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_icwftvh45g034qmnjeg2u66c = true;
+export const $leight_dlsoxb421er8qznlxvd0z98l = true;

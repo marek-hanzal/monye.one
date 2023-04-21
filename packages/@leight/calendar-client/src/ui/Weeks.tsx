@@ -1,5 +1,5 @@
 import {
-    type ICalendarEventSourceSchema,
+    type ICalendarEventSourceSchemaType,
     type IDay,
     type IWeeks
 }                      from "@leight/calendar";
@@ -38,10 +38,10 @@ import {
     type ICalendarShellProps
 }                      from "./CalendarShell";
 
-export type IWeeksProps<TSourceSchema extends ICalendarEventSourceSchema = ICalendarEventSourceSchema> = PropsWithChildren<Omit<ICalendarShellProps<TSourceSchema>, "children" | "onClick" | "onChange"> & {
+export type IWeeksProps<TSourceSchemaType extends ICalendarEventSourceSchemaType = ICalendarEventSourceSchemaType> = PropsWithChildren<Omit<ICalendarShellProps<TSourceSchemaType>, "children" | "onClick" | "onChange"> & {
     onClick?(props: IWeeksProps.IOnClickProps): void;
     onChange?(props: IWeeksProps.IOnChangeProps): void;
-    renderDayInline?(props: IWeeksProps.IRenderInlineProps<TSourceSchema>): ReactNode;
+    renderDayInline?(props: IWeeksProps.IRenderInlineProps<TSourceSchemaType>): ReactNode;
 
     weekCountSize?: number;
     defaultWithWeekNo?: boolean;
@@ -58,14 +58,15 @@ export namespace IWeeksProps {
         weeks: IWeeks;
     }
 
-    export interface IRenderInlineProps<TSourceSchema extends ICalendarEventSourceSchema> {
-        schema: TSourceSchema["EntitySchema"];
+    export interface IRenderInlineProps<TSourceSchemaType extends ICalendarEventSourceSchemaType> {
+        schema: TSourceSchemaType["DtoSchema"];
         day: IDay;
-        events: TSourceSchema["Entity"][];
+        events: TSourceSchemaType["Dto"][];
+        compact?: boolean;
     }
 }
 
-export const Weeks = <TSourceSchema extends ICalendarEventSourceSchema = ICalendarEventSourceSchema>(
+export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType = ICalendarEventSourceSchemaType>(
     {
         onClick,
         onChange: $onChange = () => null,
@@ -77,7 +78,7 @@ export const Weeks = <TSourceSchema extends ICalendarEventSourceSchema = ICalend
         columnSize = 3,
         children,
         ...props
-    }: IWeeksProps<TSourceSchema>) => {
+    }: IWeeksProps<TSourceSchemaType>) => {
     const {
               nextMonth,
               prevMonth,
@@ -98,7 +99,7 @@ export const Weeks = <TSourceSchema extends ICalendarEventSourceSchema = ICalend
         return events && source?.dtos
             .filter(event => events.schema.safeParse(event))
             .map(event => events.schema.parse(event))
-            .reduce<Record<string, TSourceSchema["Entity"][]>>((prev, current) => {
+            .reduce<Record<string, TSourceSchemaType["Dto"][]>>((prev, current) => {
                 const stamp = current.date.toLocaleString({day: "numeric", month: "numeric", year: "numeric"});
                 return {
                     ...prev,
@@ -124,7 +125,7 @@ export const Weeks = <TSourceSchema extends ICalendarEventSourceSchema = ICalend
         end.toISO(),
     ]);
 
-    const onChange: IWeeksProps<TSourceSchema>["onChange"] = props => {
+    const onChange: IWeeksProps<TSourceSchemaType>["onChange"] = props => {
         filter?.setFilter({
             from: props.weeks.start,
             to:   props.weeks.end,
@@ -326,9 +327,10 @@ export const Weeks = <TSourceSchema extends ICalendarEventSourceSchema = ICalend
                         </Group>
                         {renderDayInline && events ? <div>
                             {renderDayInline({
-                                schema: events.schema,
+                                schema:  events.schema,
                                 day,
-                                events: $events?.[day.id] || [],
+                                events:  $events?.[day.id] || [],
+                                compact: props.compact,
                             })}
                         </div> : null}
                     </Stack>

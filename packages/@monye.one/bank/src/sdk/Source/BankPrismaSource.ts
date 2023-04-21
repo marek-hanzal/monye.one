@@ -21,4 +21,4 @@ export const $BankSourceService = Symbol.for("@monye.one/bank/IBankSourceService
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_adnz8w63osjrbt1xp3652cd5 = true;
+export const $leight_xp4qtj7wh0iaeyixm91hwrfp = true;

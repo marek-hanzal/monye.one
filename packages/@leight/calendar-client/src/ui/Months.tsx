@@ -1,5 +1,5 @@
 import {
-    type ICalendarEventSourceSchema,
+    type ICalendarEventSourceSchemaType,
     type IMonth
 }                               from "@leight/calendar";
 import {DateTime}               from "@leight/i18n";
@@ -22,7 +22,7 @@ import {
     type ICalendarShellProps
 }                               from "./CalendarShell";
 
-export type IMonthsProps<TSourceSchema extends ICalendarEventSourceSchema = ICalendarEventSourceSchema> = PropsWithChildren<Omit<ICalendarShellProps<TSourceSchema>, "children" | "onClick"> & {
+export type IMonthsProps<TSourceSchemaType extends ICalendarEventSourceSchemaType = ICalendarEventSourceSchemaType> = PropsWithChildren<Omit<ICalendarShellProps<TSourceSchemaType>, "children" | "onClick"> & {
     onClick?(props: IIMonthsProps.IOnClickProps): void;
 }>;
 
@@ -32,12 +32,12 @@ export namespace IIMonthsProps {
     }
 }
 
-export const Months = <TSourceSchema extends ICalendarEventSourceSchema = ICalendarEventSourceSchema>(
+export const Months = <TSourceSchemaType extends ICalendarEventSourceSchemaType = ICalendarEventSourceSchemaType>(
     {
         children,
         onClick,
         ...props
-    }: IMonthsProps<TSourceSchema>) => {
+    }: IMonthsProps<TSourceSchemaType>) => {
     const {months: {months, isCurrent, date}, today, prevYear, nextYear} = MonthsOfStore.useState();
     const columnCount                                                    = 4;
     const rowCount                                                       = months.length / columnCount;

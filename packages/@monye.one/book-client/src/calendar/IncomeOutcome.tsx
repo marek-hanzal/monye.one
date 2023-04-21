@@ -1,7 +1,4 @@
-import {
-    ICalendarEventSourceSchema,
-    type IDateRange
-} from "@leight/calendar";
+import {type IDateRange}                     from "@leight/calendar";
 import {toHumanNumber}                       from "@leight/utils";
 import {
     Button,
@@ -19,7 +16,7 @@ import {
 
 export interface IIncomeOutcomeProps extends ComponentProps<typeof Group> {
     range: IDateRange;
-    events?: ICalendarEventSourceSchema["Dto"][];
+    events?: ICalendarEventSourceSchemaType["Dto"][];
     withSum?: boolean;
 
     onIncomeClick?(props: IIncomeOutcomeProps.IOnIncomeClickProps): void;
