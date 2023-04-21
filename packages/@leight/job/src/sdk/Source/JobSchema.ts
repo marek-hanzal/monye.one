@@ -4,13 +4,12 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
-	JobWhereInputSchema,
-	JobWhereUniqueInputSchema,
 	JobSchema as $EntitySchema,
 	JobOptionalDefaultsSchema,
 	JobPartialSchema
 } from "@leight/prisma";
 import {SortOrderSchema} from "@leight/sort";
+import {FilterSchema} from "@leight/filter";
 import {
 	withSourceSchema,
 	type ISourceSchemaType,
@@ -18,7 +17,6 @@ import {
 } from "@leight/source";
 import {z} from "@leight/zod";
 import {JobSchemaEx} from "../../schema";
-import {FilterSchema} from "@leight/filter";
 import {ParamsSchema} from "@leight/query";
 
 export type IJobSourceSchemaType = ISourceSchemaType.of<typeof JobSourceSchema>;
@@ -33,11 +31,7 @@ export const JobSourceSchema = withSourceSchema({
     CreateSchema: $JobCreateSchema,
     ToPatchSchema: $JobPatchSchema,
     PatchSchema: $JobPatchSchema,
-    FilterSchema: z.union([
-        JobWhereInputSchema,
-        JobWhereUniqueInputSchema,
-        FilterSchema,
-    ]),
+    FilterSchema: FilterSchema,
     ParamsSchema: ParamsSchema,
     SortSchema: z.object({
         started: SortOrderSchema
@@ -47,4 +41,4 @@ export const JobSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zfrkuo52l3l3zh8130jzbhhr = true;
+export const $leight_y8a942d3e3phget2lctzoo0d = true;

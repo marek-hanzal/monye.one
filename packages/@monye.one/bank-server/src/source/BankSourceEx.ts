@@ -34,4 +34,10 @@ export class BankSourceEx extends BankBasePrismaSource {
             userId: this.userService.required(),
         };
     }
+
+    toWhereUnique(filter: IBankSourceSchemaType["Filter"]): IBankPrismaSchemaType["WhereUnique"] {
+        return {
+            userId_account: filter.userId_account,
+        };
+    }
 }

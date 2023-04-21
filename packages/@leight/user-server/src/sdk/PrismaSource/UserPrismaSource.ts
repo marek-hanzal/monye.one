@@ -107,11 +107,11 @@ export class UserBasePrismaSource extends AbstractSource<IUserSourceSchemaType> 
     }
     
     toWhere(filter?: IUserSourceSchemaType["Filter"]): IUserPrismaSchemaType['Where'] | undefined {
-        return filter;
+        throw new SourceError(`Filter is not supported in [${String($UserSource)}] Source.`);
     }
     
     toWhereUnique(filter: IUserSourceSchemaType["Filter"]): IUserPrismaSchemaType['WhereUnique'] {
-        return filter as IUserPrismaSchemaType['WhereUnique'];
+        throw new SourceError(`Unique filter is not supported in [${String($UserSource)}] Source.`);
     }
     
     toOrderBy(sort?: IUserSourceSchemaType["Sort"]): IUserPrismaSchemaType['OrderBy'] | undefined {
@@ -123,4 +123,4 @@ export class UserBasePrismaSource extends AbstractSource<IUserSourceSchemaType> 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_eblqcw3ti11t0rdqu4b23dnc = true;
+export const $leight_runi2oyycalnz35rvcvfdj7e = true;

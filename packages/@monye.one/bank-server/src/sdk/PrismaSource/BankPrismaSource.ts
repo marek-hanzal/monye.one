@@ -105,11 +105,11 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchemaType> 
     }
     
     toWhere(filter?: IBankSourceSchemaType["Filter"]): IBankPrismaSchemaType['Where'] | undefined {
-        return filter;
+        throw new SourceError(`Filter is not supported in [${String($BankSource)}] Source.`);
     }
     
     toWhereUnique(filter: IBankSourceSchemaType["Filter"]): IBankPrismaSchemaType['WhereUnique'] {
-        return filter as IBankPrismaSchemaType['WhereUnique'];
+        throw new SourceError(`Unique filter is not supported in [${String($BankSource)}] Source.`);
     }
     
     toOrderBy(sort?: IBankSourceSchemaType["Sort"]): IBankPrismaSchemaType['OrderBy'] | undefined {
@@ -121,4 +121,4 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchemaType> 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_kwmt488jynyutk0mhho5v6ej = true;
+export const $leight_o1mdltnz9rd53rp86i6r54rw = true;

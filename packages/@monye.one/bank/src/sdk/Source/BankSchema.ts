@@ -4,13 +4,12 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
-	BankWhereInputSchema,
-	BankWhereUniqueInputSchema,
 	BankSchema as $EntitySchema,
 	BankOptionalDefaultsSchema,
 	BankPartialSchema
 } from "@monye.one/prisma";
 import {SortOrderSchema} from "@leight/sort";
+import {FilterSchema} from "@leight/filter";
 import {
 	withSourceSchema,
 	type ISourceSchemaType,
@@ -20,9 +19,9 @@ import {z} from "@leight/zod";
 import {
 	BankSchemaEx,
 	BankToCreateSchemaEx,
-	BankToPatchSchemaEx
+	BankToPatchSchemaEx,
+	BankFilterSchemaEx
 } from "../../schema";
-import {FilterSchema} from "@leight/filter";
 import {ParamsSchema} from "@leight/query";
 
 export type IBankSourceSchemaType = ISourceSchemaType.of<typeof BankSourceSchema>;
@@ -37,11 +36,7 @@ export const BankSourceSchema = withSourceSchema({
     CreateSchema: $BankCreateSchema,
     ToPatchSchema: BankToPatchSchemaEx,
     PatchSchema: $BankPatchSchema,
-    FilterSchema: z.union([
-        BankWhereInputSchema,
-        BankWhereUniqueInputSchema,
-        FilterSchema,
-    ]),
+    FilterSchema: FilterSchema.merge(BankFilterSchemaEx),
     ParamsSchema: ParamsSchema,
     SortSchema: z.object({
         account: SortOrderSchema
@@ -51,4 +46,4 @@ export const BankSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wetj4zjtq8gn95aqgcqlx96f = true;
+export const $leight_qshylsonmmh70dym0czfntg6 = true;

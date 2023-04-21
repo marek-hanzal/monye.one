@@ -4,20 +4,18 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
-	UserWhereInputSchema,
-	UserWhereUniqueInputSchema,
 	UserSchema as $EntitySchema,
 	UserOptionalDefaultsSchema,
 	UserPartialSchema
 } from "@leight/prisma";
 import {SortOrderSchema} from "@leight/sort";
+import {FilterSchema} from "@leight/filter";
 import {
 	withSourceSchema,
 	type ISourceSchemaType,
 	PatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
-import {FilterSchema} from "@leight/filter";
 import {ParamsSchema} from "@leight/query";
 
 export type IUserSourceSchemaType = ISourceSchemaType.of<typeof UserSourceSchema>;
@@ -32,11 +30,7 @@ export const UserSourceSchema = withSourceSchema({
     CreateSchema: $UserCreateSchema,
     ToPatchSchema: $UserPatchSchema,
     PatchSchema: $UserPatchSchema,
-    FilterSchema: z.union([
-        UserWhereInputSchema,
-        UserWhereUniqueInputSchema,
-        FilterSchema,
-    ]),
+    FilterSchema: FilterSchema,
     ParamsSchema: ParamsSchema,
     SortSchema: z.object({
         id: SortOrderSchema
@@ -46,4 +40,4 @@ export const UserSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_dk91cthwiotsoi1ok7zrzk3q = true;
+export const $leight_pkrh2kvj8ukgkalu3ix0v97o = true;

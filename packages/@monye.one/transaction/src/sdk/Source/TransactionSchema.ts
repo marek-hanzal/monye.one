@@ -4,26 +4,27 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
-	TransactionWhereInputSchema,
-	TransactionWhereUniqueInputSchema,
 	TransactionSchema as $EntitySchema,
 	TransactionOptionalDefaultsSchema,
 	TransactionPartialSchema
 } from "@monye.one/prisma";
 import {SortOrderSchema} from "@leight/sort";
+import {FilterSchema} from "@leight/filter";
 import {
 	withSourceSchema,
 	type ISourceSchemaType,
 	PatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
-import {TransactionExSchema} from "../../schema";
-import {FilterSchema} from "@leight/filter";
+import {
+	TransactionSchemaEx,
+	TransactionFilterSchemaEx
+} from "../../schema";
 import {ParamsSchema} from "@leight/query";
 
 export type ITransactionSourceSchemaType = ISourceSchemaType.of<typeof TransactionSourceSchema>;
 
-const $TransactionSchema = $EntitySchema.merge(TransactionExSchema);
+const $TransactionSchema = $EntitySchema.merge(TransactionSchemaEx);
 const $TransactionCreateSchema = TransactionOptionalDefaultsSchema;
 const $TransactionPatchSchema = TransactionPartialSchema.merge(PatchSchema);
 export const TransactionSourceSchema = withSourceSchema({
@@ -33,20 +34,16 @@ export const TransactionSourceSchema = withSourceSchema({
     CreateSchema: $TransactionCreateSchema,
     ToPatchSchema: $TransactionPatchSchema,
     PatchSchema: $TransactionPatchSchema,
-    FilterSchema: z.union([
-        TransactionWhereInputSchema,
-        TransactionWhereUniqueInputSchema,
-        FilterSchema,
-    ]),
+    FilterSchema: FilterSchema.merge(TransactionFilterSchemaEx),
     ParamsSchema: ParamsSchema,
     SortSchema: z.object({
         date: SortOrderSchema,
-	amount: SortOrderSchema,
-	reference: SortOrderSchema
+		amount: SortOrderSchema,
+		reference: SortOrderSchema
     }),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_grcos5ivkc74ib8jlcf3p8wj = true;
+export const $leight_eeflxkxyfrgzpdn56bq95e6g = true;

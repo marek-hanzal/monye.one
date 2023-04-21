@@ -122,14 +122,15 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
             .withImports({
                 imports: {
                     [packages.prisma]: [
-                        `${name}WhereInputSchema`,
-                        `${name}WhereUniqueInputSchema`,
                         `${name}Schema as $EntitySchema`,
                         `${name}OptionalDefaultsSchema`,
                         `${name}PartialSchema`,
                     ],
                     "@leight/sort":    [
                         "SortOrderSchema",
+                    ],
+                    "@leight/filter":  [
+                        "FilterSchema",
                     ],
                     "@leight/source":  [
                         "withSourceSchema",
@@ -191,11 +192,7 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
                     [withSchemaEx.filter?.withPackage.package]: [
                         withPackageImport(withSchemaEx.filter),
                     ],
-                } : {
-                    "@leight/filter": [
-                        "FilterSchema",
-                    ],
-                },
+                } : {},
             })
             .withImports({
                 imports: withSchemaEx?.params?.withPackage ? {
@@ -230,14 +227,10 @@ withSourceSchema({
     CreateSchema: $${name}CreateSchema,
     ToPatchSchema: ${withSchemaEx?.toPatch ? withPackageType(withSchemaEx.toPatch) : `$${name}PatchSchema`},
     PatchSchema: $${name}PatchSchema,
-    FilterSchema: ${withSchemaEx?.filter ? withPackageType(withSchemaEx.filter) : `z.union([
-        ${name}WhereInputSchema,
-        ${name}WhereUniqueInputSchema,
-        FilterSchema,
-    ])`},
+    FilterSchema: ${withSchemaEx?.filter ? `FilterSchema.merge(${withPackageType(withSchemaEx.filter)})` : `FilterSchema`},
     ParamsSchema: ${withSchemaEx?.params ? withPackageType(withSchemaEx.params) : "ParamsSchema"},
     SortSchema: z.object({
-        ${sorts.map(sort => `${sort}: SortOrderSchema`).join(",\n\t")}
+        ${sorts.map(sort => `${sort}: SortOrderSchema`).join(",\n\t\t")}
     }),
 })
                         `,

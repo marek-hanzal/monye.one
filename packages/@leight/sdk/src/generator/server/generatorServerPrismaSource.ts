@@ -178,11 +178,11 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
     }
     
     toWhere(filter?: I${name}SourceSchemaType["Filter"]): I${name}PrismaSchemaType['Where'] | undefined {
-        return filter;
+        throw new SourceError(\`Filter is not supported in [\${String($${name}Source)}] Source.\`);
     }
     
     toWhereUnique(filter: I${name}SourceSchemaType["Filter"]): I${name}PrismaSchemaType['WhereUnique'] {
-        return filter as I${name}PrismaSchemaType['WhereUnique'];
+        throw new SourceError(\`Unique filter is not supported in [\${String($${name}Source)}] Source.\`);
     }
     
     toOrderBy(sort?: I${name}SourceSchemaType["Sort"]): I${name}PrismaSchemaType['OrderBy'] | undefined {

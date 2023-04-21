@@ -114,6 +114,9 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
                         "type ISourceSchemaType",
                         "withSourceSchema",
                     ],
+                    "@leight/filter": [
+                        "FilterSchema",
+                    ],
                     "@leight/zod":    [
                         "z",
                     ],
@@ -174,11 +177,7 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
                     [withSchemaEx.filter?.withPackage.package]: [
                         withPackageImport(withSchemaEx.filter),
                     ],
-                } : {
-                    "@leight/filter": [
-                        "FilterSchema",
-                    ],
-                },
+                } : {},
             })
             .withImports({
                 imports: withSchemaEx.params?.withPackage ? {
@@ -218,7 +217,7 @@ withSourceSchema({
     CreateSchema: $${name}CreateSchema,
     ToPatchSchema: ${withSchemaEx?.toPatch ? withPackageType(withSchemaEx.toPatch) : `$${name}PatchSchema`},
     PatchSchema: $${name}PatchSchema,
-    FilterSchema: ${withSchemaEx?.filter ? withPackageType(withSchemaEx.filter) : "FilterSchema"},
+    FilterSchema: ${withSchemaEx?.filter ? `FilterSchema.merge(${withPackageType(withSchemaEx.filter)})` : `FilterSchema`},
     ParamsSchema: ${withSchemaEx?.params ? withPackageType(withSchemaEx.params) : "ParamsSchema"},
     SortSchema: z.object({
         ${sorts.map(sort => `${sort}: SortOrderSchema`).join(",\n\t")}

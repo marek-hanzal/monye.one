@@ -18,7 +18,13 @@ void withSdk(
             ],
             withPrismaSchemaEx: {
                 schema: {
-                    type:        "TransactionExSchema",
+                    type:        "TransactionSchemaEx",
+                    withPackage: {
+                        package: "../../schema",
+                    },
+                },
+                filter: {
+                    type:        "TransactionFilterSchemaEx",
                     withPackage: {
                         package: "../../schema",
                     },

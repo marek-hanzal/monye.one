@@ -1,26 +1,26 @@
 /**
- Base Prisma Source contains default implementation of Source for entity Job connected to Prisma. This could be used for further extensions,
- also default export uses this as a parent class.
+	Base Prisma Source contains default implementation of Source for entity Job connected to Prisma. This could be used for further extensions,
+    also default export uses this as a parent class.
  */
+import {withCursor} from "@leight/query";
 import {
-    $JobSource,
-    type IJobPrismaSchemaType,
-    type IJobSourceSchemaType
-}                       from "@leight/job";
+	$PrismaClient,
+	type PrismaClient
+} from "@leight/prisma";
 import {
-    $PrismaClient,
-    type PrismaClient
-}                       from "@leight/prisma";
-import {withCursor}     from "@leight/query";
-import {
-    type ISource,
-    type IWithIdentity,
-    SourceError
-}                       from "@leight/source";
+	type ISource,
+	type IWithIdentity,
+	SourceError
+} from "@leight/source";
 import {AbstractSource} from "@leight/source-server";
+import {
+	$JobSource,
+	type IJobSourceSchemaType,
+	type IJobPrismaSchemaType
+} from "@leight/job";
 
 export class JobBasePrismaSource extends AbstractSource<IJobSourceSchemaType> {
-    static inject = [
+	static inject = [
         $PrismaClient,
     ];
 
@@ -32,22 +32,22 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchemaType> {
 
     async runFind(id: string): Promise<IJobSourceSchemaType["Entity"]> {
         return this.prisma().findUniqueOrThrow({
-            where:   {id},
+            where: {id},
             include: undefined,
         });
     }
 
     async runCreate(entity: IJobSourceSchemaType["Create"]): Promise<IJobSourceSchemaType["Entity"]> {
         return this.prisma().create({
-            data:    entity,
+            data: entity,
             include: undefined,
         });
     }
 
     async runPatch({id, ...patch}: IJobSourceSchemaType["Patch"]): Promise<IJobSourceSchemaType["Entity"]> {
         return this.prisma().update({
-            data:    patch,
-            where:   {id},
+            data: patch,
+            where: {id},
             include: undefined,
         });
     }
@@ -56,15 +56,15 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchemaType> {
         return this.prisma().upsert({
             create,
             update,
-            where:   this.toWhereUnique(filter),
+            where: this.toWhereUnique(filter),
             include: undefined,
         });
     }
 
     async runDelete({id}: IWithIdentity): Promise<IJobSourceSchemaType["Entity"]> {
-        const item  = await this.find(id);
+        const item = await this.find(id);
         const where = this.toWhereUnique({id});
-        if (!where) {
+        if(!where) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
         }
         await this.prisma().delete({
@@ -72,13 +72,13 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchemaType> {
         });
         return item;
     }
-
+    
     async runDeleteWith(query: IJobSourceSchemaType["Query"]): Promise<IJobSourceSchemaType["Entity"][]> {
         const items = await this.query(query);
         const where = this.toWhereUnique(query.filter);
-        if (!where) {
+        if(!where) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
-        }
+        } 
         await this.prisma().delete({
             where,
         });
@@ -101,21 +101,21 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchemaType> {
             },
         }));
     }
-
+    
     prisma() {
         return this.prismaClient.job;
     }
-
-    toWhere(filter?: IJobSourceSchemaType["Filter"]): IJobPrismaSchemaType["Where"] | undefined {
-        return filter;
+    
+    toWhere(filter?: IJobSourceSchemaType["Filter"]): IJobPrismaSchemaType['Where'] | undefined {
+        throw new SourceError(`Filter is not supported in [${String($JobSource)}] Source.`);
     }
-
-    toWhereUnique(filter: IJobSourceSchemaType["Filter"]): IJobPrismaSchemaType["WhereUnique"] {
-        return filter as IJobPrismaSchemaType["WhereUnique"];
+    
+    toWhereUnique(filter: IJobSourceSchemaType["Filter"]): IJobPrismaSchemaType['WhereUnique'] {
+        throw new SourceError(`Unique filter is not supported in [${String($JobSource)}] Source.`);
     }
-
-    toOrderBy(sort?: IJobSourceSchemaType["Sort"]): IJobPrismaSchemaType["OrderBy"] | undefined {
-        return sort as IJobPrismaSchemaType["OrderBy"];
+    
+    toOrderBy(sort?: IJobSourceSchemaType["Sort"]): IJobPrismaSchemaType['OrderBy'] | undefined {
+        return sort as IJobPrismaSchemaType['OrderBy'];
     }
 }
 
@@ -123,4 +123,4 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchemaType> {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_k5c70nvv2pisholag4f5mweg = true;
+export const $leight_oyr8y7545k9px42c39iyp7zi = true;

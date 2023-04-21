@@ -37,24 +37,12 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
 
     const $setFilter = useCallback(({range: {from, to}, withIncome = false, withOutcome = false}: { range: IDateRange; withIncome?: boolean; withOutcome?: boolean }) => {
         setFilter({
-            AND: [
-                     {
-                         date: {gte: from.toJSDate()},
-                     },
-                     {
-                         date: {lte: to.toJSDate()},
-                     },
-                     withIncome ? {
-                         amount: {
-                             gt: 0,
-                         },
-                     } : undefined,
-                     withOutcome ? {
-                         amount: {
-                             lt: 0,
-                         },
-                     } : undefined,
-                 ].filter(Boolean),
+            withRange: {
+                from: from.toUTC().toJSDate(),
+                to:   to.toUTC().toJSDate(),
+                withIncome,
+                withOutcome,
+            },
         });
     }, []);
 

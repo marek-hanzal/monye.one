@@ -21,4 +21,4 @@ export const BankEditInput: FC<Omit<IWithInputProps<IBankEditFormSchema>, "FormC
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ikesld1jgkm35wp3js3apfwh = true;
+export const $leight_revy9yd7tqoo701k8wciqo70 = true;

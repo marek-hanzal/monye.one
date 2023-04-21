@@ -10,6 +10,7 @@ import {
 	CreateSchema,
 	PatchSchema
 } from "@leight/source";
+import {FilterSchema} from "@leight/filter";
 import {z} from "@leight/zod";
 import {CalendarEventBaseSchema} from "../../schema";
 import {CalendarEventSourceSchema as CoolCalendarEventSourceSchema} from "@leight/calendar";
@@ -27,7 +28,7 @@ export const CalendarEventSourceSchema = withSourceSchema({
     CreateSchema: $CalendarEventCreateSchema,
     ToPatchSchema: $CalendarEventPatchSchema,
     PatchSchema: $CalendarEventPatchSchema,
-    FilterSchema: CoolCalendarEventSourceSchema['FilterSchema'],
+    FilterSchema: FilterSchema.merge(CoolCalendarEventSourceSchema['FilterSchema']),
     ParamsSchema: ParamsSchema,
     SortSchema: z.object({
         id: SortOrderSchema
@@ -37,4 +38,4 @@ export const CalendarEventSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lmm2p67pzkjya5q16bzgvy7h = true;
+export const $leight_a9e2roy5vg3eg47696hk6tgw = true;

@@ -7,9 +7,17 @@ import {
 void withSdk(
     withSourceGenerators(
         withSourceGeneratorsEntity({
-            name:     "File",
-            packages: {
+            name:               "File",
+            packages:           {
                 prisma: "@leight/prisma",
+            },
+            withPrismaSchemaEx: {
+                filter: {
+                    type:        "FileFilterSchemaEx",
+                    withPackage: {
+                        package: "../../schema",
+                    },
+                },
             },
         })
     )

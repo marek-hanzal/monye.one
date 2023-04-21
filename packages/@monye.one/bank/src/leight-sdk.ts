@@ -30,6 +30,12 @@ void withSdk(
                         package: "../../schema",
                     },
                 },
+                filter:      {
+                    type:        "BankFilterSchemaEx",
+                    withPackage: {
+                        package: "../../schema",
+                    },
+                },
             },
             sorts:              [
                 "account",

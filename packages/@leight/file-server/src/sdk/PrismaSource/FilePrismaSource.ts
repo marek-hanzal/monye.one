@@ -107,11 +107,11 @@ export class FileBasePrismaSource extends AbstractSource<IFileSourceSchemaType> 
     }
     
     toWhere(filter?: IFileSourceSchemaType["Filter"]): IFilePrismaSchemaType['Where'] | undefined {
-        return filter;
+        throw new SourceError(`Filter is not supported in [${String($FileSource)}] Source.`);
     }
     
     toWhereUnique(filter: IFileSourceSchemaType["Filter"]): IFilePrismaSchemaType['WhereUnique'] {
-        return filter as IFilePrismaSchemaType['WhereUnique'];
+        throw new SourceError(`Unique filter is not supported in [${String($FileSource)}] Source.`);
     }
     
     toOrderBy(sort?: IFileSourceSchemaType["Sort"]): IFilePrismaSchemaType['OrderBy'] | undefined {
@@ -123,4 +123,4 @@ export class FileBasePrismaSource extends AbstractSource<IFileSourceSchemaType> 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nn1q703g140n6jw3mwuv2dfc = true;
+export const $leight_s1jnnvcw2ylfc99s497p2nkx = true;

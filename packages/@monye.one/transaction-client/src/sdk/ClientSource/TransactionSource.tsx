@@ -33,4 +33,4 @@ export const TransactionSource: FC<ITransactionSourceProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_do87vwbfy4mnvw9hcpawv6r9 = true;
+export const $leight_oaty7asg721fj7da7ap6t1mq = true;

@@ -33,4 +33,4 @@ export const BankSource: FC<IBankSourceProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xsu1me218060be2es78vk5cy = true;
+export const $leight_dqun7k3ktjhf04yinfo1m2ho = true;

@@ -105,11 +105,11 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
     }
     
     toWhere(filter?: ITransactionSourceSchemaType["Filter"]): ITransactionPrismaSchemaType['Where'] | undefined {
-        return filter;
+        throw new SourceError(`Filter is not supported in [${String($TransactionSource)}] Source.`);
     }
     
     toWhereUnique(filter: ITransactionSourceSchemaType["Filter"]): ITransactionPrismaSchemaType['WhereUnique'] {
-        return filter as ITransactionPrismaSchemaType['WhereUnique'];
+        throw new SourceError(`Unique filter is not supported in [${String($TransactionSource)}] Source.`);
     }
     
     toOrderBy(sort?: ITransactionSourceSchemaType["Sort"]): ITransactionPrismaSchemaType['OrderBy'] | undefined {
@@ -121,4 +121,4 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_dk1p5zaiek4umcora0ow0usf = true;
+export const $leight_cbm69g7ns1gdsi5y3wbbubkr = true;
