@@ -10,8 +10,9 @@ import {
 }                         from "../schema";
 
 export type ISortStoreProps<TSortSchema extends ISortSchema> = IStoreProps<{
-    readonly schema: TSortSchema;
-    readonly sort: z.infer<TSortSchema>;
+    id: string;
+    schema: TSortSchema;
+    sort: z.infer<TSortSchema>;
 
     setSort(sort: keyof z.infer<TSortSchema>, order: ISortOrder): void;
 }>

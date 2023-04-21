@@ -16,7 +16,6 @@ export interface ITableRowMenuProps extends ComponentProps<typeof Menu> {
 export const TableRowMenu: FC<ITableRowMenuProps> = ({children, icon = <IconMenu2/>, ...props}) => {
     return <Menu
         shadow={"md"}
-        width={200}
         withinPortal
         position={"bottom-start"}
         {...props}

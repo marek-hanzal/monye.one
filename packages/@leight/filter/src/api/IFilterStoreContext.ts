@@ -7,6 +7,7 @@ import {type IStoreProps}   from "@leight/zustand";
 import {type IFilterSchema} from "../schema";
 
 export type IFilterStoreProps<TFilterSchema extends IFilterSchema> = IStoreProps<{
+    id: string;
     schema: TFilterSchema;
     filter: z.infer<TFilterSchema>;
 

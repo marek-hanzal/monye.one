@@ -68,11 +68,6 @@ export const SourceTable = <
         },
         ...props
     }: ISourceTableInternalProps<TSourceSchemaType, TColumnKeys>) => {
-
-    /**
-     * @TODO Use SourceStore ID to optimize re-rendering
-     */
-
     const {
               dtos,
               isFetching,

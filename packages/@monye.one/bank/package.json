@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "@leight/filter": "^0.5.0",
+        "@leight/job": "^0.5.0",
         "@leight/query": "^0.5.0",
         "@leight/sort": "^0.5.0",
         "@leight/source": "^0.5.25",

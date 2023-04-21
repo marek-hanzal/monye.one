@@ -30,10 +30,13 @@
     "dependencies": {
         "@leight/container": "^0.5.27",
         "@leight/i18n": "^0.5.0",
+        "@leight/job": "^0.5.0",
+        "@leight/job-server": "^0.5.0",
         "@leight/prisma": "^0.5.35",
         "@leight/query": "^0.5.0",
         "@leight/source": "^0.5.0",
         "@leight/source-server": "^0.5.26",
+        "@leight/trpc-server": "^0.5.0",
         "@leight/trpc-source-server": "^0.5.0",
         "@leight/user": "^0.5.0",
         "@monye.one/bank": "^0.5.0",

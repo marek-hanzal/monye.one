@@ -32,6 +32,7 @@
     "dependencies": {
         "@leight/context-client": "^0.5.72",
         "@leight/filter": "^0.5.60",
+        "@leight/utils": "^0.5.60",
         "react": "^18.2.0"
     },
     "devDependencies": {

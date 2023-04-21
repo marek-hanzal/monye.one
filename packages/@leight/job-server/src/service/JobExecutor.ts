@@ -17,7 +17,6 @@ import {
     $UserService,
     type IUserService
 }                              from "@leight/user";
-import {Pack}                  from "@leight/utils";
 import {Logger}                from "@leight/winston";
 import delay                   from "delay";
 import {type IJobSourceMapper} from "../sdk";
@@ -52,7 +51,7 @@ export class JobExecutor implements IJobExecutor {
                 created: new Date(),
                 name,
                 userId:  this.userService.required(),
-                params:  await Pack.pack(params),
+                params,
             })
         ) as IJobWithParams<TJobParamsSchema>;
         const labels      = {name, jobId: job.id};

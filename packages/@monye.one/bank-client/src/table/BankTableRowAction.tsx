@@ -11,9 +11,11 @@ import {Menu}                       from "@mantine/core";
 import {modals}                     from "@mantine/modals";
 import {type IBankSourceSchemaType} from "@monye.one/bank";
 import {TransactionImport}          from "@monye.one/transaction-client";
+import {trpc}                       from "@monye.one/trpc-client";
 import {
     IconCash,
     IconEdit,
+    IconRefresh,
     IconTrash
 }                                   from "@tabler/icons-react";
 import {BankEditForm}               from "../form/BankEditForm";
@@ -25,6 +27,7 @@ import {type IBankTableProps}       from "./BankTable";
 
 
 export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => {
+    const bankStatsMutation = trpc.bank.stats.useMutation();
     return <>
         <ModalStoreProvider>
             <DeleteModal<IBankSourceSchemaType>
@@ -90,6 +93,24 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
                     <Translation
                         namespace={"bank"}
                         label={"transaction.upload.button"}
+                    />
+                </Menu.Item>
+                <Menu.Item
+                    icon={<IconRefresh size={14}/>}
+                    onClick={() => {
+                        bankStatsMutation.mutate({
+                            bankId: item.id,
+                        }, {
+                            onSuccess: job => {
+                                console.log("Jobee", job.id);
+                            },
+                        });
+                    }}
+                    disabled={bankStatsMutation.isLoading}
+                >
+                    <Translation
+                        namespace={"bank"}
+                        label={"stats.update.button"}
                     />
                 </Menu.Item>
                 <Menu.Divider/>

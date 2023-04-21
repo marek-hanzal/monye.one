@@ -5,11 +5,12 @@ import {
 import {type IStoreProps} from "@leight/zustand";
 
 export type ICursorStoreProps = IStoreProps<{
-    readonly page: number;
-    readonly size: number;
-    readonly pages: number;
-    readonly total: number;
-    readonly isLoading: boolean;
+    id: string;
+    page: number;
+    size: number;
+    pages: number;
+    total: number;
+    isLoading: boolean;
 
     setSize(size: number): void;
 

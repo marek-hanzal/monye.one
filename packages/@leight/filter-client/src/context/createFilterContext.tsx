@@ -3,10 +3,11 @@ import {
     type IFilterSchema,
     type IFilterStoreProps
 }                           from "@leight/filter";
+import {generateId}         from "@leight/utils";
 
 export interface ICreateFilterContextProps<TFilterSchema extends IFilterSchema> {
-    readonly name: string;
-    readonly schema: TFilterSchema;
+    name: string;
+    schema: TFilterSchema;
 }
 
 export const createFilterContext = <TFilterSchema extends IFilterSchema>(
@@ -16,10 +17,12 @@ export const createFilterContext = <TFilterSchema extends IFilterSchema>(
     }: ICreateFilterContextProps<TFilterSchema>) => {
     return createStoreContext<IFilterStoreProps<TFilterSchema>>({
         state: () => (set) => ({
+            id:     generateId(),
             schema,
             filter: undefined,
             setFilter(filter) {
                 set({
+                    id: generateId(),
                     filter,
                 });
             },

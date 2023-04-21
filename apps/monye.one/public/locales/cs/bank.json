@@ -8,6 +8,7 @@
     "modal.transaction.import.title": "Import transakcí do účtu [{account}]",
     "modal.account.create.title": "Nový účet",
     "account.create.button": "Nový účet",
+    "stats.update.button": "Aktualizovat statistiky účtu",
     "BankCreateBaseForm.submit.button": "Uložit účet",
     "BankCreateBaseForm.account": "Číslo účtu",
     "BankCreateBaseForm.account.description": "Zadejte prosím číslo bankovního účtu",
