@@ -70,13 +70,13 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
             .withImports(withSourceEx?.extends ? {
                 imports: withSourceEx.extends
                              .filter(((item): item is Required<IPackageType> => Boolean(item.withPackage)))
-                             .reduce((prev, withPackage) => ({
-                                 ...prev,
-                                 [withPackage.withPackage.package]: [
+                             .reduce((prev, withPackage) => {
+                                 prev[withPackage.withPackage.package] = [
                                      withPackageImport(withPackage, "type"),
                                      ...(prev[withPackage.withPackage.package] || [])
-                                 ],
-                             }), {} as Record<string, any>),
+                                 ];
+                                 return prev;
+                             }, {} as Record<string, any>),
             } : undefined)
             .withInterfaces({
                 exports: {
@@ -94,8 +94,8 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
             })
             .withConsts({
                 exports: {
-                    [`$${name}Source`]:       {body: `Symbol.for("${packageName}/I${name}Source")`},
-                    [`$${name}SourceMapper`]: {body: `Symbol.for("${packageName}/I${name}SourceMapper")`},
+                    [`$${name}Source`]:        {body: `Symbol.for("${packageName}/I${name}Source")`},
+                    [`$${name}SourceMapper`]:  {body: `Symbol.for("${packageName}/I${name}SourceMapper")`},
                     [`$${name}SourceService`]: {body: `Symbol.for("${packageName}/I${name}SourceService")`},
                 }
             })

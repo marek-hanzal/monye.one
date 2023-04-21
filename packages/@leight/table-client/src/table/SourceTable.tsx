@@ -98,29 +98,27 @@ export const SourceTable = <
         <Table<ISourceTableColumn<TSourceSchemaType>, TColumnKeys>
             isLoading={isLoading || isFetching}
             columns={Object.entries<ISourceTableColumn<TSourceSchemaType>>(columns).reduce<any>((prev, [name, column]) => {
-                return {
-                    ...prev,
-                    [name]: {
-                        ...column,
-                        headerStyle:   column.headerStyle || (defaultStyle => ({
-                            ...defaultStyle,
-                            cursor: column.sort ? "pointer" : undefined,
-                        })),
-                        onHeaderClick: column.onHeaderClick || (() => {
-                            column.sort && setSort(column.sort, chain(sort[column.sort], [
-                                "asc",
-                                "desc",
-                                undefined,
-                            ]));
-                        }),
-                        headerRender:  column.headerRender || ((children) => {
-                            return <>
-                                {column.sort ? <SortIcon<TSourceSchemaType["Sort"]> sort={sort} index={column.sort}/> : null}
-                                {children}
-                            </>;
-                        }),
-                    },
+                prev[name] = {
+                    ...column,
+                    headerStyle:   column.headerStyle || (defaultStyle => ({
+                        ...defaultStyle,
+                        cursor: column.sort ? "pointer" : undefined,
+                    })),
+                    onHeaderClick: column.onHeaderClick || (() => {
+                        column.sort && setSort(column.sort, chain(sort[column.sort], [
+                            "asc",
+                            "desc",
+                            undefined,
+                        ]));
+                    }),
+                    headerRender:  column.headerRender || ((children) => {
+                        return <>
+                            {column.sort ? <SortIcon<TSourceSchemaType["Sort"]> sort={sort} index={column.sort}/> : null}
+                            {children}
+                        </>;
+                    }),
                 };
+                return prev;
             }, {})}
             items={dtos.filter(dto => schema.safeParse(dto).success)}
             {...props}
