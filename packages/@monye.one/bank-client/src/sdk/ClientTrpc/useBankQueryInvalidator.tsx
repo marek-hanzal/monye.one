@@ -16,4 +16,4 @@ export const useBankQueryInvalidator = () => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hl8ctekltdk6860ef08aipvk = true;
+export const $leight_qif251mla06ey0bqka7dkcbr = true;
