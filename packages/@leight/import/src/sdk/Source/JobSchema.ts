@@ -43,11 +43,11 @@ export const JobSourceSchema = withSourceSchema({
     ]),
     ParamsSchema: ParamsSchema,
     SortSchema: z.object({
-        started: SortOrderSchema
+        id: SortOrderSchema
     }),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_d3jj8at86kuzudesirjv3tqh = true;
+export const $leight_euwlu52s787t98z32u8ispi6 = true;

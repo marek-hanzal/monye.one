@@ -11,9 +11,6 @@ void withSdk(
             packages:           {
                 prisma: "@leight/prisma",
             },
-            sorts:              [
-                "started",
-            ],
             withPrismaSchemaEx: {
                 schema: {
                     type:        "JobSchemaEx",
@@ -21,7 +18,7 @@ void withSdk(
                         package: "../../schema",
                     },
                 },
-                dto:    {
+                dto: {
                     type:        "JobDtoEx",
                     withPackage: {
                         package: "../../schema",

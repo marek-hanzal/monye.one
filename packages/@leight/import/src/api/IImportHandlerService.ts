@@ -5,5 +5,5 @@ export interface IImportHandlerService {
 }
 
 export const $ImportHandlerService = Symbol.for(
-    "@leight/import-server/ImportHandlerService"
+    "@leight/import/IImportHandlerService"
 );

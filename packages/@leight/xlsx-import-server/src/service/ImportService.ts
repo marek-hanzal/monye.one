@@ -29,7 +29,7 @@ import {
     type WorkSheet
 }                      from "xlsx";
 
-export class ImportService implements IImportService {
+export class ImportService extends AbstractJobService<IImportJob, IImportService.ImportResult> implements IImportService {
     static inject = [
         $MetaService,
         $FileService,
@@ -49,7 +49,7 @@ export class ImportService implements IImportService {
 
     async async(params: IImportService.IAsyncProps): Promise<IImportJob> {
         return this.jobExecutor.execute({
-            name:    $ImportService.toString(),
+            name:    $ImportService,
             params,
             handler: async props => this.job(props),
         });

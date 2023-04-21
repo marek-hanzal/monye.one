@@ -14,11 +14,11 @@ export type IUseJobSourceQuery = IUseSourceQuery<IJobSourceSchemaType>;
 export interface IJobSource extends ISource<IJobSourceSchemaType> {
 }
 
-export const $JobSource = Symbol.for("@leight/job/IJobSource");
-export const $JobSourceMapper = Symbol.for("@leight/job/IJobSourceMapper");
-export const $JobSourceService = Symbol.for("@leight/job/IJobSourceService");
+export const $JobSource = Symbol.for("@leight/import/IJobSource");
+export const $JobSourceMapper = Symbol.for("@leight/import/IJobSourceMapper");
+export const $JobSourceService = Symbol.for("@leight/import/IJobSourceService");
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tphdxjvgte8cq2c3bhpelxhn = true;
+export const $leight_h5rxp2nk4asph8c9rsg65g6e = true;
