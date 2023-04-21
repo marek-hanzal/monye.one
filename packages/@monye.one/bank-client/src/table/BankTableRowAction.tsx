@@ -1,33 +1,33 @@
-import {Translation}            from "@leight/i18n-client";
+import {Translation}                from "@leight/i18n-client";
 import {
     DeleteModal,
     MenuLabel,
     ModalMenuItem,
     ModalStoreProvider
-}                               from "@leight/mantine";
-import {TableRowMenu}           from "@leight/table-client";
-import {BlockProvider}          from "@leight/utils-client";
-import {Menu}                   from "@mantine/core";
-import {modals}                 from "@mantine/modals";
-import {type IBankSourceSchema} from "@monye.one/bank";
-import {TransactionImport}      from "@monye.one/transaction-client";
+}                                   from "@leight/mantine";
+import {TableRowMenu}               from "@leight/table-client";
+import {BlockProvider}              from "@leight/utils-client";
+import {Menu}                       from "@mantine/core";
+import {modals}                     from "@mantine/modals";
+import {type IBankSourceSchemaType} from "@monye.one/bank";
+import {TransactionImport}          from "@monye.one/transaction-client";
 import {
     IconCash,
     IconEdit,
     IconTrash
-}                               from "@tabler/icons-react";
-import {BankEditForm}           from "../form/BankEditForm";
+}                                   from "@tabler/icons-react";
+import {BankEditForm}               from "../form/BankEditForm";
 import {
     useBankQueryInvalidator,
     UseBankSourceQuery
-}                               from "../sdk";
-import {type IBankTableProps}   from "./BankTable";
+}                                   from "../sdk";
+import {type IBankTableProps}       from "./BankTable";
 
 
 export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => {
     return <>
         <ModalStoreProvider>
-            <DeleteModal<IBankSourceSchema>
+            <DeleteModal<IBankSourceSchemaType>
                 invalidator={useBankQueryInvalidator()}
                 UseDeleteMutation={UseBankSourceQuery}
                 withTranslation={{

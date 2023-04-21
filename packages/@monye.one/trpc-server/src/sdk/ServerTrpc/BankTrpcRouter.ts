@@ -25,10 +25,10 @@ export const BankSourceRouter = router({
                 .input(BankSourceSchema.QuerySchema)
                 .mutation(BankSourceProcedure.handleDeleteWith),
     query:  procedure
-                .input(BankSourceSchema.QuerySchema)
+                .input(BankSourceSchema.QueryOptionalSchema)
                 .query(BankSourceProcedure.handleQuery),
     count:  procedure
-                .input(BankSourceSchema.QuerySchema)
+                .input(BankSourceSchema.QueryOptionalSchema)
                 .query(BankSourceProcedure.handleCount),
     fetch:  procedure
                 .input(BankSourceSchema.QuerySchema)
@@ -41,4 +41,4 @@ export const BankSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_q8h3j8lscydrafalpwitwwj4 = true;
+export const $leight_i25ewuuo97y5zs2gs29b05zf = true;

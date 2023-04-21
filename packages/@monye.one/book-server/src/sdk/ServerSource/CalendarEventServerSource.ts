@@ -13,4 +13,4 @@ export class CalendarEventSource extends CalendarEventSourceEx implements ICalen
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_phm5uaugf3bxomxa6wmaa679 = true;
+export const $leight_zwcy8j5abmum3yuewm3khpdd = true;

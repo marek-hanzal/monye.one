@@ -25,10 +25,10 @@ export const JobSourceRouter = router({
                 .input(JobSourceSchema.QuerySchema)
                 .mutation(JobSourceProcedure.handleDeleteWith),
     query:  procedure
-                .input(JobSourceSchema.QuerySchema)
+                .input(JobSourceSchema.QueryOptionalSchema)
                 .query(JobSourceProcedure.handleQuery),
     count:  procedure
-                .input(JobSourceSchema.QuerySchema)
+                .input(JobSourceSchema.QueryOptionalSchema)
                 .query(JobSourceProcedure.handleCount),
     fetch:  procedure
                 .input(JobSourceSchema.QuerySchema)
@@ -41,4 +41,4 @@ export const JobSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xkxr254habjh8vzvbdu7dngf = true;
+export const $leight_skr8i3461jka8om3g4f6qsyu = true;

@@ -10,27 +10,27 @@ import {type ComponentProps}                        from "react";
 import {
     type IFormInputs,
     type IFormMapper,
-    type IFormSchemas,
+    type IFormSchema,
     type IFormSchemaType
 }                                                   from "../api";
 
-export type IFormStoreProps<TFormSchema extends IFormSchemaType> = IStoreProps<IStorePropsType, {
-    MantineContext: IMantineFormContext<TFormSchema>;
-    schemas?: IFormSchemas<TFormSchema>;
-    inputs: IFormInputs<TFormSchema>;
-    inputsOverride?: Partial<IFormInputs<TFormSchema>>;
+export type IFormStoreProps<TFormSchemaType extends IFormSchemaType> = IStoreProps<IStorePropsType, {
+    MantineContext: IMantineFormContext<TFormSchemaType>;
+    schemas?: IFormSchema.of<TFormSchemaType>;
+    inputs: IFormInputs<TFormSchemaType>;
+    inputsOverride?: Partial<IFormInputs<TFormSchemaType>>;
     withTranslation: IWithTranslation;
-    defaultValues?: TFormSchema["Values"];
+    defaultValues?: TFormSchemaType["Values"];
 }>;
 
-export type IFormStoreContext<TFormSchema extends IFormSchemaType> = IStoreContext<Omit<IFormStoreProps<TFormSchema>, "state">>;
+export type IFormStoreContext<TFormSchemaType extends IFormSchemaType> = IStoreContext<Omit<IFormStoreProps<TFormSchemaType>, "state">>;
 
 export interface ICreateFormContextProps {
     name: string;
 }
 
-export const createFormContext = <TFormSchema extends IFormSchemaType>({name}: ICreateFormContextProps) => {
-    return createStoreContext<IFormStoreProps<TFormSchema>>({
+export const createFormContext = <TFormSchemaType extends IFormSchemaType>({name}: ICreateFormContextProps) => {
+    return createStoreContext<IFormStoreProps<TFormSchemaType>>({
         state: ({state}) => () => ({
             ...state,
         }),
@@ -38,8 +38,8 @@ export const createFormContext = <TFormSchema extends IFormSchemaType>({name}: I
     });
 };
 
-export const createMantineFormContext = <TFormSchema extends IFormSchemaType>() => {
-    const [FormProvider, useFormContext, useForm] = createCoolFormContext<TFormSchema["Values"], IFormMapper<TFormSchema>>();
+export const createMantineFormContext = <TFormSchemaType extends IFormSchemaType>() => {
+    const [FormProvider, useFormContext, useForm] = createCoolFormContext<TFormSchemaType["Values"], IFormMapper<TFormSchemaType>>();
     return {
         FormProvider,
         useFormContext,
@@ -47,16 +47,16 @@ export const createMantineFormContext = <TFormSchema extends IFormSchemaType>() 
     };
 };
 
-export type IMantineFormContext<TFormSchema extends IFormSchemaType> = ReturnType<typeof createMantineFormContext<TFormSchema>>;
+export type IMantineFormContext<TFormSchemaType extends IFormSchemaType> = ReturnType<typeof createMantineFormContext<TFormSchemaType>>;
 
-export interface IFormStoreProviderProps<TFormSchema extends IFormSchemaType> extends Omit<ComponentProps<IFormStoreContext<TFormSchema>["Provider"]>, "state"> {
-    MantineContext: IMantineFormContext<TFormSchema>;
-    schemas?: IFormSchemas<TFormSchema>;
-    inputs: IFormInputs<TFormSchema>;
-    inputsOverride?: Partial<IFormInputs<TFormSchema>>;
-    FormStoreContext: IFormStoreContext<TFormSchema>;
+export interface IFormStoreProviderProps<TFormSchemaType extends IFormSchemaType> extends Omit<ComponentProps<IFormStoreContext<TFormSchemaType>["Provider"]>, "state"> {
+    MantineContext: IMantineFormContext<TFormSchemaType>;
+    schemas?: IFormSchema.of<TFormSchemaType>;
+    inputs: IFormInputs<TFormSchemaType>;
+    inputsOverride?: Partial<IFormInputs<TFormSchemaType>>;
+    FormStoreContext: IFormStoreContext<TFormSchemaType>;
     withTranslation: IWithTranslation;
-    defaultValues?: TFormSchema["Values"];
+    defaultValues?: TFormSchemaType["Values"];
 }
 
 export const FormStoreProvider = <TFormSchema extends IFormSchemaType>(

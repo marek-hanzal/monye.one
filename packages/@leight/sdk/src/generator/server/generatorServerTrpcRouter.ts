@@ -83,10 +83,10 @@ router({
                 .input(${name}SourceSchema.QuerySchema)
                 .mutation(${name}SourceProcedure.handleDeleteWith),
     query:  procedure
-                .input(${name}SourceSchema.QuerySchema)
+                .input(${name}SourceSchema.QueryOptionalSchema)
                 .query(${name}SourceProcedure.handleQuery),
     count:  procedure
-                .input(${name}SourceSchema.QuerySchema)
+                .input(${name}SourceSchema.QueryOptionalSchema)
                 .query(${name}SourceProcedure.handleCount),
     fetch:  procedure
                 .input(${name}SourceSchema.QuerySchema)

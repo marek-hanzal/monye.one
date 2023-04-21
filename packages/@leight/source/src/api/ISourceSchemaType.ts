@@ -42,6 +42,7 @@ export interface ISourceSchema<
     ParamsSchema: TParamsSchema;
     CursorSchema: ICursorSchema;
     QuerySchema: IQuerySchema<TFilterSchema, TSortSchema, TParamsSchema>;
+    QueryOptionalSchema: z.ZodOptional<IQuerySchema<TFilterSchema, TSortSchema, TParamsSchema>>;
 }
 
 /**
@@ -80,6 +81,7 @@ export interface ISourceSchemaType<
     Params: z.infer<TParamsSchema>;
     Cursor: z.infer<ICursorSchema>;
     Query: IQuery<TFilterSchema, TSortSchema, TParamsSchema>;
+    QueryOptional: IQuery<TFilterSchema, TSortSchema, TParamsSchema> | undefined;
 }
 
 export namespace ISourceSchemaType {

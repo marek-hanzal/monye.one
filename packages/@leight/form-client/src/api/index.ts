@@ -4,7 +4,7 @@ import {
 }                               from "@leight/utils";
 import {z}                      from "@leight/zod";
 import {type UseFormReturnType} from "@mantine/form";
-import {FC}                     from "react";
+import {type FC}                from "react";
 import {type IFormStoreContext} from "../context";
 import {type IFormProps}        from "../form";
 import {
@@ -14,13 +14,21 @@ import {
 }                               from "../schema";
 
 export interface IFormSchema<
-    TValuesSchema extends IFormValuesSchema = IFormValuesSchema,
-    TRequestSchema extends IFormRequestSchema = IFormRequestSchema,
-    TDtoSchema extends IFormDtoSchema = IFormDtoSchema,
+    TValuesSchema extends IFormValuesSchema,
+    TRequestSchema extends IFormRequestSchema,
+    TDtoSchema extends IFormDtoSchema
 > {
     ValuesSchema: TValuesSchema;
     RequestSchema: TRequestSchema;
     DtoSchema: TDtoSchema;
+}
+
+export namespace IFormSchema {
+    export type of<TFormSchemaType extends IFormSchemaType> = IFormSchema<
+        TFormSchemaType["ValuesSchema"],
+        TFormSchemaType["RequestSchema"],
+        TFormSchemaType["DtoSchema"]
+    >
 }
 
 /**
@@ -39,6 +47,14 @@ export interface IFormSchemaType<
     OptionalValues: DeepPartial<z.infer<TValuesSchema>>;
     Request: z.infer<TRequestSchema>;
     Dto: z.infer<TDtoSchema>;
+}
+
+export namespace IFormSchemaType {
+    export type of<TFormSchema extends IFormSchema<any, any, any>> = IFormSchemaType<
+        TFormSchema["ValuesSchema"],
+        TFormSchema["RequestSchema"],
+        TFormSchema["DtoSchema"]
+    >;
 }
 
 export type IFormFields<TFormSchemaType extends IFormSchemaType> = KeysOf.Leaves<TFormSchemaType["Values"]>;
@@ -60,21 +76,6 @@ export namespace IFormMapper {
         values: TFormSchemaType["Values"];
         dto: TFormSchemaType["Dto"];
     }
-}
-
-export type IFormSchemas<TFormSchemaType extends IFormSchemaType = IFormSchemaType> = {
-    /**
-     * Value schema validation (internal form structure)
-     */
-    ValueSchema: TFormSchemaType["ValuesSchema"];
-    /**
-     * Schema used to validate request data (mapped from Values to Request)
-     */
-    RequestSchema: TFormSchemaType["RequestSchema"];
-    /**
-     * When used with a mutation, this is an external result schema
-     */
-    DtoSchema: TFormSchemaType["DtoSchema"];
 }
 
 export type IFormInputs<TFormSchemaType extends IFormSchemaType> = Record<IFormFields<TFormSchemaType>, FC<IFormInputs.IInputRenderProps<TFormSchemaType>>>;

@@ -1,9 +1,9 @@
-import {withFormSchemas}  from "@leight/form-client";
+import {withFormSchema}   from "@leight/form-client";
 import {z}                from "@leight/zod";
 import {BankSourceSchema} from "@monye.one/bank";
 
-export const BankCreateFormSchema = withFormSchemas({
-    ValueSchema:   z.object({
+export const BankCreateFormSchema = withFormSchema({
+    ValuesSchema:   z.object({
         account:     z.string().trim().min(1, {message: "Empty"}),
         description: z.string().optional(),
         balance:     z.object({
@@ -18,8 +18,8 @@ export const BankCreateFormSchema = withFormSchemas({
 /**
  * Edit requires full DTO object to be provided
  */
-export const BankEditFormSchema = withFormSchemas({
-    ValueSchema:   z.object({
+export const BankEditFormSchema = withFormSchema({
+    ValuesSchema:   z.object({
         account:     z.string().trim().min(1, {message: "Empty"}),
         description: z.string().optional(),
         balance:      z.object({
@@ -34,8 +34,8 @@ export const BankEditFormSchema = withFormSchemas({
 /**
  * Patch does not require all values to be provided
  */
-export const BankPatchFormSchema = withFormSchemas({
-    ValueSchema:   z.object({
+export const BankPatchFormSchema = withFormSchema({
+    ValuesSchema:   z.object({
         account:     z.string().trim().optional(),
         description: z.string().optional(),
         balance:     z.object({

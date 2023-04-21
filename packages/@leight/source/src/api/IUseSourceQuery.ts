@@ -10,8 +10,8 @@ export type IUseSourceQuery<TSourceSchemaType extends ISourceSchemaType> = {
     usePatch: IUseMutation<TSourceSchemaType["ToPatch"], TSourceSchemaType["Dto"]>;
     useDelete: IUseMutation<IWithIdentity, TSourceSchemaType["Dto"]>;
     useDeleteWith: IUseMutation<TSourceSchemaType["Query"], TSourceSchemaType["Dto"][]>;
-    useQuery: IUseQuery<TSourceSchemaType["Query"] | undefined, TSourceSchemaType["Dto"][]>;
-    useCount: IUseQuery<TSourceSchemaType["Query"] | undefined, number>;
+    useQuery: IUseQuery<TSourceSchemaType["QueryOptional"], TSourceSchemaType["Dto"][]>;
+    useCount: IUseQuery<TSourceSchemaType["QueryOptional"], number>;
     useFetch: IUseQuery<TSourceSchemaType["Query"], TSourceSchemaType["Dto"]>;
     useFind: IUseQuery<IWithIdentity, TSourceSchemaType["Dto"]>;
 };

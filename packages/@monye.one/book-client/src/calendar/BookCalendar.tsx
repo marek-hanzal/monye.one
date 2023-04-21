@@ -5,7 +5,7 @@ import {
 }                from "@leight/calendar-client";
 import {
     CalendarEventSourceSchema,
-    type ICalendarEventSourceSchema
+    type ICalendarEventSourceSchemaType
 }                from "@monye.one/book";
 import {type FC} from "react";
 import {
@@ -17,7 +17,7 @@ import {
     IncomeOutcome
 }                from "./IncomeOutcome";
 
-export interface IBookCalendarProps extends Omit<ICalendarProps<ICalendarEventSourceSchema>, "useEventState"> {
+export interface IBookCalendarProps extends Omit<ICalendarProps<ICalendarEventSourceSchemaType>, "useEventState"> {
     day?: {
         onIncomeClick?: IIncomeOutcomeProps["onIncomeClick"];
         onOutcomeClick?: IIncomeOutcomeProps["onOutcomeClick"];
@@ -36,7 +36,7 @@ export const BookCalendar: FC<IBookCalendarProps> = (
     }) => {
     const {weeks} = WeeksOfStore.useState(({weeks}) => ({weeks}));
     return <CalendarEventSource>
-        <Calendar<ICalendarEventSourceSchema>
+        <Calendar<ICalendarEventSourceSchemaType>
             events={{
                 schema:      CalendarEventSourceSchema["DtoSchema"],
                 SourceStore: CalendarEventSourceStore,

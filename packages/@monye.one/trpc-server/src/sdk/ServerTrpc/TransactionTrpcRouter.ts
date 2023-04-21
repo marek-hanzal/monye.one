@@ -25,10 +25,10 @@ export const TransactionSourceRouter = router({
                 .input(TransactionSourceSchema.QuerySchema)
                 .mutation(TransactionSourceProcedure.handleDeleteWith),
     query:  procedure
-                .input(TransactionSourceSchema.QuerySchema)
+                .input(TransactionSourceSchema.QueryOptionalSchema)
                 .query(TransactionSourceProcedure.handleQuery),
     count:  procedure
-                .input(TransactionSourceSchema.QuerySchema)
+                .input(TransactionSourceSchema.QueryOptionalSchema)
                 .query(TransactionSourceProcedure.handleCount),
     fetch:  procedure
                 .input(TransactionSourceSchema.QuerySchema)
@@ -41,4 +41,4 @@ export const TransactionSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zux0ur34kuc2gntwh8uxiqsh = true;
+export const $leight_ctslz6q6cl66ve1bn3twr6yh = true;

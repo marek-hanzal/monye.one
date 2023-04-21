@@ -51,7 +51,7 @@ export const generatorClientForm: IGenerator<IGeneratorClientFormParams> = async
                 imports: {
                     "@leight/form-client":                [
                         "type IMantineFormContext",
-                        "type InferFormSchemas",
+                        "type IFormSchemaType",
                         "type IFormInputsFactory",
                     ],
                     [packages?.schema || `../../schema`]: [
@@ -61,7 +61,7 @@ export const generatorClientForm: IGenerator<IGeneratorClientFormParams> = async
             })
             .withTypes({
                 exports: {
-                    [`I${name}FormSchema`]:         `InferFormSchemas<typeof ${name}FormSchema>`,
+                    [`I${name}FormSchema`]:         `IFormSchemaType.of<typeof ${name}FormSchema>`,
                     [`I${name}MantineFormContext`]: `IMantineFormContext<I${name}FormSchema>`,
                     [`I${name}FormInputFactory`]:   `IFormInputsFactory<I${name}FormSchema>`,
                 }

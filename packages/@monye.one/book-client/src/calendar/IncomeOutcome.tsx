@@ -1,18 +1,21 @@
-import {type IDateRange}                 from "@leight/calendar";
-import {toHumanNumber}                   from "@leight/utils";
+import {
+    ICalendarEventSourceSchema,
+    type IDateRange
+} from "@leight/calendar";
+import {toHumanNumber}                       from "@leight/utils";
 import {
     Button,
     Group
-}                                        from "@mantine/core";
-import {type ICalendarEventSourceSchema} from "@monye.one/book";
+}                                            from "@mantine/core";
+import {type ICalendarEventSourceSchemaType} from "@monye.one/book";
 import {
     IconCashBanknote,
     IconSum
-}                                        from "@tabler/icons-react";
+}                                            from "@tabler/icons-react";
 import {
     type ComponentProps,
     type FC
-}                                        from "react";
+}                                            from "react";
 
 export interface IIncomeOutcomeProps extends ComponentProps<typeof Group> {
     range: IDateRange;
@@ -26,12 +29,12 @@ export interface IIncomeOutcomeProps extends ComponentProps<typeof Group> {
 
 export namespace IIncomeOutcomeProps {
     export interface IOnIncomeClickProps {
-        events?: ICalendarEventSourceSchema["Dto"][];
+        events?: ICalendarEventSourceSchemaType["Dto"][];
         range: IDateRange;
     }
 
     export interface IOnOutcomeClickProps {
-        events?: ICalendarEventSourceSchema["Dto"][];
+        events?: ICalendarEventSourceSchemaType["Dto"][];
         range: IDateRange;
     }
 }

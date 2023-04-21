@@ -45,7 +45,7 @@ export const withSourceProcedure = <TSourceSchemaType extends ISourceSchemaType>
                 );
             },
         }),
-        handleQuery:      withHandler<TSourceSchemaType["Query"] | undefined, TSourceSchemaType["Dto"][]>({
+        handleQuery:      withHandler<TSourceSchemaType["QueryOptional"], TSourceSchemaType["Dto"][]>({
             handler: async ({container, request}) => {
                 const $sourceService = withSourceService(container);
                 return Promise.all(
@@ -53,7 +53,7 @@ export const withSourceProcedure = <TSourceSchemaType extends ISourceSchemaType>
                 );
             },
         }),
-        handleCount:      withHandler<TSourceSchemaType["Query"] | undefined, number>({
+        handleCount:      withHandler<TSourceSchemaType["QueryOptional"], number>({
             handler: async ({container, request}) => withSourceService(container).source().count(request),
         }),
         handleFetch:      withHandler<TSourceSchemaType["Query"], TSourceSchemaType["Dto"]>({

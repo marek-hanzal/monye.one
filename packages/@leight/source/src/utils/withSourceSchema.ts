@@ -82,21 +82,23 @@ export const withSourceSchema = <
     TSortSchema,
     TParamsSchema
 > => {
+    const $QuerySchema = QuerySchema({
+        filterSchema: $FilterSchema,
+        sortSchema:   $SortSchema,
+        paramsSchema: $ParamsSchema,
+    });
     return {
-        EntitySchema:   $EntitySchema,
-        DtoSchema:      $DtoSchema,
-        ToCreateSchema: $ToCreateSchema,
-        CreateSchema:   $CreateSchema,
-        ToPatchSchema:  $ToPatchSchema,
-        PatchSchema:    $PatchSchema,
-        FilterSchema:   $FilterSchema,
-        SortSchema:     $SortSchema,
-        ParamsSchema:   $ParamsSchema,
-        CursorSchema:   CursorSchema,
-        QuerySchema:    QuerySchema({
-            filterSchema: $FilterSchema,
-            sortSchema:   $SortSchema,
-            paramsSchema: $ParamsSchema,
-        }),
+        EntitySchema:        $EntitySchema,
+        DtoSchema:           $DtoSchema,
+        ToCreateSchema:      $ToCreateSchema,
+        CreateSchema:        $CreateSchema,
+        ToPatchSchema:       $ToPatchSchema,
+        PatchSchema:         $PatchSchema,
+        FilterSchema:        $FilterSchema,
+        SortSchema:          $SortSchema,
+        ParamsSchema:        $ParamsSchema,
+        CursorSchema:        CursorSchema,
+        QuerySchema:         $QuerySchema,
+        QueryOptionalSchema: $QuerySchema.optional(),
     };
 };
