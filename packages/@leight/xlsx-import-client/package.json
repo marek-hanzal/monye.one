@@ -31,6 +31,7 @@
     },
     "dependencies": {
         "@leight/i18n-client": "^0.5.70",
+        "@leight/import": "^0.5.0",
         "@leight/job": "^0.5.76",
         "@leight/job-client": "^0.5.27",
         "@leight/mantine": "^0.5.74",

@@ -21,12 +21,6 @@ void withSdk(
                         package: "../../schema",
                     },
                 },
-                dto:    {
-                    type:        "JobDtoEx",
-                    withPackage: {
-                        package: "../../schema",
-                    },
-                },
             },
         })
     )

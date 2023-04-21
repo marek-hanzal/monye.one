@@ -1,5 +1,4 @@
 import {
-    JobSchema,
     JobStatusSchema,
     JsonValue
 }          from "@leight/prisma";
@@ -15,11 +14,12 @@ export const JobDoneStatus: IJobStatus[] = [
     "SUCCESS"
 ];
 
+export const JobParamsSchema = z.object({});
+export type IJobParamsSchema = typeof JobParamsSchema;
+export type IJobParams = z.infer<IJobParamsSchema>;
+
 export const JobSchemaEx = z.object({
     params: JsonValue.nullable(),
 });
-export const JobDtoEx    = JobSchema.merge(z.object({
-    params: z.any().optional(),
-}));
 
 export {JobStatusSchema} from "@leight/prisma";

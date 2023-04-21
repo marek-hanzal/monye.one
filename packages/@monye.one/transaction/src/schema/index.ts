@@ -1,6 +1,6 @@
-import {ImportJobParamsSchema} from "@leight/import";
-import {z}                     from "@leight/zod";
-import {BankSourceSchema}      from "@monye.one/bank";
+import {ImportParamsSchema} from "@leight/import";
+import {z}                  from "@leight/zod";
+import {BankSourceSchema}   from "@monye.one/bank";
 
 /**
  * Schema used for importing transaction from any source.
@@ -19,7 +19,7 @@ export const TransactionImportSchema = z.object({
 export type ITransactionImportSchema = typeof TransactionImportSchema;
 export type ITransactionImport = z.infer<ITransactionImportSchema>;
 
-export const TransactionImportParamsSchema = ImportJobParamsSchema.merge(z.object({
+export const TransactionImportParamsSchema = ImportParamsSchema.merge(z.object({
     account: z.string().optional(),
 }));
 export type ITransactionImportParamsSchema = typeof TransactionImportParamsSchema;

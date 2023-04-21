@@ -1,4 +1,4 @@
-import {IJobStatus} from "../schema";
+import {type IJobStatus} from "../schema";
 
 export interface IJobProgress {
     readonly jobId: string;

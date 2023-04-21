@@ -1,24 +1,28 @@
-import {type ILogger}              from "@leight/winston";
-import {type IJobSourceSchemaType} from "../sdk";
-import {type IJobProgress}         from "./IJobProgress";
+import {type ILogger}          from "@leight/winston";
+import {z}                     from "@leight/zod";
+import {type IJobParamsSchema} from "../schema";
+import {type IJobProgress}     from "./IJobProgress";
+import {type IJobWithParams}   from "./IJobWithParams";
 
-export interface IJobService<TSourceSchemaType extends IJobSourceSchemaType, TResult = any> {
+export interface IJobService<TParamsSchema extends IJobParamsSchema, TResult = any> {
     name: string;
 
-    async(props: IJobService.IHandleProps<TSourceSchemaType>): Promise<TSourceSchemaType["Dto"]>;
+    async(props: IJobService.IAsyncProps<TParamsSchema>): Promise<IJobWithParams<TParamsSchema>>;
 
-    handle(props: IJobService.IHandleProps<TSourceSchemaType>): Promise<TResult>;
+    handle(props: IJobService.IHandleProps<TParamsSchema>): Promise<TResult>;
+
+    validator(): TParamsSchema;
 }
 
 export namespace IJobService {
-    export interface IAsyncProps<TSourceSchemaType extends IJobSourceSchemaType> {
-        params: TSourceSchemaType["Dto"]["params"];
+    export interface IAsyncProps<TParamsSchema extends IJobParamsSchema> {
+        params: z.infer<TParamsSchema>;
     }
 
-    export interface IHandleProps<TSourceSchemaType extends IJobSourceSchemaType> {
+    export interface IHandleProps<TParamsSchema extends IJobParamsSchema> {
         name: string;
-        job: TSourceSchemaType["Dto"];
-        params: TSourceSchemaType["Dto"]["params"];
+        job: IJobWithParams<TParamsSchema>;
+        params: z.infer<TParamsSchema>;
         userId?: string | null;
         jobProgress: IJobProgress;
         logger: ILogger;

@@ -20,8 +20,6 @@
     ],
     "scripts": {
         "dev": "turbowatch",
-        "generate": "concurrently npm:generate:*",
-        "generate:sdk": "tsx src/leight-sdk.ts",
         "build": "concurrently npm:build:*",
         "build:esbuild": "node esbuild.mjs",
         "build:types": "tsc --outDir lib",
@@ -38,12 +36,12 @@
         "@leight/query": "^0.5.0",
         "@leight/sort": "^0.5.0",
         "@leight/source": "^0.5.0",
+        "@leight/trpc": "^0.5.0",
         "@leight/zod": "^0.5.10"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.43",
         "@leight/eslint-config-eslint": "^0.5.52",
-        "@leight/sdk": "^0.5.0",
         "@leight/tsconfig": "^0.5.66",
         "@leight/turbowatch": "^0.5.31",
         "@types/node": "^18.15.0",

@@ -1,20 +1,20 @@
-import {useTranslation}     from "@leight/i18n-client";
-import {IUseJobSourceQuery} from "@leight/job";
+import {useTranslation}           from "@leight/i18n-client";
+import {type IWithImportMutation} from "@leight/import";
+import {type IUseJobSourceQuery}  from "@leight/job";
 import {
     type IJobInlineProps,
     JobInline
-}                           from "@leight/job-client";
+}                                 from "@leight/job-client";
 import {
     DropZone,
     type IDropZoneProps
-}                           from "@leight/mantine";
-import {LoopsProvider}      from "@leight/utils-client";
-import {type IWithMutation} from "@leight/xlsx-import";
-import {MIME_TYPES}         from "@mantine/dropzone";
-import {notifications}      from "@mantine/notifications";
+}                                 from "@leight/mantine";
+import {LoopsProvider}            from "@leight/utils-client";
+import {MIME_TYPES}               from "@mantine/dropzone";
+import {notifications}            from "@mantine/notifications";
 
 export interface IImportZoneProps<TParams extends Record<string, any>> extends Omit<IDropZoneProps, "path"> {
-    mutation: IWithMutation;
+    mutation: IWithImportMutation;
     onSuccess?: IJobInlineProps["onSuccess"];
     useJobFindQuery: IUseJobSourceQuery["useFind"];
     path?: string;

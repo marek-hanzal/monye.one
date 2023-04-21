@@ -1,14 +1,32 @@
 import {
+    $JobExecutor,
+    type IJobExecutor,
+    type IJobParamsSchema,
     type IJobService,
-    type IJobSourceSchemaType
+    type IJobWithParams
 } from "@leight/job";
 
-export abstract class AbstractJobService<TSourceSchemaType extends IJobSourceSchemaType, TResult> implements IJobService<TSourceSchemaType, TResult> {
-    protected constructor(public name: string) {
+export abstract class AbstractJobService<TJobParamsSchema extends IJobParamsSchema, TResult> implements IJobService<TJobParamsSchema, TResult> {
+    static inject = [
+        $JobExecutor,
+    ];
+
+    protected constructor(
+        public name: string,
+        protected jobExecutor: IJobExecutor,
+    ) {
         this.name = name;
     }
 
-    abstract async(props: IJobService.IAsyncProps<TSourceSchemaType>): Promise<TSourceSchemaType["Dto"]>;
+    async async({params}: IJobService.IAsyncProps<TJobParamsSchema>): Promise<IJobWithParams<TJobParamsSchema>> {
+        return this.jobExecutor.execute<TJobParamsSchema>({
+            service:   this.name,
+            params,
+            validator: this.validator(),
+        });
+    }
 
-    abstract handle(props: IJobService.IHandleProps<TSourceSchemaType>): Promise<TResult>;
+    abstract handle(props: IJobService.IHandleProps<TJobParamsSchema>): Promise<TResult> ;
+
+    abstract validator(): TJobParamsSchema;
 }

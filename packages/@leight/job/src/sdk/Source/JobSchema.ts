@@ -17,10 +17,7 @@ import {
 	PatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
-import {
-	JobSchemaEx,
-	JobDtoEx
-} from "../../schema";
+import {JobSchemaEx} from "../../schema";
 import {FilterSchema} from "@leight/filter";
 import {ParamsSchema} from "@leight/query";
 
@@ -31,7 +28,7 @@ const $JobCreateSchema = JobOptionalDefaultsSchema;
 const $JobPatchSchema = JobPartialSchema.merge(PatchSchema);
 export const JobSourceSchema = withSourceSchema({
     EntitySchema: $JobSchema,
-    DtoSchema: JobDtoEx,
+    DtoSchema: $JobSchema,
     ToCreateSchema: $JobCreateSchema,
     CreateSchema: $JobCreateSchema,
     ToPatchSchema: $JobPatchSchema,
@@ -50,4 +47,4 @@ export const JobSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_d3jj8at86kuzudesirjv3tqh = true;
+export const $leight_zfrkuo52l3l3zh8130jzbhhr = true;

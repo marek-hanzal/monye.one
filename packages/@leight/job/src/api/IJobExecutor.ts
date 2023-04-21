@@ -1,14 +1,17 @@
-import {type BindKey}              from "@leight/container";
-import {type IJobSourceSchemaType} from "../sdk";
+import {type BindKey}          from "@leight/container";
+import {z}                     from "@leight/zod";
+import {type IJobParamsSchema} from "../schema";
+import {type IJobWithParams}   from "./IJobWithParams";
 
 export interface IJobExecutor {
-    execute<TSourceSchemaType extends IJobSourceSchemaType>(props: IJobExecutor.IExecuteProps<TSourceSchemaType>): Promise<TSourceSchemaType["Dto"]>;
+    execute<TParamsSchema extends IJobParamsSchema>(props: IJobExecutor.IExecuteProps<TParamsSchema>): Promise<IJobWithParams<TParamsSchema>>;
 }
 
 export namespace IJobExecutor {
-    export interface IExecuteProps<TSourceSchemaType extends IJobSourceSchemaType> {
+    export interface IExecuteProps<TParamsSchema extends IJobParamsSchema> {
         service: BindKey;
-        params: TSourceSchemaType["Dto"]["params"];
+        params: z.infer<TParamsSchema>;
+        validator: TParamsSchema;
     }
 }
 

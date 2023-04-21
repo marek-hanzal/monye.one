@@ -1,4 +1,4 @@
-import {RequestSchema}       from "@leight/xlsx-import";
+import {ImportParamsSchema}  from "@leight/import";
 import {XlsxImportProcedure} from "@leight/xlsx-import-server";
 import {
     procedure,
@@ -6,5 +6,5 @@ import {
 }                            from "../../router";
 
 export const XlsxRouter = router({
-    job: procedure.input(RequestSchema).mutation(XlsxImportProcedure),
+    job: procedure.input(ImportParamsSchema).mutation(XlsxImportProcedure),
 });

@@ -1,11 +1,12 @@
-import {withHandler}          from "@leight/trpc-server";
 import {
-    type IRequestType,
-    type IResponseType
-}                             from "@leight/xlsx-import";
+    type IImportParams,
+    type IImportParamsSchema
+}                             from "@leight/import";
+import {type IJobWithParams}  from "@leight/job";
+import {withHandler}          from "@leight/trpc-server";
 import {ImportServiceContext} from "../context";
 
-export const XlsxImportProcedure = withHandler<IRequestType, IResponseType>({
+export const XlsxImportProcedure = withHandler<IImportParams, IJobWithParams<IImportParamsSchema>>({
     defaultErrorMessage: "Could not start an import job. Yaaykes!",
-    handler:             async ({request, container}) => ImportServiceContext(container).resolve().async(request),
+    handler:             async ({request, container}) => ImportServiceContext(container).resolve().async({params: request}),
 });

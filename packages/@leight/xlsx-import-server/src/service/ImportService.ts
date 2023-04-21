@@ -1,18 +1,22 @@
 import {
     $FileService,
     type IFileService
-}                      from "@leight/file";
+}                           from "@leight/file";
 import {
     $ImportHandlerService,
     type IImportHandlerService,
-    type IImportJob
-}                      from "@leight/import";
+    type IImportParamsSchema,
+    type IImportResult,
+    ImportParamsSchema
+}                           from "@leight/import";
 import {
     $JobExecutor,
-    type IJobExecutor
-}                      from "@leight/job";
-import {cleanOf}       from "@leight/utils";
-import {streamOf}      from "@leight/utils-server";
+    type IJobExecutor,
+    IJobService
+}                           from "@leight/job";
+import {AbstractJobService} from "@leight/job-server";
+import {cleanOf}            from "@leight/utils";
+import {streamOf}           from "@leight/utils-server";
 import {
     $ImportService,
     $MetaService,
@@ -20,16 +24,16 @@ import {
     type IImportService,
     type IMetaService,
     type ITranslationService
-}                      from "@leight/xlsx-import";
-import {measureTime}   from "measure-time";
-import {type Readable} from "node:stream";
+}                           from "@leight/xlsx-import";
+import {measureTime}        from "measure-time";
+import {Readable}           from "node:stream";
 import {
     readFile,
     stream,
-    type WorkSheet
-}                      from "xlsx";
+    WorkSheet,
+}                           from "xlsx";
 
-export class ImportService extends AbstractJobService<IImportJob, IImportService.ImportResult> implements IImportService {
+export class ImportService extends AbstractJobService<IImportParamsSchema, IImportResult> implements IImportService {
     static inject = [
         $MetaService,
         $FileService,
@@ -45,21 +49,17 @@ export class ImportService extends AbstractJobService<IImportJob, IImportService
         protected translationService: ITranslationService,
         protected importHandlerService: IImportHandlerService,
     ) {
+        super(
+            $ImportService.description!,
+            jobExecutor,
+        );
     }
 
-    async async(params: IImportService.IAsyncProps): Promise<IImportJob> {
-        return this.jobExecutor.execute({
-            name:    $ImportService,
-            params,
-            handler: async props => this.job(props),
-        });
-    }
-
-    async job(
+    async handle(
         {
-            jobProgress,
             params,
-        }: IJobExecutor.HandlerRequest<IImportJob>): Promise<IImportService.ImportResult> {
+            jobProgress,
+        }: IJobService.IHandleProps<IImportParamsSchema>): Promise<IImportResult> {
         const file                 = await this.fileService.fetch(params.fileId);
         const workbook             = readFile(file.location, {
             type:      "binary",
@@ -178,5 +178,9 @@ export class ImportService extends AbstractJobService<IImportJob, IImportService
             skip,
             runtime,
         };
+    }
+
+    validator() {
+        return ImportParamsSchema;
     }
 }
