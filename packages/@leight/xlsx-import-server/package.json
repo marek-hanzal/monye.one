@@ -1,0 +1,62 @@
+{
+    "version": "0.5.63",
+    "name": "@leight/xlsx-import-server",
+    "description": "Support for XLSX import (server-side) using @leight/job stuff.",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/leight-core/viv.git"
+    },
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "sideEffects": false,
+    "type": "module",
+    "module": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "files": [
+        "lib",
+        "src"
+    ],
+    "scripts": {
+        "dev": "turbowatch",
+        "build": "concurrently npm:build:*",
+        "build:esbuild": "node esbuild.mjs",
+        "build:types": "tsc --outDir lib",
+        "depcheck": "depcheck",
+        "lint": "eslint src",
+        "cleanup": "concurrently npm:cleanup:*",
+        "cleanup:sdk": "del-cli src/sdk/**",
+        "cleanup:lib": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
+    },
+    "dependencies": {
+        "@leight/container": "^0.5.65",
+        "@leight/file": "^0.5.73",
+        "@leight/import": "^0.5.63",
+        "@leight/job": "^0.5.76",
+        "@leight/trpc-server": "^0.5.69",
+        "@leight/utils": "^0.5.67",
+        "@leight/utils-server": "^0.5.63",
+        "@leight/xlsx-import": "^0.5.64",
+        "@leight/zod": "^0.5.10",
+        "measure-time": "^5.0.8",
+        "xlsx": "^0.18.5"
+    },
+    "devDependencies": {
+        "@leight/esbuild": "^0.5.43",
+        "@leight/eslint-config-eslint": "^0.5.52",
+        "@leight/tsconfig": "^0.5.66",
+        "@leight/turbowatch": "^0.5.31",
+        "@types/node": "^18.15.0",
+        "concurrently": "^7.6.0",
+        "del-cli": "^5.0.0",
+        "depcheck": "^1.4.3",
+        "eslint": "^8.36.0",
+        "turbowatch": "^2.3.2",
+        "typescript": "^5.0.2"
+    },
+    "bugs": {
+        "url": "https://github.com/leight-core/viv/issues"
+    },
+    "homepage": "https://github.com/leight-core/viv#readme"
+}

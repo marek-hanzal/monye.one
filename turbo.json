@@ -31,7 +31,12 @@
             ]
         },
         "generate": {
-            "cache": false
+            "outputs": [
+                "src/sdk/**"
+            ],
+            "inputs": [
+                "src/leight-sdk.ts"
+            ]
         },
         "init": {
             "dependsOn": [
@@ -48,7 +53,6 @@
             "outputMode": "new-only",
             "dependsOn": [
                 "^build",
-                "generate",
                 "lint"
             ],
             "outputs": [

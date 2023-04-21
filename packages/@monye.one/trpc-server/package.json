@@ -16,14 +16,16 @@
     "types": "lib/index.d.ts",
     "scripts": {
         "dev": "dotenv -e ROARR_LOG=true -- turbowatch",
-        "generate": "del-cli src/sdk/** && concurrently npm:generate:*",
+        "generate": "concurrently npm:generate:*",
         "generate:sdk": "tsx src/leight-sdk.ts",
         "build": "concurrently npm:build:*",
         "build:esbuild": "node esbuild.mjs",
         "build:types": "tsc --outDir lib",
         "depcheck": "depcheck",
         "lint": "eslint src",
-        "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
+        "cleanup": "concurrently npm:cleanup:*",
+        "cleanup:sdk": "del-cli src/sdk/**",
+        "cleanup:lib": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
         "@leight/job": "^0.5.0",

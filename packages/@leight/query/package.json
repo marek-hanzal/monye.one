@@ -25,7 +25,9 @@
         "build:types": "tsc --outDir lib",
         "no:depcheck": "depcheck",
         "lint": "eslint src",
-        "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
+        "cleanup": "concurrently npm:cleanup:*",
+        "cleanup:sdk": "del-cli src/sdk/**",
+        "cleanup:lib": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
         "@leight/cursor": "^0.5.58",

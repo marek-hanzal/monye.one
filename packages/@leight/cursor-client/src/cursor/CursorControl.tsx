@@ -1,5 +1,5 @@
 import {
-    type ISourceSchema,
+    type ISourceSchemaType,
     type ISourceStore,
     type IUseSourceQuery
 } from "@leight/source";
@@ -12,23 +12,23 @@ import {
     CursorStore
 } from "../context";
 
-export type ICursorControlProps<TSourceSchema extends ISourceSchema> = PropsWithChildren<{
-    SourceStore: ISourceStore<TSourceSchema>;
-    USeSourceQuery: IUseSourceQuery<TSourceSchema>;
-    defaultCursor?: TSourceSchema["Cursor"];
+export type ICursorControlProps<TSourceSchemaType extends ISourceSchemaType> = PropsWithChildren<{
+    SourceStore: ISourceStore<TSourceSchemaType>;
+    UseSourceQuery: IUseSourceQuery<TSourceSchemaType>;
+    defaultCursor?: TSourceSchemaType["Cursor"];
 }>;
 
-type IInternalCursor<TSourceSchema extends ISourceSchema> = ICursorControlProps<TSourceSchema>;
+type IInternalCursor<TSourceSchemaType extends ISourceSchemaType> = ICursorControlProps<TSourceSchemaType>;
 
-const InternalCursor = <TSourceSchema extends ISourceSchema>(
+const InternalCursor = <TSourceSchemaType extends ISourceSchemaType>(
     {
         SourceStore,
-        USeSourceQuery,
+        UseSourceQuery,
         children,
-    }: IInternalCursor<TSourceSchema>) => {
+    }: IInternalCursor<TSourceSchemaType>) => {
     const {setTotal, setIsLoading} = CursorStore.useState(({setTotal, setIsLoading}) => ({setTotal, setIsLoading}));
     const {filter}                 = SourceStore.Filter.useState(({filter}) => ({filter}));
-    const query                    = USeSourceQuery.useCount({
+    const query                    = UseSourceQuery.useCount({
         filter,
     }, {
         staleTime: undefined,
@@ -46,11 +46,12 @@ const InternalCursor = <TSourceSchema extends ISourceSchema>(
     return <>{children}</>;
 };
 
-export const CursorControl = <TSourceSchema extends ISourceSchema>(
+export const CursorControl = <TSourceSchemaType extends ISourceSchemaType>(
     {
         defaultCursor,
         ...props
-    }: ICursorControlProps<TSourceSchema>) => {
+    }: ICursorControlProps<TSourceSchemaType>) => {
+    console.log("CursorControl");
     return <CursorProvider
         defaults={defaultCursor}
     >

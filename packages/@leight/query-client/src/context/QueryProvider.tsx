@@ -37,7 +37,7 @@ export const QueryProvider = <TSourceSchemaType extends ISourceSchemaType>(
             defaults={{sort: defaultSort}}
         >
             <CursorControl
-                USeSourceQuery={UseSourceQuery}
+                UseSourceQuery={UseSourceQuery}
                 SourceStore={SourceStore}
                 defaultCursor={defaultCursor}
             >
