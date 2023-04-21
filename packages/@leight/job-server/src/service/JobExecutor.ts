@@ -43,7 +43,7 @@ export class JobExecutor implements IJobExecutor {
     async execute<TJobParamsSchema extends IJobParamsSchema>(
         {
             service,
-            params
+            params,
         }: IJobExecutor.IExecuteProps<TJobParamsSchema>): Promise<IJobWithParams<TJobParamsSchema>> {
         const name        = service.toString();
         let logger        = Logger(name);
@@ -64,7 +64,7 @@ export class JobExecutor implements IJobExecutor {
                     const jobService = this.container.resolve<IJobService<TJobParamsSchema>>(service);
                     await this.jobSource.find(job.id);
                     await jobProgress.setStatus("RUNNING");
-                    const $params = jobService.validator().parse(params);
+                    const $params = jobService.validator()?.parse(params) || params;
                     await jobService.handle({
                         name,
                         job,

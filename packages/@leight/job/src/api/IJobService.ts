@@ -1,9 +1,10 @@
-import {type BindKey}          from "@leight/container";
-import {type ILogger}          from "@leight/winston";
-import {z}                     from "@leight/zod";
-import {type IJobParamsSchema} from "../schema";
-import {type IJobProgress}     from "./IJobProgress";
-import {type IJobWithParams}   from "./IJobWithParams";
+import {type BindKey}            from "@leight/container";
+import {type ILogger}            from "@leight/winston";
+import {z}                       from "@leight/zod";
+import {type IJobParamsSchema}   from "../schema";
+import {type IJobParamValidator} from "./IJobParamValidator";
+import {type IJobProgress}       from "./IJobProgress";
+import {type IJobWithParams}     from "./IJobWithParams";
 
 export interface IJobService<TParamsSchema extends IJobParamsSchema, TResult = any> {
     name: BindKey;
@@ -12,7 +13,7 @@ export interface IJobService<TParamsSchema extends IJobParamsSchema, TResult = a
 
     handle(props: IJobService.IHandleProps<TParamsSchema>): Promise<TResult>;
 
-    validator(): TParamsSchema;
+    validator(): IJobParamValidator;
 }
 
 export namespace IJobService {

@@ -3,6 +3,7 @@ import {
     $JobExecutor,
     type IJobExecutor,
     type IJobParamsSchema,
+    type IJobParamValidator,
     type IJobService,
     type IJobWithParams
 }                     from "@leight/job";
@@ -21,13 +22,12 @@ export abstract class AbstractJobService<TJobParamsSchema extends IJobParamsSche
 
     async async({params}: IJobService.IAsyncProps<TJobParamsSchema>): Promise<IJobWithParams<TJobParamsSchema>> {
         return this.jobExecutor.execute<TJobParamsSchema>({
-            service:   this.name,
+            service: this.name,
             params,
-            validator: this.validator(),
         });
     }
 
     abstract handle(props: IJobService.IHandleProps<TJobParamsSchema>): Promise<TResult> ;
 
-    abstract validator(): TJobParamsSchema;
+    abstract validator(): IJobParamValidator;
 }

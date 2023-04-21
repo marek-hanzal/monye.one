@@ -7,13 +7,13 @@ import {
     type IImportHandlerService,
     type IImportParamsSchema,
     type IImportResult,
-    type IImportService,
-    ImportParamsSchema
-} from "@leight/import";
+    type IImportService
+}                              from "@leight/import";
 import {AbstractImportService} from "@leight/import-server";
 import {
     $JobExecutor,
     type IJobExecutor,
+    type IJobParamValidator,
     type IJobService
 }                              from "@leight/job";
 import {cleanOf}               from "@leight/utils";
@@ -25,6 +25,7 @@ import {
     type IMetaService,
     type ITranslationService
 }                              from "@leight/xlsx-import";
+import {z}                     from "@leight/zod";
 import {measureTime}           from "measure-time";
 import {Readable}              from "node:stream";
 import {
@@ -180,7 +181,10 @@ export class XlsxImportService extends AbstractImportService<IImportParamsSchema
         };
     }
 
-    validator() {
-        return ImportParamsSchema;
+    validator(): IJobParamValidator {
+        /**
+         * Any, because individual import handlers has their own validators.
+         */
+        return z.any();
     }
 }

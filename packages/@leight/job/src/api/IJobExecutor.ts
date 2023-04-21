@@ -11,7 +11,6 @@ export namespace IJobExecutor {
     export interface IExecuteProps<TParamsSchema extends IJobParamsSchema> {
         service: BindKey;
         params: z.infer<TParamsSchema>;
-        validator: TParamsSchema;
     }
 }
 
