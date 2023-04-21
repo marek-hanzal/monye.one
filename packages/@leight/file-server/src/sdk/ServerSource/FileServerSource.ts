@@ -4,13 +4,13 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {type IFileSource} from "@leight/file";
-import {FileBasePrismaSource} from "../PrismaSource/FilePrismaSource";
+import {FileSourceEx} from "../../source";
 
-export class FileSource extends FileBasePrismaSource implements IFileSource {
+export class FileSource extends FileSourceEx implements IFileSource {
 }
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_r9y8qys44v95ckz0eoos0i8c = true;
+export const $leight_t53r07gt5lh3tky1ayrypk8b = true;

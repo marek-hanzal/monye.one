@@ -13,6 +13,12 @@ void withSdk(
                 prisma: "@leight/prisma",
             },
             prisma:   "file",
+            withSourceEx: {
+                type: 'FileSourceEx',
+                withPackage: {
+                    package: '../../source',
+                },
+            },
         })
     )
 );

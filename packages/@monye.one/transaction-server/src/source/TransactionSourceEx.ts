@@ -54,7 +54,6 @@ export class TransactionSourceEx extends TransactionBasePrismaSource {
             };
         }
         return {
-            ...filter,
             userId: this.userService.required(),
         };
     }

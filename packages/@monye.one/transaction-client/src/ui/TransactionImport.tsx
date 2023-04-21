@@ -33,8 +33,8 @@ export const TransactionImport: FC<ITransactionImportProps> = (
             account,
         }}
         withTranslation={{
-            label:     "dropzone.import",
             namespace: "transaction",
+            label:     "dropzone.import",
         }}
         {...props}
     />;

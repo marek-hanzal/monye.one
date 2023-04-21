@@ -121,4 +121,4 @@ export class BankBasePrismaSource extends AbstractSource<IBankSourceSchemaType> 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_o1mdltnz9rd53rp86i6r54rw = true;
+export const $leight_jzt29sxid8u2j5ousgbgoj16 = true;
