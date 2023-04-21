@@ -80,10 +80,7 @@
         },
         "dev": {
             "cache": false,
-            "persistent": true,
-            "dependsOn": [
-                "generate"
-            ]
+            "persistent": true
         },
         "migration": {
             "cache": false

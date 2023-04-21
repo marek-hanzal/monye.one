@@ -12,4 +12,4 @@ export type ITransactionSourceMapper = ISourceMapper<ITransactionSourceSchemaTyp
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_pwus5owgjvytc5uwfkl0spfn = true;
+export const $leight_yni69m1g9ibetwm31waobl4i = true;

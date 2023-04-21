@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_sfcfif9ghjga8dw3ysiis8p6 = true;
+export const $leight_izb97j4nqr1e9hw652vkslq4 = true;
 
 export * from "./index";
 export * from "./ClientSource/TransactionQueryProvider";
