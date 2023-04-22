@@ -85,6 +85,7 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
                 <Tabs.Panel value={"calendar"}>
                     <CalendarEventQueryProvider>
                         <BookCalendar
+                            mt={"sm"}
                             day={{
                                 onIncomeClick:  ({range}) => {
                                     $setFilter({range, withIncome: true, withOutcome: false});

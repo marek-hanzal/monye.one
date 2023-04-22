@@ -95,11 +95,14 @@ export const SourceTable = <
     const [fulltext, setFulltext] = useDebouncedState("", 350);
     const {t}                     = useTranslation(props.withTranslation?.namespace);
     const {sort, setSort}         = SourceStore.Sort.useState(({sort, setSort}) => ({sort, setSort}));
-    const {setFilter}             = SourceStore.Filter.useState(({setFilter}) => ({setFilter}));
+    const {filter, setFilter}     = SourceStore.Filter.useState(({filter, setFilter}) => ({filter, setFilter}));
     const {pages}                 = CursorStore.useState(({pages}) => ({pages}));
 
     useEffect(() => {
-        setFilter({fulltext: fulltext || undefined});
+        setFilter({
+            ...filter,
+            fulltext: fulltext || undefined
+        });
     }, [fulltext]);
 
     return <>
