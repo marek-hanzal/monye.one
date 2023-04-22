@@ -1,9 +1,11 @@
-import {z} from "@leight/zod";
+import {z}                 from "@leight/zod";
+import {ISource}           from "./ISource";
+import {ISourceSchemaType} from "./ISourceSchemaType";
 
 export interface ISourceSchemaEx<
-    TWhereSchema extends z.ZodType,
-    TWhereUniqueSchema extends z.ZodType,
-    TOrderBySchema extends z.ZodType,
+    TWhereSchema extends z.ZodType = z.ZodType,
+    TWhereUniqueSchema extends z.ZodType = z.ZodType,
+    TOrderBySchema extends z.ZodType = z.ZodType,
 > {
     WhereSchema: TWhereSchema;
     WhereUniqueSchema: TWhereUniqueSchema;
@@ -14,9 +16,9 @@ export interface ISourceSchemaEx<
  * Extended Source schemas; useful to specify close-to-db schemas (for example Prisma binding).
  */
 export interface ISourceSchemaExType<
-    TWhereSchema extends z.ZodType,
-    TWhereUniqueSchema extends z.ZodType,
-    TOrderBySchema extends z.ZodType,
+    TWhereSchema extends z.ZodType = z.ZodType,
+    TWhereUniqueSchema extends z.ZodType = z.ZodType,
+    TOrderBySchema extends z.ZodType = z.ZodType,
 > extends ISourceSchemaEx<TWhereSchema, TWhereUniqueSchema, TOrderBySchema> {
     Where: z.infer<TWhereSchema>;
     WhereUnique: z.infer<TWhereUniqueSchema>;
@@ -29,4 +31,12 @@ export namespace ISourceSchemaExType {
         TSourceSchemaEx["WhereUniqueSchema"],
         TSourceSchemaEx["OrderBySchema"]
     >;
+}
+
+export interface ISourceEx<TSourceSchemaExType extends ISourceSchemaExType, TSourceSchemaType extends ISourceSchemaType> extends ISource<TSourceSchemaType> {
+    toWhere(filter?: TSourceSchemaType["Filter"]): TSourceSchemaExType["Where"] | undefined;
+
+    toWhereUnique(filter: TSourceSchemaType["Filter"]): TSourceSchemaExType["WhereUnique"];
+
+    toOrderBy(sort?: TSourceSchemaType["Sort"]): TSourceSchemaExType["OrderBy"] | undefined;
 }

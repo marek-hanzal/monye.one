@@ -12,14 +12,14 @@ import {
 	type IWithIdentity,
 	SourceError
 } from "@leight/source";
-import {AbstractSource} from "@leight/source-server";
+import {AbstractSourceEx} from "@leight/source-server";
 import {
 	$JobSource,
 	type IJobSourceSchemaType,
 	type IJobPrismaSchemaType
 } from "@leight/job";
 
-export class JobBasePrismaSource extends AbstractSource<IJobSourceSchemaType> {
+export class JobBasePrismaSource extends AbstractSourceEx<IJobPrismaSchemaType, IJobSourceSchemaType> {
 	static inject = [
         $PrismaClient,
     ];
@@ -105,22 +105,10 @@ export class JobBasePrismaSource extends AbstractSource<IJobSourceSchemaType> {
     prisma() {
         return this.prismaClient.job;
     }
-    
-    toWhere(filter?: IJobSourceSchemaType["Filter"]): IJobPrismaSchemaType['Where'] | undefined {
-        throw new SourceError(`Filter is not supported in [${String($JobSource)}] Source.`);
-    }
-    
-    toWhereUnique(filter: IJobSourceSchemaType["Filter"]): IJobPrismaSchemaType['WhereUnique'] {
-        throw new SourceError(`Unique filter is not supported in [${String($JobSource)}] Source.`);
-    }
-    
-    toOrderBy(sort?: IJobSourceSchemaType["Sort"]): IJobPrismaSchemaType['OrderBy'] | undefined {
-        return sort as IJobPrismaSchemaType['OrderBy'];
-    }
 }
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_yvj2nf7ou9dddlz9ui6z1y1b = true;
+export const $leight_sx0pajwr2n83gxij5angtul1 = true;

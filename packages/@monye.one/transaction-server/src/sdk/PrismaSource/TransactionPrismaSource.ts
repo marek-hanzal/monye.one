@@ -9,7 +9,7 @@ import {
 	type IWithIdentity,
 	SourceError
 } from "@leight/source";
-import {AbstractSource} from "@leight/source-server";
+import {AbstractSourceEx} from "@leight/source-server";
 import {
 	$TransactionSource,
 	type ITransactionSourceSchemaType,
@@ -17,7 +17,7 @@ import {
 } from "@monye.one/transaction";
 import {type PrismaClient} from "@monye.one/prisma";
 
-export class TransactionBasePrismaSource extends AbstractSource<ITransactionSourceSchemaType> {
+export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPrismaSchemaType, ITransactionSourceSchemaType> {
 	static inject = [
         $PrismaClient,
     ];
@@ -103,22 +103,10 @@ export class TransactionBasePrismaSource extends AbstractSource<ITransactionSour
     prisma() {
         return this.prismaClient.transaction;
     }
-    
-    toWhere(filter?: ITransactionSourceSchemaType["Filter"]): ITransactionPrismaSchemaType['Where'] | undefined {
-        throw new SourceError(`Filter is not supported in [${String($TransactionSource)}] Source.`);
-    }
-    
-    toWhereUnique(filter: ITransactionSourceSchemaType["Filter"]): ITransactionPrismaSchemaType['WhereUnique'] {
-        throw new SourceError(`Unique filter is not supported in [${String($TransactionSource)}] Source.`);
-    }
-    
-    toOrderBy(sort?: ITransactionSourceSchemaType["Sort"]): ITransactionPrismaSchemaType['OrderBy'] | undefined {
-        return sort as ITransactionPrismaSchemaType['OrderBy'];
-    }
 }
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xsnps4sftexkj1go7e1pkuk4 = true;
+export const $leight_tva29vk7wewzu2lvmpntzjxf = true;

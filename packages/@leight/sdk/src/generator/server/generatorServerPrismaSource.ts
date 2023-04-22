@@ -66,7 +66,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
                         "SourceError",
                     ],
                     "@leight/source-server": [
-                        "AbstractSource",
+                        "AbstractSourceEx",
                     ],
                 },
             })
@@ -89,7 +89,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
             .withClasses({
                 exports: {
                     [`${name}BasePrismaSource`]: {
-                        extends: `AbstractSource<I${name}SourceSchemaType>`,
+                        extends: `AbstractSourceEx<I${name}PrismaSchemaType, I${name}SourceSchemaType>`,
                         body:    `
     static inject = [
         $PrismaClient,
@@ -175,18 +175,6 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
     
     prisma() {
         return this.prismaClient.${prisma};
-    }
-    
-    toWhere(filter?: I${name}SourceSchemaType["Filter"]): I${name}PrismaSchemaType['Where'] | undefined {
-        throw new SourceError(\`Filter is not supported in [\${String($${name}Source)}] Source.\`);
-    }
-    
-    toWhereUnique(filter: I${name}SourceSchemaType["Filter"]): I${name}PrismaSchemaType['WhereUnique'] {
-        throw new SourceError(\`Unique filter is not supported in [\${String($${name}Source)}] Source.\`);
-    }
-    
-    toOrderBy(sort?: I${name}SourceSchemaType["Sort"]): I${name}PrismaSchemaType['OrderBy'] | undefined {
-        return sort as I${name}PrismaSchemaType['OrderBy'];
     }
                     `,
                     },

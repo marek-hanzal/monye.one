@@ -12,14 +12,14 @@ import {
 	type IWithIdentity,
 	SourceError
 } from "@leight/source";
-import {AbstractSource} from "@leight/source-server";
+import {AbstractSourceEx} from "@leight/source-server";
 import {
 	$UserSource,
 	type IUserSourceSchemaType,
 	type IUserPrismaSchemaType
 } from "@leight/user";
 
-export class UserBasePrismaSource extends AbstractSource<IUserSourceSchemaType> {
+export class UserBasePrismaSource extends AbstractSourceEx<IUserPrismaSchemaType, IUserSourceSchemaType> {
 	static inject = [
         $PrismaClient,
     ];
@@ -105,22 +105,10 @@ export class UserBasePrismaSource extends AbstractSource<IUserSourceSchemaType> 
     prisma() {
         return this.prismaClient.user;
     }
-    
-    toWhere(filter?: IUserSourceSchemaType["Filter"]): IUserPrismaSchemaType['Where'] | undefined {
-        throw new SourceError(`Filter is not supported in [${String($UserSource)}] Source.`);
-    }
-    
-    toWhereUnique(filter: IUserSourceSchemaType["Filter"]): IUserPrismaSchemaType['WhereUnique'] {
-        throw new SourceError(`Unique filter is not supported in [${String($UserSource)}] Source.`);
-    }
-    
-    toOrderBy(sort?: IUserSourceSchemaType["Sort"]): IUserPrismaSchemaType['OrderBy'] | undefined {
-        return sort as IUserPrismaSchemaType['OrderBy'];
-    }
 }
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ct48ji30dbwhl9rlwrtzezc9 = true;
+export const $leight_hluw1ac8sczuc9a4l2dyznkw = true;

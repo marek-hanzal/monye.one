@@ -14,4 +14,4 @@ export class UserBaseSourceMapper extends AbstractSourceMapper<IUserSourceSchema
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_n04cc0v9pkllx6iy1thq0hhg = true;
+export const $leight_axshbu0kqeuhnub9sgz8e3dm = true;

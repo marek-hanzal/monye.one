@@ -40,4 +40,4 @@ export const UserSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_w5ewsh2ebpa7j2myfy5t5eky = true;
+export const $leight_vz4ptujxcqlbg58mn6z4ousa = true;
