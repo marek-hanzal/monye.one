@@ -156,7 +156,7 @@ const useStyles = createStyles(theme => ({
         color:           withSecondaryPrimaryColor(theme),
         "&:hover":       {
             backgroundColor: withPrimaryColor(theme, -1),
-            color:           withSecondaryPrimaryColor(theme, -1),
+            color:           withSecondaryPrimaryColor(theme, 2),
         },
     },
     inRange:        {

@@ -313,11 +313,12 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
                         style={{height: "100%", padding: "0 0.3em"}}
                     >
                         <Group position={"apart"}>
-                            <Group spacing={0}>
-                                <ActionIcon size={"sm"}>
-                                    <IconCalendarEvent/>
-                                </ActionIcon>
-                            </Group>
+                            <div></div>
+                            {/*<Group spacing={0}>*/}
+                            {/*    <ActionIcon size={"sm"}>*/}
+                            {/*        <IconCalendarEvent/>*/}
+                            {/*    </ActionIcon>*/}
+                            {/*</Group>*/}
                             {day.day.day}
                         </Group>
                         {renderDayInline && events ? <div>
