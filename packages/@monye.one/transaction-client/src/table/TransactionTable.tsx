@@ -23,6 +23,7 @@ export interface ITransactionTableProps extends ITransactionSourceTableProps<ITr
 
 export const TransactionTable: FC<ITransactionTableProps> = props => {
     return <TransactionSourceTable
+        withFulltext
         withTranslation={{
             namespace: "transaction",
         }}

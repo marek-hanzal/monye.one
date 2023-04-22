@@ -3,6 +3,8 @@ import {
     Pagination
 }                              from "@leight/cursor-client";
 import {type IPaginationProps} from "@leight/cursor-client/src/cursor/Pagination";
+import {useTranslation}        from "@leight/i18n-client";
+import {WithIcon}              from "@leight/mantine";
 import {SortIcon}              from "@leight/sort-client";
 import {
     type ISourceSchemaType,
@@ -11,8 +13,13 @@ import {
 import {chain}                 from "@leight/utils";
 import {
     Center,
-    Divider
+    Divider,
+    Loader,
+    TextInput
 }                              from "@mantine/core";
+import {useDebouncedState}     from "@mantine/hooks";
+import {IconSearch}            from "@tabler/icons-react";
+import {useEffect}             from "react";
 import {
     type ITableColumn,
     type ITableProps,
@@ -41,6 +48,7 @@ export interface ISourceTableInternalProps<
 
         props?: IPaginationProps;
     };
+    withFulltext?: boolean;
 }
 
 /**
@@ -66,13 +74,14 @@ export const SourceTable = <
                 "bottom"
             ],
         },
+        withFulltext = false,
         ...props
     }: ISourceTableInternalProps<TSourceSchemaType, TColumnKeys>) => {
     const {
               dtos,
               isFetching,
               isLoading,
-          }               = SourceStore.Source.useState((
+          }                       = SourceStore.Source.useState((
         {
             dtos,
             isFetching,
@@ -83,8 +92,15 @@ export const SourceTable = <
             isFetching,
             isLoading,
         }));
-    const {sort, setSort} = SourceStore.Sort.useState(({sort, setSort}) => ({sort, setSort}));
-    const {pages}         = CursorStore.useState(({pages}) => ({pages}));
+    const [fulltext, setFulltext] = useDebouncedState("", 350);
+    const {t}                     = useTranslation(props.withTranslation?.namespace);
+    const {sort, setSort}         = SourceStore.Sort.useState(({sort, setSort}) => ({sort, setSort}));
+    const {setFilter}             = SourceStore.Filter.useState(({setFilter}) => ({setFilter}));
+    const {pages}                 = CursorStore.useState(({pages}) => ({pages}));
+
+    useEffect(() => {
+        setFilter({fulltext: fulltext || undefined});
+    }, [fulltext]);
 
     return <>
         {pagination?.position?.includes("top") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
@@ -94,6 +110,14 @@ export const SourceTable = <
                 />
             </Center>
             <Divider m={"md"}/>
+        </>}
+        {withFulltext && <>
+            <TextInput
+                onChange={event => setFulltext(event.currentTarget.value)}
+                placeholder={t(`${props.withTranslation?.label || "table"}.fulltext.placeholder`)}
+                rightSection={isLoading || isFetching ? <Loader size="xs"/> : <WithIcon icon={<IconSearch/>}/>}
+            />
+            <Divider mt={"sm"} mb={"sm"}/>
         </>}
         <Table<ISourceTableColumn<TSourceSchemaType>, TColumnKeys>
             isLoading={isLoading || isFetching}

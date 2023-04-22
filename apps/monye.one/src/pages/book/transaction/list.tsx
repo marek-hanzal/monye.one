@@ -17,9 +17,6 @@ export default withBookLayout(
                 defaultSort={{
                     date: "desc",
                 }}
-                defaultFilter={{
-                    fulltext: "ROHLIK.CZ",
-                }}
             >
                 <Paper>
                     <TransactionTable/>
