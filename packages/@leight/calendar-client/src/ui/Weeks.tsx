@@ -100,7 +100,7 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
             .filter(event => events.schema.safeParse(event).success)
             .map(event => events.schema.parse(event))
             .reduce<Record<string, TSourceSchemaType["Dto"][]>>((prev, current) => {
-                const stamp = current.date.toLocaleString({day: "numeric", month: "numeric", year: "numeric"});
+                const stamp = DateTime.fromJSDate(current.date).toLocaleString({day: "numeric", month: "numeric", year: "numeric"});
                 prev[stamp] = (prev[stamp] || []).concat(current);
                 return prev;
             }, {});
@@ -115,8 +115,8 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
 
     useEffect(() => {
         filter?.setFilter({
-            from: start,
-            to:   end,
+            from: start.toUTC().toJSDate(),
+            to:   end.toUTC().toJSDate(),
         });
     }, [
         start.toISO(),
@@ -125,8 +125,8 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
 
     const onChange: IWeeksProps<TSourceSchemaType>["onChange"] = props => {
         filter?.setFilter({
-            from: props.weeks.start,
-            to:   props.weeks.end,
+            from: props.weeks.start.toUTC().toJSDate(),
+            to:   props.weeks.end.toUTC().toJSDate(),
         });
         $onChange?.(props);
     };

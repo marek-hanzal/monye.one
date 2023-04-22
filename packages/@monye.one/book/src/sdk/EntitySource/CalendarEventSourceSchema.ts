@@ -12,23 +12,25 @@ import {
 } from "@leight/source";
 import {FilterSchema} from "@leight/filter";
 import {z} from "@leight/zod";
-import {CalendarEventBaseSchema} from "../../schema";
-import {CalendarEventSourceSchema as CoolCalendarEventSourceSchema} from "@leight/calendar";
+import {
+	CalendarEventSchema,
+	CalendarEventFilterSchemaEx
+} from "../../schema";
 import {ParamsSchema} from "@leight/query";
 
 export type ICalendarEventSourceSchemaType = ISourceSchemaType.of<typeof CalendarEventSourceSchema>;
 
-const $CalendarEventSchema = CalendarEventBaseSchema;
+const $CalendarEventSchema = CalendarEventSchema;
 const $CalendarEventCreateSchema = CreateSchema;
 const $CalendarEventPatchSchema = PatchSchema;
 export const CalendarEventSourceSchema = withSourceSchema({
     EntitySchema: $CalendarEventSchema,
-    DtoSchema: CalendarEventBaseSchema,
+    DtoSchema: CalendarEventSchema,
     ToCreateSchema: $CalendarEventCreateSchema,
     CreateSchema: $CalendarEventCreateSchema,
     ToPatchSchema: $CalendarEventPatchSchema,
     PatchSchema: $CalendarEventPatchSchema,
-    FilterSchema: FilterSchema.merge(CoolCalendarEventSourceSchema['FilterSchema']),
+    FilterSchema: FilterSchema.merge(CalendarEventFilterSchemaEx),
     ParamsSchema: ParamsSchema,
     SortSchema: z.object({
         id: SortOrderSchema
@@ -38,4 +40,4 @@ export const CalendarEventSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vn61k5isdfhitjuulseujkjh = true;
+export const $leight_htlhp1scq8ahgok29qekrap4 = true;

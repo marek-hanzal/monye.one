@@ -34,7 +34,8 @@
         "@leight/source": "^0.5.0",
         "@leight/source-server": "^0.5.0",
         "@leight/trpc-source-server": "^0.5.0",
-        "@monye.one/book": "^0.5.0"
+        "@monye.one/book": "^0.5.0",
+        "@monye.one/transaction": "^0.5.0"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.7",

@@ -1,7 +1,8 @@
 import {
     withSdk,
     withSourceGenerators
-} from "@leight/sdk";
+}                            from "@leight/sdk";
+import {CalendarEventSchema} from "./schema";
 
 void withSdk(
     withSourceGenerators({
@@ -10,26 +11,24 @@ void withSdk(
                 {
                     name:         "CalendarEvent",
                     withSchemaEx: {
-                        schema:    {
-                            type:        "CalendarEventBaseSchema",
+                        schema: {
+                            type:        "CalendarEventSchema",
                             withPackage: {
                                 import:  "CalendarEventBaseSchema",
                                 package: "../../schema"
                             },
                         },
                         dto:    {
-                            type:        "CalendarEventBaseSchema",
+                            type:        "CalendarEventSchema",
                             withPackage: {
                                 import:  "CalendarEventBaseSchema",
                                 package: "../../schema"
                             },
                         },
                         filter: {
-                            type:        "CoolCalendarEventSourceSchema['FilterSchema']",
+                            type:        "CalendarEventFilterSchemaEx",
                             withPackage: {
-                                import:  "CalendarEventSourceSchema",
-                                alias:   "CoolCalendarEventSourceSchema",
-                                package: "@leight/calendar",
+                                package: "../../schema"
                             },
                         },
                     },

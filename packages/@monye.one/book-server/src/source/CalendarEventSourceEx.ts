@@ -1,18 +1,24 @@
-import {DateTime}                            from "@leight/i18n";
 import {
     $PrismaClient,
+    decimalOf,
     PrismaClient
 }                                            from "@leight/prisma";
 import {type ICalendarEventSourceSchemaType} from "@monye.one/book";
+import {
+    $TransactionSource,
+    type ITransactionSource
+}                                            from "@monye.one/transaction";
 import {CalendarEventBaseSource}             from "../sdk/BaseSource/CalendarEventBaseSource";
 
 export class CalendarEventSourceEx extends CalendarEventBaseSource {
     static inject = [
         $PrismaClient,
+        $TransactionSource,
     ];
 
     constructor(
         protected prismaClient: PrismaClient,
+        protected transactionSource: ITransactionSource,
     ) {
         super();
     }
@@ -27,26 +33,18 @@ export class CalendarEventSourceEx extends CalendarEventBaseSource {
             return [];
         }
         const {from, to} = filter;
-        return (await this.prismaClient.transaction.findMany({
-            where: {
-                AND: [
-                    {
-                        date: {
-                            gte: from.toJSDate(),
-                        },
-                    },
-                    {
-                        date: {
-                            lte: to.toJSDate(),
-                        },
-                    },
-                ],
+        return (await this.transactionSource.query({
+            filter: {
+                withRange: {
+                    from,
+                    to,
+                },
             },
         })).map(transaction => {
-            const amount = transaction.amount.toNumber();
+            const amount = decimalOf(transaction.amount);
             return {
                 id:      transaction.id,
-                date:    DateTime.fromJSDate(transaction.date),
+                date:    transaction.date,
                 amount,
                 outcome: amount < 0 ? Math.abs(amount) : 0,
                 income:  amount > 0 ? Math.abs(amount) : 0,

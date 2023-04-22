@@ -41,4 +41,4 @@ export const BankSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_n9o9nws1lm3tl57vvbdp0v5l = true;
+export const $leight_fho7v7wavh01c9qgkr0rp042 = true;

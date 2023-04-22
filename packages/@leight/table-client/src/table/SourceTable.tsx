@@ -3,8 +3,7 @@ import {
     Pagination
 }                              from "@leight/cursor-client";
 import {type IPaginationProps} from "@leight/cursor-client/src/cursor/Pagination";
-import {useTranslation}        from "@leight/i18n-client";
-import {WithIcon}              from "@leight/mantine";
+import {Fulltext}              from "@leight/mantine";
 import {SortIcon}              from "@leight/sort-client";
 import {
     type ISourceSchemaType,
@@ -13,13 +12,8 @@ import {
 import {chain}                 from "@leight/utils";
 import {
     Center,
-    Divider,
-    Loader,
-    TextInput
+    Divider
 }                              from "@mantine/core";
-import {useDebouncedState}     from "@mantine/hooks";
-import {IconSearch}            from "@tabler/icons-react";
-import {useEffect}             from "react";
 import {
     type ITableColumn,
     type ITableProps,
@@ -81,7 +75,7 @@ export const SourceTable = <
               dtos,
               isFetching,
               isLoading,
-          }                       = SourceStore.Source.useState((
+          } = SourceStore.Source.useState((
         {
             dtos,
             isFetching,
@@ -92,36 +86,26 @@ export const SourceTable = <
             isFetching,
             isLoading,
         }));
-    const [fulltext, setFulltext] = useDebouncedState("", 350);
-    const {t}                     = useTranslation(props.withTranslation?.namespace);
-    const {sort, setSort}         = SourceStore.Sort.useState(({sort, setSort}) => ({sort, setSort}));
-    const {filter, setFilter}     = SourceStore.Filter.useState(({filter, setFilter}) => ({filter, setFilter}));
-    const {pages}                 = CursorStore.useState(({pages}) => ({pages}));
 
-    useEffect(() => {
-        setFilter({
-            ...filter,
-            fulltext: fulltext || undefined
-        });
-    }, [fulltext]);
+    const {sort, setSort} = SourceStore.Sort.useState(({sort, setSort}) => ({sort, setSort}));
+    const {pages}         = CursorStore.useState(({pages}) => ({pages}));
 
     return <>
-        {pagination?.position?.includes("top") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
-            <Center>
-                <Pagination
-                    {...pagination?.props}
-                />
-            </Center>
-            <Divider m={"md"}/>
-        </>}
-        {withFulltext && <>
-            <TextInput
-                onChange={event => setFulltext(event.currentTarget.value)}
-                placeholder={t(`${props.withTranslation?.label || "table"}.fulltext.placeholder`)}
-                rightSection={isLoading || isFetching ? <Loader size="xs"/> : <WithIcon icon={<IconSearch/>}/>}
+    {pagination?.position?.includes("top") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
+        <Center>
+            <Pagination
+                {...pagination?.props}
             />
-            <Divider mt={"sm"} mb={"sm"}/>
-        </>}
+        </Center>
+        <Divider m={"md"}/>
+    </>}
+    {withFulltext && <>
+        <Fulltext
+            SourceStore={SourceStore}
+            withTranslation={props.withTranslation}
+        />
+        <Divider mt={"sm"} mb={"sm"}/>
+    </>}
         <Table<ISourceTableColumn<TSourceSchemaType>, TColumnKeys>
             isLoading={isLoading || isFetching}
             columns={Object.entries<ISourceTableColumn<TSourceSchemaType>>(columns).reduce<any>((prev, [name, column]) => {
@@ -150,13 +134,13 @@ export const SourceTable = <
             items={dtos.filter(dto => schema.safeParse(dto).success)}
             {...props}
         />
-        {pagination?.position?.includes("bottom") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
-            <Divider m={"md"}/>
-            <Center>
-                <Pagination
-                    {...pagination?.props}
-                />
-            </Center>
-        </>}
+    {pagination?.position?.includes("bottom") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
+        <Divider m={"md"}/>
+        <Center>
+            <Pagination
+                {...pagination?.props}
+            />
+        </Center>
+    </>}
     </>;
 };

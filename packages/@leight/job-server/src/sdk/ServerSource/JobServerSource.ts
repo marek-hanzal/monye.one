@@ -13,4 +13,4 @@ export class JobSource extends JobBasePrismaSource implements IJobSource {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fsicqf8vwhxsqluceccbenih = true;
+export const $leight_musx1s4j04szjdvyy21hrk8b = true;
