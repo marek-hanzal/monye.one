@@ -28,7 +28,6 @@ import {
     type PropsWithChildren,
     type ReactNode,
     useEffect,
-    useMemo,
     useRef,
     useState
 }                      from "react";
@@ -95,16 +94,14 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
           }                                                     = WeeksOfStore.useState();
     const source                                                = events?.SourceStore.Source.useState();
     const filter                                                = events?.SourceStore.Filter.useState();
-    const $events                                               = useMemo(() => {
-        return events && source?.dtos
-            .filter(event => events.schema.safeParse(event).success)
-            .map(event => events.schema.parse(event))
-            .reduce<Record<string, TSourceSchemaType["Dto"][]>>((prev, current) => {
-                const stamp = DateTime.fromJSDate(current.date).toLocaleString({day: "numeric", month: "numeric", year: "numeric"});
-                prev[stamp] = (prev[stamp] || []).concat(current);
-                return prev;
-            }, {});
-    }, [source?.id]);
+    const $events                                               = events && source?.dtos
+        .filter(event => events.schema.safeParse(event).success)
+        .map(event => events.schema.parse(event))
+        .reduce<Record<string, TSourceSchemaType["Dto"][]>>((prev, current) => {
+            const stamp = DateTime.fromJSDate(current.date).toLocaleString({day: "numeric", month: "numeric", year: "numeric"});
+            prev[stamp] = (prev[stamp] || []).concat(current);
+            return prev;
+        }, {});
     const [isOverlay, {open: openOverlay, close: closeOverlay}] = useDisclosure(false);
     const overlay                                               = useRef<ReactNode>();
     const [withWeeks, setWithWeeks]                             = useState(defaultWithWeekNo);

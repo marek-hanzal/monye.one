@@ -91,22 +91,24 @@ export const SourceTable = <
     const {pages}         = CursorStore.useState(({pages}) => ({pages}));
 
     return <>
-    {pagination?.position?.includes("top") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
-        <Center>
-            <Pagination
-                {...pagination?.props}
-            />
-        </Center>
-        <Divider m={"md"}/>
-    </>}
+        {pagination?.position?.includes("top") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
+            <Center>
+                <Pagination
+                    {...pagination?.props}
+                />
+            </Center>
+            <Divider mt={"md"}/>
+        </>}
     {withFulltext && <>
         <Fulltext
+            mt={"sm"}
             SourceStore={SourceStore}
             withTranslation={props.withTranslation}
         />
-        <Divider mt={"sm"} mb={"sm"}/>
+        <Divider mt={"sm"}/>
     </>}
         <Table<ISourceTableColumn<TSourceSchemaType>, TColumnKeys>
+            mt={"sm"}
             isLoading={isLoading || isFetching}
             columns={Object.entries<ISourceTableColumn<TSourceSchemaType>>(columns).reduce<any>((prev, [name, column]) => {
                 prev[name] = {

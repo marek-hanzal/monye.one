@@ -32,13 +32,18 @@ export class CalendarEventSourceEx extends CalendarEventBaseSource {
         if (!filter) {
             return [];
         }
-        const {from, to} = filter;
+        const {from, to, fulltext} = filter;
         return (await this.transactionSource.query({
             filter: {
+                fulltext,
                 withRange: {
                     from,
                     to,
                 },
+            },
+            cursor: {
+                page: 0,
+                size: 250,
             },
         })).map(transaction => {
             const amount = decimalOf(transaction.amount);

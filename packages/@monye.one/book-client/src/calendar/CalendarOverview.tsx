@@ -31,9 +31,9 @@ export interface ICalendarOverviewProps {
 }
 
 export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
-    const [tab, setTab] = useState<string | null>("calendar");
-    const {weeks}       = WeeksOfStore.useState(({weeks}) => ({weeks}));
-    const {setFilter}   = TransactionSourceStore.Filter.useState(({setFilter}) => ({setFilter}));
+    const [tab, setTab]       = useState<string | null>("calendar");
+    const {weeks}             = WeeksOfStore.useState(({weeks}) => ({weeks}));
+    const {filter, setFilter} = TransactionSourceStore.Filter.useState(({filter, setFilter}) => ({filter, setFilter}));
 
     const $setFilter = useCallback(({range: {from, to}, withIncome = false, withOutcome = false}: { range: IDateRange; withIncome?: boolean; withOutcome?: boolean }) => {
         setFilter({
@@ -56,7 +56,13 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
         <Paper>
             <Tabs
                 value={tab}
-                onTabChange={setTab}
+                onTabChange={tab => {
+                    setTab(tab);
+                    setFilter({
+                        ...filter,
+                        fulltext: undefined,
+                    });
+                }}
             >
                 <Tabs.List>
                     <Tabs.Tab
@@ -83,36 +89,34 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
                     </Tabs.Tab>
                 </Tabs.List>
                 <Tabs.Panel value={"calendar"}>
-                    <CalendarEventQueryProvider>
-                        <BookCalendar
-                            mt={"sm"}
-                            day={{
-                                onIncomeClick:  ({range}) => {
-                                    $setFilter({range, withIncome: true, withOutcome: false});
-                                    setTab("transactions");
-                                },
-                                onOutcomeClick: ({range}) => {
-                                    $setFilter({range, withIncome: false, withOutcome: true});
-                                    setTab("transactions");
-                                }
-                            }}
-                            month={{
-                                onIncomeClick:  ({range}) => {
-                                    $setFilter({range, withIncome: true, withOutcome: false});
-                                    setTab("transactions");
-                                },
-                                onOutcomeClick: ({range}) => {
-                                    $setFilter({range, withIncome: false, withOutcome: true});
-                                    setTab("transactions");
-                                }
-                            }}
-                            onChange={({weeks}) => {
-                                $setFilter({
-                                    range: {from: weeks.start, to: weeks.end},
-                                });
-                            }}
-                        />
-                    </CalendarEventQueryProvider>
+                    <BookCalendar
+                        mt={"sm"}
+                        day={{
+                            onIncomeClick:  ({range}) => {
+                                $setFilter({range, withIncome: true, withOutcome: false});
+                                setTab("transactions");
+                            },
+                            onOutcomeClick: ({range}) => {
+                                $setFilter({range, withIncome: false, withOutcome: true});
+                                setTab("transactions");
+                            }
+                        }}
+                        month={{
+                            onIncomeClick:  ({range}) => {
+                                $setFilter({range, withIncome: true, withOutcome: false});
+                                setTab("transactions");
+                            },
+                            onOutcomeClick: ({range}) => {
+                                $setFilter({range, withIncome: false, withOutcome: true});
+                                setTab("transactions");
+                            }
+                        }}
+                        onChange={({weeks}) => {
+                            $setFilter({
+                                range: {from: weeks.start, to: weeks.end},
+                            });
+                        }}
+                    />
                 </Tabs.Panel>
                 <Tabs.Panel value={"transactions"}>
                     <TransactionTable
@@ -130,13 +134,15 @@ export interface ICalendarOverviewProviderProps {
 }
 
 export const CalendarOverviewProvider: FC<ICalendarOverviewProviderProps> = () => {
-    return <TransactionQueryProvider
-        defaultSort={{
-            date: "desc",
-        }}
-    >
-        <CalendarProvider>
-            <CalendarOverview/>
-        </CalendarProvider>
-    </TransactionQueryProvider>;
+    return <CalendarEventQueryProvider>
+        <TransactionQueryProvider
+            defaultSort={{
+                date: "desc",
+            }}
+        >
+            <CalendarProvider>
+                <CalendarOverview/>
+            </CalendarProvider>
+        </TransactionQueryProvider>
+    </CalendarEventQueryProvider>;
 };

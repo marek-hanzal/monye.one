@@ -4,6 +4,10 @@ import {
     WeeksOfStore
 }                from "@leight/calendar-client";
 import {
+    Fulltext,
+    type IFulltextProps
+}                from "@leight/mantine";
+import {
     CalendarEventSourceSchema,
     type ICalendarEventSourceSchemaType
 }                from "@monye.one/book";
@@ -18,6 +22,7 @@ import {
 }                from "./IncomeOutcome";
 
 export interface IBookCalendarProps extends Omit<ICalendarProps<ICalendarEventSourceSchemaType>, "useEventState"> {
+    onSearch?: IFulltextProps<ICalendarEventSourceSchemaType>["onSearch"];
     day?: {
         onIncomeClick?: IIncomeOutcomeProps["onIncomeClick"];
         onOutcomeClick?: IIncomeOutcomeProps["onOutcomeClick"];
@@ -30,12 +35,22 @@ export interface IBookCalendarProps extends Omit<ICalendarProps<ICalendarEventSo
 
 export const BookCalendar: FC<IBookCalendarProps> = (
     {
+        onSearch,
         day:   $day,
         month: $month,
         ...    props
     }) => {
     const {weeks} = WeeksOfStore.useState(({weeks}) => ({weeks}));
     return <CalendarEventSource>
+        <Fulltext
+            onSearch={onSearch}
+            SourceStore={CalendarEventSourceStore}
+            withTranslation={{
+                namespace: "book",
+                label:     "calendar",
+            }}
+            mt={"sm"}
+        />
         <Calendar<ICalendarEventSourceSchemaType>
             events={{
                 schema:      CalendarEventSourceSchema["DtoSchema"],

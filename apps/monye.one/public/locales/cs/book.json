@@ -9,5 +9,6 @@
     "calendar-overview.transactions.tab": "Transakce",
     "tab.calendar.days": "Denní přehled",
     "tab.calendar.months": "Měsíční přehled",
-    "tab.calendar.years": "Roční přehled"
+    "tab.calendar.years": "Roční přehled",
+    "calendar.fulltext.placeholder": "Hledat"
 }
