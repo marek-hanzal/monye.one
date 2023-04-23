@@ -9,11 +9,10 @@ import {
     type ISourceSchemaType,
     type ISourceStore
 }                              from "@leight/source";
-import {chain}                 from "@leight/utils";
 import {
-    Center,
-    Divider
-}                              from "@mantine/core";
+    chain,
+    keywordsOf
+}                              from "@leight/utils";
 import {
     type ITableColumn,
     type ITableProps,
@@ -64,7 +63,6 @@ export const SourceTable = <
         pagination = {
             hideOnSingle: false,
             position:     [
-                "top",
                 "bottom"
             ],
         },
@@ -88,28 +86,27 @@ export const SourceTable = <
         }));
 
     const {sort, setSort} = SourceStore.Sort.useState(({sort, setSort}) => ({sort, setSort}));
+    const {filter}        = SourceStore.Filter.useState(({filter}) => ({filter}));
     const {pages}         = CursorStore.useState(({pages}) => ({pages}));
 
     return <>
-        {pagination?.position?.includes("top") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
-            <Center>
-                <Pagination
-                    {...pagination?.props}
-                />
-            </Center>
-            <Divider mt={"md"}/>
+        {withFulltext && <>
+            <Fulltext
+                mt={"sm"}
+                SourceStore={SourceStore}
+                withTranslation={props.withTranslation}
+            />
         </>}
-    {withFulltext && <>
-        <Fulltext
-            mt={"sm"}
-            SourceStore={SourceStore}
-            withTranslation={props.withTranslation}
-        />
-        <Divider mt={"sm"}/>
-    </>}
+        {pagination?.position?.includes("top") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
+            <Pagination
+                mt={"sm"}
+                {...pagination?.props}
+            />
+        </>}
         <Table<ISourceTableColumn<TSourceSchemaType>, TColumnKeys>
             mt={"sm"}
             isLoading={isLoading || isFetching}
+            highlight={keywordsOf(filter?.fulltext)}
             columns={Object.entries<ISourceTableColumn<TSourceSchemaType>>(columns).reduce<any>((prev, [name, column]) => {
                 prev[name] = {
                     ...column,
@@ -136,13 +133,11 @@ export const SourceTable = <
             items={dtos.filter(dto => schema.safeParse(dto).success)}
             {...props}
         />
-    {pagination?.position?.includes("bottom") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
-        <Divider m={"md"}/>
-        <Center>
+        {pagination?.position?.includes("bottom") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
             <Pagination
+                mt={"sm"}
                 {...pagination?.props}
             />
-        </Center>
-    </>}
+        </>}
     </>;
 };

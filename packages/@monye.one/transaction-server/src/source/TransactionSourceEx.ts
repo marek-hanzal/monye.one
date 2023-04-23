@@ -6,6 +6,7 @@ import {
     $UserService,
     type IUserService
 }                                    from "@leight/user";
+import {keywordsOf}                  from "@leight/utils";
 import {
     type ITransactionPrismaSchemaType,
     type ITransactionSourceSchemaType,
@@ -36,32 +37,62 @@ export class TransactionSourceEx extends TransactionBasePrismaSource {
         };
 
         const {withRange, fulltext} = filter;
-        if (fulltext) {
-            const $fulltext = fulltext.split(/\s+/g).map(item => item.trim()).filter(Boolean);
-            where["AND"]    = Array.isArray(where["AND"]) ? where["AND"].concat($fulltext.map(item => ({
-                OR: [
-                    {
-                        note: {
-                            contains: item,
-                            mode:     "insensitive",
-                        }
-                    },
-                    {
-                        target: {
-                            contains: item,
-                            mode:     "insensitive",
-                        }
-                    },
-                    {
-                        bank: {
-                            account: {
-                                contains: item,
-                                mode:     "insensitive",
+        const $fulltext             = keywordsOf(fulltext);
+        if ($fulltext) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    OR: $fulltext?.map(item => ({
+                        OR: [
+                            {
+                                note: {
+                                    contains: item,
+                                    mode:     "insensitive",
+                                }
                             },
-                        },
-                    },
-                ]
-            }))) : [];
+                            {
+                                variable: {
+                                    contains: item,
+                                    mode:     "insensitive",
+                                }
+                            },
+                            {
+                                symbol: {
+                                    contains: item,
+                                    mode:     "insensitive",
+                                }
+                            },
+                            {
+                                static: {
+                                    contains: item,
+                                    mode:     "insensitive",
+                                }
+                            },
+                            {
+                                target: {
+                                    contains: item,
+                                    mode:     "insensitive",
+                                }
+                            },
+                            {
+                                bank: {
+                                    account: {
+                                        contains: item,
+                                        mode:     "insensitive",
+                                    },
+                                },
+                            },
+                            {
+                                bank: {
+                                    description: {
+                                        contains: item,
+                                        mode:     "insensitive",
+                                    },
+                                },
+                            },
+                        ]
+                    })),
+                }
+            ]) : [];
         }
 
         if (withRange) {

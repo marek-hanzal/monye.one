@@ -3,6 +3,7 @@ import {
     CalendarProvider,
     WeeksOfStore
 }                                   from "@leight/calendar-client";
+import {FulltextProvider}           from "@leight/filter-client";
 import {Translation}                from "@leight/i18n-client";
 import {Paper}                      from "@leight/mantine";
 import {
@@ -31,9 +32,9 @@ export interface ICalendarOverviewProps {
 }
 
 export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
-    const [tab, setTab]       = useState<string | null>("calendar");
-    const {weeks}             = WeeksOfStore.useState(({weeks}) => ({weeks}));
-    const {filter, setFilter} = TransactionSourceStore.Filter.useState(({filter, setFilter}) => ({filter, setFilter}));
+    const [tab, setTab] = useState<string | null>("calendar");
+    const {weeks}       = WeeksOfStore.useState(({weeks}) => ({weeks}));
+    const {setFilter}   = TransactionSourceStore.Filter.useState(({setFilter}) => ({setFilter}));
 
     const $setFilter = useCallback(({range: {from, to}, withIncome = false, withOutcome = false}: { range: IDateRange; withIncome?: boolean; withOutcome?: boolean }) => {
         setFilter({
@@ -56,13 +57,7 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
         <Paper>
             <Tabs
                 value={tab}
-                onTabChange={tab => {
-                    setTab(tab);
-                    setFilter({
-                        ...filter,
-                        fulltext: undefined,
-                    });
-                }}
+                onTabChange={setTab}
             >
                 <Tabs.List>
                     <Tabs.Tab
@@ -121,6 +116,9 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
                 <Tabs.Panel value={"transactions"}>
                     <TransactionTable
                         pagination={{
+                            position:     [
+                                "bottom"
+                            ],
                             hideOnSingle: true,
                         }}
                     />
@@ -134,15 +132,17 @@ export interface ICalendarOverviewProviderProps {
 }
 
 export const CalendarOverviewProvider: FC<ICalendarOverviewProviderProps> = () => {
-    return <CalendarEventQueryProvider>
-        <TransactionQueryProvider
-            defaultSort={{
-                date: "desc",
-            }}
-        >
-            <CalendarProvider>
-                <CalendarOverview/>
-            </CalendarProvider>
-        </TransactionQueryProvider>
-    </CalendarEventQueryProvider>;
+    return <FulltextProvider>
+        <CalendarEventQueryProvider>
+            <TransactionQueryProvider
+                defaultSort={{
+                    date: "desc",
+                }}
+            >
+                <CalendarProvider>
+                    <CalendarOverview/>
+                </CalendarProvider>
+            </TransactionQueryProvider>
+        </CalendarEventQueryProvider>
+    </FulltextProvider>;
 };

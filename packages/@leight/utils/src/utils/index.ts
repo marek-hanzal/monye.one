@@ -6,6 +6,7 @@ export * from "./intersectOf";
 export * from "./isCallable";
 export * from "./isObject";
 export * from "./isString";
+export * from "./keywordsOf";
 export * from "./minMaxOf";
 export * from "./Pack";
 export * from "./toHumanBytes";

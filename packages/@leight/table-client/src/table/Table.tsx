@@ -1,6 +1,9 @@
 import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
-import {isCallable}            from "@leight/utils";
+import {
+    isCallable,
+    isString
+}                              from "@leight/utils";
 import {
     Box,
     Group,
@@ -11,7 +14,7 @@ import {
 import {
     type ComponentProps,
     type CSSProperties,
-    FC,
+    type FC,
     type ReactNode
 }                              from "react";
 import {TableAction}           from "./TableAction";
@@ -29,7 +32,7 @@ export interface ITableColumn<TItem = any> {
     /**
      * Mandatory render method; if you do not want to render a column, mark it as hidden on a table itself.
      */
-    render: ((item: TItem) => ReactNode) | (keyof TItem);
+    render: ITableColumn.IRender<TItem>;
     /**
      * Optionally return styles for a table header column
      */
@@ -43,6 +46,17 @@ export interface ITableColumn<TItem = any> {
      * Handle clicking column in table header.
      */
     onHeaderClick?(): void;
+}
+
+export namespace ITableColumn {
+    export type IRender<TItem = any> =
+        ((props: IRenderProps<TItem>) => ReactNode)
+        | (keyof TItem)
+
+    export interface IRenderProps<TItem = any> {
+        item: TItem;
+        highlight: string[];
+    }
 }
 
 export type ITableColumns<TColumn extends ITableColumn, TColumnKeys extends string> = Record<TColumnKeys, TColumn>;
@@ -82,6 +96,7 @@ export interface ITableInternalProps<TColumn extends ITableColumn, TColumnKeys e
      * Data of the table.
      */
     items?: InferItem<TColumn>[];
+    highlight?: string[];
 
     /**
      * Component used to render actions over whole table
@@ -91,9 +106,18 @@ export interface ITableInternalProps<TColumn extends ITableColumn, TColumnKeys e
      * Per-row component action handler
      */
     WithRowAction?: FC<ITableInternalProps.IWithRowActionProps<TColumn>>;
+
+    renderFooter?: ITableInternalProps.IRenderFooter<TColumn>;
 }
 
 export namespace ITableInternalProps {
+    export type IRenderFooter<TColumn extends ITableColumn> = (props: IRenderFooterProps<TColumn>) => ReactNode;
+
+    export interface IRenderFooterProps<TColumn extends ITableColumn> {
+        items: InferItem<TColumn>[];
+        columns?: TColumn[];
+    }
+
     export interface IWithTableActionProps<TColumn extends ITableColumn> {
         items?: InferItem<TColumn>[];
     }
@@ -117,6 +141,8 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
         items = [],
         WithTableAction,
         WithRowAction,
+        highlight = [],
+        renderFooter,
         ...props
     }: ITableInternalProps<TColumn, TColumnKeys>) => {
     /**
@@ -197,10 +223,21 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
                                 />
                             </td>}
                             {$columns.map(([name, column]) => <td key={name}>
-                                {isCallable(column.render) ? column.render(item) : (item as any)[column.render]}
+                                {isCallable(column.render) ? column.render({
+                                    item,
+                                    highlight: isString(highlight) ? [highlight] : highlight,
+                                }) : (item as any)[column.render]}
                             </td>)}
                         </tr>)}
                 </tbody>
+                {renderFooter ? <tfoot>
+                    <tr>
+                        {renderFooter({
+                            items,
+                            columns: $columns.map(([, column]) => column),
+                        })}
+                    </tr>
+                </tfoot> : null}
             </CoolTable>
         </Box>
     </ScrollArea>;

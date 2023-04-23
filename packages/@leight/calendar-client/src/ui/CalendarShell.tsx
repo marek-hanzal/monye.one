@@ -152,11 +152,11 @@ const useStyles = createStyles(theme => ({
     },
     currentWeek:    {},
     currentDay:     {
-        backgroundColor: withPrimaryColor(theme),
-        color:           withSecondaryPrimaryColor(theme),
+        backgroundColor: withPrimaryColor(theme, -4),
+        color:           withSecondaryPrimaryColor(theme, -4),
         "&:hover":       {
-            backgroundColor: withPrimaryColor(theme, -1),
-            color:           withSecondaryPrimaryColor(theme, 2),
+            backgroundColor: withPrimaryColor(theme, -3),
+            color:           withSecondaryPrimaryColor(theme, -2),
         },
     },
     inRange:        {

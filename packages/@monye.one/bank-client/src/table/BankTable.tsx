@@ -41,12 +41,12 @@ export const BankTable: FC<IBankTableProps> = props => {
                 render: "description",
             },
             balanceValue: {
-                width: 10,
-                render: ({balance}) => toHumanNumber({number: balance?.value}),
+                width:  10,
+                render: ({item: {balance}}) => toHumanNumber({number: balance?.value}),
             },
             balanceDate:  {
-                width: 10,
-                render: ({balance}) => <DateInline date={balance?.date}/>,
+                width:  10,
+                render: ({item: {balance}}) => <DateInline date={balance?.date}/>,
             },
         }}
         {...props}
