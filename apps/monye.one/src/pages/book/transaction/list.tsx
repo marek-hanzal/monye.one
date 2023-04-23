@@ -14,9 +14,7 @@ export default withBookLayout(
     function List() {
         return <Box p={"md"}>
             <TransactionMenu/>
-            <FulltextProvider
-                defaultFulltext={"mol"}
-            >
+            <FulltextProvider>
                 <TransactionQueryProvider
                     defaultSort={{
                         date: "desc",
