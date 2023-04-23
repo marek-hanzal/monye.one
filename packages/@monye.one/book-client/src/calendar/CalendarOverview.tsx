@@ -3,7 +3,10 @@ import {
     CalendarProvider,
     WeeksOfStore
 }                                   from "@leight/calendar-client";
-import {FulltextProvider}           from "@leight/filter-client";
+import {
+    FulltextProvider,
+    FulltextStoreContext
+}                                   from "@leight/filter-client";
 import {Translation}                from "@leight/i18n-client";
 import {Paper}                      from "@leight/mantine";
 import {
@@ -28,16 +31,26 @@ import {
 import {CalendarEventQueryProvider} from "../sdk";
 import {BookCalendar}               from "./BookCalendar";
 
+type IFilterRange = {
+    fulltext: string | undefined | null;
+    range: IDateRange;
+    withIncome?: boolean;
+    withOutcome?: boolean;
+}
+
 export interface ICalendarOverviewProps {
 }
 
 export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
     const [tab, setTab] = useState<string | null>("calendar");
+    const {fulltext}    = FulltextStoreContext.useState(({fulltext}) => ({fulltext}));
     const {weeks}       = WeeksOfStore.useState(({weeks}) => ({weeks}));
     const {setFilter}   = TransactionSourceStore.Filter.useState(({setFilter}) => ({setFilter}));
 
-    const $setFilter = useCallback(({range: {from, to}, withIncome = false, withOutcome = false}: { range: IDateRange; withIncome?: boolean; withOutcome?: boolean }) => {
+    const $setFilter = useCallback(({fulltext, range: {from, to}, withIncome = false, withOutcome = false}: IFilterRange) => {
+        console.log("Full", fulltext);
         setFilter({
+            fulltext:  fulltext || undefined,
             withRange: {
                 from: from.toUTC().toJSDate(),
                 to:   to.toUTC().toJSDate(),
@@ -50,6 +63,7 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
     useEffect(() => {
         $setFilter({
             range: {from: weeks.start, to: weeks.end},
+            fulltext,
         });
     }, []);
 
@@ -88,26 +102,27 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
                         mt={"sm"}
                         day={{
                             onIncomeClick:  ({range}) => {
-                                $setFilter({range, withIncome: true, withOutcome: false});
+                                $setFilter({fulltext, range, withIncome: true, withOutcome: false});
                                 setTab("transactions");
                             },
                             onOutcomeClick: ({range}) => {
-                                $setFilter({range, withIncome: false, withOutcome: true});
+                                $setFilter({fulltext, range, withIncome: false, withOutcome: true});
                                 setTab("transactions");
                             }
                         }}
                         month={{
                             onIncomeClick:  ({range}) => {
-                                $setFilter({range, withIncome: true, withOutcome: false});
+                                $setFilter({fulltext, range, withIncome: true, withOutcome: false});
                                 setTab("transactions");
                             },
                             onOutcomeClick: ({range}) => {
-                                $setFilter({range, withIncome: false, withOutcome: true});
+                                $setFilter({fulltext, range, withIncome: false, withOutcome: true});
                                 setTab("transactions");
                             }
                         }}
                         onChange={({weeks}) => {
                             $setFilter({
+                                fulltext,
                                 range: {from: weeks.start, to: weeks.end},
                             });
                         }}

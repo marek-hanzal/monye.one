@@ -24,6 +24,7 @@ export const createSourceContext = <TSourceSchemaType extends ISourceSchemaType>
     return createStoreContext<ISourceStoreProps<TSourceSchemaType>>({
         state: () => (set) => ({
             id:         generateId(),
+            name,
             schema,
             dtos:       dtos,
             isLoading:  false,

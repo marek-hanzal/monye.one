@@ -12,7 +12,8 @@ export type IFilterStoreProps<TFilterSchema extends IFilterSchema> = IStoreProps
     filter: z.infer<TFilterSchema>;
 
     setFilter(filter?: z.infer<TFilterSchema>): void;
-}>
+    setShallowFilter(filter?: z.infer<TFilterSchema>): void;
+}>;
 
 export type IFilterStoreContext<TFilterSchema extends IFilterSchema> = IStoreContext<IFilterStoreProps<TFilterSchema>>;
 

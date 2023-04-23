@@ -2,40 +2,37 @@ import {
     type ICalendarEventSourceSchemaType,
     type IDay,
     type IWeeks
-}                      from "@leight/calendar";
-import {DateTime}      from "@leight/i18n";
-import {DateInline}    from "@leight/i18n-client";
-import {classNames}    from "@leight/utils-client";
+}                             from "@leight/calendar";
+import {FulltextStoreContext} from "@leight/filter-client";
+import {DateTime}             from "@leight/i18n";
+import {DateInline}           from "@leight/i18n-client";
+import {classNames}           from "@leight/utils-client";
 import {
     ActionIcon,
     Button,
     Grid,
     Group,
-    Overlay,
     Stack,
     Text
-}                      from "@mantine/core";
-import {useDisclosure} from "@mantine/hooks";
+}                             from "@mantine/core";
 import {
     IconCalendarEvent,
     IconChevronLeft,
     IconChevronRight,
     IconChevronsLeft,
-    IconChevronsRight,
-    IconX
-}                      from "@tabler/icons-react";
+    IconChevronsRight
+}                             from "@tabler/icons-react";
 import {
     type PropsWithChildren,
     type ReactNode,
     useEffect,
-    useRef,
     useState
-}                      from "react";
-import {WeeksOfStore}  from "../context";
+}                             from "react";
+import {WeeksOfStore}         from "../context";
 import {
     CalendarShell,
     type ICalendarShellProps
-}                      from "./CalendarShell";
+}                             from "./CalendarShell";
 
 export type IWeeksProps<TSourceSchemaType extends ICalendarEventSourceSchemaType = ICalendarEventSourceSchemaType> = PropsWithChildren<Omit<ICalendarShellProps<TSourceSchemaType>, "children" | "onClick" | "onChange"> & {
     onClick?(props: IWeeksProps.IOnClickProps): void;
@@ -91,10 +88,11 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
                          end,
                          isCurrent,
                      }
-          }                                                     = WeeksOfStore.useState();
-    const source                                                = events?.SourceStore.Source.useState();
-    const filter                                                = events?.SourceStore.Filter.useState();
-    const $events                                               = events && source?.dtos
+          }                         = WeeksOfStore.useState();
+    const source                    = events?.SourceStore.Source.useState();
+    const filter                    = events?.SourceStore.Filter.useState();
+    const fulltextContext           = FulltextStoreContext.useOptionalState();
+    const $events                   = events && source?.dtos
         .filter(event => events.schema.safeParse(event).success)
         .map(event => events.schema.parse(event))
         .reduce<Record<string, TSourceSchemaType["Dto"][]>>((prev, current) => {
@@ -102,18 +100,15 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
             prev[stamp] = (prev[stamp] || []).concat(current);
             return prev;
         }, {});
-    const [isOverlay, {open: openOverlay, close: closeOverlay}] = useDisclosure(false);
-    const overlay                                               = useRef<ReactNode>();
-    const [withWeeks, setWithWeeks]                             = useState(defaultWithWeekNo);
-    const withOverlay                                           = (children: ReactNode) => {
-        overlay.current = children;
-        openOverlay();
-    };
+    const [withWeeks, setWithWeeks] = useState(defaultWithWeekNo);
 
     useEffect(() => {
         filter?.setFilter({
-            from: start.toUTC().toJSDate(),
-            to:   end.toUTC().toJSDate(),
+            fulltext:  fulltextContext?.fulltext || undefined,
+            withRange: {
+                from: start.toUTC().toJSDate(),
+                to:   end.toUTC().toJSDate(),
+            },
         });
     }, [
         start.toISO(),
@@ -122,8 +117,11 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
 
     const onChange: IWeeksProps<TSourceSchemaType>["onChange"] = props => {
         filter?.setFilter({
-            from: props.weeks.start.toUTC().toJSDate(),
-            to:   props.weeks.end.toUTC().toJSDate(),
+            fulltext:  fulltextContext?.fulltext || undefined,
+            withRange: {
+                from: props.weeks.start.toUTC().toJSDate(),
+                to:   props.weeks.end.toUTC().toJSDate(),
+            },
         });
         $onChange?.(props);
     };
@@ -215,18 +213,6 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
         {...props}
     >
         {({classes}) => <>
-            {isOverlay && <Overlay color={"#FFF"} opacity={1}>
-                <Group position={"apart"}>
-                    <div/>
-                    <ActionIcon
-                        variant={"subtle"}
-                        onClick={() => closeOverlay()}
-                    >
-                        <IconX/>
-                    </ActionIcon>
-                </Group>
-                {overlay.current}
-            </Overlay>}
             {/*
                 First of all: render header with all days of the week; they're already localised from
                 the calendar, so it's just simple render here.

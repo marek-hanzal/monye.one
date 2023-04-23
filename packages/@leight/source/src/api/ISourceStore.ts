@@ -15,6 +15,7 @@ export type ISourceStore<TSourceSchemaType extends ISourceSchemaType> = {
 
 export type ISourceStoreProps<TSourceSchemaType extends ISourceSchemaType> = IStoreProps<{
     id: string;
+    name: string;
     schema: TSourceSchemaType["DtoSchema"];
     dtos: TSourceSchemaType["Dto"][];
     isLoading: boolean;

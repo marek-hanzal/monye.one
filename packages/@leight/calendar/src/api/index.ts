@@ -17,8 +17,10 @@ export const CalendarEventSourceSchema = withSourceSchema({
         next: z.date().optional(),
     })),
     FilterSchema: FilterSchema.merge(z.object({
-        from: z.date(),
-        to:   z.date(),
+        withRange: z.object({
+            from: z.date(),
+            to:   z.date(),
+        }).optional(),
     })),
 });
 export type ICalendarEventSourceSchemaType = ISourceSchemaType.of<typeof CalendarEventSourceSchema>;

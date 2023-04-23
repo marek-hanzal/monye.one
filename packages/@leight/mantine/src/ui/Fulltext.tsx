@@ -1,9 +1,7 @@
+import {FulltextStoreContext}  from "@leight/filter-client";
 import {type IWithTranslation} from "@leight/i18n";
 import {useTranslation}        from "@leight/i18n-client";
-import {
-    type ISourceSchemaType,
-    type ISourceStore
-}                              from "@leight/source";
+import {generateId}            from "@leight/utils";
 import {
     Loader,
     TextInput
@@ -11,55 +9,44 @@ import {
 import {useDebouncedState}     from "@mantine/hooks";
 import {IconSearch}            from "@tabler/icons-react";
 import {
-    ComponentProps,
+    type ComponentProps,
+    type FC,
     useEffect
 }                              from "react";
 import {WithIcon}              from "../component";
 
-export type IFulltextProps<TSourceSchemaType extends ISourceSchemaType> =
+export type IFulltextProps =
     ComponentProps<typeof TextInput>
     & {
-        SourceStore: ISourceStore<TSourceSchemaType>;
+        loading?: boolean;
+        debounce?: number;
         withTranslation?: IWithTranslation;
         onSearch?(value?: string): void;
     }
 
-export const Fulltext = <TSourceSchemaType extends ISourceSchemaType>(
+export const Fulltext: FC<IFulltextProps> = (
     {
-        SourceStore,
+        loading,
+        debounce = 350,
         withTranslation,
         onSearch,
         ...props
-    }: IFulltextProps<TSourceSchemaType>) => {
-    const {t}                     = useTranslation(withTranslation?.namespace);
-    const {
-              isFetching,
-              isLoading,
-          }                       = SourceStore.Source.useState((
-        {
-            isFetching,
-            isLoading,
-        }) => (
-        {
-            isFetching,
-            isLoading,
-        }));
-    const {filter, setFilter}     = SourceStore.Filter.useState(({filter, setFilter}) => ({filter, setFilter}));
-    const [fulltext, setFulltext] = useDebouncedState(filter?.fulltext || "", 350);
+    }) => {
+    const {t}                       = useTranslation(withTranslation?.namespace);
+    const {fulltext, setFulltext}   = FulltextStoreContext.useState(({fulltext, setFulltext}) => ({fulltext, setFulltext}));
+    const [debounced, setDebounced] = useDebouncedState(fulltext || "", debounce);
 
     useEffect(() => {
-        setFilter({
-            ...filter,
-            fulltext: fulltext || undefined,
-        });
-        onSearch?.(fulltext || undefined);
-    }, [fulltext]);
+        setFulltext(debounced || undefined);
+        onSearch?.(debounced || undefined);
+    }, [debounced]);
 
     return <TextInput
-        defaultValue={filter?.fulltext}
-        onChange={event => setFulltext(event.currentTarget.value)}
+        key={generateId()}
+        defaultValue={fulltext || undefined}
+        onChange={event => setDebounced(event.currentTarget.value)}
         placeholder={t(`${withTranslation?.label || "table"}.fulltext.placeholder`)}
-        rightSection={isLoading || isFetching ? <Loader size="xs"/> : <WithIcon icon={<IconSearch/>}/>}
+        rightSection={loading ? <Loader size="xs"/> : <WithIcon icon={<IconSearch/>}/>}
         {...props}
     />;
 };

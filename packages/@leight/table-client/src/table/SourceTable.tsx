@@ -3,6 +3,7 @@ import {
     Pagination
 }                              from "@leight/cursor-client";
 import {type IPaginationProps} from "@leight/cursor-client/src/cursor/Pagination";
+import {FulltextStoreContext}  from "@leight/filter-client";
 import {Fulltext}              from "@leight/mantine";
 import {SortIcon}              from "@leight/sort-client";
 import {
@@ -13,6 +14,7 @@ import {
     chain,
     keywordsOf
 }                              from "@leight/utils";
+import {useEffect}             from "react";
 import {
     type ITableColumn,
     type ITableProps,
@@ -73,7 +75,7 @@ export const SourceTable = <
               dtos,
               isFetching,
               isLoading,
-          } = SourceStore.Source.useState((
+          }                  = SourceStore.Source.useState((
         {
             dtos,
             isFetching,
@@ -84,16 +86,25 @@ export const SourceTable = <
             isFetching,
             isLoading,
         }));
+    const {sort, setSort}    = SourceStore.Sort.useState(({sort, setSort}) => ({sort, setSort}));
+    const fulltextStore      = FulltextStoreContext.useOptionalState();
+    const {setShallowFilter} = SourceStore.Filter.useState(({setShallowFilter}) => ({setShallowFilter}));
+    const {pages}            = CursorStore.useState(({pages}) => ({pages}));
 
-    const {sort, setSort} = SourceStore.Sort.useState(({sort, setSort}) => ({sort, setSort}));
-    const {filter}        = SourceStore.Filter.useState(({filter}) => ({filter}));
-    const {pages}         = CursorStore.useState(({pages}) => ({pages}));
+    useEffect(() => {
+        if (!withFulltext || !fulltextStore) {
+            return;
+        }
+        setShallowFilter({
+            fulltext: fulltextStore.fulltext,
+        });
+    }, [fulltextStore?.fulltext]);
 
     return <>
         {withFulltext && <>
             <Fulltext
                 mt={"sm"}
-                SourceStore={SourceStore}
+                loading={isLoading || isFetching}
                 withTranslation={props.withTranslation}
             />
         </>}
@@ -106,7 +117,7 @@ export const SourceTable = <
         <Table<ISourceTableColumn<TSourceSchemaType>, TColumnKeys>
             mt={"sm"}
             isLoading={isLoading || isFetching}
-            highlight={keywordsOf(filter?.fulltext)}
+            highlight={keywordsOf(fulltextStore?.fulltext)}
             columns={Object.entries<ISourceTableColumn<TSourceSchemaType>>(columns).reduce<any>((prev, [name, column]) => {
                 prev[name] = {
                     ...column,

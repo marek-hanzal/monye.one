@@ -16,7 +16,7 @@ export const createFilterContext = <TFilterSchema extends IFilterSchema>(
         schema,
     }: ICreateFilterContextProps<TFilterSchema>) => {
     return createStoreContext<IFilterStoreProps<TFilterSchema>>({
-        state: () => (set) => ({
+        state: () => (set, get) => ({
             id:     generateId(),
             schema,
             filter: undefined,
@@ -24,6 +24,15 @@ export const createFilterContext = <TFilterSchema extends IFilterSchema>(
                 set({
                     id: generateId(),
                     filter,
+                });
+            },
+            setShallowFilter(filter) {
+                set({
+                    id:     generateId(),
+                    filter: {
+                        ...get().filter,
+                        ...filter,
+                    },
                 });
             },
         }),
