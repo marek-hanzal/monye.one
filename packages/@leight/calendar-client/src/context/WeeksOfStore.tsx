@@ -4,6 +4,7 @@ import {
 }                           from "@leight/calendar";
 import {createStoreContext} from "@leight/context-client";
 import {DateTime}           from "@leight/i18n";
+import {generateId}         from "@leight/utils";
 import {type IStoreProps}   from "@leight/zustand";
 import {
     type ComponentProps,
@@ -11,6 +12,7 @@ import {
 }                           from "react";
 
 export type IWeeksStoreProps = IStoreProps<{
+    id: string;
     /**
      * Set weeks of the given date
      */
@@ -39,38 +41,45 @@ export type IWeeksStoreProps = IStoreProps<{
 
 export const WeeksOfStore = createStoreContext<IWeeksStoreProps>({
     state: ({state}) => (set, get) => ({
+        id: generateId(),
         weeksOf(date: DateTime) {
             set({
+                id:    generateId(),
                 weeks: weeksOf({date}),
             });
             return get().weeks;
         },
         today() {
             set({
+                id:    generateId(),
                 weeks: weeksOf({date: DateTime.now()}),
             });
             return get().weeks;
         },
         prevMonth() {
             set(({weeks: {date}}) => ({
+                id:    generateId(),
                 weeks: weeksOf({date: date.minus({month: 1})}),
             }));
             return get().weeks;
         },
         nextMonth() {
             set(({weeks: {date}}) => ({
+                id:    generateId(),
                 weeks: weeksOf({date: date.plus({month: 1})}),
             }));
             return get().weeks;
         },
         prevYear() {
             set(({weeks: {date}}) => ({
+                id:    generateId(),
                 weeks: weeksOf({date: date.minus({year: 1})}),
             }));
             return get().weeks;
         },
         nextYear() {
             set(({weeks: {date}}) => ({
+                id:    generateId(),
                 weeks: weeksOf({date: date.plus({year: 1})}),
             }));
             return get().weeks;

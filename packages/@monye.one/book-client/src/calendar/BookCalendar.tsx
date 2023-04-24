@@ -1,7 +1,6 @@
 import {
     Calendar,
-    type ICalendarProps,
-    WeeksOfStore
+    type ICalendarProps
 }                             from "@leight/calendar-client";
 import {FulltextStoreContext} from "@leight/filter-client";
 import {Fulltext}             from "@leight/mantine";
@@ -35,11 +34,9 @@ export interface IBookCalendarProps extends Omit<ICalendarProps<ICalendarEventSo
 
 export const BookCalendar: FC<IBookCalendarProps> = (
     {
-        day:   $day,
-        month: $month,
-        ...    props
+        day: $day,
+        ...  props
     }) => {
-    const {weeks}            = WeeksOfStore.useState(({weeks}) => ({weeks}));
     const fulltextStore      = FulltextStoreContext.useOptionalState();
     const {setShallowFilter} = CalendarEventSourceStore.Filter.useState(({setShallowFilter}) => ({setShallowFilter}));
 
@@ -70,16 +67,6 @@ export const BookCalendar: FC<IBookCalendarProps> = (
                 }}
                 events={events}
                 {...$day}
-            />}
-            controlsBottomRight={({source}) => <IncomeOutcome
-                range={{
-                    from: weeks.start,
-                    to:   weeks.end,
-                }}
-                events={source?.dtos}
-                withSum
-                spacing={"sm"}
-                {...$month}
             />}
             {...props}
         />

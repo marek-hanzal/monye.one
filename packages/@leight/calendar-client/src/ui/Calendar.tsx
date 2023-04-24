@@ -32,6 +32,7 @@ export const Calendar = <TSourceSchema extends ICalendarEventSourceSchemaType = 
     {
         onClick,
         withControls = true,
+        onChange,
         ...props
     }: ICalendarProps<TSourceSchema>) => {
     const {weeksOf, weeks}              = WeeksOfStore.useState(({weeksOf, weeks}) => ({weeksOf, weeks}));
@@ -43,6 +44,7 @@ export const Calendar = <TSourceSchema extends ICalendarEventSourceSchemaType = 
         <Weeks<TSourceSchema>
             onClick={onClick}
             withControls={withControls}
+            onChange={onChange}
             controlsBottomMiddle={props.compact ? undefined : <Button.Group>
                 <Button
                     compact={props.compact}
@@ -72,7 +74,7 @@ export const Calendar = <TSourceSchema extends ICalendarEventSourceSchemaType = 
             {selectMonth && <Overlay color={"#FFF"} opacity={1}>
                 <Months<TSourceSchema>
                     onClick={({month: {month}}) => {
-                        weeksOf(month);
+                        onChange?.({weeks: weeksOf(month)});
                         setSelectMonth(false);
                     }}
                     controlsBottomMiddle={<ActionIcon
@@ -87,7 +89,7 @@ export const Calendar = <TSourceSchema extends ICalendarEventSourceSchemaType = 
             {selectYear && <Overlay color={"#FFF"} opacity={1}>
                 <Years<TSourceSchema>
                     onClick={({year: {year}}) => {
-                        weeksOf(year);
+                        onChange?.({weeks: weeksOf(year)});
                         setSelectYear(false);
                     }}
                     controlsBottomMiddle={<ActionIcon

@@ -10,6 +10,7 @@ import {
 import {Translation}                from "@leight/i18n-client";
 import {Paper}                      from "@leight/mantine";
 import {
+    Group,
     Tabs,
     ThemeIcon
 }                                   from "@mantine/core";
@@ -69,35 +70,39 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
 
     return <>
         <Paper>
-            <SumByInline mt={"sm"}/>
             <Tabs
                 value={tab}
                 onTabChange={setTab}
             >
-                <Tabs.List>
-                    <Tabs.Tab
-                        value={"calendar"}
-                        icon={<ThemeIcon
-                            variant={"light"}
-                            color={"gray"}
+                <Group
+                    position={"apart"}
+                >
+                    <Tabs.List>
+                        <Tabs.Tab
+                            value={"calendar"}
+                            icon={<ThemeIcon
+                                variant={"light"}
+                                color={"gray"}
+                            >
+                                <IconCalendar/>
+                            </ThemeIcon>}
                         >
-                            <IconCalendar/>
-                        </ThemeIcon>}
-                    >
-                        <Translation namespace={"book"} label={"calendar-overview.calendar.tab"}/>
-                    </Tabs.Tab>
-                    <Tabs.Tab
-                        value={"transactions"}
-                        icon={<ThemeIcon
-                            variant={"light"}
-                            color={"gray"}
+                            <Translation namespace={"book"} label={"calendar-overview.calendar.tab"}/>
+                        </Tabs.Tab>
+                        <Tabs.Tab
+                            value={"transactions"}
+                            icon={<ThemeIcon
+                                variant={"light"}
+                                color={"gray"}
+                            >
+                                <IconCash/>
+                            </ThemeIcon>}
                         >
-                            <IconCash/>
-                        </ThemeIcon>}
-                    >
-                        <Translation namespace={"book"} label={"calendar-overview.transactions.tab"}/>
-                    </Tabs.Tab>
-                </Tabs.List>
+                            <Translation namespace={"book"} label={"calendar-overview.transactions.tab"}/>
+                        </Tabs.Tab>
+                    </Tabs.List>
+                    <SumByInline/>
+                </Group>
                 <Tabs.Panel value={"calendar"}>
                     <BookCalendar
                         mt={"sm"}

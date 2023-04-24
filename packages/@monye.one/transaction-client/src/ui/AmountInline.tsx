@@ -3,6 +3,7 @@ import {decimalOf}        from "@leight/prisma";
 import {toHumanNumber}    from "@leight/utils";
 import {
     Group,
+    type MantineColor,
     Text
 }                         from "@mantine/core";
 import {IconCashBanknote} from "@tabler/icons-react";
@@ -15,19 +16,20 @@ import {
 export interface IAmountInlineProps extends ComponentProps<typeof Group> {
     icon?: ReactNode;
     amount?: any;
+    color?: MantineColor;
 }
 
-export const AmountInline: FC<IAmountInlineProps> = ({icon = <IconCashBanknote/>, amount, ...props}) => {
+export const AmountInline: FC<IAmountInlineProps> = ({icon = <IconCashBanknote/>, amount, color, ...props}) => {
     if (amount === undefined || amount === null) {
         return null;
     }
-    const color = amount >= 0 ? "green" : "red";
+    const $color = color || (amount >= 0 ? "green" : "red");
     return <Group spacing={4} {...props}>
         <WithIcon
-            color={color}
+            color={$color}
             icon={icon}
         />
-        <Text color={color}>
+        <Text color={$color}>
             {toHumanNumber({number: decimalOf(amount)})}
         </Text>
     </Group>;
