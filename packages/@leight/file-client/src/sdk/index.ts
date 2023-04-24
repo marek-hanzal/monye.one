@@ -7,9 +7,8 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vcmjs1wuyrsxju0ppo2dw3b7 = true;
+export const $leight_iplq3123x14p8rzl35uxpsyx = true;
 
-export * from "./index";
 export * from "./ClientSource/FileQueryProvider";
 export * from "./ClientSource/FileSource";
 export * from "./ClientSource/FileSourceStore";

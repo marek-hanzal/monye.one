@@ -111,4 +111,4 @@ export class UserBasePrismaSource extends AbstractSourceEx<IUserPrismaSchemaType
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_uk5nekyjpmffos9iibeotnah = true;
+export const $leight_nnd4u315pmxdk1wffvqolrlu = true;

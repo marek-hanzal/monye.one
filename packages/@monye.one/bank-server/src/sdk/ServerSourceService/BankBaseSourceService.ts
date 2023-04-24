@@ -44,4 +44,4 @@ export class BankBaseSourceService extends AbstractSourceService<IBankSourceSche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ya14ahsl7pk80xf9li1kwsib = true;
+export const $leight_l2sz57tp7safu4dsmd4hjjcf = true;

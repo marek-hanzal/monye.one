@@ -44,7 +44,8 @@
         },
         "init": {
             "dependsOn": [
-                "setup"
+                "^setup",
+                "^init"
             ],
             "outputs": [
                 "lib/**"

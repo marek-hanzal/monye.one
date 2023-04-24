@@ -15,7 +15,7 @@
     "module": "lib/index.js",
     "types": "lib/index.d.ts",
     "scripts": {
-        "setup": "npm run generate:prisma",
+        "setup": "npm run generate",
         "init": "npm run build",
         "dev": "dotenv -e ROARR_LOG=true -- turbowatch",
         "generate": "concurrently npm:generate:*",
