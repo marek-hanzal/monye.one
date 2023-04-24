@@ -29,4 +29,4 @@ export const JobQueryProvider: FC<IJobQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zrhg980ojqultr1y2az8avfi = true;
+export const $leight_bw8pafle9cwb6yoe6cevouru = true;

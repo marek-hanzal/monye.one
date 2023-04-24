@@ -109,4 +109,4 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ira50xosponf0vf4k19iyzck = true;
+export const $leight_byc1o222cueiejrhwzot9ye6 = true;

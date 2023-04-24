@@ -7,7 +7,7 @@ import {
 	type IUseSourceQuery,
 	type ISource
 } from "@leight/source";
-import {type IUserSourceSchemaType} from "./UserSchema";
+import {type IUserSourceSchemaType} from "../schema/UserSourceSchema";
 import {IUserSourceEx} from "../../api";
 
 export type IUseUserSourceQuery = IUseSourceQuery<IUserSourceSchemaType>;
@@ -22,4 +22,4 @@ export const $UserSourceService = Symbol.for("@leight/user/IUserSourceService");
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vbs8u426pcw0iiqop21d740f = true;
+export const $leight_bdlv876kuryx7s1z433ro7ox = true;

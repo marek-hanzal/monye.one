@@ -41,6 +41,16 @@ void withSdk(
                 },
             ],
         },
+        SourceTable:    {
+            entities: [
+                {
+                    name:     "Bank",
+                    packages: {
+                        schema: "@monye.one/bank",
+                    },
+                },
+            ],
+        },
         Trpc:           {
             entities: [
                 {

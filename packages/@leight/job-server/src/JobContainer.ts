@@ -7,10 +7,10 @@ import {
     $JobSourceService,
     type IJobExecutor,
     type IJobProgressService,
-    type IJobSource
+    type IJobSource,
+    type IJobSourceMapper
 }                        from "@leight/job";
 import {
-    type IJobSourceMapper,
     type IJobSourceService,
     JobSource,
     JobSourceMapper,

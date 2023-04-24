@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type ICalendarEventSourceSchemaType} from "../Source/CalendarEventSchema";
+import {type ICalendarEventSourceSchemaType} from "../schema/CalendarEventSourceSchema";
 import {type ISourceMapper} from "@leight/source";
 
 export type ICalendarEventSourceMapper = ISourceMapper<ICalendarEventSourceSchemaType>;
@@ -12,4 +12,4 @@ export type ICalendarEventSourceMapper = ISourceMapper<ICalendarEventSourceSchem
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lj29qekys6hq4zhid8d93gl7 = true;
+export const $leight_bhridtp4kt1xnvy1wdsc8he8 = true;

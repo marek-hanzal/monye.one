@@ -5,7 +5,7 @@ import {
     type IUserService
 }                                   from "@leight/user";
 import {type IBankSourceSchemaType} from "@monye.one/bank";
-import {BankBaseSourceMapper}       from "../sdk/ServerSourceMapper/BankBaseSourceMapper";
+import {BankBaseSourceMapper}       from "../sdk/SourceMapper/BankBaseSourceMapper";
 
 export class BankSourceMapperEx extends BankBaseSourceMapper {
     static inject = [

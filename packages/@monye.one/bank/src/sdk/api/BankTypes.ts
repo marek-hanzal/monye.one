@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IBankSourceSchemaType} from "../Source/BankSchema";
+import {type IBankSourceSchemaType} from "../schema/BankSourceSchema";
 import {type ISourceMapper} from "@leight/source";
 
 export type IBankSourceMapper = ISourceMapper<IBankSourceSchemaType>;
@@ -12,4 +12,4 @@ export type IBankSourceMapper = ISourceMapper<IBankSourceSchemaType>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_btkxm77m9wru2d43wof1lfez = true;
+export const $leight_cik4wwjdw0pb0gd68uefmrvq = true;

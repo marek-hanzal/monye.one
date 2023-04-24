@@ -7,7 +7,7 @@ import {
 	type IUseSourceQuery,
 	type ISource
 } from "@leight/source";
-import {type ITransactionSourceSchemaType} from "./TransactionSchema";
+import {type ITransactionSourceSchemaType} from "../schema/TransactionSourceSchema";
 
 export type IUseTransactionSourceQuery = IUseSourceQuery<ITransactionSourceSchemaType>;
 
@@ -21,4 +21,4 @@ export const $TransactionSourceService = Symbol.for("@monye.one/transaction/ITra
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_t55vvrpayfmatfjaoz113xnz = true;
+export const $leight_aqdwcv5vd9s9pocc9hawaw9s = true;

@@ -5,13 +5,13 @@ import {
     $BankSourceService,
     $BankStatsService,
     type IBankSource,
+    type IBankSourceMapper,
     type IBankStatsService
 }                         from "@monye.one/bank";
 import {
     BankSource,
     BankSourceMapper,
     BankSourceService,
-    type IBankSourceMapper,
     type IBankSourceService
 }                         from "./sdk";
 import {BankStatsService} from "./service";

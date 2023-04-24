@@ -203,7 +203,7 @@ static inject = [
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/ServerSourceService/${name}BaseSourceService.ts`),
+                file: normalize(`${directory}/SourceService/${name}BaseSourceService.ts`),
                 barrel,
             });
 
@@ -235,7 +235,7 @@ static inject = [
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/ServerSourceService/${name}SourceService.ts`),
+                file: normalize(`${directory}/SourceService/${name}SourceService.ts`),
                 barrel,
             });
     });

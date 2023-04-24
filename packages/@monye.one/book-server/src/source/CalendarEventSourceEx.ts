@@ -8,7 +8,7 @@ import {
     $TransactionSource,
     type ITransactionSource
 }                                            from "@monye.one/transaction";
-import {CalendarEventBaseSource}             from "../sdk/BaseSource/CalendarEventBaseSource";
+import {CalendarEventBaseSource}             from "../sdk/Source/CalendarEventBaseSource";
 
 export class CalendarEventSourceEx extends CalendarEventBaseSource {
     static inject = [

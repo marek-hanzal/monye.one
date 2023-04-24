@@ -7,7 +7,7 @@ import {
 	type ISource,
 	type IUseSourceQuery
 } from "@leight/source";
-import {type ICalendarEventSourceSchemaType} from "./CalendarEventSourceSchema";
+import {type ICalendarEventSourceSchemaType} from "../schema/CalendarEventSourceSchema";
 
 export type IUseCalendarEventSourceQuery = IUseSourceQuery<ICalendarEventSourceSchemaType>;
 
@@ -21,4 +21,4 @@ export const $CalendarEventSourceService = Symbol.for("@monye.one/book/ICalendar
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_douyssbun8ueyngb1u94h71v = true;
+export const $leight_o2t7uasmal88t2h128qf9oil = true;

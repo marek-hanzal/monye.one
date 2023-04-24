@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_db2qfm7n8rmwkdctkwh4sfc3 = true;
+export const $leight_g84gnyj2heiaafm5xbzc7ceq = true;
 
 export * from "./index";
 export * from "./api/BankCreateFormTypes";
@@ -22,6 +22,7 @@ export * from "./ClientForm/BankPatchInput";
 export * from "./ClientSource/BankQueryProvider";
 export * from "./ClientSource/BankSource";
 export * from "./ClientSource/BankSourceStore";
+export * from "./ClientTable/BankSourceTable";
 export * from "./ClientTrpc/BankCreateTrpcForm";
 export * from "./ClientTrpc/BankEditTrpcForm";
 export * from "./ClientTrpc/BankPatchTrpcForm";

@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type ITransactionKeywordSourceSchemaType} from "../Source/TransactionKeywordSchema";
+import {type ITransactionKeywordSourceSchemaType} from "../schema/TransactionKeywordSourceSchema";
 import {type ISourceMapper} from "@leight/source";
 
 export type ITransactionKeywordSourceMapper = ISourceMapper<ITransactionKeywordSourceSchemaType>;
@@ -12,4 +12,4 @@ export type ITransactionKeywordSourceMapper = ISourceMapper<ITransactionKeywordS
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_k8yeh3nxfxoqhsri8njacgis = true;
+export const $leight_edzm7du54jr9qp9e59rlwrwx = true;

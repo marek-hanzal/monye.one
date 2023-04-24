@@ -27,8 +27,8 @@ void withSdk(
                 },
             ],
         },
-        BaseSource: {
-            entities:[
+        BaseSource:   {
+            entities: [
                 {
                     name:     "Job",
                     packages: {
@@ -37,5 +37,15 @@ void withSdk(
                 },
             ],
         },
+        TrpcSource:   {
+            entities: [
+                {
+                    name:     "Job",
+                    packages: {
+                        schema: "@leight/job",
+                    },
+                },
+            ],
+        }
     })
 );

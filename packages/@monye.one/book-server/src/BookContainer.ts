@@ -3,13 +3,13 @@ import {
     $CalendarEventSource,
     $CalendarEventSourceMapper,
     $CalendarEventSourceService,
-    type ICalendarEventSource
+    type ICalendarEventSource,
+    type ICalendarEventSourceMapper
 }                        from "@monye.one/book";
 import {
     CalendarEventSource,
     CalendarEventSourceMapper,
     CalendarEventSourceService,
-    type ICalendarEventSourceMapper,
     type ICalendarEventSourceService
 }                        from "./sdk";
 

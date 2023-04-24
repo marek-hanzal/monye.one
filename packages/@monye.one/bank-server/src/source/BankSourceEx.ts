@@ -10,7 +10,7 @@ import {
     type IBankPrismaSchemaType,
     type IBankSourceSchemaType
 }                             from "@monye.one/bank";
-import {BankBasePrismaSource} from "../sdk/PrismaSource/BankPrismaSource";
+import {BankBasePrismaSource} from "../sdk/Source/BankBasePrismaSource";
 
 export class BankSourceEx extends BankBasePrismaSource {
     static inject = [

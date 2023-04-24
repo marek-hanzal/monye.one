@@ -7,7 +7,7 @@ import {
 	type IUseSourceQuery,
 	type ISource
 } from "@leight/source";
-import {type IBankSourceSchemaType} from "./BankSchema";
+import {type IBankSourceSchemaType} from "../schema/BankSourceSchema";
 
 export type IUseBankSourceQuery = IUseSourceQuery<IBankSourceSchemaType>;
 
@@ -21,4 +21,4 @@ export const $BankSourceService = Symbol.for("@monye.one/bank/IBankSourceService
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nv477f2rl4jwjht5o8lj5cvr = true;
+export const $leight_d4jxap5od1jetloib1hvnmvi = true;

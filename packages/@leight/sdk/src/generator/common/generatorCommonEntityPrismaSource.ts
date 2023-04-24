@@ -72,7 +72,7 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
         withSourceFile()
             .withImports({
                 imports: {
-                    [`../Source/${name}Schema`]: [
+                    [`../schema/${name}SourceSchema`]: [
                         `type I${name}SourceSchemaType`,
                     ],
                     "@leight/source":  [
@@ -97,7 +97,7 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
                         "type IUseSourceQuery",
                         "type ISource",
                     ],
-                    [`./${name}Schema`]: [
+                    [`../schema/${name}SourceSchema`]: [
                         `type I${name}SourceSchemaType`,
                     ],
                 },
@@ -264,7 +264,7 @@ withSourceSchema({
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/Source/${name}Schema.ts`),
+                file: normalize(`${directory}/schema/${name}SourceSchema.ts`),
                 barrel,
             });
 
@@ -301,7 +301,7 @@ withSourceSchemaEx({
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/Source/${name}PrismaSchema.ts`),
+                file: normalize(`${directory}/schema/${name}PrismaSchema.ts`),
                 barrel,
             });
     });

@@ -13,4 +13,4 @@ export class TransactionKeywordSource extends TransactionKeywordBasePrismaSource
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zwtgkxmh17pttp0ixhd852t5 = true;
+export const $leight_isrxotnrrzqazo9kwi3oxpcf = true;

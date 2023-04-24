@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type ITransactionSourceSchemaType} from "../Source/TransactionSchema";
+import {type ITransactionSourceSchemaType} from "../schema/TransactionSourceSchema";
 import {type ISourceMapper} from "@leight/source";
 
 export type ITransactionSourceMapper = ISourceMapper<ITransactionSourceSchemaType>;
@@ -12,4 +12,4 @@ export type ITransactionSourceMapper = ISourceMapper<ITransactionSourceSchemaTyp
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_g7lcknwwue6kft4v0fu6e7b9 = true;
+export const $leight_hjadcg72r1v9ulrscy5nf2fx = true;
