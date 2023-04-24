@@ -1,4 +1,4 @@
-import {type IQuery} from "./api";
+import {type IQuery} from "./schema";
 
 export interface IWithCursorProps<T> {
     query?: IQuery;

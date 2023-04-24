@@ -1,8 +1,7 @@
 import {
     withSdk,
     withSourceGenerators
-}                            from "@leight/sdk";
-import {CalendarEventSchema} from "./schema";
+} from "@leight/sdk";
 
 void withSdk(
     withSourceGenerators({

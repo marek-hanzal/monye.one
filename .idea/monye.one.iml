@@ -86,6 +86,8 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/filter/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/zod/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/prisma-sqlite/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/keyword-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/keyword/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -246,6 +248,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/trpc-source-server/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/zod/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/zod/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/keyword-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/keyword-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/keyword/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/keyword/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
