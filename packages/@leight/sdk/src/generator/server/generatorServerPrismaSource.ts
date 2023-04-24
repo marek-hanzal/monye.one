@@ -103,23 +103,20 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
 
     async runFind(id: string): Promise<I${name}SourceSchemaType["Entity"]> {
         return this.prisma().findUniqueOrThrow({
-            where: {id},
-            include: ${$withInclude},
+            where: {id},${withInclude ? `\n\t\t\t\tinclude: ${$withInclude},` : ''}
         });
     }
 
     async runCreate(entity: I${name}SourceSchemaType["Create"]): Promise<I${name}SourceSchemaType["Entity"]> {
         return this.prisma().create({
-            data: entity,
-            include: ${$withInclude},
+            data: entity,${withInclude ? `\n\t\t\t\tinclude: ${$withInclude},` : ''}
         });
     }
 
     async runPatch({id, ...patch}: I${name}SourceSchemaType["Patch"]): Promise<I${name}SourceSchemaType["Entity"]> {
         return this.prisma().update({
             data: patch,
-            where: {id},
-            include: ${$withInclude},
+            where: {id},${withInclude ? `\n\t\t\t\tinclude: ${$withInclude},` : ''}
         });
     }
 
@@ -127,8 +124,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
         return this.prisma().upsert({
             create,
             update,
-            where: this.toWhereUnique(filter),
-            include: ${$withInclude},
+            where: this.toWhereUnique(filter),${withInclude ? `\n\t\t\t\tinclude: ${$withInclude},` : ''}
         });
     }
 
@@ -167,8 +163,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
             query,
             arg: {
                 where:   this.toWhere(query?.filter),
-                orderBy: this.toOrderBy(query?.sort),
-                include: ${$withInclude},
+                orderBy: this.toOrderBy(query?.sort),${withInclude ? `\n\t\t\t\tinclude: ${$withInclude},` : ''}
             },
         }));
     }

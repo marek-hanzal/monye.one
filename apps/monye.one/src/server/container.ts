@@ -27,7 +27,7 @@ export const MonyeOneContainer = ((container: IContainer) => {
                 log:
                              env.NODE_ENV === "development"
                                  ? [
-                                     "query",
+                                     // "query",
                                      "error",
                                      "warn"
                                  ]

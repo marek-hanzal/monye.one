@@ -31,14 +31,14 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
     async runFind(id: string): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().findUniqueOrThrow({
             where: {id},
-            include: {"bank":true},
+				include: {"bank":true},
         });
     }
 
     async runCreate(entity: ITransactionSourceSchemaType["Create"]): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().create({
             data: entity,
-            include: {"bank":true},
+				include: {"bank":true},
         });
     }
 
@@ -46,7 +46,7 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
         return this.prisma().update({
             data: patch,
             where: {id},
-            include: {"bank":true},
+				include: {"bank":true},
         });
     }
 
@@ -55,7 +55,7 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
             create,
             update,
             where: this.toWhereUnique(filter),
-            include: {"bank":true},
+				include: {"bank":true},
         });
     }
 
@@ -95,7 +95,7 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
             arg: {
                 where:   this.toWhere(query?.filter),
                 orderBy: this.toOrderBy(query?.sort),
-                include: {"bank":true},
+				include: {"bank":true},
             },
         }));
     }
@@ -109,4 +109,4 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_snf1uy9pmr6h53tck9ydqmwt = true;
+export const $leight_ov3ie70yzaduo64v99pu8b5s = true;

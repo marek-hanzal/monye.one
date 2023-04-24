@@ -13,4 +13,4 @@ export const BankPatchFormStoreContext = createFormContext<IBankPatchFormSchema>
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ea1yhxx3wrlryuvvzr65l3r5 = true;
+export const $leight_r6s6ul3qk02ek9jqva9ntgzt = true;

@@ -5,20 +5,31 @@ import {
     type IJobService
 }                           from "@leight/job";
 import {AbstractJobService} from "@leight/job-server";
+import {expand}             from "@leight/utils-server";
 import {
     $BankStatsService,
     BankStatsParamsSchema,
     type IBankStatsParamsSchema,
     type IBankStatsService
 }                           from "@monye.one/bank";
+import {
+    $TransactionKeywordService,
+    $TransactionSource,
+    type ITransactionKeywordService,
+    ITransactionSource
+}                           from "@monye.one/transaction";
 
 export class BankStatsService extends AbstractJobService<IBankStatsParamsSchema, void> implements IBankStatsService {
     static inject = [
         $JobExecutor,
+        $TransactionKeywordService,
+        $TransactionSource,
     ];
 
     constructor(
-        jobExecutor: IJobExecutor
+        jobExecutor: IJobExecutor,
+        protected transactionKeywordService: ITransactionKeywordService,
+        protected transactionSource: ITransactionSource,
     ) {
         super($BankStatsService, jobExecutor);
     }
@@ -28,20 +39,25 @@ export class BankStatsService extends AbstractJobService<IBankStatsParamsSchema,
             params: {bankId},
             jobProgress,
         }: IJobService.IHandleProps<IBankStatsParamsSchema>): Promise<void> {
-        setTimeout(() => {
-            jobProgress.setTotal(20);
-        }, 1200);
-        setTimeout(() => {
-            jobProgress.onSuccess();
-            jobProgress.onSuccess();
-            jobProgress.onSuccess();
-        }, 4670);
-        return new Promise(resolve => {
-            setTimeout(() => {
-                console.log("Yaaay!", bankId);
-                resolve();
-            }, 10000);
+        let total = 0;
+        total += await this.transactionSource.count({
+            filter: {
+                bankId,
+            },
         });
+
+        await jobProgress.setTotal(total);
+
+        for (const transaction of await this.transactionSource.query({filter: {bankId}})) {
+            try {
+                console.log(expand(await this.transactionKeywordService.build(transaction)));
+                await jobProgress.onSuccess();
+            } catch (e) {
+                await jobProgress.onSkip();
+            }
+        }
+
+        return;
     }
 
     validator(): IJobParamValidator {

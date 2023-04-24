@@ -12,4 +12,4 @@ export type ICalendarEventSourceMapper = ISourceMapper<ICalendarEventSourceSchem
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_njn2f16ao6kt1mu2dzmy0alw = true;
+export const $leight_dny9l7ml3jcq873owbag74pa = true;

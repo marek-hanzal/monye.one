@@ -31,14 +31,12 @@ export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType
     async runFind(id: string): Promise<IBankSourceSchemaType["Entity"]> {
         return this.prisma().findUniqueOrThrow({
             where: {id},
-            include: undefined,
         });
     }
 
     async runCreate(entity: IBankSourceSchemaType["Create"]): Promise<IBankSourceSchemaType["Entity"]> {
         return this.prisma().create({
             data: entity,
-            include: undefined,
         });
     }
 
@@ -46,7 +44,6 @@ export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType
         return this.prisma().update({
             data: patch,
             where: {id},
-            include: undefined,
         });
     }
 
@@ -55,7 +52,6 @@ export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType
             create,
             update,
             where: this.toWhereUnique(filter),
-            include: undefined,
         });
     }
 
@@ -95,7 +91,6 @@ export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType
             arg: {
                 where:   this.toWhere(query?.filter),
                 orderBy: this.toOrderBy(query?.sort),
-                include: undefined,
             },
         }));
     }
@@ -109,4 +104,4 @@ export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_aaeplo34344h4la8k42wgg0g = true;
+export const $leight_ivt3ikyja06o9x2rnd0huzhb = true;

@@ -30,6 +30,7 @@
     "dependencies": {
         "@leight/filter": "^0.5.0",
         "@leight/import": "^0.5.27",
+        "@leight/keyword": "^0.5.0",
         "@leight/query": "^0.5.0",
         "@leight/sort": "^0.5.27",
         "@leight/source": "^0.5.24",
