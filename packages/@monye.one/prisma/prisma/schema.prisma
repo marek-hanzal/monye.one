@@ -164,6 +164,8 @@ enum JobStatus {
 model Keyword {
     id   String @id @default(cuid())
     text String @unique @db.Text
+
+    TransactionKeyword TransactionKeyword[]
 }
 
 // === -----
@@ -184,26 +186,35 @@ model Bank {
 }
 
 model Transaction {
-    id        String   @id @default(cuid())
+    id                 String               @id @default(cuid())
     // bank transaction ID (transaction reference)
-    reference String
-    userId    String
-    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-    bankId    String
-    bank      Bank     @relation(fields: [bankId], references: [id], onDelete: Cascade)
-    amount    Decimal  @db.Decimal(16, 2)
+    reference          String
+    userId             String
+    user               User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+    bankId             String
+    bank               Bank                 @relation(fields: [bankId], references: [id], onDelete: Cascade)
+    amount             Decimal              @db.Decimal(16, 2)
     // variable symbol
-    variable  String?
+    variable           String?
     // constant symbol
-    symbol    String?
+    symbol             String?
     // static symbol
-    static    String?
+    static             String?
     // date of transaction
-    date      DateTime
+    date               DateTime
     // target of a transaction - maybe card number, target account number, whatever; used by an user to identify this transaction
-    target    String?  @db.Text
+    target             String?              @db.Text
     // note provided by bank/user to identify this transaction
-    note      String?  @db.Text
+    note               String?              @db.Text
+    TransactionKeyword TransactionKeyword[]
 
     @@unique([userId, reference])
+}
+
+model TransactionKeyword {
+    id            String      @id @default(cuid())
+    transactionId String
+    transaction   Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+    keywordId     String
+    keyword       Keyword     @relation(fields: [keywordId], references: [id], onDelete: Cascade)
 }

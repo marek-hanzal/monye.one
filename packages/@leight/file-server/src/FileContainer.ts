@@ -12,12 +12,12 @@ import {
     type IFileService,
     type IFileServiceConfig,
     type IFileSource,
+    type IFileSourceMapper
 }                        from "@leight/file";
 import {
     FileSource,
     FileSourceMapper,
     FileSourceService,
-    type IFileSourceMapper,
     type IFileSourceService
 }                        from "./sdk";
 import {

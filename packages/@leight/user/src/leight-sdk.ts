@@ -1,26 +1,29 @@
 import {
     withSdk,
-    withSourceGenerators,
-    withSourceGeneratorsEntity
+    withSourceGenerators
 } from "@leight/sdk";
 
 void withSdk(
-    withSourceGenerators(
-        withSourceGeneratorsEntity({
-            name:               "User",
-            packages:           {
-                prisma: "@leight/prisma",
-            },
-            withSourceSchemaEx: {
-                extends: [
-                    {
-                        type:        "IUserSourceEx",
-                        withPackage: {
-                            package: "../../api",
-                        }
+    withSourceGenerators({
+        PrismaSource: {
+            entities: [
+                {
+                    name:         "User",
+                    packages:     {
+                        prisma: "@leight/prisma",
                     },
-                ],
-            },
-        })
-    )
+                    withSourceEx: {
+                        extends: [
+                            {
+                                type:        "IUserSourceEx",
+                                withPackage: {
+                                    package: "../../api",
+                                }
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
+    })
 );

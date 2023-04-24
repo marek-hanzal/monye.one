@@ -176,7 +176,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/PrismaSource/${name}PrismaSource.ts`),
+                file: normalize(`${directory}/Source/${name}BasePrismaSource.ts`),
                 barrel,
             });
     });

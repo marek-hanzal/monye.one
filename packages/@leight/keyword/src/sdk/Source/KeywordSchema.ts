@@ -16,6 +16,7 @@ import {
 	PatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
+import {KeywordFilterSchema} from "../../schema";
 import {ParamsSchema} from "@leight/query";
 
 export type IKeywordSourceSchemaType = ISourceSchemaType.of<typeof KeywordSourceSchema>;
@@ -30,7 +31,7 @@ export const KeywordSourceSchema = withSourceSchema({
     CreateSchema: $KeywordCreateSchema,
     ToPatchSchema: $KeywordPatchSchema,
     PatchSchema: $KeywordPatchSchema,
-    FilterSchema: FilterSchema,
+    FilterSchema: FilterSchema.merge(KeywordFilterSchema),
     ParamsSchema: ParamsSchema,
     SortSchema: z.object({
         id: SortOrderSchema
@@ -40,4 +41,4 @@ export const KeywordSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_l6fzbugclejahmxy2z7lxt6u = true;
+export const $leight_w68yujj07vhjauchp4tnww1e = true;

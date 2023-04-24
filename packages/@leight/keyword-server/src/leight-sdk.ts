@@ -1,19 +1,37 @@
 import {
     withSdk,
-    withServerSourceGenerators,
-    withServerSourceGeneratorsEntity
+    withServerSourceGenerators
 } from "@leight/sdk";
 
 void withSdk(
-    withServerSourceGenerators(
-        withServerSourceGeneratorsEntity({
-            disabled: ["trpc"],
-            name:     "Keyword",
-            packages: {
-                schema: "@leight/keyword",
-                prisma: "@leight/prisma",
-            },
-            prisma:   "keyword",
-        })
-    )
+    withServerSourceGenerators({
+        PrismaSource: {
+            entities: [
+                {
+                    name:     "Keyword",
+                    packages: {
+                        schema: "@leight/keyword",
+                        prisma: "@leight/prisma",
+                    },
+                    prisma:   "keyword",
+                },
+            ],
+        },
+        Source:       {
+            entities: [
+                {
+                    name:     "Keyword",
+                    packages: {
+                        schema: "@leight/keyword",
+                    },
+                    sourceEx: {
+                        type:        "KeywordSourceEx",
+                        withPackage: {
+                            package: "../../source",
+                        },
+                    },
+                },
+            ],
+        },
+    })
 );

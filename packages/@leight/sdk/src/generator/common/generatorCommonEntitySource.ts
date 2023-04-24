@@ -58,6 +58,27 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
         withSourceFile()
             .withImports({
                 imports: {
+                    [`../Source/${name}Schema`]: [
+                        `type I${name}SourceSchemaType`,
+                    ],
+                    "@leight/source":  [
+                        "type ISourceMapper",
+                    ],
+                },
+            })
+            .withTypes({
+                exports: {
+                    [`I${name}SourceMapper`]: `ISourceMapper<I${name}SourceSchemaType>`,
+                },
+            })
+            .saveTo({
+                file:   normalize(`${directory}/api/${name}Types.ts`),
+                barrel: false,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
                     "@leight/source":          [
                         "type ISource",
                         "type IUseSourceQuery",
@@ -100,7 +121,7 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
                 }
             })
             .saveTo({
-                file: normalize(`${directory}/EntitySource/${name}Source.ts`),
+                file: normalize(`${directory}/Source/${name}Source.ts`),
                 barrel,
             });
 
@@ -228,7 +249,7 @@ withSourceSchema({
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/EntitySource/${name}SourceSchema.ts`),
+                file: normalize(`${directory}/Source/${name}SourceSchema.ts`),
                 barrel,
             });
     });

@@ -13,7 +13,7 @@ import {
     type ITransactionSourceSchemaType,
     type ITransactionSumBy,
 }                                    from "@monye.one/transaction";
-import {TransactionBasePrismaSource} from "../sdk/PrismaSource/TransactionPrismaSource";
+import {TransactionBasePrismaSource} from "../sdk/Source/TransactionBasePrismaSource";
 
 export class TransactionSourceEx extends TransactionBasePrismaSource {
     static inject = [

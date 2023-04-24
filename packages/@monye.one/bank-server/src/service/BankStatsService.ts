@@ -52,6 +52,7 @@ export class BankStatsService extends AbstractJobService<IBankStatsParamsSchema,
                 await this.transactionKeywordService.build({input: transaction});
                 await jobProgress.onSuccess();
             } catch (e) {
+                console.error(e);
                 await jobProgress.onSkip();
             }
         }

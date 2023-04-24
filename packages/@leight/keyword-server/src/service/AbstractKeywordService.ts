@@ -26,7 +26,7 @@ export abstract class AbstractKeywordService<TInput> implements IKeywordService<
                 input,
                 keyword,
                 entity: await this.keywordSource.upsert({
-                    filter: {fulltext: keyword},
+                    filter: {keyword},
                     create: {
                         text: keyword,
                     },

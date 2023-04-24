@@ -7,6 +7,7 @@ import {
     $TransactionSourceService,
     type ITransactionImportHandler,
     type ITransactionKeywordService,
+    ITransactionKeywordSource,
     type ITransactionSource
 }                        from "@monye.one/transaction";
 import {
@@ -26,6 +27,9 @@ export interface ITransactionContainer {
     TransactionSource: ITransactionSource;
     TransactionSourceService: ITransactionSourceService;
     TransactionSourceMapper: ITransactionSourceMapper;
+    TransactionKeywordSource: ITransactionKeywordSource;
+    TransactionKeywordSourceService: ITransactionKeywordSourceService;
+    TransactionKeywordSourceMapper: ITransactionKeywordSourceMapper;
     TransactionKeywordService: ITransactionKeywordService;
 }
 

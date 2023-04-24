@@ -66,7 +66,7 @@ export const generatorServerBaseSource: IGenerator<IGeneratorServerBaseSourcePar
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/BaseSource/${name}BaseSource.ts`),
+                file: normalize(`${directory}/Source/${name}BaseSource.ts`),
                 barrel,
             });
     });

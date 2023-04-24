@@ -72,6 +72,27 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
         withSourceFile()
             .withImports({
                 imports: {
+                    [`../Source/${name}Schema`]: [
+                        `type I${name}SourceSchemaType`,
+                    ],
+                    "@leight/source":  [
+                        "type ISourceMapper",
+                    ],
+                },
+            })
+            .withTypes({
+                exports: {
+                    [`I${name}SourceMapper`]: `ISourceMapper<I${name}SourceSchemaType>`,
+                },
+            })
+            .saveTo({
+                file:   normalize(`${directory}/api/${name}Types.ts`),
+                barrel: false,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
                     "@leight/source":    [
                         "type IUseSourceQuery",
                         "type ISource",

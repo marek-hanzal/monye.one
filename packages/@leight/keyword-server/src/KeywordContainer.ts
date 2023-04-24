@@ -3,10 +3,10 @@ import {
     $KeywordSource,
     $KeywordSourceMapper,
     $KeywordSourceService,
-    type IKeywordSource
+    type IKeywordSource,
+    type IKeywordSourceMapper
 }                        from "@leight/keyword";
 import {
-    type IKeywordSourceMapper,
     type IKeywordSourceService,
     KeywordSource,
     KeywordSourceMapper,

@@ -10,9 +10,9 @@ import {
     type IUserJwtService,
     type IUserService,
     type IUserSource,
+    type IUserSourceMapper,
 }                        from "@leight/user";
 import {
-    type IUserSourceMapper,
     type IUserSourceService,
     UserSource,
     UserSourceMapper,

@@ -92,6 +92,8 @@ export const TokenScalarFieldEnumSchema = z.enum(['id','name']);
 
 export const TransactionIsolationLevelSchema = z.enum(['ReadUncommitted','ReadCommitted','RepeatableRead','Serializable']);
 
+export const TransactionKeywordScalarFieldEnumSchema = z.enum(['id','transactionId','keywordId']);
+
 export const TransactionScalarFieldEnumSchema = z.enum(['id','reference','userId','bankId','amount','variable','symbol','static','date','target','note']);
 
 export const TranslationScalarFieldEnumSchema = z.enum(['id','locale','label','text','hash']);
@@ -770,6 +772,41 @@ export const KeywordOptionalDefaultsSchema = KeywordSchema.merge(z.object({
 
 export type KeywordOptionalDefaults = z.infer<typeof KeywordOptionalDefaultsSchema>
 
+// KEYWORD RELATION SCHEMA
+//------------------------------------------------------
+
+export type KeywordRelations = {
+  TransactionKeyword: TransactionKeywordWithRelations[];
+};
+
+export type KeywordWithRelations = z.infer<typeof KeywordSchema> & KeywordRelations
+
+export const KeywordWithRelationsSchema: z.ZodType<KeywordWithRelations> = KeywordSchema.merge(z.object({
+  TransactionKeyword: z.lazy(() => TransactionKeywordWithRelationsSchema).array(),
+}))
+
+// KEYWORD OPTIONAL DEFAULTS RELATION SCHEMA
+//------------------------------------------------------
+
+export type KeywordOptionalDefaultsWithRelations = z.infer<typeof KeywordOptionalDefaultsSchema> & KeywordRelations
+
+export const KeywordOptionalDefaultsWithRelationsSchema: z.ZodType<KeywordOptionalDefaultsWithRelations> = KeywordOptionalDefaultsSchema.merge(z.object({
+  TransactionKeyword: z.lazy(() => TransactionKeywordWithRelationsSchema).array(),
+}))
+
+// KEYWORD PARTIAL RELATION SCHEMA
+//------------------------------------------------------
+
+export type KeywordPartialRelations = {
+  TransactionKeyword?: TransactionKeywordPartialWithRelations[];
+};
+
+export type KeywordPartialWithRelations = z.infer<typeof KeywordPartialSchema> & KeywordPartialRelations
+
+export const KeywordPartialWithRelationsSchema: z.ZodType<KeywordPartialWithRelations> = KeywordPartialSchema.merge(z.object({
+  TransactionKeyword: z.lazy(() => TransactionKeywordPartialWithRelationsSchema).array(),
+})).partial()
+
 /////////////////////////////////////////
 // BANK SCHEMA
 /////////////////////////////////////////
@@ -883,6 +920,7 @@ export type TransactionOptionalDefaults = z.infer<typeof TransactionOptionalDefa
 export type TransactionRelations = {
   user: UserWithRelations;
   bank: BankWithRelations;
+  TransactionKeyword: TransactionKeywordWithRelations[];
 };
 
 export type TransactionWithRelations = z.infer<typeof TransactionSchema> & TransactionRelations
@@ -890,6 +928,7 @@ export type TransactionWithRelations = z.infer<typeof TransactionSchema> & Trans
 export const TransactionWithRelationsSchema: z.ZodType<TransactionWithRelations> = TransactionSchema.merge(z.object({
   user: z.lazy(() => UserWithRelationsSchema),
   bank: z.lazy(() => BankWithRelationsSchema),
+  TransactionKeyword: z.lazy(() => TransactionKeywordWithRelationsSchema).array(),
 }))
 
 // TRANSACTION OPTIONAL DEFAULTS RELATION SCHEMA
@@ -900,6 +939,7 @@ export type TransactionOptionalDefaultsWithRelations = z.infer<typeof Transactio
 export const TransactionOptionalDefaultsWithRelationsSchema: z.ZodType<TransactionOptionalDefaultsWithRelations> = TransactionOptionalDefaultsSchema.merge(z.object({
   user: z.lazy(() => UserWithRelationsSchema),
   bank: z.lazy(() => BankWithRelationsSchema),
+  TransactionKeyword: z.lazy(() => TransactionKeywordWithRelationsSchema).array(),
 }))
 
 // TRANSACTION PARTIAL RELATION SCHEMA
@@ -908,6 +948,7 @@ export const TransactionOptionalDefaultsWithRelationsSchema: z.ZodType<Transacti
 export type TransactionPartialRelations = {
   user?: UserPartialWithRelations;
   bank?: BankPartialWithRelations;
+  TransactionKeyword?: TransactionKeywordPartialWithRelations[];
 };
 
 export type TransactionPartialWithRelations = z.infer<typeof TransactionPartialSchema> & TransactionPartialRelations
@@ -915,6 +956,75 @@ export type TransactionPartialWithRelations = z.infer<typeof TransactionPartialS
 export const TransactionPartialWithRelationsSchema: z.ZodType<TransactionPartialWithRelations> = TransactionPartialSchema.merge(z.object({
   user: z.lazy(() => UserPartialWithRelationsSchema),
   bank: z.lazy(() => BankPartialWithRelationsSchema),
+  TransactionKeyword: z.lazy(() => TransactionKeywordPartialWithRelationsSchema).array(),
+})).partial()
+
+/////////////////////////////////////////
+// TRANSACTION KEYWORD SCHEMA
+/////////////////////////////////////////
+
+export const TransactionKeywordSchema = z.object({
+  id: z.string().cuid(),
+  transactionId: z.string(),
+  keywordId: z.string(),
+})
+
+export type TransactionKeyword = z.infer<typeof TransactionKeywordSchema>
+
+// TRANSACTION KEYWORD PARTIAL SCHEMA
+//------------------------------------------------------
+
+export const TransactionKeywordPartialSchema = TransactionKeywordSchema.partial()
+
+export type TransactionKeywordPartial = z.infer<typeof TransactionKeywordPartialSchema>
+
+// TRANSACTION KEYWORD OPTIONAL DEFAULTS SCHEMA
+//------------------------------------------------------
+
+export const TransactionKeywordOptionalDefaultsSchema = TransactionKeywordSchema.merge(z.object({
+  id: z.string().cuid().optional(),
+}))
+
+export type TransactionKeywordOptionalDefaults = z.infer<typeof TransactionKeywordOptionalDefaultsSchema>
+
+// TRANSACTION KEYWORD RELATION SCHEMA
+//------------------------------------------------------
+
+export type TransactionKeywordRelations = {
+  transaction: TransactionWithRelations;
+  keyword: KeywordWithRelations;
+};
+
+export type TransactionKeywordWithRelations = z.infer<typeof TransactionKeywordSchema> & TransactionKeywordRelations
+
+export const TransactionKeywordWithRelationsSchema: z.ZodType<TransactionKeywordWithRelations> = TransactionKeywordSchema.merge(z.object({
+  transaction: z.lazy(() => TransactionWithRelationsSchema),
+  keyword: z.lazy(() => KeywordWithRelationsSchema),
+}))
+
+// TRANSACTION KEYWORD OPTIONAL DEFAULTS RELATION SCHEMA
+//------------------------------------------------------
+
+export type TransactionKeywordOptionalDefaultsWithRelations = z.infer<typeof TransactionKeywordOptionalDefaultsSchema> & TransactionKeywordRelations
+
+export const TransactionKeywordOptionalDefaultsWithRelationsSchema: z.ZodType<TransactionKeywordOptionalDefaultsWithRelations> = TransactionKeywordOptionalDefaultsSchema.merge(z.object({
+  transaction: z.lazy(() => TransactionWithRelationsSchema),
+  keyword: z.lazy(() => KeywordWithRelationsSchema),
+}))
+
+// TRANSACTION KEYWORD PARTIAL RELATION SCHEMA
+//------------------------------------------------------
+
+export type TransactionKeywordPartialRelations = {
+  transaction?: TransactionPartialWithRelations;
+  keyword?: KeywordPartialWithRelations;
+};
+
+export type TransactionKeywordPartialWithRelations = z.infer<typeof TransactionKeywordPartialSchema> & TransactionKeywordPartialRelations
+
+export const TransactionKeywordPartialWithRelationsSchema: z.ZodType<TransactionKeywordPartialWithRelations> = TransactionKeywordPartialSchema.merge(z.object({
+  transaction: z.lazy(() => TransactionPartialWithRelationsSchema),
+  keyword: z.lazy(() => KeywordPartialWithRelationsSchema),
 })).partial()
 
 /////////////////////////////////////////
@@ -1179,9 +1289,29 @@ export const JobLogSelectSchema: z.ZodType<Prisma.JobLogSelect> = z.object({
 // KEYWORD
 //------------------------------------------------------
 
+export const KeywordIncludeSchema: z.ZodType<Prisma.KeywordInclude> = z.object({
+  TransactionKeyword: z.union([z.boolean(),z.lazy(() => TransactionKeywordFindManyArgsSchema)]).optional(),
+  _count: z.union([z.boolean(),z.lazy(() => KeywordCountOutputTypeArgsSchema)]).optional(),
+}).strict()
+
+export const KeywordArgsSchema: z.ZodType<Prisma.KeywordArgs> = z.object({
+  select: z.lazy(() => KeywordSelectSchema).optional(),
+  include: z.lazy(() => KeywordIncludeSchema).optional(),
+}).strict();
+
+export const KeywordCountOutputTypeArgsSchema: z.ZodType<Prisma.KeywordCountOutputTypeArgs> = z.object({
+  select: z.lazy(() => KeywordCountOutputTypeSelectSchema).nullish(),
+}).strict();
+
+export const KeywordCountOutputTypeSelectSchema: z.ZodType<Prisma.KeywordCountOutputTypeSelect> = z.object({
+  TransactionKeyword: z.boolean().optional(),
+}).strict();
+
 export const KeywordSelectSchema: z.ZodType<Prisma.KeywordSelect> = z.object({
   id: z.boolean().optional(),
   text: z.boolean().optional(),
+  TransactionKeyword: z.union([z.boolean(),z.lazy(() => TransactionKeywordFindManyArgsSchema)]).optional(),
+  _count: z.union([z.boolean(),z.lazy(() => KeywordCountOutputTypeArgsSchema)]).optional(),
 }).strict()
 
 // BANK
@@ -1224,11 +1354,21 @@ export const BankSelectSchema: z.ZodType<Prisma.BankSelect> = z.object({
 export const TransactionIncludeSchema: z.ZodType<Prisma.TransactionInclude> = z.object({
   user: z.union([z.boolean(),z.lazy(() => UserArgsSchema)]).optional(),
   bank: z.union([z.boolean(),z.lazy(() => BankArgsSchema)]).optional(),
+  TransactionKeyword: z.union([z.boolean(),z.lazy(() => TransactionKeywordFindManyArgsSchema)]).optional(),
+  _count: z.union([z.boolean(),z.lazy(() => TransactionCountOutputTypeArgsSchema)]).optional(),
 }).strict()
 
 export const TransactionArgsSchema: z.ZodType<Prisma.TransactionArgs> = z.object({
   select: z.lazy(() => TransactionSelectSchema).optional(),
   include: z.lazy(() => TransactionIncludeSchema).optional(),
+}).strict();
+
+export const TransactionCountOutputTypeArgsSchema: z.ZodType<Prisma.TransactionCountOutputTypeArgs> = z.object({
+  select: z.lazy(() => TransactionCountOutputTypeSelectSchema).nullish(),
+}).strict();
+
+export const TransactionCountOutputTypeSelectSchema: z.ZodType<Prisma.TransactionCountOutputTypeSelect> = z.object({
+  TransactionKeyword: z.boolean().optional(),
 }).strict();
 
 export const TransactionSelectSchema: z.ZodType<Prisma.TransactionSelect> = z.object({
@@ -1245,6 +1385,29 @@ export const TransactionSelectSchema: z.ZodType<Prisma.TransactionSelect> = z.ob
   note: z.boolean().optional(),
   user: z.union([z.boolean(),z.lazy(() => UserArgsSchema)]).optional(),
   bank: z.union([z.boolean(),z.lazy(() => BankArgsSchema)]).optional(),
+  TransactionKeyword: z.union([z.boolean(),z.lazy(() => TransactionKeywordFindManyArgsSchema)]).optional(),
+  _count: z.union([z.boolean(),z.lazy(() => TransactionCountOutputTypeArgsSchema)]).optional(),
+}).strict()
+
+// TRANSACTION KEYWORD
+//------------------------------------------------------
+
+export const TransactionKeywordIncludeSchema: z.ZodType<Prisma.TransactionKeywordInclude> = z.object({
+  transaction: z.union([z.boolean(),z.lazy(() => TransactionArgsSchema)]).optional(),
+  keyword: z.union([z.boolean(),z.lazy(() => KeywordArgsSchema)]).optional(),
+}).strict()
+
+export const TransactionKeywordArgsSchema: z.ZodType<Prisma.TransactionKeywordArgs> = z.object({
+  select: z.lazy(() => TransactionKeywordSelectSchema).optional(),
+  include: z.lazy(() => TransactionKeywordIncludeSchema).optional(),
+}).strict();
+
+export const TransactionKeywordSelectSchema: z.ZodType<Prisma.TransactionKeywordSelect> = z.object({
+  id: z.boolean().optional(),
+  transactionId: z.boolean().optional(),
+  keywordId: z.boolean().optional(),
+  transaction: z.union([z.boolean(),z.lazy(() => TransactionArgsSchema)]).optional(),
+  keyword: z.union([z.boolean(),z.lazy(() => KeywordArgsSchema)]).optional(),
 }).strict()
 
 
@@ -1806,11 +1969,13 @@ export const KeywordWhereInputSchema: z.ZodType<Prisma.KeywordWhereInput> = z.ob
   NOT: z.union([ z.lazy(() => KeywordWhereInputSchema),z.lazy(() => KeywordWhereInputSchema).array() ]).optional(),
   id: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   text: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordListRelationFilterSchema).optional()
 }).strict();
 
 export const KeywordOrderByWithRelationInputSchema: z.ZodType<Prisma.KeywordOrderByWithRelationInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
-  text: z.lazy(() => SortOrderSchema).optional()
+  text: z.lazy(() => SortOrderSchema).optional(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordOrderByRelationAggregateInputSchema).optional()
 }).strict();
 
 export const KeywordWhereUniqueInputSchema: z.ZodType<Prisma.KeywordWhereUniqueInput> = z.object({
@@ -1907,6 +2072,7 @@ export const TransactionWhereInputSchema: z.ZodType<Prisma.TransactionWhereInput
   note: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
   user: z.union([ z.lazy(() => UserRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional(),
   bank: z.union([ z.lazy(() => BankRelationFilterSchema),z.lazy(() => BankWhereInputSchema) ]).optional(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordListRelationFilterSchema).optional()
 }).strict();
 
 export const TransactionOrderByWithRelationInputSchema: z.ZodType<Prisma.TransactionOrderByWithRelationInput> = z.object({
@@ -1922,7 +2088,8 @@ export const TransactionOrderByWithRelationInputSchema: z.ZodType<Prisma.Transac
   target: z.lazy(() => SortOrderSchema).optional(),
   note: z.lazy(() => SortOrderSchema).optional(),
   user: z.lazy(() => UserOrderByWithRelationInputSchema).optional(),
-  bank: z.lazy(() => BankOrderByWithRelationInputSchema).optional()
+  bank: z.lazy(() => BankOrderByWithRelationInputSchema).optional(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordOrderByRelationAggregateInputSchema).optional()
 }).strict();
 
 export const TransactionWhereUniqueInputSchema: z.ZodType<Prisma.TransactionWhereUniqueInput> = z.object({
@@ -1964,6 +2131,47 @@ export const TransactionScalarWhereWithAggregatesInputSchema: z.ZodType<Prisma.T
   date: z.union([ z.lazy(() => DateTimeWithAggregatesFilterSchema),z.coerce.date() ]).optional(),
   target: z.union([ z.lazy(() => StringNullableWithAggregatesFilterSchema),z.string() ]).optional().nullable(),
   note: z.union([ z.lazy(() => StringNullableWithAggregatesFilterSchema),z.string() ]).optional().nullable(),
+}).strict();
+
+export const TransactionKeywordWhereInputSchema: z.ZodType<Prisma.TransactionKeywordWhereInput> = z.object({
+  AND: z.union([ z.lazy(() => TransactionKeywordWhereInputSchema),z.lazy(() => TransactionKeywordWhereInputSchema).array() ]).optional(),
+  OR: z.lazy(() => TransactionKeywordWhereInputSchema).array().optional(),
+  NOT: z.union([ z.lazy(() => TransactionKeywordWhereInputSchema),z.lazy(() => TransactionKeywordWhereInputSchema).array() ]).optional(),
+  id: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  transactionId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  keywordId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  transaction: z.union([ z.lazy(() => TransactionRelationFilterSchema),z.lazy(() => TransactionWhereInputSchema) ]).optional(),
+  keyword: z.union([ z.lazy(() => KeywordRelationFilterSchema),z.lazy(() => KeywordWhereInputSchema) ]).optional(),
+}).strict();
+
+export const TransactionKeywordOrderByWithRelationInputSchema: z.ZodType<Prisma.TransactionKeywordOrderByWithRelationInput> = z.object({
+  id: z.lazy(() => SortOrderSchema).optional(),
+  transactionId: z.lazy(() => SortOrderSchema).optional(),
+  keywordId: z.lazy(() => SortOrderSchema).optional(),
+  transaction: z.lazy(() => TransactionOrderByWithRelationInputSchema).optional(),
+  keyword: z.lazy(() => KeywordOrderByWithRelationInputSchema).optional()
+}).strict();
+
+export const TransactionKeywordWhereUniqueInputSchema: z.ZodType<Prisma.TransactionKeywordWhereUniqueInput> = z.object({
+  id: z.string().cuid().optional()
+}).strict();
+
+export const TransactionKeywordOrderByWithAggregationInputSchema: z.ZodType<Prisma.TransactionKeywordOrderByWithAggregationInput> = z.object({
+  id: z.lazy(() => SortOrderSchema).optional(),
+  transactionId: z.lazy(() => SortOrderSchema).optional(),
+  keywordId: z.lazy(() => SortOrderSchema).optional(),
+  _count: z.lazy(() => TransactionKeywordCountOrderByAggregateInputSchema).optional(),
+  _max: z.lazy(() => TransactionKeywordMaxOrderByAggregateInputSchema).optional(),
+  _min: z.lazy(() => TransactionKeywordMinOrderByAggregateInputSchema).optional()
+}).strict();
+
+export const TransactionKeywordScalarWhereWithAggregatesInputSchema: z.ZodType<Prisma.TransactionKeywordScalarWhereWithAggregatesInput> = z.object({
+  AND: z.union([ z.lazy(() => TransactionKeywordScalarWhereWithAggregatesInputSchema),z.lazy(() => TransactionKeywordScalarWhereWithAggregatesInputSchema).array() ]).optional(),
+  OR: z.lazy(() => TransactionKeywordScalarWhereWithAggregatesInputSchema).array().optional(),
+  NOT: z.union([ z.lazy(() => TransactionKeywordScalarWhereWithAggregatesInputSchema),z.lazy(() => TransactionKeywordScalarWhereWithAggregatesInputSchema).array() ]).optional(),
+  id: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  transactionId: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
+  keywordId: z.union([ z.lazy(() => StringWithAggregatesFilterSchema),z.string() ]).optional(),
 }).strict();
 
 export const AccountCreateInputSchema: z.ZodType<Prisma.AccountCreateInput> = z.object({
@@ -2648,22 +2856,26 @@ export const JobLogUncheckedUpdateManyInputSchema: z.ZodType<Prisma.JobLogUnchec
 
 export const KeywordCreateInputSchema: z.ZodType<Prisma.KeywordCreateInput> = z.object({
   id: z.string().cuid().optional(),
-  text: z.string()
+  text: z.string(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordCreateNestedManyWithoutKeywordInputSchema).optional()
 }).strict();
 
 export const KeywordUncheckedCreateInputSchema: z.ZodType<Prisma.KeywordUncheckedCreateInput> = z.object({
   id: z.string().cuid().optional(),
-  text: z.string()
+  text: z.string(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordUncheckedCreateNestedManyWithoutKeywordInputSchema).optional()
 }).strict();
 
 export const KeywordUpdateInputSchema: z.ZodType<Prisma.KeywordUpdateInput> = z.object({
   id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   text: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordUpdateManyWithoutKeywordNestedInputSchema).optional()
 }).strict();
 
 export const KeywordUncheckedUpdateInputSchema: z.ZodType<Prisma.KeywordUncheckedUpdateInput> = z.object({
   id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
   text: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordUncheckedUpdateManyWithoutKeywordNestedInputSchema).optional()
 }).strict();
 
 export const KeywordCreateManyInputSchema: z.ZodType<Prisma.KeywordCreateManyInput> = z.object({
@@ -2758,7 +2970,8 @@ export const TransactionCreateInputSchema: z.ZodType<Prisma.TransactionCreateInp
   target: z.string().optional().nullable(),
   note: z.string().optional().nullable(),
   user: z.lazy(() => UserCreateNestedOneWithoutTransactionInputSchema),
-  bank: z.lazy(() => BankCreateNestedOneWithoutTransactionInputSchema)
+  bank: z.lazy(() => BankCreateNestedOneWithoutTransactionInputSchema),
+  TransactionKeyword: z.lazy(() => TransactionKeywordCreateNestedManyWithoutTransactionInputSchema).optional()
 }).strict();
 
 export const TransactionUncheckedCreateInputSchema: z.ZodType<Prisma.TransactionUncheckedCreateInput> = z.object({
@@ -2772,7 +2985,8 @@ export const TransactionUncheckedCreateInputSchema: z.ZodType<Prisma.Transaction
   static: z.string().optional().nullable(),
   date: z.coerce.date(),
   target: z.string().optional().nullable(),
-  note: z.string().optional().nullable()
+  note: z.string().optional().nullable(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordUncheckedCreateNestedManyWithoutTransactionInputSchema).optional()
 }).strict();
 
 export const TransactionUpdateInputSchema: z.ZodType<Prisma.TransactionUpdateInput> = z.object({
@@ -2786,7 +3000,8 @@ export const TransactionUpdateInputSchema: z.ZodType<Prisma.TransactionUpdateInp
   target: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   note: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   user: z.lazy(() => UserUpdateOneRequiredWithoutTransactionNestedInputSchema).optional(),
-  bank: z.lazy(() => BankUpdateOneRequiredWithoutTransactionNestedInputSchema).optional()
+  bank: z.lazy(() => BankUpdateOneRequiredWithoutTransactionNestedInputSchema).optional(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordUpdateManyWithoutTransactionNestedInputSchema).optional()
 }).strict();
 
 export const TransactionUncheckedUpdateInputSchema: z.ZodType<Prisma.TransactionUncheckedUpdateInput> = z.object({
@@ -2801,6 +3016,7 @@ export const TransactionUncheckedUpdateInputSchema: z.ZodType<Prisma.Transaction
   date: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   target: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   note: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordUncheckedUpdateManyWithoutTransactionNestedInputSchema).optional()
 }).strict();
 
 export const TransactionCreateManyInputSchema: z.ZodType<Prisma.TransactionCreateManyInput> = z.object({
@@ -2841,6 +3057,46 @@ export const TransactionUncheckedUpdateManyInputSchema: z.ZodType<Prisma.Transac
   date: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   target: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   note: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+}).strict();
+
+export const TransactionKeywordCreateInputSchema: z.ZodType<Prisma.TransactionKeywordCreateInput> = z.object({
+  id: z.string().cuid().optional(),
+  transaction: z.lazy(() => TransactionCreateNestedOneWithoutTransactionKeywordInputSchema),
+  keyword: z.lazy(() => KeywordCreateNestedOneWithoutTransactionKeywordInputSchema)
+}).strict();
+
+export const TransactionKeywordUncheckedCreateInputSchema: z.ZodType<Prisma.TransactionKeywordUncheckedCreateInput> = z.object({
+  id: z.string().cuid().optional(),
+  transactionId: z.string(),
+  keywordId: z.string()
+}).strict();
+
+export const TransactionKeywordUpdateInputSchema: z.ZodType<Prisma.TransactionKeywordUpdateInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  transaction: z.lazy(() => TransactionUpdateOneRequiredWithoutTransactionKeywordNestedInputSchema).optional(),
+  keyword: z.lazy(() => KeywordUpdateOneRequiredWithoutTransactionKeywordNestedInputSchema).optional()
+}).strict();
+
+export const TransactionKeywordUncheckedUpdateInputSchema: z.ZodType<Prisma.TransactionKeywordUncheckedUpdateInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  transactionId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  keywordId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+}).strict();
+
+export const TransactionKeywordCreateManyInputSchema: z.ZodType<Prisma.TransactionKeywordCreateManyInput> = z.object({
+  id: z.string().cuid().optional(),
+  transactionId: z.string(),
+  keywordId: z.string()
+}).strict();
+
+export const TransactionKeywordUpdateManyMutationInputSchema: z.ZodType<Prisma.TransactionKeywordUpdateManyMutationInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+}).strict();
+
+export const TransactionKeywordUncheckedUpdateManyInputSchema: z.ZodType<Prisma.TransactionKeywordUncheckedUpdateManyInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  transactionId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  keywordId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 export const StringFilterSchema: z.ZodType<Prisma.StringFilter> = z.object({
@@ -3557,6 +3813,16 @@ export const JobLogMinOrderByAggregateInputSchema: z.ZodType<Prisma.JobLogMinOrd
   message: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
+export const TransactionKeywordListRelationFilterSchema: z.ZodType<Prisma.TransactionKeywordListRelationFilter> = z.object({
+  every: z.lazy(() => TransactionKeywordWhereInputSchema).optional(),
+  some: z.lazy(() => TransactionKeywordWhereInputSchema).optional(),
+  none: z.lazy(() => TransactionKeywordWhereInputSchema).optional()
+}).strict();
+
+export const TransactionKeywordOrderByRelationAggregateInputSchema: z.ZodType<Prisma.TransactionKeywordOrderByRelationAggregateInput> = z.object({
+  _count: z.lazy(() => SortOrderSchema).optional()
+}).strict();
+
 export const KeywordCountOrderByAggregateInputSchema: z.ZodType<Prisma.KeywordCountOrderByAggregateInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
   text: z.lazy(() => SortOrderSchema).optional()
@@ -3724,6 +3990,34 @@ export const DecimalWithAggregatesFilterSchema: z.ZodType<Prisma.DecimalWithAggr
   _sum: z.lazy(() => NestedDecimalFilterSchema).optional(),
   _min: z.lazy(() => NestedDecimalFilterSchema).optional(),
   _max: z.lazy(() => NestedDecimalFilterSchema).optional()
+}).strict();
+
+export const TransactionRelationFilterSchema: z.ZodType<Prisma.TransactionRelationFilter> = z.object({
+  is: z.lazy(() => TransactionWhereInputSchema).optional(),
+  isNot: z.lazy(() => TransactionWhereInputSchema).optional()
+}).strict();
+
+export const KeywordRelationFilterSchema: z.ZodType<Prisma.KeywordRelationFilter> = z.object({
+  is: z.lazy(() => KeywordWhereInputSchema).optional(),
+  isNot: z.lazy(() => KeywordWhereInputSchema).optional()
+}).strict();
+
+export const TransactionKeywordCountOrderByAggregateInputSchema: z.ZodType<Prisma.TransactionKeywordCountOrderByAggregateInput> = z.object({
+  id: z.lazy(() => SortOrderSchema).optional(),
+  transactionId: z.lazy(() => SortOrderSchema).optional(),
+  keywordId: z.lazy(() => SortOrderSchema).optional()
+}).strict();
+
+export const TransactionKeywordMaxOrderByAggregateInputSchema: z.ZodType<Prisma.TransactionKeywordMaxOrderByAggregateInput> = z.object({
+  id: z.lazy(() => SortOrderSchema).optional(),
+  transactionId: z.lazy(() => SortOrderSchema).optional(),
+  keywordId: z.lazy(() => SortOrderSchema).optional()
+}).strict();
+
+export const TransactionKeywordMinOrderByAggregateInputSchema: z.ZodType<Prisma.TransactionKeywordMinOrderByAggregateInput> = z.object({
+  id: z.lazy(() => SortOrderSchema).optional(),
+  transactionId: z.lazy(() => SortOrderSchema).optional(),
+  keywordId: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export const UserCreateNestedOneWithoutAccountsInputSchema: z.ZodType<Prisma.UserCreateNestedOneWithoutAccountsInput> = z.object({
@@ -4258,6 +4552,48 @@ export const JobUpdateOneRequiredWithoutLogsNestedInputSchema: z.ZodType<Prisma.
   update: z.union([ z.lazy(() => JobUpdateWithoutLogsInputSchema),z.lazy(() => JobUncheckedUpdateWithoutLogsInputSchema) ]).optional(),
 }).strict();
 
+export const TransactionKeywordCreateNestedManyWithoutKeywordInputSchema: z.ZodType<Prisma.TransactionKeywordCreateNestedManyWithoutKeywordInput> = z.object({
+  create: z.union([ z.lazy(() => TransactionKeywordCreateWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordCreateWithoutKeywordInputSchema).array(),z.lazy(() => TransactionKeywordUncheckedCreateWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordUncheckedCreateWithoutKeywordInputSchema).array() ]).optional(),
+  connectOrCreate: z.union([ z.lazy(() => TransactionKeywordCreateOrConnectWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordCreateOrConnectWithoutKeywordInputSchema).array() ]).optional(),
+  createMany: z.lazy(() => TransactionKeywordCreateManyKeywordInputEnvelopeSchema).optional(),
+  connect: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+}).strict();
+
+export const TransactionKeywordUncheckedCreateNestedManyWithoutKeywordInputSchema: z.ZodType<Prisma.TransactionKeywordUncheckedCreateNestedManyWithoutKeywordInput> = z.object({
+  create: z.union([ z.lazy(() => TransactionKeywordCreateWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordCreateWithoutKeywordInputSchema).array(),z.lazy(() => TransactionKeywordUncheckedCreateWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordUncheckedCreateWithoutKeywordInputSchema).array() ]).optional(),
+  connectOrCreate: z.union([ z.lazy(() => TransactionKeywordCreateOrConnectWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordCreateOrConnectWithoutKeywordInputSchema).array() ]).optional(),
+  createMany: z.lazy(() => TransactionKeywordCreateManyKeywordInputEnvelopeSchema).optional(),
+  connect: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+}).strict();
+
+export const TransactionKeywordUpdateManyWithoutKeywordNestedInputSchema: z.ZodType<Prisma.TransactionKeywordUpdateManyWithoutKeywordNestedInput> = z.object({
+  create: z.union([ z.lazy(() => TransactionKeywordCreateWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordCreateWithoutKeywordInputSchema).array(),z.lazy(() => TransactionKeywordUncheckedCreateWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordUncheckedCreateWithoutKeywordInputSchema).array() ]).optional(),
+  connectOrCreate: z.union([ z.lazy(() => TransactionKeywordCreateOrConnectWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordCreateOrConnectWithoutKeywordInputSchema).array() ]).optional(),
+  upsert: z.union([ z.lazy(() => TransactionKeywordUpsertWithWhereUniqueWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordUpsertWithWhereUniqueWithoutKeywordInputSchema).array() ]).optional(),
+  createMany: z.lazy(() => TransactionKeywordCreateManyKeywordInputEnvelopeSchema).optional(),
+  set: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  disconnect: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  delete: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  connect: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  update: z.union([ z.lazy(() => TransactionKeywordUpdateWithWhereUniqueWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordUpdateWithWhereUniqueWithoutKeywordInputSchema).array() ]).optional(),
+  updateMany: z.union([ z.lazy(() => TransactionKeywordUpdateManyWithWhereWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordUpdateManyWithWhereWithoutKeywordInputSchema).array() ]).optional(),
+  deleteMany: z.union([ z.lazy(() => TransactionKeywordScalarWhereInputSchema),z.lazy(() => TransactionKeywordScalarWhereInputSchema).array() ]).optional(),
+}).strict();
+
+export const TransactionKeywordUncheckedUpdateManyWithoutKeywordNestedInputSchema: z.ZodType<Prisma.TransactionKeywordUncheckedUpdateManyWithoutKeywordNestedInput> = z.object({
+  create: z.union([ z.lazy(() => TransactionKeywordCreateWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordCreateWithoutKeywordInputSchema).array(),z.lazy(() => TransactionKeywordUncheckedCreateWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordUncheckedCreateWithoutKeywordInputSchema).array() ]).optional(),
+  connectOrCreate: z.union([ z.lazy(() => TransactionKeywordCreateOrConnectWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordCreateOrConnectWithoutKeywordInputSchema).array() ]).optional(),
+  upsert: z.union([ z.lazy(() => TransactionKeywordUpsertWithWhereUniqueWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordUpsertWithWhereUniqueWithoutKeywordInputSchema).array() ]).optional(),
+  createMany: z.lazy(() => TransactionKeywordCreateManyKeywordInputEnvelopeSchema).optional(),
+  set: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  disconnect: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  delete: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  connect: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  update: z.union([ z.lazy(() => TransactionKeywordUpdateWithWhereUniqueWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordUpdateWithWhereUniqueWithoutKeywordInputSchema).array() ]).optional(),
+  updateMany: z.union([ z.lazy(() => TransactionKeywordUpdateManyWithWhereWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordUpdateManyWithWhereWithoutKeywordInputSchema).array() ]).optional(),
+  deleteMany: z.union([ z.lazy(() => TransactionKeywordScalarWhereInputSchema),z.lazy(() => TransactionKeywordScalarWhereInputSchema).array() ]).optional(),
+}).strict();
+
 export const UserCreateNestedOneWithoutBankInputSchema: z.ZodType<Prisma.UserCreateNestedOneWithoutBankInput> = z.object({
   create: z.union([ z.lazy(() => UserCreateWithoutBankInputSchema),z.lazy(() => UserUncheckedCreateWithoutBankInputSchema) ]).optional(),
   connectOrCreate: z.lazy(() => UserCreateOrConnectWithoutBankInputSchema).optional(),
@@ -4334,6 +4670,20 @@ export const BankCreateNestedOneWithoutTransactionInputSchema: z.ZodType<Prisma.
   connect: z.lazy(() => BankWhereUniqueInputSchema).optional()
 }).strict();
 
+export const TransactionKeywordCreateNestedManyWithoutTransactionInputSchema: z.ZodType<Prisma.TransactionKeywordCreateNestedManyWithoutTransactionInput> = z.object({
+  create: z.union([ z.lazy(() => TransactionKeywordCreateWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordCreateWithoutTransactionInputSchema).array(),z.lazy(() => TransactionKeywordUncheckedCreateWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordUncheckedCreateWithoutTransactionInputSchema).array() ]).optional(),
+  connectOrCreate: z.union([ z.lazy(() => TransactionKeywordCreateOrConnectWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordCreateOrConnectWithoutTransactionInputSchema).array() ]).optional(),
+  createMany: z.lazy(() => TransactionKeywordCreateManyTransactionInputEnvelopeSchema).optional(),
+  connect: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+}).strict();
+
+export const TransactionKeywordUncheckedCreateNestedManyWithoutTransactionInputSchema: z.ZodType<Prisma.TransactionKeywordUncheckedCreateNestedManyWithoutTransactionInput> = z.object({
+  create: z.union([ z.lazy(() => TransactionKeywordCreateWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordCreateWithoutTransactionInputSchema).array(),z.lazy(() => TransactionKeywordUncheckedCreateWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordUncheckedCreateWithoutTransactionInputSchema).array() ]).optional(),
+  connectOrCreate: z.union([ z.lazy(() => TransactionKeywordCreateOrConnectWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordCreateOrConnectWithoutTransactionInputSchema).array() ]).optional(),
+  createMany: z.lazy(() => TransactionKeywordCreateManyTransactionInputEnvelopeSchema).optional(),
+  connect: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+}).strict();
+
 export const DecimalFieldUpdateOperationsInputSchema: z.ZodType<Prisma.DecimalFieldUpdateOperationsInput> = z.object({
   set: z.union([z.number(),z.string(),DecimalJSLikeSchema,]).refine((v) => isValidDecimalInput(v), { message: 'Must be a Decimal' }).optional(),
   increment: z.union([z.number(),z.string(),DecimalJSLikeSchema,]).refine((v) => isValidDecimalInput(v), { message: 'Must be a Decimal' }).optional(),
@@ -4356,6 +4706,62 @@ export const BankUpdateOneRequiredWithoutTransactionNestedInputSchema: z.ZodType
   upsert: z.lazy(() => BankUpsertWithoutTransactionInputSchema).optional(),
   connect: z.lazy(() => BankWhereUniqueInputSchema).optional(),
   update: z.union([ z.lazy(() => BankUpdateWithoutTransactionInputSchema),z.lazy(() => BankUncheckedUpdateWithoutTransactionInputSchema) ]).optional(),
+}).strict();
+
+export const TransactionKeywordUpdateManyWithoutTransactionNestedInputSchema: z.ZodType<Prisma.TransactionKeywordUpdateManyWithoutTransactionNestedInput> = z.object({
+  create: z.union([ z.lazy(() => TransactionKeywordCreateWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordCreateWithoutTransactionInputSchema).array(),z.lazy(() => TransactionKeywordUncheckedCreateWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordUncheckedCreateWithoutTransactionInputSchema).array() ]).optional(),
+  connectOrCreate: z.union([ z.lazy(() => TransactionKeywordCreateOrConnectWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordCreateOrConnectWithoutTransactionInputSchema).array() ]).optional(),
+  upsert: z.union([ z.lazy(() => TransactionKeywordUpsertWithWhereUniqueWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordUpsertWithWhereUniqueWithoutTransactionInputSchema).array() ]).optional(),
+  createMany: z.lazy(() => TransactionKeywordCreateManyTransactionInputEnvelopeSchema).optional(),
+  set: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  disconnect: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  delete: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  connect: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  update: z.union([ z.lazy(() => TransactionKeywordUpdateWithWhereUniqueWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordUpdateWithWhereUniqueWithoutTransactionInputSchema).array() ]).optional(),
+  updateMany: z.union([ z.lazy(() => TransactionKeywordUpdateManyWithWhereWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordUpdateManyWithWhereWithoutTransactionInputSchema).array() ]).optional(),
+  deleteMany: z.union([ z.lazy(() => TransactionKeywordScalarWhereInputSchema),z.lazy(() => TransactionKeywordScalarWhereInputSchema).array() ]).optional(),
+}).strict();
+
+export const TransactionKeywordUncheckedUpdateManyWithoutTransactionNestedInputSchema: z.ZodType<Prisma.TransactionKeywordUncheckedUpdateManyWithoutTransactionNestedInput> = z.object({
+  create: z.union([ z.lazy(() => TransactionKeywordCreateWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordCreateWithoutTransactionInputSchema).array(),z.lazy(() => TransactionKeywordUncheckedCreateWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordUncheckedCreateWithoutTransactionInputSchema).array() ]).optional(),
+  connectOrCreate: z.union([ z.lazy(() => TransactionKeywordCreateOrConnectWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordCreateOrConnectWithoutTransactionInputSchema).array() ]).optional(),
+  upsert: z.union([ z.lazy(() => TransactionKeywordUpsertWithWhereUniqueWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordUpsertWithWhereUniqueWithoutTransactionInputSchema).array() ]).optional(),
+  createMany: z.lazy(() => TransactionKeywordCreateManyTransactionInputEnvelopeSchema).optional(),
+  set: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  disconnect: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  delete: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  connect: z.union([ z.lazy(() => TransactionKeywordWhereUniqueInputSchema),z.lazy(() => TransactionKeywordWhereUniqueInputSchema).array() ]).optional(),
+  update: z.union([ z.lazy(() => TransactionKeywordUpdateWithWhereUniqueWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordUpdateWithWhereUniqueWithoutTransactionInputSchema).array() ]).optional(),
+  updateMany: z.union([ z.lazy(() => TransactionKeywordUpdateManyWithWhereWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordUpdateManyWithWhereWithoutTransactionInputSchema).array() ]).optional(),
+  deleteMany: z.union([ z.lazy(() => TransactionKeywordScalarWhereInputSchema),z.lazy(() => TransactionKeywordScalarWhereInputSchema).array() ]).optional(),
+}).strict();
+
+export const TransactionCreateNestedOneWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.TransactionCreateNestedOneWithoutTransactionKeywordInput> = z.object({
+  create: z.union([ z.lazy(() => TransactionCreateWithoutTransactionKeywordInputSchema),z.lazy(() => TransactionUncheckedCreateWithoutTransactionKeywordInputSchema) ]).optional(),
+  connectOrCreate: z.lazy(() => TransactionCreateOrConnectWithoutTransactionKeywordInputSchema).optional(),
+  connect: z.lazy(() => TransactionWhereUniqueInputSchema).optional()
+}).strict();
+
+export const KeywordCreateNestedOneWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.KeywordCreateNestedOneWithoutTransactionKeywordInput> = z.object({
+  create: z.union([ z.lazy(() => KeywordCreateWithoutTransactionKeywordInputSchema),z.lazy(() => KeywordUncheckedCreateWithoutTransactionKeywordInputSchema) ]).optional(),
+  connectOrCreate: z.lazy(() => KeywordCreateOrConnectWithoutTransactionKeywordInputSchema).optional(),
+  connect: z.lazy(() => KeywordWhereUniqueInputSchema).optional()
+}).strict();
+
+export const TransactionUpdateOneRequiredWithoutTransactionKeywordNestedInputSchema: z.ZodType<Prisma.TransactionUpdateOneRequiredWithoutTransactionKeywordNestedInput> = z.object({
+  create: z.union([ z.lazy(() => TransactionCreateWithoutTransactionKeywordInputSchema),z.lazy(() => TransactionUncheckedCreateWithoutTransactionKeywordInputSchema) ]).optional(),
+  connectOrCreate: z.lazy(() => TransactionCreateOrConnectWithoutTransactionKeywordInputSchema).optional(),
+  upsert: z.lazy(() => TransactionUpsertWithoutTransactionKeywordInputSchema).optional(),
+  connect: z.lazy(() => TransactionWhereUniqueInputSchema).optional(),
+  update: z.union([ z.lazy(() => TransactionUpdateWithoutTransactionKeywordInputSchema),z.lazy(() => TransactionUncheckedUpdateWithoutTransactionKeywordInputSchema) ]).optional(),
+}).strict();
+
+export const KeywordUpdateOneRequiredWithoutTransactionKeywordNestedInputSchema: z.ZodType<Prisma.KeywordUpdateOneRequiredWithoutTransactionKeywordNestedInput> = z.object({
+  create: z.union([ z.lazy(() => KeywordCreateWithoutTransactionKeywordInputSchema),z.lazy(() => KeywordUncheckedCreateWithoutTransactionKeywordInputSchema) ]).optional(),
+  connectOrCreate: z.lazy(() => KeywordCreateOrConnectWithoutTransactionKeywordInputSchema).optional(),
+  upsert: z.lazy(() => KeywordUpsertWithoutTransactionKeywordInputSchema).optional(),
+  connect: z.lazy(() => KeywordWhereUniqueInputSchema).optional(),
+  update: z.union([ z.lazy(() => KeywordUpdateWithoutTransactionKeywordInputSchema),z.lazy(() => KeywordUncheckedUpdateWithoutTransactionKeywordInputSchema) ]).optional(),
 }).strict();
 
 export const NestedStringFilterSchema: z.ZodType<Prisma.NestedStringFilter> = z.object({
@@ -4887,7 +5293,8 @@ export const TransactionCreateWithoutUserInputSchema: z.ZodType<Prisma.Transacti
   date: z.coerce.date(),
   target: z.string().optional().nullable(),
   note: z.string().optional().nullable(),
-  bank: z.lazy(() => BankCreateNestedOneWithoutTransactionInputSchema)
+  bank: z.lazy(() => BankCreateNestedOneWithoutTransactionInputSchema),
+  TransactionKeyword: z.lazy(() => TransactionKeywordCreateNestedManyWithoutTransactionInputSchema).optional()
 }).strict();
 
 export const TransactionUncheckedCreateWithoutUserInputSchema: z.ZodType<Prisma.TransactionUncheckedCreateWithoutUserInput> = z.object({
@@ -4900,7 +5307,8 @@ export const TransactionUncheckedCreateWithoutUserInputSchema: z.ZodType<Prisma.
   static: z.string().optional().nullable(),
   date: z.coerce.date(),
   target: z.string().optional().nullable(),
-  note: z.string().optional().nullable()
+  note: z.string().optional().nullable(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordUncheckedCreateNestedManyWithoutTransactionInputSchema).optional()
 }).strict();
 
 export const TransactionCreateOrConnectWithoutUserInputSchema: z.ZodType<Prisma.TransactionCreateOrConnectWithoutUserInput> = z.object({
@@ -5634,6 +6042,51 @@ export const JobUncheckedUpdateWithoutLogsInputSchema: z.ZodType<Prisma.JobUnche
   params: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValue ]).optional(),
 }).strict();
 
+export const TransactionKeywordCreateWithoutKeywordInputSchema: z.ZodType<Prisma.TransactionKeywordCreateWithoutKeywordInput> = z.object({
+  id: z.string().optional(),
+  transaction: z.lazy(() => TransactionCreateNestedOneWithoutTransactionKeywordInputSchema)
+}).strict();
+
+export const TransactionKeywordUncheckedCreateWithoutKeywordInputSchema: z.ZodType<Prisma.TransactionKeywordUncheckedCreateWithoutKeywordInput> = z.object({
+  id: z.string().optional(),
+  transactionId: z.string()
+}).strict();
+
+export const TransactionKeywordCreateOrConnectWithoutKeywordInputSchema: z.ZodType<Prisma.TransactionKeywordCreateOrConnectWithoutKeywordInput> = z.object({
+  where: z.lazy(() => TransactionKeywordWhereUniqueInputSchema),
+  create: z.union([ z.lazy(() => TransactionKeywordCreateWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordUncheckedCreateWithoutKeywordInputSchema) ]),
+}).strict();
+
+export const TransactionKeywordCreateManyKeywordInputEnvelopeSchema: z.ZodType<Prisma.TransactionKeywordCreateManyKeywordInputEnvelope> = z.object({
+  data: z.union([ z.lazy(() => TransactionKeywordCreateManyKeywordInputSchema),z.lazy(() => TransactionKeywordCreateManyKeywordInputSchema).array() ]),
+  skipDuplicates: z.boolean().optional()
+}).strict();
+
+export const TransactionKeywordUpsertWithWhereUniqueWithoutKeywordInputSchema: z.ZodType<Prisma.TransactionKeywordUpsertWithWhereUniqueWithoutKeywordInput> = z.object({
+  where: z.lazy(() => TransactionKeywordWhereUniqueInputSchema),
+  update: z.union([ z.lazy(() => TransactionKeywordUpdateWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordUncheckedUpdateWithoutKeywordInputSchema) ]),
+  create: z.union([ z.lazy(() => TransactionKeywordCreateWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordUncheckedCreateWithoutKeywordInputSchema) ]),
+}).strict();
+
+export const TransactionKeywordUpdateWithWhereUniqueWithoutKeywordInputSchema: z.ZodType<Prisma.TransactionKeywordUpdateWithWhereUniqueWithoutKeywordInput> = z.object({
+  where: z.lazy(() => TransactionKeywordWhereUniqueInputSchema),
+  data: z.union([ z.lazy(() => TransactionKeywordUpdateWithoutKeywordInputSchema),z.lazy(() => TransactionKeywordUncheckedUpdateWithoutKeywordInputSchema) ]),
+}).strict();
+
+export const TransactionKeywordUpdateManyWithWhereWithoutKeywordInputSchema: z.ZodType<Prisma.TransactionKeywordUpdateManyWithWhereWithoutKeywordInput> = z.object({
+  where: z.lazy(() => TransactionKeywordScalarWhereInputSchema),
+  data: z.union([ z.lazy(() => TransactionKeywordUpdateManyMutationInputSchema),z.lazy(() => TransactionKeywordUncheckedUpdateManyWithoutTransactionKeywordInputSchema) ]),
+}).strict();
+
+export const TransactionKeywordScalarWhereInputSchema: z.ZodType<Prisma.TransactionKeywordScalarWhereInput> = z.object({
+  AND: z.union([ z.lazy(() => TransactionKeywordScalarWhereInputSchema),z.lazy(() => TransactionKeywordScalarWhereInputSchema).array() ]).optional(),
+  OR: z.lazy(() => TransactionKeywordScalarWhereInputSchema).array().optional(),
+  NOT: z.union([ z.lazy(() => TransactionKeywordScalarWhereInputSchema),z.lazy(() => TransactionKeywordScalarWhereInputSchema).array() ]).optional(),
+  id: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  transactionId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+  keywordId: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
+}).strict();
+
 export const UserCreateWithoutBankInputSchema: z.ZodType<Prisma.UserCreateWithoutBankInput> = z.object({
   id: z.string().optional(),
   name: z.string().optional().nullable(),
@@ -5677,7 +6130,8 @@ export const TransactionCreateWithoutBankInputSchema: z.ZodType<Prisma.Transacti
   date: z.coerce.date(),
   target: z.string().optional().nullable(),
   note: z.string().optional().nullable(),
-  user: z.lazy(() => UserCreateNestedOneWithoutTransactionInputSchema)
+  user: z.lazy(() => UserCreateNestedOneWithoutTransactionInputSchema),
+  TransactionKeyword: z.lazy(() => TransactionKeywordCreateNestedManyWithoutTransactionInputSchema).optional()
 }).strict();
 
 export const TransactionUncheckedCreateWithoutBankInputSchema: z.ZodType<Prisma.TransactionUncheckedCreateWithoutBankInput> = z.object({
@@ -5690,7 +6144,8 @@ export const TransactionUncheckedCreateWithoutBankInputSchema: z.ZodType<Prisma.
   static: z.string().optional().nullable(),
   date: z.coerce.date(),
   target: z.string().optional().nullable(),
-  note: z.string().optional().nullable()
+  note: z.string().optional().nullable(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordUncheckedCreateNestedManyWithoutTransactionInputSchema).optional()
 }).strict();
 
 export const TransactionCreateOrConnectWithoutBankInputSchema: z.ZodType<Prisma.TransactionCreateOrConnectWithoutBankInput> = z.object({
@@ -5808,6 +6263,26 @@ export const BankCreateOrConnectWithoutTransactionInputSchema: z.ZodType<Prisma.
   create: z.union([ z.lazy(() => BankCreateWithoutTransactionInputSchema),z.lazy(() => BankUncheckedCreateWithoutTransactionInputSchema) ]),
 }).strict();
 
+export const TransactionKeywordCreateWithoutTransactionInputSchema: z.ZodType<Prisma.TransactionKeywordCreateWithoutTransactionInput> = z.object({
+  id: z.string().optional(),
+  keyword: z.lazy(() => KeywordCreateNestedOneWithoutTransactionKeywordInputSchema)
+}).strict();
+
+export const TransactionKeywordUncheckedCreateWithoutTransactionInputSchema: z.ZodType<Prisma.TransactionKeywordUncheckedCreateWithoutTransactionInput> = z.object({
+  id: z.string().optional(),
+  keywordId: z.string()
+}).strict();
+
+export const TransactionKeywordCreateOrConnectWithoutTransactionInputSchema: z.ZodType<Prisma.TransactionKeywordCreateOrConnectWithoutTransactionInput> = z.object({
+  where: z.lazy(() => TransactionKeywordWhereUniqueInputSchema),
+  create: z.union([ z.lazy(() => TransactionKeywordCreateWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordUncheckedCreateWithoutTransactionInputSchema) ]),
+}).strict();
+
+export const TransactionKeywordCreateManyTransactionInputEnvelopeSchema: z.ZodType<Prisma.TransactionKeywordCreateManyTransactionInputEnvelope> = z.object({
+  data: z.union([ z.lazy(() => TransactionKeywordCreateManyTransactionInputSchema),z.lazy(() => TransactionKeywordCreateManyTransactionInputSchema).array() ]),
+  skipDuplicates: z.boolean().optional()
+}).strict();
+
 export const UserUpsertWithoutTransactionInputSchema: z.ZodType<Prisma.UserUpsertWithoutTransactionInput> = z.object({
   update: z.union([ z.lazy(() => UserUpdateWithoutTransactionInputSchema),z.lazy(() => UserUncheckedUpdateWithoutTransactionInputSchema) ]),
   create: z.union([ z.lazy(() => UserCreateWithoutTransactionInputSchema),z.lazy(() => UserUncheckedCreateWithoutTransactionInputSchema) ]),
@@ -5862,6 +6337,118 @@ export const BankUncheckedUpdateWithoutTransactionInputSchema: z.ZodType<Prisma.
   description: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   balanceValue: z.union([ z.union([z.number(),z.string(),DecimalJSLikeSchema,]).refine((v) => isValidDecimalInput(v), { message: 'Must be a Decimal' }),z.lazy(() => NullableDecimalFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   balanceDate: z.union([ z.coerce.date(),z.lazy(() => NullableDateTimeFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+}).strict();
+
+export const TransactionKeywordUpsertWithWhereUniqueWithoutTransactionInputSchema: z.ZodType<Prisma.TransactionKeywordUpsertWithWhereUniqueWithoutTransactionInput> = z.object({
+  where: z.lazy(() => TransactionKeywordWhereUniqueInputSchema),
+  update: z.union([ z.lazy(() => TransactionKeywordUpdateWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordUncheckedUpdateWithoutTransactionInputSchema) ]),
+  create: z.union([ z.lazy(() => TransactionKeywordCreateWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordUncheckedCreateWithoutTransactionInputSchema) ]),
+}).strict();
+
+export const TransactionKeywordUpdateWithWhereUniqueWithoutTransactionInputSchema: z.ZodType<Prisma.TransactionKeywordUpdateWithWhereUniqueWithoutTransactionInput> = z.object({
+  where: z.lazy(() => TransactionKeywordWhereUniqueInputSchema),
+  data: z.union([ z.lazy(() => TransactionKeywordUpdateWithoutTransactionInputSchema),z.lazy(() => TransactionKeywordUncheckedUpdateWithoutTransactionInputSchema) ]),
+}).strict();
+
+export const TransactionKeywordUpdateManyWithWhereWithoutTransactionInputSchema: z.ZodType<Prisma.TransactionKeywordUpdateManyWithWhereWithoutTransactionInput> = z.object({
+  where: z.lazy(() => TransactionKeywordScalarWhereInputSchema),
+  data: z.union([ z.lazy(() => TransactionKeywordUpdateManyMutationInputSchema),z.lazy(() => TransactionKeywordUncheckedUpdateManyWithoutTransactionKeywordInputSchema) ]),
+}).strict();
+
+export const TransactionCreateWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.TransactionCreateWithoutTransactionKeywordInput> = z.object({
+  id: z.string().optional(),
+  reference: z.string(),
+  amount: z.union([z.number(),z.string(),DecimalJSLikeSchema,]).refine((v) => isValidDecimalInput(v), { message: 'Must be a Decimal' }),
+  variable: z.string().optional().nullable(),
+  symbol: z.string().optional().nullable(),
+  static: z.string().optional().nullable(),
+  date: z.coerce.date(),
+  target: z.string().optional().nullable(),
+  note: z.string().optional().nullable(),
+  user: z.lazy(() => UserCreateNestedOneWithoutTransactionInputSchema),
+  bank: z.lazy(() => BankCreateNestedOneWithoutTransactionInputSchema)
+}).strict();
+
+export const TransactionUncheckedCreateWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.TransactionUncheckedCreateWithoutTransactionKeywordInput> = z.object({
+  id: z.string().optional(),
+  reference: z.string(),
+  userId: z.string(),
+  bankId: z.string(),
+  amount: z.union([z.number(),z.string(),DecimalJSLikeSchema,]).refine((v) => isValidDecimalInput(v), { message: 'Must be a Decimal' }),
+  variable: z.string().optional().nullable(),
+  symbol: z.string().optional().nullable(),
+  static: z.string().optional().nullable(),
+  date: z.coerce.date(),
+  target: z.string().optional().nullable(),
+  note: z.string().optional().nullable()
+}).strict();
+
+export const TransactionCreateOrConnectWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.TransactionCreateOrConnectWithoutTransactionKeywordInput> = z.object({
+  where: z.lazy(() => TransactionWhereUniqueInputSchema),
+  create: z.union([ z.lazy(() => TransactionCreateWithoutTransactionKeywordInputSchema),z.lazy(() => TransactionUncheckedCreateWithoutTransactionKeywordInputSchema) ]),
+}).strict();
+
+export const KeywordCreateWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.KeywordCreateWithoutTransactionKeywordInput> = z.object({
+  id: z.string().optional(),
+  text: z.string()
+}).strict();
+
+export const KeywordUncheckedCreateWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.KeywordUncheckedCreateWithoutTransactionKeywordInput> = z.object({
+  id: z.string().optional(),
+  text: z.string()
+}).strict();
+
+export const KeywordCreateOrConnectWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.KeywordCreateOrConnectWithoutTransactionKeywordInput> = z.object({
+  where: z.lazy(() => KeywordWhereUniqueInputSchema),
+  create: z.union([ z.lazy(() => KeywordCreateWithoutTransactionKeywordInputSchema),z.lazy(() => KeywordUncheckedCreateWithoutTransactionKeywordInputSchema) ]),
+}).strict();
+
+export const TransactionUpsertWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.TransactionUpsertWithoutTransactionKeywordInput> = z.object({
+  update: z.union([ z.lazy(() => TransactionUpdateWithoutTransactionKeywordInputSchema),z.lazy(() => TransactionUncheckedUpdateWithoutTransactionKeywordInputSchema) ]),
+  create: z.union([ z.lazy(() => TransactionCreateWithoutTransactionKeywordInputSchema),z.lazy(() => TransactionUncheckedCreateWithoutTransactionKeywordInputSchema) ]),
+}).strict();
+
+export const TransactionUpdateWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.TransactionUpdateWithoutTransactionKeywordInput> = z.object({
+  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  reference: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  amount: z.union([ z.union([z.number(),z.string(),DecimalJSLikeSchema,]).refine((v) => isValidDecimalInput(v), { message: 'Must be a Decimal' }),z.lazy(() => DecimalFieldUpdateOperationsInputSchema) ]).optional(),
+  variable: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  symbol: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  static: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  date: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  target: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  note: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  user: z.lazy(() => UserUpdateOneRequiredWithoutTransactionNestedInputSchema).optional(),
+  bank: z.lazy(() => BankUpdateOneRequiredWithoutTransactionNestedInputSchema).optional()
+}).strict();
+
+export const TransactionUncheckedUpdateWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.TransactionUncheckedUpdateWithoutTransactionKeywordInput> = z.object({
+  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  reference: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  userId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  bankId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  amount: z.union([ z.union([z.number(),z.string(),DecimalJSLikeSchema,]).refine((v) => isValidDecimalInput(v), { message: 'Must be a Decimal' }),z.lazy(() => DecimalFieldUpdateOperationsInputSchema) ]).optional(),
+  variable: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  symbol: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  static: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  date: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  target: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  note: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+}).strict();
+
+export const KeywordUpsertWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.KeywordUpsertWithoutTransactionKeywordInput> = z.object({
+  update: z.union([ z.lazy(() => KeywordUpdateWithoutTransactionKeywordInputSchema),z.lazy(() => KeywordUncheckedUpdateWithoutTransactionKeywordInputSchema) ]),
+  create: z.union([ z.lazy(() => KeywordCreateWithoutTransactionKeywordInputSchema),z.lazy(() => KeywordUncheckedCreateWithoutTransactionKeywordInputSchema) ]),
+}).strict();
+
+export const KeywordUpdateWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.KeywordUpdateWithoutTransactionKeywordInput> = z.object({
+  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  text: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+}).strict();
+
+export const KeywordUncheckedUpdateWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.KeywordUncheckedUpdateWithoutTransactionKeywordInput> = z.object({
+  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  text: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 export const AccountCreateManyUserInputSchema: z.ZodType<Prisma.AccountCreateManyUserInput> = z.object({
@@ -6025,7 +6612,8 @@ export const TransactionUpdateWithoutUserInputSchema: z.ZodType<Prisma.Transacti
   date: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   target: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   note: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
-  bank: z.lazy(() => BankUpdateOneRequiredWithoutTransactionNestedInputSchema).optional()
+  bank: z.lazy(() => BankUpdateOneRequiredWithoutTransactionNestedInputSchema).optional(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordUpdateManyWithoutTransactionNestedInputSchema).optional()
 }).strict();
 
 export const TransactionUncheckedUpdateWithoutUserInputSchema: z.ZodType<Prisma.TransactionUncheckedUpdateWithoutUserInput> = z.object({
@@ -6039,6 +6627,7 @@ export const TransactionUncheckedUpdateWithoutUserInputSchema: z.ZodType<Prisma.
   date: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   target: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   note: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordUncheckedUpdateManyWithoutTransactionNestedInputSchema).optional()
 }).strict();
 
 export const TransactionUncheckedUpdateManyWithoutTransactionInputSchema: z.ZodType<Prisma.TransactionUncheckedUpdateManyWithoutTransactionInput> = z.object({
@@ -6207,6 +6796,26 @@ export const JobLogUncheckedUpdateManyWithoutLogsInputSchema: z.ZodType<Prisma.J
   message: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
+export const TransactionKeywordCreateManyKeywordInputSchema: z.ZodType<Prisma.TransactionKeywordCreateManyKeywordInput> = z.object({
+  id: z.string().cuid().optional(),
+  transactionId: z.string()
+}).strict();
+
+export const TransactionKeywordUpdateWithoutKeywordInputSchema: z.ZodType<Prisma.TransactionKeywordUpdateWithoutKeywordInput> = z.object({
+  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  transaction: z.lazy(() => TransactionUpdateOneRequiredWithoutTransactionKeywordNestedInputSchema).optional()
+}).strict();
+
+export const TransactionKeywordUncheckedUpdateWithoutKeywordInputSchema: z.ZodType<Prisma.TransactionKeywordUncheckedUpdateWithoutKeywordInput> = z.object({
+  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  transactionId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+}).strict();
+
+export const TransactionKeywordUncheckedUpdateManyWithoutTransactionKeywordInputSchema: z.ZodType<Prisma.TransactionKeywordUncheckedUpdateManyWithoutTransactionKeywordInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  transactionId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+}).strict();
+
 export const TransactionCreateManyBankInputSchema: z.ZodType<Prisma.TransactionCreateManyBankInput> = z.object({
   id: z.string().cuid().optional(),
   reference: z.string(),
@@ -6230,7 +6839,8 @@ export const TransactionUpdateWithoutBankInputSchema: z.ZodType<Prisma.Transacti
   date: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   target: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   note: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
-  user: z.lazy(() => UserUpdateOneRequiredWithoutTransactionNestedInputSchema).optional()
+  user: z.lazy(() => UserUpdateOneRequiredWithoutTransactionNestedInputSchema).optional(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordUpdateManyWithoutTransactionNestedInputSchema).optional()
 }).strict();
 
 export const TransactionUncheckedUpdateWithoutBankInputSchema: z.ZodType<Prisma.TransactionUncheckedUpdateWithoutBankInput> = z.object({
@@ -6244,6 +6854,22 @@ export const TransactionUncheckedUpdateWithoutBankInputSchema: z.ZodType<Prisma.
   date: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
   target: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
   note: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordUncheckedUpdateManyWithoutTransactionNestedInputSchema).optional()
+}).strict();
+
+export const TransactionKeywordCreateManyTransactionInputSchema: z.ZodType<Prisma.TransactionKeywordCreateManyTransactionInput> = z.object({
+  id: z.string().cuid().optional(),
+  keywordId: z.string()
+}).strict();
+
+export const TransactionKeywordUpdateWithoutTransactionInputSchema: z.ZodType<Prisma.TransactionKeywordUpdateWithoutTransactionInput> = z.object({
+  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  keyword: z.lazy(() => KeywordUpdateOneRequiredWithoutTransactionKeywordNestedInputSchema).optional()
+}).strict();
+
+export const TransactionKeywordUncheckedUpdateWithoutTransactionInputSchema: z.ZodType<Prisma.TransactionKeywordUncheckedUpdateWithoutTransactionInput> = z.object({
+  id: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  keywordId: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
 }).strict();
 
 /////////////////////////////////////////
@@ -6862,6 +7488,7 @@ export const JobLogFindUniqueOrThrowArgsSchema: z.ZodType<Prisma.JobLogFindUniqu
 
 export const KeywordFindFirstArgsSchema: z.ZodType<Prisma.KeywordFindFirstArgs> = z.object({
   select: KeywordSelectSchema.optional(),
+  include: KeywordIncludeSchema.optional(),
   where: KeywordWhereInputSchema.optional(),
   orderBy: z.union([ KeywordOrderByWithRelationInputSchema.array(),KeywordOrderByWithRelationInputSchema ]).optional(),
   cursor: KeywordWhereUniqueInputSchema.optional(),
@@ -6872,6 +7499,7 @@ export const KeywordFindFirstArgsSchema: z.ZodType<Prisma.KeywordFindFirstArgs> 
 
 export const KeywordFindFirstOrThrowArgsSchema: z.ZodType<Prisma.KeywordFindFirstOrThrowArgs> = z.object({
   select: KeywordSelectSchema.optional(),
+  include: KeywordIncludeSchema.optional(),
   where: KeywordWhereInputSchema.optional(),
   orderBy: z.union([ KeywordOrderByWithRelationInputSchema.array(),KeywordOrderByWithRelationInputSchema ]).optional(),
   cursor: KeywordWhereUniqueInputSchema.optional(),
@@ -6882,6 +7510,7 @@ export const KeywordFindFirstOrThrowArgsSchema: z.ZodType<Prisma.KeywordFindFirs
 
 export const KeywordFindManyArgsSchema: z.ZodType<Prisma.KeywordFindManyArgs> = z.object({
   select: KeywordSelectSchema.optional(),
+  include: KeywordIncludeSchema.optional(),
   where: KeywordWhereInputSchema.optional(),
   orderBy: z.union([ KeywordOrderByWithRelationInputSchema.array(),KeywordOrderByWithRelationInputSchema ]).optional(),
   cursor: KeywordWhereUniqueInputSchema.optional(),
@@ -6909,11 +7538,13 @@ export const KeywordGroupByArgsSchema: z.ZodType<Prisma.KeywordGroupByArgs> = z.
 
 export const KeywordFindUniqueArgsSchema: z.ZodType<Prisma.KeywordFindUniqueArgs> = z.object({
   select: KeywordSelectSchema.optional(),
+  include: KeywordIncludeSchema.optional(),
   where: KeywordWhereUniqueInputSchema,
 }).strict()
 
 export const KeywordFindUniqueOrThrowArgsSchema: z.ZodType<Prisma.KeywordFindUniqueOrThrowArgs> = z.object({
   select: KeywordSelectSchema.optional(),
+  include: KeywordIncludeSchema.optional(),
   where: KeywordWhereUniqueInputSchema,
 }).strict()
 
@@ -7039,6 +7670,68 @@ export const TransactionFindUniqueOrThrowArgsSchema: z.ZodType<Prisma.Transactio
   select: TransactionSelectSchema.optional(),
   include: TransactionIncludeSchema.optional(),
   where: TransactionWhereUniqueInputSchema,
+}).strict()
+
+export const TransactionKeywordFindFirstArgsSchema: z.ZodType<Prisma.TransactionKeywordFindFirstArgs> = z.object({
+  select: TransactionKeywordSelectSchema.optional(),
+  include: TransactionKeywordIncludeSchema.optional(),
+  where: TransactionKeywordWhereInputSchema.optional(),
+  orderBy: z.union([ TransactionKeywordOrderByWithRelationInputSchema.array(),TransactionKeywordOrderByWithRelationInputSchema ]).optional(),
+  cursor: TransactionKeywordWhereUniqueInputSchema.optional(),
+  take: z.number().optional(),
+  skip: z.number().optional(),
+  distinct: TransactionKeywordScalarFieldEnumSchema.array().optional(),
+}).strict()
+
+export const TransactionKeywordFindFirstOrThrowArgsSchema: z.ZodType<Prisma.TransactionKeywordFindFirstOrThrowArgs> = z.object({
+  select: TransactionKeywordSelectSchema.optional(),
+  include: TransactionKeywordIncludeSchema.optional(),
+  where: TransactionKeywordWhereInputSchema.optional(),
+  orderBy: z.union([ TransactionKeywordOrderByWithRelationInputSchema.array(),TransactionKeywordOrderByWithRelationInputSchema ]).optional(),
+  cursor: TransactionKeywordWhereUniqueInputSchema.optional(),
+  take: z.number().optional(),
+  skip: z.number().optional(),
+  distinct: TransactionKeywordScalarFieldEnumSchema.array().optional(),
+}).strict()
+
+export const TransactionKeywordFindManyArgsSchema: z.ZodType<Prisma.TransactionKeywordFindManyArgs> = z.object({
+  select: TransactionKeywordSelectSchema.optional(),
+  include: TransactionKeywordIncludeSchema.optional(),
+  where: TransactionKeywordWhereInputSchema.optional(),
+  orderBy: z.union([ TransactionKeywordOrderByWithRelationInputSchema.array(),TransactionKeywordOrderByWithRelationInputSchema ]).optional(),
+  cursor: TransactionKeywordWhereUniqueInputSchema.optional(),
+  take: z.number().optional(),
+  skip: z.number().optional(),
+  distinct: TransactionKeywordScalarFieldEnumSchema.array().optional(),
+}).strict()
+
+export const TransactionKeywordAggregateArgsSchema: z.ZodType<Prisma.TransactionKeywordAggregateArgs> = z.object({
+  where: TransactionKeywordWhereInputSchema.optional(),
+  orderBy: z.union([ TransactionKeywordOrderByWithRelationInputSchema.array(),TransactionKeywordOrderByWithRelationInputSchema ]).optional(),
+  cursor: TransactionKeywordWhereUniqueInputSchema.optional(),
+  take: z.number().optional(),
+  skip: z.number().optional(),
+}).strict()
+
+export const TransactionKeywordGroupByArgsSchema: z.ZodType<Prisma.TransactionKeywordGroupByArgs> = z.object({
+  where: TransactionKeywordWhereInputSchema.optional(),
+  orderBy: z.union([ TransactionKeywordOrderByWithAggregationInputSchema.array(),TransactionKeywordOrderByWithAggregationInputSchema ]).optional(),
+  by: TransactionKeywordScalarFieldEnumSchema.array(),
+  having: TransactionKeywordScalarWhereWithAggregatesInputSchema.optional(),
+  take: z.number().optional(),
+  skip: z.number().optional(),
+}).strict()
+
+export const TransactionKeywordFindUniqueArgsSchema: z.ZodType<Prisma.TransactionKeywordFindUniqueArgs> = z.object({
+  select: TransactionKeywordSelectSchema.optional(),
+  include: TransactionKeywordIncludeSchema.optional(),
+  where: TransactionKeywordWhereUniqueInputSchema,
+}).strict()
+
+export const TransactionKeywordFindUniqueOrThrowArgsSchema: z.ZodType<Prisma.TransactionKeywordFindUniqueOrThrowArgs> = z.object({
+  select: TransactionKeywordSelectSchema.optional(),
+  include: TransactionKeywordIncludeSchema.optional(),
+  where: TransactionKeywordWhereUniqueInputSchema,
 }).strict()
 
 export const AccountCreateArgsSchema: z.ZodType<Prisma.AccountCreateArgs> = z.object({
@@ -7445,11 +8138,13 @@ export const JobLogDeleteManyArgsSchema: z.ZodType<Prisma.JobLogDeleteManyArgs> 
 
 export const KeywordCreateArgsSchema: z.ZodType<Prisma.KeywordCreateArgs> = z.object({
   select: KeywordSelectSchema.optional(),
+  include: KeywordIncludeSchema.optional(),
   data: z.union([ KeywordCreateInputSchema,KeywordUncheckedCreateInputSchema ]),
 }).strict()
 
 export const KeywordUpsertArgsSchema: z.ZodType<Prisma.KeywordUpsertArgs> = z.object({
   select: KeywordSelectSchema.optional(),
+  include: KeywordIncludeSchema.optional(),
   where: KeywordWhereUniqueInputSchema,
   create: z.union([ KeywordCreateInputSchema,KeywordUncheckedCreateInputSchema ]),
   update: z.union([ KeywordUpdateInputSchema,KeywordUncheckedUpdateInputSchema ]),
@@ -7462,11 +8157,13 @@ export const KeywordCreateManyArgsSchema: z.ZodType<Prisma.KeywordCreateManyArgs
 
 export const KeywordDeleteArgsSchema: z.ZodType<Prisma.KeywordDeleteArgs> = z.object({
   select: KeywordSelectSchema.optional(),
+  include: KeywordIncludeSchema.optional(),
   where: KeywordWhereUniqueInputSchema,
 }).strict()
 
 export const KeywordUpdateArgsSchema: z.ZodType<Prisma.KeywordUpdateArgs> = z.object({
   select: KeywordSelectSchema.optional(),
+  include: KeywordIncludeSchema.optional(),
   data: z.union([ KeywordUpdateInputSchema,KeywordUncheckedUpdateInputSchema ]),
   where: KeywordWhereUniqueInputSchema,
 }).strict()
@@ -7560,4 +8257,45 @@ export const TransactionUpdateManyArgsSchema: z.ZodType<Prisma.TransactionUpdate
 
 export const TransactionDeleteManyArgsSchema: z.ZodType<Prisma.TransactionDeleteManyArgs> = z.object({
   where: TransactionWhereInputSchema.optional(),
+}).strict()
+
+export const TransactionKeywordCreateArgsSchema: z.ZodType<Prisma.TransactionKeywordCreateArgs> = z.object({
+  select: TransactionKeywordSelectSchema.optional(),
+  include: TransactionKeywordIncludeSchema.optional(),
+  data: z.union([ TransactionKeywordCreateInputSchema,TransactionKeywordUncheckedCreateInputSchema ]),
+}).strict()
+
+export const TransactionKeywordUpsertArgsSchema: z.ZodType<Prisma.TransactionKeywordUpsertArgs> = z.object({
+  select: TransactionKeywordSelectSchema.optional(),
+  include: TransactionKeywordIncludeSchema.optional(),
+  where: TransactionKeywordWhereUniqueInputSchema,
+  create: z.union([ TransactionKeywordCreateInputSchema,TransactionKeywordUncheckedCreateInputSchema ]),
+  update: z.union([ TransactionKeywordUpdateInputSchema,TransactionKeywordUncheckedUpdateInputSchema ]),
+}).strict()
+
+export const TransactionKeywordCreateManyArgsSchema: z.ZodType<Prisma.TransactionKeywordCreateManyArgs> = z.object({
+  data: z.union([ TransactionKeywordCreateManyInputSchema,TransactionKeywordCreateManyInputSchema.array() ]),
+  skipDuplicates: z.boolean().optional(),
+}).strict()
+
+export const TransactionKeywordDeleteArgsSchema: z.ZodType<Prisma.TransactionKeywordDeleteArgs> = z.object({
+  select: TransactionKeywordSelectSchema.optional(),
+  include: TransactionKeywordIncludeSchema.optional(),
+  where: TransactionKeywordWhereUniqueInputSchema,
+}).strict()
+
+export const TransactionKeywordUpdateArgsSchema: z.ZodType<Prisma.TransactionKeywordUpdateArgs> = z.object({
+  select: TransactionKeywordSelectSchema.optional(),
+  include: TransactionKeywordIncludeSchema.optional(),
+  data: z.union([ TransactionKeywordUpdateInputSchema,TransactionKeywordUncheckedUpdateInputSchema ]),
+  where: TransactionKeywordWhereUniqueInputSchema,
+}).strict()
+
+export const TransactionKeywordUpdateManyArgsSchema: z.ZodType<Prisma.TransactionKeywordUpdateManyArgs> = z.object({
+  data: z.union([ TransactionKeywordUpdateManyMutationInputSchema,TransactionKeywordUncheckedUpdateManyInputSchema ]),
+  where: TransactionKeywordWhereInputSchema.optional(),
+}).strict()
+
+export const TransactionKeywordDeleteManyArgsSchema: z.ZodType<Prisma.TransactionKeywordDeleteManyArgs> = z.object({
+  where: TransactionKeywordWhereInputSchema.optional(),
 }).strict()

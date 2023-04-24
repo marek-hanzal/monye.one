@@ -51,26 +51,6 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
     }) => {
     entities.forEach(({name, sourceEx, mapperEx, serviceEx, withPrisma, packages}) => {
         const baseSource = withPrisma ? `${name}BasePrismaSource` : `${name}BaseSource`;
-        withSourceFile()
-            .withImports({
-                imports: {
-                    [packages.schema]: [
-                        `type I${name}SourceSchemaType`,
-                    ],
-                    "@leight/source":  [
-                        "type ISourceMapper",
-                    ],
-                },
-            })
-            .withTypes({
-                exports: {
-                    [`I${name}SourceMapper`]: `ISourceMapper<I${name}SourceSchemaType>`,
-                },
-            })
-            .saveTo({
-                file:   normalize(`${directory}/api/${name}Types.ts`),
-                barrel: false,
-            });
 
         withSourceFile()
             .withImports({
@@ -82,7 +62,7 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
             })
             .withImports(sourceEx?.type ? undefined : {
                 imports: {
-                    [withPrisma ? `../PrismaSource/${name}PrismaSource` : `../BaseSource/${name}BaseSource`]: [
+                    [withPrisma ? `./${name}BasePrismaSource` : `./${name}BaseSource`]: [
                         baseSource,
                     ],
                 },
@@ -103,21 +83,19 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
                 }
             })
             .saveTo({
-                file: normalize(`${directory}/ServerSource/${name}ServerSource.ts`),
+                file: normalize(`${directory}/Source/${name}Source.ts`),
                 barrel,
             });
 
         withSourceFile()
             .withImports({
                 imports: {
-                    [`../api/${name}Types`]: [
-                        `type I${name}SourceMapper`,
-                    ],
                     "@leight/source-server": [
                         `AbstractSourceMapper`,
                     ],
                     [packages.schema]:       [
                         `type I${name}SourceSchemaType`,
+                        `type I${name}SourceMapper`,
                     ],
                 },
             })
@@ -130,14 +108,14 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/ServerSourceMapper/${name}BaseSourceMapper.ts`),
+                file: normalize(`${directory}/SourceMapper/${name}BaseSourceMapper.ts`),
                 barrel,
             });
 
         withSourceFile()
             .withImports({
                 imports: {
-                    [`../api/${name}Types`]: [
+                    [packages.schema]: [
                         `type I${name}SourceMapper`,
                     ],
                 }
@@ -162,7 +140,7 @@ export const generatorServerSource: IGenerator<IGeneratorServerSourceParams> = a
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/ServerSourceMapper/${name}SourceMapper.ts`),
+                file: normalize(`${directory}/SourceMapper/${name}SourceMapper.ts`),
                 barrel,
             });
 

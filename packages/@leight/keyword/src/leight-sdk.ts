@@ -1,16 +1,27 @@
 import {
     withSdk,
-    withSourceGenerators,
-    withSourceGeneratorsEntity
+    withSourceGenerators
 } from "@leight/sdk";
 
 void withSdk(
-    withSourceGenerators(
-        withSourceGeneratorsEntity({
-            name:     "Keyword",
-            packages: {
-                prisma: "@leight/prisma",
-            },
-        })
-    )
+    withSourceGenerators({
+        PrismaSource: {
+            entities: [
+                {
+                    name:         "Keyword",
+                    packages:     {
+                        prisma: "@leight/prisma",
+                    },
+                    withSchemaEx: {
+                        filter: {
+                            type:        "KeywordFilterSchema",
+                            withPackage: {
+                                package: "../../schema",
+                            },
+                        },
+                    },
+                },
+            ],
+        },
+    })
 );

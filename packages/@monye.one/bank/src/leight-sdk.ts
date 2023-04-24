@@ -1,45 +1,48 @@
 import {
     withSdk,
-    withSourceGenerators,
-    withSourceGeneratorsEntity
+    withSourceGenerators
 } from "@leight/sdk";
 
 void withSdk(
-    withSourceGenerators(
-        withSourceGeneratorsEntity({
-            name:               "Bank",
-            packages:           {
-                prisma: "@monye.one/prisma",
-            },
-            withPrismaSchemaEx: {
-                toCreate: {
-                    type:        "BankToCreateSchemaEx",
-                    withPackage: {
-                        package: "../../schema",
-                    }
-                },
-                toPatch: {
-                    type:        "BankToPatchSchemaEx",
-                    withPackage: {
-                        package: "../../schema",
-                    }
-                },
-                dto:      {
-                    type:        "BankSchemaEx",
-                    withPackage: {
-                        package: "../../schema",
+    withSourceGenerators({
+        PrismaSource: {
+            entities: [
+                {
+                    name:         "Bank",
+                    packages:     {
+                        prisma: "@monye.one/prisma",
                     },
-                },
-                filter:      {
-                    type:        "BankFilterSchemaEx",
-                    withPackage: {
-                        package: "../../schema",
+                    withSchemaEx: {
+                        toCreate: {
+                            type:        "BankToCreateSchemaEx",
+                            withPackage: {
+                                package: "../../schema",
+                            }
+                        },
+                        toPatch:  {
+                            type:        "BankToPatchSchemaEx",
+                            withPackage: {
+                                package: "../../schema",
+                            }
+                        },
+                        dto:      {
+                            type:        "BankSchemaEx",
+                            withPackage: {
+                                package: "../../schema",
+                            },
+                        },
+                        filter:   {
+                            type:        "BankFilterSchemaEx",
+                            withPackage: {
+                                package: "../../schema",
+                            },
+                        },
                     },
+                    sorts:        [
+                        "account",
+                    ],
                 },
-            },
-            sorts:              [
-                "account",
             ],
-        })
-    )
+        },
+    })
 );
