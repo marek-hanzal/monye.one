@@ -1,6 +1,5 @@
 import {DateInline}    from "@leight/i18n-client";
 import {WithHighlight} from "@leight/mantine";
-import {decimalOf}     from "@leight/prisma";
 import {type FC}       from "react";
 import {
     type ITransactionSourceTableProps,
@@ -50,31 +49,28 @@ export const TransactionTable: FC<ITransactionTableProps> = props => {
             },
             target:    {
                 width:  22,
-                render: "target",
+                render: ({item: {target}, highlight}) => <WithHighlight text={target} highlight={highlight}/>,
             },
             note:      {
                 render: ({item: {note}, highlight}) => <WithHighlight text={note} highlight={highlight}/>,
             },
             variable:  {
                 width:  10,
-                render: "variable",
+                render: ({item: {variable}, highlight}) => <WithHighlight text={variable} highlight={highlight}/>,
             },
             static:    {
                 width:  10,
-                render: "static",
+                render: ({item: {static: $static}, highlight}) => <WithHighlight text={$static} highlight={highlight}/>,
             },
             symbol:    {
                 width:  10,
-                render: "symbol",
+                render: ({item: {symbol: $symbol}, highlight}) => <WithHighlight text={$symbol} highlight={highlight}/>,
             },
             reference: {
                 width:  10,
-                render: "reference",
+                render: ({item: {reference}, highlight}) => <WithHighlight text={reference} highlight={highlight}/>,
             },
         }}
-        renderFooter={({items, columns}) => columns ? <th colSpan={columns.length - 1}>
-            <AmountInline amount={items.reduce((prev, current) => prev + decimalOf(current.amount), 0)}/>
-        </th> : null}
         {...props}
     />;
 };

@@ -1,5 +1,6 @@
 import {
     $PrismaClient,
+    decimalOf,
     PrismaClient
 }                                    from "@leight/prisma";
 import {
@@ -10,6 +11,7 @@ import {keywordsOf}                  from "@leight/utils";
 import {
     type ITransactionPrismaSchemaType,
     type ITransactionSourceSchemaType,
+    type ITransactionSumBy,
 }                                    from "@monye.one/transaction";
 import {TransactionBasePrismaSource} from "../sdk/PrismaSource/TransactionPrismaSource";
 
@@ -26,6 +28,35 @@ export class TransactionSourceEx extends TransactionBasePrismaSource {
         super(prismaClient);
     }
 
+    async sumBy(filter?: ITransactionSourceSchemaType["Filter"]): Promise<ITransactionSumBy> {
+        return {
+            sum:     decimalOf((await this.prisma().aggregate({
+                _sum:  {
+                    amount: true,
+                },
+                where: this.toWhere(filter),
+            }))._sum.amount || 0),
+            income:  decimalOf((await this.prisma().aggregate({
+                _sum:  {
+                    amount: true,
+                },
+                where: this.toWhere({
+                    ...filter,
+                    withIncome: true,
+                }),
+            }))._sum.amount || 0),
+            outcome: decimalOf((await this.prisma().aggregate({
+                _sum:  {
+                    amount: true,
+                },
+                where: this.toWhere({
+                    ...filter,
+                    withOutcome: true,
+                }),
+            }))._sum.amount || 0),
+        };
+    }
+
     toWhere(filter?: ITransactionSourceSchemaType["Filter"]): ITransactionPrismaSchemaType["Where"] | undefined {
         if (!filter) {
             return;
@@ -36,8 +67,13 @@ export class TransactionSourceEx extends TransactionBasePrismaSource {
             userId: this.userService.required(),
         };
 
-        const {withRange, fulltext} = filter;
-        const $fulltext             = keywordsOf(fulltext);
+        const {
+                  withRange,
+                  withIncome,
+                  withOutcome,
+                  fulltext,
+              }         = filter;
+        const $fulltext = keywordsOf(fulltext);
         if ($fulltext) {
             where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
                 {
@@ -103,17 +139,25 @@ export class TransactionSourceEx extends TransactionBasePrismaSource {
                 {
                     date: {lte: withRange.to},
                 },
-                withRange.withIncome ? {
+            ].filter(Boolean)) : [];
+        }
+        if (withIncome) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
                     amount: {
                         gt: 0,
                     },
-                } : undefined,
-                withRange.withOutcome ? {
+                }
+            ]) : [];
+        }
+        if (withOutcome) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
                     amount: {
                         lt: 0,
                     },
-                } : undefined,
-            ].filter(Boolean)) : [];
+                }
+            ]) : [];
         }
 
         return where;

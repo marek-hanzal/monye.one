@@ -14,6 +14,7 @@ import {
     ThemeIcon
 }                                   from "@mantine/core";
 import {
+    SumByInline,
     TransactionQueryProvider,
     TransactionSourceStore,
     TransactionTable
@@ -48,15 +49,14 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
     const {setFilter}   = TransactionSourceStore.Filter.useState(({setFilter}) => ({setFilter}));
 
     const $setFilter = useCallback(({fulltext, range: {from, to}, withIncome = false, withOutcome = false}: IFilterRange) => {
-        console.log("Full", fulltext);
         setFilter({
             fulltext:  fulltext || undefined,
             withRange: {
                 from: from.toUTC().toJSDate(),
                 to:   to.toUTC().toJSDate(),
-                withIncome,
-                withOutcome,
             },
+            withIncome,
+            withOutcome,
         });
     }, []);
 
@@ -69,6 +69,7 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
 
     return <>
         <Paper>
+            <SumByInline mt={"sm"}/>
             <Tabs
                 value={tab}
                 onTabChange={setTab}

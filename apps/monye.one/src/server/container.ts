@@ -1,3 +1,4 @@
+import {env}                                         from "@/monye.one/env.mjs";
 import {
     type IContainer,
     PumpIt,
@@ -23,10 +24,14 @@ export const MonyeOneContainer = ((container: IContainer) => {
         .bindFactory($PrismaClient, () => {
             return new PrismaClient({
                 errorFormat: "pretty",
-                // log:
-                //     env.NODE_ENV === "development"
-                //         ? ["query", "error", "warn"]
-                //         : ["error"],
+                log:
+                             env.NODE_ENV === "development"
+                                 ? [
+                                     "query",
+                                     "error",
+                                     "warn"
+                                 ]
+                                 : ["error"],
             });
         }, {
             scope: SCOPE.SINGLETON,

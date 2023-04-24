@@ -36,10 +36,8 @@ export const TransactionFilterSchemaEx = FilterSchema.merge(z.object({
         reference: z.string(),
     }).optional(),
     withRange:        z.object({
-        from:        z.date(),
-        to:          z.date(),
-        withIncome:  z.boolean().optional(),
-        withOutcome: z.boolean().optional(),
+        from: z.date(),
+        to:   z.date(),
     }).optional(),
     withIncome:       z.boolean().optional(),
     withOutcome:      z.boolean().optional(),

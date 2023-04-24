@@ -107,11 +107,18 @@ export interface ITableInternalProps<TColumn extends ITableColumn, TColumnKeys e
      */
     WithRowAction?: FC<ITableInternalProps.IWithRowActionProps<TColumn>>;
 
+    renderPrefix?: ITableInternalProps.IRenderPrefix<TColumn>;
     renderFooter?: ITableInternalProps.IRenderFooter<TColumn>;
 }
 
 export namespace ITableInternalProps {
+    export type IRenderPrefix<TColumn extends ITableColumn> = (props: IRenderPrefixProps<TColumn>) => ReactNode;
     export type IRenderFooter<TColumn extends ITableColumn> = (props: IRenderFooterProps<TColumn>) => ReactNode;
+
+    export interface IRenderPrefixProps<TColumn extends ITableColumn> {
+        items: InferItem<TColumn>[];
+        columns?: TColumn[];
+    }
 
     export interface IRenderFooterProps<TColumn extends ITableColumn> {
         items: InferItem<TColumn>[];
@@ -142,6 +149,7 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
         WithTableAction,
         WithRowAction,
         highlight = [],
+        renderPrefix,
         renderFooter,
         ...props
     }: ITableInternalProps<TColumn, TColumnKeys>) => {
@@ -162,6 +170,7 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
                 overlayBlur={2}
                 transitionDuration={250}
             />
+            {renderPrefix?.({items, columns: $columns.map(([, column]) => column)})}
             <CoolTable
                 striped
                 highlightOnHover
