@@ -85,6 +85,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/filter-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/filter/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/zod/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/prisma-sqlite/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />

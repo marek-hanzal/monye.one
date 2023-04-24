@@ -16,6 +16,7 @@
     "types": "lib/index.d.ts",
     "scripts": {
         "setup": "npm run generate:prisma",
+        "init": "npm run build",
         "dev": "dotenv -e ROARR_LOG=true -- turbowatch",
         "generate": "concurrently npm:generate:*",
         "generate:prisma": "npx dotenv -c development -- npx prisma generate",
