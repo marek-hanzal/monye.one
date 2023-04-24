@@ -39,9 +39,12 @@
                 "src/leight-sdk.ts"
             ]
         },
+        "setup": {
+            "cache": false
+        },
         "init": {
             "dependsOn": [
-                "^init"
+                "setup"
             ],
             "outputs": [
                 "lib/**"
