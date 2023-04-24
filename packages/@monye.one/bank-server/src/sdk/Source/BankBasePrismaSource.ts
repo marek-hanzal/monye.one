@@ -1,24 +1,24 @@
 /**
-	Base Prisma Source contains default implementation of Source for entity Bank connected to Prisma. This could be used for further extensions,
-    also default export uses this as a parent class.
+ Base Prisma Source contains default implementation of Source for entity Bank connected to Prisma. This could be used for further extensions,
+ also default export uses this as a parent class.
  */
-import {withCursor} from "@leight/query";
-import {$PrismaClient} from "@leight/prisma";
+import {$PrismaClient}     from "@leight/prisma";
+import {withCursor}        from "@leight/query";
 import {
-	type ISource,
-	type IWithIdentity,
-	SourceError
-} from "@leight/source";
-import {AbstractSourceEx} from "@leight/source-server";
+    type ISource,
+    type IWithIdentity,
+    SourceError
+}                          from "@leight/source";
+import {AbstractSourceEx}  from "@leight/source-server";
 import {
-	$BankSource,
-	type IBankSourceSchemaType,
-	type IBankPrismaSchemaType
-} from "@monye.one/bank";
+    $BankSource,
+    type IBankPrismaSchemaType,
+    type IBankSourceSchemaType
+}                          from "@monye.one/bank";
 import {type PrismaClient} from "@monye.one/prisma";
 
 export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType, IBankSourceSchemaType> {
-	static inject = [
+    static inject = [
         $PrismaClient,
     ];
 
@@ -42,7 +42,7 @@ export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType
 
     async runPatch({id, ...patch}: IBankSourceSchemaType["Patch"]): Promise<IBankSourceSchemaType["Entity"]> {
         return this.prisma().update({
-            data: patch,
+            data:  patch,
             where: {id},
         });
     }
@@ -56,9 +56,9 @@ export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType
     }
 
     async runDelete({id}: IWithIdentity): Promise<IBankSourceSchemaType["Entity"]> {
-        const item = await this.find(id);
+        const item  = await this.find(id);
         const where = this.toWhereUnique({id});
-        if(!where) {
+        if (!where) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
         }
         await this.prisma().delete({
@@ -66,13 +66,13 @@ export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType
         });
         return item;
     }
-    
+
     async runDeleteWith(query: IBankSourceSchemaType["Query"]): Promise<IBankSourceSchemaType["Entity"][]> {
         const items = await this.query(query);
         const where = this.toWhereUnique(query.filter);
-        if(!where) {
+        if (!where) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
-        } 
+        }
         await this.prisma().delete({
             where,
         });
@@ -94,7 +94,7 @@ export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType
             },
         }));
     }
-    
+
     prisma() {
         return this.prismaClient.bank;
     }

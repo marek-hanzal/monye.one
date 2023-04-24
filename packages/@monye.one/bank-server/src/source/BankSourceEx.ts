@@ -36,8 +36,10 @@ export class BankSourceEx extends BankBasePrismaSource {
     }
 
     toWhereUnique(filter: IBankSourceSchemaType["Filter"]): IBankPrismaSchemaType["WhereUnique"] {
+        const {userId_account, id} = filter;
         return {
-            userId_account: filter.userId_account,
+            id,
+            userId_account,
         };
     }
 }
