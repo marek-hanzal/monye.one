@@ -7,11 +7,10 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_pizrfjt8usle9rhyyh0n3xbx = true;
+export const $leight_ltex2ca75qlgbzsxkqvby8ez = true;
 
-export * from "./index";
-export * from "./ClientSource/TransactionQueryProvider";
-export * from "./ClientSource/TransactionSource";
-export * from "./ClientSource/TransactionSourceStore";
-export * from "./ClientTable/TransactionSourceTable";
-export * from "./ClientTrpc/UseTransactionSourceQuery";
+export * from "./Source/TransactionQueryProvider";
+export * from "./Source/TransactionSource";
+export * from "./Source/TransactionSourceStore";
+export * from "./Table/TransactionSourceTable";
+export * from "./Trpc/UseTransactionSourceQuery";

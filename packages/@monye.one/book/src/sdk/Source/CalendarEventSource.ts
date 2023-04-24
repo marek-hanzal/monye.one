@@ -21,4 +21,4 @@ export const $CalendarEventSourceService = Symbol.for("@monye.one/book/ICalendar
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_o2t7uasmal88t2h128qf9oil = true;
+export const $leight_oaniriohnw3fiiq7sxd7q88v = true;

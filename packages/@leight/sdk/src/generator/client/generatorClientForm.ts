@@ -155,7 +155,7 @@ props => {
                 },
             })
             .saveTo({
-                file:   normalize(`${directory}/ClientForm/${name}Input.tsx`),
+                file:   normalize(`${directory}/Form/${name}Input.tsx`),
                 barrel: false,
             });
 
@@ -223,7 +223,7 @@ props => {
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/ClientForm/${name}BaseForm.tsx`),
+                file: normalize(`${directory}/Form/${name}BaseForm.tsx`),
                 barrel,
             });
 
@@ -243,7 +243,7 @@ props => {
                         "react":                                     [
                             "type FC"
                         ],
-                        [`../ClientForm/${name}BaseForm`]:           [
+                        [`../Form/${name}BaseForm`]:           [
                             `type I${name}BaseFormProps`,
                             `${name}BaseForm`,
                         ],
@@ -308,7 +308,7 @@ props => {
                     },
                 })
                 .saveTo({
-                    file: normalize(`${directory}/ClientTrpc/${name}TrpcForm.tsx`),
+                    file: normalize(`${directory}/Trpc/${name}TrpcForm.tsx`),
                     barrel,
                 });
         }

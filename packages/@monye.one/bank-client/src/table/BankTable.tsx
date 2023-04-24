@@ -4,7 +4,7 @@ import {type FC}            from "react";
 import {
     BankSourceTable,
     type IBankSourceTableProps
-}                           from "../sdk/ClientTable/BankSourceTable";
+}                           from "../sdk";
 import {BankTableAction}    from "./BankTableAction";
 import {BankTableRowAction} from "./BankTableRowAction";
 

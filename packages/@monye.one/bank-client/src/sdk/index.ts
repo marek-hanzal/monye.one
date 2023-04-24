@@ -7,30 +7,29 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_g84gnyj2heiaafm5xbzc7ceq = true;
+export const $leight_kw11p7zher1gunw7hver3jni = true;
 
-export * from "./index";
 export * from "./api/BankCreateFormTypes";
 export * from "./api/BankEditFormTypes";
 export * from "./api/BankPatchFormTypes";
-export * from "./ClientForm/BankCreateBaseForm";
-export * from "./ClientForm/BankCreateInput";
-export * from "./ClientForm/BankEditBaseForm";
-export * from "./ClientForm/BankEditInput";
-export * from "./ClientForm/BankPatchBaseForm";
-export * from "./ClientForm/BankPatchInput";
-export * from "./ClientSource/BankQueryProvider";
-export * from "./ClientSource/BankSource";
-export * from "./ClientSource/BankSourceStore";
-export * from "./ClientTable/BankSourceTable";
-export * from "./ClientTrpc/BankCreateTrpcForm";
-export * from "./ClientTrpc/BankEditTrpcForm";
-export * from "./ClientTrpc/BankPatchTrpcForm";
-export * from "./ClientTrpc/useBankQueryInvalidator";
-export * from "./ClientTrpc/UseBankSourceQuery";
+export * from "./Form/BankCreateBaseForm";
+export * from "./Form/BankCreateInput";
+export * from "./Form/BankEditBaseForm";
+export * from "./Form/BankEditInput";
+export * from "./Form/BankPatchBaseForm";
+export * from "./Form/BankPatchInput";
 export * from "./FormStoreContext/BankCreateFormStoreContext";
 export * from "./FormStoreContext/BankCreateMantineFormContext";
 export * from "./FormStoreContext/BankEditFormStoreContext";
 export * from "./FormStoreContext/BankEditMantineFormContext";
 export * from "./FormStoreContext/BankPatchFormStoreContext";
 export * from "./FormStoreContext/BankPatchMantineFormContext";
+export * from "./Source/BankQueryProvider";
+export * from "./Source/BankSource";
+export * from "./Source/BankSourceStore";
+export * from "./Table/BankSourceTable";
+export * from "./Trpc/BankCreateTrpcForm";
+export * from "./Trpc/BankEditTrpcForm";
+export * from "./Trpc/BankPatchTrpcForm";
+export * from "./Trpc/useBankQueryInvalidator";
+export * from "./Trpc/UseBankSourceQuery";

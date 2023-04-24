@@ -7,9 +7,8 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ab3s8dzfwyiw5azxdpfiahwv = true;
+export const $leight_aut4ugusrk4nxs3i1evn6chq = true;
 
-export * from "./index";
 export * from "./api/TransactionKeywordTypes";
 export * from "./api/TransactionTypes";
 export * from "./schema/TransactionKeywordPrismaSchema";

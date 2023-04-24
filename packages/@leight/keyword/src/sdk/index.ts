@@ -7,9 +7,8 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bbvrn1vniav55qfu76m7flby = true;
+export const $leight_d9hjncc05h4wbapgdoqyzlkw = true;
 
-export * from "./index";
 export * from "./api/KeywordTypes";
 export * from "./schema/KeywordPrismaSchema";
 export * from "./schema/KeywordSourceSchema";

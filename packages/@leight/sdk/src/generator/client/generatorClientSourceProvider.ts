@@ -62,7 +62,7 @@ export const generatorClientSourceProvider: IGenerator<IGeneratorClientSourcePro
             })
             .withImports(withTrpc ? {
                 imports: {
-                    [`../ClientTrpc/Use${name}SourceQuery`]: [
+                    [`../Trpc/Use${name}SourceQuery`]: [
                         `Use${name}SourceQuery`,
                     ],
                 },
@@ -100,7 +100,7 @@ UseSourceQuery: IUseSourceQuery<I${name}SourceSchemaType>;
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/ClientSource/${name}Source.tsx`),
+                file: normalize(`${directory}/Source/${name}Source.tsx`),
                 barrel,
             });
 
@@ -124,7 +124,7 @@ UseSourceQuery: IUseSourceQuery<I${name}SourceSchemaType>;
             })
             .withImports({
                 imports: withTrpc ? {
-                    [`../ClientTrpc/Use${name}SourceQuery`]: [
+                    [`../Trpc/Use${name}SourceQuery`]: [
                         `Use${name}SourceQuery`,
                     ],
                 } : {
@@ -165,7 +165,7 @@ UseSourceQuery: IUseSourceQuery<I${name}SourceSchemaType>;
                 }
             })
             .saveTo({
-                file: normalize(`${directory}/ClientSource/${name}QueryProvider.tsx`),
+                file: normalize(`${directory}/Source/${name}QueryProvider.tsx`),
                 barrel,
             });
     });

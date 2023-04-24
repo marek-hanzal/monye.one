@@ -44,10 +44,10 @@ export const generatorClientSourceTable: IGenerator<IGeneratorClientSourceTableP
                         `type I${name}SourceSchemaType`,
                         `${name}SourceSchema`,
                     ],
-                    [`../ClientSource/${name}SourceStore`]: [
+                    [`../Source/${name}SourceStore`]: [
                         `${name}SourceStore`,
                     ],
-                    [`../ClientSource/${name}Source`]:      [
+                    [`../Source/${name}Source`]:      [
                         `${name}Source`,
                     ],
                 }
@@ -89,7 +89,7 @@ export const generatorClientSourceTable: IGenerator<IGeneratorClientSourceTableP
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/ClientTable/${name}SourceTable.tsx`),
+                file: normalize(`${directory}/Table/${name}SourceTable.tsx`),
                 barrel,
             });
     });

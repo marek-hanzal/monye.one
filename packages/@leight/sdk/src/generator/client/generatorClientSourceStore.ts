@@ -60,7 +60,7 @@ withSourceStore({
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/ClientSource/${name}SourceStore.ts`),
+                file: normalize(`${directory}/Source/${name}SourceStore.ts`),
                 barrel,
             });
     });

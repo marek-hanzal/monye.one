@@ -69,7 +69,7 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/ClientTrpc/use${name}QueryInvalidator.tsx`),
+                file: normalize(`${directory}/Trpc/use${name}QueryInvalidator.tsx`),
                 barrel,
             });
 
@@ -101,7 +101,7 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
                 }
             })
             .saveTo({
-                file: normalize(`${directory}/ClientTrpc/Use${name}SourceQuery.tsx`),
+                file: normalize(`${directory}/Trpc/Use${name}SourceQuery.tsx`),
                 barrel,
             });
     });
