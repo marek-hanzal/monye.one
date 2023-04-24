@@ -45,7 +45,7 @@ export const TransactionTable: FC<ITransactionTableProps> = props => {
             },
             account:   {
                 width:  22,
-                render: ({item: {bank: {account}}, highlight}) => <WithHighlight text={account} highlight={highlight}/>,
+                render: ({item: {bank: {account, description}}, highlight}) => <WithHighlight text={description ? `${account} (${description})` : account} highlight={highlight}/>,
             },
             target:    {
                 width:  22,
