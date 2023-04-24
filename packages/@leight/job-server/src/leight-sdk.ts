@@ -24,16 +24,7 @@ void withSdk(
                     packages: {
                         schema: "@leight/job",
                     },
-                },
-            ],
-        },
-        BaseSource:   {
-            entities: [
-                {
-                    name:     "Job",
-                    packages: {
-                        schema: "@leight/job",
-                    },
+                    withPrisma: true,
                 },
             ],
         },
