@@ -13,6 +13,7 @@
     },
     "scripts": {
         "build": "turbo run init --concurrency=50% --no-daemon && turbo run build --concurrency=50% --no-daemon",
+        "build:force": "turbo run init --force --concurrency=50% --no-daemon && turbo run build --concurrency=50% --force --no-daemon",
         "generate": "turbo run init --concurrency=50% --no-daemon && turbo run generate --concurrency=50% --no-daemon",
         "lint": "turbo run lint --no-daemon",
         "dev": "turbo run dev --concurrency 100 --parallel --no-daemon | roarr",
