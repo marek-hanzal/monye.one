@@ -1,4 +1,7 @@
-import {type IKeywords}                    from "@leight/keyword";
+import {
+    type IKeywords,
+    type IKeywordService
+}                                          from "@leight/keyword";
 import {AbstractKeywordService}            from "@leight/keyword-server";
 import {type ITransactionSourceSchemaType} from "@monye.one/transaction";
 
@@ -12,5 +15,9 @@ export class TransactionKeywordService extends AbstractKeywordService<ITransacti
             input.symbol,
             input.bank.account,
         ];
+    }
+
+    async onKeyword({entity, input}: IKeywordService.IOnKeywordProps<ITransactionSourceSchemaType["Entity"]>): Promise<void> {
+        // nope
     }
 }

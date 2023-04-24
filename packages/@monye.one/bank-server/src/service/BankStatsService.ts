@@ -5,7 +5,6 @@ import {
     type IJobService
 }                           from "@leight/job";
 import {AbstractJobService} from "@leight/job-server";
-import {expand}             from "@leight/utils-server";
 import {
     $BankStatsService,
     BankStatsParamsSchema,
@@ -16,7 +15,7 @@ import {
     $TransactionKeywordService,
     $TransactionSource,
     type ITransactionKeywordService,
-    ITransactionSource
+    type ITransactionSource
 }                           from "@monye.one/transaction";
 
 export class BankStatsService extends AbstractJobService<IBankStatsParamsSchema, void> implements IBankStatsService {
@@ -50,7 +49,7 @@ export class BankStatsService extends AbstractJobService<IBankStatsParamsSchema,
 
         for (const transaction of await this.transactionSource.query({filter: {bankId}})) {
             try {
-                console.log(expand(await this.transactionKeywordService.build(transaction)));
+                await this.transactionKeywordService.build({input: transaction});
                 await jobProgress.onSuccess();
             } catch (e) {
                 await jobProgress.onSkip();
