@@ -103,7 +103,16 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
         }, {});
     const [withWeeks, setWithWeeks] = useState(defaultWithWeekNo);
 
+    console.log("Calendar filter", filter);
+
     useEffect(() => {
+        console.log("Setting filter", {
+            fulltext:  fulltextContext?.fulltext || undefined,
+            withRange: {
+                from: start.toUTC().toJSDate(),
+                to:   end.toUTC().toJSDate(),
+            },
+        }, "filter", filter?.filter);
         filter?.setFilter({
             fulltext:  fulltextContext?.fulltext || undefined,
             withRange: {

@@ -61,7 +61,6 @@ const InternalSource = <TSourceSchemaType extends ISourceSchemaType>(
     useEffect(() => {
         if (result.isSuccess) {
             const $data = result.data.filter(item => schema.safeParse(item).success);
-            console.log("Setting cache data", $data.length, "from", result?.data?.length);
             setDtos($data);
             onSuccess?.($data);
         }
