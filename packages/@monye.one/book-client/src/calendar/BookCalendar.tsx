@@ -25,6 +25,7 @@ export interface IBookCalendarProps extends Omit<ICalendarProps<ICalendarEventSo
     day?: {
         onIncomeClick?: IIncomeOutcomeProps["onIncomeClick"];
         onOutcomeClick?: IIncomeOutcomeProps["onOutcomeClick"];
+        onSumClick?: IIncomeOutcomeProps["onSumClick"];
     };
     month?: {
         onIncomeClick?: IIncomeOutcomeProps["onIncomeClick"];

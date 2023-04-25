@@ -2,13 +2,11 @@ import {type IDateRange}                     from "@leight/calendar";
 import {toHumanNumber}                       from "@leight/utils";
 import {
     Button,
-    Group
+    Group,
+    Stack
 }                                            from "@mantine/core";
 import {type ICalendarEventSourceSchemaType} from "@monye.one/book";
-import {
-    IconCashBanknote,
-    IconSum
-}                                            from "@tabler/icons-react";
+import {IconSum}                             from "@tabler/icons-react";
 import {
     type ComponentProps,
     type FC
@@ -17,11 +15,12 @@ import {
 export interface IIncomeOutcomeProps extends ComponentProps<typeof Group> {
     range: IDateRange;
     events?: ICalendarEventSourceSchemaType["Dto"][];
-    withSum?: boolean;
 
     onIncomeClick?(props: IIncomeOutcomeProps.IOnIncomeClickProps): void;
 
     onOutcomeClick?(props: IIncomeOutcomeProps.IOnOutcomeClickProps): void;
+
+    onSumClick?(props: IIncomeOutcomeProps.IOnSumClickProps): void;
 }
 
 export namespace IIncomeOutcomeProps {
@@ -34,15 +33,20 @@ export namespace IIncomeOutcomeProps {
         events?: ICalendarEventSourceSchemaType["Dto"][];
         range: IDateRange;
     }
+
+    export interface IOnSumClickProps {
+        events?: ICalendarEventSourceSchemaType["Dto"][];
+        range: IDateRange;
+    }
 }
 
 export const IncomeOutcome: FC<IIncomeOutcomeProps> = (
     {
         range,
         events,
-        withSum = false,
         onIncomeClick,
         onOutcomeClick,
+        onSumClick,
         ...props
     }) => {
     if (!events?.length) {
@@ -54,41 +58,49 @@ export const IncomeOutcome: FC<IIncomeOutcomeProps> = (
     return <Group
         position={"apart"}
         spacing={0}
-        mb={6}
-        {...props}
+        mb={2}
     >
-        <Button
-            size={"sm"}
-            variant={"outline"}
-            compact
-            disabled={!income}
-            leftIcon={<IconCashBanknote color={income > 0 ? "green" : undefined}/>}
-            onClick={() => onIncomeClick?.({
-                events,
-                range,
-            })}
+        <Stack
+            spacing={0}
+            {...props}
         >
-            {toHumanNumber({number: income})}
-        </Button>
-        <Button
-            size={"sm"}
-            variant={"outline"}
-            compact
-            disabled={!outcome}
-            leftIcon={<IconCashBanknote color={outcome > 0 ? "red" : undefined}/>}
-            onClick={() => onOutcomeClick?.({
-                events,
-                range,
-            })}
-        >
-            {toHumanNumber({number: outcome})}
-        </Button>
-        {withSum && <Button
+            {income > 0 && outcome > 0 && <Button
+                size={"sm"}
+                variant={"subtle"}
+                compact
+                disabled={!income}
+                color={"green"}
+                onClick={() => onIncomeClick?.({
+                    events,
+                    range,
+                })}
+            >
+                {toHumanNumber({number: income})}
+            </Button>}
+            {income > 0 && outcome > 0 && <Button
+                size={"sm"}
+                variant={"subtle"}
+                compact
+                disabled={!outcome}
+                color={"red"}
+                onClick={() => onOutcomeClick?.({
+                    events,
+                    range,
+                })}
+            >
+                {toHumanNumber({number: outcome})}
+            </Button>}
+        </Stack>
+        {sum !== 0 && <Button
             size={"sm"}
             variant={"subtle"}
             compact
-            disabled={!outcome && !outcome}
-            leftIcon={<IconSum color={sum > 0 ? "green" : "red"}/>}
+            color={sum > 0 ? "green" : "red"}
+            leftIcon={<IconSum/>}
+            onClick={() => onSumClick?.({
+                events,
+                range,
+            })}
         >
             {toHumanNumber({number: sum})}
         </Button>}

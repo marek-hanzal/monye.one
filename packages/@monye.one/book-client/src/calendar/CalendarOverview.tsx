@@ -124,7 +124,11 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
                             onOutcomeClick: ({range}) => {
                                 $setFilter({fulltext, range, withIncome: false, withOutcome: true});
                                 setTab("transactions");
-                            }
+                            },
+                            onSumClick:     ({range}) => {
+                                $setFilter({fulltext, range, withIncome: false, withOutcome: false});
+                                setTab("transactions");
+                            },
                         }}
                         month={{
                             onIncomeClick:  ({range}) => {
@@ -134,7 +138,7 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
                             onOutcomeClick: ({range}) => {
                                 $setFilter({fulltext, range, withIncome: false, withOutcome: true});
                                 setTab("transactions");
-                            }
+                            },
                         }}
                         onChange={({weeks}) => {
                             $setFilter({
