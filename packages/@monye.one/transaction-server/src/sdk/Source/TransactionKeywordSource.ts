@@ -4,13 +4,13 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {type ITransactionKeywordSource} from "@monye.one/transaction";
-import {TransactionKeywordBasePrismaSource} from "./TransactionKeywordBasePrismaSource";
+import {TransactionKeywordSourceEx} from "../../source";
 
-export class TransactionKeywordSource extends TransactionKeywordBasePrismaSource implements ITransactionKeywordSource {
+export class TransactionKeywordSource extends TransactionKeywordSourceEx implements ITransactionKeywordSource {
 }
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_oriqyl2u4lpga4xo4xd9zmuv = true;
+export const $leight_t6qyc9jupeba6afxnego2i0z = true;

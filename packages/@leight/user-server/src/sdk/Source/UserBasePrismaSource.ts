@@ -71,11 +71,11 @@ export class UserBasePrismaSource extends AbstractSourceEx<IUserPrismaSchemaType
     
     async runDeleteWith(query: IUserSourceSchemaType["Query"]): Promise<IUserSourceSchemaType["Entity"][]> {
         const items = await this.query(query);
-        const where = this.toWhereUnique(query.filter);
+        const where = this.toWhere(query.filter);
         if(!where) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
         } 
-        await this.prisma().delete({
+        await this.prisma().deleteMany({
             where,
         });
         return items;
@@ -106,4 +106,4 @@ export class UserBasePrismaSource extends AbstractSourceEx<IUserPrismaSchemaType
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_theatkcpus0qje857iy2keha = true;
+export const $leight_wmxtii8g1ndbdgfnld2zr2dz = true;

@@ -69,11 +69,11 @@ export class TransactionKeywordBasePrismaSource extends AbstractSourceEx<ITransa
     
     async runDeleteWith(query: ITransactionKeywordSourceSchemaType["Query"]): Promise<ITransactionKeywordSourceSchemaType["Entity"][]> {
         const items = await this.query(query);
-        const where = this.toWhereUnique(query.filter);
+        const where = this.toWhere(query.filter);
         if(!where) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
         } 
-        await this.prisma().delete({
+        await this.prisma().deleteMany({
             where,
         });
         return items;
@@ -104,4 +104,4 @@ export class TransactionKeywordBasePrismaSource extends AbstractSourceEx<ITransa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_k8pfsjihbydp5z28jba2lppn = true;
+export const $leight_q2wvjy7jigi5ornlgc2es4ny = true;

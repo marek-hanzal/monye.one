@@ -71,11 +71,11 @@ export class KeywordBasePrismaSource extends AbstractSourceEx<IKeywordPrismaSche
     
     async runDeleteWith(query: IKeywordSourceSchemaType["Query"]): Promise<IKeywordSourceSchemaType["Entity"][]> {
         const items = await this.query(query);
-        const where = this.toWhereUnique(query.filter);
+        const where = this.toWhere(query.filter);
         if(!where) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
         } 
-        await this.prisma().delete({
+        await this.prisma().deleteMany({
             where,
         });
         return items;
@@ -106,4 +106,4 @@ export class KeywordBasePrismaSource extends AbstractSourceEx<IKeywordPrismaSche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_clggaxd6twu3lmjt3jkx01sx = true;
+export const $leight_ikxy1hai1f5bgmxgec02u3t9 = true;

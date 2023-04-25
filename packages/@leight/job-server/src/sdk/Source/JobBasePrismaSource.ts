@@ -71,11 +71,11 @@ export class JobBasePrismaSource extends AbstractSourceEx<IJobPrismaSchemaType, 
     
     async runDeleteWith(query: IJobSourceSchemaType["Query"]): Promise<IJobSourceSchemaType["Entity"][]> {
         const items = await this.query(query);
-        const where = this.toWhereUnique(query.filter);
+        const where = this.toWhere(query.filter);
         if(!where) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
         } 
-        await this.prisma().delete({
+        await this.prisma().deleteMany({
             where,
         });
         return items;
@@ -106,4 +106,4 @@ export class JobBasePrismaSource extends AbstractSourceEx<IJobPrismaSchemaType, 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xdiyrl27igsqgf39yk1fl9cr = true;
+export const $leight_pi4za1tzrz07hcspdq25vhha = true;

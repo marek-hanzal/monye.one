@@ -11,4 +11,4 @@ export const BankEditMantineFormContext = createMantineFormContext<IBankEditForm
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_umo00s1hjxu9i3tgd5dxu8ef = true;
+export const $leight_djhcyf0o52x2r7ix4g7wtu6i = true;

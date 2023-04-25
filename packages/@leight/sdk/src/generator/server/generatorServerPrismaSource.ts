@@ -142,11 +142,11 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
     
     async runDeleteWith(query: I${name}SourceSchemaType["Query"]): Promise<I${name}SourceSchemaType["Entity"][]> {
         const items = await this.query(query);
-        const where = this.toWhereUnique(query.filter);
+        const where = this.toWhere(query.filter);
         if(!where) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
         } 
-        await this.prisma().delete({
+        await this.prisma().deleteMany({
             where,
         });
         return items;
