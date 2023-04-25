@@ -67,6 +67,10 @@ const InternalSource = <TSourceSchemaType extends ISourceSchemaType>(
     }, [
         result.dataUpdatedAt,
         result.isSuccess,
+        /**
+         * This is an experiment to force effect to reload the data into the store.
+         */
+        result.data?.length,
     ]);
 
     useEffect(() => {
