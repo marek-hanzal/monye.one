@@ -31,7 +31,7 @@ const InternalCursor = <TSourceSchemaType extends ISourceSchemaType>(
     const $cacheTime               = cacheTime ? cacheTime * 1000 : undefined;
     const {setTotal, setIsLoading} = CursorStore.useState(({setTotal, setIsLoading}) => ({setTotal, setIsLoading}));
     const {filter}                 = SourceStore.Filter.useState(({filter}) => ({filter}));
-    const query                    = UseSourceQuery.useCount({
+    const result                   = UseSourceQuery.useCount({
         filter,
     }, {
         staleTime: $cacheTime,
@@ -43,9 +43,23 @@ const InternalCursor = <TSourceSchemaType extends ISourceSchemaType>(
             setIsLoading(false);
         },
     });
+    useEffect(
+        () => {
+            result.isFetching && setIsLoading(true);
+        },
+        [result.isFetching]
+    );
+
     useEffect(() => {
-        query.isFetching && setIsLoading(true);
-    }, [query.isFetching]);
+        if (result.isSuccess) {
+            setTotal(result.data);
+            setIsLoading(false);
+        }
+    }, [
+        result.dataUpdatedAt,
+        result.isSuccess,
+    ]);
+
     return <>{children}</>;
 };
 

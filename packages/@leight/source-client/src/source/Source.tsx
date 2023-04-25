@@ -1,18 +1,15 @@
-import {CursorStore}    from "@leight/cursor-client";
+import {CursorStore} from "@leight/cursor-client";
 import {
     type ISourceSchemaType,
     type ISourceStore,
-    type ISourceStoreProps,
     type IUseSourceQuery,
-}                       from "@leight/source";
-import {isCallable}     from "@leight/utils";
-import {type IStoreApi} from "@leight/zustand";
+}                    from "@leight/source";
 import {
-    type ReactNode,
+    type PropsWithChildren,
     useEffect
-}                       from "react";
+}                    from "react";
 
-export interface ISourceInternalProps<TSourceSchemaType extends ISourceSchemaType> {
+export type ISourceInternalProps<TSourceSchemaType extends ISourceSchemaType> = PropsWithChildren<{
     /**
      * Shape of the data this Source is operating on
      */
@@ -22,25 +19,21 @@ export interface ISourceInternalProps<TSourceSchemaType extends ISourceSchemaTyp
      */
     UseSourceQuery: IUseSourceQuery<TSourceSchemaType>;
     SourceStore: ISourceStore<TSourceSchemaType>;
-    children?: ((store: IStoreApi<ISourceStoreProps<TSourceSchemaType>>) => ReactNode) | ReactNode;
-
     /**
      * Optional callback when data is fetched
      */
     onSuccess?(entities: ISourceSchemaType.of<TSourceSchemaType>["Entity"][]): void;
 
     cacheTime?: number;
-}
+}>
 
 export type ISourceProps<TSourceSchemaType extends ISourceSchemaType> = Omit<ISourceInternalProps<TSourceSchemaType>, "schema" | "SourceStore" | "UseSourceQuery">;
 
 interface IInternalSourceProps<TSourceSchemaType extends ISourceSchemaType> extends Pick<ISourceInternalProps<TSourceSchemaType>, "schema" | "UseSourceQuery" | "cacheTime" | "SourceStore" | "onSuccess" | "children"> {
-    sourceContext: IStoreApi<ISourceStoreProps<TSourceSchemaType>>;
 }
 
 const InternalSource = <TSourceSchemaType extends ISourceSchemaType>(
     {
-        sourceContext,
         SourceStore,
         schema,
         UseSourceQuery,
@@ -48,11 +41,12 @@ const InternalSource = <TSourceSchemaType extends ISourceSchemaType>(
         cacheTime = 120,
         children,
     }: IInternalSourceProps<TSourceSchemaType>) => {
-    const $cacheTime   = cacheTime ? cacheTime * 1000 : undefined;
-    const {page, size} = CursorStore.useState(({page, size}) => ({page, size}));
-    const {sort}       = SourceStore.Sort.useState(({sort}) => ({sort}));
-    const {filter}     = SourceStore.Filter.useState(({filter}) => ({filter}));
-    const result       = UseSourceQuery.useQuery({
+    const $cacheTime                             = cacheTime ? cacheTime * 1000 : undefined;
+    const {page, size}                           = CursorStore.useState(({page, size}) => ({page, size}));
+    const {sort}                                 = SourceStore.Sort.useState(({sort}) => ({sort}));
+    const {filter}                               = SourceStore.Filter.useState(({filter}) => ({filter}));
+    const {setIsLoading, setIsFetching, setDtos} = SourceStore.Source.useState(({setIsLoading, setIsFetching, setDtos}) => ({setIsLoading, setIsFetching, setDtos}));
+    const result                                 = UseSourceQuery.useQuery({
         cursor: {
             page,
             size,
@@ -64,8 +58,7 @@ const InternalSource = <TSourceSchemaType extends ISourceSchemaType>(
         cacheTime: $cacheTime,
         onSuccess: data => {
             const $data = data.filter(item => schema.safeParse(item).success);
-            onSuccess?.($data);
-            sourceContext.state.setDtos($data);
+            setDtos($data);
             onSuccess?.($data);
         },
     });
@@ -73,8 +66,7 @@ const InternalSource = <TSourceSchemaType extends ISourceSchemaType>(
     useEffect(() => {
         if (result.isSuccess) {
             const $data = result.data.filter(item => schema.safeParse(item).success);
-            onSuccess?.($data);
-            sourceContext.state.setDtos($data);
+            setDtos($data);
             onSuccess?.($data);
         }
     }, [
@@ -83,13 +75,13 @@ const InternalSource = <TSourceSchemaType extends ISourceSchemaType>(
     ]);
 
     useEffect(() => {
-        sourceContext.state.setIsLoading(result.isLoading);
+        setIsLoading(result.isLoading);
     }, [result.isLoading]);
     useEffect(() => {
-        sourceContext.state.setIsFetching(result.isFetching);
+        setIsFetching(result.isFetching);
     }, [result.isFetching]);
 
-    return <>{isCallable(children) ? children(sourceContext) : children}</>;
+    return <>{children}</>;
 };
 
 export const Source = <TSourceSchemaType extends ISourceSchemaType>(
@@ -105,8 +97,7 @@ export const Source = <TSourceSchemaType extends ISourceSchemaType>(
     return <SourceStore.Source.Provider
         {...props}
     >
-        {(sourceContext) => <InternalSource
-            sourceContext={sourceContext}
+        <InternalSource
             schema={schema}
             UseSourceQuery={UseSourceQuery}
             SourceStore={SourceStore}
@@ -114,6 +105,6 @@ export const Source = <TSourceSchemaType extends ISourceSchemaType>(
             cacheTime={cacheTime}
         >
             {children}
-        </InternalSource>}
+        </InternalSource>
     </SourceStore.Source.Provider>;
 };
