@@ -33,7 +33,7 @@ export const SumByInline: FC<ISumByInlineProps> = ({cacheTime = 120, ...props}) 
         pos={"relative"}
         {...props}
     >
-        <Group>
+        <Group spacing={"sm"}>
             <AmountInline
                 color={isLoading ? "dimmed" : undefined}
                 sx={{cursor: isIncomeOutcome ? "not-allowed" : "pointer"}}
