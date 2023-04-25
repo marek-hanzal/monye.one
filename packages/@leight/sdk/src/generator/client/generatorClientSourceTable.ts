@@ -58,6 +58,9 @@ export const generatorClientSourceTable: IGenerator<IGeneratorClientSourceTableP
                         extends: [
                             {type: `Omit<ISourceTableInternalProps<I${name}SourceSchemaType, TColumnKeys>, "SourceStore" | "schema">`},
                         ],
+                        body: `
+sourceCacheTime?: number;
+                        `,
                     },
                     [`I${name}SourceTableProps<TColumnKeys extends string>`]:         {
                         extends: [
@@ -75,11 +78,13 @@ export const generatorClientSourceTable: IGenerator<IGeneratorClientSourceTableP
  * columns and other props as you wish.
  */
                         `,
-                        body:    `<TColumnKeys extends string>(props: I${name}SourceTableInternalProps<TColumnKeys>) => {
-    return <${name}Source>
+                        body:    `<TColumnKeys extends string>({sourceCacheTime, ...props}: I${name}SourceTableInternalProps<TColumnKeys>) => {
+    return <${name}Source
+        cacheTime={sourceCacheTime}
+    >
         <SourceTable
             SourceStore={${name}SourceStore}
-            schema={${name}SourceSchema['DtoSchema']}
+            schema={${name}SourceSchema["DtoSchema"]}
             {...props}
         />
     </${name}Source>;

@@ -28,11 +28,13 @@ export interface ISourceInternalProps<TSourceSchemaType extends ISourceSchemaTyp
      * Optional callback when data is fetched
      */
     onSuccess?(entities: ISourceSchemaType.of<TSourceSchemaType>["Entity"][]): void;
+
+    cacheTime?: number;
 }
 
 export type ISourceProps<TSourceSchemaType extends ISourceSchemaType> = Omit<ISourceInternalProps<TSourceSchemaType>, "schema" | "SourceStore" | "UseSourceQuery">;
 
-interface IInternalSourceProps<TSourceSchemaType extends ISourceSchemaType> extends Pick<ISourceInternalProps<TSourceSchemaType>, "schema" | "UseSourceQuery" | "SourceStore" | "onSuccess" | "children"> {
+interface IInternalSourceProps<TSourceSchemaType extends ISourceSchemaType> extends Pick<ISourceInternalProps<TSourceSchemaType>, "schema" | "UseSourceQuery" | "cacheTime" | "SourceStore" | "onSuccess" | "children"> {
     sourceContext: IStoreApi<ISourceStoreProps<TSourceSchemaType>>;
 }
 
@@ -43,8 +45,10 @@ const InternalSource = <TSourceSchemaType extends ISourceSchemaType>(
         schema,
         UseSourceQuery,
         onSuccess,
+        cacheTime,
         children,
     }: IInternalSourceProps<TSourceSchemaType>) => {
+    const $cacheTime   = cacheTime ? cacheTime * 1000 : undefined;
     const {page, size} = CursorStore.useState(({page, size}) => ({page, size}));
     const {sort}       = SourceStore.Sort.useState(({sort}) => ({sort}));
     const {filter}     = SourceStore.Filter.useState(({filter}) => ({filter}));
@@ -56,8 +60,8 @@ const InternalSource = <TSourceSchemaType extends ISourceSchemaType>(
         sort,
         filter,
     }, {
-        staleTime: undefined,
-        cacheTime: undefined,
+        staleTime: $cacheTime,
+        cacheTime: $cacheTime,
         onSuccess: data => {
             const $data = data.filter(item => schema.safeParse(item).success);
             onSuccess?.($data);

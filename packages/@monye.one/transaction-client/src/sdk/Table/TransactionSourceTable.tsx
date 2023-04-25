@@ -15,6 +15,7 @@ import {TransactionSourceStore} from "../Source/TransactionSourceStore";
 import {TransactionSource} from "../Source/TransactionSource";
 
 export interface ITransactionSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<ITransactionSourceSchemaType, TColumnKeys>, "SourceStore" | "schema"> {
+	sourceCacheTime?: number;
 }
 
 export interface ITransactionSourceTableProps<TColumnKeys extends string> extends Omit<ITransactionSourceTableInternalProps<TColumnKeys>, "columns" | "withTranslation"> {
@@ -24,11 +25,13 @@ export interface ITransactionSourceTableProps<TColumnKeys extends string> extend
  * Base implementation of a table providing Transaction data already connected to a source; just extend this table with
  * columns and other props as you wish.
  */
-export const TransactionSourceTable = <TColumnKeys extends string>(props: ITransactionSourceTableInternalProps<TColumnKeys>) => {
-    return <TransactionSource>
+export const TransactionSourceTable = <TColumnKeys extends string>({sourceCacheTime, ...props}: ITransactionSourceTableInternalProps<TColumnKeys>) => {
+    return <TransactionSource
+        cacheTime={sourceCacheTime}
+    >
         <SourceTable
             SourceStore={TransactionSourceStore}
-            schema={TransactionSourceSchema['DtoSchema']}
+            schema={TransactionSourceSchema["DtoSchema"]}
             {...props}
         />
     </TransactionSource>;
@@ -37,4 +40,4 @@ export const TransactionSourceTable = <TColumnKeys extends string>(props: ITrans
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mh09k0orndivee6b2npi63p6 = true;
+export const $leight_r28koq3k25pwl4scplunyv2m = true;

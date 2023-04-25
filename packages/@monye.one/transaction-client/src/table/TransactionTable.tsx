@@ -28,6 +28,7 @@ export const TransactionTable: FC<ITransactionTableProps> = props => {
             namespace: "transaction",
         }}
         scrollWidth={2400}
+        sourceCacheTime={60}
         columns={{
             date:      {
                 width: 8,

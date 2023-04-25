@@ -1,4 +1,7 @@
-import {CursorControl}          from "@leight/cursor-client";
+import {
+    CursorControl,
+    type ICursorControlProps
+}                               from "@leight/cursor-client";
 import {
     type ISourceSchemaType,
     type ISourceStore,
@@ -18,6 +21,7 @@ export type IQueryProviderInternalProps<TSourceSchemaType extends ISourceSchemaT
      */
     defaultSort?: TSourceSchemaType["Sort"];
     defaultCursor?: TSourceSchemaType["Cursor"];
+    cursorCacheTime?: ICursorControlProps<TSourceSchemaType>["cacheTime"];
 }>;
 export type IQueryProviderProps<TSourceSchemaType extends ISourceSchemaType> = Omit<IQueryProviderInternalProps<TSourceSchemaType>, "SourceStore" | "UseSourceQuery">;
 
@@ -28,6 +32,7 @@ export const QueryProvider = <TSourceSchemaType extends ISourceSchemaType>(
         defaultFilter,
         defaultSort,
         defaultCursor,
+        cursorCacheTime,
         children,
     }: IQueryProviderInternalProps<TSourceSchemaType>) => {
     return <SourceStore.Filter.Provider
@@ -40,6 +45,7 @@ export const QueryProvider = <TSourceSchemaType extends ISourceSchemaType>(
                 UseSourceQuery={UseSourceQuery}
                 SourceStore={SourceStore}
                 defaultCursor={defaultCursor}
+                cacheTime={cursorCacheTime}
             >
                 {children}
             </CursorControl>

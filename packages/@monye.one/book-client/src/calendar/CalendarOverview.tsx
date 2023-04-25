@@ -1,37 +1,40 @@
-import {type IDateRange}            from "@leight/calendar";
+import {type IDateRange} from "@leight/calendar";
 import {
     CalendarProvider,
     WeeksOfStore
-}                                   from "@leight/calendar-client";
+}                        from "@leight/calendar-client";
 import {
     FulltextProvider,
     FulltextStoreContext
-}                                   from "@leight/filter-client";
-import {Translation}                from "@leight/i18n-client";
-import {Paper}                      from "@leight/mantine";
+}                        from "@leight/filter-client";
+import {Translation}     from "@leight/i18n-client";
+import {Paper}           from "@leight/mantine";
 import {
     Group,
     Tabs,
     ThemeIcon
-}                                   from "@mantine/core";
+}                        from "@mantine/core";
 import {
     SumByInline,
     TransactionQueryProvider,
     TransactionSourceStore,
     TransactionTable
-}                                   from "@monye.one/transaction-client";
+}                        from "@monye.one/transaction-client";
 import {
     IconCalendar,
     IconCash
-}                                   from "@tabler/icons-react";
+}                        from "@tabler/icons-react";
 import {
     type FC,
     useCallback,
     useEffect,
     useState
-}                                   from "react";
-import {CalendarEventQueryProvider} from "../sdk";
-import {BookCalendar}               from "./BookCalendar";
+}                        from "react";
+import {
+    CalendarEventQueryProvider,
+    CalendarEventSourceStore
+}                        from "../sdk";
+import {BookCalendar}    from "./BookCalendar";
 
 type IFilterRange = {
     fulltext: string | undefined | null;
@@ -44,13 +47,14 @@ export interface ICalendarOverviewProps {
 }
 
 export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
-    const [tab, setTab] = useState<string | null>("calendar");
-    const {fulltext}    = FulltextStoreContext.useState(({fulltext}) => ({fulltext}));
-    const {weeks}       = WeeksOfStore.useState(({weeks}) => ({weeks}));
-    const {setFilter}   = TransactionSourceStore.Filter.useState(({setFilter}) => ({setFilter}));
+    const [tab, setTab]                                                  = useState<string | null>("calendar");
+    const {fulltext}                                                     = FulltextStoreContext.useState(({fulltext}) => ({fulltext}));
+    const {weeks}                                                        = WeeksOfStore.useState(({weeks}) => ({weeks}));
+    const {transactionFilterId, transactionFilter, setTransactionFilter} = TransactionSourceStore.Filter.useState(({id, filter, setFilter}) => ({transactionFilterId: id, transactionFilter: filter, setTransactionFilter: setFilter}));
+    const {setCalendarEventShallowFilter}                                = CalendarEventSourceStore.Filter.useState(({setShallowFilter}) => ({setCalendarEventShallowFilter: setShallowFilter}));
 
     const $setFilter = useCallback(({fulltext, range: {from, to}, withIncome = false, withOutcome = false}: IFilterRange) => {
-        setFilter({
+        setTransactionFilter({
             fulltext:  fulltext || undefined,
             withRange: {
                 from: from.toUTC().toJSDate(),
@@ -60,6 +64,12 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
             withOutcome,
         });
     }, []);
+
+    useEffect(() => {
+        setCalendarEventShallowFilter({
+            withTransaction: transactionFilter,
+        });
+    }, [transactionFilterId]);
 
     useEffect(() => {
         $setFilter({
@@ -128,8 +138,10 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
                         }}
                         onChange={({weeks}) => {
                             $setFilter({
+                                withIncome:  transactionFilter.withIncome,
+                                withOutcome: transactionFilter.withOutcome,
                                 fulltext,
-                                range: {from: weeks.start, to: weeks.end},
+                                range:       {from: weeks.start, to: weeks.end},
                             });
                         }}
                     />
@@ -154,11 +166,14 @@ export interface ICalendarOverviewProviderProps {
 
 export const CalendarOverviewProvider: FC<ICalendarOverviewProviderProps> = () => {
     return <FulltextProvider>
-        <CalendarEventQueryProvider>
+        <CalendarEventQueryProvider
+            cursorCacheTime={60}
+        >
             <TransactionQueryProvider
                 defaultSort={{
                     date: "desc",
                 }}
+                cursorCacheTime={60}
             >
                 <CalendarProvider>
                     <CalendarOverview/>

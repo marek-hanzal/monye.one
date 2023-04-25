@@ -32,11 +32,12 @@ export class CalendarEventSourceEx extends CalendarEventBaseSource {
         if (!filter) {
             return [];
         }
-        const {withRange, fulltext} = filter;
+        const {withTransaction, withRange, fulltext} = filter;
         return (await this.transactionSource.query({
             filter: {
-                fulltext,
+                ...withTransaction,
                 withRange,
+                fulltext,
             },
             cursor: {
                 page: 0,

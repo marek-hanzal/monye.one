@@ -16,6 +16,7 @@ export type ICursorControlProps<TSourceSchemaType extends ISourceSchemaType> = P
     SourceStore: ISourceStore<TSourceSchemaType>;
     UseSourceQuery: IUseSourceQuery<TSourceSchemaType>;
     defaultCursor?: TSourceSchemaType["Cursor"];
+    cacheTime?: number;
 }>;
 
 type IInternalCursor<TSourceSchemaType extends ISourceSchemaType> = ICursorControlProps<TSourceSchemaType>;
@@ -24,15 +25,17 @@ const InternalCursor = <TSourceSchemaType extends ISourceSchemaType>(
     {
         SourceStore,
         UseSourceQuery,
+        cacheTime,
         children,
     }: IInternalCursor<TSourceSchemaType>) => {
+    const $cacheTime               = cacheTime ? cacheTime * 1000 : undefined;
     const {setTotal, setIsLoading} = CursorStore.useState(({setTotal, setIsLoading}) => ({setTotal, setIsLoading}));
     const {filter}                 = SourceStore.Filter.useState(({filter}) => ({filter}));
     const query                    = UseSourceQuery.useCount({
         filter,
     }, {
-        staleTime: undefined,
-        cacheTime: undefined,
+        staleTime: $cacheTime,
+        cacheTime: $cacheTime,
         onSuccess: data => {
             setTotal(data);
         },

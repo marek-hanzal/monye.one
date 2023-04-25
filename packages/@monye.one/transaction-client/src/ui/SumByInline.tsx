@@ -17,11 +17,16 @@ import {TransactionSourceStore} from "../sdk";
 import {AmountInline}           from "./AmountInline";
 
 export interface ISumByInlineProps extends ComponentProps<typeof Box<"div">> {
+    cacheTime?: number;
 }
 
-export const SumByInline: FC<ISumByInlineProps> = props => {
+export const SumByInline: FC<ISumByInlineProps> = ({cacheTime = 60, ...props}) => {
+    const $cacheTime                 = cacheTime * 1000;
     const {filter, setShallowFilter} = TransactionSourceStore.Filter.useState(({filter, setShallowFilter}) => ({filter, setShallowFilter}));
-    const sumBy                      = trpc.transaction.sumBy.useQuery(filter);
+    const sumBy                      = trpc.transaction.sumBy.useQuery(filter, {
+        staleTime: $cacheTime,
+        cacheTime: $cacheTime,
+    });
     const isLoading                  = sumBy.isLoading || sumBy.isFetching;
     const isIncomeOutcome            = sumBy.isSuccess && sumBy.data.income > 0 && sumBy.data.outcome < 0;
     return <Box

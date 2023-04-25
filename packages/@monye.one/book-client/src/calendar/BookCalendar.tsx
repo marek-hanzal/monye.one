@@ -47,7 +47,9 @@ export const BookCalendar: FC<IBookCalendarProps> = (
         setShallowFilter({fulltext: fulltextStore?.fulltext || undefined});
     }, [fulltextStore?.fulltext]);
 
-    return <CalendarEventSource>
+    return <CalendarEventSource
+        cacheTime={60}
+    >
         <Fulltext
             withTranslation={{
                 namespace: "book",
