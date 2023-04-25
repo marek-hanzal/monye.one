@@ -8,11 +8,12 @@ export interface IWithCursorProps<T> {
 }
 
 export const withCursor = <T>({query, arg = {} as any, size, page}: IWithCursorProps<T>): T => {
-    const take = query?.cursor?.size || size;
-    const skip = take && page ? take * (query?.cursor?.page || page) : undefined;
+    const take = query?.cursor?.size ?? size;
+    const skip = query?.cursor?.page ?? page;
+
     return {
         ...arg,
-        take,
-        skip,
+        take: take !== undefined && skip !== undefined ? take : undefined,
+        skip: take !== undefined && skip !== undefined ? take * skip : undefined,
     };
 };
