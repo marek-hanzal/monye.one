@@ -56,16 +56,12 @@ const InternalSource = <TSourceSchemaType extends ISourceSchemaType>(
     }, {
         staleTime: $cacheTime,
         cacheTime: $cacheTime,
-        onSuccess: data => {
-            const $data = data.filter(item => schema.safeParse(item).success);
-            setDtos($data);
-            onSuccess?.($data);
-        },
     });
 
     useEffect(() => {
         if (result.isSuccess) {
             const $data = result.data.filter(item => schema.safeParse(item).success);
+            console.log("Setting cache data", $data.length, "from", result?.data?.length);
             setDtos($data);
             onSuccess?.($data);
         }
