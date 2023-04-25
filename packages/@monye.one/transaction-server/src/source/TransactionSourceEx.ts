@@ -81,48 +81,14 @@ export class TransactionSourceEx extends TransactionBasePrismaSource {
                     OR: $fulltext?.map(item => ({
                         OR: [
                             {
-                                note: {
-                                    contains: item,
-                                    mode:     "insensitive",
-                                }
-                            },
-                            {
-                                variable: {
-                                    contains: item,
-                                    mode:     "insensitive",
-                                }
-                            },
-                            {
-                                symbol: {
-                                    contains: item,
-                                    mode:     "insensitive",
-                                }
-                            },
-                            {
-                                static: {
-                                    contains: item,
-                                    mode:     "insensitive",
-                                }
-                            },
-                            {
-                                target: {
-                                    contains: item,
-                                    mode:     "insensitive",
-                                }
-                            },
-                            {
-                                bank: {
-                                    account: {
-                                        contains: item,
-                                        mode:     "insensitive",
-                                    },
-                                },
-                            },
-                            {
-                                bank: {
-                                    description: {
-                                        contains: item,
-                                        mode:     "insensitive",
+                                TransactionKeyword: {
+                                    some: {
+                                        keyword: {
+                                            text: {
+                                                contains: item,
+                                                mode:     "insensitive",
+                                            }
+                                        }
                                     },
                                 },
                             },

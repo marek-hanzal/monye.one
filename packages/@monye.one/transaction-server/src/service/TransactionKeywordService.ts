@@ -40,6 +40,7 @@ export class TransactionKeywordService extends AbstractKeywordService<ITransacti
             input.variable,
             input.symbol,
             input.bank.account,
+            input.bank.description,
         ];
     }
 
