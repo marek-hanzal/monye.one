@@ -40,9 +40,7 @@ export class BankStatsService extends AbstractJobService<IBankStatsParamsSchema,
         }: IJobService.IHandleProps<IBankStatsParamsSchema>): Promise<void> {
         let total = 0;
         total += await this.transactionSource.count({
-            filter: {
-                bankId,
-            },
+            filter: {bankId},
         });
 
         await jobProgress.setTotal(total);

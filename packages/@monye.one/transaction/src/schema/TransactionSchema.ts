@@ -31,6 +31,7 @@ export const TransactionSchemaEx = z.object({
 });
 
 export const TransactionFilterSchemaEx = FilterSchema.merge(z.object({
+    bankId:           z.string().optional(),
     userId_reference: z.object({
         userId:    z.string(),
         reference: z.string(),

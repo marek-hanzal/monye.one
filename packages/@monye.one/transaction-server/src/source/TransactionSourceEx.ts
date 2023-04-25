@@ -72,6 +72,7 @@ export class TransactionSourceEx extends TransactionBasePrismaSource {
                   withIncome,
                   withOutcome,
                   fulltext,
+                  bankId,
               }         = filter;
         const $fulltext = keywordsOf(fulltext);
         if ($fulltext) {
@@ -156,6 +157,13 @@ export class TransactionSourceEx extends TransactionBasePrismaSource {
                     amount: {
                         lt: 0,
                     },
+                }
+            ]) : [];
+        }
+        if (bankId) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    bankId,
                 }
             ]) : [];
         }
