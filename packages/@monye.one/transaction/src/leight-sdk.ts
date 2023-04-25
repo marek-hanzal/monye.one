@@ -33,9 +33,17 @@ void withSdk(
                     },
                 },
                 {
-                    name:     "TransactionKeyword",
-                    packages: {
+                    name:         "TransactionKeyword",
+                    packages:     {
                         prisma: "@monye.one/prisma",
+                    },
+                    withSchemaEx: {
+                        filter: {
+                            type:        "TransactionKeywordFilterSchemaEx",
+                            withPackage: {
+                                package: "../../schema",
+                            },
+                        },
                     },
                 },
             ],

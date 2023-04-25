@@ -11,12 +11,14 @@ export abstract class AbstractKeywordService<TInput> implements IKeywordService<
         $KeywordSource,
     ];
 
-    constructor(
+    protected constructor(
         protected keywordSource: IKeywordSource,
     ) {
     }
 
     async build({input}: IKeywordService.IBuildProps<TInput>): Promise<string[]> {
+        await this.onBuild({input});
+
         const keywords = (await this.keywordsOf(input)).filter(Boolean).reduce<string[]>((prev, current) => {
             return prev.concat(keywordsOf(current) || []);
         }, []);
@@ -40,7 +42,12 @@ export abstract class AbstractKeywordService<TInput> implements IKeywordService<
         return keywords;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async onBuild(props: IKeywordService.IOnBuildProps<TInput>): Promise<any> {
+        // empty
+    }
+
     abstract keywordsOf(input: TInput): Promise<IKeywords>;
 
-    abstract onKeyword(props: IKeywordService.IOnKeywordProps<TInput>): Promise<void>;
+    abstract onKeyword(props: IKeywordService.IOnKeywordProps<TInput>): Promise<any>;
 }

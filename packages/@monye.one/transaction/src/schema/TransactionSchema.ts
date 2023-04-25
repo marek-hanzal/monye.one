@@ -42,3 +42,7 @@ export const TransactionFilterSchemaEx = FilterSchema.merge(z.object({
     withIncome:       z.boolean().optional(),
     withOutcome:      z.boolean().optional(),
 }));
+
+export const TransactionKeywordFilterSchemaEx = FilterSchema.merge(z.object({
+    transactionId: z.string().optional(),
+}));

@@ -16,6 +16,7 @@ import {
 	PatchSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
+import {TransactionKeywordFilterSchemaEx} from "../../schema";
 import {ParamsSchema} from "@leight/query";
 
 export type ITransactionKeywordSourceSchemaType = ISourceSchemaType.of<typeof TransactionKeywordSourceSchema>;
@@ -30,7 +31,7 @@ export const TransactionKeywordSourceSchema = withSourceSchema({
     CreateSchema: $TransactionKeywordCreateSchema,
     ToPatchSchema: $TransactionKeywordPatchSchema,
     PatchSchema: $TransactionKeywordPatchSchema,
-    FilterSchema: FilterSchema,
+    FilterSchema: FilterSchema.merge(TransactionKeywordFilterSchemaEx),
     ParamsSchema: ParamsSchema,
     SortSchema: z.object({
         id: SortOrderSchema
@@ -40,4 +41,4 @@ export const TransactionKeywordSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_pybkpbyvvncm6wfypxaj6dyd = true;
+export const $leight_vx5rnpp0fuyi38dxavwer6gf = true;
