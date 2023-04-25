@@ -77,7 +77,10 @@ const InternalSource = <TSourceSchemaType extends ISourceSchemaType>(
             sourceContext.state.setDtos($data);
             onSuccess?.($data);
         }
-    }, [result.dataUpdatedAt]);
+    }, [
+        result.dataUpdatedAt,
+        result.isSuccess,
+    ]);
 
     useEffect(() => {
         sourceContext.state.setIsLoading(result.isLoading);
