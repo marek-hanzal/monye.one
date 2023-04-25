@@ -1,3 +1,4 @@
+import {CursorStore}           from "@leight/cursor-client";
 import {FulltextStoreContext}  from "@leight/filter-client";
 import {type IWithTranslation} from "@leight/i18n";
 import {useTranslation}        from "@leight/i18n-client";
@@ -31,18 +32,20 @@ export type IFulltextProps =
 export const Fulltext: FC<IFulltextProps> = (
     {
         loading,
-        debounce = 350,
+        debounce = 500,
         withTranslation,
         onSearch,
         ...props
     }) => {
     const {t}                       = useTranslation(withTranslation?.namespace);
     const {fulltext, setFulltext}   = FulltextStoreContext.useState(({fulltext, setFulltext}) => ({fulltext, setFulltext}));
+    const cursorStore               = CursorStore.useOptionalState();
     const [debounced, setDebounced] = useDebouncedState(fulltext || "", debounce);
 
     useEffect(() => {
         setFulltext(debounced || undefined);
         onSearch?.(debounced || undefined);
+        cursorStore?.setPage(0);
     }, [debounced]);
 
     return <TextInput
@@ -53,7 +56,7 @@ export const Fulltext: FC<IFulltextProps> = (
         placeholder={t(`${withTranslation?.label || "table"}.fulltext.placeholder`)}
         icon={loading ? <Loader size="xs"/> : <WithIcon icon={<IconSearch/>}/>}
         rightSection={fulltext ? <ActionIcon
-            onClick={() => setFulltext('')}
+            onClick={() => setFulltext("")}
         >
             <WithIcon icon={<IconX/>}/>
         </ActionIcon> : undefined}

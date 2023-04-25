@@ -89,7 +89,7 @@ export const SourceTable = <
     const {sort, setSort}    = SourceStore.Sort.useState(({sort, setSort}) => ({sort, setSort}));
     const fulltextStore      = FulltextStoreContext.useOptionalState();
     const {setShallowFilter} = SourceStore.Filter.useState(({setShallowFilter}) => ({setShallowFilter}));
-    const {pages}            = CursorStore.useState(({pages}) => ({pages}));
+    const {pages}   = CursorStore.useState(({pages}) => ({pages}));
 
     useEffect(() => {
         if (!withFulltext || !fulltextStore) {
