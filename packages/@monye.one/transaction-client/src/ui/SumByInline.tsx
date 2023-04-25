@@ -20,7 +20,7 @@ export interface ISumByInlineProps extends ComponentProps<typeof Box<"div">> {
     cacheTime?: number;
 }
 
-export const SumByInline: FC<ISumByInlineProps> = ({cacheTime = 60, ...props}) => {
+export const SumByInline: FC<ISumByInlineProps> = ({cacheTime = 120, ...props}) => {
     const $cacheTime                 = cacheTime * 1000;
     const {filter, setShallowFilter} = TransactionSourceStore.Filter.useState(({filter, setShallowFilter}) => ({filter, setShallowFilter}));
     const sumBy                      = trpc.transaction.sumBy.useQuery(filter, {

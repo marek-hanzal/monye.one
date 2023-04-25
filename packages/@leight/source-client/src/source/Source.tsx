@@ -45,7 +45,7 @@ const InternalSource = <TSourceSchemaType extends ISourceSchemaType>(
         schema,
         UseSourceQuery,
         onSuccess,
-        cacheTime,
+        cacheTime = 120,
         children,
     }: IInternalSourceProps<TSourceSchemaType>) => {
     const $cacheTime   = cacheTime ? cacheTime * 1000 : undefined;
@@ -71,6 +71,15 @@ const InternalSource = <TSourceSchemaType extends ISourceSchemaType>(
     });
 
     useEffect(() => {
+        if (result.isSuccess) {
+            const $data = result.data.filter(item => schema.safeParse(item).success);
+            onSuccess?.($data);
+            sourceContext.state.setDtos($data);
+            onSuccess?.($data);
+        }
+    }, [result.dataUpdatedAt]);
+
+    useEffect(() => {
         sourceContext.state.setIsLoading(result.isLoading);
     }, [result.isLoading]);
     useEffect(() => {
@@ -87,6 +96,7 @@ export const Source = <TSourceSchemaType extends ISourceSchemaType>(
         onSuccess,
         SourceStore,
         children,
+        cacheTime,
         ...props
     }: ISourceInternalProps<TSourceSchemaType>) => {
     return <SourceStore.Source.Provider
@@ -98,6 +108,7 @@ export const Source = <TSourceSchemaType extends ISourceSchemaType>(
             UseSourceQuery={UseSourceQuery}
             SourceStore={SourceStore}
             onSuccess={onSuccess}
+            cacheTime={cacheTime}
         >
             {children}
         </InternalSource>}

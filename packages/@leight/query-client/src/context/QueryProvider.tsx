@@ -32,7 +32,7 @@ export const QueryProvider = <TSourceSchemaType extends ISourceSchemaType>(
         defaultFilter,
         defaultSort,
         defaultCursor,
-        cursorCacheTime,
+        cursorCacheTime = 120,
         children,
     }: IQueryProviderInternalProps<TSourceSchemaType>) => {
     return <SourceStore.Filter.Provider

@@ -166,14 +166,11 @@ export interface ICalendarOverviewProviderProps {
 
 export const CalendarOverviewProvider: FC<ICalendarOverviewProviderProps> = () => {
     return <FulltextProvider>
-        <CalendarEventQueryProvider
-            cursorCacheTime={60}
-        >
+        <CalendarEventQueryProvider>
             <TransactionQueryProvider
                 defaultSort={{
                     date: "desc",
                 }}
-                cursorCacheTime={60}
             >
                 <CalendarProvider>
                     <CalendarOverview/>
