@@ -132,11 +132,9 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
                         "SortOrderSchema",
                     ],
                     "@leight/source": [
+                        "FilterSchema",
                         "type ISourceSchemaType",
                         "withSourceSchema",
-                    ],
-                    "@leight/filter": [
-                        "FilterSchema",
                     ],
                     "@leight/zod":    [
                         "z",
@@ -206,7 +204,7 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
                         withPackageImport(withSchemaEx.params),
                     ],
                 } : {
-                    "@leight/query": [
+                    "@leight/source": [
                         "ParamsSchema",
                     ],
                 },

@@ -33,7 +33,6 @@
     },
     "dependencies": {
         "@leight/file": "^0.5.73",
-        "@leight/query-client": "^0.5.32",
         "@leight/source": "^0.5.64",
         "@leight/source-client": "^0.5.35",
         "@leight/utils": "^0.5.67",

@@ -1,25 +1,26 @@
-import {
-    CursorStore,
-    Pagination
-}                              from "@leight/cursor-client";
-import {type IPaginationProps} from "@leight/cursor-client/src/cursor/Pagination";
-import {FulltextStoreContext}  from "@leight/filter-client";
-import {Fulltext}              from "@leight/mantine";
-import {SortIcon}              from "@leight/sort-client";
+import {Fulltext}  from "@leight/mantine";
+import {SortIcon}  from "@leight/sort-client";
 import {
     type ISourceSchemaType,
     type ISourceStore
-}                              from "@leight/source";
+}                  from "@leight/source";
+import {
+    CursorStore,
+    FulltextStoreContext,
+    type IPaginationProps,
+    Pagination,
+    SortIcon
+} from "@leight/source-client";
 import {
     chain,
     keywordsOf
-}                              from "@leight/utils";
-import {useEffect}             from "react";
+}                  from "@leight/utils";
+import {useEffect} from "react";
 import {
     type ITableColumn,
     type ITableProps,
     Table
-}                              from "./Table";
+}                  from "./Table";
 
 export interface ISourceTableColumn<TSourceSchemaType extends ISourceSchemaType> extends ITableColumn<TSourceSchemaType["Dto"]> {
     readonly sort?: keyof TSourceSchemaType["Sort"];

@@ -31,7 +31,6 @@
     },
     "dependencies": {
         "@leight/container": "^0.5.65",
-        "@leight/cursor": "^0.5.58",
         "@leight/source": "^0.5.64",
         "@leight/source-server": "^0.5.0",
         "@leight/trpc-server": "^0.5.69",

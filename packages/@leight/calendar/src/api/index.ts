@@ -1,11 +1,11 @@
-import {FilterSchema} from "@leight/filter";
-import {DateTime}     from "@leight/i18n";
+import {DateTime} from "@leight/i18n";
 import {
     DtoSchema,
+    FilterSchema,
     type ISourceSchemaType,
     withSourceSchema
-}                     from "@leight/source";
-import {z}            from "@leight/zod";
+}                 from "@leight/source";
+import {z}        from "@leight/zod";
 
 export const CalendarEventSourceSchema = withSourceSchema({
     /**

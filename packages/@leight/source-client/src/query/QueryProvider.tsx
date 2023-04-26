@@ -1,17 +1,11 @@
 import {
-    CursorControl,
-    type ICursorControlProps
-}                               from "@leight/cursor-client";
-import {
     type ISourceSchemaType,
-    type ISourceStore,
-    type IUseSourceQuery
+    type ISourceStore
 }                               from "@leight/source";
 import {type PropsWithChildren} from "react";
 
 export type IQueryProviderInternalProps<TSourceSchemaType extends ISourceSchemaType> = PropsWithChildren<{
     SourceStore: ISourceStore<TSourceSchemaType>;
-    UseSourceQuery: IUseSourceQuery<TSourceSchemaType>;
     /**
      * The default filter could be replaced or merged, but it's not applied all the times
      */
@@ -21,34 +15,25 @@ export type IQueryProviderInternalProps<TSourceSchemaType extends ISourceSchemaT
      */
     defaultSort?: TSourceSchemaType["Sort"];
     defaultCursor?: TSourceSchemaType["Cursor"];
-    cursorCacheTime?: ICursorControlProps<TSourceSchemaType>["cacheTime"];
 }>;
 export type IQueryProviderProps<TSourceSchemaType extends ISourceSchemaType> = Omit<IQueryProviderInternalProps<TSourceSchemaType>, "SourceStore" | "UseSourceQuery">;
 
 export const QueryProvider = <TSourceSchemaType extends ISourceSchemaType>(
     {
         SourceStore,
-        UseSourceQuery,
         defaultFilter,
         defaultSort,
         defaultCursor,
-        cursorCacheTime = 120,
         children,
     }: IQueryProviderInternalProps<TSourceSchemaType>) => {
-    return <SourceStore.Filter.Provider
-        defaults={{filter: defaultFilter}}
+    return <SourceStore.Query.Provider
+        defaults={{
+            filter: defaultFilter,
+            sort:   defaultSort,
+            page:   defaultCursor?.page,
+            size:   defaultCursor?.size,
+        }}
     >
-        <SourceStore.Sort.Provider
-            defaults={{sort: defaultSort}}
-        >
-            <CursorControl
-                UseSourceQuery={UseSourceQuery}
-                SourceStore={SourceStore}
-                defaultCursor={defaultCursor}
-                cacheTime={cursorCacheTime}
-            >
-                {children}
-            </CursorControl>
-        </SourceStore.Sort.Provider>
-    </SourceStore.Filter.Provider>;
+        {children}
+    </SourceStore.Query.Provider>;
 };

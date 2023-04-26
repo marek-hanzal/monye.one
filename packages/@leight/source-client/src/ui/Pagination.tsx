@@ -1,15 +1,20 @@
+import {type ISourceStore}            from "@leight/source";
 import {Pagination as CoolPagination} from "@mantine/core";
 import {
     type ComponentProps,
     type FC
 }                                     from "react";
-import {CursorStore}                  from "../context";
 
 export interface IPaginationProps extends Partial<ComponentProps<typeof CoolPagination>> {
+    SourceStore: ISourceStore<any>;
 }
 
-export const Pagination: FC<IPaginationProps> = ({...props}) => {
-    const {page, pages, setPage} = CursorStore.useState(({page, pages, setPage}) => ({page, pages, setPage}));
+export const Pagination: FC<IPaginationProps> = (
+    {
+        SourceStore,
+        ...props
+    }) => {
+    const {page, pages, setPage} = SourceStore.Query.useState(({page, pages, setPage}) => ({page, pages, setPage}));
     return <CoolPagination
         withEdges
         size={"md"}

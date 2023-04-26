@@ -1,29 +1,18 @@
-import {CursorStore} from "@leight/cursor-client";
 import {
     type ISourceSchemaType,
     type IUseSource,
     type IUseSourceProps
-}                    from "@leight/source";
+} from "@leight/source";
 
 export const useSource = <TSourceSchemaType extends ISourceSchemaType>(
     {
         cacheTime = 120,
         schema,
         SourceStore,
-        UseSourceQuery,
     }: IUseSourceProps<TSourceSchemaType>): IUseSource<TSourceSchemaType> => {
-    const $cacheTime   = cacheTime ? cacheTime * 1000 : undefined;
-    const {page, size} = CursorStore.useState(({page, size}) => ({page, size}));
-    const {sort}       = SourceStore.Sort.useState(({sort}) => ({sort}));
-    const {filter}     = SourceStore.Filter.useState(({filter}) => ({filter}));
-    const result       = UseSourceQuery.useQuery({
-        cursor: {
-            page,
-            size,
-        },
-        sort,
-        filter,
-    }, {
+    const $cacheTime = cacheTime ? cacheTime * 1000 : undefined;
+    const {query}    = SourceStore.Query.useState(({query}) => ({query}));
+    const result     = SourceStore.use.useQuery(query, {
         staleTime: $cacheTime,
         cacheTime: $cacheTime,
     });

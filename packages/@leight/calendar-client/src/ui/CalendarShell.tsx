@@ -1,5 +1,4 @@
 import {type ICalendarEventSourceSchemaType} from "@leight/calendar";
-import {type IFilterStoreProps}              from "@leight/filter";
 import {
     type InferSelectors,
     switchScheme,
@@ -7,6 +6,7 @@ import {
     withSecondaryPrimaryColor
 }                                            from "@leight/mantine";
 import {
+    type IFilterStoreProps,
     type ISourceStore,
     type IUseSource
 }                                            from "@leight/source";

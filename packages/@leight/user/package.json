@@ -33,10 +33,6 @@
     },
     "dependencies": {
         "@leight/container": "^0.5.65",
-        "@leight/filter": "^0.5.60",
-        "@leight/prisma": "^0.5.82",
-        "@leight/query": "^0.5.64",
-        "@leight/sort": "^0.5.61",
         "@leight/source": "^0.5.64",
         "next-auth": "^4.20.1",
         "react": "^18.2.0",

@@ -37,7 +37,7 @@ export const generatorClientSourceProvider: IGenerator<IGeneratorClientSourcePro
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/query-client":   [
+                    "@leight/source-client":   [
                         "type IQueryProviderProps",
                         "QueryProvider",
                     ],

@@ -1,4 +1,4 @@
-import {type ISort} from "@leight/sort";
+import {type ISort} from "@leight/source";
 import {
     IconArrowsSort,
     IconSortAscending2,

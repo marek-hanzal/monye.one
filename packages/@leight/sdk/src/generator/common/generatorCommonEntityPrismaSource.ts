@@ -147,13 +147,9 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
                         `${name}OptionalDefaultsSchema`,
                         `${name}PartialSchema`,
                     ],
-                    "@leight/sort":    [
-                        "SortOrderSchema",
-                    ],
-                    "@leight/filter":  [
-                        "FilterSchema",
-                    ],
                     "@leight/source":  [
+                        "SortOrderSchema",
+                        "FilterSchema",
                         "withSourceSchema",
                         "type ISourceSchemaType",
                     ],
@@ -221,7 +217,7 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
                         withPackageImport(withSchemaEx.params),
                     ],
                 } : {
-                    "@leight/query": [
+                    "@leight/source": [
                         "ParamsSchema",
                     ],
                 },

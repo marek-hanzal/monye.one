@@ -54,13 +54,11 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
         `)
             .withImports({
                 imports: {
-                    "@leight/query":         [
-                        "withCursor",
-                    ],
                     "@leight/prisma":        [
                         "$PrismaClient",
                     ],
                     "@leight/source":        [
+                        "withCursor",
                         "type ISource",
                         "type IWithIdentity",
                         "SourceError",

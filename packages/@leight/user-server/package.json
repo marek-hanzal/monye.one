@@ -34,7 +34,6 @@
     "dependencies": {
         "@leight/container": "^0.5.65",
         "@leight/prisma": "^0.5.82",
-        "@leight/query": "^0.5.64",
         "@leight/source": "^0.5.64",
         "@leight/source-server": "^0.5.64",
         "@leight/user": "^0.5.76",
