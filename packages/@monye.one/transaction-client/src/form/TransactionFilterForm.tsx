@@ -4,15 +4,16 @@ import {
     TransactionFilterBaseForm
 }                from "../sdk";
 
-export interface ITransactionFilterFormProps extends ITransactionFilterBaseFormProps {
+export interface ITransactionFilterFormProps extends Omit<ITransactionFilterBaseFormProps, "toRequest" | "inputs"> {
 }
 
 export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
     return <TransactionFilterBaseForm
         toRequest={value => value}
-        inputs={{
+        inputs={() => ({
             "bankId": () => null,
-        }}
+        })}
     >
+        yep!
     </TransactionFilterBaseForm>;
 };

@@ -1,24 +1,19 @@
-import {type IFormValuesSchema} from "@leight/form";
-import {type IWithTranslation}  from "@leight/i18n";
+import {type IWithTranslation} from "@leight/i18n";
 import {
     Drawer,
     DrawerButton,
     DrawerStoreProvider
-}                               from "@leight/mantine";
-import {type ISourceSchemaType} from "@leight/source";
-import {IconFilter}             from "@tabler/icons-react";
-import {type FC}                from "react";
+}                              from "@leight/mantine";
+import {IconFilter}            from "@tabler/icons-react";
+import {PropsWithChildren}     from "react";
 
-export type IFilterFC<TValueSchema extends IFormValuesSchema, TSourceSchemaType extends ISourceSchemaType> = FC<Omit<IBaseFilterProps, "Form">>;
-
-export interface IBaseFilterProps {
-    Form: FC;
+export type IBaseFilterProps = PropsWithChildren<{
     withTranslation?: IWithTranslation;
-}
+}>;
 
 export const BaseFilter = (
     {
-        Form,
+        children,
         withTranslation,
     }: IBaseFilterProps) => {
     return <DrawerStoreProvider>
@@ -32,7 +27,7 @@ export const BaseFilter = (
             title={"filter.title"}
             closeOnClickOutside={false}
         >
-            <Form/>
+            {children}
         </Drawer>
         <DrawerButton
             drawerId={"filter"}
