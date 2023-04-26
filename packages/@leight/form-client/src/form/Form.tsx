@@ -1,3 +1,21 @@
+import {
+    FormDtoSchema,
+    FormRequestSchema,
+    FormValuesSchema,
+    type IFormDtoSchema,
+    type IFormInputsFactory,
+    type IFormInputsOverrideFactory,
+    type IFormMapper,
+    type IFormRequestSchema,
+    type IFormSchema,
+    type IFormSchemaType,
+    type IFormStoreContext,
+    type IFormToRequest,
+    type IFormToRequestWithDto,
+    type IFormToValues,
+    type IFormValuesSchema,
+    type IMantineFormContext
+}                               from "@leight/form";
 import {type IWithTranslation}  from "@leight/i18n";
 import {
     Translation,
@@ -18,32 +36,10 @@ import {
 }                               from "@mantine/core";
 import {type UseFormReturnType} from "@mantine/form";
 import {
-    ComponentProps,
+    type ComponentProps,
     type PropsWithChildren
 }                               from "react";
-import {
-    type IFormInputsFactory,
-    type IFormInputsOverrideFactory,
-    type IFormMapper,
-    type IFormSchema,
-    type IFormSchemaType,
-    type IFormToRequest,
-    type IFormToRequestWithDto,
-    type IFormToValues
-}                               from "../api";
-import {
-    FormStoreProvider,
-    type IFormStoreContext,
-    type IMantineFormContext
-}                               from "../context";
-import {
-    FormDtoSchema,
-    FormRequestSchema,
-    FormValuesSchema,
-    type IFormDtoSchema,
-    type IFormRequestSchema,
-    type IFormValuesSchema
-}                               from "../schema";
+import {FormStoreProvider}      from "../context";
 
 export type IWithFormSchemaProps<
     TValuesSchema extends IFormValuesSchema,
@@ -106,11 +102,6 @@ export namespace IFormProps {
          * Calls default form submit stuff
          */
         onDefaultSubmit(): void;
-    }
-
-    export interface IInputsProps<TFormSchemaType extends IFormSchemaType> {
-        schemas?: IFormSchema.of<TFormSchemaType>;
-        FormContext: IFormStoreContext<TFormSchemaType>;
     }
 }
 
@@ -240,7 +231,7 @@ export interface IDtoFormProps<Typechema extends IFormSchemaType> extends Omit<I
 }
 
 export const DtoForm = <TFormSchemaType extends IFormSchemaType>({toRequest, toValues, dto, ...props}: IDtoFormProps<TFormSchemaType>) => {
-    return <Form
+    return <Form2
         toRequest={({values}) => toRequest({
             values,
             dto,

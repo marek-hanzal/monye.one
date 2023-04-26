@@ -22,4 +22,4 @@ export const $UserSourceService = Symbol.for("@leight/user/IUserSourceService");
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_o1d5fb5i6ey4eemcn4xylfkd = true;
+export const $leight_adgw68f160hgenhf37wcsmcp = true;

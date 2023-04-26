@@ -1,13 +1,13 @@
 import {
-    type IWithTranslation,
-    type IWithTranslator
-}                    from "@leight/i18n";
-import {Translation} from "@leight/i18n-client";
-import {ReactNode}   from "react";
-import {
     type IFormSchemaType,
     type IUseForm
-}                    from "../api";
+}                       from "@leight/form";
+import {
+    type IWithTranslation,
+    type IWithTranslator
+}                       from "@leight/i18n";
+import {Translation}    from "@leight/i18n-client";
+import {type ReactNode} from "react";
 
 export type IWithDefaultInputProps<TFormSchema extends IFormSchemaType> = {
     t: IWithTranslator;
@@ -37,30 +37,4 @@ export const withDefaultInputProps = <TFormSchema extends IFormSchemaType>(
         placeholder: placeholder ? t(`${withTranslation.label}.${placeholder}`, withTranslation.values) : undefined,
         description: description ? <Translation {...withTranslation} label={`${withTranslation.label}.${description}`}/> : description,
     };
-};
-
-export type IWithCondition<TFormSchema extends IFormSchemaType> = {
-    form: IUseForm<TFormSchema>;
-    bool: boolean | null | undefined;
-    whenTrue?: TFormSchema["OptionalValues"];
-    whenFalse?: TFormSchema["OptionalValues"];
-    callback?(): void;
-};
-
-export const withCondition = <TFormSchema extends IFormSchemaType>(
-    {
-        form,
-        bool,
-        whenTrue = {},
-        whenFalse = {},
-        callback,
-    }: IWithCondition<TFormSchema>) => {
-    if (bool) {
-        callback?.();
-        form.setValues(whenTrue);
-    }
-    if (!bool) {
-        form.setValues(whenFalse);
-        callback?.();
-    }
 };

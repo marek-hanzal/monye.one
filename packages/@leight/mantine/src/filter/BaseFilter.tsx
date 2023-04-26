@@ -1,3 +1,8 @@
+import {
+    type IFormProps,
+    type IFormSchemaType,
+    type IFormValuesSchema
+}                               from "@leight/form-client";
 import {type IWithTranslation}  from "@leight/i18n";
 import {type ISourceSchemaType} from "@leight/source";
 import {IconFilter}             from "@tabler/icons-react";
@@ -6,16 +11,20 @@ import {DrawerButton}           from "../button";
 import {Drawer}                 from "../component";
 import {DrawerStoreProvider}    from "../context";
 
-export type IFilterFC<TSourceSchemaType extends ISourceSchemaType> = FC<IBaseFilterProps<TSourceSchemaType>>;
+export type IFilterFC<TValueSchema extends IFormValuesSchema, TSourceSchemaType extends ISourceSchemaType> = FC<IBaseFilterProps<TValueSchema, TSourceSchemaType>>;
 
-export interface IBaseFilterProps<TSourceSchemaType extends ISourceSchemaType> {
+export interface IBaseFilterProps<TValueSchema extends IFormValuesSchema, TSourceSchemaType extends ISourceSchemaType> {
+    Form: FC<IFormProps<IFormSchemaType<TValueSchema, TSourceSchemaType["Filter"], TSourceSchemaType["Filter"]>>>;
+    FormProps: IFormProps<IFormSchemaType<TValueSchema, TSourceSchemaType["Filter"], TSourceSchemaType["Filter"]>>;
     withTranslation?: IWithTranslation;
 }
 
-export const BaseFilter = <TSourceSchemaType extends ISourceSchemaType>(
+export const BaseFilter = <TValueSchema extends IFormValuesSchema, TSourceSchemaType extends ISourceSchemaType>(
     {
+        Form,
+        FormProps,
         withTranslation,
-    }: IBaseFilterProps<TSourceSchemaType>) => {
+    }: IBaseFilterProps<TValueSchema, TSourceSchemaType>) => {
     return <DrawerStoreProvider>
         <Drawer
             drawerId={"filter"}
@@ -27,7 +36,7 @@ export const BaseFilter = <TSourceSchemaType extends ISourceSchemaType>(
             title={"filter.title"}
             closeOnClickOutside={false}
         >
-            foo barr
+            <Form {...FormProps}/>
         </Drawer>
         <DrawerButton
             drawerId={"filter"}

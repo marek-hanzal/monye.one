@@ -1,29 +1,16 @@
-import {type IStoreContext}                         from "@leight/context";
 import {createStoreContext}                         from "@leight/context-client";
-import {type IWithTranslation}                      from "@leight/i18n";
-import {
-    type IStoreProps,
-    type IStorePropsType
-}                                                   from "@leight/zustand";
-import {createFormContext as createCoolFormContext} from "@mantine/form";
-import {type ComponentProps}                        from "react";
 import {
     type IFormInputs,
     type IFormMapper,
     type IFormSchema,
-    type IFormSchemaType
-}                                                   from "../api";
-
-export type IFormStoreProps<TFormSchemaType extends IFormSchemaType> = IStoreProps<IStorePropsType, {
-    MantineContext: IMantineFormContext<TFormSchemaType>;
-    schemas?: IFormSchema.of<TFormSchemaType>;
-    inputs: IFormInputs<TFormSchemaType>;
-    inputsOverride?: Partial<IFormInputs<TFormSchemaType>>;
-    withTranslation: IWithTranslation;
-    defaultValues?: TFormSchemaType["Values"];
-}>;
-
-export type IFormStoreContext<TFormSchemaType extends IFormSchemaType> = IStoreContext<Omit<IFormStoreProps<TFormSchemaType>, "state">>;
+    type IFormSchemaType,
+    type IFormStoreContext,
+    type IFormStoreProps,
+    type IMantineFormContext
+}                                                   from "@leight/form";
+import {type IWithTranslation}                      from "@leight/i18n";
+import {createFormContext as createCoolFormContext} from "@mantine/form";
+import {type ComponentProps}                        from "react";
 
 export interface ICreateFormContextProps {
     name: string;
@@ -46,8 +33,6 @@ export const createMantineFormContext = <TFormSchemaType extends IFormSchemaType
         useForm,
     };
 };
-
-export type IMantineFormContext<TFormSchemaType extends IFormSchemaType> = ReturnType<typeof createMantineFormContext<TFormSchemaType>>;
 
 export interface IFormStoreProviderProps<TFormSchemaType extends IFormSchemaType> extends Omit<ComponentProps<IFormStoreContext<TFormSchemaType>["Provider"]>, "state"> {
     MantineContext: IMantineFormContext<TFormSchemaType>;

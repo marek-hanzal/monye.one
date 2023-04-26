@@ -1,8 +1,8 @@
-import {type FC} from "react";
 import {
     type IFormInputs,
     type IFormSchemaType
-}                from "../api";
+}                from "@leight/form";
+import {type FC} from "react";
 
 export interface IWithInputProps<TFormSchemaType extends IFormSchemaType> extends IFormInputs.IInputProps<TFormSchemaType> {
 }

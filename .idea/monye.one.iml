@@ -88,6 +88,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/prisma-sqlite/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/keyword-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/keyword/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/form/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -254,6 +255,7 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/keyword/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/react-query/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/react-query/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/form/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

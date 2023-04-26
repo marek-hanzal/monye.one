@@ -1,10 +1,10 @@
-import {useTranslation}                 from "@leight/i18n-client";
-import {NumberInput as CoolNumberInput} from "@mantine/core";
-import {type ComponentProps}            from "react";
 import {
     type IFormInputs,
     type IFormSchemaType
-}                                       from "../api";
+}                                       from "@leight/form";
+import {useTranslation}                 from "@leight/i18n-client";
+import {NumberInput as CoolNumberInput} from "@mantine/core";
+import {type ComponentProps}            from "react";
 import {withDefaultInputProps}          from "../utils";
 
 export interface INumberInputProps<TFormSchema extends IFormSchemaType> extends ComponentProps<typeof CoolNumberInput>, IFormInputs.IInputProps<TFormSchema> {

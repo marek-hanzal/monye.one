@@ -7,9 +7,8 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fnaadetbhabqkx2b8fblhx66 = true;
+export const $leight_rm6r7a6nh7ttv0ovfpdkj8k5 = true;
 
-export * from "./index";
 export * from "./ServerTrpc/TransactionTrpc";
 export * from "./Source/TransactionBasePrismaSource";
 export * from "./Source/TransactionBaseSource";

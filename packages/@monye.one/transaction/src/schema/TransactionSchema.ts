@@ -47,3 +47,8 @@ export const TransactionFilterSchemaEx = FilterSchema.merge(z.object({
 export const TransactionKeywordFilterSchemaEx = FilterSchema.merge(z.object({
     transactionId: z.string().optional(),
 }));
+
+export const TransactionFormFilterSchema = z.object({
+    bankId: z.string().optional(),
+});
+export type ITransactionFormFilterSchema = typeof TransactionFormFilterSchema;

@@ -2,6 +2,10 @@ import {
     Calendar,
     CalendarProvider
 }                      from "@leight/calendar-client";
+import {
+    type IFormInputs,
+    type IFormSchemaType
+}                      from "@leight/form";
 import {DateTime}      from "@leight/i18n";
 import {
     DateInline,
@@ -22,10 +26,6 @@ import {
     ComponentProps,
     ReactNode
 }                      from "react";
-import {
-    type IFormInputs,
-    type IFormSchemaType
-}                      from "../api";
 import {Description}   from "./Description";
 import {Error}         from "./Error";
 import {Label}         from "./Label";

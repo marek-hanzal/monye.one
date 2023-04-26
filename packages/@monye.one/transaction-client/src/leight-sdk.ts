@@ -49,5 +49,19 @@ void withSdk(
                 },
             ],
         },
+        Form:           {
+            forms: [
+                {
+                    name:        "TransactionFilter",
+                    type:        "common",
+                    translation: {
+                        namespace: "transaction"
+                    },
+                    packages:    {
+                        schema: "@monye.one/transaction",
+                    },
+                },
+            ],
+        },
     })
 );
