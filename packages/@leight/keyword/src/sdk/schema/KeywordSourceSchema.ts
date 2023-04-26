@@ -8,16 +8,16 @@ import {
 	KeywordOptionalDefaultsSchema,
 	KeywordPartialSchema
 } from "@leight/prisma";
-import {SortOrderSchema} from "@leight/sort";
-import {FilterSchema} from "@leight/filter";
 import {
+	SortOrderSchema,
+	FilterSchema,
 	withSourceSchema,
 	type ISourceSchemaType,
-	PatchSchema
+	PatchSchema,
+	ParamsSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
 import {KeywordFilterSchema} from "../../schema";
-import {ParamsSchema} from "@leight/query";
 
 export type IKeywordSourceSchemaType = ISourceSchemaType.of<typeof KeywordSourceSchema>;
 
@@ -41,4 +41,4 @@ export const KeywordSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_j0goplr3yr14evmc89c845n0 = true;
+export const $leight_f0nwurgevgk1voiowh8sibsk = true;

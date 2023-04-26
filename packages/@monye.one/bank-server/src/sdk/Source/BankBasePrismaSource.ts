@@ -2,9 +2,9 @@
 	Base Prisma Source contains default implementation of Source for entity Bank connected to Prisma. This could be used for further extensions,
     also default export uses this as a parent class.
  */
-import {withCursor} from "@leight/query";
 import {$PrismaClient} from "@leight/prisma";
 import {
+	withCursor,
 	type ISource,
 	type IWithIdentity,
 	SourceError
@@ -104,4 +104,4 @@ export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_cuq5pz3z327x9g65jwqcrpjf = true;
+export const $leight_lbhwwxxr7nc82728plqmloet = true;

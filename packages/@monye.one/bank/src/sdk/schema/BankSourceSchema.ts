@@ -8,12 +8,13 @@ import {
 	BankOptionalDefaultsSchema,
 	BankPartialSchema
 } from "@monye.one/prisma";
-import {SortOrderSchema} from "@leight/sort";
-import {FilterSchema} from "@leight/filter";
 import {
+	SortOrderSchema,
+	FilterSchema,
 	withSourceSchema,
 	type ISourceSchemaType,
-	PatchSchema
+	PatchSchema,
+	ParamsSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
 import {
@@ -22,7 +23,6 @@ import {
 	BankToPatchSchemaEx,
 	BankFilterSchemaEx
 } from "../../schema";
-import {ParamsSchema} from "@leight/query";
 
 export type IBankSourceSchemaType = ISourceSchemaType.of<typeof BankSourceSchema>;
 
@@ -46,4 +46,4 @@ export const BankSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_eyoatmp0mtumxs2ubzjzifq8 = true;
+export const $leight_g2s98mue903xikg00ydeh1mi = true;

@@ -35,6 +35,8 @@
         "@leight/source": "^0.5.64",
         "@leight/utils": "^0.5.67",
         "@leight/zustand": "^0.5.64",
+        "@mantine/core": "^6.0.9",
+        "@mantine/hooks": "^6.0.9",
         "@tabler/icons-react": "^2.17.0",
         "react": "^18.2.0"
     },

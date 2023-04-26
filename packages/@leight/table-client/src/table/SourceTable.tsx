@@ -1,5 +1,4 @@
 import {Fulltext}  from "@leight/mantine";
-import {SortIcon}  from "@leight/sort-client";
 import {
     type ISourceSchemaType,
     type ISourceStore
@@ -10,7 +9,7 @@ import {
     type IPaginationProps,
     Pagination,
     SortIcon
-} from "@leight/source-client";
+}                  from "@leight/source-client";
 import {
     chain,
     keywordsOf

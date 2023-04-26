@@ -6,11 +6,10 @@
 import {
 	type IQueryProviderProps,
 	QueryProvider
-} from "@leight/query-client";
+} from "@leight/source-client";
 import {type ICalendarEventSourceSchemaType} from "@monye.one/book";
 import {type FC} from "react";
 import {CalendarEventSourceStore} from "./CalendarEventSourceStore";
-import {UseCalendarEventSourceQuery} from "../Trpc/UseCalendarEventSourceQuery";
 
 export interface ICalendarEventQueryProviderProps extends IQueryProviderProps<ICalendarEventSourceSchemaType> {
 }
@@ -21,12 +20,11 @@ export interface ICalendarEventQueryProviderProps extends IQueryProviderProps<IC
 export const CalendarEventQueryProvider: FC<ICalendarEventQueryProviderProps> = props => {
     return <QueryProvider<ICalendarEventSourceSchemaType>
         SourceStore={CalendarEventSourceStore}
-        UseSourceQuery={UseCalendarEventSourceQuery}
-		{...props}
+        {...props}
     />;
 };
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_x5vxfdnp0q2treg31letn8f3 = true;
+export const $leight_e60u3v44tpztbcuniw7pg24x = true;

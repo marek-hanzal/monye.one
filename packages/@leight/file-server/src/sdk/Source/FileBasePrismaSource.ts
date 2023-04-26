@@ -2,12 +2,12 @@
 	Base Prisma Source contains default implementation of Source for entity File connected to Prisma. This could be used for further extensions,
     also default export uses this as a parent class.
  */
-import {withCursor} from "@leight/query";
 import {
 	$PrismaClient,
 	type PrismaClient
 } from "@leight/prisma";
 import {
+	withCursor,
 	type ISource,
 	type IWithIdentity,
 	SourceError
@@ -106,4 +106,4 @@ export class FileBasePrismaSource extends AbstractSourceEx<IFilePrismaSchemaType
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_gyqa80qmtxjzb78ldfcjai46 = true;
+export const $leight_so13ldo94r7tf1gwdtwan9e7 = true;

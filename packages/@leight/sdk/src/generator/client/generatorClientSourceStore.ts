@@ -60,8 +60,8 @@ export const generatorClientSourceStore: IGenerator<IGeneratorClientSourceStoreP
                         body: `
 withSourceStore({
     name: "${name}",
-    SourceSchema: ${name}SourceSchema,
-    UseSourceQuery: Use${name}SourceQuery,
+    schema: ${name}SourceSchema,
+    use: Use${name}SourceQuery,
 })
                     `,
                     },

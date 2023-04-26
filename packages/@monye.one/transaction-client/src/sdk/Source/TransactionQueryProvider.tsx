@@ -6,11 +6,10 @@
 import {
 	type IQueryProviderProps,
 	QueryProvider
-} from "@leight/query-client";
+} from "@leight/source-client";
 import {type ITransactionSourceSchemaType} from "@monye.one/transaction";
 import {type FC} from "react";
 import {TransactionSourceStore} from "./TransactionSourceStore";
-import {UseTransactionSourceQuery} from "../Trpc/UseTransactionSourceQuery";
 
 export interface ITransactionQueryProviderProps extends IQueryProviderProps<ITransactionSourceSchemaType> {
 }
@@ -21,12 +20,11 @@ export interface ITransactionQueryProviderProps extends IQueryProviderProps<ITra
 export const TransactionQueryProvider: FC<ITransactionQueryProviderProps> = props => {
     return <QueryProvider<ITransactionSourceSchemaType>
         SourceStore={TransactionSourceStore}
-        UseSourceQuery={UseTransactionSourceQuery}
-		{...props}
+        {...props}
     />;
 };
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_y13rcb73zztx1yozhge4qbxz = true;
+export const $leight_gm36e9fuvaojwq9zy5qh2414 = true;

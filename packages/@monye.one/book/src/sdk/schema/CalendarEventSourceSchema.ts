@@ -3,20 +3,20 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {SortOrderSchema} from "@leight/sort";
 import {
+	SortOrderSchema,
+	FilterSchema,
 	type ISourceSchemaType,
 	withSourceSchema,
 	CreateSchema,
-	PatchSchema
+	PatchSchema,
+	ParamsSchema
 } from "@leight/source";
-import {FilterSchema} from "@leight/filter";
 import {z} from "@leight/zod";
 import {
 	CalendarEventSchema,
 	CalendarEventFilterSchemaEx
 } from "../../schema";
-import {ParamsSchema} from "@leight/query";
 
 export type ICalendarEventSourceSchemaType = ISourceSchemaType.of<typeof CalendarEventSourceSchema>;
 
@@ -40,4 +40,4 @@ export const CalendarEventSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jw0xpkvsw7cmoop6l8ll3b11 = true;
+export const $leight_qjb40bd3benmhnsvowj762t3 = true;

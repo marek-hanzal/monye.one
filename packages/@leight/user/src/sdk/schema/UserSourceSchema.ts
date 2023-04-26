@@ -8,15 +8,15 @@ import {
 	UserOptionalDefaultsSchema,
 	UserPartialSchema
 } from "@leight/prisma";
-import {SortOrderSchema} from "@leight/sort";
-import {FilterSchema} from "@leight/filter";
 import {
+	SortOrderSchema,
+	FilterSchema,
 	withSourceSchema,
 	type ISourceSchemaType,
-	PatchSchema
+	PatchSchema,
+	ParamsSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
-import {ParamsSchema} from "@leight/query";
 
 export type IUserSourceSchemaType = ISourceSchemaType.of<typeof UserSourceSchema>;
 
@@ -40,4 +40,4 @@ export const UserSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qof8pya7af0tmc4d9da0myvf = true;
+export const $leight_shnrtmkt5awjw3mz6yacewcf = true;

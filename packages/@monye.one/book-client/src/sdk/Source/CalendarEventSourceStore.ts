@@ -7,11 +7,11 @@ import {UseCalendarEventSourceQuery} from "../Trpc/UseCalendarEventSourceQuery";
 
 export const CalendarEventSourceStore = withSourceStore({
     name: "CalendarEvent",
-    SourceSchema: CalendarEventSourceSchema,
-    UseSourceQuery: UseCalendarEventSourceQuery,
+    schema: CalendarEventSourceSchema,
+    use: UseCalendarEventSourceQuery,
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hz1cxz5udi8qbxmt113kgiml = true;
+export const $leight_swm3ksoq05tvk4jbhhkiv9l0 = true;

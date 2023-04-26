@@ -2,9 +2,9 @@
 	Base Prisma Source contains default implementation of Source for entity TransactionKeyword connected to Prisma. This could be used for further extensions,
     also default export uses this as a parent class.
  */
-import {withCursor} from "@leight/query";
 import {$PrismaClient} from "@leight/prisma";
 import {
+	withCursor,
 	type ISource,
 	type IWithIdentity,
 	SourceError
@@ -104,4 +104,4 @@ export class TransactionKeywordBasePrismaSource extends AbstractSourceEx<ITransa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_i1pf3eq66dsc93p8itxjj9y9 = true;
+export const $leight_j79hlehgy4ou0ypqdv3v4f8h = true;

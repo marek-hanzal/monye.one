@@ -7,11 +7,11 @@ import {UseTransactionSourceQuery} from "../Trpc/UseTransactionSourceQuery";
 
 export const TransactionSourceStore = withSourceStore({
     name: "Transaction",
-    SourceSchema: TransactionSourceSchema,
-    UseSourceQuery: UseTransactionSourceQuery,
+    schema: TransactionSourceSchema,
+    use: UseTransactionSourceQuery,
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qut8p1kckf4dmeakuvseuh3v = true;
+export const $leight_ptjynfl6jdj5pdx8g14yplqu = true;

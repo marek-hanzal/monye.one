@@ -1,7 +1,7 @@
 import {Translation}             from "@leight/i18n-client";
 import {
     type ISourceSchemaType,
-    type IUseSourceQuery
+    type ISourceStore
 }                                from "@leight/source";
 import {
     Button,
@@ -18,7 +18,7 @@ import {withSuccessNotification} from "../utils";
 
 export interface IDeleteModalProps<TSourceSchemaType extends ISourceSchemaType> extends IModalProps {
     invalidator: () => void;
-    UseDeleteMutation: IUseSourceQuery<TSourceSchemaType>;
+    SourceStore: ISourceStore<TSourceSchemaType>;
     entity: TSourceSchemaType["Dto"];
 }
 
@@ -26,12 +26,12 @@ export const DeleteModal = <TSourceSchemaType extends ISourceSchemaType>(
     {
         invalidator,
         withTranslation,
-        UseDeleteMutation,
+        SourceStore,
         entity,
         ...props
     }: IDeleteModalProps<TSourceSchemaType>) => {
     const {close}        = ModalStore.useState(({close}) => ({close}));
-    const deleteMutation = UseDeleteMutation.useDelete();
+    const deleteMutation = SourceStore.use.useDelete();
     return <Modal
         withTranslation={{
             namespace: withTranslation.namespace,

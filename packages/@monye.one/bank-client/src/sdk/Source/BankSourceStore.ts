@@ -7,11 +7,11 @@ import {UseBankSourceQuery} from "../Trpc/UseBankSourceQuery";
 
 export const BankSourceStore = withSourceStore({
     name: "Bank",
-    SourceSchema: BankSourceSchema,
-    UseSourceQuery: UseBankSourceQuery,
+    schema: BankSourceSchema,
+    use: UseBankSourceQuery,
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_j2mpjcmkahd8cqfphbtzbbwx = true;
+export const $leight_pgpercdkq02dryx5ty6brbv9 = true;

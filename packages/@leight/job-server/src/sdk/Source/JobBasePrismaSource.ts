@@ -2,12 +2,12 @@
 	Base Prisma Source contains default implementation of Source for entity Job connected to Prisma. This could be used for further extensions,
     also default export uses this as a parent class.
  */
-import {withCursor} from "@leight/query";
 import {
 	$PrismaClient,
 	type PrismaClient
 } from "@leight/prisma";
 import {
+	withCursor,
 	type ISource,
 	type IWithIdentity,
 	SourceError
@@ -106,4 +106,4 @@ export class JobBasePrismaSource extends AbstractSourceEx<IJobPrismaSchemaType, 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jqgfa6c68ztdj18y3u3ipext = true;
+export const $leight_wxec43aaz26ivkxp4t9v16ca = true;

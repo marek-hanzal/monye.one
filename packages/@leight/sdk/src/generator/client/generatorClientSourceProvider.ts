@@ -16,7 +16,6 @@ export namespace IGeneratorClientSourceProviderParams {
          * Required package imports
          */
         packages: IPackages;
-        withTrpc?: boolean;
     }
 
     export interface IPackages {
@@ -33,11 +32,11 @@ export const generatorClientSourceProvider: IGenerator<IGeneratorClientSourcePro
         directory,
         params: {entities}
     }) => {
-    entities.forEach(({name, withTrpc, packages}) => {
+    entities.forEach(({name, packages}) => {
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/source-client":   [
+                    "@leight/source-client":  [
                         "type IQueryProviderProps",
                         "QueryProvider",
                     ],
@@ -52,26 +51,12 @@ export const generatorClientSourceProvider: IGenerator<IGeneratorClientSourcePro
                     ],
                 }
             })
-            .withImports({
-                imports: withTrpc ? {
-                    [`../Trpc/Use${name}SourceQuery`]: [
-                        `Use${name}SourceQuery`,
-                    ],
-                } : {
-                    "@leight/source": [
-                        "type IUseSourceQuery",
-                    ],
-                },
-            })
             .withInterfaces({
                 exports: {
                     [`I${name}QueryProviderProps`]: {
                         extends: [
                             {type: `IQueryProviderProps<I${name}SourceSchemaType>`},
                         ],
-                        body:    withTrpc ? undefined : `
-UseSourceQuery: IUseSourceQuery<I${name}SourceSchemaType>;
-                    `,
                     },
                 },
             })
@@ -87,7 +72,7 @@ UseSourceQuery: IUseSourceQuery<I${name}SourceSchemaType>;
                         body:    `props => {
     return <QueryProvider<I${name}SourceSchemaType>
         SourceStore={${name}SourceStore}
-        ${withTrpc ? `UseSourceQuery={Use${name}SourceQuery}\n\t\t` : ""}{...props}
+        {...props}
     />;
 }
                     `,

@@ -29,9 +29,6 @@
     },
     "dependencies": {
         "@leight/calendar": "^0.5.0",
-        "@leight/filter": "^0.5.0",
-        "@leight/query": "^0.5.0",
-        "@leight/sort": "^0.5.0",
         "@leight/source": "^0.5.0",
         "@leight/zod": "^0.5.0",
         "@monye.one/transaction": "^0.5.0"

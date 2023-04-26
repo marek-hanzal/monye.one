@@ -8,16 +8,16 @@ import {
 	JobOptionalDefaultsSchema,
 	JobPartialSchema
 } from "@leight/prisma";
-import {SortOrderSchema} from "@leight/sort";
-import {FilterSchema} from "@leight/filter";
 import {
+	SortOrderSchema,
+	FilterSchema,
 	withSourceSchema,
 	type ISourceSchemaType,
-	PatchSchema
+	PatchSchema,
+	ParamsSchema
 } from "@leight/source";
 import {z} from "@leight/zod";
 import {JobSchemaEx} from "../../schema";
-import {ParamsSchema} from "@leight/query";
 
 export type IJobSourceSchemaType = ISourceSchemaType.of<typeof JobSourceSchema>;
 
@@ -41,4 +41,4 @@ export const JobSourceSchema = withSourceSchema({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_oge4ruajgt6b1ovbqbvb2ovy = true;
+export const $leight_zi8p44b1i35ctyftthovfs6f = true;

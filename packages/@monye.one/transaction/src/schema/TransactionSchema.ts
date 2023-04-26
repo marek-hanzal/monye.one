@@ -1,5 +1,5 @@
-import {FilterSchema}       from "@leight/filter";
 import {ImportParamsSchema} from "@leight/import";
+import {FilterSchema}       from "@leight/source";
 import {z}                  from "@leight/zod";
 import {BankSourceSchema}   from "@monye.one/bank";
 

@@ -128,10 +128,8 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/sort":   [
-                        "SortOrderSchema",
-                    ],
                     "@leight/source": [
+                        "SortOrderSchema",
                         "FilterSchema",
                         "type ISourceSchemaType",
                         "withSourceSchema",
