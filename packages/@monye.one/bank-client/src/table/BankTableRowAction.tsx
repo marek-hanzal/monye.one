@@ -46,6 +46,7 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
 
             <Drawer
                 drawerId={"bank.edit"}
+                closeOnClickOutside={false}
                 withTranslation={{
                     namespace: "bank",
                     label:     "modal.account.edit.title",
@@ -60,9 +61,17 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
             </Drawer>
 
             <Drawer
-                drawerId={"fooo"}
+                drawerId={"bank.import"}
+                withTranslation={{
+                    namespace: "bank",
+                    label:     "modal.transaction.import.title",
+                    values:    item,
+                }}
             >
-                booo
+                <TransactionImport
+                    account={item.account}
+                    onUpload={() => setTimeout(() => modals.close("import"), 500)}
+                />
             </Drawer>
 
             <TableRowMenu>
@@ -80,30 +89,14 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
                         label:     "account.edit.button",
                     }}
                 />
-                <Menu.Item
-                    onClick={() => modals.open({
-                        zIndex:   500,
-                        modalId:  "import",
-                        title:    <Translation
-                                      namespace={"bank"}
-                                      label={"modal.transaction.import.title"}
-                                      values={item}
-                                  />,
-                        size:     "lg",
-                        children: <>
-                                      <TransactionImport
-                                          account={item.account}
-                                          onUpload={() => setTimeout(() => modals.close("import"), 500)}
-                                      />
-                                  </>
-                    })}
+                <DrawerMenuItem
+                    drawerId={"bank.import"}
                     icon={<IconCash size={14}/>}
-                >
-                    <Translation
-                        namespace={"bank"}
-                        label={"transaction.upload.button"}
-                    />
-                </Menu.Item>
+                    withTranslation={{
+                        namespace: "bank",
+                        label:     "transaction.upload.button",
+                    }}
+                />
                 <Menu.Item
                     icon={<IconRefresh size={14}/>}
                     onClick={() => {
