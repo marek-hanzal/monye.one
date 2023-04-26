@@ -19,8 +19,8 @@ export const Pagination: FC<IPaginationProps> = (
     const $cacheTime       = 120;
     const {query, setPage} = SourceStore.Query.useState(({query, setPage}) => ({query, setPage}));
     const result           = SourceStore.use.useCount(query, {
-        cacheTime: $cacheTime,
-        staleTime: $cacheTime,
+        cacheTime: $cacheTime * 1000,
+        staleTime: $cacheTime * 1000,
     });
     const pages            = Math.ceil((result.data || 0) / query.cursor.size);
     return hideOnSingle && pages === 0 ? null : <CoolPagination

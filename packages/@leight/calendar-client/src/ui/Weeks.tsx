@@ -111,7 +111,6 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
         });
     }, [
         id,
-        filter,
     ]);
 
     const onChange: IWeeksProps<TSourceSchemaType>["onChange"] = props => {
