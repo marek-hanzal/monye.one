@@ -5,6 +5,7 @@ import {
 }                  from "@leight/source";
 import {
     FulltextStoreContext,
+    IFilterFC,
     type IPaginationProps,
     Pagination,
     SortIcon
@@ -13,6 +14,7 @@ import {
     chain,
     keywordsOf
 }                  from "@leight/utils";
+import {Grid}      from "@mantine/core";
 import {useEffect} from "react";
 import {
     type ITableColumn,
@@ -44,6 +46,7 @@ export interface ISourceTableInternalProps<
     };
     withFulltext?: boolean;
     sourceCacheTime?: number;
+    Filter?: IFilterFC<TSourceSchemaType>;
 }
 
 /**
@@ -70,6 +73,7 @@ export const SourceTable = <
         },
         withFulltext = false,
         sourceCacheTime = 120,
+        Filter,
         ...props
     }: ISourceTableInternalProps<TSourceSchemaType, TColumnKeys>) => {
     const {data, result}                    = SourceStore.useSource({cacheTime: sourceCacheTime});
@@ -88,14 +92,16 @@ export const SourceTable = <
     const isLoading = result.isLoading || result.isFetching;
 
     return <>
-        {withFulltext && <>
-            <Fulltext
-                SourceStore={SourceStore}
-                mt={"sm"}
-                loading={isLoading}
-                withTranslation={props.withTranslation}
-            />
-        </>}
+        <Grid align={"center"} mt={"sm"}>
+            {withFulltext && <Grid.Col span={"auto"}>
+                <Fulltext
+                    SourceStore={SourceStore}
+                    loading={isLoading}
+                    withTranslation={props.withTranslation}
+                />
+            </Grid.Col>}
+            {Filter ? <Grid.Col span={"content"}><Filter/></Grid.Col> : null}
+        </Grid>
         {pagination?.position?.includes("top") && <>
             <Pagination
                 SourceStore={SourceStore}
