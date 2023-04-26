@@ -1,7 +1,7 @@
 import logo               from "@/monye.one/assets/logo/logo.svg";
-import {FulltextProvider} from "@leight/filter-client";
 import {withTranslation}  from "@leight/i18n-server";
 import {Paper}            from "@leight/mantine";
+import {FulltextProvider} from "@leight/source-client";
 import {Box}              from "@mantine/core";
 import {withBookLayout}   from "@monye.one/book-client";
 import {

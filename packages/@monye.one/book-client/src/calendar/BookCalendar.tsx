@@ -2,12 +2,13 @@ import {
     Calendar,
     type ICalendarProps
 }                                 from "@leight/calendar-client";
-import {FulltextStoreContext}     from "@leight/filter-client";
 import {Fulltext}                 from "@leight/mantine";
+import {FulltextStoreContext}     from "@leight/source-client";
 import {
     CalendarEventSourceSchema,
     type ICalendarEventSourceSchemaType
 }                                 from "@monye.one/book";
+import {TransactionSourceStore}   from "@monye.one/transaction-client";
 import {
     type FC,
     useEffect
@@ -36,7 +37,7 @@ export const BookCalendar: FC<IBookCalendarProps> = (
         ...  props
     }) => {
     const fulltextStore      = FulltextStoreContext.useOptionalState();
-    const {setShallowFilter} = CalendarEventSourceStore.Filter.useState(({setShallowFilter}) => ({setShallowFilter}));
+    const {setShallowFilter} = CalendarEventSourceStore.Query.useState(({setShallowFilter}) => ({setShallowFilter}));
 
     useEffect(() => {
         if (!fulltextStore) {
@@ -47,6 +48,7 @@ export const BookCalendar: FC<IBookCalendarProps> = (
 
     return <>
         <Fulltext
+            SourceStore={TransactionSourceStore}
             withTranslation={{
                 namespace: "book",
                 label:     "calendar",

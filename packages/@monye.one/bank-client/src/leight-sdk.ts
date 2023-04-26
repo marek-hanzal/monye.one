@@ -86,7 +86,6 @@ void withSdk(
                     packages: {
                         schema: "@monye.one/bank",
                     },
-                    withTrpc: true,
                 },
             ],
         },

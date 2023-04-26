@@ -22,7 +22,6 @@ void withSdk(
                     packages: {
                         schema: "@monye.one/transaction",
                     },
-                    withTrpc: true,
                 },
             ],
         },

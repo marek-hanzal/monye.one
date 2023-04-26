@@ -3,12 +3,12 @@ import {
     CalendarProvider,
     WeeksOfStore
 }                        from "@leight/calendar-client";
+import {Translation}     from "@leight/i18n-client";
+import {Paper}           from "@leight/mantine";
 import {
     FulltextProvider,
     FulltextStoreContext
-}                        from "@leight/filter-client";
-import {Translation}     from "@leight/i18n-client";
-import {Paper}           from "@leight/mantine";
+}                        from "@leight/source-client";
 import {
     Group,
     Tabs,
@@ -50,8 +50,8 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
     const [tab, setTab]                                                  = useState<string | null>("calendar");
     const {fulltext}                                                     = FulltextStoreContext.useState(({fulltext}) => ({fulltext}));
     const {weeks}                                                        = WeeksOfStore.useState(({weeks}) => ({weeks}));
-    const {transactionFilterId, transactionFilter, setTransactionFilter} = TransactionSourceStore.Filter.useState(({id, filter, setFilter}) => ({transactionFilterId: id, transactionFilter: filter, setTransactionFilter: setFilter}));
-    const {setCalendarEventShallowFilter}                                = CalendarEventSourceStore.Filter.useState(({setShallowFilter}) => ({setCalendarEventShallowFilter: setShallowFilter}));
+    const {transactionFilterId, transactionFilter, setTransactionFilter} = TransactionSourceStore.Query.useState(({id, filter, setFilter}) => ({transactionFilterId: id, transactionFilter: filter, setTransactionFilter: setFilter}));
+    const {setCalendarEventShallowFilter}                                = CalendarEventSourceStore.Query.useState(({setShallowFilter}) => ({setCalendarEventShallowFilter: setShallowFilter}));
 
     const $setFilter = useCallback(({fulltext, range: {from, to}, withIncome = false, withOutcome = false}: IFilterRange) => {
         setTransactionFilter({

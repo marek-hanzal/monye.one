@@ -4,7 +4,6 @@ import {
     type ISourceStore
 }                  from "@leight/source";
 import {
-    CursorStore,
     FulltextStoreContext,
     type IPaginationProps,
     Pagination,
@@ -41,7 +40,7 @@ export interface ISourceTableInternalProps<
          */
         position?: ("top" | "bottom")[];
 
-        props?: IPaginationProps;
+        props?: Omit<IPaginationProps, "SourceStore">;
     };
     withFulltext?: boolean;
     sourceCacheTime?: number;
@@ -73,11 +72,9 @@ export const SourceTable = <
         sourceCacheTime = 120,
         ...props
     }: ISourceTableInternalProps<TSourceSchemaType, TColumnKeys>) => {
-    const {data, result}     = SourceStore.useSource({cacheTime: sourceCacheTime});
-    const {sort, setSort}    = SourceStore.Sort.useState(({sort, setSort}) => ({sort, setSort}));
-    const fulltextStore      = FulltextStoreContext.useOptionalState();
-    const {setShallowFilter} = SourceStore.Filter.useState(({setShallowFilter}) => ({setShallowFilter}));
-    const {pages}            = CursorStore.useState(({pages}) => ({pages}));
+    const {data, result}                    = SourceStore.useSource({cacheTime: sourceCacheTime});
+    const fulltextStore                     = FulltextStoreContext.useOptionalState();
+    const {sort, setSort, setShallowFilter} = SourceStore.Query.useState(({sort, setSort, setShallowFilter}) => ({sort, setSort, setShallowFilter}));
 
     useEffect(() => {
         if (!withFulltext || !fulltextStore) {
@@ -93,13 +90,16 @@ export const SourceTable = <
     return <>
         {withFulltext && <>
             <Fulltext
+                SourceStore={SourceStore}
                 mt={"sm"}
                 loading={isLoading}
                 withTranslation={props.withTranslation}
             />
         </>}
-        {pagination?.position?.includes("top") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
+        {pagination?.position?.includes("top") && <>
             <Pagination
+                SourceStore={SourceStore}
+                hideOnSingle={pagination?.hideOnSingle}
                 mt={"sm"}
                 {...pagination?.props}
             />
@@ -134,8 +134,10 @@ export const SourceTable = <
             items={data.filter(dto => schema.safeParse(dto).success)}
             {...props}
         />
-        {pagination?.position?.includes("bottom") && (pagination?.hideOnSingle ? pages > 1 : true) && <>
+        {pagination?.position?.includes("bottom") && <>
             <Pagination
+                SourceStore={SourceStore}
+                hideOnSingle={pagination?.hideOnSingle}
                 mt={"sm"}
                 {...pagination?.props}
             />

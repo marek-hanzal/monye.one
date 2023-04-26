@@ -4,6 +4,7 @@ import {
     type ISourceSchema,
     type ISourceSchemaType
 }                           from "@leight/source";
+import {generateId}         from "@leight/utils";
 
 export interface ICreateQueryStoreProps<TSourceSchemaType extends ISourceSchemaType> {
     name: string;
@@ -17,6 +18,7 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
     }: ICreateQueryStoreProps<TSourceSchemaType>) => {
     return createStoreContext<IQueryStoreProps<TSourceSchemaType>>({
         state: () => set => ({
+            id:     generateId(),
             schema,
             query:  {},
             filter: undefined,
@@ -26,6 +28,7 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
             size:   30,
             setFilter(filter) {
                 set(state => ({
+                    id: generateId(),
                     filter,
                     query: {
                         filter,
@@ -39,6 +42,7 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
             },
             setShallowFilter(filter) {
                 set(state => ({
+                    id: generateId(),
                     filter: {
                         ...state.filter,
                         ...filter,
@@ -58,6 +62,7 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
             },
             setSort(key, order) {
                 set(state => ({
+                    id: generateId(),
                     sort:  {
                         [key as any]: order,
                     },
@@ -75,6 +80,7 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
             },
             setSize(size, total) {
                 set(state => ({
+                    id: generateId(),
                     size,
                     pages: Math.ceil(total / size),
                     query: {
@@ -89,6 +95,7 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
             },
             setPage(page) {
                 set(state => ({
+                    id: generateId(),
                     page,
                     query: {
                         filter: state.filter,

@@ -9,12 +9,14 @@ import {
 export interface IPaginationProps extends Partial<ComponentProps<typeof CoolPagination>> {
     SourceStore: ISourceStore<any>;
     size?: number;
+    hideOnSingle?: boolean;
 }
 
 export const Pagination: FC<IPaginationProps> = (
     {
         SourceStore,
         size = 30,
+        hideOnSingle = false,
         ...props
     }) => {
     const $cacheTime                             = 120;
@@ -35,7 +37,7 @@ export const Pagination: FC<IPaginationProps> = (
         result
     ]);
 
-    return <CoolPagination
+    return hideOnSingle && pages === 0 ? null : <CoolPagination
         withEdges
         size={"md"}
         radius={"sm"}

@@ -6,6 +6,8 @@ import {
 }                         from "../source";
 
 export type IQueryStoreProps<TSourceSchemaType extends ISourceSchemaType> = IStoreProps<{
+    id: string;
+
     schema: ISourceSchema.of<TSourceSchemaType>;
 
     page: number;

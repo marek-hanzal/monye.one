@@ -3,9 +3,9 @@ import {
     type IDay,
     type IWeeks
 }                             from "@leight/calendar";
-import {FulltextStoreContext} from "@leight/filter-client";
 import {DateTime}             from "@leight/i18n";
 import {DateInline}           from "@leight/i18n-client";
+import {FulltextStoreContext} from "@leight/source-client";
 import {classNames}           from "@leight/utils-client";
 import {
     ActionIcon,
@@ -91,7 +91,7 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
                      }
           }                         = WeeksOfStore.useState();
     const source                    = events?.SourceStore.useSource();
-    const filter                    = events?.SourceStore.Filter.useState();
+    const filter                    = events?.SourceStore.Query.useState();
     const fulltextContext           = FulltextStoreContext.useOptionalState();
     const $events                   = events && source?.data
         .reduce<Record<string, TSourceSchemaType["Dto"][]>>((prev, current) => {
@@ -109,7 +109,10 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
                 to:   end.toUTC().toJSDate(),
             },
         });
-    }, [id]);
+    }, [
+        id,
+        filter,
+    ]);
 
     const onChange: IWeeksProps<TSourceSchemaType>["onChange"] = props => {
         filter?.setFilter({

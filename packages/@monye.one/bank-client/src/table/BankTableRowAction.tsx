@@ -20,8 +20,8 @@ import {
 }                                   from "@tabler/icons-react";
 import {BankEditForm}               from "../form/BankEditForm";
 import {
-    useBankQueryInvalidator,
-    UseBankSourceQuery
+    BankSourceStore,
+    useBankQueryInvalidator
 }                                   from "../sdk";
 import {withStatsJobNotification}   from "../utils";
 import {type IBankTableProps}       from "./BankTable";
@@ -33,7 +33,7 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
         <ModalStoreProvider>
             <DeleteModal<IBankSourceSchemaType>
                 invalidator={useBankQueryInvalidator()}
-                UseDeleteMutation={UseBankSourceQuery}
+                SourceStore={BankSourceStore}
                 withTranslation={{
                     namespace: "bank",
                     label:     "account",

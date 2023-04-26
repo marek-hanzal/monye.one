@@ -6,7 +6,6 @@ import {
     withSecondaryPrimaryColor
 }                                            from "@leight/mantine";
 import {
-    type IFilterStoreProps,
     type ISourceStore,
     type IUseSource
 }                                            from "@leight/source";
@@ -181,7 +180,6 @@ export namespace ICalendarComponent {
     export interface IRenderProps<TSourceSchemaType extends ICalendarEventSourceSchemaType> {
         classes: ICalendarStyles;
         source?: IUseSource<TSourceSchemaType>;
-        filter?: IFilterStoreProps<TSourceSchemaType["FilterSchema"]>["StoreProps"];
         compact?: boolean;
     }
 }
@@ -225,7 +223,6 @@ export const CalendarShell = <TSourceSchemaType extends ICalendarEventSourceSche
     }: ICalendarShellProps<TSourceSchemaType>) => {
     const blockStore         = BlockStore.useOptionalState();
     const source             = events?.SourceStore.useSource();
-    const filter             = events?.SourceStore.Filter.useState();
     const {classes}          = useStyles();
     const controlColumnCount = 18;
     const controlWidth       = 7;
@@ -233,7 +230,6 @@ export const CalendarShell = <TSourceSchemaType extends ICalendarEventSourceSche
     const renderProps: ICalendarComponent.IRenderProps<TSourceSchemaType> = {
         classes,
         source,
-        filter,
         compact,
     };
 
