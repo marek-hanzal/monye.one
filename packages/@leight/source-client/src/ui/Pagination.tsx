@@ -13,7 +13,7 @@ export interface IPaginationProps extends Partial<ComponentProps<typeof CoolPagi
 export const Pagination: FC<IPaginationProps> = (
     {
         SourceStore,
-        hideOnSingle = false,
+        hideOnSingle = true,
         ...props
     }) => {
     const $cacheTime       = 120;
@@ -23,7 +23,7 @@ export const Pagination: FC<IPaginationProps> = (
         staleTime: $cacheTime * 1000,
     });
     const pages            = Math.ceil((result.data || 0) / query.cursor.size);
-    return hideOnSingle && pages === 0 ? null : <CoolPagination
+    return hideOnSingle && pages === 1 ? null : <CoolPagination
         withEdges
         size={"md"}
         radius={"sm"}
