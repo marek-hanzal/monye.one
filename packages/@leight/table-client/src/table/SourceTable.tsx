@@ -44,6 +44,7 @@ export interface ISourceTableInternalProps<
         props?: IPaginationProps;
     };
     withFulltext?: boolean;
+    sourceCacheTime?: number;
 }
 
 /**
@@ -69,27 +70,14 @@ export const SourceTable = <
             ],
         },
         withFulltext = false,
+        sourceCacheTime = 120,
         ...props
     }: ISourceTableInternalProps<TSourceSchemaType, TColumnKeys>) => {
-    const {
-              dtos,
-              isFetching,
-              isLoading,
-          }                  = SourceStore.Source.useState((
-        {
-            dtos,
-            isFetching,
-            isLoading,
-        }) => (
-        {
-            dtos,
-            isFetching,
-            isLoading,
-        }));
+    const {data, result}     = SourceStore.useSource({cacheTime: sourceCacheTime});
     const {sort, setSort}    = SourceStore.Sort.useState(({sort, setSort}) => ({sort, setSort}));
     const fulltextStore      = FulltextStoreContext.useOptionalState();
     const {setShallowFilter} = SourceStore.Filter.useState(({setShallowFilter}) => ({setShallowFilter}));
-    const {pages}   = CursorStore.useState(({pages}) => ({pages}));
+    const {pages}            = CursorStore.useState(({pages}) => ({pages}));
 
     useEffect(() => {
         if (!withFulltext || !fulltextStore) {
@@ -100,11 +88,13 @@ export const SourceTable = <
         });
     }, [fulltextStore?.fulltext]);
 
+    const isLoading = result.isLoading || result.isFetching;
+
     return <>
         {withFulltext && <>
             <Fulltext
                 mt={"sm"}
-                loading={isLoading || isFetching}
+                loading={isLoading}
                 withTranslation={props.withTranslation}
             />
         </>}
@@ -116,7 +106,7 @@ export const SourceTable = <
         </>}
         <Table<ISourceTableColumn<TSourceSchemaType>, TColumnKeys>
             mt={"sm"}
-            isLoading={isLoading || isFetching}
+            isLoading={isLoading}
             highlight={keywordsOf(fulltextStore?.fulltext)}
             columns={Object.entries<ISourceTableColumn<TSourceSchemaType>>(columns).reduce<any>((prev, [name, column]) => {
                 prev[name] = {
@@ -141,7 +131,7 @@ export const SourceTable = <
                 };
                 return prev;
             }, {})}
-            items={dtos.filter(dto => schema.safeParse(dto).success)}
+            items={data.filter(dto => schema.safeParse(dto).success)}
             {...props}
         />
         {pagination?.position?.includes("bottom") && (pagination?.hideOnSingle ? pages > 1 : true) && <>

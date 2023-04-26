@@ -41,4 +41,4 @@ export const CalendarEventSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ylaw4x6x2nf2ml0oqejjwoxq = true;
+export const $leight_k5bmndulnlamtwge3vrk98lt = true;

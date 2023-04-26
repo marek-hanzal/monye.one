@@ -1,78 +1,46 @@
-import {createStoreContext}  from "@leight/context-client";
 import {createFilterContext} from "@leight/filter-client";
 import {createSortContext}   from "@leight/sort-client";
 import {
     type ISourceSchema,
     type ISourceSchemaType,
     type ISourceStore,
-    type ISourceStoreProps
+    type IUseSourceProps
 }                            from "@leight/source";
-import {generateId}          from "@leight/utils";
-
-export interface ICreateSourceContextProps<TSourceSchemaType extends ISourceSchemaType> {
-    name: string;
-    schema: TSourceSchemaType["DtoSchema"];
-    dtos?: TSourceSchemaType["Dto"][];
-}
-
-export const createSourceContext = <TSourceSchemaType extends ISourceSchemaType>(
-    {
-        name,
-        schema,
-        dtos = [],
-    }: ICreateSourceContextProps<TSourceSchemaType>) => {
-    return createStoreContext<ISourceStoreProps<TSourceSchemaType>>({
-        state: () => (set) => ({
-            id:         generateId(),
-            name,
-            schema,
-            dtos:       dtos,
-            isLoading:  false,
-            isFetching: false,
-            setDtos(dtos) {
-                set({
-                    id: generateId(),
-                    dtos,
-                });
-            },
-            setIsLoading(isLoading) {
-                set({isLoading});
-            },
-            setIsFetching(isFetching) {
-                set({isFetching});
-            },
-        }),
-        name:  `[${name}] SourceContext`,
-        hint:  `Add [${name}] SourceProvider`,
-    });
-};
+import {useSource}           from "../source";
 
 export interface IWithSourceStoreProps<TSourceSchema extends ISourceSchema> {
     name: string;
     SourceSchema: TSourceSchema;
+    UseSourceQuery: IUseSourceProps<ISourceSchemaType.of<TSourceSchema>>["UseSourceQuery"];
 }
 
 export const withSourceStore = <TSourceSchema extends ISourceSchema>(
     {
         name,
         SourceSchema: {
-                          EntitySchema,
+                          DtoSchema,
                           FilterSchema,
                           SortSchema,
                       },
+        UseSourceQuery,
     }: IWithSourceStoreProps<TSourceSchema>): ISourceStore<ISourceSchemaType.of<TSourceSchema>> => {
-    return {
-        Source: createSourceContext<ISourceSchemaType.of<TSourceSchema>>({
-            name,
-            schema: EntitySchema,
-        }),
-        Filter: createFilterContext<TSourceSchema["FilterSchema"]>({
+    const $store: ISourceStore<ISourceSchemaType.of<TSourceSchema>> = {
+        useSource: ({cacheTime} = {cacheTime: undefined}) => {
+            return useSource<ISourceSchemaType.of<TSourceSchema>>({
+                SourceStore: $store,
+                UseSourceQuery,
+                schema:      DtoSchema,
+                cacheTime,
+            });
+        },
+        Filter:    createFilterContext<TSourceSchema["FilterSchema"]>({
             name:   `${name}Filter`,
             schema: FilterSchema,
         }),
-        Sort:   createSortContext<TSourceSchema["SortSchema"]>({
+        Sort:      createSortContext<TSourceSchema["SortSchema"]>({
             name:   `${name}Sort`,
             schema: SortSchema,
         }),
     };
+    return $store;
 };

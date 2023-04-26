@@ -8,7 +8,7 @@ import {
 }                                            from "@leight/mantine";
 import {
     type ISourceStore,
-    type ISourceStoreProps
+    type IUseSource
 }                                            from "@leight/source";
 import {
     isCallable,
@@ -180,7 +180,7 @@ export type ICalendarComponent<TSourceSchemaType extends ICalendarEventSourceSch
 export namespace ICalendarComponent {
     export interface IRenderProps<TSourceSchemaType extends ICalendarEventSourceSchemaType> {
         classes: ICalendarStyles;
-        source?: ISourceStoreProps<TSourceSchemaType>["StoreProps"];
+        source?: IUseSource<TSourceSchemaType>;
         filter?: IFilterStoreProps<TSourceSchemaType["FilterSchema"]>["StoreProps"];
         compact?: boolean;
     }
@@ -224,7 +224,7 @@ export const CalendarShell = <TSourceSchemaType extends ICalendarEventSourceSche
         ...props
     }: ICalendarShellProps<TSourceSchemaType>) => {
     const blockStore         = BlockStore.useOptionalState();
-    const source             = events?.SourceStore.Source.useState();
+    const source             = events?.SourceStore.useSource();
     const filter             = events?.SourceStore.Filter.useState();
     const {classes}          = useStyles();
     const controlColumnCount = 18;
@@ -241,7 +241,7 @@ export const CalendarShell = <TSourceSchemaType extends ICalendarEventSourceSche
         className={classes.calendar}
         {...props}
     >
-        <LoadingOverlay visible={withBool(blockStore?.isBlock, events?.SourceStore.Source.useState().isFetching || false)}/>
+        <LoadingOverlay visible={withBool(blockStore?.isBlock, source?.result.isFetching || false)}/>
         {withControls && <Grid
             columns={controlColumnCount}
             className={classNames(

@@ -47,6 +47,13 @@ export const generatorClientSourceStore: IGenerator<IGeneratorClientSourceStoreP
                     ],
                 },
             })
+            .withImports({
+                imports: {
+                    [`../Trpc/Use${name}SourceQuery`]: [
+                        `Use${name}SourceQuery`,
+                    ],
+                },
+            })
             .withConsts({
                 exports: {
                     [`${name}SourceStore`]: {
@@ -54,6 +61,7 @@ export const generatorClientSourceStore: IGenerator<IGeneratorClientSourceStoreP
 withSourceStore({
     name: "${name}",
     SourceSchema: ${name}SourceSchema,
+    UseSourceQuery: Use${name}SourceQuery,
 })
                     `,
                     },

@@ -252,6 +252,8 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/keyword-server/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/keyword/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/keyword/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/react-query/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/react-query/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

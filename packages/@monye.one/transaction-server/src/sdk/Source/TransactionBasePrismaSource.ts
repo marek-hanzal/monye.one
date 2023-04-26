@@ -1,24 +1,24 @@
 /**
- Base Prisma Source contains default implementation of Source for entity Transaction connected to Prisma. This could be used for further extensions,
- also default export uses this as a parent class.
+	Base Prisma Source contains default implementation of Source for entity Transaction connected to Prisma. This could be used for further extensions,
+    also default export uses this as a parent class.
  */
-import {$PrismaClient}     from "@leight/prisma";
-import {withCursor}        from "@leight/query";
+import {withCursor} from "@leight/query";
+import {$PrismaClient} from "@leight/prisma";
 import {
-    type ISource,
-    type IWithIdentity,
-    SourceError
-}                          from "@leight/source";
-import {AbstractSourceEx}  from "@leight/source-server";
+	type ISource,
+	type IWithIdentity,
+	SourceError
+} from "@leight/source";
+import {AbstractSourceEx} from "@leight/source-server";
+import {
+	$TransactionSource,
+	type ITransactionSourceSchemaType,
+	type ITransactionPrismaSchemaType
+} from "@monye.one/transaction";
 import {type PrismaClient} from "@monye.one/prisma";
-import {
-    $TransactionSource,
-    type ITransactionPrismaSchemaType,
-    type ITransactionSourceSchemaType
-}                          from "@monye.one/transaction";
 
 export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPrismaSchemaType, ITransactionSourceSchemaType> {
-    static inject = [
+	static inject = [
         $PrismaClient,
     ];
 
@@ -30,23 +30,23 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
 
     async runFind(id: string): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().findUniqueOrThrow({
-            where:   {id},
-            include: {"bank": true},
+            where: {id},
+				include: {"bank":true},
         });
     }
 
     async runCreate(entity: ITransactionSourceSchemaType["Create"]): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().create({
-            data:    entity,
-            include: {"bank": true},
+            data: entity,
+				include: {"bank":true},
         });
     }
 
     async runPatch({id, ...patch}: ITransactionSourceSchemaType["Patch"]): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().update({
-            data:    patch,
-            where:   {id},
-            include: {"bank": true},
+            data: patch,
+            where: {id},
+				include: {"bank":true},
         });
     }
 
@@ -54,15 +54,15 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
         return this.prisma().upsert({
             create,
             update,
-            where:   this.toWhereUnique(filter),
-            include: {"bank": true},
+            where: this.toWhereUnique(filter),
+				include: {"bank":true},
         });
     }
 
     async runDelete({id}: IWithIdentity): Promise<ITransactionSourceSchemaType["Entity"]> {
-        const item  = await this.find(id);
+        const item = await this.find(id);
         const where = this.toWhereUnique({id});
-        if (!where) {
+        if(!where) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
         }
         await this.prisma().delete({
@@ -70,13 +70,13 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
         });
         return item;
     }
-
+    
     async runDeleteWith(query: ITransactionSourceSchemaType["Query"]): Promise<ITransactionSourceSchemaType["Entity"][]> {
         const items = await this.query(query);
         const where = this.toWhere(query.filter);
-        if (!where) {
+        if(!where) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
-        }
+        } 
         await this.prisma().deleteMany({
             where,
         });
@@ -95,11 +95,11 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
             arg: {
                 where:   this.toWhere(query?.filter),
                 orderBy: this.toOrderBy(query?.sort),
-                include: {"bank": true},
+				include: {"bank":true},
             },
         }));
     }
-
+    
     prisma() {
         return this.prismaClient.transaction;
     }
@@ -109,4 +109,4 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_j4m2lmvdqmes7on2q3ky98ca = true;
+export const $leight_e5vfhk5ruhh07xgxy3tqocir = true;

@@ -1,25 +1,22 @@
 import {
     Calendar,
     type ICalendarProps
-}                             from "@leight/calendar-client";
-import {FulltextStoreContext} from "@leight/filter-client";
-import {Fulltext}             from "@leight/mantine";
+}                                 from "@leight/calendar-client";
+import {FulltextStoreContext}     from "@leight/filter-client";
+import {Fulltext}                 from "@leight/mantine";
 import {
     CalendarEventSourceSchema,
     type ICalendarEventSourceSchemaType
-}                             from "@monye.one/book";
+}                                 from "@monye.one/book";
 import {
     type FC,
     useEffect
-}                             from "react";
-import {
-    CalendarEventSource,
-    CalendarEventSourceStore
-}                             from "../sdk";
+}                                 from "react";
+import {CalendarEventSourceStore} from "../sdk";
 import {
     type IIncomeOutcomeProps,
     IncomeOutcome
-}                             from "./IncomeOutcome";
+}                                 from "./IncomeOutcome";
 
 export interface IBookCalendarProps extends Omit<ICalendarProps<ICalendarEventSourceSchemaType>, "useEventState"> {
     day?: {
@@ -48,9 +45,7 @@ export const BookCalendar: FC<IBookCalendarProps> = (
         setShallowFilter({fulltext: fulltextStore?.fulltext || undefined});
     }, [fulltextStore?.fulltext]);
 
-    return <CalendarEventSource
-        cacheTime={60}
-    >
+    return <>
         <Fulltext
             withTranslation={{
                 namespace: "book",
@@ -73,5 +68,5 @@ export const BookCalendar: FC<IBookCalendarProps> = (
             />}
             {...props}
         />
-    </CalendarEventSource>;
+    </>;
 };

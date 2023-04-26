@@ -10,4 +10,6 @@ export * from "./ISourceMapper";
 export * from "./ISourceSchemaType";
 export * from "./ISourceService";
 export * from "./ISourceStore";
+export * from "./IUseSource";
+export * from "./IUseSourceProps";
 export * from "./IUseSourceQuery";

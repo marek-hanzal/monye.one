@@ -3,13 +3,15 @@
  */
 import {withSourceStore} from "@leight/source-client";
 import {BankSourceSchema} from "@monye.one/bank";
+import {UseBankSourceQuery} from "../Trpc/UseBankSourceQuery";
 
 export const BankSourceStore = withSourceStore({
     name: "Bank",
     SourceSchema: BankSourceSchema,
+    UseSourceQuery: UseBankSourceQuery,
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jddz8ghhzc9oxvuh6if8tsxq = true;
+export const $leight_j2mpjcmkahd8cqfphbtzbbwx = true;

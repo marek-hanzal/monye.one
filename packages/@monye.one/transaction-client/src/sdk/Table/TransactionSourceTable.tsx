@@ -12,7 +12,6 @@ import {
 	TransactionSourceSchema
 } from "@monye.one/transaction";
 import {TransactionSourceStore} from "../Source/TransactionSourceStore";
-import {TransactionSource} from "../Source/TransactionSource";
 
 export interface ITransactionSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<ITransactionSourceSchemaType, TColumnKeys>, "SourceStore" | "schema"> {
 	sourceCacheTime?: number;
@@ -25,19 +24,15 @@ export interface ITransactionSourceTableProps<TColumnKeys extends string> extend
  * Base implementation of a table providing Transaction data already connected to a source; just extend this table with
  * columns and other props as you wish.
  */
-export const TransactionSourceTable = <TColumnKeys extends string>({sourceCacheTime, ...props}: ITransactionSourceTableInternalProps<TColumnKeys>) => {
-    return <TransactionSource
-        cacheTime={sourceCacheTime}
-    >
-        <SourceTable
-            SourceStore={TransactionSourceStore}
-            schema={TransactionSourceSchema["DtoSchema"]}
-            {...props}
-        />
-    </TransactionSource>;
+export const TransactionSourceTable = <TColumnKeys extends string>(props: ITransactionSourceTableInternalProps<TColumnKeys>) => {
+    return <SourceTable
+        SourceStore={TransactionSourceStore}
+        schema={TransactionSourceSchema["DtoSchema"]}
+        {...props}
+    />;
 };
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_pcup5311hyb8sw7vb57bj161 = true;
+export const $leight_bmbqvwngy01520gn2wj2prpi = true;

@@ -36,19 +36,16 @@ export const generatorClientSourceTable: IGenerator<IGeneratorClientSourceTableP
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/table-client":                 [
+                    "@leight/table-client":           [
                         "SourceTable",
                         "type ISourceTableInternalProps",
                     ],
-                    [packages.schema]:                      [
+                    [packages.schema]:                [
                         `type I${name}SourceSchemaType`,
                         `${name}SourceSchema`,
                     ],
                     [`../Source/${name}SourceStore`]: [
                         `${name}SourceStore`,
-                    ],
-                    [`../Source/${name}Source`]:      [
-                        `${name}Source`,
                     ],
                 }
             })
@@ -58,7 +55,7 @@ export const generatorClientSourceTable: IGenerator<IGeneratorClientSourceTableP
                         extends: [
                             {type: `Omit<ISourceTableInternalProps<I${name}SourceSchemaType, TColumnKeys>, "SourceStore" | "schema">`},
                         ],
-                        body: `
+                        body:    `
 sourceCacheTime?: number;
                         `,
                     },
@@ -78,16 +75,12 @@ sourceCacheTime?: number;
  * columns and other props as you wish.
  */
                         `,
-                        body:    `<TColumnKeys extends string>({sourceCacheTime, ...props}: I${name}SourceTableInternalProps<TColumnKeys>) => {
-    return <${name}Source
-        cacheTime={sourceCacheTime}
-    >
-        <SourceTable
-            SourceStore={${name}SourceStore}
-            schema={${name}SourceSchema["DtoSchema"]}
-            {...props}
-        />
-    </${name}Source>;
+                        body:    `<TColumnKeys extends string>(props: I${name}SourceTableInternalProps<TColumnKeys>) => {
+    return <SourceTable
+        SourceStore={${name}SourceStore}
+        schema={${name}SourceSchema["DtoSchema"]}
+        {...props}
+    />;
 }
                     `,
                     },

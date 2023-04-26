@@ -90,12 +90,10 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
                          isCurrent,
                      }
           }                         = WeeksOfStore.useState();
-    const source                    = events?.SourceStore.Source.useState();
+    const source                    = events?.SourceStore.useSource();
     const filter                    = events?.SourceStore.Filter.useState();
     const fulltextContext           = FulltextStoreContext.useOptionalState();
-    const $events                   = events && source?.dtos
-        .filter(event => events.schema.safeParse(event).success)
-        .map(event => events.schema.parse(event))
+    const $events                   = events && source?.data
         .reduce<Record<string, TSourceSchemaType["Dto"][]>>((prev, current) => {
             const stamp = DateTime.fromJSDate(current.date).toLocaleString({day: "numeric", month: "numeric", year: "numeric"});
             prev[stamp] = (prev[stamp] || []).concat(current);

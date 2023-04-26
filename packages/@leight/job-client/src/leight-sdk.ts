@@ -6,25 +6,10 @@ import {
 void withSdk(
     withClientSourceGenerators({
         SourceStore:    {
-            entities: [
-                {
-                    name:     "Job",
-                    packages: {
-                        schema: "@leight/job",
-                    },
-                }
-            ],
+            entities: [],
         },
         SourceProvider: {
-            entities: [
-                {
-                    name:     "Job",
-                    packages: {
-                        schema: "@leight/job",
-                    },
-                    withTrpc: false,
-                },
-            ],
+            entities: [],
         },
     })
 );

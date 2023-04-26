@@ -12,7 +12,6 @@ import {
 	BankSourceSchema
 } from "@monye.one/bank";
 import {BankSourceStore} from "../Source/BankSourceStore";
-import {BankSource} from "../Source/BankSource";
 
 export interface IBankSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<IBankSourceSchemaType, TColumnKeys>, "SourceStore" | "schema"> {
 	sourceCacheTime?: number;
@@ -25,19 +24,15 @@ export interface IBankSourceTableProps<TColumnKeys extends string> extends Omit<
  * Base implementation of a table providing Bank data already connected to a source; just extend this table with
  * columns and other props as you wish.
  */
-export const BankSourceTable = <TColumnKeys extends string>({sourceCacheTime, ...props}: IBankSourceTableInternalProps<TColumnKeys>) => {
-    return <BankSource
-        cacheTime={sourceCacheTime}
-    >
-        <SourceTable
-            SourceStore={BankSourceStore}
-            schema={BankSourceSchema["DtoSchema"]}
-            {...props}
-        />
-    </BankSource>;
+export const BankSourceTable = <TColumnKeys extends string>(props: IBankSourceTableInternalProps<TColumnKeys>) => {
+    return <SourceTable
+        SourceStore={BankSourceStore}
+        schema={BankSourceSchema["DtoSchema"]}
+        {...props}
+    />;
 };
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_b9rm7ad5z97mvtoxgyj1u37d = true;
+export const $leight_sgn7fhkkhoryoiskvltn0h02 = true;
