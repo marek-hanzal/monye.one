@@ -5,12 +5,10 @@
  */
 import {
 	type IMantineFormContext,
-	type IFormSchemaType,
 	type IFormInputsFactory
-} from "@leight/form-client";
-import {BankCreateFormSchema} from "../../schema";
+} from "@leight/form";
+import {type IBankCreateFormSchema} from "../schema/BankCreateFormSchema";
 
-export type IBankCreateFormSchema = IFormSchemaType.of<typeof BankCreateFormSchema>;
 export type IBankCreateMantineFormContext = IMantineFormContext<IBankCreateFormSchema>;
 export type IBankCreateFormInputFactory = IFormInputsFactory<IBankCreateFormSchema>;
 
@@ -18,4 +16,4 @@ export type IBankCreateFormInputFactory = IFormInputsFactory<IBankCreateFormSche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_v1wpryxchaj7ua8qi9mny1em = true;
+export const $leight_orgpdqu05i0gwg7vio9s43jz = true;

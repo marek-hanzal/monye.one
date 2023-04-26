@@ -15,4 +15,4 @@ export class CalendarEventSourceService extends CalendarEventBaseSourceService i
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_usaijm3buunhxu3hp2cr8lbo = true;
+export const $leight_p4y5wc6d79jdknhhuuzsgbvc = true;

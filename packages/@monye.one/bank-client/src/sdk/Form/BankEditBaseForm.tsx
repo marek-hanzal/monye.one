@@ -4,20 +4,22 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
-	DtoForm as Form,
-	type IDtoFormProps as IFormProps
+	DtoForm as BaseForm,
+	type IDtoFormProps as IBaseFormProps
 } from "@leight/form-client";
 import {type FC} from "react";
-import {type IBankEditFormSchema} from "../api/BankEditFormTypes";
+import {
+	type IBankEditFormSchema,
+	BankEditFormSchema
+} from "@monye.one/bank";
 import {BankEditFormStoreContext} from "../FormStoreContext/BankEditFormStoreContext";
 import {BankEditMantineFormContext} from "../FormStoreContext/BankEditMantineFormContext";
-import {BankEditFormSchema} from "../../schema";
 
-export interface IBankEditBaseFormProps extends Omit<IFormProps<IBankEditFormSchema>, "FormContext" | "MantineContext" | "withTranslation"> {
+export interface IBankEditBaseFormProps extends Omit<IBaseFormProps<IBankEditFormSchema>, "FormContext" | "MantineContext" | "withTranslation"> {
 }
 
 export const BankEditBaseForm: FC<IBankEditBaseFormProps> = props => {
-    return <Form<IBankEditFormSchema>
+    return <BaseForm<IBankEditFormSchema>
         MantineContext={BankEditMantineFormContext}
         schemas={BankEditFormSchema}
         FormContext={BankEditFormStoreContext}
@@ -32,4 +34,4 @@ export const BankEditBaseForm: FC<IBankEditBaseFormProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_n6o0dwxf8i1vcbgsjzsk4w5a = true;
+export const $leight_v6sm5byzplcwnnp482d0616o = true;

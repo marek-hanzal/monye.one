@@ -3,9 +3,9 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type ITrpcFormProps} from "@leight/form-client";
+import {type ITrpcFormProps} from "@leight/form";
 import {BlockStore} from "@leight/utils-client";
-import {type IBankPatchFormSchema} from "../api/BankPatchFormTypes";
+import {type IBankPatchFormSchema} from "@monye.one/bank";
 import {type FC} from "react";
 import {
 	type IBankPatchBaseFormProps,
@@ -46,4 +46,4 @@ export const BankPatchTrpcForm: FC<IBankPatchTrpcFormProps> = ({onSuccess, onErr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qqx8mctqonb4epig38x4zv8c = true;
+export const $leight_lrq2qu94y4wem01edfq5r5b0 = true;

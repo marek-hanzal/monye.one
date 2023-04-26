@@ -83,7 +83,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/form-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/sort/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/filter-client/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/filter/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/filter-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/zod/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/prisma-sqlite/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/keyword-server/src" isTestSource="false" />
@@ -243,8 +243,6 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/form-client/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/filter-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/filter-client/lib" />
-      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/filter/.turbo" />
-      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/filter/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/trpc-source-server/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/trpc-source-server/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/zod/.turbo" />
@@ -255,6 +253,9 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/keyword/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/react-query/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/react-query/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/filter-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/filter-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/form/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/form/lib" />
     </content>
     <orderEntry type="inheritedJdk" />

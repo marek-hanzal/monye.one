@@ -44,5 +44,78 @@ void withSdk(
                 },
             ],
         },
+        Form:         {
+            forms: [
+                {
+                    name:   "BankCreate",
+                    schema: {
+                        values: {
+                            type:        "BankCreateFormValueSchema",
+                            withPackage: {
+                                package: "../../schema"
+                            },
+                        },
+                        request: {
+                            type:        "BankCreateFormRequestSchema",
+                            withPackage: {
+                                package: "../../schema"
+                            },
+                        },
+                        dto: {
+                            type:        "BankCreateFormDtoSchema",
+                            withPackage: {
+                                package: "../../schema"
+                            },
+                        },
+                    },
+                },
+                {
+                    name:   "BankEdit",
+                    schema: {
+                        values: {
+                            type:        "BankEditFormValueSchema",
+                            withPackage: {
+                                package: "../../schema"
+                            },
+                        },
+                        request: {
+                            type:        "BankEditFormRequestSchema",
+                            withPackage: {
+                                package: "../../schema"
+                            },
+                        },
+                        dto: {
+                            type:        "BankEditFormDtoSchema",
+                            withPackage: {
+                                package: "../../schema"
+                            },
+                        },
+                    },
+                },
+                {
+                    name:   "BankPatch",
+                    schema: {
+                        values: {
+                            type:        "BankPatchFormValueSchema",
+                            withPackage: {
+                                package: "../../schema"
+                            },
+                        },
+                        request: {
+                            type:        "BankPatchFormRequestSchema",
+                            withPackage: {
+                                package: "../../schema"
+                            },
+                        },
+                        dto: {
+                            type:        "BankPatchFormDtoSchema",
+                            withPackage: {
+                                package: "../../schema"
+                            },
+                        },
+                    },
+                },
+            ],
+        }
     })
 );

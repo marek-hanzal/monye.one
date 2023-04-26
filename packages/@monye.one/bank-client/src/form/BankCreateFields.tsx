@@ -1,4 +1,4 @@
-import {withCondition} from "@leight/form-client";
+import {withCondition} from "@leight/form";
 import {Translation}   from "@leight/i18n-client";
 import {
     Card,

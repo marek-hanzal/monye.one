@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {createFormContext} from "@leight/form-client";
-import {type IBankPatchFormSchema} from "../api/BankPatchFormTypes";
+import {type IBankPatchFormSchema} from "@monye.one/bank";
 
 export const BankPatchFormStoreContext = createFormContext<IBankPatchFormSchema>({
     name: "BankPatchForm",
@@ -13,4 +13,4 @@ export const BankPatchFormStoreContext = createFormContext<IBankPatchFormSchema>
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_csaprjybaxvkf8g5kfqepjzv = true;
+export const $leight_q8kc4rqa2gn2ee6onrgc4cck = true;

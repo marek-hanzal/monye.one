@@ -3,7 +3,7 @@ import {
     NumberInput,
     TextInput
 }                                         from "@leight/form-client";
-import {type IBankCreateFormInputFactory} from "../sdk";
+import {type IBankCreateFormInputFactory} from "@monye.one/bank";
 
 export const BankCreateFormInputFactory: IBankCreateFormInputFactory = () => ({
     "account":       ({mandatory, withLabel, withDescription}) => <TextInput

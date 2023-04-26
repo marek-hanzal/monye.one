@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {createFormContext} from "@leight/form-client";
-import {type ITransactionFilterFormSchema} from "../api/TransactionFilterFormTypes";
+import {type ITransactionFilterFormSchema} from "@monye.one/transaction";
 
 export const TransactionFilterFormStoreContext = createFormContext<ITransactionFilterFormSchema>({
     name: "TransactionFilterForm",
@@ -13,4 +13,4 @@ export const TransactionFilterFormStoreContext = createFormContext<ITransactionF
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vkxzax5yk2iy3r4pzjqgjqrq = true;
+export const $leight_xedeixjo70n5ejflgp4427md = true;

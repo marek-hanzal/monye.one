@@ -7,7 +7,7 @@ import {
 	type IWithInputProps,
 	WithInput
 } from "@leight/form-client";
-import {type ITransactionFilterFormSchema} from "../api/TransactionFilterFormTypes";
+import {type ITransactionFilterFormSchema} from "@monye.one/transaction";
 import {type FC} from "react";
 import {TransactionFilterFormStoreContext} from "../FormStoreContext/TransactionFilterFormStoreContext";
 
@@ -21,4 +21,4 @@ export const TransactionFilterInput: FC<Omit<IWithInputProps<ITransactionFilterF
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nslg4kkv7r2xpx86dr6t5dkc = true;
+export const $leight_i7ttgnan28jw759b5u0cvpda = true;

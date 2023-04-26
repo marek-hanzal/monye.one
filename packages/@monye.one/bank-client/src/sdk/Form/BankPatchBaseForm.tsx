@@ -4,20 +4,22 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
-	DtoForm as Form,
-	type IDtoFormProps as IFormProps
+	DtoForm as BaseForm,
+	type IDtoFormProps as IBaseFormProps
 } from "@leight/form-client";
 import {type FC} from "react";
-import {type IBankPatchFormSchema} from "../api/BankPatchFormTypes";
+import {
+	type IBankPatchFormSchema,
+	BankPatchFormSchema
+} from "@monye.one/bank";
 import {BankPatchFormStoreContext} from "../FormStoreContext/BankPatchFormStoreContext";
 import {BankPatchMantineFormContext} from "../FormStoreContext/BankPatchMantineFormContext";
-import {BankPatchFormSchema} from "../../schema";
 
-export interface IBankPatchBaseFormProps extends Omit<IFormProps<IBankPatchFormSchema>, "FormContext" | "MantineContext" | "withTranslation"> {
+export interface IBankPatchBaseFormProps extends Omit<IBaseFormProps<IBankPatchFormSchema>, "FormContext" | "MantineContext" | "withTranslation"> {
 }
 
 export const BankPatchBaseForm: FC<IBankPatchBaseFormProps> = props => {
-    return <Form<IBankPatchFormSchema>
+    return <BaseForm<IBankPatchFormSchema>
         MantineContext={BankPatchMantineFormContext}
         schemas={BankPatchFormSchema}
         FormContext={BankPatchFormStoreContext}
@@ -32,4 +34,4 @@ export const BankPatchBaseForm: FC<IBankPatchBaseFormProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hzaij2qd8650hi88owu1x9dc = true;
+export const $leight_ivo1qt4u041i9m1wxs721uhl = true;

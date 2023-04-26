@@ -48,5 +48,20 @@ void withSdk(
                 },
             ],
         },
+        Form:         {
+            forms: [
+                {
+                    name:   "TransactionFilter",
+                    schema: {
+                        values: {
+                            type:        "TransactionFormFilterSchema",
+                            withPackage: {
+                                package: "../../schema",
+                            },
+                        },
+                    },
+                },
+            ],
+        },
     })
 );

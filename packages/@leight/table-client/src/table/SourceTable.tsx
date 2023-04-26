@@ -1,28 +1,29 @@
-import {
-    Fulltext,
-    type IFilterFC
-}                  from "@leight/mantine";
+import {type IWithTranslation} from "@leight/i18n";
+import {Fulltext}              from "@leight/mantine";
 import {
     type ISourceSchemaType,
     type ISourceStore
-}                  from "@leight/source";
+}                              from "@leight/source";
 import {
     FulltextStoreContext,
     type IPaginationProps,
     Pagination,
     SortIcon
-}                  from "@leight/source-client";
+}                              from "@leight/source-client";
 import {
     chain,
     keywordsOf
-}                  from "@leight/utils";
-import {Grid}      from "@mantine/core";
-import {useEffect} from "react";
+}                              from "@leight/utils";
+import {Grid}                  from "@mantine/core";
+import {
+    FC,
+    useEffect
+}                              from "react";
 import {
     type ITableColumn,
     type ITableProps,
     Table
-}                  from "./Table";
+}                              from "./Table";
 
 export interface ISourceTableColumn<TSourceSchemaType extends ISourceSchemaType> extends ITableColumn<TSourceSchemaType["Dto"]> {
     readonly sort?: keyof TSourceSchemaType["Sort"];
@@ -48,7 +49,7 @@ export interface ISourceTableInternalProps<
     };
     withFulltext?: boolean;
     sourceCacheTime?: number;
-    Filter?: IFilterFC<TSourceSchemaType>;
+    Filter?: FC<{ withTranslation?: IWithTranslation }>;
 }
 
 /**

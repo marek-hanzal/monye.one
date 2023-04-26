@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_w1m9j7ffzh9tx2u14cd5n7d6 = true;
+export const $leight_ba5n9dvkuyfqh2v2nlvbs12b = true;
 
 export * from "./ServerTrpc/CalendarEventTrpc";
 export * from "./Source/CalendarEventBaseSource";

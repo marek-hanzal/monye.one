@@ -1,4 +1,4 @@
-import {withCondition} from "@leight/form-client";
+import {withCondition} from "@leight/form";
 import {DateTime}      from "@leight/i18n";
 import {Translation}   from "@leight/i18n-client";
 import {

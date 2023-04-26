@@ -16,6 +16,9 @@ void withSdk(
                         source: "Bank",
                         use:    "useCreate",
                     },
+                    packages:    {
+                        schema: "@monye.one/bank",
+                    },
                 },
                 {
                     type:        "dto",
@@ -27,6 +30,9 @@ void withSdk(
                         source: "Bank",
                         use:    "usePatch",
                     },
+                    packages:    {
+                        schema: "@monye.one/bank",
+                    },
                 },
                 {
                     type:        "dto",
@@ -37,6 +43,9 @@ void withSdk(
                     withTrpc:    {
                         source: "Bank",
                         use:    "usePatch",
+                    },
+                    packages:    {
+                        schema: "@monye.one/bank",
                     },
                 },
             ],
