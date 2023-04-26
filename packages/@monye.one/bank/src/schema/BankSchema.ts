@@ -1,6 +1,5 @@
 import {
     DtoSchema,
-    FilterSchema,
     ToCreateSchema,
     ToPatchSchema
 }          from "@leight/source";
@@ -36,9 +35,9 @@ export const BankSchemaEx = DtoSchema.merge(z.object({
     }).optional(),
 }));
 
-export const BankFilterSchemaEx = FilterSchema.merge(z.object({
+export const BankFilterSchemaEx = z.object({
     userId_account: z.object({
         userId:  z.string(),
         account: z.string(),
     }).optional(),
-}));
+});
