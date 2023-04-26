@@ -8,10 +8,10 @@ import {TransactionFilterForm} from "../form";
 export interface ITransactionFilterProps extends Omit<IBaseFilterProps, "Form"> {
 }
 
-export const TransactionFilter: FC<ITransactionFilterProps> = (props) => {
+export const TransactionFilter: FC<ITransactionFilterProps> = props => {
     return <BaseFilter
         {...props}
     >
         <TransactionFilterForm/>
-    </BaseFilter>
+    </BaseFilter>;
 };

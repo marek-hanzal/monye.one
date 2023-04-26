@@ -1,29 +1,28 @@
-import {type IWithTranslation} from "@leight/i18n";
-import {Fulltext}              from "@leight/mantine";
+import {Fulltext} from "@leight/mantine";
 import {
     type ISourceSchemaType,
     type ISourceStore
-}                              from "@leight/source";
+}                 from "@leight/source";
 import {
     FulltextStoreContext,
     type IPaginationProps,
     Pagination,
     SortIcon
-}                              from "@leight/source-client";
+}                 from "@leight/source-client";
 import {
     chain,
     keywordsOf
-}                              from "@leight/utils";
-import {Grid}                  from "@mantine/core";
+}                 from "@leight/utils";
+import {Grid}     from "@mantine/core";
 import {
-    FC,
+    ReactNode,
     useEffect
-}                              from "react";
+}                 from "react";
 import {
     type ITableColumn,
     type ITableProps,
     Table
-}                              from "./Table";
+}                 from "./Table";
 
 export interface ISourceTableColumn<TSourceSchemaType extends ISourceSchemaType> extends ITableColumn<TSourceSchemaType["Dto"]> {
     readonly sort?: keyof TSourceSchemaType["Sort"];
@@ -49,7 +48,7 @@ export interface ISourceTableInternalProps<
     };
     withFulltext?: boolean;
     sourceCacheTime?: number;
-    Filter?: FC<{ withTranslation?: IWithTranslation }>;
+    filter?: ReactNode;
 }
 
 /**
@@ -76,7 +75,7 @@ export const SourceTable = <
         },
         withFulltext = false,
         sourceCacheTime = 120,
-        Filter,
+        filter,
         ...props
     }: ISourceTableInternalProps<TSourceSchemaType, TColumnKeys>) => {
     const {data, result}                    = SourceStore.useSource({cacheTime: sourceCacheTime});
@@ -103,9 +102,7 @@ export const SourceTable = <
                     withTranslation={props.withTranslation}
                 />
             </Grid.Col>}
-            {Filter ? <Grid.Col span={"content"}><Filter
-                withTranslation={props.withTranslation}
-            /></Grid.Col> : null}
+            {filter ? <Grid.Col span={"content"}>{filter}</Grid.Col> : null}
         </Grid>
         {pagination?.position?.includes("top") && <>
             <Pagination
