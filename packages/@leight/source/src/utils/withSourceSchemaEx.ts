@@ -1,5 +1,5 @@
 import {z}                    from "@leight/zod";
-import {type ISourceSchemaEx} from "../api";
+import {type ISourceSchemaEx} from "../source";
 
 export type IWithSourceSchemaExProps<
     TWhereSchema extends z.ZodType,

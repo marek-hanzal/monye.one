@@ -1,13 +1,13 @@
-import {CursorSchema} from "@leight/cursor";
+import {z}            from "@leight/zod";
+import {CursorSchema} from "./CursorSchema";
 import {
     FilterSchema,
     type IFilterSchema
-}                     from "@leight/filter";
+}                     from "./FilterSchema";
 import {
     type ISortSchema,
     SortSchema
-}                     from "@leight/sort";
-import {z}            from "@leight/zod";
+}                     from "./SortSchema";
 
 export const ParamsSchema = z.object({});
 export type IParamsSchema = typeof ParamsSchema;

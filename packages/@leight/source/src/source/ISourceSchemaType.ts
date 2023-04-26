@@ -1,20 +1,18 @@
-import {type ICursorSchema} from "@leight/cursor";
-import {type IFilterSchema} from "@leight/filter";
-import {
-    type IParamsSchema,
-    type IQuery,
-    type IQuerySchema
-}                           from "@leight/query";
-import {type ISortSchema}   from "@leight/sort";
-import {z}                  from "@leight/zod";
+import {z} from "@leight/zod";
 import {
     type ICreateSchema,
+    type ICursorSchema,
     type IDtoSchema,
     type IEntitySchema,
+    type IFilterSchema,
+    type IParamsSchema,
     type IPatchSchema,
+    type IQuery,
+    type IQuerySchema,
+    type ISortSchema,
     type IToCreateSchema,
     type IToPatchSchema
-}                           from "../schema";
+}          from "../schema";
 
 /**
  * This is required as a type, but also as a structure holding schemas for
@@ -43,6 +41,20 @@ export interface ISourceSchema<
     CursorSchema: ICursorSchema;
     QuerySchema: IQuerySchema<TFilterSchema, TSortSchema, TParamsSchema>;
     QueryOptionalSchema: z.ZodOptional<IQuerySchema<TFilterSchema, TSortSchema, TParamsSchema>>;
+}
+
+export namespace ISourceSchema {
+    export type of<TSourceSchemaType extends ISourceSchemaType> = ISourceSchema<
+        TSourceSchemaType["EntitySchema"],
+        TSourceSchemaType["DtoSchema"],
+        TSourceSchemaType["ToCreateSchema"],
+        TSourceSchemaType["CreateSchema"],
+        TSourceSchemaType["ToPatchSchema"],
+        TSourceSchemaType["PatchSchema"],
+        TSourceSchemaType["FilterSchema"],
+        TSourceSchemaType["SortSchema"],
+        TSourceSchemaType["ParamsSchema"]
+    >;
 }
 
 /**
