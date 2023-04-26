@@ -36,12 +36,8 @@ const InternalCursor = <TSourceSchemaType extends ISourceSchemaType>(
     }, {
         staleTime: $cacheTime,
         cacheTime: $cacheTime,
-        onSuccess: data => {
-            setTotal(data);
-        },
-        onSettled: () => {
-            setIsLoading(false);
-        },
+        onSuccess: setTotal,
+        onSettled: () => setIsLoading(false),
     });
     useEffect(
         () => {
