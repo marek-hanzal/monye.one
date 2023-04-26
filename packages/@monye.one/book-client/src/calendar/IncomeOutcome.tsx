@@ -62,6 +62,7 @@ export const IncomeOutcome: FC<IIncomeOutcomeProps> = (
     >
         <Stack
             spacing={0}
+            align={"end"}
             {...props}
         >
             {income > 0 && outcome > 0 && <Button
