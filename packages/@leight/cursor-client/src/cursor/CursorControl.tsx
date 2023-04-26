@@ -28,7 +28,14 @@ const InternalCursor = <TSourceSchemaType extends ISourceSchemaType>(
         cacheTime,
         children,
     }: IInternalCursor<TSourceSchemaType>) => {
-    const $cacheTime               = cacheTime ? cacheTime * 1000 : undefined;
+    const $cacheTime = cacheTime ? cacheTime * 1000 : undefined;
+
+    /**
+     * @TODO move the code here to cursor's useState; bind required object there...?
+     *
+     * Move CursorStore to SourceStore, so it can access everything?
+     */
+
     const {setTotal, setIsLoading} = CursorStore.useState(({setTotal, setIsLoading}) => ({setTotal, setIsLoading}));
     const {filter}                 = SourceStore.Filter.useState(({filter}) => ({filter}));
     const result                   = UseSourceQuery.useCount({
