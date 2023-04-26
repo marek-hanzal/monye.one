@@ -31,7 +31,7 @@ export const Drawer: FC<IDrawerProps> = (
         position={"right"}
         title={<Group spacing={4}>
             <WithIcon icon={icon}/>
-            <Translation {...withTranslation} label={title}/>
+            <Translation {...withTranslation} withLabel={title}/>
         </Group>}
         size={"lg"}
         zIndex={500}

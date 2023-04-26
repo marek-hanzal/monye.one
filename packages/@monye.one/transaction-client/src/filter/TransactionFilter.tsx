@@ -9,5 +9,7 @@ export interface ITransactionFilterProps extends IBaseFilterProps<ITransactionSo
 }
 
 export const TransactionFilter: FC<ITransactionFilterProps> = (props) => {
-    return <BaseFilter/>;
+    return <BaseFilter
+        {...props}
+    />;
 };

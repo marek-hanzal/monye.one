@@ -100,7 +100,9 @@ export const SourceTable = <
                     withTranslation={props.withTranslation}
                 />
             </Grid.Col>}
-            {Filter ? <Grid.Col span={"content"}><Filter/></Grid.Col> : null}
+            {Filter ? <Grid.Col span={"content"}><Filter
+                withTranslation={props.withTranslation}
+            /></Grid.Col> : null}
         </Grid>
         {pagination?.position?.includes("top") && <>
             <Pagination

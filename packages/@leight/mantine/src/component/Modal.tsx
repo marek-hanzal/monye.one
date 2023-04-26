@@ -1,5 +1,6 @@
 import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
+import {isString}              from "@leight/utils";
 import {
     Group,
     Modal as CoolModal
@@ -14,7 +15,7 @@ import {WithIcon}              from "./WithIcon";
 
 export interface IModalProps extends Omit<ComponentProps<typeof CoolModal>, "opened" | "onClose"> {
     icon?: ReactNode;
-    withTranslation: IWithTranslation;
+    withTranslation?: IWithTranslation;
 }
 
 export const Modal: FC<IModalProps> = (
@@ -30,7 +31,7 @@ export const Modal: FC<IModalProps> = (
         onClose={close}
         title={<Group spacing={4}>
             <WithIcon icon={icon}/>
-            <Translation {...withTranslation} label={`${withTranslation?.label}.${title}`}/>
+            {isString(title) ? <Translation {...withTranslation} withLabel={title}/> : title}
         </Group>}
         size={"lg"}
         zIndex={500}
