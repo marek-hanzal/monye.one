@@ -1,11 +1,13 @@
-import {Fulltext}  from "@leight/mantine";
+import {
+    Fulltext,
+    type IFilterFC
+}                  from "@leight/mantine";
 import {
     type ISourceSchemaType,
     type ISourceStore
 }                  from "@leight/source";
 import {
     FulltextStoreContext,
-    IFilterFC,
     type IPaginationProps,
     Pagination,
     SortIcon

@@ -9,15 +9,16 @@ import {
 import {DrawerStore}           from "../context";
 
 export interface IDrawerButtonProps extends Omit<ComponentProps<typeof Button<"button">>, "children"> {
+    drawerId: string;
     withTranslation?: IWithTranslation;
     label?: ReactNode;
 }
 
-export const DrawerButton: FC<IDrawerButtonProps> = ({withTranslation, label, ...props}) => {
+export const DrawerButton: FC<IDrawerButtonProps> = ({drawerId, withTranslation, label, ...props}) => {
     const {open} = DrawerStore.useState(({open}) => ({open}));
     return <Button
         {...props}
-        onClick={() => open()}
+        onClick={() => open(drawerId)}
     >
         <Translation {...withTranslation} label={"drawer"} withLabel={label}/>
     </Button>;

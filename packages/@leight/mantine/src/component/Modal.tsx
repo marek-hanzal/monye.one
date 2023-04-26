@@ -14,12 +14,14 @@ import {ModalStore}            from "../context";
 import {WithIcon}              from "./WithIcon";
 
 export interface IModalProps extends Omit<ComponentProps<typeof CoolModal>, "opened" | "onClose"> {
+    modalId: string;
     icon?: ReactNode;
     withTranslation?: IWithTranslation;
 }
 
 export const Modal: FC<IModalProps> = (
     {
+        modalId,
         icon,
         withTranslation,
         title,
@@ -27,8 +29,8 @@ export const Modal: FC<IModalProps> = (
     }) => {
     const {isOpened, close} = ModalStore.useState(({isOpened, close}) => ({isOpened, close}));
     return <CoolModal
-        opened={isOpened}
-        onClose={close}
+        opened={isOpened[modalId] ?? false}
+        onClose={() => close(modalId)}
         title={<Group spacing={4}>
             <WithIcon icon={icon}/>
             {isString(title) ? <Translation {...withTranslation} withLabel={title}/> : title}

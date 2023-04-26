@@ -1,7 +1,7 @@
 import {
     BaseFilter,
     type IBaseFilterProps
-}                                          from "@leight/source-client";
+}                                          from "@leight/mantine";
 import {type ITransactionSourceSchemaType} from "@monye.one/transaction";
 import {type FC}                           from "react";
 

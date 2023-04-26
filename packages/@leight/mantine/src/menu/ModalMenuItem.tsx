@@ -6,13 +6,13 @@ import {
 }                   from "./MenuItem";
 
 export interface IModalMenuItemProps extends IMenuItemProps {
-
+    modalId: string;
 }
 
-export const ModalMenuItem: FC<IModalMenuItemProps> = props => {
+export const ModalMenuItem: FC<IModalMenuItemProps> = ({modalId, ...props}) => {
     const {open} = ModalStore.useState(({open}) => ({open}));
     return <MenuItem
-        onClick={() => open()}
+        onClick={() => open(modalId)}
         {...props}
     />;
 };

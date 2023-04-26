@@ -7,31 +7,46 @@ import {
 }                            from "react";
 
 export type IModalStoreProps = IStoreProps<{
-    isOpened: boolean;
-    open(): void;
-    close(): void;
-    setOpen(isOpened: boolean): void;
+    isOpened: Record<string, boolean>;
+    open(id: string): void;
+    close(id: string): void;
+    setOpen(id: string, isOpened: boolean): void;
 }>;
 
 export const ModalStore = createStoreContext<IModalStoreProps>({
-    state: () => (set) => ({
-        isOpened: false,
-        open:     () => set({isOpened: true}),
-        close:    () => set({isOpened: false}),
-        setOpen:  (isOpened) => set({isOpened}),
+    state: () => set => ({
+        isOpened: {},
+        open:     id => set(state => ({
+            isOpened: {
+                ...state.isOpened,
+                [id]: true,
+            },
+        })),
+        close:    id => set(state => ({
+            isOpened: {
+                ...state.isOpened,
+                [id]: false,
+            },
+        })),
+        setOpen:  (id, isOpened) => set(state => ({
+            isOpened: {
+                ...state.isOpened,
+                [id]: isOpened,
+            },
+        })),
     }),
     name:  "ModalStore",
     hint:  "Add ModalStoreProvider",
 });
 
 export interface IModalStoreProviderProps extends ComponentProps<IStoreProvider<IModalStoreProps>> {
-    defaultOpened?: boolean;
+    defaultOpened?: Record<string, boolean>;
 }
 
 export const ModalStoreProvider: FC<IModalStoreProviderProps> = ({defaultOpened, ...props}) => {
     return <ModalStore.Provider
         defaults={{
-            isOpened: defaultOpened,
+            isOpened: defaultOpened || {},
         }}
         {...props}
     />;

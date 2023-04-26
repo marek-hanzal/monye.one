@@ -18,6 +18,7 @@ import {type IBankTableProps} from "./BankTable";
 export const BankTableAction: IBankTableProps["WithTableAction"] = () => {
     return <DrawerStoreProvider>
         <Drawer
+            drawerId={'bank.create'}
             closeOnClickOutside={false}
             withTranslation={{
                 namespace: "bank",
@@ -40,6 +41,7 @@ export const BankTableAction: IBankTableProps["WithTableAction"] = () => {
                 }}
             />
             <DrawerMenuItem
+                drawerId={'bank.create'}
                 icon={<IconCash size={14}/>}
                 withTranslation={{
                     namespace: "bank",

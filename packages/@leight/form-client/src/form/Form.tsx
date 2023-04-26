@@ -95,7 +95,7 @@ export type IFormProps<TFormSchemaType extends IFormSchemaType> = PropsWithChild
     /**
      * If true, onSuccess also closes drawer/modal it's in (must be modal from @leight)
      */
-    withAutoClose?: boolean;
+    withAutoClose?: string[];
 }>
 
 export namespace IFormProps {
@@ -178,7 +178,7 @@ const FormInternal = <TFormSchemaType extends IFormSchemaType>(
         onSubmit,
         withTranslation,
         submitProps,
-        withAutoClose = true,
+        withAutoClose = [],
         children,
     }: IFormInternalProps<TFormSchemaType>) => {
     const {isBlock} = BlockStore.useOptionalState() || {isBlock: false};
@@ -186,10 +186,10 @@ const FormInternal = <TFormSchemaType extends IFormSchemaType>(
     const drawer    = DrawerStore.useOptionalState();
 
     const onDefaultSubmit = () => {
-        if (withAutoClose) {
-            modal?.close();
-            drawer?.close();
-        }
+        withAutoClose.forEach(item => {
+            modal?.close(item);
+            drawer?.close(item);
+        });
         withSuccessNotification({
             withTranslation,
         });

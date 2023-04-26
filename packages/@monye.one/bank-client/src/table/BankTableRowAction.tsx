@@ -1,12 +1,14 @@
 import {Translation}                from "@leight/i18n-client";
 import {
     DeleteModal,
+    Drawer,
+    DrawerMenuItem,
+    DrawerStoreProvider,
     MenuLabel,
     ModalMenuItem,
     ModalStoreProvider
 }                                   from "@leight/mantine";
 import {TableRowMenu}               from "@leight/table-client";
-import {BlockProvider}              from "@leight/utils-client";
 import {Menu}                       from "@mantine/core";
 import {modals}                     from "@mantine/modals";
 import {type IBankSourceSchemaType} from "@monye.one/bank";
@@ -29,9 +31,10 @@ import {type IBankTableProps}       from "./BankTable";
 
 export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => {
     const bankStatsMutation = trpc.bank.stats.useMutation();
-    return <>
-        <ModalStoreProvider>
+    return <ModalStoreProvider>
+        <DrawerStoreProvider>
             <DeleteModal<IBankSourceSchemaType>
+                modalId={"bank.delete"}
                 invalidator={useBankQueryInvalidator()}
                 SourceStore={BankSourceStore}
                 withTranslation={{
@@ -40,6 +43,28 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
                 }}
                 entity={item}
             />
+
+            <Drawer
+                drawerId={"bank.edit"}
+                withTranslation={{
+                    namespace: "bank",
+                    label:     "modal.account.edit.title",
+                    values:    item,
+                }}
+            >
+                <BankEditForm
+                    withAutoClose={["bank.edit"]}
+                    onSuccess={() => modals.close("bank.edit")}
+                    dto={item}
+                />
+            </Drawer>
+
+            <Drawer
+                drawerId={"fooo"}
+            >
+                booo
+            </Drawer>
+
             <TableRowMenu>
                 <MenuLabel
                     withTranslation={{
@@ -47,31 +72,14 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
                         label:     "actions.label",
                     }}
                 />
-                <Menu.Item
-                    onClick={() => modals.open({
-                        zIndex:              500,
-                        modalId:             "balance.edit",
-                        closeOnClickOutside: false,
-                        title:               <Translation
-                                                 namespace={"bank"}
-                                                 label={"modal.account.edit.title"}
-                                                 values={item}
-                                             />,
-                        size:                "lg",
-                        children:            <BlockProvider>
-                                                 <BankEditForm
-                                                     onSuccess={() => modals.close("balance.edit")}
-                                                     dto={item}
-                                                 />
-                                             </BlockProvider>,
-                    })}
+                <DrawerMenuItem
+                    drawerId={"bank.edit"}
                     icon={<IconEdit size={14}/>}
-                >
-                    <Translation
-                        namespace={"bank"}
-                        label={"account.edit.button"}
-                    />
-                </Menu.Item>
+                    withTranslation={{
+                        namespace: "bank",
+                        label:     "account.edit.button",
+                    }}
+                />
                 <Menu.Item
                     onClick={() => modals.open({
                         zIndex:   500,
@@ -121,6 +129,7 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
                     }}
                 />
                 <ModalMenuItem
+                    modalId={"bank.delete"}
                     color={"red"}
                     icon={<IconTrash size={14}/>}
                     withTranslation={{
@@ -129,6 +138,6 @@ export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => 
                     }}
                 />
             </TableRowMenu>
-        </ModalStoreProvider>
-    </>;
+        </DrawerStoreProvider>
+    </ModalStoreProvider>;
 };

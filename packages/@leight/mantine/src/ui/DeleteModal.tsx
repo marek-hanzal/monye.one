@@ -34,15 +34,15 @@ export const DeleteModal = <TSourceSchemaType extends ISourceSchemaType>(
     const deleteMutation = SourceStore.use.useDelete();
     return <Modal
         withTranslation={{
-            namespace: withTranslation.namespace,
-            label:     `${withTranslation.label}.delete`,
+            ...withTranslation,
+            label: withTranslation?.label ? `${withTranslation.label}.delete` : "delete",
         }}
         closeOnClickOutside={!deleteMutation.isLoading}
         title={"title"}
         {...props}
     >
         <Divider mb={"sm"}/>
-        <Translation {...withTranslation} label={`${withTranslation.label}.delete.content`} values={entity}/>
+        <Translation {...withTranslation} withLabel={"delete.content"} values={entity}/>
         <Divider mt={"sm"} mb={"sm"}/>
         <Group position={"apart"}>
             <Button
@@ -50,7 +50,7 @@ export const DeleteModal = <TSourceSchemaType extends ISourceSchemaType>(
                 color={"blue"}
                 variant={"outline"}
                 disabled={deleteMutation.isLoading}
-                onClick={() => close()}
+                onClick={() => close(props.modalId)}
             >
                 <Translation namespace={"common"} label={"cancel.button"}/>
             </Button>
@@ -67,17 +67,17 @@ export const DeleteModal = <TSourceSchemaType extends ISourceSchemaType>(
                             invalidator();
                             withSuccessNotification({
                                 withTranslation: {
-                                    namespace: withTranslation.namespace,
-                                    label:     `${withTranslation.label}.delete`,
-                                    values:    dto,
+                                    ...withTranslation,
+                                    label:  withTranslation?.label ? `${withTranslation.label}.delete` : "delete",
+                                    values: dto,
                                 }
                             });
                         },
-                        onSettled: () => close(),
+                        onSettled: () => close(props.modalId),
                     });
                 }}
             >
-                <Translation {...withTranslation} label={`${withTranslation.label}.delete.confirm.button`}/>
+                <Translation {...withTranslation} withLabel={"delete.confirm.button"}/>
             </Button>
         </Group>
     </Modal>;
