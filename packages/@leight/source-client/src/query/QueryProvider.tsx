@@ -30,8 +30,8 @@ export const QueryProvider = <TSourceSchemaType extends ISourceSchemaType>(
         defaults={{
             filter: defaultFilter,
             sort:   defaultSort,
-            page:   defaultCursor?.page,
-            size:   defaultCursor?.size,
+            page:   defaultCursor?.page || 0,
+            size:   defaultCursor?.size || 30,
         }}
     >
         {children}

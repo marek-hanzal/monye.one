@@ -17,92 +17,81 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
         schema,
     }: ICreateQueryStoreProps<TSourceSchemaType>) => {
     return createStoreContext<IQueryStoreProps<TSourceSchemaType>>({
-        state: () => set => ({
+        state: ({defaults}) => set => ({
             id:     generateId(),
             schema,
-            query:  {},
-            filter: undefined,
-            sort:   {},
-            page:   0,
-            pages:  0,
-            size:   30,
+            filter: defaults?.query?.filter,
+            sort:   defaults?.query?.sort || {},
+            page:   defaults?.query?.cursor?.page || 0,
+            size:   defaults?.query?.cursor?.size || 30,
+            query:  defaults?.query || {
+                cursor: {
+                    page: 0,
+                    size: 30,
+                },
+            },
             setFilter(filter) {
-                set(state => ({
-                    id: generateId(),
+                set(({query}) => ({
+                    id:    generateId(),
                     filter,
                     query: {
+                        ...query,
                         filter,
-                        sort:   state.sort,
-                        cursor: {
-                            page: state.page,
-                            size: state.size,
-                        },
                     },
                 }));
             },
             setShallowFilter(filter) {
-                set(state => ({
-                    id: generateId(),
+                set(({query}) => ({
+                    id:     generateId(),
                     filter: {
-                        ...state.filter,
+                        ...query.filter,
                         ...filter,
                     },
                     query:  {
+                        ...query,
                         filter: {
-                            ...state.filter,
+                            ...query.filter,
                             ...filter,
-                        },
-                        sort:   state.sort,
-                        cursor: {
-                            page: state.page,
-                            size: state.size,
                         },
                     },
                 }));
             },
             setSort(key, order) {
-                set(state => ({
-                    id: generateId(),
+                set(({query}) => ({
+                    id:    generateId(),
                     sort:  {
                         [key as any]: order,
                     },
                     query: {
-                        filter: state.filter,
-                        sort:   {
+                        ...query,
+                        sort: {
                             [key as any]: order,
-                        },
-                        cursor: {
-                            page: state.page,
-                            size: state.size,
                         },
                     },
                 }));
             },
-            setSize(size, total) {
-                set(state => ({
-                    id: generateId(),
+            setSize(size) {
+                set(({query}) => ({
+                    id:    generateId(),
                     size,
-                    pages: Math.ceil(total / size),
                     query: {
-                        filter: state.filter,
-                        sort:   state.sort,
+                        ...query,
                         cursor: {
-                            page: state.page,
+                            ...query.cursor,
                             size,
                         },
                     },
                 }));
             },
             setPage(page) {
-                set(state => ({
-                    id: generateId(),
+                set(({query}) => ({
+                    id:    generateId(),
                     page,
                     query: {
-                        filter: state.filter,
-                        sort:   state.sort,
+                        ...query,
                         cursor: {
+                            ...query.cursor,
                             page,
-                            size: state.size,
                         },
                     },
                 }));

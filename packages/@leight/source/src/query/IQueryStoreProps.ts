@@ -7,12 +7,10 @@ import {
 
 export type IQueryStoreProps<TSourceSchemaType extends ISourceSchemaType> = IStoreProps<{
     id: string;
-
     schema: ISourceSchema.of<TSourceSchemaType>;
 
     page: number;
     size: number;
-    pages: number;
 
     filter: TSourceSchemaType["Filter"];
     sort: TSourceSchemaType["Sort"];
@@ -24,6 +22,6 @@ export type IQueryStoreProps<TSourceSchemaType extends ISourceSchemaType> = ISto
 
     setSort(sort: keyof TSourceSchemaType["Sort"], order: ISortOrder): void;
 
-    setSize(size: number, total: number): void;
+    setSize(size: number): void;
     setPage(page: number): void;
 }>;
