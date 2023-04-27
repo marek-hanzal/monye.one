@@ -8,6 +8,7 @@ import {type ISourceSchemaType} from "@leight/source";
 import {FulltextProvider}       from "@leight/source-client";
 import {
     Box,
+    Divider,
     Group,
     Modal,
     Stack,
@@ -69,6 +70,7 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
                 withAsterisk={withAsterisk}
             />}
         >
+            <Divider/>
             <FulltextProvider>
                 <Selector
                     onClick={item => {
