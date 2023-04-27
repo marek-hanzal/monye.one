@@ -5,7 +5,10 @@ import {
 import {Translation}            from "@leight/i18n-client";
 import {WithIcon}               from "@leight/mantine";
 import {ISelectionStoreContext} from "@leight/selection";
-import {type ISourceSchemaType} from "@leight/source";
+import {
+    type ISourceSchemaType,
+    ISourceStore
+}                               from "@leight/source";
 import {FulltextProvider}       from "@leight/source-client";
 import {
     ActionIcon,
@@ -37,6 +40,7 @@ export interface ISourceSelectProps<TFormSchemaType extends IFormSchemaType, TSo
     withAsterisk?: boolean;
     Selector: ISourceSelectProps.ISelectorComponent<TSourceSchemaType>;
     SelectionContext: ISelectionStoreContext<TSourceSchemaType["Dto"]>;
+    SourceStore: ISourceStore<TSourceSchemaType>;
 
     render(item: TSourceSchemaType["Dto"]): ReactNode;
 }
@@ -59,6 +63,7 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
         withAsterisk,
         Selector,
         SelectionContext,
+        SourceStore,
         render,
         ...props
     }: ISourceSelectProps<TFormSchemaType, TSourceSchemaType>) => {
@@ -66,83 +71,86 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
     const {MantineContext: {useFormContext}, withTranslation} = FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
     const {onChange, error}                                   = useFormContext().getInputProps(path);
     return <SelectionContext.Provider>
-        {({state: {item, select}}) => <>
-            <Box
-                mt={"md"}
-                {...props}
-            >
-                <Modal
-                    opened={opened}
-                    onClose={close}
-                    zIndex={502}
-                    size={"75%"}
-                    title={<Label
-                        withTranslation={withTranslation}
-                        label={`${label}.modal.title`}
-                        withAsterisk={withAsterisk}
-                    />}
+        {({store}) => {
+            const {item, select} = store.getState();
+            return <>
+                <Box
+                    mt={"md"}
+                    {...props}
                 >
-                    <Divider/>
-                    <FulltextProvider>
-                        <Selector
-                            onClick={item => {
-                                select(item);
-                                onChange(item.id);
-                                close();
-                            }}
-                        />
-                    </FulltextProvider>
-                </Modal>
-
-                <Stack
-                    spacing={"sm"}
-                >
-                    <Stack spacing={1}>
-                        <Label withTranslation={withTranslation} withAsterisk={withAsterisk} label={label}/>
-                        <Description withTranslation={withTranslation} description={description}/>
-                    </Stack>
-                    <Group
-                        onClick={() => open()}
-                        sx={{cursor: "pointer"}}
-                        align={"center"}
-                        spacing={4}
+                    <Modal
+                        opened={opened}
+                        onClose={close}
+                        zIndex={502}
+                        size={"75%"}
+                        title={<Label
+                            withTranslation={withTranslation}
+                            label={`${label}.modal.title`}
+                            withAsterisk={withAsterisk}
+                        />}
                     >
-                        <WithIcon
-                            variant={"subtle"}
-                            c={"gray"}
-                            icon={<IconClick/>}
-                        />
-                        <Stack
-                            spacing={0}
-                        >
-                            <Text
-                                fw={"500"}
-                            >
-                                {item ? <Group
-                                    spacing={4}
-                                    align={"center"}
-                                >
-                                    {render(item)}
-                                    <ActionIcon
-                                        onClick={e => {
-                                            e.stopPropagation();
-                                            select(undefined);
-                                            onChange(undefined);
-                                        }}
-                                    >
-                                        <IconX/>
-                                    </ActionIcon>
-                                </Group> : <Text
-                                    c={"dimmed"}
-                                >
-                                    <Translation {...withTranslation} withLabel={placeholder}/>
-                                </Text>}
-                            </Text>
-                            <Error error={error}/>
+                        <Divider/>
+                        <FulltextProvider>
+                            <Selector
+                                onClick={item => {
+                                    select(item);
+                                    onChange(item.id);
+                                    close();
+                                }}
+                            />
+                        </FulltextProvider>
+                    </Modal>
+
+                    <Stack
+                        spacing={"sm"}
+                    >
+                        <Stack spacing={1}>
+                            <Label withTranslation={withTranslation} withAsterisk={withAsterisk} label={label}/>
+                            <Description withTranslation={withTranslation} description={description}/>
                         </Stack>
-                    </Group>
-                </Stack>
-            </Box>
-        </>}
+                        <Group
+                            onClick={() => open()}
+                            sx={{cursor: "pointer"}}
+                            align={"center"}
+                            spacing={4}
+                        >
+                            <WithIcon
+                                variant={"subtle"}
+                                c={"gray"}
+                                icon={<IconClick/>}
+                            />
+                            <Stack
+                                spacing={0}
+                            >
+                                <Text
+                                    fw={"500"}
+                                >
+                                    {item ? <Group
+                                        spacing={4}
+                                        align={"center"}
+                                    >
+                                        {render(item)}
+                                        <ActionIcon
+                                            onClick={e => {
+                                                e.stopPropagation();
+                                                select(undefined);
+                                                onChange(undefined);
+                                            }}
+                                        >
+                                            <IconX/>
+                                        </ActionIcon>
+                                    </Group> : <Text
+                                        c={"dimmed"}
+                                    >
+                                        <Translation {...withTranslation} withLabel={placeholder}/>
+                                    </Text>}
+                                </Text>
+                                <Error error={error}/>
+                            </Stack>
+                        </Group>
+                    </Stack>
+                </Box>
+            </>;
+        }}
     </SelectionContext.Provider>;
 };

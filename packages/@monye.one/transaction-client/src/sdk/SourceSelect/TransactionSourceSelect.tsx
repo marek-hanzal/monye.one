@@ -9,14 +9,16 @@ import {
 	SourceSelect
 } from "@leight/form-client";
 import {TransactionSelection} from "../Selection/TransactionSelection";
+import {TransactionSourceStore} from "../Source/TransactionSourceStore";
 import {type ITransactionSourceSchemaType} from "@monye.one/transaction";
 
-export interface ITransactionSourceSelect<TFormSchemaType extends IFormSchemaType> extends Omit<ISourceSelectProps<TFormSchemaType, ITransactionSourceSchemaType>, "SelectionContext"> {
+export interface ITransactionSourceSelect<TFormSchemaType extends IFormSchemaType> extends Omit<ISourceSelectProps<TFormSchemaType, ITransactionSourceSchemaType>, "SelectionContext" | "SourceStore"> {
 }
 
 export const TransactionSourceSelect = <TFormSchemaType extends IFormSchemaType>(props: ITransactionSourceSelect<TFormSchemaType>) => {
     return <SourceSelect<TFormSchemaType, ITransactionSourceSchemaType>
         SelectionContext={TransactionSelection}
+        SourceStore={TransactionSourceStore}
         {...props}
     />;
 };
@@ -24,4 +26,4 @@ export const TransactionSourceSelect = <TFormSchemaType extends IFormSchemaType>
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_g4f4nhlqvunuiageua6jchaw = true;
+export const $leight_tmdfv6ftmocuydf8iy2mdo0x = true;

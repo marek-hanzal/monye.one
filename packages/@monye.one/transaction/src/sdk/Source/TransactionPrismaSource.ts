@@ -21,4 +21,4 @@ export const $TransactionSourceService = Symbol.for("@monye.one/transaction/ITra
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xy8qrl7jz12upw8pdadm7q3r = true;
+export const $leight_wjhx6dpnsrvyei8a5xskqtmm = true;

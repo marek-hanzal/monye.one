@@ -43,6 +43,9 @@ export const generatorClientSourceSelect: IGenerator<IGeneratorClientSourceSelec
                     [`../Selection/${name}Selection`]: [
                         `${name}Selection`,
                     ],
+                    [`../Source/${name}SourceStore`]: [
+                        `${name}SourceStore`,
+                    ],
                 },
             })
             .withImports({
@@ -57,7 +60,7 @@ export const generatorClientSourceSelect: IGenerator<IGeneratorClientSourceSelec
                     [`I${name}SourceSelect<TFormSchemaType extends IFormSchemaType>`]: {
                         extends: [
                             {
-                                type: `Omit<ISourceSelectProps<TFormSchemaType, I${name}SourceSchemaType>, "SelectionContext">`,
+                                type: `Omit<ISourceSelectProps<TFormSchemaType, I${name}SourceSchemaType>, "SelectionContext" | "SourceStore">`,
                             }
                         ],
                     }
@@ -70,6 +73,7 @@ export const generatorClientSourceSelect: IGenerator<IGeneratorClientSourceSelec
 <TFormSchemaType extends IFormSchemaType>(props: I${name}SourceSelect<TFormSchemaType>) => {
     return <SourceSelect<TFormSchemaType, I${name}SourceSchemaType>
         SelectionContext={${name}Selection}
+        SourceStore={${name}SourceStore}
         {...props}
     />;
 }
