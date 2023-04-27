@@ -63,5 +63,25 @@ void withSdk(
                 },
             ],
         },
+        Selection:      {
+            selections: [
+                {
+                    name:     "Transaction",
+                    packages: {
+                        schema: "@monye.one/transaction",
+                    },
+                },
+            ],
+        },
+        Select:         {
+            selects: [
+                {
+                    name:     "Transaction",
+                    packages: {
+                        schema: "@monye.one/transaction",
+                    },
+                },
+            ],
+        },
     })
 );

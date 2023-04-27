@@ -46,4 +46,4 @@ export const BankEditTrpcForm: FC<IBankEditTrpcFormProps> = ({onSuccess, onError
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rzcvpxlablboe0w6r6jxmoia = true;
+export const $leight_yr1y24vjyiwhoa0ae7m3pla4 = true;

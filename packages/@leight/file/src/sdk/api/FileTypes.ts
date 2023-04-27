@@ -12,4 +12,4 @@ export type IFileSourceMapper = ISourceMapper<IFileSourceSchemaType>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_oqvq0tttzrwgi8lw8qlt5zwp = true;
+export const $leight_qkfc787lk4j9d84a3r7v08z5 = true;

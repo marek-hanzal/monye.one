@@ -24,4 +24,4 @@ export const KeywordPrismaSchema = withSourceSchemaEx({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xoemg0cb79osfqmbgmprylv7 = true;
+export const $leight_m8mvjrdplnwtqrsxja2ffm68 = true;

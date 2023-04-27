@@ -18,7 +18,7 @@
         "lint": "turbo run lint --no-daemon",
         "dev": "turbo run dev --concurrency 100 --parallel --no-daemon | roarr",
         "depcheck": "turbo run depcheck --parallel --no-daemon",
-        "cleanup": "turbo run cleanup --parallel --no-daemon",
+        "cleanup": "turbo run cleanup --concurrency=1 --parallel --no-daemon",
         "start": "turbo run start --no-daemon --parallel --no-daemon",
         "migration": "turbo run migration --no-daemon",
         "prisma:format": "turbo run prisma:format --parallel --no-daemon",
