@@ -1,6 +1,6 @@
 import {
+    BankMultiSourceSelect,
     BankQueryProvider,
-    BankSourceSelect,
     BankTable
 }                                              from "@monye.one/bank-client";
 import {type ITransactionFilterFormSchemaType} from "@monye.one/transaction";
@@ -23,7 +23,7 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
             onDefaultSubmit();
         }}
         inputs={() => ({
-            "bankId": ({mandatory, withLabelPlaceholder, withDescription}) => <BankSourceSelect<ITransactionFilterFormSchemaType>
+            "bankId": ({mandatory, withLabelPlaceholder, withDescription}) => <BankMultiSourceSelect<ITransactionFilterFormSchemaType>
                 {...mandatory}
                 {...withLabelPlaceholder}
                 {...withDescription}

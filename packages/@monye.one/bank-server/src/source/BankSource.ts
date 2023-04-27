@@ -36,8 +36,15 @@ export class BankSource extends BankBasePrismaSource {
             userId: this.userService.required(),
         };
 
-        const {fulltext} = filter;
-        const $fulltext  = keywordsOf(fulltext);
+        const {fulltext, ids} = filter;
+        if (ids) {
+            return {
+                id: {
+                    in: ids,
+                },
+            };
+        }
+        const $fulltext = keywordsOf(fulltext);
         if ($fulltext) {
             where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
                 {

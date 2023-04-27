@@ -73,7 +73,7 @@ export const SourceMultiSelect = <TFormSchemaType extends IFormSchemaType, TSour
     const {onChange, value, error}                            = useFormContext().getInputProps(path);
     const entity                                              = SourceStore.use.useQuery({
         filter: {
-            ids: value,
+            ids: value || [],
         }
     });
     return value && entity.isLoading ? <Loader/> : (entity.isSuccess ? <SelectionContext.Provider
@@ -107,7 +107,6 @@ export const SourceMultiSelect = <TFormSchemaType extends IFormSchemaType, TSour
                             <Selector
                                 onClick={item => {
                                     toggle(item);
-                                    onChange(item.id);
                                 }}
                             />
                             <h1>confirm select button here :)</h1>
