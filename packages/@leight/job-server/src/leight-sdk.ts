@@ -24,7 +24,6 @@ void withSdk(
                     packages: {
                         schema: "@leight/job",
                     },
-                    withPrisma: true,
                 },
             ],
         },

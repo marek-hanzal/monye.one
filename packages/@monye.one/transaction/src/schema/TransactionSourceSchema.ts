@@ -1,5 +1,6 @@
 import {
     FilterSchema,
+    type ISourceSchemaType,
     PatchSchema,
     SortOrderSchema,
     withSourceSchema
@@ -42,3 +43,4 @@ export const TransactionSourceSchema = withSourceSchema({
         reference: SortOrderSchema
     }),
 });
+export type ITransactionSourceSchemaType = ISourceSchemaType.of<typeof TransactionSourceSchema>;

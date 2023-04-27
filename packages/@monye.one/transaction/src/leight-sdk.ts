@@ -8,42 +8,15 @@ void withSdk(
         PrismaSource: {
             entities: [
                 {
-                    name:         "Transaction",
-                    packages:     {
+                    name:     "Transaction",
+                    packages: {
                         prisma: "@monye.one/prisma",
-                    },
-                    sorts:        [
-                        "date",
-                        "amount",
-                        "reference",
-                    ],
-                    withSchemaEx: {
-                        schema: {
-                            type:        "TransactionSchemaEx",
-                            withPackage: {
-                                package: "../../schema",
-                            },
-                        },
-                        filter: {
-                            type:        "TransactionFilterSchemaEx",
-                            withPackage: {
-                                package: "../../schema",
-                            },
-                        },
                     },
                 },
                 {
-                    name:         "TransactionKeyword",
-                    packages:     {
+                    name:     "TransactionKeyword",
+                    packages: {
                         prisma: "@monye.one/prisma",
-                    },
-                    withSchemaEx: {
-                        filter: {
-                            type:        "TransactionKeywordFilterSchemaEx",
-                            withPackage: {
-                                package: "../../schema",
-                            },
-                        },
                     },
                 },
             ],
@@ -51,15 +24,7 @@ void withSdk(
         Form:         {
             forms: [
                 {
-                    name:   "TransactionFilter",
-                    schema: {
-                        values: {
-                            type:        "TransactionFormFilterSchema",
-                            withPackage: {
-                                package: "../../schema",
-                            },
-                        },
-                    },
+                    name: "TransactionFilter",
                 },
             ],
         },

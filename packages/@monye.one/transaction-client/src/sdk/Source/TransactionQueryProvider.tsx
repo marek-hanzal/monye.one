@@ -27,4 +27,4 @@ export const TransactionQueryProvider: FC<ITransactionQueryProviderProps> = prop
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wc6degiasoras7go7stovtx3 = true;
+export const $leight_p8w1lqlfhayym73eua6e24qk = true;

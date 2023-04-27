@@ -24,12 +24,6 @@ void withSdk(
                     packages: {
                         schema: "@leight/file",
                     },
-                    sourceEx: {
-                        type:        "FileSourceEx",
-                        withPackage: {
-                            package: "../../source",
-                        },
-                    },
                 },
             ],
         },

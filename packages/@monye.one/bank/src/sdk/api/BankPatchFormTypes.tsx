@@ -7,13 +7,13 @@ import {
 	type IMantineFormContext,
 	type IFormInputsFactory
 } from "@leight/form";
-import {type IBankPatchFormSchema} from "../schema/BankPatchFormSchema";
+import {type IBankPatchFormSchemaType} from "../../schema/BankPatchFormSchema";
 
-export type IBankPatchMantineFormContext = IMantineFormContext<IBankPatchFormSchema>;
-export type IBankPatchFormInputFactory = IFormInputsFactory<IBankPatchFormSchema>;
+export type IBankPatchMantineFormContext = IMantineFormContext<IBankPatchFormSchemaType>;
+export type IBankPatchFormInputFactory = IFormInputsFactory<IBankPatchFormSchemaType>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hs7cxukbmxt4ufwtm5lipci5 = true;
+export const $leight_sa4nthuoiod1p6q8w63jhtt8 = true;

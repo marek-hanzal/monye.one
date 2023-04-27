@@ -1,6 +1,8 @@
-import {z}                         from "@leight/zod";
-import {type IJobParamsSchema}     from "../schema";
-import {type IJobSourceSchemaType} from "../sdk";
+import {z} from "@leight/zod";
+import {
+    type IJobParamsSchema,
+    type IJobSourceSchemaType
+}          from "../schema";
 
 export type IJobWithParams<TParamsSchema extends IJobParamsSchema> =
     IJobSourceSchemaType["Dto"]

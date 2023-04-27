@@ -7,13 +7,13 @@ import {
 	type IMantineFormContext,
 	type IFormInputsFactory
 } from "@leight/form";
-import {type ITransactionFilterFormSchema} from "../schema/TransactionFilterFormSchema";
+import {type ITransactionFilterFormSchemaType} from "../../schema/TransactionFilterFormSchema";
 
-export type ITransactionFilterMantineFormContext = IMantineFormContext<ITransactionFilterFormSchema>;
-export type ITransactionFilterFormInputFactory = IFormInputsFactory<ITransactionFilterFormSchema>;
+export type ITransactionFilterMantineFormContext = IMantineFormContext<ITransactionFilterFormSchemaType>;
+export type ITransactionFilterFormInputFactory = IFormInputsFactory<ITransactionFilterFormSchemaType>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rp74ooguaklb4yb7fvt6khxi = true;
+export const $leight_nygutu9szvu96tmpyvd00f59 = true;

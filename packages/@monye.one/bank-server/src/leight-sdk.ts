@@ -21,24 +21,6 @@ void withSdk(
             entities: [
                 {
                     name:      "Bank",
-                    sourceEx:  {
-                        type:        "BankSourceEx",
-                        withPackage: {
-                            package: "../../source",
-                        },
-                    },
-                    mapperEx:  {
-                        type:        "BankSourceMapperEx",
-                        withPackage: {
-                            package: "../../source",
-                        },
-                    },
-                    serviceEx: {
-                        type:        "BankSourceServiceEx",
-                        withPackage: {
-                            package: "../../source",
-                        },
-                    },
                     packages:  {
                         schema: "@monye.one/bank",
                     },

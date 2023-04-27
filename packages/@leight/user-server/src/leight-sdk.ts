@@ -24,12 +24,6 @@ void withSdk(
                     packages: {
                         schema: "@leight/user",
                     },
-                    sourceEx: {
-                        type:        "UserSourceEx",
-                        withPackage: {
-                            package: "../../source",
-                        },
-                    },
                 },
             ],
         },

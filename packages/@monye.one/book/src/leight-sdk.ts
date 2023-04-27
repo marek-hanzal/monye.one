@@ -8,29 +8,7 @@ void withSdk(
         EntitySource: {
             entities: [
                 {
-                    name:         "CalendarEvent",
-                    withSchemaEx: {
-                        schema: {
-                            type:        "CalendarEventSchema",
-                            withPackage: {
-                                import:  "CalendarEventBaseSchema",
-                                package: "../../schema"
-                            },
-                        },
-                        dto:    {
-                            type:        "CalendarEventSchema",
-                            withPackage: {
-                                import:  "CalendarEventBaseSchema",
-                                package: "../../schema"
-                            },
-                        },
-                        filter: {
-                            type:        "CalendarEventFilterSchemaEx",
-                            withPackage: {
-                                package: "../../schema"
-                            },
-                        },
-                    },
+                    name: "CalendarEvent",
                 },
             ],
         },

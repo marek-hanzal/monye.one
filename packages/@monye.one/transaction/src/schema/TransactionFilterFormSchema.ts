@@ -1,10 +1,12 @@
 import {
     type IFormSchemaType,
     withFormSchema
-}                                    from "@leight/form";
-import {TransactionFormFilterSchema} from "./TransactionSchema";
+}          from "@leight/form";
+import {z} from "@leight/zod";
 
 export const TransactionFilterFormSchema = withFormSchema({
-    ValuesSchema: TransactionFormFilterSchema,
+    ValuesSchema: z.object({
+        bankId: z.string().optional(),
+    }),
 });
 export type ITransactionFilterFormSchema = IFormSchemaType.of<typeof TransactionFilterFormSchema>;

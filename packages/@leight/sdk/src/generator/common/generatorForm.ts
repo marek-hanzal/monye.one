@@ -36,15 +36,15 @@ export const generatorForm: IGenerator<IGeneratorFormParams> = async (
                         "type IMantineFormContext",
                         "type IFormInputsFactory",
                     ],
-                    [packages?.schema || `../schema/${name}FormSchema`]: [
-                        `type I${name}FormSchema`,
+                    [packages?.schema || `../../schema/${name}FormSchema`]: [
+                        `type I${name}FormSchemaType`,
                     ],
                 },
             })
             .withTypes({
                 exports: {
-                    [`I${name}MantineFormContext`]: `IMantineFormContext<I${name}FormSchema>`,
-                    [`I${name}FormInputFactory`]:   `IFormInputsFactory<I${name}FormSchema>`,
+                    [`I${name}MantineFormContext`]: `IMantineFormContext<I${name}FormSchemaType>`,
+                    [`I${name}FormInputFactory`]:   `IFormInputsFactory<I${name}FormSchemaType>`,
                 }
             })
             .saveTo({

@@ -35,26 +35,12 @@ void withSdk(
                     packages:   {
                         schema: "@monye.one/transaction",
                     },
-                    sourceEx:   {
-                        type:        "TransactionSourceEx",
-                        withPackage: {
-                            package: "../../source",
-                        },
-                    },
-                    withPrisma: true,
                 },
                 {
                     name:       "TransactionKeyword",
                     packages:   {
                         schema: "@monye.one/transaction",
                     },
-                    sourceEx:   {
-                        type:        "TransactionKeywordSourceEx",
-                        withPackage: {
-                            package: "../../source",
-                        },
-                    },
-                    withPrisma: true,
                 },
             ],
         },

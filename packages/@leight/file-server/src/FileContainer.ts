@@ -15,15 +15,15 @@ import {
     type IFileSourceMapper
 }                        from "@leight/file";
 import {
-    FileSource,
-    FileSourceMapper,
-    FileSourceService,
+    FileBaseSourceMapper,
+    FileBaseSourceService,
     type IFileSourceService
 }                        from "./sdk";
 import {
     ChunkService,
     FileService
 }                        from "./service";
+import {FileSource}      from "./source";
 
 export interface IFileContainer {
     ChunkService: IChunkService;
@@ -51,8 +51,8 @@ export const FileContainer = (container: IContainer): IFileContainer => {
             defaultMimeType: "application/octet-stream",
         })
         .bindClass($FileSource, FileSource)
-        .bindClass($FileSourceService, FileSourceService)
-        .bindClass($FileSourceMapper, FileSourceMapper);
+        .bindClass($FileSourceService, FileBaseSourceService)
+        .bindClass($FileSourceMapper, FileBaseSourceMapper);
 
     return {
         get ChunkService() {

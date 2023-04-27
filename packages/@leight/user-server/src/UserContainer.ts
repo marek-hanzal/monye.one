@@ -14,15 +14,15 @@ import {
 }                        from "@leight/user";
 import {
     type IUserSourceService,
-    UserSource,
-    UserSourceMapper,
-    UserSourceService
+    UserBaseSourceMapper,
+    UserBaseSourceService
 }                        from "./sdk";
 import {
     RegistrationService,
     UserJwtService,
     UserService
 }                        from "./service";
+import {UserSource}      from "./source";
 
 export interface IUserContainer {
     RegistrationService: IRegistrationService;
@@ -39,8 +39,8 @@ export const UserContainer = (container: IContainer): IUserContainer => {
         .bindClass($UserJwtService, UserJwtService)
         .bindClass($UserService, UserService)
         .bindClass($UserSource, UserSource)
-        .bindClass($UserSourceService, UserSourceService)
-        .bindClass($UserSourceMapper, UserSourceMapper);
+        .bindClass($UserSourceService, UserBaseSourceService)
+        .bindClass($UserSourceMapper, UserBaseSourceMapper);
 
     return {
         get RegistrationService() {
