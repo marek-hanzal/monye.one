@@ -61,7 +61,7 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
         <Modal
             opened={opened}
             onClose={close}
-            zIndex={500}
+            zIndex={502}
             size={"75%"}
             title={<Label
                 withTranslation={withTranslation}
