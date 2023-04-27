@@ -7,7 +7,7 @@ import {
 	type IUseSourceQuery,
 	type ISource
 } from "@leight/source";
-import {type ITransactionKeywordSourceSchemaType} from "../schema/TransactionKeywordSourceSchema";
+import {type ITransactionKeywordSourceSchemaType} from "../../schema/TransactionKeywordSourceSchema";
 
 export type IUseTransactionKeywordSourceQuery = IUseSourceQuery<ITransactionKeywordSourceSchemaType>;
 
@@ -21,4 +21,4 @@ export const $TransactionKeywordSourceService = Symbol.for("@monye.one/transacti
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_dpqa0xg3d32hy4829dti5oms = true;
+export const $leight_s3r99dr562wcr42i5alq8kta = true;

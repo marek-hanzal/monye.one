@@ -11,4 +11,8 @@ export const JobDoneStatus: IJobStatus[] = [
     "SUCCESS"
 ];
 
+export const JobParamsSchema = z.object({});
+export type IJobParamsSchema = typeof JobParamsSchema;
+export type IJobParams = z.infer<IJobParamsSchema>;
+
 export {JobStatusSchema} from "@leight/prisma";

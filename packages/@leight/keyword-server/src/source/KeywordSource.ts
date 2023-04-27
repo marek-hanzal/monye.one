@@ -2,9 +2,9 @@ import {
     type IKeywordPrismaSchemaType,
     type IKeywordSourceSchemaType
 }                                from "@leight/keyword";
-import {KeywordBasePrismaSource} from "../sdk/Source/KeywordBasePrismaSource";
+import {KeywordBasePrismaSource} from "../sdk";
 
-export class KeywordSourceEx extends KeywordBasePrismaSource {
+export class KeywordSource extends KeywordBasePrismaSource {
     toWhereUnique(filter: IKeywordSourceSchemaType["Filter"]): IKeywordPrismaSchemaType["WhereUnique"] {
         if (!filter) {
             return {};

@@ -8,17 +8,9 @@ void withSdk(
         PrismaSource: {
             entities: [
                 {
-                    name:         "File",
-                    packages:     {
+                    name:     "File",
+                    packages: {
                         prisma: "@leight/prisma",
-                    },
-                    withSchemaEx: {
-                        filter: {
-                            type:        "FileFilterSchemaEx",
-                            withPackage: {
-                                package: "../../schema",
-                            },
-                        },
                     },
                 },
             ],

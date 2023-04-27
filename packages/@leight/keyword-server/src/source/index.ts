@@ -1,1 +1,1 @@
-export * from "./KeywordSourceEx";
+export * from "./KeywordSource";

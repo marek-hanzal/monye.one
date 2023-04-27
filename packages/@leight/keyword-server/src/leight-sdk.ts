@@ -24,12 +24,6 @@ void withSdk(
                     packages: {
                         schema: "@leight/keyword",
                     },
-                    sourceEx: {
-                        type:        "KeywordSourceEx",
-                        withPackage: {
-                            package: "../../source",
-                        },
-                    },
                 },
             ],
         },

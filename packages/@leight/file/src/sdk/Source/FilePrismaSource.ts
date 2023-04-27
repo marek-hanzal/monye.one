@@ -7,7 +7,7 @@ import {
 	type IUseSourceQuery,
 	type ISource
 } from "@leight/source";
-import {type IFileSourceSchemaType} from "../schema/FileSourceSchema";
+import {type IFileSourceSchemaType} from "../../schema/FileSourceSchema";
 
 export type IUseFileSourceQuery = IUseSourceQuery<IFileSourceSchemaType>;
 
@@ -21,4 +21,4 @@ export const $FileSourceService = Symbol.for("@leight/file/IFileSourceService");
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_uo4er23mzrgfdr5behtqtjwt = true;
+export const $leight_kiy61t3vopoq2xxh6m4id9x8 = true;

@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IJobSourceSchemaType} from "../schema/JobSourceSchema";
+import {type IJobSourceSchemaType} from "../../schema/JobSourceSchema";
 import {type ISourceMapper} from "@leight/source";
 
 export type IJobSourceMapper = ISourceMapper<IJobSourceSchemaType>;
@@ -12,4 +12,4 @@ export type IJobSourceMapper = ISourceMapper<IJobSourceSchemaType>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_godqv52rdqdgu1dmn69x4t27 = true;
+export const $leight_o1989sa8wmf6aarbh6npn3eb = true;

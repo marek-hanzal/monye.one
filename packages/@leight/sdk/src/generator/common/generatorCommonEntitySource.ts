@@ -48,7 +48,7 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
         withSourceFile()
             .withImports({
                 imports: {
-                    [`../schema/${name}SourceSchema`]: [
+                    [`../../schema/${name}SourceSchema`]: [
                         `type I${name}SourceSchemaType`,
                     ],
                     "@leight/source":                  [
@@ -73,7 +73,7 @@ export const generatorCommonEntitySource: IGenerator<IGeneratorCommonEntitySourc
                         "type ISource",
                         "type IUseSourceQuery",
                     ],
-                    [`../schema/${name}SourceSchema`]: [
+                    [`../../schema/${name}SourceSchema`]: [
                         `type I${name}SourceSchemaType`,
                     ],
                 },

@@ -1,4 +1,4 @@
-import {type IKeywordSourceSchemaType} from "../sdk";
+import {type IKeywordSourceSchemaType} from "../schema";
 import {type IKeywords}                from "./IKeywords";
 
 export interface IKeywordService<TInput> {

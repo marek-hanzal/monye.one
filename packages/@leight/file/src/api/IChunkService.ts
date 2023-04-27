@@ -1,4 +1,4 @@
-import {type IFileSourceSchemaType} from "../sdk";
+import {type IFileSourceSchemaType} from "../schema";
 
 export interface IChunkService {
     chunk(chunkId: string, chunk: Promise<Buffer>): Promise<void>;

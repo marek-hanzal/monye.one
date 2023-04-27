@@ -7,7 +7,7 @@ import {
 	type IUseSourceQuery,
 	type ISource
 } from "@leight/source";
-import {type IKeywordSourceSchemaType} from "../schema/KeywordSourceSchema";
+import {type IKeywordSourceSchemaType} from "../../schema/KeywordSourceSchema";
 
 export type IUseKeywordSourceQuery = IUseSourceQuery<IKeywordSourceSchemaType>;
 
@@ -21,4 +21,4 @@ export const $KeywordSourceService = Symbol.for("@leight/keyword/IKeywordSourceS
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ybx2tun01lk894rudoshijuj = true;
+export const $leight_egmljkcv50rlsa5805zi0vj2 = true;

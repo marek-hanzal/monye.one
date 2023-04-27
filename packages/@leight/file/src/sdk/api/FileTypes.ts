@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IFileSourceSchemaType} from "../schema/FileSourceSchema";
+import {type IFileSourceSchemaType} from "../../schema/FileSourceSchema";
 import {type ISourceMapper} from "@leight/source";
 
 export type IFileSourceMapper = ISourceMapper<IFileSourceSchemaType>;
@@ -12,4 +12,4 @@ export type IFileSourceMapper = ISourceMapper<IFileSourceSchemaType>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_l9bc6oc9518rrj8l38i1ggte = true;
+export const $leight_rvddmqcoqw0qiyzk82s449sa = true;

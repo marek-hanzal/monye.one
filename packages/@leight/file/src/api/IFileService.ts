@@ -1,4 +1,4 @@
-import {IFileSourceSchemaType} from "../sdk";
+import {type IFileSourceSchemaType} from "../schema";
 
 export interface IFileServiceStoreProps {
     name: string;

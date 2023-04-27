@@ -59,7 +59,7 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
         withSourceFile()
             .withImports({
                 imports: {
-                    [`../schema/${name}SourceSchema`]: [
+                    [`../../schema/${name}SourceSchema`]: [
                         `type I${name}SourceSchemaType`,
                     ],
                     "@leight/source":                  [
@@ -84,7 +84,7 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
                         "type IUseSourceQuery",
                         "type ISource",
                     ],
-                    [`../schema/${name}SourceSchema`]: [
+                    [`../../schema/${name}SourceSchema`]: [
                         `type I${name}SourceSchemaType`,
                     ],
                 },

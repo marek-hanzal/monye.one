@@ -12,16 +12,6 @@ void withSdk(
                     packages:     {
                         prisma: "@leight/prisma",
                     },
-                    withSourceEx: {
-                        extends: [
-                            {
-                                type:        "IUserSourceEx",
-                                withPackage: {
-                                    package: "../../api",
-                                }
-                            },
-                        ],
-                    },
                 },
             ],
         },

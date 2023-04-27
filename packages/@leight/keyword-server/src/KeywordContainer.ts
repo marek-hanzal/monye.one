@@ -8,10 +8,10 @@ import {
 }                        from "@leight/keyword";
 import {
     type IKeywordSourceService,
-    KeywordSource,
-    KeywordSourceMapper,
-    KeywordSourceService
+    KeywordBaseSourceMapper,
+    KeywordBaseSourceService
 }                        from "./sdk";
+import {KeywordSource}   from "./source";
 
 export interface IKeywordContainer {
     KeywordSource: IKeywordSource;
@@ -22,8 +22,8 @@ export interface IKeywordContainer {
 export const KeywordContainer = (container: IContainer): IKeywordContainer => {
     container
         .bindClass($KeywordSource, KeywordSource)
-        .bindClass($KeywordSourceService, KeywordSourceService)
-        .bindClass($KeywordSourceMapper, KeywordSourceMapper);
+        .bindClass($KeywordSourceService, KeywordBaseSourceService)
+        .bindClass($KeywordSourceMapper, KeywordBaseSourceMapper);
 
     return {
         get KeywordSource() {

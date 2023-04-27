@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IKeywordSourceSchemaType} from "../schema/KeywordSourceSchema";
+import {type IKeywordSourceSchemaType} from "../../schema/KeywordSourceSchema";
 import {type ISourceMapper} from "@leight/source";
 
 export type IKeywordSourceMapper = ISourceMapper<IKeywordSourceSchemaType>;
@@ -12,4 +12,4 @@ export type IKeywordSourceMapper = ISourceMapper<IKeywordSourceSchemaType>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_n7mjonqyh3gzfsgnhkbtky7v = true;
+export const $leight_hbjpgpr9fmjjup61t6jcwivk = true;

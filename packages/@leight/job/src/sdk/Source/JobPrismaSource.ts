@@ -7,7 +7,7 @@ import {
 	type IUseSourceQuery,
 	type ISource
 } from "@leight/source";
-import {type IJobSourceSchemaType} from "../schema/JobSourceSchema";
+import {type IJobSourceSchemaType} from "../../schema/JobSourceSchema";
 
 export type IUseJobSourceQuery = IUseSourceQuery<IJobSourceSchemaType>;
 
@@ -21,4 +21,4 @@ export const $JobSourceService = Symbol.for("@leight/job/IJobSourceService");
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ibb0te6a0zvh6pcivvkb3tma = true;
+export const $leight_wmruxvq7cfise446l1sgon4z = true;
