@@ -1,10 +1,9 @@
 import {env}               from "@/monye.one/env.mjs";
-import {container}         from "@/monye.one/server/container";
-import {NextAuthEndpoint}  from "@leight/next.js-server";
 import {
-    $UserSource,
-    type IUserSource
-}                          from "@leight/user";
+    container,
+    LeightServerContainer
+}                          from "@/monye.one/server/container";
+import {NextAuthEndpoint}  from "@leight/next.js-server";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHub              from "next-auth/providers/github";
 
@@ -31,7 +30,7 @@ export default NextAuthEndpoint({
                 if (!secret) {
                     return null;
                 }
-                return container.resolve<IUserSource>($UserSource).findByEmail(secret);
+                return LeightServerContainer.UserContainer.UserSource.findByEmail(secret);
             },
         }),
     ],
