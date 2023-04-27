@@ -1,7 +1,5 @@
 import {ImportParamsSchema} from "@leight/import";
-import {FilterSchema}       from "@leight/source";
 import {z}                  from "@leight/zod";
-import {BankSourceSchema}   from "@monye.one/bank";
 
 /**
  * Schema used for importing transaction from any source.
@@ -25,30 +23,3 @@ export const TransactionImportParamsSchema = ImportParamsSchema.merge(z.object({
 }));
 export type ITransactionImportParamsSchema = typeof TransactionImportParamsSchema;
 export type ITransactionImportParams = z.infer<ITransactionImportParamsSchema>;
-
-export const TransactionSchemaEx = z.object({
-    bank: BankSourceSchema["EntitySchema"],
-});
-
-export const TransactionFilterSchemaEx = FilterSchema.merge(z.object({
-    bankId:           z.string().optional(),
-    userId_reference: z.object({
-        userId:    z.string(),
-        reference: z.string(),
-    }).optional(),
-    withRange:        z.object({
-        from: z.date(),
-        to:   z.date(),
-    }).optional(),
-    withIncome:       z.boolean().optional(),
-    withOutcome:      z.boolean().optional(),
-}));
-
-export const TransactionKeywordFilterSchemaEx = FilterSchema.merge(z.object({
-    transactionId: z.string().optional(),
-}));
-
-export const TransactionFormFilterSchema = z.object({
-    bankId: z.string().optional(),
-});
-export type ITransactionFormFilterSchema = typeof TransactionFormFilterSchema;

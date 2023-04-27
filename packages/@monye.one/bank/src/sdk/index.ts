@@ -7,15 +7,11 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_knkiyn6r69nivp0x9cg0378z = true;
+export const $leight_x0mtpw2yonqstjtqqw0ufw4l = true;
 
 export * from "./api/BankCreateFormTypes";
 export * from "./api/BankEditFormTypes";
 export * from "./api/BankPatchFormTypes";
 export * from "./api/BankTypes";
-export * from "./schema/BankCreateFormSchema";
-export * from "./schema/BankEditFormSchema";
-export * from "./schema/BankPatchFormSchema";
 export * from "./schema/BankPrismaSchema";
-export * from "./schema/BankSourceSchema";
 export * from "./Source/BankPrismaSource";

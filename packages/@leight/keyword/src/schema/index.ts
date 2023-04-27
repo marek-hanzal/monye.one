@@ -1,1 +1,1 @@
-export * from "./KeywordSchema";
+export * from "./KeywordSourceSchema";

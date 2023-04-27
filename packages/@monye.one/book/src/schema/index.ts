@@ -1,1 +1,1 @@
-export * from "./CalendarEventSchema";
+export * from "./CalendarEventSourceSchema";

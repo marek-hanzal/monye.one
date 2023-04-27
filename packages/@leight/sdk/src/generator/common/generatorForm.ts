@@ -1,8 +1,4 @@
-import {IPackageType}    from "@leight/generator";
-import {
-    withPackageType,
-    withSourceFile
-}                        from "@leight/generator-server";
+import {withSourceFile}  from "@leight/generator-server";
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
@@ -17,7 +13,6 @@ export namespace IGeneratorFormParams {
          */
         name: string;
         packages?: IPackages;
-        schema: ISchema;
     }
 
     export interface IPackages {
@@ -26,12 +21,6 @@ export namespace IGeneratorFormParams {
          */
         schema?: string;
     }
-
-    export interface ISchema {
-        values: IPackageType;
-        request?: IPackageType;
-        dto?: IPackageType;
-    }
 }
 
 export const generatorForm: IGenerator<IGeneratorFormParams> = async (
@@ -39,7 +28,7 @@ export const generatorForm: IGenerator<IGeneratorFormParams> = async (
         directory,
         params: {forms}
     }) => {
-    forms.forEach(({name, packages, schema}) => {
+    forms.forEach(({name, packages}) => {
         withSourceFile()
             .withImports({
                 imports: {
@@ -60,67 +49,6 @@ export const generatorForm: IGenerator<IGeneratorFormParams> = async (
             })
             .saveTo({
                 file:   normalize(`${directory}/api/${name}FormTypes.tsx`),
-                barrel: false,
-            });
-
-        withSourceFile()
-            .withImports({
-                imports: {
-                    "@leight/form": [
-                        "withFormSchema",
-                        "type IFormSchemaType",
-                    ],
-                },
-            })
-            .withImports({
-                imports: schema.values.withPackage ? {
-                    [schema.values.withPackage.package]: [
-                        schema.values.type,
-                    ],
-                } : {},
-            })
-            .withImports({
-                imports: schema.request?.withPackage ? {
-                    [schema.request.withPackage.package]: [
-                        schema.request.type,
-                    ],
-                } : {
-                    "@leight/form": [
-                        "FormRequestSchema",
-                    ],
-                },
-            })
-            .withImports({
-                imports: schema.dto?.withPackage ? {
-                    [schema.dto.withPackage.package]: [
-                        schema.dto.type,
-                    ],
-                } : {
-                    "@leight/form": [
-                        "FormDtoSchema",
-                    ],
-                },
-            })
-            .withTypes({
-                exports: {
-                    [`I${name}FormSchema`]: `IFormSchemaType.of<typeof ${name}FormSchema>`,
-                }
-            })
-            .withConsts({
-                exports: {
-                    [`${name}FormSchema`]: {
-                        body: `
-withFormSchema({
-    ValuesSchema:  ${withPackageType(schema.values)},
-    RequestSchema: ${schema.request ? withPackageType(schema.request) : "FormRequestSchema"},
-    DtoSchema:     ${schema.dto ? withPackageType(schema.dto) : "FormDtoSchema"},
-})
-                        `,
-                    }
-                }
-            })
-            .saveTo({
-                file:   normalize(`${directory}/schema/${name}FormSchema.tsx`),
                 barrel: false,
             });
     });

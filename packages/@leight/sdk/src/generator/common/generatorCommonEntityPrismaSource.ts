@@ -1,9 +1,5 @@
 import {type IPackageType} from "@leight/generator";
-import {
-    withPackageImport,
-    withPackageType,
-    withSourceFile
-}                          from "@leight/generator-server";
+import {withSourceFile}    from "@leight/generator-server";
 import {normalize}         from "node:path";
 import {type IGenerator}   from "../../api";
 
@@ -21,15 +17,6 @@ export namespace IGeneratorCommonEntityPrismaSourceParams {
          * Required package imports
          */
         packages: IPackages;
-        /**
-         * Optional extensions of individual parts of the schemas
-         */
-        withSchemaEx?: IWithSchemaEx;
-        withSourceEx?: IWithSourceEx;
-        /**
-         * Specify sort fields of the Sort query
-         */
-        sorts?: string[];
     }
 
     export interface IPackages {
@@ -68,14 +55,14 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
         directory,
         params: {entities},
     }) => {
-    entities.forEach(({name, withSchemaEx, withSourceEx, sorts = ["id"], packages}) => {
+    entities.forEach(({name, packages}) => {
         withSourceFile()
             .withImports({
                 imports: {
                     [`../schema/${name}SourceSchema`]: [
                         `type I${name}SourceSchemaType`,
                     ],
-                    "@leight/source":  [
+                    "@leight/source":                  [
                         "type ISourceMapper",
                     ],
                 },
@@ -93,7 +80,7 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/source":    [
+                    "@leight/source":                  [
                         "type IUseSourceQuery",
                         "type ISource",
                     ],
@@ -107,23 +94,12 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
                     [`IUse${name}SourceQuery`]: `IUseSourceQuery<I${name}SourceSchemaType>`,
                 },
             })
-            .withImports(withSourceEx?.extends ? {
-                imports: withSourceEx.extends
-                             .filter(((item): item is Required<IPackageType> => Boolean(item.withPackage)))
-                             .reduce((prev, withPackage) => {
-                                 prev[withPackage.withPackage.package] = [
-                                     withPackageImport(withPackage, "type"),
-                                     ...(prev[withPackage.withPackage.package] || [])
-                                 ];
-                                 return prev;
-                             }, {} as Record<string, any>),
-            } : undefined)
             .withInterfaces({
                 exports: {
                     [`I${name}Source`]: {
                         extends: [
-                                     {type: `ISource<I${name}SourceSchemaType>`},
-                                 ].concat(withSourceEx?.extends || []),
+                            {type: `ISource<I${name}SourceSchemaType>`},
+                        ],
                     },
                 }
             })
@@ -136,131 +112,6 @@ export const generatorCommonEntityPrismaSource: IGenerator<IGeneratorCommonEntit
             })
             .saveTo({
                 file: normalize(`${directory}/Source/${name}PrismaSource.ts`),
-                barrel,
-            });
-
-        withSourceFile()
-            .withImports({
-                imports: {
-                    [packages.prisma]: [
-                        `${name}Schema as $EntitySchema`,
-                        `${name}OptionalDefaultsSchema`,
-                        `${name}PartialSchema`,
-                    ],
-                    "@leight/source":  [
-                        "SortOrderSchema",
-                        "FilterSchema",
-                        "withSourceSchema",
-                        "type ISourceSchemaType",
-                    ],
-                    "@leight/zod":     [
-                        "z",
-                    ],
-                },
-            })
-            .withImports({
-                imports: withSchemaEx?.schema?.withPackage ? {
-                    [withSchemaEx.schema.withPackage.package]: [
-                        withPackageImport(withSchemaEx.schema),
-                    ],
-                } : {},
-            })
-            .withImports({
-                imports: withSchemaEx?.dto?.withPackage ? {
-                    [withSchemaEx.dto.withPackage.package]: [
-                        withPackageImport(withSchemaEx.dto),
-                    ],
-                } : {},
-            })
-            .withImports({
-                imports: withSchemaEx?.toCreate?.withPackage ? {
-                    [withSchemaEx.toCreate?.withPackage.package]: [
-                        withPackageImport(withSchemaEx.toCreate),
-                    ],
-                } : {},
-            })
-            .withImports({
-                imports: withSchemaEx?.create?.withPackage ? {
-                    [withSchemaEx.create?.withPackage.package]: [
-                        withPackageImport(withSchemaEx.create),
-                    ],
-                } : {},
-            })
-            .withImports({
-                imports: withSchemaEx?.toPatch?.withPackage ? {
-                    [withSchemaEx.toPatch?.withPackage.package]: [
-                        withPackageImport(withSchemaEx.toPatch),
-                    ],
-                } : {},
-            })
-            .withImports({
-                imports: withSchemaEx?.patch?.withPackage ? {
-                    [withSchemaEx.patch?.withPackage.package]: [
-                        withPackageImport(withSchemaEx.patch),
-                    ],
-                } : {
-                    "@leight/source": [
-                        "PatchSchema",
-                    ],
-                },
-            })
-            .withImports({
-                imports: withSchemaEx?.filter?.withPackage ? {
-                    [withSchemaEx.filter?.withPackage.package]: [
-                        withPackageImport(withSchemaEx.filter),
-                    ],
-                } : {},
-            })
-            .withImports({
-                imports: withSchemaEx?.params?.withPackage ? {
-                    [withSchemaEx?.params?.withPackage.package]: [
-                        withPackageImport(withSchemaEx.params),
-                    ],
-                } : {
-                    "@leight/source": [
-                        "ParamsSchema",
-                    ],
-                },
-            })
-            .withConsts({
-                consts:  {
-                    [`$${name}Schema`]:       {
-                        body: withSchemaEx?.schema ? `$EntitySchema.merge(${withPackageType(withSchemaEx.schema)})` : "$EntitySchema",
-                    },
-                    [`$${name}CreateSchema`]: {
-                        body: withSchemaEx?.create ? withPackageType(withSchemaEx.create) : `${name}OptionalDefaultsSchema`,
-                    },
-                    [`$${name}PatchSchema`]:  {
-                        body: withSchemaEx?.patch ? withPackageType(withSchemaEx.patch) : `${name}PartialSchema.merge(PatchSchema)`,
-                    },
-                },
-                exports: {
-                    [`${name}SourceSchema`]: {
-                        body: `
-withSourceSchema({
-    EntitySchema: $${name}Schema,
-    DtoSchema: ${withSchemaEx?.dto ? withPackageType(withSchemaEx.dto) : `$${name}Schema`},
-    ToCreateSchema: ${withSchemaEx?.toCreate ? withPackageType(withSchemaEx.toCreate) : `$${name}CreateSchema`},
-    CreateSchema: $${name}CreateSchema,
-    ToPatchSchema: ${withSchemaEx?.toPatch ? withPackageType(withSchemaEx.toPatch) : `$${name}PatchSchema`},
-    PatchSchema: $${name}PatchSchema,
-    FilterSchema: ${withSchemaEx?.filter ? `FilterSchema.merge(${withPackageType(withSchemaEx.filter)})` : `FilterSchema`},
-    ParamsSchema: ${withSchemaEx?.params ? withPackageType(withSchemaEx.params) : "ParamsSchema"},
-    SortSchema: z.object({
-        ${sorts.map(sort => `${sort}: SortOrderSchema`).join(",\n\t\t")}
-    }),
-})
-                        `,
-                    },
-                },
-            })
-            .withTypes({
-                exports: {
-                    [`I${name}SourceSchemaType`]: `ISourceSchemaType.of<typeof ${name}SourceSchema>`,
-                },
-            })
-            .saveTo({
-                file: normalize(`${directory}/schema/${name}SourceSchema.ts`),
                 barrel,
             });
 
