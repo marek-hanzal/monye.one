@@ -12,7 +12,7 @@ import {
 }                             from "@monye.one/bank";
 import {BankBasePrismaSource} from "../sdk/Source/BankBasePrismaSource";
 
-export class BankSourceEx extends BankBasePrismaSource {
+export class BankSource extends BankBasePrismaSource {
     static inject = [
         $UserService,
         $PrismaClient,

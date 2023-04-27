@@ -8,13 +8,13 @@ import {
     type IBankSourceMapper,
     type IBankStatsService
 }                         from "@monye.one/bank";
+import {BankSourceMapper} from "./mapper";
 import {
-    BankSource,
-    BankSourceMapper,
-    BankSourceService,
+    BankBaseSourceService,
     type IBankSourceService
 }                         from "./sdk";
 import {BankStatsService} from "./service";
+import {BankSource}       from "./source";
 
 export interface IBankContainer {
     BankSource: IBankSource;
@@ -27,7 +27,7 @@ export const BankContainer = (container: IContainer): IBankContainer => {
     container
         .bindClass($BankSource, BankSource)
         .bindClass($BankSourceMapper, BankSourceMapper)
-        .bindClass($BankSourceService, BankSourceService)
+        .bindClass($BankSourceService, BankBaseSourceService)
         .bindClass($BankStatsService, BankStatsService);
 
     return {
