@@ -21,4 +21,4 @@ export const BankPatchInput: FC<Omit<IWithInputProps<IBankPatchFormSchemaType>, 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_did1tk9ad8vizm4gwcs9as96 = true;
+export const $leight_wz8ioozkj0eknr9v2pd5iu7u = true;

@@ -27,4 +27,4 @@ export const BankQueryProvider: FC<IBankQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_j9akpmeqrcqubhmjvn60krya = true;
+export const $leight_y6twpfjyczspgo82qlpf2hhh = true;

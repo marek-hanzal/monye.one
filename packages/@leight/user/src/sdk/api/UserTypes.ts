@@ -12,4 +12,4 @@ export type IUserSourceMapper = ISourceMapper<IUserSourceSchemaType>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_z2b4dtlmw48fncsx8jd05fv8 = true;
+export const $leight_zi0ko57b67571nidtb9wnf6f = true;

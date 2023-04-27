@@ -19,7 +19,7 @@ export interface ITransactionFilterBaseFormProps extends Omit<IBaseFormProps<ITr
 }
 
 export const TransactionFilterBaseForm: FC<ITransactionFilterBaseFormProps> = props => {
-    return <BaseForm<ITransactionFilterFormSchema>
+    return <BaseForm<ITransactionFilterFormSchemaType>
         MantineContext={TransactionFilterMantineFormContext}
         schemas={TransactionFilterFormSchema}
         FormContext={TransactionFilterFormStoreContext}
@@ -34,4 +34,4 @@ export const TransactionFilterBaseForm: FC<ITransactionFilterBaseFormProps> = pr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vqsn94js10iftih7d9e0ac3h = true;
+export const $leight_oec651apmweil9woixec5uba = true;

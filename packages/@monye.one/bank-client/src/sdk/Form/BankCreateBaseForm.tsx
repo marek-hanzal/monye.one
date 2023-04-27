@@ -19,7 +19,7 @@ export interface IBankCreateBaseFormProps extends Omit<IBaseFormProps<IBankCreat
 }
 
 export const BankCreateBaseForm: FC<IBankCreateBaseFormProps> = props => {
-    return <BaseForm<IBankCreateFormSchema>
+    return <BaseForm<IBankCreateFormSchemaType>
         MantineContext={BankCreateMantineFormContext}
         schemas={BankCreateFormSchema}
         FormContext={BankCreateFormStoreContext}
@@ -34,4 +34,4 @@ export const BankCreateBaseForm: FC<IBankCreateBaseFormProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_as3s5s2jdjeyt49sy2o1p8mr = true;
+export const $leight_c7d41nnzaek8vgzso2liqn2z = true;

@@ -171,7 +171,7 @@ props => {
                         type: `FC<I${name}BaseFormProps>`,
                         body: `
 props => {
-    return <BaseForm<I${name}FormSchema>
+    return <BaseForm<I${name}FormSchemaType>
         MantineContext={${name}MantineFormContext}
         schemas={${name}FormSchema}
         FormContext={${name}FormStoreContext}

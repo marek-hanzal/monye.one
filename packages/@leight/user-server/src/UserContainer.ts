@@ -9,7 +9,7 @@ import {
     type IRegistrationService,
     type IUserJwtService,
     type IUserService,
-    type IUserSource,
+    type IUserSourceEx,
     type IUserSourceMapper,
 }                        from "@leight/user";
 import {
@@ -28,7 +28,7 @@ export interface IUserContainer {
     RegistrationService: IRegistrationService;
     UserJwtService: IUserJwtService;
     UserService: IUserService;
-    UserSource: IUserSource;
+    UserSource: IUserSourceEx;
     UserSourceService: IUserSourceService;
     UserSourceMapper: IUserSourceMapper;
 }
@@ -53,7 +53,7 @@ export const UserContainer = (container: IContainer): IUserContainer => {
             return container.resolve<IUserService>($UserService);
         },
         get UserSource() {
-            return container.resolve<IUserSource>($UserSource);
+            return container.resolve<IUserSourceEx>($UserSource);
         },
         get UserSourceService() {
             return container.resolve<IUserSourceService>($UserSourceService);
