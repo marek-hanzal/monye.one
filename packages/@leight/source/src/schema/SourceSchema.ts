@@ -6,6 +6,12 @@ export const WithIdentitySchema = z.object({
 export type IWithIdentitySchema = typeof WithIdentitySchema;
 export type IWithIdentity = z.infer<IWithIdentitySchema>;
 
+export const WithOptionalIdentitySchema = z.object({
+    id: z.string().optional(),
+}).optional();
+export type IWithOptionalIdentitySchema = typeof WithOptionalIdentitySchema;
+export type IWithOptionalIdentity = z.infer<IWithOptionalIdentitySchema>;
+
 export const EntitySchema = z.object({}).merge(WithIdentitySchema);
 export type IEntitySchema = typeof EntitySchema;
 export type IEntity = z.infer<IEntitySchema>;

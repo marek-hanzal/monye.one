@@ -11,4 +11,4 @@ export const TransactionFilterMantineFormContext = createMantineFormContext<ITra
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_feidclb1tn3w22zhrqufgf35 = true;
+export const $leight_gz7p2jbc52btwcfeubojpu8o = true;

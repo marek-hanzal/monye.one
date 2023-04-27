@@ -28,6 +28,8 @@ export interface ISource<TSourceSchemaType extends ISourceSchemaType> {
     fetch(query: TSourceSchemaType["Query"]): Promise<TSourceSchemaType["Entity"]>;
 
     find(id: string): Promise<TSourceSchemaType["Entity"]>;
+
+    findOptional(id?: string): Promise<TSourceSchemaType["Entity"] | undefined>;
 }
 
 export namespace ISource {

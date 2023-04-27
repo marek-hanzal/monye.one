@@ -4,4 +4,3 @@ export * from "./createStoreContext";
 export * from "./createUseState";
 export * from "./useContext";
 export * from "./useOptionalContext";
-export * from "./withConsumer";

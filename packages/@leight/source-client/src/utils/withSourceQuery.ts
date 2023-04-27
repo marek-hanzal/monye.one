@@ -12,18 +12,20 @@ export type IWithSourceQueryProps<TSourceSchemaType extends ISourceSchemaType> =
     count: { useQuery: IUseSourceQuery<TSourceSchemaType>["useCount"] };
     fetch: { useQuery: IUseSourceQuery<TSourceSchemaType>["useFetch"] };
     find: { useQuery: IUseSourceQuery<TSourceSchemaType>["useFind"] };
+    findOptional: { useQuery: IUseSourceQuery<TSourceSchemaType>["useFindOptional"] };
 }
 
 export const withSourceQuery = <TSourceSchemaType extends ISourceSchemaType>(
     {
-        create:     {useMutation: useCreate},
-        patch:      {useMutation: usePatch},
-        delete:     {useMutation: useDelete},
-        deleteWith: {useMutation: useDeleteWith},
-        query:      {useQuery},
-        count:      {useQuery: useCount},
-        fetch:      {useQuery: useFetch},
-        find:       {useQuery: useFind},
+        create:       {useMutation: useCreate},
+        patch:        {useMutation: usePatch},
+        delete:       {useMutation: useDelete},
+        deleteWith:   {useMutation: useDeleteWith},
+        query:        {useQuery},
+        count:        {useQuery: useCount},
+        fetch:        {useQuery: useFetch},
+        find:         {useQuery: useFind},
+        findOptional: {useQuery: useFindOptional},
     }: IWithSourceQueryProps<TSourceSchemaType>
 ): IUseSourceQuery<TSourceSchemaType> => ({
     useCreate,
@@ -34,4 +36,5 @@ export const withSourceQuery = <TSourceSchemaType extends ISourceSchemaType>(
     useCount,
     useFetch,
     useFind,
+    useFindOptional,
 });

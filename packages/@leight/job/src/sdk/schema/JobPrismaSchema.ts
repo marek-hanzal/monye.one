@@ -24,4 +24,4 @@ export const JobPrismaSchema = withSourceSchemaEx({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fq39jxl0mp2py15osjaf4st5 = true;
+export const $leight_rnoe1tmey7g856wjinreoq2d = true;

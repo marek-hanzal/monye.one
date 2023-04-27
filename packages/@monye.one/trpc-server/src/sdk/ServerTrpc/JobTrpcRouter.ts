@@ -3,7 +3,10 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {WithIdentitySchema} from "@leight/source";
+import {
+	WithIdentitySchema,
+	WithOptionalIdentitySchema
+} from "@leight/source";
 import {
 	router,
 	procedure
@@ -36,9 +39,12 @@ export const JobSourceRouter = router({
     find:   procedure
                 .input(WithIdentitySchema)
                 .query(JobSourceProcedure.handleFind),
+    findOptional:   procedure
+                .input(WithOptionalIdentitySchema)
+                .query(JobSourceProcedure.handleFindOptional),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_q5166ewmdj103mykkf9dj5hh = true;
+export const $leight_qtcdzm7gpg88phxwfr3cjf8r = true;

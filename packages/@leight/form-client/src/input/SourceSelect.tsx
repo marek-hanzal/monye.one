@@ -69,10 +69,12 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
     }: ISourceSelectProps<TFormSchemaType, TSourceSchemaType>) => {
     const [opened, {open, close}]                             = useDisclosure(false);
     const {MantineContext: {useFormContext}, withTranslation} = FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
-    const {onChange, error}                                   = useFormContext().getInputProps(path);
+    const {onChange, value, error}                            = useFormContext().getInputProps(path);
     return <SelectionContext.Provider>
         {({store}) => {
             const {item, select} = store.getState();
+            const entity         = SourceStore.use.useFindOptional({id: value});
+            console.log("Entity", entity.data);
             return <>
                 <Box
                     mt={"md"}

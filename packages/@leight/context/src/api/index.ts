@@ -9,11 +9,9 @@ import {
     type ReactNode
 } from "react";
 
-export type IContextRender<TContext> = (context: TContext) => ReactNode;
-
 export type IProviderChildren<TContext> =
     ReactNode
-    | IContextRender<TContext>;
+    | FC<TContext>;
 
 export type IStoreProviderProps<TStoreProps extends IStoreProps> =
     {

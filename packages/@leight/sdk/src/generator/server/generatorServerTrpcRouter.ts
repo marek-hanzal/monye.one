@@ -40,6 +40,7 @@ export const generatorServerTrpcRouter: IGenerator<IGeneratorServerTrpcRouterPar
                 imports: {
                     "@leight/source": [
                         "WithIdentitySchema",
+                        "WithOptionalIdentitySchema",
                     ],
                 },
             })
@@ -94,6 +95,9 @@ router({
     find:   procedure
                 .input(WithIdentitySchema)
                 .query(${name}SourceProcedure.handleFind),
+    findOptional:   procedure
+                .input(WithOptionalIdentitySchema)
+                .query(${name}SourceProcedure.handleFindOptional),
 })
                     `,
                     },
