@@ -1,4 +1,5 @@
 import {DateInline}         from "@leight/i18n-client";
+import {WithHighlight}      from "@leight/mantine";
 import {toHumanNumber}      from "@leight/utils";
 import {type FC}            from "react";
 import {
@@ -33,12 +34,11 @@ export const BankTable: FC<IBankTableProps> = props => {
         }}
         columns={{
             account:      {
-                render: "account",
-                sort:   "account",
                 width:  16,
+                render: ({item: {account}, highlight}) => <WithHighlight text={account} highlight={highlight}/>,
             },
             description:  {
-                render: "description",
+                render: ({item: {description}, highlight}) => <WithHighlight text={description} highlight={highlight}/>,
             },
             balanceValue: {
                 width:  10,
