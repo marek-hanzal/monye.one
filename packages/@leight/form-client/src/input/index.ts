@@ -2,6 +2,7 @@ export * from "./DateInput";
 export * from "./Description";
 export * from "./Error";
 export * from "./Label";
+export * from "./MultiSourceSelect";
 export * from "./NumberInput";
 export * from "./SourceSelect";
 export * from "./TextInput";

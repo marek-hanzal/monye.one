@@ -24,4 +24,4 @@ export const FilePrismaSchema = withSourceSchemaEx({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_k8973lzw877cm6xdvvyqqsqm = true;
+export const $leight_tbj02bekdi3zq0ke21qnm0o0 = true;

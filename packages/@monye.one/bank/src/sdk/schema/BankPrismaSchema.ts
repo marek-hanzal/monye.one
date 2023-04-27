@@ -24,4 +24,4 @@ export const BankPrismaSchema = withSourceSchemaEx({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nmnyommllltwwmbl1u7dtujp = true;
+export const $leight_ghvgo4v0n4pyecgmphr3k8ov = true;

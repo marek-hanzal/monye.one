@@ -73,7 +73,10 @@ export const createMultiSelectionStore = <TItem extends IWithIdentity>(
                     delete $items[item.id];
                 }
                 set({items: $items});
-            }
+            },
+            clear() {
+                set({items: {}});
+            },
         }),
         name,
     });

@@ -28,6 +28,7 @@ export type IMultiSelectionStoreProps<TItem extends IWithIdentity> = IStoreProps
     select(item: TItem): void;
     deselect(item: TItem): void;
     toggle(item: TItem): void;
+    clear(): void;
     /**
      * Checks if the given item is selected (by an ID)
      */

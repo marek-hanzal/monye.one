@@ -2,6 +2,7 @@ import {z} from "@leight/zod";
 
 export const FilterSchema = z.object({
     id:       z.string().optional(),
+    ids:      z.array(z.string()).optional(),
     fulltext: z.string().optional(),
 });
 export type IFilterSchema =
