@@ -50,6 +50,26 @@ void withSdk(
                 },
             ],
         },
+        Selection:      {
+            selections: [
+                {
+                    name:     "Bank",
+                    packages: {
+                        schema: "@monye.one/bank",
+                    },
+                },
+            ],
+        },
+        Select:         {
+            selects: [
+                {
+                    name:     "Bank",
+                    packages: {
+                        schema: "@monye.one/bank",
+                    },
+                },
+            ],
+        },
         SourceTable:    {
             entities: [
                 {

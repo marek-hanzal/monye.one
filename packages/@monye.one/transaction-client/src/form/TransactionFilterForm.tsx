@@ -1,7 +1,6 @@
-import {SourceSelect}                          from "@leight/form-client";
-import {type IBankSourceSchemaType}            from "@monye.one/bank";
 import {
     BankQueryProvider,
+    BankSourceSelect,
     BankTable
 }                                              from "@monye.one/bank-client";
 import {type ITransactionFilterFormSchemaType} from "@monye.one/transaction";
@@ -24,7 +23,7 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
             onDefaultSubmit();
         }}
         inputs={() => ({
-            "bankId": ({mandatory, withLabelPlaceholder, withDescription}) => <SourceSelect<ITransactionFilterFormSchemaType, IBankSourceSchemaType>
+            "bankId": ({mandatory, withLabelPlaceholder, withDescription}) => <BankSourceSelect<ITransactionFilterFormSchemaType>
                 {...mandatory}
                 {...withLabelPlaceholder}
                 {...withDescription}

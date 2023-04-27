@@ -91,6 +91,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/form/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/selection-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/selection/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-ex-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />
@@ -259,6 +260,11 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/filter-client/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/form/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/form/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/selection-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/selection-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/selection/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/selection/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-ex-client/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

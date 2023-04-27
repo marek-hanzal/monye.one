@@ -5,9 +5,17 @@ import {
     type IGeneratorClientFormParams
 }                           from "./generatorClientForm";
 import {
+    generatorClientSelection,
+    IGeneratorClientSelectionParams
+}                           from "./generatorClientSelection";
+import {
     generatorClientSourceProvider,
     type IGeneratorClientSourceProviderParams
 }                           from "./generatorClientSourceProvider";
+import {
+    generatorClientSourceSelect,
+    type IGeneratorClientSourceSelectParams
+}                           from "./generatorClientSourceSelect";
 import {
     generatorClientSourceStore,
     type IGeneratorClientSourceStoreParams
@@ -18,7 +26,7 @@ import {
 }                           from "./generatorClientSourceTable";
 import {
     generatorClientTrpcSource,
-    IGeneratorClientTrpcSourceParams
+    type IGeneratorClientTrpcSourceParams
 }                           from "./generatorClientTrpcSource";
 
 export interface IGeneratorClientSourceParams {
@@ -26,6 +34,8 @@ export interface IGeneratorClientSourceParams {
     SourceStore?: IGeneratorClientSourceStoreParams;
     SourceTable?: IGeneratorClientSourceTableParams;
     Form?: IGeneratorClientFormParams;
+    Selection?: IGeneratorClientSelectionParams;
+    Select?: IGeneratorClientSourceSelectParams;
     Trpc?: IGeneratorClientTrpcSourceParams;
 }
 
@@ -37,6 +47,8 @@ export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = a
                     SourceTable,
                     Form,
                     Trpc,
+                    Selection,
+                    Select,
                 },
         ...     props
     }) => {
@@ -56,6 +68,14 @@ export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = a
         Form ? generatorClientForm({
             ...props,
             params: Form,
+        }) : undefined,
+        Selection ? generatorClientSelection({
+            ...props,
+            params: Selection,
+        }) : undefined,
+        Select ? generatorClientSourceSelect({
+            ...props,
+            params: Select,
         }) : undefined,
         Trpc ? generatorClientTrpcSource({
             ...props,

@@ -12,7 +12,7 @@ import {TableRowMenu}               from "@leight/table-client";
 import {Menu}                       from "@mantine/core";
 import {modals}                     from "@mantine/modals";
 import {type IBankSourceSchemaType} from "@monye.one/bank";
-import {TransactionImport}          from "@monye.one/transaction-client";
+import {TransactionImport}          from "@monye.one/transaction-ex-client";
 import {trpc}                       from "@monye.one/trpc-client";
 import {
     IconCash,
@@ -20,7 +20,7 @@ import {
     IconRefresh,
     IconTrash
 }                                   from "@tabler/icons-react";
-import {BankEditForm}               from "../form/BankEditForm";
+import {BankEditForm}               from "../form";
 import {
     BankSourceStore,
     useBankQueryInvalidator
