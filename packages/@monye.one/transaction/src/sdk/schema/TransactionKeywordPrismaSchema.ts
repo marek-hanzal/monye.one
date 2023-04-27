@@ -24,4 +24,4 @@ export const TransactionKeywordPrismaSchema = withSourceSchemaEx({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fpg2ou3xsbfxvspb20wzk9n6 = true;
+export const $leight_bj9daluq1o2wfoy1e2xqlg8w = true;

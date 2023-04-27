@@ -14,4 +14,4 @@ export const CalendarEventSourceStore = withSourceStore({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zazp0qsp045o480hdne98q8y = true;
+export const $leight_mgiin51xdtsyghb9szyz4wma = true;

@@ -3,16 +3,16 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {createSelectionStore} from "@leight/selection-client";
+import {createMultiSelectionStore} from "@leight/selection-client";
 import {type IStoreContext} from "@leight/context";
-import {type ISelectionStoreProps} from "@leight/selection";
+import {type IMultiSelectionStoreProps} from "@leight/selection";
 import {type IBankSourceSchemaType} from "@monye.one/bank";
 
-export type IBankSelectionStore = IStoreContext<ISelectionStoreProps<IBankSourceSchemaType["Dto"]>>;
+export type IBankMultiSelectionStore = IStoreContext<IMultiSelectionStoreProps<IBankSourceSchemaType["Dto"]>>;
 
-export const BankSelection = createSelectionStore<IBankSourceSchemaType["Dto"]>({name: "Bank"});
+export const BankMultiSelection = createMultiSelectionStore<IBankSourceSchemaType["Dto"]>({name: "Bank"});
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_o2t54baj4mjc1w8k0jyius4d = true;
+export const $leight_uu5dpws88z06alx30n29kilu = true;

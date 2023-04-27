@@ -7,13 +7,14 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hyjhtgfbw4qup4sypv2wxk7d = true;
+export const $leight_qkfr1el9qcruxx6ybsjylzog = true;
 
 export * from "./index";
 export * from "./Form/TransactionFilterBaseForm";
 export * from "./Form/TransactionFilterInput";
 export * from "./FormStoreContext/TransactionFilterFormStoreContext";
 export * from "./FormStoreContext/TransactionFilterMantineFormContext";
+export * from "./Selection/TransactionMultiSelection";
 export * from "./Selection/TransactionSelection";
 export * from "./Source/TransactionQueryProvider";
 export * from "./Source/TransactionSourceStore";

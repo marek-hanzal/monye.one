@@ -15,4 +15,4 @@ export const UseTransactionSourceQuery: IUseTransactionSourceQuery = withSourceQ
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_i9tbzo2s1073r8f0nb8cyvar = true;
+export const $leight_vocomsw8ui93c8aqzblane1k = true;

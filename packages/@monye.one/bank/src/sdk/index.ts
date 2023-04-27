@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rhc2bgwtnhrb9v5ru3boowzs = true;
+export const $leight_qqirgtbbda9cur1y7d61l5ks = true;
 
 export * from "./index";
 export * from "./api/BankCreateFormTypes";

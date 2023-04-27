@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qn7jkoeo874sssiqlljiual1 = true;
+export const $leight_xv15b7o6b6ywfe38z2yd5yhv = true;
 
 export * from "./index";
 export * from "./ServerTrpc/BankTrpcRouter";

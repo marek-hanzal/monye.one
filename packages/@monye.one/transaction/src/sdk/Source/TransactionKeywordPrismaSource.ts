@@ -21,4 +21,4 @@ export const $TransactionKeywordSourceService = Symbol.for("@monye.one/transacti
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_dvtwls8gvwhrky9n2il5i2wt = true;
+export const $leight_ia8p3cadyaj1b1nsojyvldkf = true;

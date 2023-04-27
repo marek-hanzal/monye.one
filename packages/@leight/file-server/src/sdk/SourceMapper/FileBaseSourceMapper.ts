@@ -16,4 +16,4 @@ export class FileBaseSourceMapper extends AbstractSourceMapper<IFileSourceSchema
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_kwyhkkpssojy3m8lj9m6oivl = true;
+export const $leight_bsbn3sf4qn0c9js4wnibpenk = true;
