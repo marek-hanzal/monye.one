@@ -89,6 +89,8 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/keyword-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/keyword/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/form/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/selection-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/selection/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
       <excludeFolder url="file://$MODULE_DIR$/.fleet" />

@@ -1,7 +1,7 @@
 {
-    "version": "0.5.1",
-    "name": "@leight/form-client",
-    "description": "Client-side form tools based on Mantine.",
+    "version": "0.5.0",
+    "name": "@leight/selection-client",
+    "description": "Client-side Selection support.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -30,26 +30,11 @@
         "cleanup:lib": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/calendar-client": "^0.5.0",
-        "@leight/context": "^0.5.27",
+        "@leight/context": "^0.5.0",
         "@leight/context-client": "^0.5.72",
-        "@leight/form": "^0.5.0",
-        "@leight/i18n": "^0.5.70",
-        "@leight/i18n-client": "^0.5.70",
-        "@leight/mantine": "^0.5.0",
-        "@leight/selection-client": "^0.5.0",
-        "@leight/source": "^0.5.0",
-        "@leight/utils": "^0.5.67",
-        "@leight/utils-client": "^0.5.0",
-        "@leight/zod": "^0.5.10",
+        "@leight/selection": "^0.5.0",
         "@leight/zustand": "^0.5.64",
-        "@mantine/core": "^6.0.5",
-        "@mantine/form": "^6.0.5",
-        "@mantine/hooks": "^6.0.5",
-        "@mantine/notifications": "^6.0.5",
-        "@tabler/icons-react": "^2.11.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react": "^18.2.0"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.43",
