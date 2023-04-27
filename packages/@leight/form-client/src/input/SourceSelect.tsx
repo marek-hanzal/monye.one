@@ -15,6 +15,7 @@ import {
     Box,
     Divider,
     Group,
+    Loader,
     Modal,
     Stack,
     Text
@@ -70,11 +71,14 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
     const [opened, {open, close}]                             = useDisclosure(false);
     const {MantineContext: {useFormContext}, withTranslation} = FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
     const {onChange, value, error}                            = useFormContext().getInputProps(path);
-    return <SelectionContext.Provider>
+    const entity                                              = SourceStore.use.useFindOptional({id: value});
+    return value && entity.isLoading ? <Loader/> : (entity.isSuccess ? <SelectionContext.Provider
+        defaults={{
+            item: entity.data || undefined,
+        }}
+    >
         {({store}) => {
             const {item, select} = store.getState();
-            const entity         = SourceStore.use.useFindOptional({id: value});
-            console.log("Entity", entity.data);
             return <>
                 <Box
                     mt={"md"}
@@ -154,5 +158,5 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
                 </Box>
             </>;
         }}
-    </SelectionContext.Provider>;
+    </SelectionContext.Provider> : <>boom</>);
 };
