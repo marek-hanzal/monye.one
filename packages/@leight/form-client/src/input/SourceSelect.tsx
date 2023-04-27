@@ -121,7 +121,7 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
                         >
                             {render(selection)}
                             <ActionIcon
-                                onClick={(e) => {
+                                onClick={e => {
                                     e.stopPropagation();
                                     setSelection(undefined);
                                     onChange(undefined);
