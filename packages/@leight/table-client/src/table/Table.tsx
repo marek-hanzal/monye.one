@@ -63,7 +63,7 @@ export type ITableColumns<TColumn extends ITableColumn, TColumnKeys extends stri
 
 type InferItem<T> = T extends ITableColumn<infer U> ? U : T;
 
-export interface ITableInternalProps<TColumn extends ITableColumn, TColumnKeys extends string> extends Partial<Omit<ComponentProps<typeof CoolTable>, "hidden">> {
+export interface ITableInternalProps<TColumn extends ITableColumn, TColumnKeys extends string> extends Partial<Omit<ComponentProps<typeof CoolTable>, "hidden" | "onClick">> {
     /**
      * Optional translation configuration
      */
@@ -109,6 +109,8 @@ export interface ITableInternalProps<TColumn extends ITableColumn, TColumnKeys e
 
     renderPrefix?: ITableInternalProps.IRenderPrefix<TColumn>;
     renderFooter?: ITableInternalProps.IRenderFooter<TColumn>;
+
+    onClick?(item: InferItem<TColumn>): void;
 }
 
 export namespace ITableInternalProps {
@@ -151,6 +153,7 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
         highlight = [],
         renderPrefix,
         renderFooter,
+        onClick,
         ...props
     }: ITableInternalProps<TColumn, TColumnKeys>) => {
     /**
@@ -231,7 +234,11 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
                                     }}
                                 />
                             </td>}
-                            {$columns.map(([name, column]) => <td key={name}>
+                            {$columns.map(([name, column]) => <td
+                                key={name}
+                                style={onClick ? {cursor: "pointer"} : undefined}
+                                onClick={() => onClick?.(item)}
+                            >
                                 {isCallable(column.render) ? column.render({
                                     item,
                                     highlight: isString(highlight) ? [highlight] : highlight,

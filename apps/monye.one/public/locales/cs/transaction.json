@@ -25,5 +25,9 @@
     "table.fulltext.placeholder": "Hledat",
     "drawer.filter.button": "Filtr",
     "drawer.filter.title": "Filtrovat transakce",
-    "TransactionFilterBaseForm.submit.button": "Filtrovat transakce"
+    "TransactionFilterBaseForm.submit.button": "Filtrovat transakce",
+    "TransactionFilterBaseForm.bankId": "Výběr bankovního účtu",
+    "TransactionFilterBaseForm.bankId.description": "Vyberte bankovní účet, pro který chcete zobrazit transakce",
+    "TransactionFilterBaseForm.bankId.placeholder": "Nevybrali jste žádný účet",
+    "TransactionFilterBaseForm.bankId.modal.title": "Bankovní účty"
 }

@@ -1,5 +1,6 @@
 {
     "button.create": "Přidat účet",
+    "table.fulltext.placeholder": "Najít účet",
     "table.column.account": "Číslo účtu",
     "table.column.description": "Popisek",
     "table.column.balanceValue": "Zůstatek",

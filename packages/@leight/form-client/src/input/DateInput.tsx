@@ -30,14 +30,14 @@ import {Description}   from "./Description";
 import {Error}         from "./Error";
 import {Label}         from "./Label";
 
-export interface IDateInputProps<TFormSchema extends IFormSchemaType> extends Omit<ComponentProps<typeof Box<"div">>, "placeholder">, IFormInputs.IInputProps<TFormSchema> {
+export interface IDateInputProps<TFormSchemaType extends IFormSchemaType> extends Omit<ComponentProps<typeof Box<"div">>, "placeholder">, IFormInputs.IInputProps<TFormSchemaType> {
     label?: string;
     description?: string;
     placeholder?: ReactNode;
     withAsterisk?: boolean;
 }
 
-export const DateInput = <TFormSchema extends IFormSchemaType>(
+export const DateInput = <TFormSchemaType extends IFormSchemaType>(
     {
         FormContext,
         path,
@@ -46,7 +46,7 @@ export const DateInput = <TFormSchema extends IFormSchemaType>(
         placeholder,
         withAsterisk,
         ...props
-    }: IDateInputProps<TFormSchema>) => {
+    }: IDateInputProps<TFormSchemaType>) => {
     const [opened, {open, close}]                             = useDisclosure(false);
     const {MantineContext: {useFormContext}, withTranslation} = FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
     const {onChange, value, error}                            = useFormContext().getInputProps(path);
@@ -110,7 +110,7 @@ export const DateInput = <TFormSchema extends IFormSchemaType>(
                             /> : <Text
                                 c={"dimmed"}
                             >
-                                <Translation {...withTranslation} label={`${withTranslation.label}.${placeholder}`}/>
+                                <Translation {...withTranslation} withLabel={placeholder}/>
                             </Text>}
                         </Text>
                         <Error error={error}/>
