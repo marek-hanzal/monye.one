@@ -1,7 +1,9 @@
 import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
 import {isString}              from "@leight/utils";
+import {BlockProvider}         from "@leight/utils-client";
 import {
+    Divider,
     Group,
     Modal as CoolModal
 }                              from "@mantine/core";
@@ -25,6 +27,7 @@ export const Modal: FC<IModalProps> = (
         icon,
         withTranslation,
         title,
+        children,
         ...props
     }) => {
     const {isOpened, close} = ModalStore.useState(({isOpened, close}) => ({isOpened, close}));
@@ -38,5 +41,10 @@ export const Modal: FC<IModalProps> = (
         size={"lg"}
         zIndex={500}
         {...props}
-    />;
+    >
+        <Divider/>
+        <BlockProvider>
+            {children}
+        </BlockProvider>
+    </CoolModal>;
 };

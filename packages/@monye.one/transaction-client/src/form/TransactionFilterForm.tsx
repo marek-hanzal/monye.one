@@ -1,8 +1,9 @@
-import {type FC} from "react";
+import {IconFilter} from "@tabler/icons-react";
+import {type FC}    from "react";
 import {
     type ITransactionFilterBaseFormProps,
     TransactionFilterBaseForm
-}                from "../sdk";
+}                   from "../sdk";
 
 export interface ITransactionFilterFormProps extends Omit<ITransactionFilterBaseFormProps, "toRequest" | "inputs"> {
 }
@@ -13,7 +14,9 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
         inputs={() => ({
             "bankId": () => null,
         })}
+        submitProps={{
+            leftIcon: <IconFilter/>,
+        }}
     >
-        yep!
     </TransactionFilterBaseForm>;
 };

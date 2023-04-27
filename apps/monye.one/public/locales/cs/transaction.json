@@ -24,5 +24,6 @@
     "dropzone.import.review.message": "Import byl dokončen, nicméně některé položky vykázaly chybu. Zkontrolujte deník importu.",
     "table.fulltext.placeholder": "Hledat",
     "drawer.filter.button": "Filtr",
-    "drawer.filter.title": "Filtrovat transakce"
+    "drawer.filter.title": "Filtrovat transakce",
+    "TransactionFilterBaseForm.submit.button": "Filtrovat transakce"
 }

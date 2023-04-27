@@ -2,6 +2,7 @@ import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
 import {BlockProvider}         from "@leight/utils-client";
 import {
+    Divider,
     Drawer as CoolDrawer,
     Group
 }                              from "@mantine/core";
@@ -41,6 +42,7 @@ export const Drawer: FC<IDrawerProps> = (
         zIndex={500}
         {...props}
     >
+        <Divider/>
         <BlockProvider>
             {children}
         </BlockProvider>
