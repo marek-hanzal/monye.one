@@ -36,6 +36,7 @@
         "@monye.one/prisma": "^0.5.0",
         "@monye.one/public-client": "^0.5.0",
         "@monye.one/transaction-client": "^0.5.0",
+        "@monye.one/transaction-ex-client": "^0.5.0",
         "@monye.one/trpc-client": "^0.5.0",
         "@monye.one/trpc-server": "^0.5.0",
         "i18next": "^22.4.11",
