@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zvi2qfuzqb59zuachxmwtgoe = true;
+export const $leight_ys7xsxo13d6ald3vcltyipaq = true;
 
 export * from "./index";
 export * from "./Form/BankCreateBaseForm";
@@ -26,6 +26,7 @@ export * from "./Selection/BankMultiSelection";
 export * from "./Selection/BankSelection";
 export * from "./Source/BankQueryProvider";
 export * from "./Source/BankSourceStore";
+export * from "./SourceSelect/BankSourceMultiSelect";
 export * from "./SourceSelect/BankSourceSelect";
 export * from "./Table/BankSourceTable";
 export * from "./Trpc/BankCreateTrpcForm";

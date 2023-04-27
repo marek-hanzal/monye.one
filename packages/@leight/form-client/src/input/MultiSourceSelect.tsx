@@ -108,7 +108,6 @@ export const SourceMultiSelect = <TFormSchemaType extends IFormSchemaType, TSour
                                 onClick={item => {
                                     toggle(item);
                                     onChange(item.id);
-                                    close();
                                 }}
                             />
                             <h1>confirm select button here :)</h1>

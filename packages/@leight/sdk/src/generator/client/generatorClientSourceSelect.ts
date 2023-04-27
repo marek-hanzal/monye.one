@@ -85,5 +85,61 @@ export const generatorClientSourceSelect: IGenerator<IGeneratorClientSourceSelec
                 file: normalize(`${directory}/SourceSelect/${name}SourceSelect.tsx`),
                 barrel,
             });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "@leight/form":                    [
+                        "type IFormSchemaType",
+                    ],
+                    "@leight/form-client":             [
+                        "type ISourceMultiSelectProps",
+                        "SourceMultiSelect",
+                    ],
+                    [`../Selection/${name}MultiSelection`]: [
+                        `${name}MultiSelection`,
+                    ],
+                    [`../Source/${name}SourceStore`]: [
+                        `${name}SourceStore`,
+                    ],
+                },
+            })
+            .withImports({
+                imports: {
+                    [packages.schema]: [
+                        `type I${name}SourceSchemaType`,
+                    ],
+                }
+            })
+            .withInterfaces({
+                exports: {
+                    [`I${name}MultiSourceSelect<TFormSchemaType extends IFormSchemaType>`]: {
+                        extends: [
+                            {
+                                type: `Omit<ISourceMultiSelectProps<TFormSchemaType, I${name}SourceSchemaType>, "SelectionContext" | "SourceStore">`,
+                            }
+                        ],
+                    }
+                },
+            })
+            .withConsts({
+                exports: {
+                    [`${name}MultiSourceSelect`]: {
+                        body: `
+<TFormSchemaType extends IFormSchemaType>(props: I${name}MultiSourceSelect<TFormSchemaType>) => {
+    return <SourceMultiSelect<TFormSchemaType, I${name}SourceSchemaType>
+        SelectionContext={${name}MultiSelection}
+        SourceStore={${name}SourceStore}
+        {...props}
+    />
+}
+                        `,
+                    }
+                },
+            })
+            .saveTo({
+                file: normalize(`${directory}/SourceSelect/${name}SourceMultiSelect.tsx`),
+                barrel,
+            });
     });
 };

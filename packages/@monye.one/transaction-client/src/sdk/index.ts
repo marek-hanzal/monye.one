@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_e58aol8z88ttv29wv1dsnjfg = true;
+export const $leight_s7ff4u68h13kgi35rgb8eepo = true;
 
 export * from "./index";
 export * from "./Form/TransactionFilterBaseForm";
@@ -18,6 +18,7 @@ export * from "./Selection/TransactionMultiSelection";
 export * from "./Selection/TransactionSelection";
 export * from "./Source/TransactionQueryProvider";
 export * from "./Source/TransactionSourceStore";
+export * from "./SourceSelect/TransactionSourceMultiSelect";
 export * from "./SourceSelect/TransactionSourceSelect";
 export * from "./Table/TransactionSourceTable";
 export * from "./Trpc/UseTransactionSourceQuery";

@@ -18,4 +18,4 @@ export class TransactionBaseSource extends AbstractSource<ITransactionSourceSche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bqzhm3of1myw4g4u257iomv7 = true;
+export const $leight_jhicb2az0651q269vaxtumec = true;
