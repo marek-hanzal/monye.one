@@ -9,4 +9,4 @@ export const TransactionFilterFormSchema = withFormSchema({
         bankId: z.string().optional(),
     }),
 });
-export type ITransactionFilterFormSchema = IFormSchemaType.of<typeof TransactionFilterFormSchema>;
+export type ITransactionFilterFormSchemaType = IFormSchemaType.of<typeof TransactionFilterFormSchema>;

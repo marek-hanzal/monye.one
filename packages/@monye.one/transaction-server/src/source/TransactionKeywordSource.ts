@@ -12,7 +12,7 @@ import {
 }                                           from "@monye.one/transaction";
 import {TransactionKeywordBasePrismaSource} from "../sdk/Source/TransactionKeywordBasePrismaSource";
 
-export class TransactionKeywordSourceEx extends TransactionKeywordBasePrismaSource {
+export class TransactionKeywordSource extends TransactionKeywordBasePrismaSource {
     static inject = [
         $UserService,
         $PrismaClient,

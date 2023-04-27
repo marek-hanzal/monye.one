@@ -15,7 +15,7 @@ import {
 }                                    from "@monye.one/transaction";
 import {TransactionBasePrismaSource} from "../sdk/Source/TransactionBasePrismaSource";
 
-export class TransactionSourceEx extends TransactionBasePrismaSource {
+export class TransactionSource extends TransactionBasePrismaSource {
     static inject = [
         $UserService,
         $PrismaClient,

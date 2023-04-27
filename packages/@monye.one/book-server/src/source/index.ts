@@ -1,1 +1,1 @@
-export * from "./CalendarEventSourceEx";
+export * from "./CalendarEventSource";

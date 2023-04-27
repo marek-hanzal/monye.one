@@ -10,7 +10,7 @@ import {
 }                                            from "@monye.one/transaction";
 import {CalendarEventBaseSource}             from "../sdk/Source/CalendarEventBaseSource";
 
-export class CalendarEventSourceEx extends CalendarEventBaseSource {
+export class CalendarEventSource extends CalendarEventBaseSource {
     static inject = [
         $PrismaClient,
         $TransactionSource,

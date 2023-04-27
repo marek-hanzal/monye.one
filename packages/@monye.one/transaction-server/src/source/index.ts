@@ -1,2 +1,2 @@
-export * from "./TransactionKeywordSourceEx";
-export * from "./TransactionSourceEx";
+export * from "./TransactionKeywordSource";
+export * from "./TransactionSource";

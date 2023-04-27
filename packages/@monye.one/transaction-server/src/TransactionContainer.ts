@@ -18,17 +18,19 @@ import {
 import {
     type ITransactionKeywordSourceService,
     type ITransactionSourceService,
-    TransactionKeywordSource,
-    TransactionKeywordSourceMapper,
-    TransactionKeywordSourceService,
-    TransactionSource,
-    TransactionSourceMapper,
-    TransactionSourceService
+    TransactionBaseSourceMapper,
+    TransactionBaseSourceService,
+    TransactionKeywordBaseSourceMapper,
+    TransactionKeywordBaseSourceService
 }                        from "./sdk";
 import {
     TransactionImportHandler,
     TransactionKeywordService
 }                        from "./service";
+import {
+    TransactionKeywordSource,
+    TransactionSource
+}                        from "./source";
 
 export interface ITransactionContainer {
     TransactionImportHandler: ITransactionImportHandler;
@@ -49,12 +51,12 @@ export const TransactionContainer = (container: IContainer): ITransactionContain
         .bindClass($TransactionImportHandler, TransactionImportHandler)
 
         .bindClass($TransactionSource, TransactionSource)
-        .bindClass($TransactionSourceService, TransactionSourceService)
-        .bindClass($TransactionSourceMapper, TransactionSourceMapper)
+        .bindClass($TransactionSourceService, TransactionBaseSourceService)
+        .bindClass($TransactionSourceMapper, TransactionBaseSourceMapper)
 
         .bindClass($TransactionKeywordSource, TransactionKeywordSource)
-        .bindClass($TransactionKeywordSourceService, TransactionKeywordSourceService)
-        .bindClass($TransactionKeywordSourceMapper, TransactionKeywordSourceMapper)
+        .bindClass($TransactionKeywordSourceService, TransactionKeywordBaseSourceService)
+        .bindClass($TransactionKeywordSourceMapper, TransactionKeywordBaseSourceMapper)
 
         .bindClass($TransactionKeywordService, TransactionKeywordService);
 
