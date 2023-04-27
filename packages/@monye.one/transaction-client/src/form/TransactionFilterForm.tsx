@@ -34,6 +34,7 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
                     }}
                 >
                     <BankTable
+                        disableActions
                         withFulltext
                         onClick={onClick}
                     />

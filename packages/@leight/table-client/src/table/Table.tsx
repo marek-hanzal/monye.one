@@ -98,6 +98,8 @@ export interface ITableInternalProps<TColumn extends ITableColumn, TColumnKeys e
     items?: InferItem<TColumn>[];
     highlight?: string[];
 
+    disableActions?: boolean;
+
     /**
      * Component used to render actions over whole table
      */
@@ -153,6 +155,7 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
         highlight = [],
         renderPrefix,
         renderFooter,
+        disableActions = false,
         onClick,
         ...props
     }: ITableInternalProps<TColumn, TColumnKeys>) => {
@@ -184,12 +187,12 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
             >
                 <thead>
                     <tr>
-                        {WithRowAction && !WithTableAction && <th
+                        {!disableActions && WithRowAction && !WithTableAction && <th
                             style={{
                                 width: "2rem",
                             }}
                         />}
-                        {WithTableAction && <th
+                        {!disableActions && WithTableAction && <th
                             style={{
                                 width: "2rem",
                             }}
@@ -204,7 +207,8 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
                         {$columns?.map(([name, column]) => {
                             const defaultContent              = <Translation
                                 {...withTranslation}
-                                label={`table.column.${column?.title || name}`}
+                                label={"table.column"}
+                                withLabel={column?.title || name}
                                 withLabelFallback={column?.title || name}
                             />;
                             const defaultStyle: CSSProperties = {
@@ -225,8 +229,8 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
                 <tbody>
                     {items
                         .map(item => <tr key={item.id}>
-                            {WithTableAction && !WithRowAction && <td></td>}
-                            {WithRowAction && <td>
+                            {!disableActions && WithTableAction && !WithRowAction && <td></td>}
+                            {!disableActions && WithRowAction && <td>
                                 <TableRowAction
                                     WithRowAction={WithRowAction}
                                     props={{
@@ -247,6 +251,7 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
                         </tr>)}
                 </tbody>
                 {renderFooter ? <tfoot>
+                    {!disableActions && (WithTableAction || WithRowAction) && <td></td>}
                     <tr>
                         {renderFooter({
                             items,
