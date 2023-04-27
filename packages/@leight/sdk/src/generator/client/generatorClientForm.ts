@@ -53,7 +53,7 @@ export const generatorClientForm: IGenerator<IGeneratorClientFormParams> = async
                         "createFormContext",
                     ],
                     [packages.schema]:     [
-                        `type I${name}FormSchema`,
+                        `type I${name}FormSchemaType`,
                     ],
                 },
             })
@@ -61,7 +61,7 @@ export const generatorClientForm: IGenerator<IGeneratorClientFormParams> = async
                 exports: {
                     [`${name}FormStoreContext`]: {
                         body: `
-createFormContext<I${name}FormSchema>({
+createFormContext<I${name}FormSchemaType>({
     name: "${name}Form",
 })
                         `,
@@ -80,14 +80,14 @@ createFormContext<I${name}FormSchema>({
                         "createMantineFormContext",
                     ],
                     [packages.schema]:     [
-                        `type I${name}FormSchema`,
+                        `type I${name}FormSchemaType`,
                     ],
                 },
             })
             .withConsts({
                 exports: {
                     [`${name}MantineFormContext`]: {
-                        body: `createMantineFormContext<I${name}FormSchema>()`,
+                        body: `createMantineFormContext<I${name}FormSchemaType>()`,
                     },
                 },
             })
@@ -104,7 +104,7 @@ createFormContext<I${name}FormSchema>({
                         "WithInput",
                     ],
                     [packages.schema]:     [
-                        `type I${name}FormSchema`,
+                        `type I${name}FormSchemaType`,
                     ],
                     "react":                                         [
                         "type FC",
@@ -117,7 +117,7 @@ createFormContext<I${name}FormSchema>({
             .withConsts({
                 exports: {
                     [`${name}Input`]: {
-                        type: `FC<Omit<IWithInputProps<I${name}FormSchema>, "FormContext">>`,
+                        type: `FC<Omit<IWithInputProps<I${name}FormSchemaType>, "FormContext">>`,
                         body: `
 props => {
     return <WithInput
@@ -148,7 +148,7 @@ props => {
                         "type FC",
                     ],
                     [packages.schema]:     [
-                        `type I${name}FormSchema`,
+                        `type I${name}FormSchemaType`,
                     ],
                     [`../FormStoreContext/${name}FormStoreContext`]:   [
                         `${name}FormStoreContext`,
@@ -191,7 +191,7 @@ props => {
                     [`I${name}BaseFormProps`]: {
                         extends: [
                             {
-                                type: `Omit<IBaseFormProps<I${name}FormSchema>, "FormContext" | "MantineContext" | "withTranslation">`,
+                                type: `Omit<IBaseFormProps<I${name}FormSchemaType>, "FormContext" | "MantineContext" | "withTranslation">`,
                             },
                         ],
                     },
@@ -213,7 +213,7 @@ props => {
                             "BlockStore",
                         ],
                         [packages.schema]:     [
-                            `type I${name}FormSchema`,
+                            `type I${name}FormSchemaType`,
                         ],
                         "react":                                     [
                             "type FC"
@@ -242,7 +242,7 @@ props => {
                                     type: `I${name}BaseFormProps`,
                                 },
                                 {
-                                    type: `ITrpcFormProps<I${name}FormSchema>`,
+                                    type: `ITrpcFormProps<I${name}FormSchemaType>`,
                                 },
                             ],
                         },

@@ -5,7 +5,7 @@
  */
 import {type ITrpcFormProps} from "@leight/form";
 import {BlockStore} from "@leight/utils-client";
-import {type IBankEditFormSchema} from "@monye.one/bank";
+import {type IBankEditFormSchemaType} from "@monye.one/bank";
 import {type FC} from "react";
 import {
 	type IBankEditBaseFormProps,
@@ -14,7 +14,7 @@ import {
 import {useBankQueryInvalidator} from "./useBankQueryInvalidator";
 import {UseBankSourceQuery} from "./UseBankSourceQuery";
 
-export interface IBankEditTrpcFormProps extends IBankEditBaseFormProps, ITrpcFormProps<IBankEditFormSchema> {
+export interface IBankEditTrpcFormProps extends IBankEditBaseFormProps, ITrpcFormProps<IBankEditFormSchemaType> {
 }
 
 export const BankEditTrpcForm: FC<IBankEditTrpcFormProps> = ({onSuccess, onError, onSettled, ...props}) => {
@@ -46,4 +46,4 @@ export const BankEditTrpcForm: FC<IBankEditTrpcFormProps> = ({onSuccess, onError
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_r61r323f70xlksgk6pc57gtn = true;
+export const $leight_a8ui32hweps8swgjb0f5m3k7 = true;

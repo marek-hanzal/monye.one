@@ -4,13 +4,13 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {createFormContext} from "@leight/form-client";
-import {type IBankCreateFormSchema} from "@monye.one/bank";
+import {type IBankCreateFormSchemaType} from "@monye.one/bank";
 
-export const BankCreateFormStoreContext = createFormContext<IBankCreateFormSchema>({
+export const BankCreateFormStoreContext = createFormContext<IBankCreateFormSchemaType>({
     name: "BankCreateForm",
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jhslmcdgufcymvs3mjw4qqam = true;
+export const $leight_t1rfji97azdnj6flxocks7cb = true;

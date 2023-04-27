@@ -9,13 +9,13 @@ import {
 } from "@leight/form-client";
 import {type FC} from "react";
 import {
-	type ITransactionFilterFormSchema,
+	type ITransactionFilterFormSchemaType,
 	TransactionFilterFormSchema
 } from "@monye.one/transaction";
 import {TransactionFilterFormStoreContext} from "../FormStoreContext/TransactionFilterFormStoreContext";
 import {TransactionFilterMantineFormContext} from "../FormStoreContext/TransactionFilterMantineFormContext";
 
-export interface ITransactionFilterBaseFormProps extends Omit<IBaseFormProps<ITransactionFilterFormSchema>, "FormContext" | "MantineContext" | "withTranslation"> {
+export interface ITransactionFilterBaseFormProps extends Omit<IBaseFormProps<ITransactionFilterFormSchemaType>, "FormContext" | "MantineContext" | "withTranslation"> {
 }
 
 export const TransactionFilterBaseForm: FC<ITransactionFilterBaseFormProps> = props => {
@@ -34,4 +34,4 @@ export const TransactionFilterBaseForm: FC<ITransactionFilterBaseFormProps> = pr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_v1cys5c739x3izer0gzrcu15 = true;
+export const $leight_vqsn94js10iftih7d9e0ac3h = true;

@@ -9,13 +9,13 @@ import {
 } from "@leight/form-client";
 import {type FC} from "react";
 import {
-	type IBankEditFormSchema,
+	type IBankEditFormSchemaType,
 	BankEditFormSchema
 } from "@monye.one/bank";
 import {BankEditFormStoreContext} from "../FormStoreContext/BankEditFormStoreContext";
 import {BankEditMantineFormContext} from "../FormStoreContext/BankEditMantineFormContext";
 
-export interface IBankEditBaseFormProps extends Omit<IBaseFormProps<IBankEditFormSchema>, "FormContext" | "MantineContext" | "withTranslation"> {
+export interface IBankEditBaseFormProps extends Omit<IBaseFormProps<IBankEditFormSchemaType>, "FormContext" | "MantineContext" | "withTranslation"> {
 }
 
 export const BankEditBaseForm: FC<IBankEditBaseFormProps> = props => {
@@ -34,4 +34,4 @@ export const BankEditBaseForm: FC<IBankEditBaseFormProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hrjjwlo0brcjvwqvzvwb6ebr = true;
+export const $leight_rjisxyh3mano5tvh0uxxbvlh = true;

@@ -12,4 +12,4 @@ export type IBankSourceMapper = ISourceMapper<IBankSourceSchemaType>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_d2bdc2xrh7v936516hh5sjob = true;
+export const $leight_bk2m3jvbvdeg49r40c155kcj = true;
