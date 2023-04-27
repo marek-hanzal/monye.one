@@ -7,6 +7,7 @@ import {WithIcon}               from "@leight/mantine";
 import {type ISourceSchemaType} from "@leight/source";
 import {FulltextProvider}       from "@leight/source-client";
 import {
+    ActionIcon,
     Box,
     Divider,
     Group,
@@ -15,11 +16,15 @@ import {
     Text
 }                               from "@mantine/core";
 import {useDisclosure}          from "@mantine/hooks";
-import {IconClick}              from "@tabler/icons-react";
+import {
+    IconClick,
+    IconX
+}                               from "@tabler/icons-react";
 import {
     type ComponentProps,
     type FC,
-    type ReactNode
+    type ReactNode,
+    useState
 }                               from "react";
 import {Description}            from "./Description";
 import {Error}                  from "./Error";
@@ -31,6 +36,8 @@ export interface ISourceSelectProps<TFormSchemaType extends IFormSchemaType, TSo
     placeholder?: ReactNode;
     withAsterisk?: boolean;
     Selector: ISourceSelectProps.ISelectorComponent<TSourceSchemaType>;
+
+    render(item: TSourceSchemaType["Dto"]): ReactNode;
 }
 
 export namespace ISourceSelectProps {
@@ -50,11 +57,13 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
         placeholder,
         withAsterisk,
         Selector,
+        render,
         ...props
     }: ISourceSelectProps<TFormSchemaType, TSourceSchemaType>) => {
     const [opened, {open, close}]                             = useDisclosure(false);
     const {MantineContext: {useFormContext}, withTranslation} = FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
-    const {onChange, value, error}                            = useFormContext().getInputProps(path);
+    const {onChange, error}                                   = useFormContext().getInputProps(path);
+    const [selection, setSelection]                           = useState<TSourceSchemaType["Dto"]>();
     return <Box
         mt={"md"}
         {...props}
@@ -75,6 +84,7 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
                 <Selector
                     onClick={item => {
                         onChange(item.id);
+                        setSelection(item);
                         close();
                     }}
                 />
@@ -105,7 +115,21 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
                     <Text
                         fw={"500"}
                     >
-                        {value ? "rendered value" : <Text
+                        {selection ? <Group
+                            spacing={4}
+                            align={"center"}
+                        >
+                            {render(selection)}
+                            <ActionIcon
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setSelection(undefined);
+                                    onChange(undefined);
+                                }}
+                            >
+                                <IconX/>
+                            </ActionIcon>
+                        </Group> : <Text
                             c={"dimmed"}
                         >
                             <Translation {...withTranslation} withLabel={placeholder}/>

@@ -39,6 +39,7 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
                         onClick={onClick}
                     />
                 </BankQueryProvider>}
+                render={bank => bank.account}
             />,
         })}
         submitProps={{
