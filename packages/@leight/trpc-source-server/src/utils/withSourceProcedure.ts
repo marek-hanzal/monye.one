@@ -73,13 +73,13 @@ export const withSourceProcedure = <TSourceSchemaType extends ISourceSchemaType>
                 );
             },
         }),
-        handleFindOptional: withHandler<IWithOptionalIdentity, TSourceSchemaType["Dto"] | undefined>({
+        handleFindOptional: withHandler<IWithOptionalIdentity, TSourceSchemaType["Dto"] | null>({
             handler: async ({container, request}) => {
                 const $sourceService = withSourceService(container);
                 const entity         = await $sourceService.source().findOptional(request?.id);
                 return entity ? $sourceService.toDto(
                     entity
-                ) : undefined;
+                ) : null;
             },
         }),
     };

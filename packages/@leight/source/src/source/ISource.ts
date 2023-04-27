@@ -29,7 +29,7 @@ export interface ISource<TSourceSchemaType extends ISourceSchemaType> {
 
     find(id: string): Promise<TSourceSchemaType["Entity"]>;
 
-    findOptional(id?: string): Promise<TSourceSchemaType["Entity"] | undefined>;
+    findOptional(id?: string): Promise<TSourceSchemaType["Entity"] | null>;
 }
 
 export namespace ISource {

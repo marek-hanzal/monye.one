@@ -7,6 +7,6 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_p57kh53svm6l9vihrzy7ojkt = true;
+export const $leight_csrjx9kh88too9vrdtiri0wf = true;
 
 export * from "./index";

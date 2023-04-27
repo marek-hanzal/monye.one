@@ -97,11 +97,11 @@ export abstract class AbstractSource<TSourceSchemaType extends ISourceSchemaType
         throw new SourceError(`Source [${this.name}] does not support querying item by an ID.`);
     }
 
-    async findOptional(id?: string): Promise<TSourceSchemaType["Entity"] | undefined> {
+    async findOptional(id?: string): Promise<TSourceSchemaType["Entity"] | null> {
         try {
-            return id ? this.find(id) : undefined;
+            return id ? this.find(id) : null;
         } catch (e) {
-            return undefined;
+            return null;
         }
     }
 }
