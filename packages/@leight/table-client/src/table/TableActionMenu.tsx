@@ -16,9 +16,9 @@ export interface ITableActionMenuProps extends ComponentProps<typeof Menu> {
 export const TableActionMenu: FC<ITableActionMenuProps> = ({children, icon = <IconLayoutBottombarCollapse/>, ...props}) => {
     return <Menu
         shadow={"md"}
-        width={200}
         withinPortal
         position={"bottom-start"}
+        zIndex={502}
         {...props}
     >
         <Menu.Target>

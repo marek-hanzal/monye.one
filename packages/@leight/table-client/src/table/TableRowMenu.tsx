@@ -17,6 +17,7 @@ export const TableRowMenu: FC<ITableRowMenuProps> = ({children, icon = <IconMenu
     return <Menu
         shadow={"md"}
         withinPortal
+        zIndex={502}
         position={"bottom-start"}
         {...props}
     >
