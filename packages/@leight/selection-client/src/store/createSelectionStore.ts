@@ -46,36 +46,43 @@ export const createMultiSelectionStore = <TItem extends IWithIdentity>(
 ) => {
     return createStoreContext<IMultiSelectionStoreProps<TItem>>({
         state: () => (set, get) => ({
-            items: {},
+            items:     {},
+            selection: {},
             select(item): void {
                 set(state => ({
-                    items: {
-                        ...state.items,
+                    selection: {
+                        ...state.selection,
                         [item.id]: item,
                     },
                 }));
             },
             deselect(item): void {
                 set(state => {
-                    const items = state.items;
-                    delete items[item.id];
-                    return {items};
+                    const selection = state.selection;
+                    delete selection[item.id];
+                    return {selection};
                 });
             },
             isSelected(item): boolean {
-                return !!get().items[item.id];
+                return !!get().items[item.id] || !!get().selection[item.id];
             },
             toggle(item): void {
-                const $items    = get().items;
+                const $items    = get().selection;
                 const $item     = $items[item.id];
                 $items[item.id] = item;
                 if ($item) {
                     delete $items[item.id];
                 }
-                set({items: $items});
+                set({selection: $items});
             },
             clear() {
-                set({items: {}});
+                set({items: {}, selection: {}});
+            },
+            commit() {
+                set(state => ({items: state.selection}));
+            },
+            cancel() {
+                set({selection: {}});
             },
         }),
         name,

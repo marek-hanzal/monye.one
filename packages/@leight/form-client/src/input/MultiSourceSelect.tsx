@@ -13,6 +13,7 @@ import {FulltextProvider}            from "@leight/source-client";
 import {
     ActionIcon,
     Box,
+    Button,
     Divider,
     Group,
     Loader,
@@ -22,6 +23,7 @@ import {
 }                                    from "@mantine/core";
 import {useDisclosure}               from "@mantine/hooks";
 import {
+    IconArrowBackUp,
     IconClick,
     IconX
 }                                    from "@tabler/icons-react";
@@ -50,6 +52,7 @@ export namespace ISourceMultiSelectProps {
     export type ISelectorComponent<TSourceSchemaType extends ISourceSchemaType> = FC<ISelectorComponentProps<TSourceSchemaType>>;
 
     export type ISelectorComponentProps<TSourceSchemaType extends ISourceSchemaType> = {
+        MultiSelectionContext?: IMultiSelectionStoreContext<TSourceSchemaType["Dto"]>;
         onClick(item: TSourceSchemaType["Dto"]): void;
     }
 }
@@ -76,16 +79,19 @@ export const SourceMultiSelect = <TFormSchemaType extends IFormSchemaType, TSour
             ids: value || [],
         }
     });
+    const selection                                           = entity.data ? entity.data.reduce((prev, current) => {
+        prev[current.id] = current;
+        return prev;
+    }, {} as Record<string, TSourceSchemaType["Dto"]>) : {};
+
     return value && entity.isLoading ? <Loader/> : (entity.isSuccess ? <SelectionContext.Provider
         defaults={{
-            items: entity.data ? entity.data.reduce((prev, current) => {
-                prev[current.id] = current;
-                return prev;
-            }, {} as Record<string, TSourceSchemaType["Dto"]>) : {},
+            items: selection,
+            selection,
         }}
     >
         {({store}) => {
-            const {items, clear, toggle} = store.getState();
+            const {items, selection, cancel, clear, commit, toggle} = store.getState();
             return <>
                 <Box
                     mt={"md"}
@@ -105,11 +111,36 @@ export const SourceMultiSelect = <TFormSchemaType extends IFormSchemaType, TSour
                         <Divider/>
                         <FulltextProvider>
                             <Selector
+                                MultiSelectionContext={SelectionContext}
                                 onClick={item => {
                                     toggle(item);
                                 }}
                             />
-                            <h1>confirm select button here :)</h1>
+                            <Divider mt={"sm"} mb={"sm"}/>
+                            <Group spacing={"md"} position={"apart"}>
+                                <Button
+                                    leftIcon={<IconArrowBackUp/>}
+                                    variant={"subtle"}
+                                    size={"lg"}
+                                    onClick={() => {
+                                        cancel();
+                                        close();
+                                    }}
+                                >
+                                    <Translation {...withTranslation} label={"selection"} withLabel={"cancel.button"}/>
+                                </Button>
+                                <Button
+                                    leftIcon={<IconClick/>}
+                                    size={"lg"}
+                                    onClick={() => {
+                                        onChange(Object.keys(selection));
+                                        commit();
+                                        close();
+                                    }}
+                                >
+                                    <Translation {...withTranslation} label={"selection"} withLabel={"submit.button"}/>
+                                </Button>
+                            </Group>
                         </FulltextProvider>
                     </Modal>
 

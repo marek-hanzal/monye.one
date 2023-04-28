@@ -29,5 +29,7 @@
     "TransactionFilterBaseForm.bankId": "Výběr bankovního účtu",
     "TransactionFilterBaseForm.bankId.description": "Vyberte bankovní účet, pro který chcete zobrazit transakce",
     "TransactionFilterBaseForm.bankId.placeholder": "Nevybrali jste žádný účet",
-    "TransactionFilterBaseForm.bankId.modal.title": "Bankovní účty"
+    "TransactionFilterBaseForm.bankId.modal.title": "Bankovní účty",
+    "selection.cancel.button": "Zpět",
+    "selection.submit.button": "Potvrdit výběr"
 }

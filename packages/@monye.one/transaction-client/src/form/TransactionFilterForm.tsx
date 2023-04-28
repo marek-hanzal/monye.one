@@ -1,4 +1,5 @@
 import {
+    BankMultiSelection,
     BankMultiSourceSelect,
     BankQueryProvider,
     BankTable
@@ -33,6 +34,7 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
                     }}
                 >
                     <BankTable
+                        MultiSelectionContext={BankMultiSelection}
                         disableActions
                         withFulltext
                         onClick={onClick}

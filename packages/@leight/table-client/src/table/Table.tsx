@@ -1,26 +1,48 @@
-import {type IWithTranslation} from "@leight/i18n";
-import {Translation}           from "@leight/i18n-client";
+import {type IWithTranslation}            from "@leight/i18n";
+import {Translation}                      from "@leight/i18n-client";
+import {withPrimaryColor}                 from "@leight/mantine";
+import {type IMultiSelectionStoreContext} from "@leight/selection";
+import {type IWithIdentity}               from "@leight/source";
 import {
     isCallable,
     isString
-}                              from "@leight/utils";
+}                                         from "@leight/utils";
+import {classNames}                       from "@leight/utils-client";
 import {
     Box,
+    createStyles,
     Group,
     LoadingOverlay,
     ScrollArea,
     Table as CoolTable
-}                              from "@mantine/core";
+}                                         from "@mantine/core";
 import {
     type ComponentProps,
     type CSSProperties,
     type FC,
     type ReactNode
-}                              from "react";
-import {TableAction}           from "./TableAction";
-import {TableRowAction}        from "./TableRowAction";
+}                                         from "react";
+import {TableAction}                      from "./TableAction";
+import {TableRowAction}                   from "./TableRowAction";
 
-export interface ITableColumn<TItem = any> {
+const useStyles = createStyles(theme => ({
+    table: {
+        "&[data-striped] tbody tr.selection":                  {
+            backgroundColor: withPrimaryColor(theme, -5),
+            '&:hover': {
+                backgroundColor: withPrimaryColor(theme, -6),
+            },
+        },
+        "&[data-striped] tbody tr.selection:nth-of-type(odd)": {
+            backgroundColor: withPrimaryColor(theme, -4),
+            '$:hover': {
+                backgroundColor: withPrimaryColor(theme, -3),
+            },
+        },
+    },
+}));
+
+export interface ITableColumn<TItem = IWithIdentity> {
     /**
      * Explicitly override column title (by default column name is taken from Record<> in Table)
      */
@@ -112,6 +134,8 @@ export interface ITableInternalProps<TColumn extends ITableColumn, TColumnKeys e
     renderPrefix?: ITableInternalProps.IRenderPrefix<TColumn>;
     renderFooter?: ITableInternalProps.IRenderFooter<TColumn>;
 
+    MultiSelectionContext?: IMultiSelectionStoreContext<InferItem<TColumn>>;
+
     onClick?(item: InferItem<TColumn>): void;
 }
 
@@ -157,8 +181,12 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
         renderFooter,
         disableActions = false,
         onClick,
+        MultiSelectionContext,
         ...props
     }: ITableInternalProps<TColumn, TColumnKeys>) => {
+
+    const {classes} = useStyles();
+
     /**
      * Do not memo this, or memo carefully! Changing this breaks column sorting and maybe something else too.
      */
@@ -166,6 +194,8 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
         column,
         overrideColumns[column] || columns[column],
     ]);
+
+    const multiSelection = MultiSelectionContext?.useState();
 
     return <ScrollArea
         w={"100%"}
@@ -183,6 +213,7 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
                 withBorder
                 withColumnBorders
                 style={!items?.length ? {minHeight: "20em"} : undefined}
+                className={classes.table}
                 {...props}
             >
                 <thead>
@@ -228,7 +259,12 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
                 </thead>
                 <tbody>
                     {items
-                        .map(item => <tr key={item.id}>
+                        .map(item => <tr
+                            key={item.id}
+                            className={classNames(
+                                multiSelection?.isSelected(item) ? "selection" : undefined,
+                            )}
+                        >
                             {!disableActions && WithTableAction && !WithRowAction && <td></td>}
                             {!disableActions && WithRowAction && <td>
                                 <TableRowAction
