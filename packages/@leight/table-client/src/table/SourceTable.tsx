@@ -80,7 +80,7 @@ export const SourceTable = <
     }: ISourceTableInternalProps<TSourceSchemaType, TColumnKeys>) => {
     const {data, result}                    = SourceStore.useSource({cacheTime: sourceCacheTime});
     const fulltextStore                     = FulltextStoreContext.useOptionalState();
-    const {sort, setSort, setShallowFilter} = SourceStore.Query.useState(({sort, setSort, setShallowFilter}) => ({sort, setSort, setShallowFilter}));
+    const {sort, setSort, setShallowFilter} = SourceStore.Query.useState(({$sort, setSort, setShallowFilter}) => ({sort: $sort, setSort, setShallowFilter}));
 
     useEffect(() => {
         if (!withFulltext || !fulltextStore) {

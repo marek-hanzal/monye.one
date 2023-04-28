@@ -17,7 +17,7 @@ export const Pagination: FC<IPaginationProps> = (
         ...props
     }) => {
     const $cacheTime       = 120;
-    const {query, setPage} = SourceStore.Query.useState(({query, setPage}) => ({query, setPage}));
+    const {query, setPage} = SourceStore.Query.useState(({$query, setPage}) => ({query: $query, setPage}));
     const result           = SourceStore.use.useCount(query, {
         cacheTime: $cacheTime * 1000,
         staleTime: $cacheTime * 1000,

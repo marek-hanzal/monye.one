@@ -28,10 +28,10 @@ export const QueryProvider = <TSourceSchemaType extends ISourceSchemaType>(
     }: IQueryProviderInternalProps<TSourceSchemaType>) => {
     return <SourceStore.Query.Provider
         defaults={{
-            filter: defaultFilter,
-            sort:   defaultSort,
-            page:   defaultCursor?.page || 0,
-            size:   defaultCursor?.size || 30,
+            $filter: defaultFilter,
+            $sort:   defaultSort,
+            $page:   defaultCursor?.page || 0,
+            $size:   defaultCursor?.size || 30,
         }}
     >
         {children}

@@ -11,7 +11,7 @@ export const useSource = <TSourceSchemaType extends ISourceSchemaType>(
         SourceStore,
     }: IUseSourceProps<TSourceSchemaType>): IUseSource<TSourceSchemaType> => {
     const $cacheTime = cacheTime ? cacheTime * 1000 : undefined;
-    const {query}    = SourceStore.Query.useState(({query}) => ({query}));
+    const {query}    = SourceStore.Query.useState(({$query}) => ({query: $query}));
     const result     = SourceStore.use.useQuery(query, {
         staleTime: $cacheTime,
         cacheTime: $cacheTime,

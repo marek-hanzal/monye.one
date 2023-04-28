@@ -35,7 +35,7 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
     const modalContext  = ModalStore.useOptionalState();
     const drawerContext = DrawerStore.useOptionalState();
 
-    const withAutoclose = () => {
+    const withAutoClose = () => {
         props.withAutoClose?.forEach(close => {
             modalContext?.close(close);
             drawerContext?.close(close);
@@ -50,14 +50,14 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
               setPage,
           } = SourceStore.Query.useState((
         {
-            filterDto,
+            $filterDto,
             setShallowFilter,
             setFilter,
             setFilterDto,
             setPage,
         }) => (
         {
-            defaultValues: filterDto,
+            defaultValues: $filterDto,
             setShallowFilter,
             setFilter,
             setFilterDto,
@@ -80,7 +80,7 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
                 variant={"subtle"}
                 size={"md"}
                 leftIcon={<IconX/>}
-                onClick={withAutoclose}
+                onClick={withAutoClose}
             >
                 <Translation namespace={"common"} label={"filter"} withLabel={"close.button"}/>
             </Button>
@@ -91,7 +91,7 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
                 onClick={() => {
                     setFilter(undefined);
                     setFilterDto(undefined);
-                    withAutoclose();
+                    withAutoClose();
                 }}
             >
                 <Translation namespace={"common"} label={"filter"} withLabel={"clear.button"}/>

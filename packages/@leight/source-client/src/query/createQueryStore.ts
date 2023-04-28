@@ -18,56 +18,68 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
     }: ICreateQueryStoreProps<TSourceSchemaType>) => {
     return createStoreContext<IQueryStoreProps<TSourceSchemaType>>({
         state: ({defaults}) => set => ({
-            id:        generateId(),
-            schema,
-            filter:    defaults?.query?.filter,
-            filterDto: undefined,
-            sort:      defaults?.query?.sort || {},
-            page:      defaults?.query?.cursor?.page || 0,
-            size:      defaults?.query?.cursor?.size || 30,
-            query:     defaults?.query || {
+            $id:          generateId(),
+            $schema:      schema,
+            $filter:      defaults?.$query?.filter,
+            $applyFilter: undefined,
+            $filterDto:   undefined,
+            $sort:        defaults?.$query?.sort || {},
+            $page:        defaults?.$query?.cursor?.page || 0,
+            $size:        defaults?.$query?.cursor?.size || 30,
+            $query:       defaults?.$query || {
                 cursor: {
                     page: 0,
                     size: 30,
                 },
             },
             setFilter(filter) {
-                set(({query}) => ({
-                    id:    generateId(),
-                    filter,
-                    query: {
-                        ...query,
-                        filter,
+                set(({$query, $applyFilter}) => ({
+                    $id:     generateId(),
+                    $filter: {
+                        ...filter,
+                        ...$applyFilter,
+                    },
+                    $query:  {
+                        ...$query,
+                        filter: {
+                            ...filter,
+                            ...$applyFilter,
+                        },
                     },
                 }));
             },
+            applyFilter(filter) {
+                set({$applyFilter: filter});
+            },
             setShallowFilter(filter) {
-                set(({query}) => ({
-                    id:     generateId(),
-                    filter: {
-                        ...query.filter,
+                set(({$query, $applyFilter}) => ({
+                    $id:     generateId(),
+                    $filter: {
+                        ...$query.filter,
                         ...filter,
+                        ...$applyFilter,
                     },
-                    query:  {
-                        ...query,
+                    $query:  {
+                        ...$query,
                         filter: {
-                            ...query.filter,
+                            ...$query.filter,
                             ...filter,
+                            ...$applyFilter,
                         },
                     },
                 }));
             },
             setFilterDto(dto) {
-                set({filterDto: dto});
+                set({$filterDto: dto});
             },
             setSort(key, order) {
-                set(({query}) => ({
-                    id:    generateId(),
-                    sort:  {
+                set(({$query}) => ({
+                    $id:    generateId(),
+                    $sort:  {
                         [key as any]: order,
                     },
-                    query: {
-                        ...query,
+                    $query: {
+                        ...$query,
                         sort: {
                             [key as any]: order,
                         },
@@ -75,26 +87,26 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
                 }));
             },
             setSize(size) {
-                set(({query}) => ({
-                    id:    generateId(),
-                    size,
-                    query: {
-                        ...query,
+                set(({$query}) => ({
+                    $id:    generateId(),
+                    $size:  size,
+                    $query: {
+                        ...$query,
                         cursor: {
-                            ...query.cursor,
+                            ...$query.cursor,
                             size,
                         },
                     },
                 }));
             },
             setPage(page) {
-                set(({query}) => ({
-                    id:    generateId(),
-                    page,
-                    query: {
-                        ...query,
+                set(({$query}) => ({
+                    $id:    generateId(),
+                    $page:  page,
+                    $query: {
+                        ...$query,
                         cursor: {
-                            ...query.cursor,
+                            ...$query.cursor,
                             page,
                         },
                     },

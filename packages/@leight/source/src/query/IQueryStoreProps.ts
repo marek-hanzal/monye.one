@@ -6,19 +6,24 @@ import {
 }                         from "../source";
 
 export type IQueryStoreProps<TSourceSchemaType extends ISourceSchemaType> = IStoreProps<{
-    id: string;
-    schema: ISourceSchema.of<TSourceSchemaType>;
+    $id: string;
+    $schema: ISourceSchema.of<TSourceSchemaType>;
 
-    page: number;
-    size: number;
+    $page: number;
+    $size: number;
 
-    filter: TSourceSchemaType["Filter"];
-    filterDto?: IQueryStoreProps.IFilterDto;
-    sort: TSourceSchemaType["Sort"];
+    $filter: TSourceSchemaType["Filter"];
+    /**
+     * If set, all filter changes are shallow merged with this
+     */
+    $applyFilter?: TSourceSchemaType["Filter"];
+    $filterDto?: IQueryStoreProps.IFilterDto;
+    $sort: TSourceSchemaType["Sort"];
 
-    query: TSourceSchemaType["Query"];
+    $query: TSourceSchemaType["Query"];
 
     setFilter(filter?: TSourceSchemaType["Filter"]): void;
+    applyFilter(filter?: TSourceSchemaType["Filter"]): void;
     setShallowFilter(filter?: TSourceSchemaType["Filter"]): void;
     setFilterDto(dto?: IQueryStoreProps.IFilterDto): void;
 
