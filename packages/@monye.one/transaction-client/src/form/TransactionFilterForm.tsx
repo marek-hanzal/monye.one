@@ -3,10 +3,7 @@ import {
     RangeOfInput,
     TextInput
 }                                              from "@leight/form-client";
-import {
-    rangeOf,
-    wrapJsDate
-}                                              from "@leight/i18n";
+import {wrapJsDate}                            from "@leight/i18n";
 import {WithIcon}                              from "@leight/mantine";
 import {
     Badge,
@@ -34,12 +31,11 @@ export interface ITransactionFilterFormProps extends Omit<ITransactionBaseFilter
 export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
     return <TransactionBaseFilterForm
         withAutoClose={["filter"]}
-        toRequest={({values: {from, to, rangeOf: $rangeOf, ...values}}) => {
-            const range = rangeOf({range: $rangeOf});
+        toRequest={({values: {from, to, ...values}}) => {
             return {
                 ...values,
-                from: range?.from ? range.from.toJSDate() : wrapJsDate(from),
-                to:   range?.to ? range.to.toJSDate() : wrapJsDate(to),
+                from: wrapJsDate(from),
+                to:   wrapJsDate(to),
             };
         }}
         inputs={() => ({

@@ -28,6 +28,7 @@ export const TransactionSourceSchema = withSourceSchema({
         bankId:           z.string().optional(),
         target:           z.string().optional(),
         bankIds:          z.array(z.string()).optional(),
+        rangeOf:          z.string().optional(),
         userId_reference: z.object({
             userId:    z.string(),
             reference: z.string(),

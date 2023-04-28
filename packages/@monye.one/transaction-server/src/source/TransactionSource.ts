@@ -1,3 +1,4 @@
+import {rangeOf}                     from "@leight/i18n";
 import {
     $PrismaClient,
     decimalOf,
@@ -13,7 +14,7 @@ import {
     type ITransactionSourceSchemaType,
     type ITransactionSumBy,
 }                                    from "@monye.one/transaction";
-import {TransactionBasePrismaSource} from "../sdk/Source/TransactionBasePrismaSource";
+import {TransactionBasePrismaSource} from "../sdk";
 
 export class TransactionSource extends TransactionBasePrismaSource {
     static inject = [
@@ -77,6 +78,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                   target,
                   from,
                   to,
+                  rangeOf: $rangeOf,
               }         = filter;
         const $fulltext = keywordsOf(fulltext);
         if ($fulltext) {
@@ -113,20 +115,34 @@ export class TransactionSource extends TransactionBasePrismaSource {
             ].filter(Boolean)) : [];
         }
 
-        if (from) {
-            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
-                {
-                    date: {gte: from},
-                },
-            ].filter(Boolean)) : [];
-        }
+        if ($rangeOf) {
+            const $range = rangeOf({range: $rangeOf});
+            if ($range) {
+                where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                    {
+                        date: {gte: $range.from.toJSDate()},
+                    },
+                    {
+                        date: {lte: $range.to.toJSDate()},
+                    },
+                ].filter(Boolean)) : [];
+            }
+        } else {
+            if (from) {
+                where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                    {
+                        date: {gte: from},
+                    },
+                ].filter(Boolean)) : [];
+            }
 
-        if (to) {
-            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
-                {
-                    date: {lte: to},
-                },
-            ].filter(Boolean)) : [];
+            if (to) {
+                where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                    {
+                        date: {lte: to},
+                    },
+                ].filter(Boolean)) : [];
+            }
         }
 
         if (withIncome) {
