@@ -26,6 +26,7 @@ export const TransactionSourceSchema = withSourceSchema({
     PatchSchema:    TransactionPartialSchema.merge(PatchSchema),
     FilterSchema:   FilterSchema.merge(z.object({
         bankId:           z.string().optional(),
+        bankIds:          z.array(z.string()).optional(),
         userId_reference: z.object({
             userId:    z.string(),
             reference: z.string(),

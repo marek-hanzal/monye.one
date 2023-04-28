@@ -73,6 +73,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                   withOutcome,
                   fulltext,
                   bankId,
+                  bankIds,
               }         = filter;
         const $fulltext = keywordsOf(fulltext);
         if ($fulltext) {
@@ -108,6 +109,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                 },
             ].filter(Boolean)) : [];
         }
+
         if (withIncome) {
             where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
                 {
@@ -117,6 +119,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                 }
             ]) : [];
         }
+
         if (withOutcome) {
             where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
                 {
@@ -126,10 +129,21 @@ export class TransactionSource extends TransactionBasePrismaSource {
                 }
             ]) : [];
         }
+
         if (bankId) {
             where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
                 {
                     bankId,
+                }
+            ]) : [];
+        }
+
+        if (bankIds && bankIds.length) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    bankId: {
+                        in: bankIds,
+                    },
                 }
             ]) : [];
         }

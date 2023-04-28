@@ -57,6 +57,7 @@ export type IBaseFormProps<TFormSchemaType extends IFormSchemaType> = PropsWithC
      */
     defaultValues?: TFormSchemaType["Values"];
     onSubmit?(props: IBaseFormProps.IOnSubmitProps<TFormSchemaType>): void;
+    notification?: boolean;
     /**
      * Props passed to submit button of the form
      */
@@ -88,6 +89,7 @@ export const BaseForm = <TFormSchemaType extends IFormSchemaType>(
         inputs,
         inputsOverride,
         defaultValues,
+        notification = true,
         ...props
     }: IBaseFormProps<TFormSchemaType>) => {
     const {FormProvider, useForm} = MantineContext;
@@ -126,6 +128,7 @@ export const BaseForm = <TFormSchemaType extends IFormSchemaType>(
             <FormInternal<TFormSchemaType>
                 form={form}
                 withTranslation={withTranslation}
+                notification={notification}
                 {...props}
             />
         </FormStoreProvider>
@@ -143,6 +146,7 @@ const FormInternal = <TFormSchemaType extends IFormSchemaType>(
         withTranslation,
         submitProps,
         withAutoClose = [],
+        notification,
         children,
     }: IFormInternalProps<TFormSchemaType>) => {
     const {isBlock} = BlockStore.useOptionalState() || {isBlock: false};
@@ -154,7 +158,7 @@ const FormInternal = <TFormSchemaType extends IFormSchemaType>(
             modal?.close(item);
             drawer?.close(item);
         });
-        withSuccessNotification({
+        notification && withSuccessNotification({
             withTranslation,
         });
     };

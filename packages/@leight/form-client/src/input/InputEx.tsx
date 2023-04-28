@@ -81,7 +81,7 @@ export const InputEx = <TFormSchemaType extends IFormSchemaType>(
                     />
                 </Grid.Col>
                 <Grid.Col
-                    span={10}
+                    span={"auto"}
                 >
                     <Stack
                         spacing={0}
