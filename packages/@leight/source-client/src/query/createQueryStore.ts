@@ -49,7 +49,37 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
                 }));
             },
             applyFilter(filter) {
-                set({$applyFilter: filter});
+                set(({$query}) => ({
+                    $id:          generateId(),
+                    $applyFilter: filter,
+                    $filter:      filter,
+                    $query:       {
+                        ...$query,
+                        filter: filter,
+                    },
+                }));
+            },
+            applyShallowFilter(filter) {
+                set(({$query, $applyFilter}) => ({
+                    $id:          generateId(),
+                    $applyFilter: {
+                        ...$applyFilter,
+                        ...filter,
+                    },
+                    $filter:      {
+                        ...$query.filter,
+                        ...$applyFilter,
+                        ...filter,
+                    },
+                    $query:       {
+                        ...$query,
+                        filter: {
+                            ...$query.filter,
+                            ...$applyFilter,
+                            ...filter,
+                        },
+                    },
+                }));
             },
             setShallowFilter(filter) {
                 set(({$query, $applyFilter}) => ({

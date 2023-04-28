@@ -58,12 +58,12 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
         {
             $id,
             $filter,
-            applyFilter,
+            applyShallowFilter,
         }) => (
         {
             transactionFilterId:  $id,
             transactionFilter:    $filter,
-            setTransactionFilter: applyFilter,
+            setTransactionFilter: applyShallowFilter,
         }));
     const {setCalendarEventShallowFilter} = CalendarEventSourceStore.Query.useState(({setShallowFilter}) => ({setCalendarEventShallowFilter: setShallowFilter}));
 
