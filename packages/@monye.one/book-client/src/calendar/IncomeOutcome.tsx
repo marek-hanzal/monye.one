@@ -58,11 +58,11 @@ export const IncomeOutcome: FC<IIncomeOutcomeProps> = (
     return <Group
         position={"apart"}
         spacing={0}
+        align={"end"}
         mb={2}
     >
         <Stack
             spacing={0}
-            align={"end"}
             {...props}
         >
             {income > 0 && outcome > 0 && <Button
