@@ -4,7 +4,10 @@ export type IRangeOfList =
     "none"
     | "last-week"
     | "last-month"
-    | "last-year";
+    | "last-year"
+    | "current-week"
+    | "current-month"
+    | "current-year";
 
 export interface IRangeOfProps {
     range?: string;
@@ -15,6 +18,9 @@ export const RangeOfList: IRangeOfList[] = [
     "last-week",
     "last-month",
     "last-year",
+    "current-week",
+    "current-month",
+    "current-year",
 ];
 
 export interface IRangeOf {
@@ -50,6 +56,27 @@ export const rangeOf = (
             return {
                 from,
                 to: from.endOf("year"),
+            };
+        }
+        case "current-week": {
+            const date = now.startOf("week");
+            return {
+                from: date,
+                to:   date.endOf("week"),
+            };
+        }
+        case "current-month": {
+            const date = now.startOf("month");
+            return {
+                from: date,
+                to:   date.endOf("month"),
+            };
+        }
+        case "current-year": {
+            const date = now.startOf("year");
+            return {
+                from: date,
+                to:   date.endOf("year"),
             };
         }
     }
