@@ -19,17 +19,17 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
         ...props
     }: IBaseFilterFormProps<TFormSchemaType, TSourceSchemaType>
 ) => {
-    const {filter, setShallowFilter} = SourceStore.Query.useState(({filter, setShallowFilter}) => ({filter, setShallowFilter}));
+    const {defaultValues, setShallowFilter} = SourceStore.Query.useState(({filterDto, setShallowFilter}) => ({defaultValues: filterDto, setShallowFilter}));
     return <BaseForm
         notification={false}
-        onSubmit={({request, onDefaultSubmit}) => {
-            setShallowFilter(request);
+        onSubmit={({request, values, onDefaultSubmit}) => {
+            setShallowFilter(request, values);
             onDefaultSubmit();
         }}
         submitProps={{
             leftIcon: <IconFilter/>,
         }}
-        defaultValues={filter}
+        defaultValues={defaultValues}
         {...props}
     />;
 };

@@ -18,36 +18,39 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
     }: ICreateQueryStoreProps<TSourceSchemaType>) => {
     return createStoreContext<IQueryStoreProps<TSourceSchemaType>>({
         state: ({defaults}) => set => ({
-            id:     generateId(),
+            id:        generateId(),
             schema,
-            filter: defaults?.query?.filter,
-            sort:   defaults?.query?.sort || {},
-            page:   defaults?.query?.cursor?.page || 0,
-            size:   defaults?.query?.cursor?.size || 30,
-            query:  defaults?.query || {
+            filter:    defaults?.query?.filter,
+            filterDto: undefined,
+            sort:      defaults?.query?.sort || {},
+            page:      defaults?.query?.cursor?.page || 0,
+            size:      defaults?.query?.cursor?.size || 30,
+            query:     defaults?.query || {
                 cursor: {
                     page: 0,
                     size: 30,
                 },
             },
-            setFilter(filter) {
+            setFilter(filter, dto) {
                 set(({query}) => ({
-                    id:    generateId(),
+                    id:        generateId(),
                     filter,
-                    query: {
+                    filterDto: dto,
+                    query:     {
                         ...query,
                         filter,
                     },
                 }));
             },
-            setShallowFilter(filter) {
+            setShallowFilter(filter, dto) {
                 set(({query}) => ({
-                    id:     generateId(),
-                    filter: {
+                    id:        generateId(),
+                    filter:    {
                         ...query.filter,
                         ...filter,
                     },
-                    query:  {
+                    filterDto: dto,
+                    query:     {
                         ...query,
                         filter: {
                             ...query.filter,

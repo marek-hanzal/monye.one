@@ -71,6 +71,7 @@ export type IBaseFormProps<TFormSchemaType extends IFormSchemaType> = PropsWithC
 export namespace IBaseFormProps {
     export interface IOnSubmitProps<TFormSchemaType extends IFormSchemaType> {
         request: TFormSchemaType["Request"];
+        values: TFormSchemaType["Values"];
 
         /**
          * Calls default form submit stuff
@@ -111,7 +112,10 @@ export const BaseForm = <TFormSchemaType extends IFormSchemaType>(
             });
             return errors;
         },
-        transformValues: values => toRequest({values}),
+        transformValues: values => ({
+            request: toRequest({values}),
+            values,
+        }),
     });
     return <FormProvider
         form={form}
@@ -166,8 +170,8 @@ const FormInternal = <TFormSchemaType extends IFormSchemaType>(
     return <Box pos={"relative"}>
         <LoadingOverlay visible={isBlock}/>
         <form
-            onSubmit={form.onSubmit(request => {
-                onSubmit?.({request, onDefaultSubmit});
+            onSubmit={form.onSubmit(({request, values}) => {
+                onSubmit?.({request, values, onDefaultSubmit});
             })}
         >
             {children}

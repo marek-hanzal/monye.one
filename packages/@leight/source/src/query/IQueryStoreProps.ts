@@ -13,12 +13,13 @@ export type IQueryStoreProps<TSourceSchemaType extends ISourceSchemaType> = ISto
     size: number;
 
     filter: TSourceSchemaType["Filter"];
+    filterDto?: Record<string, any>;
     sort: TSourceSchemaType["Sort"];
 
     query: TSourceSchemaType["Query"];
 
-    setFilter(filter?: TSourceSchemaType["Filter"]): void;
-    setShallowFilter(filter?: TSourceSchemaType["Filter"]): void;
+    setFilter(filter?: TSourceSchemaType["Filter"], dto?: Record<string, any>): void;
+    setShallowFilter(filter?: TSourceSchemaType["Filter"], dto?: Record<string, any>): void;
 
     setSort(sort: keyof TSourceSchemaType["Sort"], order: ISortOrder): void;
 
