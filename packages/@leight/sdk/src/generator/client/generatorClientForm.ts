@@ -169,6 +169,7 @@ props => {
                 exports: {
                     [`${name}BaseForm`]: {
                         type: `FC<I${name}BaseFormProps>`,
+                        // language=text
                         body: `
 props => {
     return <BaseForm<I${name}FormSchemaType>

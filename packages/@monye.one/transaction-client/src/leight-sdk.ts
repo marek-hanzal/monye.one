@@ -49,11 +49,10 @@ void withSdk(
                 },
             ],
         },
-        Form:           {
+        FilterForm:           {
             forms: [
                 {
-                    name:        "TransactionFilter",
-                    type:        "common",
+                    name:        "Transaction",
                     translation: {
                         namespace: "transaction"
                     },

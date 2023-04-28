@@ -1,3 +1,4 @@
+export * from "./generatorClientFilterForm";
 export * from "./generatorClientForm";
 export * from "./generatorClientSelection";
 export * from "./generatorClientSource";

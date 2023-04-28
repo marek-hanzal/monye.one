@@ -1,6 +1,10 @@
 import {type IGenerator}    from "../../api";
 import {generatorSdkBarrel} from "../generatorSdkBarrel";
 import {
+    generatorClientFilterForm,
+    IGeneratorClientFilterFormParams
+}                           from "./generatorClientFilterForm";
+import {
     generatorClientForm,
     type IGeneratorClientFormParams
 }                           from "./generatorClientForm";
@@ -34,6 +38,7 @@ export interface IGeneratorClientSourceParams {
     SourceStore?: IGeneratorClientSourceStoreParams;
     SourceTable?: IGeneratorClientSourceTableParams;
     Form?: IGeneratorClientFormParams;
+    FilterForm?: IGeneratorClientFilterFormParams;
     Selection?: IGeneratorClientSelectionParams;
     Select?: IGeneratorClientSourceSelectParams;
     Trpc?: IGeneratorClientTrpcSourceParams;
@@ -49,6 +54,7 @@ export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = a
                     Trpc,
                     Selection,
                     Select,
+                    FilterForm,
                 },
         ...     props
     }) => {
@@ -68,6 +74,10 @@ export const generatorClientSource: IGenerator<IGeneratorClientSourceParams> = a
         Form ? generatorClientForm({
             ...props,
             params: Form,
+        }) : undefined,
+        FilterForm ? generatorClientFilterForm({
+            ...props,
+            params: FilterForm,
         }) : undefined,
         Selection ? generatorClientSelection({
             ...props,
