@@ -31,5 +31,6 @@
     "TransactionFilterBaseForm.bankIds.placeholder": "Nevybrali jste žádný účet",
     "TransactionFilterBaseForm.bankIds.modal.title": "Bankovní účty",
     "selection.cancel.button": "Zpět",
+    "selection.clear.button": "Zrušit výběr",
     "selection.submit.button": "Potvrdit výběr"
 }

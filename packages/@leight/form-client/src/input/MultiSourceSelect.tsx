@@ -7,12 +7,10 @@ import {
 }                                         from "@leight/source";
 import {FulltextProvider}                 from "@leight/source-client";
 import {
-    ActionIcon,
     Button,
     Divider,
     Group,
-    Modal,
-    Stack
+    Modal
 }                                         from "@mantine/core";
 import {useDisclosure}                    from "@mantine/hooks";
 import {
@@ -35,7 +33,7 @@ export interface ISourceMultiSelectProps<TFormSchemaType extends IFormSchemaType
     SelectionContext: IMultiSelectionStoreContext<TSourceSchemaType["Dto"]>;
     SourceStore: ISourceStore<TSourceSchemaType>;
 
-    render(item: TSourceSchemaType["Dto"]): ReactNode;
+    render(items: TSourceSchemaType["Dto"][]): ReactNode;
 }
 
 export namespace ISourceMultiSelectProps {
@@ -98,23 +96,34 @@ export const SourceMultiSelect = <TFormSchemaType extends IFormSchemaType, TSour
                     <FulltextProvider>
                         <Selector
                             MultiSelectionContext={SelectionContext}
-                            onClick={item => {
-                                toggle(item);
-                            }}
+                            onClick={toggle}
                         />
                         <Divider mt={"sm"} mb={"sm"}/>
                         <Group spacing={"md"} position={"apart"}>
-                            <Button
-                                leftIcon={<IconArrowBackUp/>}
-                                variant={"subtle"}
-                                size={"lg"}
-                                onClick={() => {
-                                    cancel();
-                                    close();
-                                }}
-                            >
-                                <Translation {...withTranslation} label={"selection"} withLabel={"cancel.button"}/>
-                            </Button>
+                            <Group spacing={"sm"}>
+                                <Button
+                                    leftIcon={<IconArrowBackUp/>}
+                                    variant={"subtle"}
+                                    size={"md"}
+                                    onClick={() => {
+                                        cancel();
+                                        close();
+                                    }}
+                                >
+                                    <Translation {...withTranslation} label={"selection"} withLabel={"cancel.button"}/>
+                                </Button>
+                                <Button
+                                    leftIcon={<IconX/>}
+                                    variant={"subtle"}
+                                    size={"md"}
+                                    onClick={() => {
+                                        clear();
+                                        close();
+                                    }}
+                                >
+                                    <Translation {...withTranslation} label={"selection"} withLabel={"clear.button"}/>
+                                </Button>
+                            </Group>
                             <Button
                                 leftIcon={<IconClick/>}
                                 size={"lg"}
@@ -132,24 +141,14 @@ export const SourceMultiSelect = <TFormSchemaType extends IFormSchemaType, TSour
 
                 <InputEx
                     onClick={open}
+                    onClear={clear}
                     {...props}
                 >
                     {Object.values(items).length ? <Group
                         spacing={4}
                         align={"center"}
                     >
-                        <Stack spacing={"sm"}>
-                            {Object.values(items).map(render)}
-                        </Stack>
-                        <ActionIcon
-                            onClick={e => {
-                                e.stopPropagation();
-                                clear();
-                                onChange(undefined);
-                            }}
-                        >
-                            <IconX/>
-                        </ActionIcon>
+                        {render(Object.values(items))}
                     </Group> : null}
                 </InputEx>
             </>;

@@ -5,13 +5,18 @@ import {
 import {Translation} from "@leight/i18n-client";
 import {WithIcon}    from "@leight/mantine";
 import {
+    ActionIcon,
     Box,
+    Grid,
     Group,
     Loader,
     Stack,
     Text
 }                    from "@mantine/core";
-import {IconClick}   from "@tabler/icons-react";
+import {
+    IconClick,
+    IconX
+}                    from "@tabler/icons-react";
 import {
     type ComponentProps,
     type ReactNode
@@ -27,6 +32,8 @@ export interface IInputExProps<TFormSchemaType extends IFormSchemaType> extends 
     withAsterisk?: boolean;
     isLoading?: boolean;
     onClick?: ComponentProps<typeof Group>["onClick"];
+
+    onClear?(): void;
 }
 
 export const InputEx = <TFormSchemaType extends IFormSchemaType>(
@@ -40,11 +47,12 @@ export const InputEx = <TFormSchemaType extends IFormSchemaType>(
         children,
         isLoading = false,
         onClick,
+        onClear,
         ...props
     }: IInputExProps<TFormSchemaType>
 ) => {
     const {MantineContext: {useFormContext}, withTranslation} = FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
-    const {error}                                             = useFormContext().getInputProps(path);
+    const {onChange, error}                                   = useFormContext().getInputProps(path);
     return <Box
         mt={"md"}
         {...props}
@@ -56,32 +64,52 @@ export const InputEx = <TFormSchemaType extends IFormSchemaType>(
                 <Label withTranslation={withTranslation} withAsterisk={withAsterisk} label={label}/>
                 <Description withTranslation={withTranslation} description={description}/>
             </Stack>
-            <Group
+            <Grid
                 onClick={onClick}
                 sx={onClick ? {cursor: "pointer"} : undefined}
                 align={"center"}
-                spacing={4}
             >
-                <WithIcon
-                    variant={"subtle"}
-                    c={"gray"}
-                    icon={<IconClick/>}
-                />
-                <Stack
-                    spacing={0}
+                <Grid.Col
+                    span={"content"}
                 >
-                    <Text
-                        fw={"500"}
+                    <WithIcon
+                        variant={"subtle"}
+                        c={"gray"}
+                        icon={<IconClick/>}
+                    />
+                </Grid.Col>
+                <Grid.Col
+                    span={10}
+                >
+                    <Stack
+                        spacing={0}
                     >
-                        {isLoading ? <Loader variant={"dots"}/> : (children || <Text
-                            c={"dimmed"}
+                        <Text
+                            fw={"500"}
                         >
-                            <Translation {...withTranslation} withLabel={placeholder}/>
-                        </Text>)}
-                    </Text>
-                    <Error error={error}/>
-                </Stack>
-            </Group>
+                            {isLoading ? <Loader variant={"dots"}/> : (children || <Text
+                                c={"dimmed"}
+                            >
+                                <Translation {...withTranslation} withLabel={placeholder}/>
+                            </Text>)}
+                        </Text>
+                        <Error error={error}/>
+                    </Stack>
+                </Grid.Col>
+                {children ? <Grid.Col
+                    span={"content"}
+                >
+                    <ActionIcon
+                        onClick={e => {
+                            e.stopPropagation();
+                            onClear?.();
+                            onChange(undefined);
+                        }}
+                    >
+                        <IconX/>
+                    </ActionIcon>
+                </Grid.Col> : null}
+            </Grid>
         </Stack>
     </Box>;
 };

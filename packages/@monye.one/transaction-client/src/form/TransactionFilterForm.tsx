@@ -1,4 +1,7 @@
-import {Text}                                  from "@mantine/core";
+import {
+    Badge,
+    Group
+}                                              from "@mantine/core";
 import {
     BankMultiSelection,
     BankMultiSourceSelect,
@@ -41,7 +44,14 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
                         onClick={onClick}
                     />
                 </BankQueryProvider>}
-                render={bank => <Text key={bank.id} size={"sm"}>{bank.account}</Text>}
+                render={items => <Group spacing={2}>
+                    {items.map(bank => <Badge
+                        key={bank.id}
+                        size={"lg"}
+                    >
+                        {bank.account}
+                    </Badge>)}
+                </Group>}
             />,
         })}
         submitProps={{

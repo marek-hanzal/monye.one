@@ -73,13 +73,19 @@ export const createMultiSelectionStore = <TItem extends IWithIdentity>(
                 if ($item) {
                     delete $items[item.id];
                 }
-                set({selection: $items});
+                set({
+                    selection: $items,
+                });
             },
             clear() {
                 set({items: {}, selection: {}});
             },
             commit() {
-                set(state => ({items: state.selection}));
+                set(state => ({
+                    items: {
+                        ...state.selection,
+                    }
+                }));
             },
             cancel() {
                 set({selection: {}});
