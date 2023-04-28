@@ -21,7 +21,9 @@ export interface ITransactionFilterFormProps extends Omit<ITransactionBaseFilter
 
 export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
     return <TransactionBaseFilterForm
-        toRequest={value => value}
+        toRequest={({values}) => ({
+
+        })}
         inputs={() => ({
             "bankIds": ({mandatory, withLabelPlaceholder, withDescription}) => <BankMultiSourceSelect<ITransactionFilterFormSchemaType>
                 {...mandatory}
