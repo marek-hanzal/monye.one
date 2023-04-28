@@ -26,6 +26,7 @@ import {Error}       from "./Error";
 import {Label}       from "./Label";
 
 export interface IInputExProps<TFormSchemaType extends IFormSchemaType> extends Omit<ComponentProps<typeof Box<"div">>, "placeholder" | "onClick">, IFormInputs.IInputProps<TFormSchemaType> {
+    icon?: ReactNode;
     label?: string;
     description?: string;
     placeholder?: ReactNode;
@@ -38,6 +39,7 @@ export interface IInputExProps<TFormSchemaType extends IFormSchemaType> extends 
 
 export const InputEx = <TFormSchemaType extends IFormSchemaType>(
     {
+        icon = <IconClick/>,
         FormContext,
         path,
         withAsterisk,
@@ -75,7 +77,7 @@ export const InputEx = <TFormSchemaType extends IFormSchemaType>(
                     <WithIcon
                         variant={"subtle"}
                         c={"gray"}
-                        icon={<IconClick/>}
+                        icon={icon}
                     />
                 </Grid.Col>
                 <Grid.Col

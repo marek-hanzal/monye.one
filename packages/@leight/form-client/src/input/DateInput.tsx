@@ -9,25 +9,20 @@ import {
 import {DateTime}      from "@leight/i18n";
 import {
     DateInline,
-    DateTimeProvider,
-    Translation
+    DateTimeProvider
 }                      from "@leight/i18n-client";
-import {WithIcon}      from "@leight/mantine";
 import {
     Box,
-    Group,
-    Modal,
-    Stack,
-    Text
+    Modal
 }                      from "@mantine/core";
 import {useDisclosure} from "@mantine/hooks";
 import {IconCalendar}  from "@tabler/icons-react";
 import {
-    ComponentProps,
-    ReactNode
+    type ComponentProps,
+    type ReactNode
 }                      from "react";
 import {Description}   from "./Description";
-import {Error}         from "./Error";
+import {InputEx}       from "./InputEx";
 import {Label}         from "./Label";
 
 export interface IDateInputProps<TFormSchemaType extends IFormSchemaType> extends Omit<ComponentProps<typeof Box<"div">>, "placeholder">, IFormInputs.IInputProps<TFormSchemaType> {
@@ -37,86 +32,44 @@ export interface IDateInputProps<TFormSchemaType extends IFormSchemaType> extend
     withAsterisk?: boolean;
 }
 
-export const DateInput = <TFormSchemaType extends IFormSchemaType>(
-    {
-        FormContext,
-        path,
-        label,
-        description,
-        placeholder,
-        withAsterisk,
-        ...props
-    }: IDateInputProps<TFormSchemaType>) => {
+export const DateInput = <TFormSchemaType extends IFormSchemaType>(props: IDateInputProps<TFormSchemaType>) => {
     const [opened, {open, close}]                             = useDisclosure(false);
-    const {MantineContext: {useFormContext}, withTranslation} = FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
-    const {onChange, value, error}                            = useFormContext().getInputProps(path);
-    return <Box
-        mt={"md"}
-        {...props}
-    >
-        <DateTimeProvider>
-            <Modal
-                opened={opened}
-                onClose={close}
-                zIndex={501}
-                size={"50%"}
-                title={<Label
-                    withTranslation={withTranslation}
-                    label={label}
-                    withAsterisk={withAsterisk}
-                />}
+    const {MantineContext: {useFormContext}, withTranslation} = props.FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
+    const {onChange, value}                                   = useFormContext().getInputProps(props.path);
+    return <DateTimeProvider>
+        <Modal
+            opened={opened}
+            onClose={close}
+            zIndex={501}
+            size={"50%"}
+            title={<Label
+                withTranslation={withTranslation}
+                label={props.label}
+                withAsterisk={props.withAsterisk}
+            />}
+        >
+            <CalendarProvider
+                date={value ? DateTime.fromISO(value) : undefined}
             >
+                <Description withTranslation={withTranslation} description={props.description}/>
+                <Calendar
+                    onClick={({day}) => {
+                        onChange(day.day.toISODate());
+                        close();
+                    }}
+                />
+            </CalendarProvider>
+        </Modal>
 
-                <CalendarProvider
-                    date={value ? DateTime.fromISO(value) : undefined}
-                >
-                    <Description withTranslation={withTranslation} description={description}/>
-                    <Calendar
-                        onClick={({day}) => {
-                            onChange(day.day.toISODate());
-                            close();
-                        }}
-                    />
-                </CalendarProvider>
-            </Modal>
-
-            <Stack
-                spacing={"sm"}
-            >
-                <Stack spacing={1}>
-                    <Label withTranslation={withTranslation} withAsterisk={withAsterisk} label={label}/>
-                    <Description withTranslation={withTranslation} description={description}/>
-                </Stack>
-                <Group
-                    onClick={() => open()}
-                    sx={{cursor: "pointer"}}
-                    align={"center"}
-                    spacing={4}
-                >
-                    <WithIcon
-                        variant={"subtle"}
-                        c={"gray"}
-                        icon={<IconCalendar/>}
-                    />
-                    <Stack
-                        spacing={0}
-                    >
-                        <Text
-                            fw={"500"}
-                        >
-                            {value ? <DateInline
-                                date={value}
-                                options={{day: "numeric", month: "long", year: "numeric"}}
-                            /> : <Text
-                                c={"dimmed"}
-                            >
-                                <Translation {...withTranslation} withLabel={placeholder}/>
-                            </Text>}
-                        </Text>
-                        <Error error={error}/>
-                    </Stack>
-                </Group>
-            </Stack>
-        </DateTimeProvider>
-    </Box>;
+        <InputEx
+            icon={<IconCalendar/>}
+            onClick={open}
+            {...props}
+        >
+            {value ? <DateInline
+                date={value}
+                options={{day: "numeric", month: "long", year: "numeric"}}
+            /> : null}
+        </InputEx>
+    </DateTimeProvider>;
 };
