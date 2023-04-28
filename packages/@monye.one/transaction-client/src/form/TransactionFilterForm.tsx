@@ -31,7 +31,7 @@ import {
 export interface ITransactionFilterFormProps extends Omit<ITransactionBaseFilterFormProps, "toRequest" | "inputs"> {
 }
 
-export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
+export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
     return <TransactionBaseFilterForm
         withAutoClose={["filter"]}
         toRequest={({values: {from, to, rangeOf: $rangeOf, ...values}}) => {
@@ -101,12 +101,13 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
                 }}
             />,
         })}
+        {...props}
     >
         <TransactionFilterInput path={"bankIds"}/>
         <TransactionFilterInput path={"target"}/>
-        <Divider mt={"sm"}/>
+        {!props.hidden?.includes("rangeOf") && <Divider mt={"sm"}/>}
         <TransactionFilterInput path={"rangeOf"}/>
-        <Group
+        {(!props.hidden?.includes("from") || !props.hidden?.includes("to")) && <Group
             position={"apart"}
             p={"sm"}
         >
@@ -115,6 +116,6 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
                 icon={<IconArrowRight/>}
             />
             <TransactionFilterInput path={"to"}/>
-        </Group>
+        </Group>}
     </TransactionBaseFilterForm>;
 };

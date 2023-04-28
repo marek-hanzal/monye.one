@@ -1,7 +1,7 @@
 import {
     type IFormInputs,
     type IFormSchemaType,
-    IUseForm
+    type IUseForm
 }                            from "@leight/form";
 import {
     type IRangeOf,

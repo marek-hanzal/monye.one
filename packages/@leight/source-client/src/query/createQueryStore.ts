@@ -31,26 +31,24 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
                     size: 30,
                 },
             },
-            setFilter(filter, dto) {
+            setFilter(filter) {
                 set(({query}) => ({
-                    id:        generateId(),
+                    id:    generateId(),
                     filter,
-                    filterDto: dto,
-                    query:     {
+                    query: {
                         ...query,
                         filter,
                     },
                 }));
             },
-            setShallowFilter(filter, dto) {
+            setShallowFilter(filter) {
                 set(({query}) => ({
-                    id:        generateId(),
-                    filter:    {
+                    id:     generateId(),
+                    filter: {
                         ...query.filter,
                         ...filter,
                     },
-                    filterDto: dto,
-                    query:     {
+                    query:  {
                         ...query,
                         filter: {
                             ...query.filter,
@@ -58,6 +56,9 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
                         },
                     },
                 }));
+            },
+            setFilterDto(dto) {
+                set({filterDto: dto});
             },
             setSort(key, order) {
                 set(({query}) => ({

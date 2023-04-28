@@ -1,4 +1,5 @@
 import {
+    IFormFields,
     type IFormInputsFactory,
     type IFormInputsOverrideFactory,
     type IFormMapper,
@@ -31,6 +32,7 @@ import {
 import {type UseFormReturnType} from "@mantine/form";
 import {
     type ComponentProps,
+    type FC,
     type PropsWithChildren
 }                               from "react";
 import {FormStoreProvider}      from "../context";
@@ -56,6 +58,9 @@ export type IBaseFormProps<TFormSchemaType extends IFormSchemaType> = PropsWithC
      * Explicitly set default values; if not specified, "response" is used; defaultValues wins over "response"
      */
     defaultValues?: TFormSchemaType["Values"];
+
+    hidden?: IFormFields<TFormSchemaType>[];
+
     onSubmit?(props: IBaseFormProps.IOnSubmitProps<TFormSchemaType>): void;
     notification?: boolean;
     /**
@@ -66,6 +71,8 @@ export type IBaseFormProps<TFormSchemaType extends IFormSchemaType> = PropsWithC
      * If true, onSuccess also closes drawer/modal it's in (must be modal from @leight)
      */
     withAutoClose?: string[];
+
+    RenderSubmit?: FC<IBaseFormProps.IRenderSubmitProps>;
 }>
 
 export namespace IBaseFormProps {
@@ -77,6 +84,13 @@ export namespace IBaseFormProps {
          * Calls default form submit stuff
          */
         onDefaultSubmit(): void;
+    }
+
+    export interface IRenderSubmitProps {
+        /**
+         * Original submit button
+         */
+        Submit: FC;
     }
 }
 
@@ -91,6 +105,8 @@ export const BaseForm = <TFormSchemaType extends IFormSchemaType>(
         inputsOverride,
         defaultValues,
         notification = true,
+        hidden,
+        RenderSubmit,
         ...props
     }: IBaseFormProps<TFormSchemaType>) => {
     const {FormProvider, useForm} = MantineContext;
@@ -128,18 +144,20 @@ export const BaseForm = <TFormSchemaType extends IFormSchemaType>(
             FormStoreContext={FormContext}
             withTranslation={withTranslation}
             defaultValues={defaultValues}
+            hidden={hidden}
         >
             <FormInternal<TFormSchemaType>
                 form={form}
                 withTranslation={withTranslation}
                 notification={notification}
+                RenderSubmit={RenderSubmit}
                 {...props}
             />
         </FormStoreProvider>
     </FormProvider>;
 };
 
-interface IFormInternalProps<TFormSchemaType extends IFormSchemaType> extends Omit<IBaseFormProps<TFormSchemaType>, "FormContext" | "MantineContext" | "toRequest" | "inputs" | "inputsOverride"> {
+interface IFormInternalProps<TFormSchemaType extends IFormSchemaType> extends Omit<IBaseFormProps<TFormSchemaType>, "hidden" | "FormContext" | "MantineContext" | "toRequest" | "inputs" | "inputsOverride"> {
     form: UseFormReturnType<TFormSchemaType["Values"], IFormMapper<TFormSchemaType>>;
 }
 
@@ -151,6 +169,7 @@ const FormInternal = <TFormSchemaType extends IFormSchemaType>(
         submitProps,
         withAutoClose = [],
         notification,
+        RenderSubmit,
         children,
     }: IFormInternalProps<TFormSchemaType>) => {
     const {isBlock} = BlockStore.useOptionalState() || {isBlock: false};
@@ -167,6 +186,20 @@ const FormInternal = <TFormSchemaType extends IFormSchemaType>(
         });
     };
 
+    const SubmitButton = () => <Button
+        size={"lg"}
+        disabled={!form.isValid()}
+        type={"submit"}
+        loading={isBlock}
+        {...submitProps}
+    >
+        <Translation
+            {...withTranslation}
+            label={`${withTranslation.label}.submit.button`}
+        />
+    </Button>;
+    const Submit       = RenderSubmit ? () => <RenderSubmit Submit={SubmitButton}/> : SubmitButton;
+
     return <Box pos={"relative"}>
         <LoadingOverlay visible={isBlock}/>
         <form
@@ -182,18 +215,7 @@ const FormInternal = <TFormSchemaType extends IFormSchemaType>(
                 position={"center"}
                 mt={"md"}
             >
-                <Button
-                    size={"lg"}
-                    disabled={!form.isValid()}
-                    type={"submit"}
-                    loading={isBlock}
-                    {...submitProps}
-                >
-                    <Translation
-                        {...withTranslation}
-                        label={`${withTranslation.label}.submit.button`}
-                    />
-                </Button>
+                <Submit/>
             </Group>
         </form>
     </Box>;

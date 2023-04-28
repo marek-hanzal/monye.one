@@ -6,5 +6,10 @@
     "range-of.none": "Nevybráno",
     "range-of.last-week": "Předchozí týden",
     "range-of.last-month": "Minulý měsíc",
-    "range-of.last-year": "Minulý rok"
+    "range-of.last-year": "Minulý rok",
+    "range-of.current-week": "Aktuální týden",
+    "range-of.current-month": "Aktuální měsíc",
+    "range-of.current-year": "Aktuální rok",
+    "filter.close.button": "Zavřít",
+    "filter.clear.button": "Smazat"
 }

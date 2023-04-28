@@ -3,6 +3,7 @@ import {
     type IStoreProps,
     type IStorePropsType
 }                                 from "@leight/zustand";
+import {type IFormFields}         from "./IFormFields";
 import {type IFormInputs}         from "./IFormInputs";
 import {type IFormSchema}         from "./IFormSchema";
 import {type IFormSchemaType}     from "./IFormSchemaType";
@@ -15,4 +16,5 @@ export type IFormStoreProps<TFormSchemaType extends IFormSchemaType> = IStorePro
     inputsOverride?: Partial<IFormInputs<TFormSchemaType>>;
     withTranslation: IWithTranslation;
     defaultValues?: TFormSchemaType["Values"];
+    hidden?: IFormFields<TFormSchemaType>[];
 }>;

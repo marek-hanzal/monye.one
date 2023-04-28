@@ -12,9 +12,9 @@ export interface IWithInputProps<TFormSchemaType extends IFormSchemaType> extend
 }
 
 export const WithInput = <TFormSchemaType extends IFormSchemaType>({FormContext, path, ...props}: IWithInputProps<TFormSchemaType>) => {
-    const {inputs, inputOverrides}                                  = FormContext.useState(({inputs, inputOverrides}) => ({inputs, inputOverrides}));
+    const {inputs, hidden, inputOverrides}                          = FormContext.useState(({inputs, hidden, inputOverrides}) => ({inputs, hidden, inputOverrides}));
     const Input: FC<IFormInputs.IInputRenderProps<TFormSchemaType>> = inputOverrides?.[path] || inputs[path];
-    return <Box
+    return hidden?.includes(path) ? null : <Box
         {...props}
     >
         <Input

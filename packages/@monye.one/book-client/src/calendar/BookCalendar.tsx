@@ -62,7 +62,13 @@ export const BookCalendar: FC<IBookCalendarProps> = (
                 />
             </Grid.Col>
             <Grid.Col span={"content"}>
-                <TransactionFilter/>
+                <TransactionFilter
+                    hidden={[
+                        "from",
+                        "to",
+                        "rangeOf",
+                    ]}
+                />
             </Grid.Col>
         </Grid>
         <Calendar<ICalendarEventSourceSchemaType>

@@ -1,5 +1,6 @@
 import {createStoreContext}                         from "@leight/context-client";
 import {
+    type IFormFields,
     type IFormInputs,
     type IFormMapper,
     type IFormSchema,
@@ -42,6 +43,7 @@ export interface IFormStoreProviderProps<TFormSchemaType extends IFormSchemaType
     FormStoreContext: IFormStoreContext<TFormSchemaType>;
     withTranslation: IWithTranslation;
     defaultValues?: TFormSchemaType["Values"];
+    hidden?: IFormFields<TFormSchemaType>[];
 }
 
 export const FormStoreProvider = <TFormSchema extends IFormSchemaType>(
@@ -53,6 +55,7 @@ export const FormStoreProvider = <TFormSchema extends IFormSchemaType>(
         FormStoreContext,
         withTranslation,
         defaultValues,
+        hidden,
         ...props
     }: IFormStoreProviderProps<TFormSchema>) => {
     return <FormStoreContext.Provider
@@ -63,6 +66,7 @@ export const FormStoreProvider = <TFormSchema extends IFormSchemaType>(
             inputsOverride,
             withTranslation,
             defaultValues,
+            hidden,
         }}
         {...props}
     />;
