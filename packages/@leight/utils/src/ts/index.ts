@@ -32,6 +32,8 @@ export type OmitIndex<T> = {
 }
 
 export namespace KeysOf {
+    export type Keys<TObject extends object> = Extract<keyof TObject, string>;
+
     export type Paths<TObject extends object> = {
         [TKey in keyof TObject & (string | number)]:
         TObject[TKey] extends any[] ?

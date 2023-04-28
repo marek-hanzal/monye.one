@@ -25,7 +25,7 @@ import {
 }                 from "./Table";
 
 export interface ISourceTableColumn<TSourceSchemaType extends ISourceSchemaType> extends ITableColumn<TSourceSchemaType["Dto"]> {
-    readonly sort?: keyof TSourceSchemaType["Sort"];
+    sort?: keyof TSourceSchemaType["Sort"];
 }
 
 export interface ISourceTableInternalProps<

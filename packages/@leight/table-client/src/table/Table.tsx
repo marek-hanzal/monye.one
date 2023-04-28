@@ -46,11 +46,11 @@ export interface ITableColumn<TItem extends IWithIdentity = IWithIdentity> {
     /**
      * Explicitly override column title (by default column name is taken from Record<> in Table)
      */
-    readonly title?: string;
+    title?: string;
     /**
      * Specify width of a column
      */
-    readonly width?: number;
+    width?: number;
     /**
      * Mandatory render method; if you do not want to render a column, mark it as hidden on a table itself.
      */
@@ -71,19 +71,17 @@ export interface ITableColumn<TItem extends IWithIdentity = IWithIdentity> {
 }
 
 export namespace ITableColumn {
-    export type IRender<TItem extends IWithIdentity> =
-        ((props: IRenderProps<TItem>) => ReactNode)
-        | (keyof TItem)
+    export type IRender<TItem extends IWithIdentity> = (props: IRenderProps<TItem>) => ReactNode;
 
     export interface IRenderProps<TItem extends IWithIdentity> {
         item: TItem;
         highlight: string[];
     }
+
+    export type IItem<T> = T extends ITableColumn<infer U> ? U : T;
 }
 
 export type ITableColumns<TColumn extends ITableColumn, TColumnKeys extends string> = Record<TColumnKeys, TColumn>;
-
-type InferItem<T> = T extends ITableColumn<infer U> ? U : T;
 
 export interface ITableInternalProps<TColumn extends ITableColumn, TColumnKeys extends string> extends Partial<Omit<ComponentProps<typeof CoolTable>, "hidden" | "onClick">> {
     /**
@@ -117,7 +115,7 @@ export interface ITableInternalProps<TColumn extends ITableColumn, TColumnKeys e
     /**
      * Data of the table.
      */
-    items?: InferItem<TColumn>[];
+    items?: ITableColumn.IItem<TColumn>[];
     highlight?: string[];
 
     disableActions?: boolean;
@@ -134,9 +132,9 @@ export interface ITableInternalProps<TColumn extends ITableColumn, TColumnKeys e
     renderPrefix?: ITableInternalProps.IRenderPrefix<TColumn>;
     renderFooter?: ITableInternalProps.IRenderFooter<TColumn>;
 
-    MultiSelectionContext?: IMultiSelectionStoreContext<InferItem<TColumn>>;
+    MultiSelectionContext?: IMultiSelectionStoreContext<ITableColumn.IItem<TColumn>>;
 
-    onClick?(item: InferItem<TColumn>): void;
+    onClick?(item: ITableColumn.IItem<TColumn>): void;
 }
 
 export namespace ITableInternalProps {
@@ -144,21 +142,21 @@ export namespace ITableInternalProps {
     export type IRenderFooter<TColumn extends ITableColumn> = (props: IRenderFooterProps<TColumn>) => ReactNode;
 
     export interface IRenderPrefixProps<TColumn extends ITableColumn> {
-        items: InferItem<TColumn>[];
+        items: ITableColumn.IItem<TColumn>[];
         columns?: TColumn[];
     }
 
     export interface IRenderFooterProps<TColumn extends ITableColumn> {
-        items: InferItem<TColumn>[];
+        items: ITableColumn.IItem<TColumn>[];
         columns?: TColumn[];
     }
 
     export interface IWithTableActionProps<TColumn extends ITableColumn> {
-        items?: InferItem<TColumn>[];
+        items?: ITableColumn.IItem<TColumn>[];
     }
 
     export interface IWithRowActionProps<TColumn extends ITableColumn> {
-        item: InferItem<TColumn>;
+        item: ITableColumn.IItem<TColumn>;
     }
 }
 
@@ -279,10 +277,10 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
                                 style={onClick ? {cursor: "pointer"} : undefined}
                                 onClick={() => onClick?.(item)}
                             >
-                                {isCallable(column.render) ? column.render({
+                                {column.render({
                                     item,
                                     highlight: isString(highlight) ? [highlight] : highlight,
-                                }) : (item as any)[column.render]}
+                                })}
                             </td>)}
                         </tr>)}
                 </tbody>
