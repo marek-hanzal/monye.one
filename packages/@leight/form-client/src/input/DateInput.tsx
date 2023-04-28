@@ -4,7 +4,8 @@ import {
 }                      from "@leight/calendar-client";
 import {
     type IFormInputs,
-    type IFormSchemaType
+    type IFormSchemaType,
+    IUseForm
 }                      from "@leight/form";
 import {DateTime}      from "@leight/i18n";
 import {
@@ -25,17 +26,32 @@ import {Description}   from "./Description";
 import {InputEx}       from "./InputEx";
 import {Label}         from "./Label";
 
-export interface IDateInputProps<TFormSchemaType extends IFormSchemaType> extends Omit<ComponentProps<typeof Box<"div">>, "placeholder">, IFormInputs.IInputProps<TFormSchemaType> {
+export interface IDateInputProps<TFormSchemaType extends IFormSchemaType> extends Omit<ComponentProps<typeof Box<"div">>, "placeholder" | "onChange">, IFormInputs.IInputProps<TFormSchemaType> {
     label?: string;
     description?: string;
     placeholder?: ReactNode;
     withAsterisk?: boolean;
+
+    onChange?(props: IDateInputProps.IOnChangeProps<TFormSchemaType>): void;
 }
 
-export const DateInput = <TFormSchemaType extends IFormSchemaType>(props: IDateInputProps<TFormSchemaType>) => {
+export namespace IDateInputProps {
+    export interface IOnChangeProps<TFormSchemaType extends IFormSchemaType> {
+        date: DateTime;
+        iso: string;
+        form: IUseForm<TFormSchemaType>;
+    }
+}
+
+export const DateInput = <TFormSchemaType extends IFormSchemaType>(
+    {
+        onChange: $onChange,
+        ...       props
+    }: IDateInputProps<TFormSchemaType>) => {
     const [opened, {open, close}]                             = useDisclosure(false);
     const {MantineContext: {useFormContext}, withTranslation} = props.FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
-    const {onChange, value}                                   = useFormContext().getInputProps(props.path);
+    const form                                                = useFormContext();
+    const {onChange, value}                                   = form.getInputProps(props.path);
     return <DateTimeProvider>
         <Modal
             opened={opened}
@@ -55,6 +71,11 @@ export const DateInput = <TFormSchemaType extends IFormSchemaType>(props: IDateI
                 <Calendar
                     onClick={({day}) => {
                         onChange(day.day.toISODate());
+                        $onChange?.({
+                            date: day.day,
+                            iso:  String(day.day.toISODate()),
+                            form,
+                        });
                         close();
                     }}
                 />

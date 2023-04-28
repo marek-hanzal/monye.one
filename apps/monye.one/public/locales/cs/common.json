@@ -2,5 +2,9 @@
     "actions.label": "Akce",
     "form.error.Required": "Požadované políčko",
     "actions.danger.label": "Nebezpečné akce",
-    "cancel.button": "Zrušit"
+    "cancel.button": "Zrušit",
+    "range-of.none": "Nevybráno",
+    "range-of.last-week": "Předchozí týden",
+    "range-of.last-month": "Minulý měsíc",
+    "range-of.last-year": "Minulý rok"
 }

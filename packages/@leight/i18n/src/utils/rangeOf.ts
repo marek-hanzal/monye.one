@@ -1,15 +1,17 @@
 import {DateTime} from "luxon";
 
 export type IRangeOfList =
-    "last-week"
+    "none"
+    | "last-week"
     | "last-month"
     | "last-year";
 
 export interface IRangeOfProps {
-    range: IRangeOfList;
+    range?: string;
 }
 
 export const RangeOfList: IRangeOfList[] = [
+    "none",
     "last-week",
     "last-month",
     "last-year",
@@ -23,7 +25,7 @@ export interface IRangeOf {
 export const rangeOf = (
     {
         range,
-    }: IRangeOfProps): IRangeOf => {
+    }: IRangeOfProps): IRangeOf | undefined => {
     const now = DateTime.now();
     switch (range) {
         case "last-week": {

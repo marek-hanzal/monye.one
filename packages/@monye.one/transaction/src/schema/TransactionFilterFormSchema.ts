@@ -11,6 +11,7 @@ export const TransactionFilterFormSchema = withFormSchema({
         target:  z.string().optional(),
         from:    z.string().optional(),
         to:      z.string().optional(),
+        rangeOf: z.string().optional(),
     }),
     RequestSchema: TransactionSourceSchema.FilterSchema,
 });

@@ -1,8 +1,13 @@
 import {
     DateInput,
+    RangeOfInput,
     TextInput
 }                                              from "@leight/form-client";
-import {wrapJsDate}                            from "@leight/i18n";
+import {
+    rangeOf,
+    wrapJsDate
+}                                              from "@leight/i18n";
+import {WithIcon}                              from "@leight/mantine";
 import {
     Badge,
     Divider,
@@ -15,9 +20,10 @@ import {
     BankTable
 }                                              from "@monye.one/bank-client";
 import {type ITransactionFilterFormSchemaType} from "@monye.one/transaction";
+import {IconArrowRight}                        from "@tabler/icons-react";
 import {type FC}                               from "react";
 import {
-    type     ITransactionBaseFilterFormProps,
+    type ITransactionBaseFilterFormProps,
     TransactionBaseFilterForm,
     TransactionFilterInput
 }                                              from "../sdk";
@@ -28,11 +34,14 @@ export interface ITransactionFilterFormProps extends Omit<ITransactionBaseFilter
 export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
     return <TransactionBaseFilterForm
         withAutoClose={["filter"]}
-        toRequest={({values: {from, to, ...values}}) => ({
-            ...values,
-            from: wrapJsDate(from),
-            to:   wrapJsDate(to),
-        })}
+        toRequest={({values: {from, to, rangeOf: $rangeOf, ...values}}) => {
+            const range = rangeOf({range: $rangeOf});
+            return {
+                ...values,
+                from: range?.from ? range.from.toJSDate() : wrapJsDate(from),
+                to:   range?.to ? range.to.toJSDate() : wrapJsDate(to),
+            };
+        }}
         inputs={() => ({
             "bankIds": ({mandatory, withLabelPlaceholder, withDescription}) => <BankMultiSourceSelect<ITransactionFilterFormSchemaType>
                 {...mandatory}
@@ -68,21 +77,43 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
                 {...mandatory}
                 {...withLabelPlaceholder}
                 {...withDescription}
+                onChange={({form}) => {
+                    form.setValues({rangeOf: "none"});
+                }}
             />,
             "to":      ({mandatory, withLabelPlaceholder, withDescription}) => <DateInput
                 {...mandatory}
                 {...withLabelPlaceholder}
                 {...withDescription}
+                onChange={({form}) => {
+                    form.setValues({rangeOf: "none"});
+                }}
+            />,
+            "rangeOf": ({mandatory, withLabelPlaceholder, withDescription}) => <RangeOfInput
+                {...mandatory}
+                {...withLabelPlaceholder}
+                {...withDescription}
+                onRange={({form}) => {
+                    form.setValues({
+                        from: undefined,
+                        to:   undefined,
+                    });
+                }}
             />,
         })}
     >
         <TransactionFilterInput path={"bankIds"}/>
         <TransactionFilterInput path={"target"}/>
-        <Divider mt={"sm"} mb={"sm"}/>
+        <Divider mt={"sm"}/>
+        <TransactionFilterInput path={"rangeOf"}/>
         <Group
             position={"apart"}
+            p={"sm"}
         >
             <TransactionFilterInput path={"from"}/>
+            <WithIcon
+                icon={<IconArrowRight/>}
+            />
             <TransactionFilterInput path={"to"}/>
         </Group>
     </TransactionBaseFilterForm>;

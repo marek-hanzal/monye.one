@@ -1,11 +1,11 @@
-import {type IWithTranslation} from "@leight/i18n";
+import {type IWithTranslation}  from "@leight/i18n";
 import {
     Drawer,
     DrawerButton,
     DrawerStoreProvider
-}                              from "@leight/mantine";
-import {IconFilter}            from "@tabler/icons-react";
-import {PropsWithChildren}     from "react";
+}                               from "@leight/mantine";
+import {IconFilter}             from "@tabler/icons-react";
+import {type PropsWithChildren} from "react";
 
 export type IBaseFilterProps = PropsWithChildren<{
     withTranslation?: IWithTranslation;
