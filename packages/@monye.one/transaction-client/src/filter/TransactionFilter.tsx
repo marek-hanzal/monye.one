@@ -10,6 +10,9 @@ export interface ITransactionFilterProps extends Omit<IBaseFilterProps, "Form"> 
 
 export const TransactionFilter: FC<ITransactionFilterProps> = props => {
     return <BaseFilter
+        withTranslation={{
+            namespace: "transaction",
+        }}
         {...props}
     >
         <TransactionFilterForm/>

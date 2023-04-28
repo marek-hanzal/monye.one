@@ -29,11 +29,7 @@ export const TransactionTable: FC<ITransactionTableProps> = props => {
             namespace: "transaction",
         }}
         scrollWidth={2400}
-        filter={<TransactionFilter
-            withTranslation={{
-                namespace: "transaction",
-            }}
-        />}
+        filter={<TransactionFilter/>}
         columns={{
             date:      {
                 width: 8,

@@ -4,11 +4,15 @@ import {
 }                                 from "@leight/calendar-client";
 import {Fulltext}                 from "@leight/mantine";
 import {FulltextStoreContext}     from "@leight/source-client";
+import {Grid}                     from "@mantine/core";
 import {
     CalendarEventSourceSchema,
     type ICalendarEventSourceSchemaType
 }                                 from "@monye.one/book";
-import {TransactionSourceStore}   from "@monye.one/transaction-client";
+import {
+    TransactionFilter,
+    TransactionSourceStore
+}                                 from "@monye.one/transaction-client";
 import {
     type FC,
     useEffect
@@ -47,14 +51,20 @@ export const BookCalendar: FC<IBookCalendarProps> = (
     }, [fulltextStore?.fulltext]);
 
     return <>
-        <Fulltext
-            SourceStore={TransactionSourceStore}
-            withTranslation={{
-                namespace: "book",
-                label:     "calendar",
-            }}
-            mt={"sm"}
-        />
+        <Grid align={"center"} mt={"sm"}>
+            <Grid.Col span={"auto"}>
+                <Fulltext
+                    SourceStore={TransactionSourceStore}
+                    withTranslation={{
+                        namespace: "book",
+                        label:     "calendar",
+                    }}
+                />
+            </Grid.Col>
+            <Grid.Col span={"content"}>
+                <TransactionFilter/>
+            </Grid.Col>
+        </Grid>
         <Calendar<ICalendarEventSourceSchemaType>
             events={{
                 schema:      CalendarEventSourceSchema["DtoSchema"],
