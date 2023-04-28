@@ -4,7 +4,7 @@ import {
     IUseForm
 }                            from "@leight/form";
 import {
-    IRangeOf,
+    type IRangeOf,
     rangeOf,
     RangeOfList
 }                            from "@leight/i18n";
