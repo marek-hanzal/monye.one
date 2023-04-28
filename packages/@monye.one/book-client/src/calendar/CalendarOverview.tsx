@@ -47,11 +47,25 @@ export interface ICalendarOverviewProps {
 }
 
 export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
-    const [tab, setTab]                                                  = useState<string | null>("calendar");
-    const {fulltext}                                                     = FulltextStoreContext.useState(({fulltext}) => ({fulltext}));
-    const {weeks}                                                        = WeeksOfStore.useState(({weeks}) => ({weeks}));
-    const {transactionFilterId, transactionFilter, setTransactionFilter} = TransactionSourceStore.Query.useState(({id, filter, setShallowFilter}) => ({transactionFilterId: id, transactionFilter: filter, setTransactionFilter: setShallowFilter}));
-    const {setCalendarEventShallowFilter}                                = CalendarEventSourceStore.Query.useState(({setShallowFilter}) => ({setCalendarEventShallowFilter: setShallowFilter}));
+    const [tab, setTab]                   = useState<string | null>("calendar");
+    const {fulltext}                      = FulltextStoreContext.useState(({fulltext}) => ({fulltext}));
+    const {weeks}                         = WeeksOfStore.useState(({weeks}) => ({weeks}));
+    const {
+              transactionFilterId,
+              transactionFilter,
+              setTransactionFilter,
+          }                               = TransactionSourceStore.Query.useState((
+        {
+            id,
+            filter,
+            setShallowFilter,
+        }) => (
+        {
+            transactionFilterId:  id,
+            transactionFilter:    filter,
+            setTransactionFilter: setShallowFilter,
+        }));
+    const {setCalendarEventShallowFilter} = CalendarEventSourceStore.Query.useState(({setShallowFilter}) => ({setCalendarEventShallowFilter: setShallowFilter}));
 
     const $setFilter = useCallback(({fulltext, range: {from, to}, withIncome = false, withOutcome = false}: IFilterRange) => {
         setTransactionFilter({
