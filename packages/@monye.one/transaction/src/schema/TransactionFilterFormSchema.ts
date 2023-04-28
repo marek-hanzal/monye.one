@@ -8,6 +8,9 @@ import {TransactionSourceSchema} from "./TransactionSourceSchema";
 export const TransactionFilterFormSchema = withFormSchema({
     ValuesSchema:  z.object({
         bankIds: z.array(z.string()).optional(),
+        target:  z.string().optional(),
+        from:    z.string().optional(),
+        to:      z.string().optional(),
     }),
     RequestSchema: TransactionSourceSchema.FilterSchema,
 });

@@ -14,9 +14,6 @@ export interface IBankCreateForm extends Omit<IBankCreateBaseFormProps, "toReque
 export const BankCreateForm: FC<IBankCreateForm> = props => {
     return <BankCreateTrpcForm
         toRequest={({values}) => values}
-        onSuccess={({dto}) => {
-            console.log("Success: BankCreateTrpcForm", dto);
-        }}
         inputs={BankCreateFormInputFactory}
         defaultValues={{
             account: "",

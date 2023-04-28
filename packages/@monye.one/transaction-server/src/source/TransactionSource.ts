@@ -74,6 +74,9 @@ export class TransactionSource extends TransactionBasePrismaSource {
                   fulltext,
                   bankId,
                   bankIds,
+                  target,
+                  from,
+                  to,
               }         = filter;
         const $fulltext = keywordsOf(fulltext);
         if ($fulltext) {
@@ -88,7 +91,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                                             text: {
                                                 contains: item,
                                                 mode:     "insensitive",
-                                            }
+                                            },
                                         }
                                     },
                                 },
@@ -106,6 +109,22 @@ export class TransactionSource extends TransactionBasePrismaSource {
                 },
                 {
                     date: {lte: withRange.to},
+                },
+            ].filter(Boolean)) : [];
+        }
+
+        if (from) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    date: {gte: from},
+                },
+            ].filter(Boolean)) : [];
+        }
+
+        if (to) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    date: {lte: to},
                 },
             ].filter(Boolean)) : [];
         }
@@ -134,6 +153,17 @@ export class TransactionSource extends TransactionBasePrismaSource {
             where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
                 {
                     bankId,
+                }
+            ]) : [];
+        }
+
+        if (target) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    target: {
+                        contains: target,
+                        mode:     "insensitive",
+                    },
                 }
             ]) : [];
         }

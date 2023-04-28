@@ -1,5 +1,11 @@
 import {
+    DateInput,
+    TextInput
+}                                              from "@leight/form-client";
+import {wrapJsDate}                            from "@leight/i18n";
+import {
     Badge,
+    Divider,
     Group
 }                                              from "@mantine/core";
 import {
@@ -22,7 +28,11 @@ export interface ITransactionFilterFormProps extends Omit<ITransactionBaseFilter
 export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
     return <TransactionBaseFilterForm
         withAutoClose={["filter"]}
-        toRequest={({values}) => values}
+        toRequest={({values: {from, to, ...values}}) => ({
+            ...values,
+            from: wrapJsDate(from),
+            to:   wrapJsDate(to),
+        })}
         inputs={() => ({
             "bankIds": ({mandatory, withLabelPlaceholder, withDescription}) => <BankMultiSourceSelect<ITransactionFilterFormSchemaType>
                 {...mandatory}
@@ -49,8 +59,31 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
                     </Badge>)}
                 </Group>}
             />,
+            "target":  ({mandatory, withLabelPlaceholder, withDescription}) => <TextInput
+                {...mandatory}
+                {...withLabelPlaceholder}
+                {...withDescription}
+            />,
+            "from":    ({mandatory, withLabelPlaceholder, withDescription}) => <DateInput
+                {...mandatory}
+                {...withLabelPlaceholder}
+                {...withDescription}
+            />,
+            "to":      ({mandatory, withLabelPlaceholder, withDescription}) => <DateInput
+                {...mandatory}
+                {...withLabelPlaceholder}
+                {...withDescription}
+            />,
         })}
     >
         <TransactionFilterInput path={"bankIds"}/>
+        <TransactionFilterInput path={"target"}/>
+        <Divider mt={"sm"} mb={"sm"}/>
+        <Group
+            position={"apart"}
+        >
+            <TransactionFilterInput path={"from"}/>
+            <TransactionFilterInput path={"to"}/>
+        </Group>
     </TransactionBaseFilterForm>;
 };

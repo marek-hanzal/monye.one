@@ -3,8 +3,6 @@ const supported = [
     "en",
     "cs",
     "cs-CZ",
-    "sk",
-    "sk-SK",
     "en-US",
     "en-GB",
 ];

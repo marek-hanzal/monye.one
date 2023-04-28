@@ -37,4 +37,4 @@ export const TransactionBaseFilterForm: FC<ITransactionBaseFilterFormProps> = pr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_sugrz0hjv99jo0h9w871d5f1 = true;
+export const $leight_c65o4fudb8g1kg7xe9dhr3hb = true;

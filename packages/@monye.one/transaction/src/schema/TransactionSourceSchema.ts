@@ -26,6 +26,7 @@ export const TransactionSourceSchema = withSourceSchema({
     PatchSchema:    TransactionPartialSchema.merge(PatchSchema),
     FilterSchema:   FilterSchema.merge(z.object({
         bankId:           z.string().optional(),
+        target:           z.string().optional(),
         bankIds:          z.array(z.string()).optional(),
         userId_reference: z.object({
             userId:    z.string(),
@@ -37,6 +38,8 @@ export const TransactionSourceSchema = withSourceSchema({
         }).optional(),
         withIncome:       z.boolean().optional(),
         withOutcome:      z.boolean().optional(),
+        from:             z.date().optional(),
+        to:               z.date().optional(),
     })),
     SortSchema:     z.object({
         date:      SortOrderSchema,

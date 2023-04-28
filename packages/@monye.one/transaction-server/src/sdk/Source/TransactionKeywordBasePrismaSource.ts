@@ -104,4 +104,4 @@ export class TransactionKeywordBasePrismaSource extends AbstractSourceEx<ITransa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rxc2cps379w66zrcyrojdnss = true;
+export const $leight_kzh5kij8cda27h7lfl5vryjl = true;

@@ -19,7 +19,7 @@ export const BaseFilter = (
     return <DrawerStoreProvider>
         <Drawer
             drawerId={"filter"}
-            size={"lg"}
+            size={"xl"}
             withTranslation={{
                 ...withTranslation,
                 label: withTranslation?.label || "drawer",
