@@ -1,3 +1,4 @@
+import {Text}                                  from "@mantine/core";
 import {
     BankMultiSelection,
     BankMultiSourceSelect,
@@ -24,7 +25,7 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
             onDefaultSubmit();
         }}
         inputs={() => ({
-            "bankId": ({mandatory, withLabelPlaceholder, withDescription}) => <BankMultiSourceSelect<ITransactionFilterFormSchemaType>
+            "bankIds": ({mandatory, withLabelPlaceholder, withDescription}) => <BankMultiSourceSelect<ITransactionFilterFormSchemaType>
                 {...mandatory}
                 {...withLabelPlaceholder}
                 {...withDescription}
@@ -40,13 +41,13 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = () => {
                         onClick={onClick}
                     />
                 </BankQueryProvider>}
-                render={bank => bank.account}
+                render={bank => <Text key={bank.id} size={"sm"}>{bank.account}</Text>}
             />,
         })}
         submitProps={{
             leftIcon: <IconFilter/>,
         }}
     >
-        <TransactionFilterInput path={"bankId"}/>
+        <TransactionFilterInput path={"bankIds"}/>
     </TransactionFilterBaseForm>;
 };

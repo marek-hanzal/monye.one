@@ -64,7 +64,7 @@ export const createMultiSelectionStore = <TItem extends IWithIdentity>(
                 });
             },
             isSelected(item): boolean {
-                return !!get().items[item.id] || !!get().selection[item.id];
+                return !!get().selection[item.id];
             },
             toggle(item): void {
                 const $items    = get().selection;
