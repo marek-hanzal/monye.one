@@ -29,20 +29,20 @@ const useStyles = createStyles(theme => ({
     table: {
         "&[data-striped] tbody tr.selection":                  {
             backgroundColor: withPrimaryColor(theme, -5),
-            '&:hover': {
+            "&:hover":       {
                 backgroundColor: withPrimaryColor(theme, -6),
             },
         },
         "&[data-striped] tbody tr.selection:nth-of-type(odd)": {
             backgroundColor: withPrimaryColor(theme, -4),
-            '$:hover': {
+            "$:hover":       {
                 backgroundColor: withPrimaryColor(theme, -3),
             },
         },
     },
 }));
 
-export interface ITableColumn<TItem = IWithIdentity> {
+export interface ITableColumn<TItem extends IWithIdentity = IWithIdentity> {
     /**
      * Explicitly override column title (by default column name is taken from Record<> in Table)
      */
@@ -71,11 +71,11 @@ export interface ITableColumn<TItem = IWithIdentity> {
 }
 
 export namespace ITableColumn {
-    export type IRender<TItem = any> =
+    export type IRender<TItem extends IWithIdentity> =
         ((props: IRenderProps<TItem>) => ReactNode)
         | (keyof TItem)
 
-    export interface IRenderProps<TItem = any> {
+    export interface IRenderProps<TItem extends IWithIdentity> {
         item: TItem;
         highlight: string[];
     }

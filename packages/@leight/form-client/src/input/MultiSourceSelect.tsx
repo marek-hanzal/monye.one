@@ -84,14 +84,18 @@ export const SourceMultiSelect = <TFormSchemaType extends IFormSchemaType, TSour
         return prev;
     }, {} as Record<string, TSourceSchemaType["Dto"]>) : {};
 
-    return value && entity.isLoading ? <Loader/> : (entity.isSuccess ? <SelectionContext.Provider
+    return entity.isLoading ? <Loader/> : (entity.isSuccess ? <SelectionContext.Provider
         defaults={{
             items: selection,
             selection,
         }}
     >
-        {({store}) => {
-            const {items, selection, cancel, clear, commit, toggle} = store.getState();
+        {() => {
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            const {items, selection, cancel, clear, commit, toggle} = SelectionContext.useState();
+
+            console.log("State", items, selection);
+
             return <>
                 <Box
                     mt={"md"}
@@ -172,7 +176,7 @@ export const SourceMultiSelect = <TFormSchemaType extends IFormSchemaType, TSour
                                         spacing={4}
                                         align={"center"}
                                     >
-                                        <Group spacing={2}>
+                                        <Group spacing={"sm"}>
                                             {Object.values(items).map(render)}
                                         </Group>
                                         <ActionIcon

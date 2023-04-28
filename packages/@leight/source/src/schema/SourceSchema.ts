@@ -12,11 +12,11 @@ export const WithOptionalIdentitySchema = z.object({
 export type IWithOptionalIdentitySchema = typeof WithOptionalIdentitySchema;
 export type IWithOptionalIdentity = z.infer<IWithOptionalIdentitySchema>;
 
-export const EntitySchema = z.object({}).merge(WithIdentitySchema);
+export const EntitySchema = WithIdentitySchema;
 export type IEntitySchema = typeof EntitySchema;
 export type IEntity = z.infer<IEntitySchema>;
 
-export const DtoSchema = z.object({}).merge(WithIdentitySchema);
+export const DtoSchema = WithIdentitySchema;
 export type IDtoSchema = typeof DtoSchema;
 export type IDto = z.infer<IDtoSchema>;
 
