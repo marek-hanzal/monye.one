@@ -30,12 +30,14 @@
         "cleanup:lib": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
+        "@leight/filter": "^0.5.0",
         "@leight/form": "^0.5.2",
         "@leight/form-client": "^0.5.3",
         "@leight/i18n": "^0.5.72",
         "@leight/i18n-client": "^0.5.72",
         "@leight/mantine": "^0.5.76",
         "@leight/source": "^0.5.66",
+        "@leight/source-client": "^0.5.0",
         "@mantine/core": "^6.0.9",
         "@mantine/hooks": "^6.0.9",
         "@tabler/icons-react": "^2.17.0",

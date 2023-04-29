@@ -24,9 +24,15 @@ export const FilterSourceSchema = withSourceSchema({
         filter: InputJsonValue.nullable(),
         dto:    JsonValue.nullable().optional(),
     })),
-    ToCreateSchema: FilterOptionalDefaultsSchema,
+    ToCreateSchema: FilterOptionalDefaultsSchema.merge(z.object({
+        filter: InputJsonValue.nullable(),
+        dto:    JsonValue.nullable().optional(),
+    })),
     CreateSchema:   FilterOptionalDefaultsSchema,
-    ToPatchSchema:  FilterPartialSchema.merge(PatchSchema),
+    ToPatchSchema:  FilterPartialSchema.merge(PatchSchema).merge(z.object({
+        filter: InputJsonValue.nullable(),
+        dto:    JsonValue.nullable().optional(),
+    })),
     PatchSchema:    FilterPartialSchema.merge(PatchSchema),
     FilterSchema:   FilterSchema.merge(z.object({
         type: z.string().optional(),

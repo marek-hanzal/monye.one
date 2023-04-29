@@ -1,26 +1,10 @@
 import {type IFormSchemaType} from "@leight/form";
-import {
-    BaseForm,
-    type IBaseFormProps
-}                             from "@leight/form-client";
-import {Translation}          from "@leight/i18n-client";
-import {
-    DrawerStore,
-    ModalStore
-}                             from "@leight/mantine";
-import {
-    type ISourceSchemaType,
-    type ISourceStore
-}                             from "@leight/source";
-import {
-    Button,
-    Group
-}                             from "@mantine/core";
-import {
-    IconFilter,
-    IconFilterX,
-    IconX
-}                             from "@tabler/icons-react";
+import {BaseForm, type IBaseFormProps} from "@leight/form-client";
+import {Translation} from "@leight/i18n-client";
+import {DrawerStore, ModalStore} from "@leight/mantine";
+import {type ISourceSchemaType, type ISourceStore} from "@leight/source";
+import {Button, Group} from "@mantine/core";
+import {IconFilter, IconFilterX, IconX} from "@tabler/icons-react";
 
 export interface IBaseFilterFormProps<TFormSchemaType extends IFormSchemaType, TSourceSchemaType extends ISourceSchemaType> extends IBaseFormProps<TFormSchemaType> {
     SourceStore: ISourceStore<TSourceSchemaType>;
@@ -32,7 +16,7 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
         ...props
     }: IBaseFilterFormProps<TFormSchemaType, TSourceSchemaType>
 ) => {
-    const modalContext  = ModalStore.useOptionalState();
+    const modalContext = ModalStore.useOptionalState();
     const drawerContext = DrawerStore.useOptionalState();
 
     const withAutoClose = () => {
@@ -43,13 +27,13 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
     };
 
     const {
-              defaultValues,
-              setShallowFilter,
-              setFilter,
-              setFilterDto,
-              hasFilter,
-              setPage,
-          } = SourceStore.Query.useState((
+        defaultValues,
+        setShallowFilter,
+        setFilter,
+        setFilterDto,
+        hasFilter,
+        setPage,
+    } = SourceStore.Query.useState((
         {
             $filterDto,
             setShallowFilter,
