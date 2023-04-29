@@ -79,6 +79,8 @@ export class TransactionSource extends TransactionBasePrismaSource {
                   from,
                   to,
                   rangeOf: $rangeOf,
+                  amountFrom,
+                  amountTo,
               }         = filter;
         const $fulltext = keywordsOf(fulltext);
         if ($fulltext) {
@@ -112,7 +114,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                 {
                     date: {lte: withRange.to},
                 },
-            ].filter(Boolean)) : [];
+            ]) : [];
         }
 
         if ($rangeOf) {
@@ -125,7 +127,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                     {
                         date: {lte: $range.to.toJSDate()},
                     },
-                ].filter(Boolean)) : [];
+                ]) : [];
             }
         } else {
             if (from) {
@@ -133,7 +135,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                     {
                         date: {gte: from},
                     },
-                ].filter(Boolean)) : [];
+                ]) : [];
             }
 
             if (to) {
@@ -141,8 +143,24 @@ export class TransactionSource extends TransactionBasePrismaSource {
                     {
                         date: {lte: to},
                     },
-                ].filter(Boolean)) : [];
+                ]) : [];
             }
+        }
+
+        if (amountFrom) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    amount: {gte: amountFrom},
+                },
+            ]) : [];
+        }
+
+        if (amountTo) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    amount: {lte: amountTo},
+                },
+            ]) : [];
         }
 
         if (withIncome) {

@@ -39,6 +39,12 @@
     "TransactionBaseFilterForm.to": "Do",
     "TransactionBaseFilterForm.to.description": "Transakce do vybraného datumu, včetně",
     "TransactionBaseFilterForm.to.placeholder": "Vyberte datum",
+    "TransactionBaseFilterForm.amountFrom": "Minimální částka",
+    "TransactionBaseFilterForm.amountFrom.description": "Zadejte minimální částku",
+    "TransactionBaseFilterForm.amountFrom.placeholder": "Minimální částka",
+    "TransactionBaseFilterForm.amountTo": "Maximální částka",
+    "TransactionBaseFilterForm.amountTo.description": "Zadejte maximální částku",
+    "TransactionBaseFilterForm.amountTo.placeholder": "Maximální částka",
     "selection.cancel.button": "Zpět",
     "selection.clear.button": "Zrušit výběr",
     "selection.submit.button": "Potvrdit výběr"

@@ -3,6 +3,7 @@ import {
     type IFormSchemaType
 }                                       from "@leight/form";
 import {useTranslation}                 from "@leight/i18n-client";
+import {toHumanNumber}                  from "@leight/utils";
 import {NumberInput as CoolNumberInput} from "@mantine/core";
 import {type ComponentProps}            from "react";
 import {withDefaultInputProps}          from "../utils";
@@ -31,6 +32,7 @@ export const NumberInput = <TFormSchema extends IFormSchemaType>(
             description,
             path,
         })}
+        formatter={value => !Number.isNaN(parseFloat(value)) ? toHumanNumber({number: parseFloat(value)}) : ""}
         {...props}
     />;
 };

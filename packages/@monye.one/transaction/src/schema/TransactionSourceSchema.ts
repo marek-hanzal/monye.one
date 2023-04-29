@@ -41,6 +41,8 @@ export const TransactionSourceSchema = withSourceSchema({
         withOutcome:      z.boolean().optional(),
         from:             z.date().optional(),
         to:               z.date().optional(),
+        amountFrom:       z.number().optional(),
+        amountTo:         z.number().optional(),
     })),
     SortSchema:     z.object({
         date:      SortOrderSchema,

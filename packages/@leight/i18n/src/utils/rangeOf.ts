@@ -16,10 +16,10 @@ export interface IRangeOfProps {
 export const RangeOfList: IRangeOfList[] = [
     "none",
     "last-week",
-    "last-month",
-    "last-year",
     "current-week",
+    "last-month",
     "current-month",
+    "last-year",
     "current-year",
 ];
 
