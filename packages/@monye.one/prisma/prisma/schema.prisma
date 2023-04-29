@@ -64,6 +64,7 @@ model User {
     Job         Job[]
     File        File[]
     Bank        Bank[]
+    Filter      Filter[]
 }
 
 model VerificationToken {
@@ -166,6 +167,18 @@ model Keyword {
     text String @unique @db.Text
 
     TransactionKeyword TransactionKeyword[]
+}
+
+model Filter {
+    id     String @id @default(cuid())
+    name   String
+    type   String
+    userId String
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    filter Json
+    dto    Json?
+
+    @@unique([userId, type, name])
 }
 
 // === -----
