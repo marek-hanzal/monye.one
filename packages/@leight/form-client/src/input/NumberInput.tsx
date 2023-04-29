@@ -32,7 +32,10 @@ export const NumberInput = <TFormSchema extends IFormSchemaType>(
             description,
             path,
         })}
-        formatter={value => !Number.isNaN(parseFloat(value)) ? toHumanNumber({number: parseFloat(value)}) : ""}
+        formatter={value => {
+            const number = parseFloat(value);
+            return !Number.isNaN(number) ? toHumanNumber({number}) : "";
+        }}
         {...props}
     />;
 };

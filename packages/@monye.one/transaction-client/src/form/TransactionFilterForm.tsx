@@ -108,6 +108,7 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
                 {...withLabelPlaceholder}
                 {...withDescription}
                 precision={2}
+                required={false}
             />,
         })}
         {...props}
