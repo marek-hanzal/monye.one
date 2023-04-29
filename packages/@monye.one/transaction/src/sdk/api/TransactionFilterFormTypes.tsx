@@ -16,4 +16,4 @@ export type ITransactionFilterFormInputFactory = IFormInputsFactory<ITransaction
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ymqb4qr4s2wt0myxoai0jlpz = true;
+export const $leight_nflua20vakme7il3qk9ye44v = true;

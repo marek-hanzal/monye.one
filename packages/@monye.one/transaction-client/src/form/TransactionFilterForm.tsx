@@ -58,7 +58,7 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
                 render={items => <Group spacing={2}>
                     {items.map(bank => <Badge
                         key={bank.id}
-                        size={"lg"}
+                        size={"xl"}
                     >
                         {bank.account}
                     </Badge>)}

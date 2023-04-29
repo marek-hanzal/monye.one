@@ -21,4 +21,4 @@ export const TransactionFilterInput: FC<Omit<IWithInputProps<ITransactionFilterF
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lxhy7tk2lygkpmhu8hi6j5lf = true;
+export const $leight_ep0xsdoh4xvyxns2ysqz4zm8 = true;
