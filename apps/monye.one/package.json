@@ -33,6 +33,7 @@
         "@monye.one/bank-client": "^0.5.0",
         "@monye.one/book-client": "^0.5.0",
         "@monye.one/container-server": "^0.5.0",
+        "@monye.one/filter-client": "^0.5.0",
         "@monye.one/prisma": "^0.5.0",
         "@monye.one/public-client": "^0.5.0",
         "@monye.one/transaction-client": "^0.5.0",

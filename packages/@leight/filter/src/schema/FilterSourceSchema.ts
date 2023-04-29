@@ -1,10 +1,4 @@
-import {
-    FilterOptionalDefaultsSchema,
-    FilterPartialSchema,
-    FilterSchema as PrismaFilterSchema,
-    InputJsonValue,
-    JsonValue
-}          from "@leight/prisma";
+import {FilterPartialSchema, FilterSchema as PrismaFilterSchema, InputJsonValue, JsonValue} from "@leight/prisma";
 import {
     FilterSchema,
     type ISourceSchemaType,
@@ -12,33 +6,35 @@ import {
     PatchSchema,
     SortOrderSchema,
     withSourceSchema
-}          from "@leight/source";
+} from "@leight/source";
 import {z} from "@leight/zod";
 
 export const FilterSourceSchema = withSourceSchema({
-    EntitySchema:   PrismaFilterSchema.merge(z.object({
+    EntitySchema: PrismaFilterSchema.merge(z.object({
         filter: InputJsonValue.nullable(),
-        dto:    JsonValue.nullable().optional(),
+        dto: JsonValue.nullable().optional(),
     })),
-    DtoSchema:      PrismaFilterSchema.merge(z.object({
+    DtoSchema: PrismaFilterSchema.merge(z.object({
         filter: InputJsonValue.nullable(),
-        dto:    JsonValue.nullable().optional(),
+        dto: JsonValue.nullable().optional(),
     })),
-    ToCreateSchema: FilterOptionalDefaultsSchema.merge(z.object({
+    ToCreateSchema: z.object({
+        name: z.string(),
+        type: z.string(),
         filter: InputJsonValue.nullable(),
-        dto:    JsonValue.nullable().optional(),
-    })),
-    CreateSchema:   FilterOptionalDefaultsSchema,
-    ToPatchSchema:  FilterPartialSchema.merge(PatchSchema).merge(z.object({
+        dto: JsonValue.nullable().optional(),
+    }),
+    CreateSchema: PrismaFilterSchema,
+    ToPatchSchema: FilterPartialSchema.merge(PatchSchema).merge(z.object({
         filter: InputJsonValue.nullable(),
-        dto:    JsonValue.nullable().optional(),
+        dto: JsonValue.nullable().optional(),
     })),
-    PatchSchema:    FilterPartialSchema.merge(PatchSchema),
-    FilterSchema:   FilterSchema.merge(z.object({
+    PatchSchema: FilterPartialSchema.merge(PatchSchema),
+    FilterSchema: FilterSchema.merge(z.object({
         type: z.string().optional(),
     })),
-    ParamsSchema:   ParamsSchema,
-    SortSchema:     z.object({
+    ParamsSchema: ParamsSchema,
+    SortSchema: z.object({
         id: SortOrderSchema
     }),
 });
