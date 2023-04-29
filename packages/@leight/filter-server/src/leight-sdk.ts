@@ -1,31 +1,38 @@
-import {
-    withSdk,
-    withServerSourceGenerators
-} from "@leight/sdk";
+import {withSdk, withServerSourceGenerators} from "@leight/sdk";
 
 void withSdk(
     withServerSourceGenerators({
         PrismaSource: {
             entities: [
                 {
-                    name:     "Filter",
+                    name: "Filter",
                     packages: {
                         schema: "@leight/filter",
                         prisma: "@leight/prisma",
                     },
-                    prisma:   "filter",
+                    prisma: "filter",
                 },
             ],
         },
-        Source:       {
+        Source: {
             entities: [
                 {
-                    name:     "Filter",
+                    name: "Filter",
                     packages: {
                         schema: "@leight/filter",
                     },
                 },
             ],
         },
+        TrpcSource: {
+            entities: [
+                {
+                    name: 'Filter',
+                    packages: {
+                        schema: "@leight/filter",
+                    },
+                },
+            ],
+        }
     })
 );

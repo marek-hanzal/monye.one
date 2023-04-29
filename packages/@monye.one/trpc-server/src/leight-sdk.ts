@@ -34,6 +34,13 @@ void withSdk(
                     procedure: "@monye.one/transaction-server",
                 },
             },
+            {
+                name:     "Filter",
+                packages: {
+                    schema:    "@leight/filter",
+                    procedure: "@leight/filter-server",
+                },
+            },
         ],
     })
 );

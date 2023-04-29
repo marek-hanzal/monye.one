@@ -106,4 +106,4 @@ export class FilterBasePrismaSource extends AbstractSourceEx<IFilterPrismaSchema
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_b3ogbt19cz9zllqo3qvlbz5x = true;
+export const $leight_dk66mpoh2i9h6cpp58qnnai1 = true;
