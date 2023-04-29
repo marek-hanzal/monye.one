@@ -137,8 +137,9 @@ export const AccountSchema = z.object({
 
 export type Account = z.infer<typeof AccountSchema>
 
+/////////////////////////////////////////
 // ACCOUNT PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const AccountPartialSchema = AccountSchema.partial()
 
@@ -169,10 +170,14 @@ export const AccountWithRelationsSchema: z.ZodType<AccountWithRelations> = Accou
 // ACCOUNT OPTIONAL DEFAULTS RELATION SCHEMA
 //------------------------------------------------------
 
-export type AccountOptionalDefaultsWithRelations = z.infer<typeof AccountOptionalDefaultsSchema> & AccountRelations
+export type AccountOptionalDefaultsRelations = {
+  user: UserOptionalDefaultsWithRelations;
+};
+
+export type AccountOptionalDefaultsWithRelations = z.infer<typeof AccountOptionalDefaultsSchema> & AccountOptionalDefaultsRelations
 
 export const AccountOptionalDefaultsWithRelationsSchema: z.ZodType<AccountOptionalDefaultsWithRelations> = AccountOptionalDefaultsSchema.merge(z.object({
-  user: z.lazy(() => UserWithRelationsSchema),
+  user: z.lazy(() => UserOptionalDefaultsWithRelationsSchema),
 }))
 
 // ACCOUNT PARTIAL RELATION SCHEMA
@@ -201,8 +206,9 @@ export const SessionSchema = z.object({
 
 export type Session = z.infer<typeof SessionSchema>
 
+/////////////////////////////////////////
 // SESSION PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const SessionPartialSchema = SessionSchema.partial()
 
@@ -233,10 +239,14 @@ export const SessionWithRelationsSchema: z.ZodType<SessionWithRelations> = Sessi
 // SESSION OPTIONAL DEFAULTS RELATION SCHEMA
 //------------------------------------------------------
 
-export type SessionOptionalDefaultsWithRelations = z.infer<typeof SessionOptionalDefaultsSchema> & SessionRelations
+export type SessionOptionalDefaultsRelations = {
+  user: UserOptionalDefaultsWithRelations;
+};
+
+export type SessionOptionalDefaultsWithRelations = z.infer<typeof SessionOptionalDefaultsSchema> & SessionOptionalDefaultsRelations
 
 export const SessionOptionalDefaultsWithRelationsSchema: z.ZodType<SessionOptionalDefaultsWithRelations> = SessionOptionalDefaultsSchema.merge(z.object({
-  user: z.lazy(() => UserWithRelationsSchema),
+  user: z.lazy(() => UserOptionalDefaultsWithRelationsSchema),
 }))
 
 // SESSION PARTIAL RELATION SCHEMA
@@ -266,8 +276,9 @@ export const UserSchema = z.object({
 
 export type User = z.infer<typeof UserSchema>
 
+/////////////////////////////////////////
 // USER PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const UserPartialSchema = UserSchema.partial()
 
@@ -312,17 +323,28 @@ export const UserWithRelationsSchema: z.ZodType<UserWithRelations> = UserSchema.
 // USER OPTIONAL DEFAULTS RELATION SCHEMA
 //------------------------------------------------------
 
-export type UserOptionalDefaultsWithRelations = z.infer<typeof UserOptionalDefaultsSchema> & UserRelations
+export type UserOptionalDefaultsRelations = {
+  accounts: AccountOptionalDefaultsWithRelations[];
+  sessions: SessionOptionalDefaultsWithRelations[];
+  UserToken: UserTokenOptionalDefaultsWithRelations[];
+  Transaction: TransactionOptionalDefaultsWithRelations[];
+  Job: JobOptionalDefaultsWithRelations[];
+  File: FileOptionalDefaultsWithRelations[];
+  Bank: BankOptionalDefaultsWithRelations[];
+  Filter: FilterOptionalDefaultsWithRelations[];
+};
+
+export type UserOptionalDefaultsWithRelations = z.infer<typeof UserOptionalDefaultsSchema> & UserOptionalDefaultsRelations
 
 export const UserOptionalDefaultsWithRelationsSchema: z.ZodType<UserOptionalDefaultsWithRelations> = UserOptionalDefaultsSchema.merge(z.object({
-  accounts: z.lazy(() => AccountWithRelationsSchema).array(),
-  sessions: z.lazy(() => SessionWithRelationsSchema).array(),
-  UserToken: z.lazy(() => UserTokenWithRelationsSchema).array(),
-  Transaction: z.lazy(() => TransactionWithRelationsSchema).array(),
-  Job: z.lazy(() => JobWithRelationsSchema).array(),
-  File: z.lazy(() => FileWithRelationsSchema).array(),
-  Bank: z.lazy(() => BankWithRelationsSchema).array(),
-  Filter: z.lazy(() => FilterWithRelationsSchema).array(),
+  accounts: z.lazy(() => AccountOptionalDefaultsWithRelationsSchema).array(),
+  sessions: z.lazy(() => SessionOptionalDefaultsWithRelationsSchema).array(),
+  UserToken: z.lazy(() => UserTokenOptionalDefaultsWithRelationsSchema).array(),
+  Transaction: z.lazy(() => TransactionOptionalDefaultsWithRelationsSchema).array(),
+  Job: z.lazy(() => JobOptionalDefaultsWithRelationsSchema).array(),
+  File: z.lazy(() => FileOptionalDefaultsWithRelationsSchema).array(),
+  Bank: z.lazy(() => BankOptionalDefaultsWithRelationsSchema).array(),
+  Filter: z.lazy(() => FilterOptionalDefaultsWithRelationsSchema).array(),
 }))
 
 // USER PARTIAL RELATION SCHEMA
@@ -364,12 +386,21 @@ export const VerificationTokenSchema = z.object({
 
 export type VerificationToken = z.infer<typeof VerificationTokenSchema>
 
+/////////////////////////////////////////
 // VERIFICATION TOKEN PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const VerificationTokenPartialSchema = VerificationTokenSchema.partial()
 
 export type VerificationTokenPartial = z.infer<typeof VerificationTokenPartialSchema>
+
+// VERIFICATION TOKEN OPTIONAL DEFAULTS SCHEMA
+//------------------------------------------------------
+
+export const VerificationTokenOptionalDefaultsSchema = VerificationTokenSchema.merge(z.object({
+}))
+
+export type VerificationTokenOptionalDefaults = z.infer<typeof VerificationTokenOptionalDefaultsSchema>
 
 /////////////////////////////////////////
 // TOKEN SCHEMA
@@ -382,8 +413,9 @@ export const TokenSchema = z.object({
 
 export type Token = z.infer<typeof TokenSchema>
 
+/////////////////////////////////////////
 // TOKEN PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const TokenPartialSchema = TokenSchema.partial()
 
@@ -414,10 +446,14 @@ export const TokenWithRelationsSchema: z.ZodType<TokenWithRelations> = TokenSche
 // TOKEN OPTIONAL DEFAULTS RELATION SCHEMA
 //------------------------------------------------------
 
-export type TokenOptionalDefaultsWithRelations = z.infer<typeof TokenOptionalDefaultsSchema> & TokenRelations
+export type TokenOptionalDefaultsRelations = {
+  UserToken: UserTokenOptionalDefaultsWithRelations[];
+};
+
+export type TokenOptionalDefaultsWithRelations = z.infer<typeof TokenOptionalDefaultsSchema> & TokenOptionalDefaultsRelations
 
 export const TokenOptionalDefaultsWithRelationsSchema: z.ZodType<TokenOptionalDefaultsWithRelations> = TokenOptionalDefaultsSchema.merge(z.object({
-  UserToken: z.lazy(() => UserTokenWithRelationsSchema).array(),
+  UserToken: z.lazy(() => UserTokenOptionalDefaultsWithRelationsSchema).array(),
 }))
 
 // TOKEN PARTIAL RELATION SCHEMA
@@ -445,8 +481,9 @@ export const UserTokenSchema = z.object({
 
 export type UserToken = z.infer<typeof UserTokenSchema>
 
+/////////////////////////////////////////
 // USER TOKEN PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const UserTokenPartialSchema = UserTokenSchema.partial()
 
@@ -479,11 +516,16 @@ export const UserTokenWithRelationsSchema: z.ZodType<UserTokenWithRelations> = U
 // USER TOKEN OPTIONAL DEFAULTS RELATION SCHEMA
 //------------------------------------------------------
 
-export type UserTokenOptionalDefaultsWithRelations = z.infer<typeof UserTokenOptionalDefaultsSchema> & UserTokenRelations
+export type UserTokenOptionalDefaultsRelations = {
+  user: UserOptionalDefaultsWithRelations;
+  token: TokenOptionalDefaultsWithRelations;
+};
+
+export type UserTokenOptionalDefaultsWithRelations = z.infer<typeof UserTokenOptionalDefaultsSchema> & UserTokenOptionalDefaultsRelations
 
 export const UserTokenOptionalDefaultsWithRelationsSchema: z.ZodType<UserTokenOptionalDefaultsWithRelations> = UserTokenOptionalDefaultsSchema.merge(z.object({
-  user: z.lazy(() => UserWithRelationsSchema),
-  token: z.lazy(() => TokenWithRelationsSchema),
+  user: z.lazy(() => UserOptionalDefaultsWithRelationsSchema),
+  token: z.lazy(() => TokenOptionalDefaultsWithRelationsSchema),
 }))
 
 // USER TOKEN PARTIAL RELATION SCHEMA
@@ -520,8 +562,9 @@ export const FileSchema = z.object({
 
 export type File = z.infer<typeof FileSchema>
 
+/////////////////////////////////////////
 // FILE PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const FilePartialSchema = FileSchema.partial()
 
@@ -552,10 +595,14 @@ export const FileWithRelationsSchema: z.ZodType<FileWithRelations> = FileSchema.
 // FILE OPTIONAL DEFAULTS RELATION SCHEMA
 //------------------------------------------------------
 
-export type FileOptionalDefaultsWithRelations = z.infer<typeof FileOptionalDefaultsSchema> & FileRelations
+export type FileOptionalDefaultsRelations = {
+  user?: UserOptionalDefaultsWithRelations | null;
+};
+
+export type FileOptionalDefaultsWithRelations = z.infer<typeof FileOptionalDefaultsSchema> & FileOptionalDefaultsRelations
 
 export const FileOptionalDefaultsWithRelationsSchema: z.ZodType<FileOptionalDefaultsWithRelations> = FileOptionalDefaultsSchema.merge(z.object({
-  user: z.lazy(() => UserWithRelationsSchema).nullish(),
+  user: z.lazy(() => UserOptionalDefaultsWithRelationsSchema).nullish(),
 }))
 
 // FILE PARTIAL RELATION SCHEMA
@@ -585,8 +632,9 @@ export const TranslationSchema = z.object({
 
 export type Translation = z.infer<typeof TranslationSchema>
 
+/////////////////////////////////////////
 // TRANSLATION PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const TranslationPartialSchema = TranslationSchema.partial()
 
@@ -626,8 +674,9 @@ export const JobSchema = z.object({
 
 export type Job = z.infer<typeof JobSchema>
 
+/////////////////////////////////////////
 // JOB PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const JobPartialSchema = JobSchema.partial()
 
@@ -665,13 +714,18 @@ export const JobWithRelationsSchema: z.ZodType<JobWithRelations> = JobSchema.mer
 // JOB OPTIONAL DEFAULTS RELATION SCHEMA
 //------------------------------------------------------
 
+export type JobOptionalDefaultsRelations = {
+  user?: UserOptionalDefaultsWithRelations | null;
+  logs: JobLogOptionalDefaultsWithRelations[];
+};
+
 export type JobOptionalDefaultsWithRelations = Omit<z.infer<typeof JobOptionalDefaultsSchema>, "params"> & {
   params?: NullableJsonInput;
-} & JobRelations
+} & JobOptionalDefaultsRelations
 
 export const JobOptionalDefaultsWithRelationsSchema: z.ZodType<JobOptionalDefaultsWithRelations> = JobOptionalDefaultsSchema.merge(z.object({
-  user: z.lazy(() => UserWithRelationsSchema).nullish(),
-  logs: z.lazy(() => JobLogWithRelationsSchema).array(),
+  user: z.lazy(() => UserOptionalDefaultsWithRelationsSchema).nullish(),
+  logs: z.lazy(() => JobLogOptionalDefaultsWithRelationsSchema).array(),
 }))
 
 // JOB PARTIAL RELATION SCHEMA
@@ -703,8 +757,9 @@ export const JobLogSchema = z.object({
 
 export type JobLog = z.infer<typeof JobLogSchema>
 
+/////////////////////////////////////////
 // JOB LOG PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const JobLogPartialSchema = JobLogSchema.partial()
 
@@ -735,10 +790,14 @@ export const JobLogWithRelationsSchema: z.ZodType<JobLogWithRelations> = JobLogS
 // JOB LOG OPTIONAL DEFAULTS RELATION SCHEMA
 //------------------------------------------------------
 
-export type JobLogOptionalDefaultsWithRelations = z.infer<typeof JobLogOptionalDefaultsSchema> & JobLogRelations
+export type JobLogOptionalDefaultsRelations = {
+  job: JobOptionalDefaultsWithRelations;
+};
+
+export type JobLogOptionalDefaultsWithRelations = z.infer<typeof JobLogOptionalDefaultsSchema> & JobLogOptionalDefaultsRelations
 
 export const JobLogOptionalDefaultsWithRelationsSchema: z.ZodType<JobLogOptionalDefaultsWithRelations> = JobLogOptionalDefaultsSchema.merge(z.object({
-  job: z.lazy(() => JobWithRelationsSchema),
+  job: z.lazy(() => JobOptionalDefaultsWithRelationsSchema),
 }))
 
 // JOB LOG PARTIAL RELATION SCHEMA
@@ -765,8 +824,9 @@ export const KeywordSchema = z.object({
 
 export type Keyword = z.infer<typeof KeywordSchema>
 
+/////////////////////////////////////////
 // KEYWORD PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const KeywordPartialSchema = KeywordSchema.partial()
 
@@ -797,10 +857,14 @@ export const KeywordWithRelationsSchema: z.ZodType<KeywordWithRelations> = Keywo
 // KEYWORD OPTIONAL DEFAULTS RELATION SCHEMA
 //------------------------------------------------------
 
-export type KeywordOptionalDefaultsWithRelations = z.infer<typeof KeywordOptionalDefaultsSchema> & KeywordRelations
+export type KeywordOptionalDefaultsRelations = {
+  TransactionKeyword: TransactionKeywordOptionalDefaultsWithRelations[];
+};
+
+export type KeywordOptionalDefaultsWithRelations = z.infer<typeof KeywordOptionalDefaultsSchema> & KeywordOptionalDefaultsRelations
 
 export const KeywordOptionalDefaultsWithRelationsSchema: z.ZodType<KeywordOptionalDefaultsWithRelations> = KeywordOptionalDefaultsSchema.merge(z.object({
-  TransactionKeyword: z.lazy(() => TransactionKeywordWithRelationsSchema).array(),
+  TransactionKeyword: z.lazy(() => TransactionKeywordOptionalDefaultsWithRelationsSchema).array(),
 }))
 
 // KEYWORD PARTIAL RELATION SCHEMA
@@ -831,8 +895,9 @@ export const FilterSchema = z.object({
 
 export type Filter = z.infer<typeof FilterSchema>
 
+/////////////////////////////////////////
 // FILTER PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const FilterPartialSchema = FilterSchema.partial()
 
@@ -865,12 +930,16 @@ export const FilterWithRelationsSchema: z.ZodType<FilterWithRelations> = FilterS
 // FILTER OPTIONAL DEFAULTS RELATION SCHEMA
 //------------------------------------------------------
 
+export type FilterOptionalDefaultsRelations = {
+  user: UserOptionalDefaultsWithRelations;
+};
+
 export type FilterOptionalDefaultsWithRelations = Omit<z.infer<typeof FilterOptionalDefaultsSchema>, "dto"> & {
   dto?: NullableJsonInput;
-} & FilterRelations
+} & FilterOptionalDefaultsRelations
 
 export const FilterOptionalDefaultsWithRelationsSchema: z.ZodType<FilterOptionalDefaultsWithRelations> = FilterOptionalDefaultsSchema.merge(z.object({
-  user: z.lazy(() => UserWithRelationsSchema),
+  user: z.lazy(() => UserOptionalDefaultsWithRelationsSchema),
 }))
 
 // FILTER PARTIAL RELATION SCHEMA
@@ -903,8 +972,9 @@ export const BankSchema = z.object({
 
 export type Bank = z.infer<typeof BankSchema>
 
+/////////////////////////////////////////
 // BANK PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const BankPartialSchema = BankSchema.partial()
 
@@ -937,11 +1007,16 @@ export const BankWithRelationsSchema: z.ZodType<BankWithRelations> = BankSchema.
 // BANK OPTIONAL DEFAULTS RELATION SCHEMA
 //------------------------------------------------------
 
-export type BankOptionalDefaultsWithRelations = z.infer<typeof BankOptionalDefaultsSchema> & BankRelations
+export type BankOptionalDefaultsRelations = {
+  user: UserOptionalDefaultsWithRelations;
+  Transaction: TransactionOptionalDefaultsWithRelations[];
+};
+
+export type BankOptionalDefaultsWithRelations = z.infer<typeof BankOptionalDefaultsSchema> & BankOptionalDefaultsRelations
 
 export const BankOptionalDefaultsWithRelationsSchema: z.ZodType<BankOptionalDefaultsWithRelations> = BankOptionalDefaultsSchema.merge(z.object({
-  user: z.lazy(() => UserWithRelationsSchema),
-  Transaction: z.lazy(() => TransactionWithRelationsSchema).array(),
+  user: z.lazy(() => UserOptionalDefaultsWithRelationsSchema),
+  Transaction: z.lazy(() => TransactionOptionalDefaultsWithRelationsSchema).array(),
 }))
 
 // BANK PARTIAL RELATION SCHEMA
@@ -979,8 +1054,9 @@ export const TransactionSchema = z.object({
 
 export type Transaction = z.infer<typeof TransactionSchema>
 
+/////////////////////////////////////////
 // TRANSACTION PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const TransactionPartialSchema = TransactionSchema.partial()
 
@@ -1015,12 +1091,18 @@ export const TransactionWithRelationsSchema: z.ZodType<TransactionWithRelations>
 // TRANSACTION OPTIONAL DEFAULTS RELATION SCHEMA
 //------------------------------------------------------
 
-export type TransactionOptionalDefaultsWithRelations = z.infer<typeof TransactionOptionalDefaultsSchema> & TransactionRelations
+export type TransactionOptionalDefaultsRelations = {
+  user: UserOptionalDefaultsWithRelations;
+  bank: BankOptionalDefaultsWithRelations;
+  TransactionKeyword: TransactionKeywordOptionalDefaultsWithRelations[];
+};
+
+export type TransactionOptionalDefaultsWithRelations = z.infer<typeof TransactionOptionalDefaultsSchema> & TransactionOptionalDefaultsRelations
 
 export const TransactionOptionalDefaultsWithRelationsSchema: z.ZodType<TransactionOptionalDefaultsWithRelations> = TransactionOptionalDefaultsSchema.merge(z.object({
-  user: z.lazy(() => UserWithRelationsSchema),
-  bank: z.lazy(() => BankWithRelationsSchema),
-  TransactionKeyword: z.lazy(() => TransactionKeywordWithRelationsSchema).array(),
+  user: z.lazy(() => UserOptionalDefaultsWithRelationsSchema),
+  bank: z.lazy(() => BankOptionalDefaultsWithRelationsSchema),
+  TransactionKeyword: z.lazy(() => TransactionKeywordOptionalDefaultsWithRelationsSchema).array(),
 }))
 
 // TRANSACTION PARTIAL RELATION SCHEMA
@@ -1052,8 +1134,9 @@ export const TransactionKeywordSchema = z.object({
 
 export type TransactionKeyword = z.infer<typeof TransactionKeywordSchema>
 
+/////////////////////////////////////////
 // TRANSACTION KEYWORD PARTIAL SCHEMA
-//------------------------------------------------------
+/////////////////////////////////////////
 
 export const TransactionKeywordPartialSchema = TransactionKeywordSchema.partial()
 
@@ -1086,11 +1169,16 @@ export const TransactionKeywordWithRelationsSchema: z.ZodType<TransactionKeyword
 // TRANSACTION KEYWORD OPTIONAL DEFAULTS RELATION SCHEMA
 //------------------------------------------------------
 
-export type TransactionKeywordOptionalDefaultsWithRelations = z.infer<typeof TransactionKeywordOptionalDefaultsSchema> & TransactionKeywordRelations
+export type TransactionKeywordOptionalDefaultsRelations = {
+  transaction: TransactionOptionalDefaultsWithRelations;
+  keyword: KeywordOptionalDefaultsWithRelations;
+};
+
+export type TransactionKeywordOptionalDefaultsWithRelations = z.infer<typeof TransactionKeywordOptionalDefaultsSchema> & TransactionKeywordOptionalDefaultsRelations
 
 export const TransactionKeywordOptionalDefaultsWithRelationsSchema: z.ZodType<TransactionKeywordOptionalDefaultsWithRelations> = TransactionKeywordOptionalDefaultsSchema.merge(z.object({
-  transaction: z.lazy(() => TransactionWithRelationsSchema),
-  keyword: z.lazy(() => KeywordWithRelationsSchema),
+  transaction: z.lazy(() => TransactionOptionalDefaultsWithRelationsSchema),
+  keyword: z.lazy(() => KeywordOptionalDefaultsWithRelationsSchema),
 }))
 
 // TRANSACTION KEYWORD PARTIAL RELATION SCHEMA
