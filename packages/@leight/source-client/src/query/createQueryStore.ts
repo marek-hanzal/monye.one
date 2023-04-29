@@ -4,7 +4,11 @@ import {
     type ISourceSchema,
     type ISourceSchemaType
 }                           from "@leight/source";
-import {generateId}         from "@leight/utils";
+import {
+    cleanOf,
+    generateId,
+    isEmpty
+}                           from "@leight/utils";
 
 export interface ICreateQueryStoreProps<TSourceSchemaType extends ISourceSchemaType> {
     name: string;
@@ -17,7 +21,7 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
         schema,
     }: ICreateQueryStoreProps<TSourceSchemaType>) => {
     return createStoreContext<IQueryStoreProps<TSourceSchemaType>>({
-        state: ({defaults}) => set => ({
+        state: ({defaults}) => (set, get) => ({
             $id:          generateId(),
             $schema:      schema,
             $filter:      defaults?.$query?.filter,
@@ -101,6 +105,12 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
             },
             setFilterDto(dto) {
                 set({$filterDto: dto});
+            },
+            hasFilter() {
+                return !isEmpty(cleanOf(get().$filter));
+            },
+            hasApplyFilter() {
+                return !isEmpty(get().$applyFilter);
             },
             setSort(key, order) {
                 set(({$query}) => ({

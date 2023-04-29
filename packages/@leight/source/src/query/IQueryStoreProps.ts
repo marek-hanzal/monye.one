@@ -27,6 +27,14 @@ export type IQueryStoreProps<TSourceSchemaType extends ISourceSchemaType> = ISto
     applyShallowFilter(filter?: TSourceSchemaType["Filter"]): void;
     setShallowFilter(filter?: TSourceSchemaType["Filter"]): void;
     setFilterDto(dto?: IQueryStoreProps.IFilterDto): void;
+    /**
+     * Is there active filter? Does not include applyFilter
+     */
+    hasFilter(): boolean;
+    /**
+     * Is there any applied filter?
+     */
+    hasApplyFilter(): boolean;
 
     setSort(sort: keyof TSourceSchemaType["Sort"], order: ISortOrder): void;
 

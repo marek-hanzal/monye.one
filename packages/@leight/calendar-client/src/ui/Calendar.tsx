@@ -74,7 +74,8 @@ export const Calendar = <TSourceSchema extends ICalendarEventSourceSchemaType = 
             {selectMonth && <Overlay color={"#FFF"} opacity={1}>
                 <Months<TSourceSchema>
                     onClick={({month: {month}}) => {
-                        onChange?.({weeks: weeksOf(month)});
+                        const weeks = weeksOf(month);
+                        onChange?.({weeks});
                         setSelectMonth(false);
                     }}
                     controlsBottomMiddle={<ActionIcon
@@ -89,7 +90,8 @@ export const Calendar = <TSourceSchema extends ICalendarEventSourceSchemaType = 
             {selectYear && <Overlay color={"#FFF"} opacity={1}>
                 <Years<TSourceSchema>
                     onClick={({year: {year}}) => {
-                        onChange?.({weeks: weeksOf(year)});
+                        const weeks = weeksOf(year);
+                        onChange?.({weeks});
                         setSelectYear(false);
                     }}
                     controlsBottomMiddle={<ActionIcon

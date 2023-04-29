@@ -47,6 +47,7 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
               setShallowFilter,
               setFilter,
               setFilterDto,
+              hasFilter,
               setPage,
           } = SourceStore.Query.useState((
         {
@@ -54,6 +55,7 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
             setShallowFilter,
             setFilter,
             setFilterDto,
+            hasFilter,
             setPage,
         }) => (
         {
@@ -61,8 +63,10 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
             setShallowFilter,
             setFilter,
             setFilterDto,
+            hasFilter,
             setPage,
         }));
+
     return <BaseForm
         notification={false}
         onSubmit={({request, values, onDefaultSubmit}) => {
@@ -84,7 +88,7 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
             >
                 <Translation namespace={"common"} label={"filter"} withLabel={"close.button"}/>
             </Button>
-            <Button
+            {hasFilter() && <Button
                 variant={"subtle"}
                 size={"md"}
                 leftIcon={<IconFilterX/>}
@@ -95,7 +99,7 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
                 }}
             >
                 <Translation namespace={"common"} label={"filter"} withLabel={"clear.button"}/>
-            </Button>
+            </Button>}
             <Submit/>
         </Group>}
         {...props}

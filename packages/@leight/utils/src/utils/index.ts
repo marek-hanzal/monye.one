@@ -4,6 +4,7 @@ export * from "./diffOf";
 export * from "./generateId";
 export * from "./intersectOf";
 export * from "./isCallable";
+export * from "./isEmpty";
 export * from "./isObject";
 export * from "./isString";
 export * from "./keywordsOf";

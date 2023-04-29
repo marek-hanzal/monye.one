@@ -37,6 +37,7 @@
         "fast-clean": "^1.2.1",
         "filesize": "^10.0.6",
         "is-callable": "^1.2.7",
+        "is-empty": "^1.2.0",
         "is-object": "^1.0.2",
         "is-string": "^1.0.7"
     },
@@ -46,6 +47,7 @@
         "@leight/tsconfig": "^0.5.68",
         "@leight/turbowatch": "^0.5.33",
         "@types/is-callable": "^1.1.0",
+        "@types/is-empty": "^1.2.1",
         "@types/is-object": "^1.0.2",
         "@types/is-string": "^1.0.0",
         "@types/node": "^18.15.0",
