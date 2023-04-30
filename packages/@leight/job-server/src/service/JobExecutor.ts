@@ -18,6 +18,7 @@ import {
     $UserService,
     type IUserService
 }               from "@leight/user";
+import {Pack}   from "@leight/utils";
 import {Logger} from "@leight/winston";
 import delay    from "delay";
 
@@ -51,7 +52,7 @@ export class JobExecutor implements IJobExecutor {
                 created: new Date(),
                 name,
                 userId:  this.userService.required(),
-                params,
+                params:  await Pack.packIf(params),
             })
         ) as IJobWithParams<TJobParamsSchema>;
         const labels      = {name, jobId: job.id};

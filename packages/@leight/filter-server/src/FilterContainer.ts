@@ -1,17 +1,17 @@
-import {type IContainer} from "@leight/container";
+import {type IContainer}    from "@leight/container";
 import {
     $FilterSource,
     $FilterSourceMapper,
     $FilterSourceService,
     type IFilterSource,
     type IFilterSourceMapper
-}                        from "@leight/filter";
+}                           from "@leight/filter";
+import {FilterSourceMapper} from "./mapper";
 import {
-    FilterBaseSourceMapper,
     FilterBaseSourceService,
     type IFilterSourceService
-}                        from "./sdk";
-import {FilterSource}    from "./source";
+}                           from "./sdk";
+import {FilterSource}       from "./source";
 
 export interface IFilterContainer {
     FilterSource: IFilterSource;
@@ -23,7 +23,7 @@ export const FilterContainer = (container: IContainer): IFilterContainer => {
     container
         .bindClass($FilterSource, FilterSource)
         .bindClass($FilterSourceService, FilterBaseSourceService)
-        .bindClass($FilterSourceMapper, FilterBaseSourceMapper);
+        .bindClass($FilterSourceMapper, FilterSourceMapper);
 
     return {
         get FilterSource() {

@@ -135,7 +135,7 @@ model Job {
     finished     DateTime?
     userId       String?
     user         User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
-    params       Json?
+    params       String?   @db.Text
 
     logs JobLog[]
 }
@@ -170,13 +170,13 @@ model Keyword {
 }
 
 model Filter {
-    id     String @id @default(cuid())
+    id     String  @id @default(cuid())
     name   String
     type   String
     userId String
-    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-    filter Json
-    dto    Json?
+    user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    filter String  @db.Text
+    dto    String? @db.Text
 
     @@unique([userId, type, name])
 }

@@ -20,7 +20,7 @@ import {
 
 export interface IJobInlineInternalProps {
     withTranslation: IWithTranslation;
-    job: IJobSourceSchemaType["Entity"];
+    job: IJobSourceSchemaType["Dto"];
     useJobFindQuery: IUseJobSourceQuery["useFind"];
 
     onSuccess?(props: IJobInlineInternalProps.IOnSuccessProps): void;
@@ -28,7 +28,7 @@ export interface IJobInlineInternalProps {
 
 export namespace IJobInlineInternalProps {
     export interface IOnSuccessProps {
-        job: IJobSourceSchemaType["Entity"];
+        job: IJobSourceSchemaType["Dto"];
     }
 }
 

@@ -1,13 +1,10 @@
 import {
     JobOptionalDefaultsSchema,
     JobPartialSchema,
-    JobSchema,
-    JsonValue
+    JobSchema
 }          from "@leight/prisma";
 import {
-    FilterSchema,
     type ISourceSchemaType,
-    ParamsSchema,
     PatchSchema,
     SortOrderSchema,
     withSourceSchema
@@ -15,18 +12,18 @@ import {
 import {z} from "@leight/zod";
 
 export const JobSourceSchema = withSourceSchema({
-    EntitySchema:   JobSchema.merge(z.object({
-        params: JsonValue.nullable(),
-    })),
+    EntitySchema:   JobSchema,
     DtoSchema:      JobSchema.merge(z.object({
-        params: JsonValue.nullable(),
+        params: z.object({}).nullish(),
     })),
-    ToCreateSchema: JobOptionalDefaultsSchema,
+    ToCreateSchema: JobOptionalDefaultsSchema.merge(z.object({
+        params: z.object({}).nullish(),
+    })),
     CreateSchema:   JobOptionalDefaultsSchema,
-    ToPatchSchema:  JobPartialSchema.merge(PatchSchema),
+    ToPatchSchema:  JobPartialSchema.merge(PatchSchema).merge(z.object({
+        params: z.object({}).nullish(),
+    })),
     PatchSchema:    JobPartialSchema.merge(PatchSchema),
-    FilterSchema:   FilterSchema,
-    ParamsSchema:   ParamsSchema,
     SortSchema:     z.object({
         started: SortOrderSchema,
     }),
