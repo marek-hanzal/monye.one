@@ -1,7 +1,7 @@
 import {
     FilterPartialSchema,
     FilterSchema as PrismaFilterSchema
-}          from "@leight/prisma";
+}                   from "@leight/prisma";
 import {
     FilterSchema,
     type ISourceSchemaType,
@@ -9,20 +9,21 @@ import {
     PatchSchema,
     SortOrderSchema,
     withSourceSchema
-}          from "@leight/source";
-import {z} from "@leight/zod";
+}                   from "@leight/source";
+import {JsonSchema} from "@leight/utils";
+import {z}          from "@leight/zod";
 
 export const FilterSourceSchema = withSourceSchema({
     EntitySchema:   PrismaFilterSchema,
     DtoSchema:      PrismaFilterSchema.merge(z.object({
-        filter: z.object({}),
-        dto:    z.object({}).nullish(),
+        filter: JsonSchema,
+        dto:    JsonSchema.nullish(),
     })),
     ToCreateSchema: z.object({
         name:   z.string(),
         type:   z.string(),
-        filter: z.object({}),
-        dto:    z.object({}).nullish(),
+        filter: JsonSchema,
+        dto:    JsonSchema.nullish(),
     }),
     CreateSchema:   z.object({
         name:   z.string(),
@@ -32,8 +33,8 @@ export const FilterSourceSchema = withSourceSchema({
         userId: z.string(),
     }),
     ToPatchSchema:  FilterPartialSchema.merge(PatchSchema).merge(z.object({
-        filter: z.object({}),
-        dto:    z.object({}).nullish(),
+        filter: JsonSchema,
+        dto:    JsonSchema.nullish(),
     })),
     PatchSchema:    FilterPartialSchema.merge(PatchSchema),
     FilterSchema:   FilterSchema.merge(z.object({
