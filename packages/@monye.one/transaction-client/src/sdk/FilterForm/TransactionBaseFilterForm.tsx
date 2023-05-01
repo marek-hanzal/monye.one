@@ -16,6 +16,7 @@ import {
 import {TransactionFilterFormStoreContext} from "../FormStoreContext/TransactionFilterFormStoreContext";
 import {TransactionMantineFilterFormContext} from "../FormStoreContext/TransactionMantineFilterFormContext";
 import {TransactionSourceStore} from "../Source/TransactionSourceStore";
+import {UseFilterSourceQuery} from "@monye.one/filter-client";
 
 export interface ITransactionBaseFilterFormProps extends Omit<IBaseFilterFormProps<ITransactionFilterFormSchemaType, ITransactionSourceSchemaType>, "SourceStore" | "FormContext" | "MantineContext" | "withTranslation"> {
 }
@@ -30,11 +31,12 @@ export const TransactionBaseFilterForm: FC<ITransactionBaseFilterFormProps> = pr
             namespace: "transaction",
             label:     "TransactionBaseFilterForm",
         }}
-        {...props}
+        UseFilterQuery={UseFilterSourceQuery}
+		{...props}
     />;
 };
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nuc4wr9wea2zv5hm3smubodt = true;
+export const $leight_l7ti3b9j1icg492hhqi5872j = true;

@@ -8,6 +8,7 @@ import {type ISourceSchemaType} from "./ISourceSchemaType";
 export type IUseSourceQuery<TSourceSchemaType extends ISourceSchemaType> = {
     useCreate: IUseMutation<TSourceSchemaType["ToCreate"], TSourceSchemaType["Dto"]>;
     usePatch: IUseMutation<TSourceSchemaType["ToPatch"], TSourceSchemaType["Dto"]>;
+    useUpsert: IUseMutation<TSourceSchemaType["ToPatch"], TSourceSchemaType["Dto"]>;
     useDelete: IUseMutation<IWithIdentity, TSourceSchemaType["Dto"]>;
     useDeleteWith: IUseMutation<TSourceSchemaType["Query"], TSourceSchemaType["Dto"][]>;
     useQuery: IUseQuery<TSourceSchemaType["QueryOptional"], TSourceSchemaType["Dto"][]>;

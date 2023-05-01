@@ -16,4 +16,4 @@ export const useFilterQueryInvalidator = () => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mfrl040l82v42i90hmtx2j49 = true;
+export const $leight_og3hyc1swtb8n632f9yjisw7 = true;

@@ -77,6 +77,9 @@ router({
     patch:  procedure
                 .input(${name}SourceSchema.ToPatchSchema)
                 .mutation(${name}SourceProcedure.handlePatch),
+    upsert:  procedure
+                .input(${name}SourceSchema.UpsertSchema)
+                .mutation(${name}SourceProcedure.handleUpsert),
     delete:  procedure
                 .input(WithIdentitySchema)
                 .mutation(${name}SourceProcedure.handleDelete),

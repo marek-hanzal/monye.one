@@ -21,6 +21,9 @@ export const FilterSourceRouter = router({
     patch:  procedure
                 .input(FilterSourceSchema.ToPatchSchema)
                 .mutation(FilterSourceProcedure.handlePatch),
+    upsert:  procedure
+                .input(FilterSourceSchema.UpsertSchema)
+                .mutation(FilterSourceProcedure.handleUpsert),
     delete:  procedure
                 .input(WithIdentitySchema)
                 .mutation(FilterSourceProcedure.handleDelete),
@@ -47,4 +50,4 @@ export const FilterSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_myb5rn2gjytj7me40fritgpd = true;
+export const $leight_awrdwd38rjxfxo823igf3neh = true;

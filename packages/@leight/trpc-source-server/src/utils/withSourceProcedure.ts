@@ -30,6 +30,9 @@ export const withSourceProcedure = <TSourceSchemaType extends ISourceSchemaType>
         handlePatch:        withHandler<TSourceSchemaType["ToPatch"], TSourceSchemaType["Dto"]>({
             handler: async ({container, request: toPatch}) => withSourceService(container).handlePatch({toPatch}),
         }),
+        handleUpsert:        withHandler<TSourceSchemaType["Upsert"], TSourceSchemaType["Dto"]>({
+            handler: async ({container, request: upsert}) => withSourceService(container).handleUpsert({upsert}),
+        }),
         handleDelete:       withHandler<IWithIdentity, TSourceSchemaType["Dto"]>({
             handler: async ({container, request}) => {
                 const $sourceService = withSourceService(container);

@@ -24,7 +24,7 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
         state: ({defaults}) => (set, get) => ({
             $id:          generateId(),
             $schema:      schema,
-            $filter:      defaults?.$query?.filter,
+            $filter:      defaults?.$query?.filter as TSourceSchemaType["Filter"],
             $applyFilter: undefined,
             $filterDto:   undefined,
             $sort:        defaults?.$query?.sort || {},

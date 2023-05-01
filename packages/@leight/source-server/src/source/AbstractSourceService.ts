@@ -45,6 +45,20 @@ export abstract class AbstractSourceService<TSourceSchemaType extends ISourceSch
         return this.mapper().toPatch(toPatch);
     }
 
+    async handleUpsert({upsert: {toCreate, toPatch, filter}}: ISourceService.IHandleUpsertProps<TSourceSchemaType>): Promise<TSourceSchemaType["Dto"]> {
+        return this.withDto(
+            await this.toDto(
+                await this.withEntity(
+                    await this.source().upsert({
+                        create: await this.toCreate(toCreate),
+                        patch:  await this.toPatch(toPatch),
+                        filter,
+                    })
+                )
+            )
+        );
+    }
+
     async toDto(entity: TSourceSchemaType["Entity"]): Promise<TSourceSchemaType["Dto"]> {
         return this.mapper().toDto(entity);
     }

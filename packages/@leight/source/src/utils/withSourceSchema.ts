@@ -20,6 +20,7 @@ import {
     ToCreateSchema,
     ToPatchSchema
 }                           from "../schema";
+import {UpsertSchema}       from "../schema/UpsertSchema";
 import {type ISourceSchema} from "../source";
 
 export type IWithSourceSchemaProps<
@@ -76,7 +77,7 @@ export const withSourceSchema = <
     TSortSchema,
     TParamsSchema
 > => {
-    const $QuerySchema = QuerySchema({
+    const $QuerySchema = QuerySchema<TFilterSchema, TSortSchema, TParamsSchema>({
         filterSchema: $FilterSchema,
         sortSchema:   $SortSchema,
         paramsSchema: $ParamsSchema,
@@ -89,6 +90,11 @@ export const withSourceSchema = <
         ToPatchSchema:       $ToPatchSchema,
         PatchSchema:         $PatchSchema,
         FilterSchema:        $FilterSchema,
+        UpsertSchema:        UpsertSchema<TToCreateSchema, TToPatchSchema, TFilterSchema>({
+            toCreateSchema: $ToCreateSchema,
+            toPatchSchema:  $ToPatchSchema,
+            filterSchema:   $FilterSchema,
+        }),
         SortSchema:          $SortSchema,
         ParamsSchema:        $ParamsSchema,
         CursorSchema:        CursorSchema,

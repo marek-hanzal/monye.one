@@ -1,4 +1,8 @@
-import {withSourceFile}  from "@leight/generator-server";
+import {IPackageType}    from "@leight/generator";
+import {
+    withPackageType,
+    withSourceFile
+}                        from "@leight/generator-server";
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
@@ -15,6 +19,7 @@ export namespace IGeneratorClientFilterFormParams {
         translation: {
             namespace: string;
         };
+        withFilter?: IPackageType;
         packages: IPackages;
     }
 
@@ -32,7 +37,7 @@ export const generatorClientFilterForm: IGenerator<IGeneratorClientFilterFormPar
         directory,
         params: {forms}
     }) => {
-    forms.forEach(({name, translation, packages}) => {
+    forms.forEach(({name, translation, packages, withFilter}) => {
         withSourceFile()
             .withImports({
                 imports: {
@@ -86,14 +91,14 @@ createFormContext<I${name}FilterFormSchemaType>({
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/form-client":                           [
+                    "@leight/form-client":                                 [
                         "type IWithInputProps",
                         "WithInput",
                     ],
-                    [packages.schema]:                               [
+                    [packages.schema]:                                     [
                         `type I${name}FilterFormSchemaType`,
                     ],
-                    "react":                                         [
+                    "react":                                               [
                         "type FC",
                     ],
                     [`../FormStoreContext/${name}FilterFormStoreContext`]: [
@@ -124,14 +129,14 @@ props => {
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/filter-client":                           [
+                    "@leight/filter-client":                                 [
                         "BaseFilterForm",
                         "type IBaseFilterFormProps",
                     ],
-                    "react":                                           [
+                    "react":                                                 [
                         "type FC",
                     ],
-                    [packages.schema]:                                 [
+                    [packages.schema]:                                       [
                         `type I${name}FilterFormSchemaType`,
                         `type I${name}SourceSchemaType`,
                     ],
@@ -141,7 +146,7 @@ props => {
                     [`../FormStoreContext/${name}MantineFilterFormContext`]: [
                         `${name}MantineFilterFormContext`,
                     ],
-                    [`../Source/${name}SourceStore`]:                  [
+                    [`../Source/${name}SourceStore`]:                        [
                         `${name}SourceStore`,
                     ],
                 },
@@ -153,6 +158,13 @@ props => {
                     ],
                 },
             })
+            .withImports(withFilter?.withPackage?.package ? {
+                imports: {
+                    [withFilter.withPackage.package]: [
+                        withFilter.type,
+                    ]
+                },
+            } : undefined)
             .withConsts({
                 exports: {
                     [`${name}BaseFilterForm`]: {
@@ -169,7 +181,7 @@ props => {
             namespace: "${translation.namespace}",
             label:     "${name}BaseFilterForm",
         }}
-        {...props}
+        ${withFilter ? `UseFilterQuery={${withPackageType(withFilter)}}\n\t\t` : "\n\t\t"}{...props}
     />;
 }
                         `,

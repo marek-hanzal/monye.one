@@ -44,4 +44,4 @@ export class TransactionBaseSourceService extends AbstractSourceService<ITransac
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_k4zr2mdic6ozytxk3ju52eiu = true;
+export const $leight_nauzins6tcrxa3uugkw9qfvb = true;

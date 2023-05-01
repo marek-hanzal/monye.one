@@ -21,6 +21,9 @@ export const TransactionSourceRouter = router({
     patch:  procedure
                 .input(TransactionSourceSchema.ToPatchSchema)
                 .mutation(TransactionSourceProcedure.handlePatch),
+    upsert:  procedure
+                .input(TransactionSourceSchema.UpsertSchema)
+                .mutation(TransactionSourceProcedure.handleUpsert),
     delete:  procedure
                 .input(WithIdentitySchema)
                 .mutation(TransactionSourceProcedure.handleDelete),
@@ -47,4 +50,4 @@ export const TransactionSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ohlctqp4ee9iij1fxhnblpzg = true;
+export const $leight_iuezsww422xj77mzfrhviuoy = true;

@@ -13,6 +13,10 @@ import {
     type IToCreateSchema,
     type IToPatchSchema
 }          from "../schema";
+import {
+    IUpsert,
+    IUpsertSchema
+}          from "../schema/UpsertSchema";
 
 /**
  * This is required as a type, but also as a structure holding schemas for
@@ -36,6 +40,7 @@ export interface ISourceSchema<
     ToPatchSchema: TToPatchSchema;
     PatchSchema: TPatchSchema;
     FilterSchema: TFilterSchema;
+    UpsertSchema: IUpsertSchema<TToCreateSchema, TToPatchSchema, TFilterSchema>;
     SortSchema: TSortSchema;
     ParamsSchema: TParamsSchema;
     CursorSchema: ICursorSchema;
@@ -89,6 +94,7 @@ export interface ISourceSchemaType<
     ToPatch: z.infer<TToPatchSchema>;
     Patch: z.infer<TPatchSchema>;
     Filter: z.infer<TFilterSchema>;
+    Upsert: IUpsert<TToCreateSchema, TToPatchSchema, TFilterSchema>;
     Sort: z.infer<TSortSchema>;
     Params: z.infer<TParamsSchema>;
     Cursor: z.infer<ICursorSchema>;

@@ -13,6 +13,16 @@ export const ParamsSchema = z.object({});
 export type IParamsSchema = typeof ParamsSchema;
 export type IParams = z.infer<IParamsSchema>;
 
+export interface IQuerySchemaProps<
+    TFilterSchema extends IFilterSchema = IFilterSchema,
+    TSortSchema extends ISortSchema = ISortSchema,
+    TParamsSchema extends IParamsSchema = IParamsSchema,
+> {
+    filterSchema?: TFilterSchema;
+    sortSchema?: TSortSchema;
+    paramsSchema?: TParamsSchema;
+}
+
 export const QuerySchema = <
     TFilterSchema extends IFilterSchema = IFilterSchema,
     TSortSchema extends ISortSchema = ISortSchema,
@@ -43,13 +53,3 @@ export type IQuerySchema<
     TSortSchema extends ISortSchema = ISortSchema,
     TParamsSchema extends IParamsSchema = IParamsSchema,
 > = ReturnType<typeof QuerySchema<TFilterSchema, TSortSchema, TParamsSchema>>;
-
-export interface IQuerySchemaProps<
-    TFilterSchema extends IFilterSchema = IFilterSchema,
-    TSortSchema extends ISortSchema = ISortSchema,
-    TParamsSchema extends IParamsSchema = IParamsSchema,
-> {
-    filterSchema?: TFilterSchema;
-    sortSchema?: TSortSchema;
-    paramsSchema?: TParamsSchema;
-}

@@ -49,7 +49,7 @@ void withSdk(
                 },
             ],
         },
-        FilterForm:           {
+        FilterForm:     {
             forms: [
                 {
                     name:        "Transaction",
@@ -58,6 +58,12 @@ void withSdk(
                     },
                     packages:    {
                         schema: "@monye.one/transaction",
+                    },
+                    withFilter:  {
+                        type:        "UseFilterSourceQuery",
+                        withPackage: {
+                            package: "@monye.one/filter-client",
+                        },
                     },
                 },
             ],

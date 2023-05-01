@@ -18,8 +18,8 @@ export class FilterSourceMapper extends FilterBaseSourceMapper {
     async toDto({filter, dto, ...entity}: IFilterSourceSchemaType["Entity"]): Promise<IFilterSourceSchemaType["Dto"]> {
         return {
             ...entity,
-            filter: Pack.unpack(filter),
-            dto:    Pack.unpackIf(dto),
+            filter: await Pack.unpack(filter),
+            dto:    await Pack.unpackIf(dto),
         };
     }
 

@@ -6,6 +6,7 @@ import {
 export type IWithSourceQueryProps<TSourceSchemaType extends ISourceSchemaType> = {
     create: { useMutation: IUseSourceQuery<TSourceSchemaType>["useCreate"] };
     patch: { useMutation: IUseSourceQuery<TSourceSchemaType>["usePatch"] };
+    upsert: { useMutation: IUseSourceQuery<TSourceSchemaType>["useUpsert"] };
     delete: { useMutation: IUseSourceQuery<TSourceSchemaType>["useDelete"] };
     deleteWith: { useMutation: IUseSourceQuery<TSourceSchemaType>["useDeleteWith"] };
     query: { useQuery: IUseSourceQuery<TSourceSchemaType>["useQuery"] };
@@ -19,6 +20,7 @@ export const withSourceQuery = <TSourceSchemaType extends ISourceSchemaType>(
     {
         create:       {useMutation: useCreate},
         patch:        {useMutation: usePatch},
+        upsert:       {useMutation: useUpsert},
         delete:       {useMutation: useDelete},
         deleteWith:   {useMutation: useDeleteWith},
         query:        {useQuery},
@@ -30,6 +32,7 @@ export const withSourceQuery = <TSourceSchemaType extends ISourceSchemaType>(
 ): IUseSourceQuery<TSourceSchemaType> => ({
     useCreate,
     usePatch,
+    useUpsert,
     useDelete,
     useDeleteWith,
     useQuery,

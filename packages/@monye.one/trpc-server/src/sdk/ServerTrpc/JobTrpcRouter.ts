@@ -21,6 +21,9 @@ export const JobSourceRouter = router({
     patch:  procedure
                 .input(JobSourceSchema.ToPatchSchema)
                 .mutation(JobSourceProcedure.handlePatch),
+    upsert:  procedure
+                .input(JobSourceSchema.UpsertSchema)
+                .mutation(JobSourceProcedure.handleUpsert),
     delete:  procedure
                 .input(WithIdentitySchema)
                 .mutation(JobSourceProcedure.handleDelete),
@@ -47,4 +50,4 @@ export const JobSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_q21bzds068adp6mch3dvsn4h = true;
+export const $leight_ebifgggviedt7nsjvy14ntvq = true;
