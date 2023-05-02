@@ -36,6 +36,12 @@ export class KeywordBasePrismaSource extends AbstractSourceEx<IKeywordPrismaSche
         });
     }
 
+    async runFetch({filter}: IKeywordSourceSchemaType["Query"]): Promise<IKeywordSourceSchemaType["Entity"]> {
+        return this.prisma().findFirstOrThrow({
+            where: this.toWhere(filter),
+        });
+    }
+
     async runCreate(entity: IKeywordSourceSchemaType["Create"]): Promise<IKeywordSourceSchemaType["Entity"]> {
         return this.prisma().create({
             data: entity,
@@ -106,4 +112,4 @@ export class KeywordBasePrismaSource extends AbstractSourceEx<IKeywordPrismaSche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_znsc2yd74mii0uf0yfi965fn = true;
+export const $leight_ibbs1dcakec4fvsu26udzv7f = true;

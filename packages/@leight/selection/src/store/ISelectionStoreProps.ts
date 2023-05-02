@@ -4,10 +4,13 @@ import {type IStoreProps}   from "@leight/zustand";
 
 export type ISelectionStoreProps<TItem extends IWithIdentity> = IStoreProps<{
     item?: TItem;
+    selection?: TItem;
+    commit(): void;
+    cancel(): void;
     /**
      * Set currently selected item
      */
-    select(item?: TItem): void;
+    select(item: TItem): void;
     /**
      * Checks if the given item is selected (by an ID)
      */
@@ -16,6 +19,7 @@ export type ISelectionStoreProps<TItem extends IWithIdentity> = IStoreProps<{
      * Gets an item or throw an exception if nothing is selected
      */
     required(): TItem;
+    clear(): void;
 }>;
 
 export type ISelectionStoreContext<TItem extends IWithIdentity> = IStoreContext<ISelectionStoreProps<TItem>>;

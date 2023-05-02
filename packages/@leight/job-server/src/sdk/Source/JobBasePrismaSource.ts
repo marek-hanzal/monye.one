@@ -36,6 +36,12 @@ export class JobBasePrismaSource extends AbstractSourceEx<IJobPrismaSchemaType, 
         });
     }
 
+    async runFetch({filter}: IJobSourceSchemaType["Query"]): Promise<IJobSourceSchemaType["Entity"]> {
+        return this.prisma().findFirstOrThrow({
+            where: this.toWhere(filter),
+        });
+    }
+
     async runCreate(entity: IJobSourceSchemaType["Create"]): Promise<IJobSourceSchemaType["Entity"]> {
         return this.prisma().create({
             data: entity,
@@ -106,4 +112,4 @@ export class JobBasePrismaSource extends AbstractSourceEx<IJobPrismaSchemaType, 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_blpfonvucrx01rxgl46wy3qo = true;
+export const $leight_tcdazwnvh6ada1v0ztaig4a0 = true;

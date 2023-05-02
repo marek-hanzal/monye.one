@@ -36,6 +36,12 @@ export class FileBasePrismaSource extends AbstractSourceEx<IFilePrismaSchemaType
         });
     }
 
+    async runFetch({filter}: IFileSourceSchemaType["Query"]): Promise<IFileSourceSchemaType["Entity"]> {
+        return this.prisma().findFirstOrThrow({
+            where: this.toWhere(filter),
+        });
+    }
+
     async runCreate(entity: IFileSourceSchemaType["Create"]): Promise<IFileSourceSchemaType["Entity"]> {
         return this.prisma().create({
             data: entity,
@@ -106,4 +112,4 @@ export class FileBasePrismaSource extends AbstractSourceEx<IFilePrismaSchemaType
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_o76kuayxao5aotinwwxa955u = true;
+export const $leight_tqci4wzq2u5i3yfzus4pz60p = true;

@@ -36,6 +36,12 @@ export class UserBasePrismaSource extends AbstractSourceEx<IUserPrismaSchemaType
         });
     }
 
+    async runFetch({filter}: IUserSourceSchemaType["Query"]): Promise<IUserSourceSchemaType["Entity"]> {
+        return this.prisma().findFirstOrThrow({
+            where: this.toWhere(filter),
+        });
+    }
+
     async runCreate(entity: IUserSourceSchemaType["Create"]): Promise<IUserSourceSchemaType["Entity"]> {
         return this.prisma().create({
             data: entity,
@@ -106,4 +112,4 @@ export class UserBasePrismaSource extends AbstractSourceEx<IUserPrismaSchemaType
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_d8neho28v23t12qwehf3iwst = true;
+export const $leight_ysvmwdg9wkjjb5u00pq0cqzc = true;

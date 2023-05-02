@@ -17,12 +17,18 @@ import {
     BankQueryProvider,
     BankTable
 }                                              from "@monye.one/bank-client";
+import {
+    FilterQueryProvider,
+    FilterSourceSelect,
+    FilterTable
+}                                              from "@monye.one/filter-client";
 import {type ITransactionFilterFormSchemaType} from "@monye.one/transaction";
 import {IconArrowRight}                        from "@tabler/icons-react";
 import {type FC}                               from "react";
 import {
     type ITransactionBaseFilterFormProps,
     TransactionBaseFilterForm,
+    TransactionFilterFormStoreContext,
     TransactionFilterInput
 }                                              from "../sdk";
 
@@ -45,6 +51,22 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
                 {...mandatory}
                 {...withLabelPlaceholder}
                 {...withDescription}
+            />,
+            "filterId":   ({mandatory, withLabelPlaceholder, withDescription}) => <FilterSourceSelect<ITransactionFilterFormSchemaType>
+                {...mandatory}
+                {...withLabelPlaceholder}
+                {...withDescription}
+                FormContext={TransactionFilterFormStoreContext}
+                Selector={({onClick}) => <FilterQueryProvider>
+                    <FilterTable
+                        onClick={onClick}
+                    />
+                </FilterQueryProvider>}
+                render={filter => <Badge
+                    size={"xl"}
+                >
+                    {filter.name}
+                </Badge>}
             />,
             "bankIds":    ({mandatory, withLabelPlaceholder, withDescription}) => <BankMultiSourceSelect<ITransactionFilterFormSchemaType>
                 {...mandatory}
@@ -120,7 +142,8 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
         {...props}
     >
         <TransactionFilterInput path={"filter"}/>
-        <Divider/>
+        <TransactionFilterInput path={"filterId"}/>
+        <Divider mt={"sm"}/>
         <TransactionFilterInput path={"bankIds"}/>
         <TransactionFilterInput path={"target"}/>
         {!props.hidden?.includes("rangeOf") && <Divider mt={"sm"}/>}

@@ -31,14 +31,21 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
     async runFind(id: string): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().findUniqueOrThrow({
             where: {id},
-				include: {"bank":true},
+			include: {"bank":true},
+        });
+    }
+
+    async runFetch({filter}: ITransactionSourceSchemaType["Query"]): Promise<ITransactionSourceSchemaType["Entity"]> {
+        return this.prisma().findFirstOrThrow({
+            where: this.toWhere(filter),
+			include: {"bank":true},
         });
     }
 
     async runCreate(entity: ITransactionSourceSchemaType["Create"]): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().create({
             data: entity,
-				include: {"bank":true},
+			include: {"bank":true},
         });
     }
 
@@ -46,7 +53,7 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
         return this.prisma().update({
             data: patch,
             where: this.toWhereUnique(filter),
-				include: {"bank":true},
+			include: {"bank":true},
         });
     }
 
@@ -55,7 +62,7 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
             create,
             update,
             where: this.toWhereUnique(filter),
-				include: {"bank":true},
+			include: {"bank":true},
         });
     }
 
@@ -95,7 +102,7 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
             arg: {
                 where:   this.toWhere(query?.filter),
                 orderBy: this.toOrderBy(query?.sort),
-				include: {"bank":true},
+			include: {"bank":true},
             },
         }));
     }
@@ -109,4 +116,4 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fgv3ee9j66ciwdsfpe3kr98y = true;
+export const $leight_eamuxxrc6utukjksumtju57s = true;

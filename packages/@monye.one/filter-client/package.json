@@ -32,6 +32,7 @@
         "@leight/filter": "^0.5.0",
         "@leight/form": "^0.5.0",
         "@leight/form-client": "^0.5.0",
+        "@leight/mantine": "^0.5.0",
         "@leight/selection": "^0.5.0",
         "@leight/selection-client": "^0.5.0",
         "@leight/source-client": "^0.5.0",

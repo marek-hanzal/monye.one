@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rrpylgmb9dxl8qgqeg4pgh8h = true;
+export const $leight_pzx4jeici44r5gws65wfa4ib = true;
 
 export * from "./index";
 export * from "./FilterForm/TransactionBaseFilterForm";

@@ -29,6 +29,16 @@ export class FilterSource extends FilterBasePrismaSource {
         if (!filter) {
             return;
         }
+
+        const {ids} = filter;
+        if (ids && ids.length) {
+            return {
+                id: {
+                    in: ids,
+                },
+            };
+        }
+
         return {
             ...filter,
             userId: this.userService.required(),
@@ -36,7 +46,13 @@ export class FilterSource extends FilterBasePrismaSource {
     }
 
     toWhereUnique(filter: IFilterSourceSchemaType["Filter"]): IFilterPrismaSchemaType["WhereUnique"] {
-        const {type_name} = filter;
+        const {id, type_name} = filter;
+
+        if (id) {
+            return {
+                id,
+            };
+        }
         if (type_name) {
             return {
                 userId_type_name: {

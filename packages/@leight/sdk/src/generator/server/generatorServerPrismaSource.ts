@@ -101,20 +101,26 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
 
     async runFind(id: string): Promise<I${name}SourceSchemaType["Entity"]> {
         return this.prisma().findUniqueOrThrow({
-            where: {id},${withInclude ? `\n\t\t\t\tinclude: ${$withInclude},` : ''}
+            where: {id},${withInclude ? `\n\t\t\tinclude: ${$withInclude},` : ''}
+        });
+    }
+
+    async runFetch({filter}: I${name}SourceSchemaType["Query"]): Promise<I${name}SourceSchemaType["Entity"]> {
+        return this.prisma().findFirstOrThrow({
+            where: this.toWhere(filter),${withInclude ? `\n\t\t\tinclude: ${$withInclude},` : ''}
         });
     }
 
     async runCreate(entity: I${name}SourceSchemaType["Create"]): Promise<I${name}SourceSchemaType["Entity"]> {
         return this.prisma().create({
-            data: entity,${withInclude ? `\n\t\t\t\tinclude: ${$withInclude},` : ''}
+            data: entity,${withInclude ? `\n\t\t\tinclude: ${$withInclude},` : ''}
         });
     }
 
     async runPatch({patch, filter}: ISource.IPatch<I${name}SourceSchemaType>): Promise<I${name}SourceSchemaType["Entity"]> {
         return this.prisma().update({
             data: patch,
-            where: this.toWhereUnique(filter),${withInclude ? `\n\t\t\t\tinclude: ${$withInclude},` : ''}
+            where: this.toWhereUnique(filter),${withInclude ? `\n\t\t\tinclude: ${$withInclude},` : ''}
         });
     }
 
@@ -122,7 +128,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
         return this.prisma().upsert({
             create,
             update,
-            where: this.toWhereUnique(filter),${withInclude ? `\n\t\t\t\tinclude: ${$withInclude},` : ''}
+            where: this.toWhereUnique(filter),${withInclude ? `\n\t\t\tinclude: ${$withInclude},` : ''}
         });
     }
 
@@ -161,7 +167,7 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
             query,
             arg: {
                 where:   this.toWhere(query?.filter),
-                orderBy: this.toOrderBy(query?.sort),${withInclude ? `\n\t\t\t\tinclude: ${$withInclude},` : ''}
+                orderBy: this.toOrderBy(query?.sort),${withInclude ? `\n\t\t\tinclude: ${$withInclude},` : ''}
             },
         }));
     }
