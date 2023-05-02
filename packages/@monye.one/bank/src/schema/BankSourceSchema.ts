@@ -38,13 +38,10 @@ export const BankSourceSchema = withSourceSchema({
     ToPatchSchema:  ToPatchSchema.merge(z.object({
         account:     z.string().optional(),
         description: z.string().optional(),
-        balance:     z.union([
-            z.object({
-                value: z.number(),
-                date:  z.string(),
-            }).optional(),
-            z.null(),
-        ]),
+        balance:     z.object({
+            value: z.number(),
+            date:  z.string(),
+        }).nullish(),
     })),
     PatchSchema:    BankPartialSchema.merge(PatchSchema),
     FilterSchema:   FilterSchema.merge(z.object({

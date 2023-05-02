@@ -3,16 +3,18 @@ import {
     type IContainer
 }                    from "@leight/container";
 import {
-    ISourceSchema,
+    type ISourceSchema,
     type ISourceSchemaType,
     type ISourceService,
     type IWithIdentity,
     type IWithOptionalIdentity,
+    withCreateSchema,
     WithIdentitySchema,
-    WithOptionalIdentitySchema
+    WithOptionalIdentitySchema,
+    withPatchSchema,
+    withUpsertSchema
 }                    from "@leight/source";
 import {withHandler} from "@leight/trpc-server";
-import {z}           from "@leight/zod";
 
 export interface IWithSourceProcedureProps<TSourceSchemaType extends ISourceSchemaType> {
     sourceService: BindKey;
@@ -30,24 +32,15 @@ export const withSourceProcedure = <TSourceSchemaType extends ISourceSchemaType>
     };
 
     return {
-        CreateSchema:       z.object({
-            toCreate: schema.ToCreateSchema,
-        }),
+        CreateSchema:       withCreateSchema<TSourceSchemaType>(schema),
         handleCreate:       withHandler<ISourceService.IHandleCreateProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>({
             handler: async ({container, request}) => withSourceService(container).handleCreate(request),
         }),
-        PatchSchema:        z.object({
-            toPatch: schema.ToPatchSchema,
-            filter:  schema.FilterSchema,
-        }),
+        PatchSchema:        withPatchSchema<TSourceSchemaType>(schema),
         handlePatch:        withHandler<ISourceService.IHandlePatchProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>({
             handler: async ({container, request}) => withSourceService(container).handlePatch(request),
         }),
-        UpsertSchema:       z.object({
-            toCreate: schema.ToCreateSchema,
-            toPatch:  schema.ToPatchSchema,
-            filter:   schema.FilterSchema,
-        }),
+        UpsertSchema:       withUpsertSchema<TSourceSchemaType>(schema),
         handleUpsert:       withHandler<ISourceService.IHandleUpsertProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>({
             handler: async ({container, request}) => withSourceService(container).handleUpsert(request),
         }),
