@@ -32,20 +32,20 @@ export const withSourceProcedure = <TSourceSchemaType extends ISourceSchemaType>
     };
 
     return {
-        CreateSchema:       withCreateSchema<TSourceSchemaType>(schema),
-        handleCreate:       withHandler<ISourceService.IHandleCreateProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>({
+        CreateSchema:        withCreateSchema<TSourceSchemaType>(schema),
+        handleCreate:        withHandler<ISourceService.IHandleCreateProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>({
             handler: async ({container, request}) => withSourceService(container).handleCreate(request),
         }),
-        PatchSchema:        withPatchSchema<TSourceSchemaType>(schema),
-        handlePatch:        withHandler<ISourceService.IHandlePatchProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>({
+        PatchSchema:         withPatchSchema<TSourceSchemaType>(schema),
+        handlePatch:         withHandler<ISourceService.IHandlePatchProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>({
             handler: async ({container, request}) => withSourceService(container).handlePatch(request),
         }),
-        UpsertSchema:       withUpsertSchema<TSourceSchemaType>(schema),
-        handleUpsert:       withHandler<ISourceService.IHandleUpsertProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>({
+        UpsertSchema:        withUpsertSchema<TSourceSchemaType>(schema),
+        handleUpsert:        withHandler<ISourceService.IHandleUpsertProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>({
             handler: async ({container, request}) => withSourceService(container).handleUpsert(request),
         }),
-        DeleteSchema:       WithIdentitySchema,
-        handleDelete:       withHandler<IWithIdentity, TSourceSchemaType["Dto"]>({
+        DeleteSchema:        WithIdentitySchema,
+        handleDelete:        withHandler<IWithIdentity, TSourceSchemaType["Dto"]>({
             handler: async ({container, request}) => {
                 const $sourceService = withSourceService(container);
                 return $sourceService.toDto(
@@ -53,8 +53,8 @@ export const withSourceProcedure = <TSourceSchemaType extends ISourceSchemaType>
                 );
             },
         }),
-        DeleteWithSchema:   schema.QuerySchema,
-        handleDeleteWith:   withHandler<TSourceSchemaType["Query"], TSourceSchemaType["Dto"][]>({
+        DeleteWithSchema:    schema.QuerySchema,
+        handleDeleteWith:    withHandler<TSourceSchemaType["Query"], TSourceSchemaType["Dto"][]>({
             handler: async ({container, request}) => {
                 const $sourceService = withSourceService(container);
                 return Promise.all(
@@ -62,8 +62,8 @@ export const withSourceProcedure = <TSourceSchemaType extends ISourceSchemaType>
                 );
             },
         }),
-        QuerySchema:        schema.QueryOptionalSchema,
-        handleQuery:        withHandler<TSourceSchemaType["QueryOptional"], TSourceSchemaType["Dto"][]>({
+        QuerySchema:         schema.QueryOptionalSchema,
+        handleQuery:         withHandler<TSourceSchemaType["QueryOptional"], TSourceSchemaType["Dto"][]>({
             handler: async ({container, request}) => {
                 const $sourceService = withSourceService(container);
                 return Promise.all(
@@ -71,12 +71,12 @@ export const withSourceProcedure = <TSourceSchemaType extends ISourceSchemaType>
                 );
             },
         }),
-        CountSchema:        schema.QueryOptionalSchema,
-        handleCount:        withHandler<TSourceSchemaType["QueryOptional"], number>({
+        CountSchema:         schema.QueryOptionalSchema,
+        handleCount:         withHandler<TSourceSchemaType["QueryOptional"], number>({
             handler: async ({container, request}) => withSourceService(container).source().count(request),
         }),
-        FetchSchema:        schema.QuerySchema,
-        handleFetch:        withHandler<TSourceSchemaType["Query"], TSourceSchemaType["Dto"]>({
+        FetchSchema:         schema.QuerySchema,
+        handleFetch:         withHandler<TSourceSchemaType["Query"], TSourceSchemaType["Dto"]>({
             handler: async ({container, request}) => {
                 const $sourceService = withSourceService(container);
                 return $sourceService.toDto(
@@ -84,8 +84,17 @@ export const withSourceProcedure = <TSourceSchemaType extends ISourceSchemaType>
                 );
             },
         }),
-        FindSchema:         WithIdentitySchema,
-        handleFind:         withHandler<IWithIdentity, TSourceSchemaType["Dto"]>({
+        handleFetchOptional: withHandler<TSourceSchemaType["Query"], TSourceSchemaType["Dto"] | null>({
+            handler: async ({container, request}) => {
+                const $sourceService = withSourceService(container);
+                const entity         = await $sourceService.source().fetchOptional(request);
+                return entity ? $sourceService.toDto(
+                    entity
+                ) : null;
+            },
+        }),
+        FindSchema:          WithIdentitySchema,
+        handleFind:          withHandler<IWithIdentity, TSourceSchemaType["Dto"]>({
             handler: async ({container, request: {id}}) => {
                 const $sourceService = withSourceService(container);
                 return $sourceService.toDto(
@@ -93,8 +102,8 @@ export const withSourceProcedure = <TSourceSchemaType extends ISourceSchemaType>
                 );
             },
         }),
-        FindOptionalSchema: WithOptionalIdentitySchema,
-        handleFindOptional: withHandler<IWithOptionalIdentity, TSourceSchemaType["Dto"] | null>({
+        FindOptionalSchema:  WithOptionalIdentitySchema,
+        handleFindOptional:  withHandler<IWithOptionalIdentity, TSourceSchemaType["Dto"] | null>({
             handler: async ({container, request}) => {
                 const $sourceService = withSourceService(container);
                 const entity         = await $sourceService.source().findOptional(request?.id);

@@ -34,6 +34,9 @@ export const JobSourceRouter = router({
     fetch:  procedure
                 .input(JobSourceProcedure.FetchSchema)
                 .query(JobSourceProcedure.handleFetch),
+    fetchOptional:  procedure
+                .input(JobSourceProcedure.FetchSchema)
+                .query(JobSourceProcedure.handleFetchOptional),
     find:   procedure
                 .input(JobSourceProcedure.FindSchema)
                 .query(JobSourceProcedure.handleFind),
@@ -45,4 +48,4 @@ export const JobSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_veme5zk9d1je0mhu0un0ylmq = true;
+export const $leight_fmhoqyqrjo2dflfsx3g82j09 = true;

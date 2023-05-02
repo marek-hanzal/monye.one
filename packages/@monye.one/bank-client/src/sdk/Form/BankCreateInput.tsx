@@ -21,4 +21,4 @@ export const BankCreateInput: FC<Omit<IWithInputProps<IBankCreateFormSchemaType>
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_yzc40nketqz29xr1fftldzf0 = true;
+export const $leight_jjzuvft31u5don779qxyw3rz = true;

@@ -19,6 +19,7 @@ import {
 }                                              from "@monye.one/bank-client";
 import {
     FilterQueryProvider,
+    FilterSelection,
     FilterSourceSelect,
     FilterTable
 }                                              from "@monye.one/filter-client";
@@ -59,6 +60,9 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
                 FormContext={TransactionFilterFormStoreContext}
                 Selector={({onClick}) => <FilterQueryProvider>
                     <FilterTable
+                        SelectionContext={FilterSelection}
+                        disableActions
+                        withFulltext
                         onClick={onClick}
                     />
                 </FilterQueryProvider>}

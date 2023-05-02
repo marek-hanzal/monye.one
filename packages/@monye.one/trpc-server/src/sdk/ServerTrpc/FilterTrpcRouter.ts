@@ -34,6 +34,9 @@ export const FilterSourceRouter = router({
     fetch:  procedure
                 .input(FilterSourceProcedure.FetchSchema)
                 .query(FilterSourceProcedure.handleFetch),
+    fetchOptional:  procedure
+                .input(FilterSourceProcedure.FetchSchema)
+                .query(FilterSourceProcedure.handleFetchOptional),
     find:   procedure
                 .input(FilterSourceProcedure.FindSchema)
                 .query(FilterSourceProcedure.handleFind),
@@ -45,4 +48,4 @@ export const FilterSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_pgmw9rf3x6rj95c8vo6bk80d = true;
+export const $leight_ocnrhpkr70h6b6sx3dbr8e06 = true;

@@ -80,6 +80,9 @@ router({
     fetch:  procedure
                 .input(${name}SourceProcedure.FetchSchema)
                 .query(${name}SourceProcedure.handleFetch),
+    fetchOptional:  procedure
+                .input(${name}SourceProcedure.FetchSchema)
+                .query(${name}SourceProcedure.handleFetchOptional),
     find:   procedure
                 .input(${name}SourceProcedure.FindSchema)
                 .query(${name}SourceProcedure.handleFind),

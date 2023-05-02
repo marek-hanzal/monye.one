@@ -12,22 +12,24 @@ export type IWithSourceQueryProps<TSourceSchemaType extends ISourceSchemaType> =
     query: { useQuery: IUseSourceQuery<TSourceSchemaType>["useQuery"] };
     count: { useQuery: IUseSourceQuery<TSourceSchemaType>["useCount"] };
     fetch: { useQuery: IUseSourceQuery<TSourceSchemaType>["useFetch"] };
+    fetchOptional: { useQuery: IUseSourceQuery<TSourceSchemaType>["useFetchOptional"] };
     find: { useQuery: IUseSourceQuery<TSourceSchemaType>["useFind"] };
     findOptional: { useQuery: IUseSourceQuery<TSourceSchemaType>["useFindOptional"] };
 }
 
 export const withSourceQuery = <TSourceSchemaType extends ISourceSchemaType>(
     {
-        create:       {useMutation: useCreate},
-        patch:        {useMutation: usePatch},
-        upsert:       {useMutation: useUpsert},
-        delete:       {useMutation: useDelete},
-        deleteWith:   {useMutation: useDeleteWith},
-        query:        {useQuery},
-        count:        {useQuery: useCount},
-        fetch:        {useQuery: useFetch},
-        find:         {useQuery: useFind},
-        findOptional: {useQuery: useFindOptional},
+        create:        {useMutation: useCreate},
+        patch:         {useMutation: usePatch},
+        upsert:        {useMutation: useUpsert},
+        delete:        {useMutation: useDelete},
+        deleteWith:    {useMutation: useDeleteWith},
+        query:         {useQuery},
+        count:         {useQuery: useCount},
+        fetch:         {useQuery: useFetch},
+        fetchOptional: {useQuery: useFetchOptional},
+        find:          {useQuery: useFind},
+        findOptional:  {useQuery: useFindOptional},
     }: IWithSourceQueryProps<TSourceSchemaType>
 ): IUseSourceQuery<TSourceSchemaType> => ({
     useCreate,
@@ -38,6 +40,7 @@ export const withSourceQuery = <TSourceSchemaType extends ISourceSchemaType>(
     useQuery,
     useCount,
     useFetch,
+    useFetchOptional,
     useFind,
     useFindOptional,
 });

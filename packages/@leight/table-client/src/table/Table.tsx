@@ -1,13 +1,16 @@
-import {type IWithTranslation}            from "@leight/i18n";
-import {Translation}                      from "@leight/i18n-client";
-import {withPrimaryColor}                 from "@leight/mantine";
-import {type IMultiSelectionStoreContext} from "@leight/selection";
-import {type IWithIdentity}               from "@leight/source";
+import {type IWithTranslation} from "@leight/i18n";
+import {Translation}           from "@leight/i18n-client";
+import {withPrimaryColor}      from "@leight/mantine";
+import {
+    type IMultiSelectionStoreContext,
+    ISelectionStoreContext
+}                              from "@leight/selection";
+import {type IWithIdentity}    from "@leight/source";
 import {
     isCallable,
     isString
-}                                         from "@leight/utils";
-import {classNames}                       from "@leight/utils-client";
+}                              from "@leight/utils";
+import {classNames}            from "@leight/utils-client";
 import {
     Box,
     createStyles,
@@ -15,15 +18,15 @@ import {
     LoadingOverlay,
     ScrollArea,
     Table as CoolTable
-}                                         from "@mantine/core";
+}                              from "@mantine/core";
 import {
     type ComponentProps,
     type CSSProperties,
     type FC,
     type ReactNode
-}                                         from "react";
-import {TableAction}                      from "./TableAction";
-import {TableRowAction}                   from "./TableRowAction";
+}                              from "react";
+import {TableAction}           from "./TableAction";
+import {TableRowAction}        from "./TableRowAction";
 
 const useStyles = createStyles(theme => ({
     table: {
@@ -132,6 +135,7 @@ export interface ITableInternalProps<TColumn extends ITableColumn, TColumnKeys e
     renderPrefix?: ITableInternalProps.IRenderPrefix<TColumn>;
     renderFooter?: ITableInternalProps.IRenderFooter<TColumn>;
 
+    SelectionContext?: ISelectionStoreContext<ITableColumn.IItem<TColumn>>;
     MultiSelectionContext?: IMultiSelectionStoreContext<ITableColumn.IItem<TColumn>>;
 
     onClick?(item: ITableColumn.IItem<TColumn>): void;
@@ -179,6 +183,7 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
         renderFooter,
         disableActions = false,
         onClick,
+        SelectionContext,
         MultiSelectionContext,
         ...props
     }: ITableInternalProps<TColumn, TColumnKeys>) => {
@@ -193,6 +198,7 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
         overrideColumns[column] || columns[column],
     ]);
 
+    const selection      = SelectionContext?.useState();
     const multiSelection = MultiSelectionContext?.useState();
 
     return <ScrollArea
@@ -260,7 +266,7 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
                         .map(item => <tr
                             key={item.id}
                             className={classNames(
-                                multiSelection?.isSelected(item) ? "selection" : undefined,
+                                (selection?.isSelected(item) || multiSelection?.isSelected(item)) ? "selection" : undefined,
                             )}
                         >
                             {!disableActions && WithTableAction && !WithRowAction && <td></td>}

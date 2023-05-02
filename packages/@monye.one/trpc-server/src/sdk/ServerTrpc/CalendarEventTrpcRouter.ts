@@ -34,6 +34,9 @@ export const CalendarEventSourceRouter = router({
     fetch:  procedure
                 .input(CalendarEventSourceProcedure.FetchSchema)
                 .query(CalendarEventSourceProcedure.handleFetch),
+    fetchOptional:  procedure
+                .input(CalendarEventSourceProcedure.FetchSchema)
+                .query(CalendarEventSourceProcedure.handleFetchOptional),
     find:   procedure
                 .input(CalendarEventSourceProcedure.FindSchema)
                 .query(CalendarEventSourceProcedure.handleFind),
@@ -45,4 +48,4 @@ export const CalendarEventSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_yh1c3iwee0bsjqhmfebz3j4x = true;
+export const $leight_mac83ujqxfog9q0dhc1qt4er = true;

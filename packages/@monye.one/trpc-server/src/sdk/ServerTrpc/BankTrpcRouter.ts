@@ -34,6 +34,9 @@ export const BankSourceRouter = router({
     fetch:  procedure
                 .input(BankSourceProcedure.FetchSchema)
                 .query(BankSourceProcedure.handleFetch),
+    fetchOptional:  procedure
+                .input(BankSourceProcedure.FetchSchema)
+                .query(BankSourceProcedure.handleFetchOptional),
     find:   procedure
                 .input(BankSourceProcedure.FindSchema)
                 .query(BankSourceProcedure.handleFind),
@@ -45,4 +48,4 @@ export const BankSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hi5jgmk9i6zkzd2b7udbkid2 = true;
+export const $leight_c1va7a32aka164d8qy46g3hn = true;

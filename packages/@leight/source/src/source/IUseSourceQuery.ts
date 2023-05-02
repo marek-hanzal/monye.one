@@ -15,6 +15,7 @@ export type IUseSourceQuery<TSourceSchemaType extends ISourceSchemaType> = {
     useQuery: IUseQuery<TSourceSchemaType["QueryOptional"], TSourceSchemaType["Dto"][]>;
     useCount: IUseQuery<TSourceSchemaType["QueryOptional"], number>;
     useFetch: IUseQuery<TSourceSchemaType["Query"], TSourceSchemaType["Dto"]>;
+    useFetchOptional: IUseQuery<TSourceSchemaType["Query"], TSourceSchemaType["Dto"] | undefined>;
     useFind: IUseQuery<IWithIdentity, TSourceSchemaType["Dto"]>;
     useFindOptional: IUseQuery<Partial<IWithIdentity>, TSourceSchemaType["Dto"] | null>;
 };

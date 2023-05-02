@@ -33,7 +33,7 @@ export const createSelectionStore = <TItem extends IWithIdentity>(
                 set({item});
             },
             isSelected(item) {
-                return get().item?.id === item.id;
+                return get().selection?.id === item.id;
             },
             required() {
                 const item = get().item;

@@ -1,22 +1,21 @@
 import {
     FilterPartialSchema,
     FilterSchema as PrismaFilterSchema
-}                   from "@leight/prisma";
+}          from "@leight/prisma";
 import {
     FilterSchema,
     type ISourceSchemaType,
     PatchSchema,
     SortOrderSchema,
     withSourceSchema
-}                   from "@leight/source";
-import {JsonSchema} from "@leight/utils";
-import {z}          from "@leight/zod";
+}          from "@leight/source";
+import {z} from "@leight/zod";
 
 export const FilterSourceSchema = withSourceSchema({
     EntitySchema:   PrismaFilterSchema,
     DtoSchema:      PrismaFilterSchema.merge(z.object({
-        filter: JsonSchema,
-        dto:    JsonSchema.nullish(),
+        filter: z.record(z.any()),
+        dto:    z.record(z.any()).nullish(),
     })),
     ToCreateSchema: z.object({
         name:   z.string(),

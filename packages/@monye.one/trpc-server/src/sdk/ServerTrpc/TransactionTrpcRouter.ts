@@ -34,6 +34,9 @@ export const TransactionSourceRouter = router({
     fetch:  procedure
                 .input(TransactionSourceProcedure.FetchSchema)
                 .query(TransactionSourceProcedure.handleFetch),
+    fetchOptional:  procedure
+                .input(TransactionSourceProcedure.FetchSchema)
+                .query(TransactionSourceProcedure.handleFetchOptional),
     find:   procedure
                 .input(TransactionSourceProcedure.FindSchema)
                 .query(TransactionSourceProcedure.handleFind),
@@ -45,4 +48,4 @@ export const TransactionSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nl27h5tynwe60x7i4gmmitgh = true;
+export const $leight_cq94smzyshpjx8frz78ufszu = true;

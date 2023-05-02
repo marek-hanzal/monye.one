@@ -56,9 +56,9 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
     const [opened, {open, close}]                             = useDisclosure(false);
     const {MantineContext: {useFormContext}, withTranslation} = props.FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
     const {onChange, value}                                   = useFormContext().getInputProps(props.path);
-    const entity                                              = SourceStore.use.useFetch({
+    const entity                                              = SourceStore.use.useFetchOptional({
         filter: {
-            ids: value || [],
+            id: value || "",
         }
     });
 

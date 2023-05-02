@@ -88,6 +88,14 @@ export abstract class AbstractSource<TSourceSchemaType extends ISourceSchemaType
         throw new SourceError(`Source [${this.name}] does not support querying item by query.`);
     }
 
+    async fetchOptional(query: TSourceSchemaType["Query"]): Promise<TSourceSchemaType["Entity"] | null> {
+        try {
+            return await this.fetch(query);
+        } catch (e) {
+            return null;
+        }
+    }
+
     async find(id: string): Promise<TSourceSchemaType["Entity"]> {
         return this.runFind(id);
     }
@@ -99,7 +107,7 @@ export abstract class AbstractSource<TSourceSchemaType extends ISourceSchemaType
 
     async findOptional(id?: string): Promise<TSourceSchemaType["Entity"] | null> {
         try {
-            return id ? this.find(id) : null;
+            return id ? await this.find(id) : null;
         } catch (e) {
             return null;
         }

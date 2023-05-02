@@ -30,7 +30,14 @@ export class FilterSource extends FilterBasePrismaSource {
             return;
         }
 
-        const {ids} = filter;
+        const {id, ids} = filter;
+
+        if (id) {
+            return {
+                id,
+            };
+        }
+
         if (ids && ids.length) {
             return {
                 id: {
