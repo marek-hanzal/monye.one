@@ -17,6 +17,7 @@ export const LiteralSchema = z.union([
     z.number(),
     z.date(),
     z.null(),
+    z.undefined(),
 ]);
 export type ILiteral = z.infer<typeof LiteralSchema>;
 
@@ -29,6 +30,6 @@ export const JsonSchema: z.ZodType<IJson> = z.lazy(() =>
     z.union([
         LiteralSchema,
         z.array(LiteralSchema),
-        z.record(LiteralSchema)
+        z.record(LiteralSchema),
     ])
 );

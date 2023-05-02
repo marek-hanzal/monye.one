@@ -1,6 +1,6 @@
 import {IPackageType}    from "@leight/generator";
 import {
-    withPackageType,
+    withPackageImport,
     withSourceFile
 }                        from "@leight/generator-server";
 import {normalize}       from "node:path";
@@ -19,8 +19,13 @@ export namespace IGeneratorClientFilterFormParams {
         translation: {
             namespace: string;
         };
-        withFilter?: IPackageType;
+        withFilter?: IWithFilter;
         packages: IPackages;
+    }
+
+    export interface IWithFilter {
+        type: string;
+        package: IPackageType;
     }
 
     export interface IPackages {
@@ -158,10 +163,10 @@ props => {
                     ],
                 },
             })
-            .withImports(withFilter?.withPackage?.package ? {
+            .withImports(withFilter?.package?.withPackage?.package ? {
                 imports: {
-                    [withFilter.withPackage.package]: [
-                        withFilter.type,
+                    [withFilter.package?.withPackage?.package]: [
+                        withFilter?.package.type,
                     ]
                 },
             } : undefined)
@@ -181,7 +186,7 @@ props => {
             namespace: "${translation.namespace}",
             label:     "${name}BaseFilterForm",
         }}
-        ${withFilter ? `UseFilterQuery={${withPackageType(withFilter)}}\n\t\t` : "\n\t\t"}{...props}
+        ${withFilter ? `withFilterQuery={{type: "${withFilter.type}", UseFilterQuery: ${withPackageImport(withFilter.package)}}}\n\t\t` : "\n\t\t"}{...props}
     />;
 }
                         `,

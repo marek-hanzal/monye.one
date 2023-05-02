@@ -60,9 +60,12 @@ void withSdk(
                         schema: "@monye.one/transaction",
                     },
                     withFilter:  {
-                        type:        "UseFilterSourceQuery",
-                        withPackage: {
-                            package: "@monye.one/filter-client",
+                        type:    "@monye.one/transaction",
+                        package: {
+                            type:        "UseFilterSourceQuery",
+                            withPackage: {
+                                package: "@monye.one/filter-client",
+                            },
                         },
                     },
                 },

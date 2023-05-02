@@ -31,7 +31,7 @@ export const TransactionBaseFilterForm: FC<ITransactionBaseFilterFormProps> = pr
             namespace: "transaction",
             label:     "TransactionBaseFilterForm",
         }}
-        UseFilterQuery={UseFilterSourceQuery}
+        withFilterQuery={{type: "@monye.one/transaction", UseFilterQuery: UseFilterSourceQuery}}
 		{...props}
     />;
 };
@@ -39,4 +39,4 @@ export const TransactionBaseFilterForm: FC<ITransactionBaseFilterFormProps> = pr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zvjhfq1gle1x4l1zuhkau60n = true;
+export const $leight_da2ljj4nquo776ru774z8qa5 = true;

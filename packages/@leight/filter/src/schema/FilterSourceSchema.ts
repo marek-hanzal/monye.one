@@ -5,7 +5,6 @@ import {
 import {
     FilterSchema,
     type ISourceSchemaType,
-    ParamsSchema,
     PatchSchema,
     SortOrderSchema,
     withSourceSchema
@@ -22,8 +21,8 @@ export const FilterSourceSchema = withSourceSchema({
     ToCreateSchema: z.object({
         name:   z.string(),
         type:   z.string(),
-        filter: JsonSchema,
-        dto:    JsonSchema.nullish(),
+        filter: z.record(z.any()),
+        dto:    z.record(z.any()).nullish(),
     }),
     CreateSchema:   z.object({
         name:   z.string(),
@@ -33,14 +32,17 @@ export const FilterSourceSchema = withSourceSchema({
         userId: z.string(),
     }),
     ToPatchSchema:  FilterPartialSchema.merge(PatchSchema).merge(z.object({
-        filter: JsonSchema,
-        dto:    JsonSchema.nullish(),
+        filter: z.record(z.any()),
+        dto:    z.record(z.any()).nullish(),
     })),
     PatchSchema:    FilterPartialSchema.merge(PatchSchema),
     FilterSchema:   FilterSchema.merge(z.object({
-        type: z.string().optional(),
+        type:      z.string().optional(),
+        type_name: z.object({
+            type: z.string(),
+            name: z.string(),
+        }).optional(),
     })),
-    ParamsSchema:   ParamsSchema,
     SortSchema:     z.object({
         id: SortOrderSchema
     }),

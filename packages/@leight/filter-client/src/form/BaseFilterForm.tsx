@@ -1,43 +1,46 @@
-import {IUseFilterSourceQuery} from "@leight/filter";
-import {type IFormSchemaType}  from "@leight/form";
+import {type IUseFilterSourceQuery} from "@leight/filter";
+import {type IFormSchemaType}       from "@leight/form";
 import {
     BaseForm,
     type IBaseFormProps
-}                              from "@leight/form-client";
-import {Translation}           from "@leight/i18n-client";
+}                                   from "@leight/form-client";
+import {Translation}                from "@leight/i18n-client";
 import {
     DrawerStore,
     ModalStore
-}                              from "@leight/mantine";
+}                                   from "@leight/mantine";
 import {
     type ISourceSchemaType,
     type ISourceStore
-}                              from "@leight/source";
+}                                   from "@leight/source";
 import {
     Button,
     Group
-}                              from "@mantine/core";
+}                                   from "@mantine/core";
 import {
     IconFilter,
     IconFilterX,
     IconX
-}                              from "@tabler/icons-react";
+}                                   from "@tabler/icons-react";
 
 export interface IBaseFilterFormProps<TFormSchemaType extends IFormSchemaType, TSourceSchemaType extends ISourceSchemaType> extends IBaseFormProps<TFormSchemaType> {
     SourceStore: ISourceStore<TSourceSchemaType>;
-    UseFilterQuery?: IUseFilterSourceQuery;
+    withFilterQuery?: {
+        type: string;
+        UseFilterQuery: IUseFilterSourceQuery;
+    },
 }
 
 export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceSchemaType extends ISourceSchemaType>(
     {
         SourceStore,
-        UseFilterQuery,
+        withFilterQuery,
         ...props
     }: IBaseFilterFormProps<TFormSchemaType, TSourceSchemaType>
 ) => {
     const modalContext  = ModalStore.useOptionalState();
     const drawerContext = DrawerStore.useOptionalState();
-    // const upsertFilter = UseFilterQuery.use
+    const upsertFilter  = withFilterQuery?.UseFilterQuery.useUpsert();
 
     const withAutoClose = () => {
         props.withAutoClose?.forEach(close => {
@@ -77,6 +80,26 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
             setShallowFilter(request);
             setFilterDto(values);
             setPage(0);
+            withFilterQuery && upsertFilter?.mutate({
+                toCreate: {
+                    name:   "[name]",
+                    type:   withFilterQuery.type,
+                    filter: request,
+                    dto:    values,
+                },
+                toPatch:  {
+                    name:   "[name]",
+                    type:   withFilterQuery.type,
+                    filter: request,
+                    dto:    values,
+                },
+                filter:   {
+                    type_name: {
+                        name: "[name]",
+                        type: withFilterQuery.type,
+                    },
+                },
+            });
             onDefaultSubmit();
         }}
         submitProps={{
