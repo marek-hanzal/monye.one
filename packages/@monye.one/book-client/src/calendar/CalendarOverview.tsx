@@ -166,6 +166,11 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
                 </Tabs.Panel>
                 <Tabs.Panel value={"transactions"}>
                     <TransactionTable
+                        hiddenFilter={[
+                            "from",
+                            "to",
+                            "rangeOf",
+                        ]}
                         pagination={{
                             position:     [
                                 "bottom"
