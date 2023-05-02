@@ -4,50 +4,45 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
-	WithIdentitySchema,
-	WithOptionalIdentitySchema
-} from "@leight/source";
-import {
 	router,
 	procedure
 } from "../../router";
-import {FilterSourceSchema} from "@leight/filter";
 import {FilterSourceProcedure} from "@leight/filter-server";
 
 export const FilterSourceRouter = router({
     create: procedure
-                .input(FilterSourceSchema.ToCreateSchema)
+                .input(FilterSourceProcedure.CreateSchema)
                 .mutation(FilterSourceProcedure.handleCreate),
     patch:  procedure
-                .input(FilterSourceSchema.ToPatchSchema)
+                .input(FilterSourceProcedure.PatchSchema)
                 .mutation(FilterSourceProcedure.handlePatch),
     upsert:  procedure
-                .input(FilterSourceSchema.UpsertSchema)
+                .input(FilterSourceProcedure.UpsertSchema)
                 .mutation(FilterSourceProcedure.handleUpsert),
     delete:  procedure
-                .input(WithIdentitySchema)
+                .input(FilterSourceProcedure.DeleteSchema)
                 .mutation(FilterSourceProcedure.handleDelete),
     deleteWith:  procedure
-                .input(FilterSourceSchema.QuerySchema)
+                .input(FilterSourceProcedure.DeleteWithSchema)
                 .mutation(FilterSourceProcedure.handleDeleteWith),
     query:  procedure
-                .input(FilterSourceSchema.QueryOptionalSchema)
+                .input(FilterSourceProcedure.QuerySchema)
                 .query(FilterSourceProcedure.handleQuery),
     count:  procedure
-                .input(FilterSourceSchema.QueryOptionalSchema)
+                .input(FilterSourceProcedure.CountSchema)
                 .query(FilterSourceProcedure.handleCount),
     fetch:  procedure
-                .input(FilterSourceSchema.QuerySchema)
+                .input(FilterSourceProcedure.FetchSchema)
                 .query(FilterSourceProcedure.handleFetch),
     find:   procedure
-                .input(WithIdentitySchema)
+                .input(FilterSourceProcedure.FindSchema)
                 .query(FilterSourceProcedure.handleFind),
     findOptional:   procedure
-                .input(WithOptionalIdentitySchema)
+                .input(FilterSourceProcedure.FindOptionalSchema)
                 .query(FilterSourceProcedure.handleFindOptional),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ub5kf4ktmxixb5jldtm2ejqx = true;
+export const $leight_x646fuj6ytpiju5njkomg8ho = true;

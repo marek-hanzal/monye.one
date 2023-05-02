@@ -2,7 +2,7 @@ import {
     $JobSource,
     type IJobProgress,
     type IJobProgressService,
-    IJobSource,
+    type IJobSource,
     type IJobStatus
 }                  from "@leight/job";
 import {toPercent} from "@leight/utils";
@@ -32,36 +32,56 @@ export class JobProgressService implements IJobProgressService {
             failure:   () => $failure,
             skip:      () => $skip,
             setTotal:  total => this.jobSource.patch({
-                id:    jobId,
-                total: ($total = total),
+                patch:  {
+                    total: ($total = total),
+                },
+                filter: {
+                    id: jobId,
+                }
             }),
             setStatus: status => this.jobSource.patch({
-                id:       jobId,
-                status,
-                started:  ["RUNNING"].includes(status) ? new Date() : undefined,
-                finished: [
-                              "REVIEW",
-                              "SUCCESS",
-                              "FAILURE"
-                          ].includes(status) ? new Date() : (["RUNNING"].includes(status) ? null : undefined),
+                patch:  {
+                    status,
+                    started:  ["RUNNING"].includes(status) ? new Date() : undefined,
+                    finished: [
+                                  "REVIEW",
+                                  "SUCCESS",
+                                  "FAILURE"
+                              ].includes(status) ? new Date() : (["RUNNING"].includes(status) ? null : undefined),
+                },
+                filter: {
+                    id: jobId,
+                },
             }),
             onSuccess: () => this.jobSource.patch({
-                id:           jobId,
-                success:      ++$success,
-                successRatio: toPercent($success, $total),
-                progress:     toPercent(++$processed, $total),
+                patch:  {
+                    success:      ++$success,
+                    successRatio: toPercent($success, $total),
+                    progress:     toPercent(++$processed, $total),
+                },
+                filter: {
+                    id: jobId,
+                },
             }),
             onFailure: () => this.jobSource.patch({
-                id:           jobId,
-                failure:      ++$failure,
-                failureRatio: toPercent($failure, $total),
-                progress:     toPercent(++$processed, $total),
+                patch:  {
+                    failure:      ++$failure,
+                    failureRatio: toPercent($failure, $total),
+                    progress:     toPercent(++$processed, $total),
+                },
+                filter: {
+                    id: jobId,
+                },
             }),
             onSkip:    () => this.jobSource.patch({
-                id:        jobId,
-                skip:      ++$skip,
-                skipRatio: toPercent($skip, $total),
-                progress:  toPercent(++$processed, $total),
+                patch:  {
+                    skip:      ++$skip,
+                    skipRatio: toPercent($skip, $total),
+                    progress:  toPercent(++$processed, $total),
+                },
+                filter: {
+                    id: jobId,
+                },
             }),
             setResult: result => {
                 $result = result;

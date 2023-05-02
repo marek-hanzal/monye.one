@@ -6,14 +6,16 @@
 import {withSourceProcedure} from "@leight/trpc-source-server";
 import {
 	$FilterSourceService,
+	FilterSourceSchema,
 	type IFilterSourceSchemaType
 } from "@leight/filter";
 
 export const FilterSourceProcedure = withSourceProcedure<IFilterSourceSchemaType>({
     sourceService: $FilterSourceService,
+    schema: FilterSourceSchema,
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_u0vny0lu6zl957jub2vuyz1x = true;
+export const $leight_r0rjlf0bcztl0389c01mgpq5 = true;

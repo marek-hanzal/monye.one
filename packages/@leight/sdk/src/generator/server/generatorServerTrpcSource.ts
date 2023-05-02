@@ -45,6 +45,7 @@ export const generatorServerTrpcSource: IGenerator<IGeneratorServerTrpcSourcePar
                 imports: {
                     [packages.schema]: [
                         `$${name}SourceService`,
+                        `${name}SourceSchema`,
                         `type I${name}SourceSchemaType`,
                     ],
                 },
@@ -55,6 +56,7 @@ export const generatorServerTrpcSource: IGenerator<IGeneratorServerTrpcSourcePar
                         body: `
 withSourceProcedure<I${name}SourceSchemaType>({
     sourceService: $${name}SourceService,
+    schema: ${name}SourceSchema,
 })
                     `,
                     },

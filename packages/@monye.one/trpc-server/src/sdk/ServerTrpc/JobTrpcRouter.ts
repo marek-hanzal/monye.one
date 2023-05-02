@@ -4,50 +4,45 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
-	WithIdentitySchema,
-	WithOptionalIdentitySchema
-} from "@leight/source";
-import {
 	router,
 	procedure
 } from "../../router";
-import {JobSourceSchema} from "@leight/job";
 import {JobSourceProcedure} from "@leight/job-server";
 
 export const JobSourceRouter = router({
     create: procedure
-                .input(JobSourceSchema.ToCreateSchema)
+                .input(JobSourceProcedure.CreateSchema)
                 .mutation(JobSourceProcedure.handleCreate),
     patch:  procedure
-                .input(JobSourceSchema.ToPatchSchema)
+                .input(JobSourceProcedure.PatchSchema)
                 .mutation(JobSourceProcedure.handlePatch),
     upsert:  procedure
-                .input(JobSourceSchema.UpsertSchema)
+                .input(JobSourceProcedure.UpsertSchema)
                 .mutation(JobSourceProcedure.handleUpsert),
     delete:  procedure
-                .input(WithIdentitySchema)
+                .input(JobSourceProcedure.DeleteSchema)
                 .mutation(JobSourceProcedure.handleDelete),
     deleteWith:  procedure
-                .input(JobSourceSchema.QuerySchema)
+                .input(JobSourceProcedure.DeleteWithSchema)
                 .mutation(JobSourceProcedure.handleDeleteWith),
     query:  procedure
-                .input(JobSourceSchema.QueryOptionalSchema)
+                .input(JobSourceProcedure.QuerySchema)
                 .query(JobSourceProcedure.handleQuery),
     count:  procedure
-                .input(JobSourceSchema.QueryOptionalSchema)
+                .input(JobSourceProcedure.CountSchema)
                 .query(JobSourceProcedure.handleCount),
     fetch:  procedure
-                .input(JobSourceSchema.QuerySchema)
+                .input(JobSourceProcedure.FetchSchema)
                 .query(JobSourceProcedure.handleFetch),
     find:   procedure
-                .input(WithIdentitySchema)
+                .input(JobSourceProcedure.FindSchema)
                 .query(JobSourceProcedure.handleFind),
     findOptional:   procedure
-                .input(WithOptionalIdentitySchema)
+                .input(JobSourceProcedure.FindOptionalSchema)
                 .query(JobSourceProcedure.handleFindOptional),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_l8fo29txqv5a3wxk7ojpkq9s = true;
+export const $leight_x668vssms5950amzl92io4xn = true;

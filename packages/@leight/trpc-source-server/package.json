@@ -34,6 +34,7 @@
         "@leight/source": "^0.5.66",
         "@leight/source-server": "^0.5.66",
         "@leight/trpc-server": "^0.5.71",
+        "@leight/zod": "^0.5.0",
         "react": "^18.2.0"
     },
     "devDependencies": {

@@ -27,4 +27,4 @@ export const FilterQueryProvider: FC<IFilterQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rqwliufhg4eyxkjmfcd2ptvh = true;
+export const $leight_xnbcl4ym3uwjtte70cxhkgus = true;
