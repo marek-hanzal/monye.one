@@ -25,10 +25,21 @@ import {
 
 export interface IBaseFilterFormProps<TFormSchemaType extends IFormSchemaType, TSourceSchemaType extends ISourceSchemaType> extends IBaseFormProps<TFormSchemaType> {
     SourceStore: ISourceStore<TSourceSchemaType>;
-    withFilterQuery?: {
+    withFilterQuery?: IBaseFilterFormProps.IWithFilterQuery<TFormSchemaType>;
+}
+
+export namespace IBaseFilterFormProps {
+    export interface IWithFilterQuery<TFormSchemaType extends IFormSchemaType> {
         type: string;
         UseFilterQuery: IUseFilterSourceQuery;
-    },
+
+        getName(props: IWithFilterQuery.IGetNameProps<TFormSchemaType>): string | undefined;
+    }
+
+    export namespace IWithFilterQuery {
+        export interface IGetNameProps<TFormSchemaType extends IFormSchemaType> extends Omit<IBaseFormProps.IOnSubmitProps<TFormSchemaType>, "onDefaultSubmit"> {
+        }
+    }
 }
 
 export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceSchemaType extends ISourceSchemaType>(
@@ -80,26 +91,31 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
             setShallowFilter(request);
             setFilterDto(values);
             setPage(0);
-            withFilterQuery && upsertFilter?.mutate({
-                toCreate: {
-                    name:   "[name]",
-                    type:   withFilterQuery.type,
-                    filter: request,
-                    dto:    values,
-                },
-                toPatch:  {
-                    name:   "[name]",
-                    type:   withFilterQuery.type,
-                    filter: request,
-                    dto:    values,
-                },
-                filter:   {
-                    type_name: {
-                        name: "[name]",
-                        type: withFilterQuery.type,
-                    },
-                },
-            });
+            if (withFilterQuery) {
+                const name = withFilterQuery.getName({request, values});
+                if (name) {
+                    upsertFilter?.mutate({
+                        toCreate: {
+                            name,
+                            type:   withFilterQuery.type,
+                            filter: request,
+                            dto:    values,
+                        },
+                        toPatch:  {
+                            name,
+                            type:   withFilterQuery.type,
+                            filter: request,
+                            dto:    values,
+                        },
+                        filter:   {
+                            type_name: {
+                                name,
+                                type: withFilterQuery.type,
+                            },
+                        },
+                    });
+                }
+            }
             onDefaultSubmit();
         }}
         submitProps={{

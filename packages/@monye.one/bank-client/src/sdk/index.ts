@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_c8g4hvbolgzabrfwy2l9vizn = true;
+export const $leight_cye7s1yn8olhbwqtzui5js8y = true;
 
 export * from "./index";
 export * from "./Form/BankCreateBaseForm";

@@ -39,7 +39,13 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
                 to:   wrapJsDate(to),
             };
         }}
+        getFilterName={({values}) => values.filter}
         inputs={() => ({
+            "filter":     ({mandatory, withLabelPlaceholder, withDescription}) => <TextInput
+                {...mandatory}
+                {...withLabelPlaceholder}
+                {...withDescription}
+            />,
             "bankIds":    ({mandatory, withLabelPlaceholder, withDescription}) => <BankMultiSourceSelect<ITransactionFilterFormSchemaType>
                 {...mandatory}
                 {...withLabelPlaceholder}
@@ -113,6 +119,8 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
         })}
         {...props}
     >
+        <TransactionFilterInput path={"filter"}/>
+        <Divider/>
         <TransactionFilterInput path={"bankIds"}/>
         <TransactionFilterInput path={"target"}/>
         {!props.hidden?.includes("rangeOf") && <Divider mt={"sm"}/>}

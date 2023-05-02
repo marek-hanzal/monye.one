@@ -176,7 +176,7 @@ props => {
                         type: `FC<I${name}BaseFilterFormProps>`,
                         // language=text
                         body: `
-props => {
+({getFilterName, ...props}) => {
     return <BaseFilterForm<I${name}FilterFormSchemaType, I${name}SourceSchemaType>
         SourceStore={${name}SourceStore}
         MantineContext={${name}MantineFilterFormContext}
@@ -186,7 +186,7 @@ props => {
             namespace: "${translation.namespace}",
             label:     "${name}BaseFilterForm",
         }}
-        ${withFilter ? `withFilterQuery={{type: "${withFilter.type}", UseFilterQuery: ${withPackageImport(withFilter.package)}}}\n\t\t` : "\n\t\t"}{...props}
+        ${withFilter ? `withFilterQuery={getFilterName ? {getName: getFilterName, type: "${withFilter.type}", UseFilterQuery: ${withPackageImport(withFilter.package)}} : undefined}\n\t\t` : "\n\t\t"}{...props}
     />;
 }
                         `,
@@ -201,6 +201,9 @@ props => {
                                 type: `Omit<IBaseFilterFormProps<I${name}FilterFormSchemaType, I${name}SourceSchemaType>, "SourceStore" | "FormContext" | "MantineContext" | "withTranslation">`,
                             },
                         ],
+                        body: `
+getFilterName?: IBaseFilterFormProps.IWithFilterQuery<I${name}FilterFormSchemaType>["getName"];
+                        `,
                     },
                 },
             })

@@ -106,4 +106,4 @@ export class KeywordBasePrismaSource extends AbstractSourceEx<IKeywordPrismaSche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_csghwmgssu1pxc1m8c2vtggp = true;
+export const $leight_znsc2yd74mii0uf0yfi965fn = true;

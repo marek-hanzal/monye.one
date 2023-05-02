@@ -1,26 +1,26 @@
 /**
- Base Prisma Source contains default implementation of Source for entity Filter connected to Prisma. This could be used for further extensions,
- also default export uses this as a parent class.
+	Base Prisma Source contains default implementation of Source for entity Filter connected to Prisma. This could be used for further extensions,
+    also default export uses this as a parent class.
  */
 import {
-    $FilterSource,
-    type IFilterPrismaSchemaType,
-    type IFilterSourceSchemaType
-}                         from "@leight/filter";
+	$PrismaClient,
+	type PrismaClient
+} from "@leight/prisma";
 import {
-    $PrismaClient,
-    type PrismaClient
-}                         from "@leight/prisma";
-import {
-    type ISource,
-    type IWithIdentity,
-    SourceError,
-    withCursor
-}                         from "@leight/source";
+	withCursor,
+	type ISource,
+	type IWithIdentity,
+	SourceError
+} from "@leight/source";
 import {AbstractSourceEx} from "@leight/source-server";
+import {
+	$FilterSource,
+	type IFilterSourceSchemaType,
+	type IFilterPrismaSchemaType
+} from "@leight/filter";
 
 export class FilterBasePrismaSource extends AbstractSourceEx<IFilterPrismaSchemaType, IFilterSourceSchemaType> {
-    static inject = [
+	static inject = [
         $PrismaClient,
     ];
 
@@ -44,7 +44,7 @@ export class FilterBasePrismaSource extends AbstractSourceEx<IFilterPrismaSchema
 
     async runPatch({patch, filter}: ISource.IPatch<IFilterSourceSchemaType>): Promise<IFilterSourceSchemaType["Entity"]> {
         return this.prisma().update({
-            data:  patch,
+            data: patch,
             where: this.toWhereUnique(filter),
         });
     }
@@ -58,9 +58,9 @@ export class FilterBasePrismaSource extends AbstractSourceEx<IFilterPrismaSchema
     }
 
     async runDelete({id}: IWithIdentity): Promise<IFilterSourceSchemaType["Entity"]> {
-        const item  = await this.find(id);
+        const item = await this.find(id);
         const where = this.toWhereUnique({id});
-        if (!where) {
+        if(!where) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
         }
         await this.prisma().delete({
@@ -68,13 +68,13 @@ export class FilterBasePrismaSource extends AbstractSourceEx<IFilterPrismaSchema
         });
         return item;
     }
-
+    
     async runDeleteWith(query: IFilterSourceSchemaType["Query"]): Promise<IFilterSourceSchemaType["Entity"][]> {
         const items = await this.query(query);
         const where = this.toWhere(query.filter);
-        if (!where) {
+        if(!where) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
-        }
+        } 
         await this.prisma().deleteMany({
             where,
         });
@@ -96,7 +96,7 @@ export class FilterBasePrismaSource extends AbstractSourceEx<IFilterPrismaSchema
             },
         }));
     }
-
+    
     prisma() {
         return this.prismaClient.filter;
     }
@@ -106,4 +106,4 @@ export class FilterBasePrismaSource extends AbstractSourceEx<IFilterPrismaSchema
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_aeb7dvdqxmo05290o47rks25 = true;
+export const $leight_ebc3vadcdvokibd9wto79hna = true;

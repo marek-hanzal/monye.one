@@ -19,9 +19,10 @@ import {TransactionSourceStore} from "../Source/TransactionSourceStore";
 import {UseFilterSourceQuery} from "@monye.one/filter-client";
 
 export interface ITransactionBaseFilterFormProps extends Omit<IBaseFilterFormProps<ITransactionFilterFormSchemaType, ITransactionSourceSchemaType>, "SourceStore" | "FormContext" | "MantineContext" | "withTranslation"> {
+	getFilterName?: IBaseFilterFormProps.IWithFilterQuery<ITransactionFilterFormSchemaType>["getName"];
 }
 
-export const TransactionBaseFilterForm: FC<ITransactionBaseFilterFormProps> = props => {
+export const TransactionBaseFilterForm: FC<ITransactionBaseFilterFormProps> = ({getFilterName, ...props}) => {
     return <BaseFilterForm<ITransactionFilterFormSchemaType, ITransactionSourceSchemaType>
         SourceStore={TransactionSourceStore}
         MantineContext={TransactionMantineFilterFormContext}
@@ -31,7 +32,7 @@ export const TransactionBaseFilterForm: FC<ITransactionBaseFilterFormProps> = pr
             namespace: "transaction",
             label:     "TransactionBaseFilterForm",
         }}
-        withFilterQuery={{type: "@monye.one/transaction", UseFilterQuery: UseFilterSourceQuery}}
+        withFilterQuery={getFilterName ? {getName: getFilterName, type: "@monye.one/transaction", UseFilterQuery: UseFilterSourceQuery} : undefined}
 		{...props}
     />;
 };
@@ -39,4 +40,4 @@ export const TransactionBaseFilterForm: FC<ITransactionBaseFilterFormProps> = pr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_da2ljj4nquo776ru774z8qa5 = true;
+export const $leight_qvycz4bumyg37fm3vti0if2v = true;
