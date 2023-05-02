@@ -117,18 +117,16 @@ export class TransactionSource extends TransactionBasePrismaSource {
             ]) : [];
         }
 
-        if ($rangeOf) {
-            const $range = rangeOf({range: $rangeOf});
-            if ($range) {
-                where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
-                    {
-                        date: {gte: $range.from.toJSDate()},
-                    },
-                    {
-                        date: {lte: $range.to.toJSDate()},
-                    },
-                ]) : [];
-            }
+        const $range = rangeOf({range: $rangeOf});
+        if ($range) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    date: {gte: $range.from.toJSDate()},
+                },
+                {
+                    date: {lte: $range.to.toJSDate()},
+                },
+            ]) : [];
         } else {
             if (from) {
                 where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
