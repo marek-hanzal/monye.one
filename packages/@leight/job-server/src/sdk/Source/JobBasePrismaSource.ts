@@ -42,10 +42,10 @@ export class JobBasePrismaSource extends AbstractSourceEx<IJobPrismaSchemaType, 
         });
     }
 
-    async runPatch({id, ...patch}: IJobSourceSchemaType["Patch"]): Promise<IJobSourceSchemaType["Entity"]> {
+    async runPatch({patch, filter}: ISource.IPatch<IJobSourceSchemaType>): Promise<IJobSourceSchemaType["Entity"]> {
         return this.prisma().update({
             data: patch,
-            where: {id},
+            where: this.toWhereUnique(filter),
         });
     }
 
@@ -106,4 +106,4 @@ export class JobBasePrismaSource extends AbstractSourceEx<IJobPrismaSchemaType, 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mnq69hkk4d8qgv4kuuup4ga0 = true;
+export const $leight_ujphkevtrwij4dz0bkpxr1yj = true;

@@ -6,7 +6,7 @@ import {
     type ISourceSchemaType,
     type ISourceService,
     type IWithIdentity,
-    IWithOptionalIdentity
+    type IWithOptionalIdentity
 }                    from "@leight/source";
 import {withHandler} from "@leight/trpc-server";
 
@@ -24,14 +24,14 @@ export const withSourceProcedure = <TSourceSchemaType extends ISourceSchemaType>
     };
 
     return {
-        handleCreate:       withHandler<TSourceSchemaType["ToCreate"], TSourceSchemaType["Dto"]>({
-            handler: async ({container, request: toCreate}) => withSourceService(container).handleCreate({toCreate}),
+        handleCreate:       withHandler<ISourceService.IHandleCreateProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>({
+            handler: async ({container, request}) => withSourceService(container).handleCreate(request),
         }),
-        handlePatch:        withHandler<TSourceSchemaType["ToPatch"], TSourceSchemaType["Dto"]>({
-            handler: async ({container, request: toPatch}) => withSourceService(container).handlePatch({toPatch}),
+        handlePatch:        withHandler<ISourceService.IHandlePatchProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>({
+            handler: async ({container, request}) => withSourceService(container).handlePatch(request),
         }),
-        handleUpsert:        withHandler<TSourceSchemaType["Upsert"], TSourceSchemaType["Dto"]>({
-            handler: async ({container, request: upsert}) => withSourceService(container).handleUpsert({upsert}),
+        handleUpsert:       withHandler<ISourceService.IHandleUpsertProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>({
+            handler: async ({container, request}) => withSourceService(container).handleUpsert(request),
         }),
         handleDelete:       withHandler<IWithIdentity, TSourceSchemaType["Dto"]>({
             handler: async ({container, request}) => {

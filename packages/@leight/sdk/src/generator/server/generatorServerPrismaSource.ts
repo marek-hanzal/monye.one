@@ -111,10 +111,10 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
         });
     }
 
-    async runPatch({id, ...patch}: I${name}SourceSchemaType["Patch"]): Promise<I${name}SourceSchemaType["Entity"]> {
+    async runPatch({patch, filter}: ISource.IPatch<I${name}SourceSchemaType>): Promise<I${name}SourceSchemaType["Entity"]> {
         return this.prisma().update({
             data: patch,
-            where: {id},${withInclude ? `\n\t\t\t\tinclude: ${$withInclude},` : ''}
+            where: this.toWhereUnique(filter),${withInclude ? `\n\t\t\t\tinclude: ${$withInclude},` : ''}
         });
     }
 

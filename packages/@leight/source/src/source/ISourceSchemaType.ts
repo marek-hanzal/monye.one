@@ -14,8 +14,8 @@ import {
     type IToPatchSchema
 }          from "../schema";
 import {
-    IUpsert,
-    IUpsertSchema
+    type IUpsert,
+    type IUpsertSchema
 }          from "../schema/UpsertSchema";
 
 /**

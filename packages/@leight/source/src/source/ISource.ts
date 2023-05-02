@@ -9,7 +9,7 @@ export interface ISource<TSourceSchemaType extends ISourceSchemaType> {
 
     upsert(props: ISource.IUpsert<TSourceSchemaType>): Promise<TSourceSchemaType["Entity"]>;
 
-    patch(patch: TSourceSchemaType["Patch"]): Promise<TSourceSchemaType["Entity"]>;
+    patch(patch: ISource.IPatch<TSourceSchemaType>): Promise<TSourceSchemaType["Entity"]>;
 
     delete(withIdentity: IWithIdentity): Promise<TSourceSchemaType["Entity"]>;
 
@@ -33,9 +33,14 @@ export interface ISource<TSourceSchemaType extends ISourceSchemaType> {
 }
 
 export namespace ISource {
+    export interface IPatch<TSourceSchemaType extends ISourceSchemaType> {
+        patch: TSourceSchemaType["Patch"];
+        filter: TSourceSchemaType["Filter"];
+    }
+
     export interface IUpsert<TSourceSchemaType extends ISourceSchemaType> {
         create: TSourceSchemaType["Create"];
-        patch: Omit<TSourceSchemaType["Patch"], "id">;
+        patch: TSourceSchemaType["Patch"];
         filter: TSourceSchemaType["Filter"];
     }
 }

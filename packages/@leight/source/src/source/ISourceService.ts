@@ -11,7 +11,7 @@ export interface ISourceService<TSourceSchemaType extends ISourceSchemaType> {
 
     handlePatch(props: ISourceService.IHandlePatchProps<TSourceSchemaType>): Promise<TSourceSchemaType["Dto"]>;
 
-    handleSourcePatch(patch: TSourceSchemaType["Patch"]): Promise<TSourceSchemaType["Entity"]>;
+    handleSourcePatch(patch: ISource.IPatch<TSourceSchemaType>): Promise<TSourceSchemaType["Entity"]>;
 
     toPatch(toPatch: TSourceSchemaType["ToPatch"]): Promise<TSourceSchemaType["Patch"]>;
 
@@ -49,9 +49,12 @@ export namespace ISourceService {
 
     export interface IHandlePatchProps<TSourceSchemaType extends ISourceSchemaType> {
         toPatch: TSourceSchemaType["ToPatch"];
+        filter: TSourceSchemaType["Filter"];
     }
 
     export interface IHandleUpsertProps<TSourceSchemaType extends ISourceSchemaType> {
-        upsert: TSourceSchemaType["Upsert"];
+        toCreate: TSourceSchemaType["ToCreate"],
+        toPatch: TSourceSchemaType["ToPatch"],
+        filter: TSourceSchemaType["Filter"],
     }
 }

@@ -25,19 +25,20 @@ export abstract class AbstractSourceService<TSourceSchemaType extends ISourceSch
         return this.mapper().toCreate(toCreate);
     }
 
-    async handlePatch({toPatch}: ISourceService.IHandlePatchProps<TSourceSchemaType>): Promise<TSourceSchemaType["Dto"]> {
+    async handlePatch({toPatch, filter}: ISourceService.IHandlePatchProps<TSourceSchemaType>): Promise<TSourceSchemaType["Dto"]> {
         return this.withDto(
             await this.toDto(
                 await this.withEntity(
-                    await this.handleSourcePatch(
-                        await this.toPatch(toPatch)
-                    )
+                    await this.handleSourcePatch({
+                        patch: await this.toPatch(toPatch),
+                        filter,
+                    })
                 )
             )
         );
     }
 
-    async handleSourcePatch(patch: TSourceSchemaType["Patch"]): Promise<TSourceSchemaType["Entity"]> {
+    async handleSourcePatch(patch: ISource.IPatch<TSourceSchemaType>): Promise<TSourceSchemaType["Entity"]> {
         return this.source().patch(patch);
     }
 
@@ -45,7 +46,7 @@ export abstract class AbstractSourceService<TSourceSchemaType extends ISourceSch
         return this.mapper().toPatch(toPatch);
     }
 
-    async handleUpsert({upsert: {toCreate, toPatch, filter}}: ISourceService.IHandleUpsertProps<TSourceSchemaType>): Promise<TSourceSchemaType["Dto"]> {
+    async handleUpsert({toCreate, toPatch, filter}: ISourceService.IHandleUpsertProps<TSourceSchemaType>): Promise<TSourceSchemaType["Dto"]> {
         return this.withDto(
             await this.toDto(
                 await this.withEntity(

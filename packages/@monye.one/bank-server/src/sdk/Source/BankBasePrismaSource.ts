@@ -40,10 +40,10 @@ export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType
         });
     }
 
-    async runPatch({id, ...patch}: IBankSourceSchemaType["Patch"]): Promise<IBankSourceSchemaType["Entity"]> {
+    async runPatch({patch, filter}: ISource.IPatch<IBankSourceSchemaType>): Promise<IBankSourceSchemaType["Entity"]> {
         return this.prisma().update({
             data: patch,
-            where: {id},
+            where: this.toWhereUnique(filter),
         });
     }
 
@@ -104,4 +104,4 @@ export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_gky9vymg7d4aqlybunfis816 = true;
+export const $leight_pu1iojoqzma2vh44mn9yk65q = true;

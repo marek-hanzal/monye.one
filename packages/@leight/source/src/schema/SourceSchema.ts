@@ -28,10 +28,10 @@ export const ToCreateSchema = z.object({});
 export type IToCreateSchema = z.ZodObject<any>;
 export type IToCreate = z.infer<IToCreateSchema>;
 
-export const PatchSchema = WithIdentitySchema;
-export type IPatchSchema = typeof PatchSchema;
+export const PatchSchema = z.object({});
+export type IPatchSchema = z.ZodObject<any>;
 export type IPatch = z.infer<IPatchSchema>;
 
-export const ToPatchSchema = WithIdentitySchema;
-export type IToPatchSchema = typeof ToPatchSchema;
+export const ToPatchSchema = z.object({});
+export type IToPatchSchema = z.ZodObject<any>;
 export type IToPatch = z.infer<IToPatchSchema>;

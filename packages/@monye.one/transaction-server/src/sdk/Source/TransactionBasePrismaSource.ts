@@ -42,10 +42,10 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
         });
     }
 
-    async runPatch({id, ...patch}: ITransactionSourceSchemaType["Patch"]): Promise<ITransactionSourceSchemaType["Entity"]> {
+    async runPatch({patch, filter}: ISource.IPatch<ITransactionSourceSchemaType>): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().update({
             data: patch,
-            where: {id},
+            where: this.toWhereUnique(filter),
 				include: {"bank":true},
         });
     }
@@ -109,4 +109,4 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_cihxxpxzoktw97pzqh6wop5x = true;
+export const $leight_hzvaqw1mxu0ylncgsdr0xedy = true;
