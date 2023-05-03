@@ -36,7 +36,7 @@ export class FilterSource extends FilterBasePrismaSource {
             userId: this.userService.required(),
         };
 
-        const {fulltext, id, ids} = filter;
+        const {fulltext, type, id, ids} = filter;
 
         if (id !== undefined) {
             return {
@@ -66,6 +66,14 @@ export class FilterSource extends FilterBasePrismaSource {
                             },
                         ]
                     })),
+                }
+            ]) : [];
+        }
+
+        if (type) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    type,
                 }
             ]) : [];
         }
