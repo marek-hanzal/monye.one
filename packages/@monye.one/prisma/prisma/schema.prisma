@@ -246,6 +246,8 @@ model Label {
     user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     TransactionLabel TransactionLabel[]
+
+    @@unique([userId, type, label])
 }
 
 model TransactionLabel {

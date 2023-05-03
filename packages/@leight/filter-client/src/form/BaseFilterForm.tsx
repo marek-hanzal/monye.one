@@ -87,12 +87,12 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
 
     return <BaseForm
         notification={false}
-        onSubmit={({request, values, onDefaultSubmit}) => {
+        onSubmit={({request, values, form, onDefaultSubmit}) => {
             setShallowFilter(request);
             setFilterDto(values);
             setPage(0);
             if (withFilterQuery) {
-                const name = withFilterQuery.getName({request, values});
+                const name = withFilterQuery.getName({request, form, values});
                 if (name) {
                     upsertFilter?.mutate({
                         toCreate: {

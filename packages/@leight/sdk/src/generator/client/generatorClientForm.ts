@@ -259,20 +259,20 @@ props => {
     const mutation = Use${withTrpc.source}SourceQuery.${withTrpc.use}();
     const invalidator = use${withTrpc.source}QueryInvalidator();
     return <${name}BaseForm
-        onSubmit={({request, onDefaultSubmit}) => {
+        onSubmit={({request, form, values, onDefaultSubmit}) => {
             block(true);
             mutation.mutate(request, {
                 onSuccess: dto => {
                     onDefaultSubmit();
                     invalidator();
-                    onSuccess?.({dto});
+                    onSuccess?.({dto, values, form});
                 },
                 onError: error => {
-                    onError?.({error});                    
+                    onError?.({error, values, form});                    
                 },
                 onSettled: () => {
                     block(false);
-                    onSettled?.({});
+                    onSettled?.({values, form});
                 },
             });
         }}

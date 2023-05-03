@@ -16,4 +16,4 @@ export class CalendarEventBaseSourceMapper extends AbstractSourceMapper<ICalenda
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_u20r2je5g7s7qq4aly00q4rh = true;
+export const $leight_yn6sii6j6e9lmkghhyjez77n = true;

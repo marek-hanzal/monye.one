@@ -22,20 +22,20 @@ export const BankEditTrpcForm: FC<IBankEditTrpcFormProps> = ({onSuccess, onError
     const mutation = UseBankSourceQuery.usePatch();
     const invalidator = useBankQueryInvalidator();
     return <BankEditBaseForm
-        onSubmit={({request, onDefaultSubmit}) => {
+        onSubmit={({request, form, values, onDefaultSubmit}) => {
             block(true);
             mutation.mutate(request, {
                 onSuccess: dto => {
                     onDefaultSubmit();
                     invalidator();
-                    onSuccess?.({dto});
+                    onSuccess?.({dto, values, form});
                 },
                 onError: error => {
-                    onError?.({error});                    
+                    onError?.({error, values, form});                    
                 },
                 onSettled: () => {
                     block(false);
-                    onSettled?.({});
+                    onSettled?.({values, form});
                 },
             });
         }}
@@ -46,4 +46,4 @@ export const BankEditTrpcForm: FC<IBankEditTrpcFormProps> = ({onSuccess, onError
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_p1mrzlp39yzl25k1e74309o2 = true;
+export const $leight_buw662otijrp4j2xzley9fqu = true;

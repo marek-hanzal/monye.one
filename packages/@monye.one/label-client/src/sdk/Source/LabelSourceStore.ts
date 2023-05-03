@@ -14,4 +14,4 @@ export const LabelSourceStore = withSourceStore({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_gnuvu1h8nu4t2itheoo3nmqr = true;
+export const $leight_ci9w1v51j14c6dpcqqttwkui = true;

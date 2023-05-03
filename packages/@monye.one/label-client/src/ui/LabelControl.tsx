@@ -1,15 +1,16 @@
 import {
     BaseLabelControl,
     type IBaseLabelControlProps
-}                from "@leight/label-client";
-import {type FC} from "react";
+}                        from "@leight/label-client";
+import {type FC}         from "react";
+import {LabelCreateForm} from "../form";
 import {
     LabelMultiSelection,
     LabelQueryProvider,
     LabelSourceStore
-}                from "../sdk";
+}                        from "../sdk";
 
-export interface ILabelControlProps extends Omit<IBaseLabelControlProps, "SourceStore" | "SelectionContext"> {
+export interface ILabelControlProps extends Omit<IBaseLabelControlProps, "SourceStore" | "SelectionContext" | "prepend"> {
     type: string;
 }
 
@@ -21,6 +22,12 @@ export const LabelControl: FC<ILabelControlProps> = ({type, ...props}) => {
             }}
         >
             <BaseLabelControl
+                prepend={<LabelCreateForm
+                    type={type}
+                    onSettled={({form}) => {
+                        form.setValues({label: ""});
+                    }}
+                />}
                 SourceStore={LabelSourceStore}
                 SelectionContext={LabelMultiSelection}
                 {...props}

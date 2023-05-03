@@ -11,4 +11,4 @@ export const LabelPatchMantineFormContext = createMantineFormContext<ILabelPatch
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jobgifxddm73eti54gpdd941 = true;
+export const $leight_g32dba2gv9wplrrlj7ihppv6 = true;

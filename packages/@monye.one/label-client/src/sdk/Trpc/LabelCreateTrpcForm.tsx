@@ -22,20 +22,20 @@ export const LabelCreateTrpcForm: FC<ILabelCreateTrpcFormProps> = ({onSuccess, o
     const mutation = UseLabelSourceQuery.useCreate();
     const invalidator = useLabelQueryInvalidator();
     return <LabelCreateBaseForm
-        onSubmit={({request, onDefaultSubmit}) => {
+        onSubmit={({request, form, values, onDefaultSubmit}) => {
             block(true);
             mutation.mutate(request, {
                 onSuccess: dto => {
                     onDefaultSubmit();
                     invalidator();
-                    onSuccess?.({dto});
+                    onSuccess?.({dto, values, form});
                 },
                 onError: error => {
-                    onError?.({error});                    
+                    onError?.({error, values, form});                    
                 },
                 onSettled: () => {
                     block(false);
-                    onSettled?.({});
+                    onSettled?.({values, form});
                 },
             });
         }}
@@ -46,4 +46,4 @@ export const LabelCreateTrpcForm: FC<ILabelCreateTrpcFormProps> = ({onSuccess, o
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ommyag1r0qwwyw9ulckr1y4b = true;
+export const $leight_fsh9zocp1h8nmcm7uab9vn5d = true;

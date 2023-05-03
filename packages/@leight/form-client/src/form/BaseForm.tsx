@@ -9,7 +9,8 @@ import {
     type IFormToRequest,
     type IFormToRequestWithDto,
     type IFormToValues,
-    type IMantineFormContext
+    type IMantineFormContext,
+    IUseForm
 }                               from "@leight/form";
 import {type IWithTranslation}  from "@leight/i18n";
 import {
@@ -79,6 +80,7 @@ export namespace IBaseFormProps {
     export interface IOnSubmitProps<TFormSchemaType extends IFormSchemaType> {
         request: TFormSchemaType["Request"];
         values: TFormSchemaType["Values"];
+        form: IUseForm<TFormSchemaType>;
 
         /**
          * Calls default form submit stuff
@@ -204,7 +206,7 @@ const FormInternal = <TFormSchemaType extends IFormSchemaType>(
         <LoadingOverlay visible={isBlock}/>
         <form
             onSubmit={form.onSubmit(({request, values}) => {
-                onSubmit?.({request, values, onDefaultSubmit});
+                onSubmit?.({request, values, form, onDefaultSubmit});
             })}
         >
             {children}

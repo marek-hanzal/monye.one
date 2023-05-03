@@ -2623,7 +2623,8 @@ export const LabelOrderByWithRelationInputSchema: z.ZodType<Prisma.LabelOrderByW
 }).strict();
 
 export const LabelWhereUniqueInputSchema: z.ZodType<Prisma.LabelWhereUniqueInput> = z.object({
-  id: z.string().cuid().optional()
+  id: z.string().cuid().optional(),
+  userId_type_label: z.lazy(() => LabelUserIdTypeLabelCompoundUniqueInputSchema).optional()
 }).strict();
 
 export const LabelOrderByWithAggregationInputSchema: z.ZodType<Prisma.LabelOrderByWithAggregationInput> = z.object({
@@ -4750,6 +4751,12 @@ export const TransactionKeywordMinOrderByAggregateInputSchema: z.ZodType<Prisma.
   id: z.lazy(() => SortOrderSchema).optional(),
   transactionId: z.lazy(() => SortOrderSchema).optional(),
   keywordId: z.lazy(() => SortOrderSchema).optional()
+}).strict();
+
+export const LabelUserIdTypeLabelCompoundUniqueInputSchema: z.ZodType<Prisma.LabelUserIdTypeLabelCompoundUniqueInput> = z.object({
+  userId: z.string(),
+  type: z.string(),
+  label: z.string()
 }).strict();
 
 export const LabelCountOrderByAggregateInputSchema: z.ZodType<Prisma.LabelCountOrderByAggregateInput> = z.object({

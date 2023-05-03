@@ -34,4 +34,4 @@ export const LabelEditBaseForm: FC<ILabelEditBaseFormProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_h2986y9f3se6ya8fwngf1lz8 = true;
+export const $leight_jsfd2qshw7fiwj0okv6u27tq = true;

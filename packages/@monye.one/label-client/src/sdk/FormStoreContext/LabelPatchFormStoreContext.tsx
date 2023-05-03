@@ -13,4 +13,4 @@ export const LabelPatchFormStoreContext = createFormContext<ILabelPatchFormSchem
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_otquhf7k3g9tkqahlou1f4f5 = true;
+export const $leight_fqxcmaf38qjmysjd5effq8km = true;

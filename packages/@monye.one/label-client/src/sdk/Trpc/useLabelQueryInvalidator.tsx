@@ -16,4 +16,4 @@ export const useLabelQueryInvalidator = () => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_y17tcrmv7b1wbfct2l1exfoe = true;
+export const $leight_uogm4gkszxev13ux98hmfig2 = true;

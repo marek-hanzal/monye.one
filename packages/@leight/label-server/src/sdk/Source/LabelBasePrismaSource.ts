@@ -119,4 +119,4 @@ export class LabelBasePrismaSource extends AbstractSourceEx<ILabelPrismaSchemaTy
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_eh2wj2yaqx7wg7fwgd8nhz26 = true;
+export const $leight_ze4pbkm3zbp4vxkolspt6oq5 = true;
