@@ -20,6 +20,10 @@ export const LabelControl: FC<ILabelControlProps> = ({type, ...props}) => {
             applyFilter={{
                 type,
             }}
+            defaultCursor={{
+                page: 0,
+                size: 50,
+            }}
         >
             <BaseLabelControl
                 prepend={<LabelCreateForm

@@ -18,6 +18,7 @@ import {
     Stack,
     Tooltip
 }                                         from "@mantine/core";
+import {useLabelQueryInvalidator}         from "@monye.one/label-client";
 import {
     IconCheck,
     IconX
@@ -52,20 +53,39 @@ export const BaseLabelControl: FC<IBaseLabelControlProps> = (
     const {isSelection, isSelected, selection, toggle, clear} = SelectionContext.useState();
     const modal                                               = ModalStore.useOptionalState();
     const drawer                                              = DrawerStore.useOptionalState();
+    const deleteMutation                                      = SourceStore.use.useDelete();
+    const invalidator                                         = useLabelQueryInvalidator();
     return <Box
         {...props}
     >
         <Stack>
             {prepend}
-            <Divider mt={"sm"} mb={"sm"}/>
+            {labels.data.length > 0 && <Divider mt={"sm"} mb={"sm"}/>}
             <Center>
-                {labels.result.isLoading ? <Loader variant={"dots"} size={"sm"}/> : <Group spacing={"xs"}>
+                {labels.result.isLoading || deleteMutation.isLoading ? <Loader variant={"dots"} size={"sm"}/> : <Group spacing={"xs"}>
                     {labels.data.map(label => <Badge
                         key={label.id}
                         size={"xl"}
                         style={{cursor: "pointer"}}
                         color={isSelected(label) ? "green" : "blue"}
-                        leftSection={isSelected(label) ? <ActionIcon size={"sm"}><IconCheck/></ActionIcon> : undefined}
+                        leftSection={isSelected(label) ?
+                            <ActionIcon size={"sm"}><IconCheck/></ActionIcon> :
+                            <ActionIcon
+                                size={"sm"}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    deleteMutation.mutate({
+                                        id: label.id,
+                                    }, {
+                                        onSuccess: () => {
+                                            clear();
+                                            invalidator();
+                                        }
+                                    });
+                                }}
+                            >
+                                <IconX/>
+                            </ActionIcon>}
                         onClick={() => toggle(label)}
                     >
                         {label.label}
@@ -74,7 +94,7 @@ export const BaseLabelControl: FC<IBaseLabelControlProps> = (
             </Center>
             <Center>
                 <Group spacing={"sm"}>
-                    {isSelection() && <>
+                    {isSelection() && labels.data?.length > 0 && <>
                         <ActionIcon
                             variant={"subtle"}
                             size={"md"}
