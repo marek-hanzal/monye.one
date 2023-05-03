@@ -10,6 +10,7 @@ export type IQueryProviderInternalProps<TSourceSchemaType extends ISourceSchemaT
      * The default filter could be replaced or merged, but it's not applied all the times
      */
     defaultFilter?: TSourceSchemaType["Filter"];
+    applyFilter?: TSourceSchemaType["Filter"];
     /**
      * Default sorting could be replaced or merged, but it's not forced
      */
@@ -22,16 +23,18 @@ export const QueryProvider = <TSourceSchemaType extends ISourceSchemaType>(
     {
         SourceStore,
         defaultFilter,
+        applyFilter,
         defaultSort,
         defaultCursor,
         children,
     }: IQueryProviderInternalProps<TSourceSchemaType>) => {
     return <SourceStore.Query.Provider
         defaults={{
-            $filter: defaultFilter,
-            $sort:   defaultSort,
-            $page:   defaultCursor?.page || 0,
-            $size:   defaultCursor?.size || 30,
+            $filter:      defaultFilter,
+            $applyFilter: applyFilter,
+            $sort:        defaultSort,
+            $page:        defaultCursor?.page || 0,
+            $size:        defaultCursor?.size || 30,
         }}
     >
         {children}

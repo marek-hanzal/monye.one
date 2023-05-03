@@ -35,7 +35,10 @@ export class TransactionSource extends TransactionBasePrismaSource {
                 _sum:  {
                     amount: true,
                 },
-                where: this.toWhere(filter),
+                where: this.toWhere({
+                    ...filter,
+                    isTransfer: undefined,
+                }),
             }))._sum.amount || 0),
             income:  decimalOf((await this.prisma().aggregate({
                 _sum:  {
