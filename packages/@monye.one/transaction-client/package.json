@@ -49,6 +49,7 @@
         "@monye.one/bank": "^0.5.0",
         "@monye.one/bank-client": "^0.5.0",
         "@monye.one/filter-client": "^0.5.0",
+        "@monye.one/label-client": "^0.5.0",
         "@monye.one/transaction": "^0.5.0",
         "@monye.one/trpc-client": "^0.5.0",
         "@tabler/icons-react": "^2.10.0",
