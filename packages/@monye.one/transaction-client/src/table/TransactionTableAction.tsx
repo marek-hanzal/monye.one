@@ -27,6 +27,9 @@ export const TransactionTableAction: ITransactionTableProps["WithTableAction"] =
                         namespace: "translation",
                     }}
                     type={"@monye.one/transaction"}
+                    onCommit={() => {
+                        // foo
+                    }}
                 />
             </Center>
         </Modal>
