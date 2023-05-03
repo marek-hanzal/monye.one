@@ -5,6 +5,7 @@ import {
     $TransactionKeywordSource,
     $TransactionKeywordSourceMapper,
     $TransactionKeywordSourceService,
+    $TransactionPairService,
     $TransactionSource,
     $TransactionSourceMapper,
     $TransactionSourceService,
@@ -12,6 +13,7 @@ import {
     type ITransactionKeywordService,
     type ITransactionKeywordSource,
     type ITransactionKeywordSourceMapper,
+    type ITransactionPairService,
     type ITransactionSource,
     type ITransactionSourceMapper
 }                        from "@monye.one/transaction";
@@ -25,7 +27,8 @@ import {
 }                        from "./sdk";
 import {
     TransactionImportHandler,
-    TransactionKeywordService
+    TransactionKeywordService,
+    TransactionPairService
 }                        from "./service";
 import {
     TransactionKeywordSource,
@@ -44,6 +47,7 @@ export interface ITransactionContainer {
     TransactionKeywordSourceMapper: ITransactionKeywordSourceMapper;
 
     TransactionKeywordService: ITransactionKeywordService;
+    TransactionPairService: ITransactionPairService;
 }
 
 export const TransactionContainer = (container: IContainer): ITransactionContainer => {
@@ -58,7 +62,8 @@ export const TransactionContainer = (container: IContainer): ITransactionContain
         .bindClass($TransactionKeywordSourceService, TransactionKeywordBaseSourceService)
         .bindClass($TransactionKeywordSourceMapper, TransactionKeywordBaseSourceMapper)
 
-        .bindClass($TransactionKeywordService, TransactionKeywordService);
+        .bindClass($TransactionKeywordService, TransactionKeywordService)
+        .bindClass($TransactionPairService, TransactionPairService);
 
     return {
         get TransactionImportHandler() {
@@ -86,6 +91,9 @@ export const TransactionContainer = (container: IContainer): ITransactionContain
 
         get TransactionKeywordService() {
             return container.resolve<ITransactionKeywordService>($TransactionKeywordService);
+        },
+        get TransactionPairService() {
+            return container.resolve<ITransactionPairService>($TransactionPairService);
         },
     };
 };
