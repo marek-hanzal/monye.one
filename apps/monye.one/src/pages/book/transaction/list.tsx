@@ -4,7 +4,6 @@ import {Paper}            from "@leight/mantine";
 import {FulltextProvider} from "@leight/source-client";
 import {Box}              from "@mantine/core";
 import {withBookLayout}   from "@monye.one/book-client";
-import {LabelControl}     from "@monye.one/label-client";
 import {
     SumByInline,
     TransactionMenu,
@@ -24,9 +23,6 @@ export default withBookLayout(
                 >
                     <Paper>
                         <SumByInline/>
-                        <LabelControl
-                            type={"@monye.one/transaction"}
-                        />
                         <TransactionTable/>
                     </Paper>
                 </TransactionQueryProvider>

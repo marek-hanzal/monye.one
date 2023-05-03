@@ -33,7 +33,7 @@ export const SumByInline: FC<ISumByInlineProps> = ({cacheTime = 120, ...props}) 
         pos={"relative"}
         {...props}
     >
-        <Group spacing={"sm"}>
+        {sumBy.isLoading ? <Loader size={"xs"} variant={"dots"}/> : <Group spacing={"sm"}>
             <AmountInline
                 color={isLoading ? "dimmed" : undefined}
                 sx={{cursor: isIncomeOutcome ? "not-allowed" : "pointer"}}
@@ -64,6 +64,6 @@ export const SumByInline: FC<ISumByInlineProps> = ({cacheTime = 120, ...props}) 
                 icon={<IconOutcome/>}
                 amount={sumBy.data.outcome}
             />}
-        </Group>
+        </Group>}
     </Box>;
 };

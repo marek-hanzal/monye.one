@@ -40,6 +40,7 @@ export type IMultiSelectionStoreProps<TItem extends IWithIdentity> = IStoreProps
      * Checks if the given item is selected (by an ID)
      */
     isSelected(item: TItem): boolean;
+    isSelection(): boolean;
 }>;
 
 export type IMultiSelectionStoreContext<TItem extends IWithIdentity> = IStoreContext<IMultiSelectionStoreProps<TItem>>;

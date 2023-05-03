@@ -1,15 +1,16 @@
-import {DateInline}    from "@leight/i18n-client";
-import {WithHighlight} from "@leight/mantine";
-import {type FC}       from "react";
+import {DateInline}             from "@leight/i18n-client";
+import {WithHighlight}          from "@leight/mantine";
+import {type FC}                from "react";
 import {
     ITransactionFilterProps,
     TransactionFilter
-}                      from "../filter";
+}                               from "../filter";
 import {
     type ITransactionSourceTableProps,
     TransactionSourceTable
-}                      from "../sdk";
-import {AmountInline}  from "../ui";
+}                               from "../sdk";
+import {AmountInline}           from "../ui";
+import {TransactionTableAction} from "./TransactionTableAction";
 
 export type ITransactionTableColumns =
     | "date"
@@ -34,6 +35,7 @@ export const TransactionTable: FC<ITransactionTableProps> = ({hiddenFilter, ...p
         }}
         scrollWidth={2400}
         filter={<TransactionFilter hidden={hiddenFilter}/>}
+        WithTableAction={TransactionTableAction}
         columns={{
             date:      {
                 width: 8,

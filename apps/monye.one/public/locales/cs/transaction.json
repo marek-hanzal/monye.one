@@ -56,5 +56,8 @@
     "TransactionBaseFilterForm.isTransfer.false": "Bez převodů",
     "selection.cancel.button": "Zpět",
     "selection.clear.button": "Zrušit výběr",
-    "selection.submit.button": "Potvrdit výběr"
+    "selection.submit.button": "Potvrdit výběr",
+    "label.commit": "Přiřadit štítky zobrazeným transakcím",
+    "label.button": "Přiřadit štítky",
+    "modal.transaction.label.title": "Přiřadit štítky k transakcím"
 }

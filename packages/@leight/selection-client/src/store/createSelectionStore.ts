@@ -4,6 +4,7 @@ import {
     type ISelectionStoreProps
 }                           from "@leight/selection";
 import {type IWithIdentity} from "@leight/source";
+import {isEmpty}            from "@leight/utils";
 
 export interface ICreateSelectionStoreProps {
     name: string;
@@ -101,6 +102,9 @@ export const createMultiSelectionStore = <TItem extends IWithIdentity>(
             },
             cancel() {
                 set({selection: {}});
+            },
+            isSelection() {
+                return !isEmpty(get().selection);
             },
         }),
         name,

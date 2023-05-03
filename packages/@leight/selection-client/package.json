@@ -34,6 +34,7 @@
         "@leight/context-client": "^0.5.74",
         "@leight/selection": "^0.5.2",
         "@leight/source": "^0.5.66",
+        "@leight/utils": "^0.5.0",
         "@leight/zustand": "^0.5.66",
         "react": "^18.2.0"
     },
