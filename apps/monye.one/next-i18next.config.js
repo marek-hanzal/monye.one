@@ -34,6 +34,7 @@ module.exports = {
         "bank",
         "calendar",
         "filter",
+        "label",
         "transaction",
     ],
     supportedLngs:            supported,

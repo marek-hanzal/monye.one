@@ -37,5 +37,6 @@ export const getServerSideProps = withTranslation([
     "book",
     "bank",
     "filter",
+    "label",
     "transaction",
 ]);

@@ -1,0 +1,5 @@
+{
+    "LabelCreateBaseForm.label": "Název štítku",
+    "LabelCreateBaseForm.label.description": "Zadejte název štítku, který pak můžete použít pro vyhledávání",
+    "LabelCreateBaseForm.submit.button": "Uložit"
+}

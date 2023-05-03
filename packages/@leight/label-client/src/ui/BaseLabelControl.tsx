@@ -12,6 +12,7 @@ import {
     Badge,
     Box,
     Center,
+    Divider,
     Group,
     Loader,
     Stack,
@@ -19,15 +20,16 @@ import {
 }                                         from "@mantine/core";
 import {
     IconCheck,
-    IconPlus,
     IconX
 }                                         from "@tabler/icons-react";
 import {
     type ComponentProps,
-    type FC
+    type FC,
+    type ReactNode
 }                                         from "react";
 
 export interface IBaseLabelControlProps extends ComponentProps<typeof Box<"div">> {
+    prepend: ReactNode;
     withTranslation: IWithTranslation;
     SourceStore: ISourceStore<ILabelSourceSchemaType>;
     SelectionContext: IMultiSelectionStoreContext<ILabelSourceSchemaType["Dto"]>;
@@ -38,6 +40,7 @@ export interface IBaseLabelControlProps extends ComponentProps<typeof Box<"div">
 
 export const BaseLabelControl: FC<IBaseLabelControlProps> = (
     {
+        prepend,
         withTranslation,
         SourceStore,
         SelectionContext,
@@ -53,28 +56,24 @@ export const BaseLabelControl: FC<IBaseLabelControlProps> = (
         {...props}
     >
         <Stack>
-            {labels.result.isLoading ? <Loader variant={"dots"} size={"sm"}/> : <Group spacing={"xs"}>
-                {labels.data.map(label => <Badge
-                    key={label.id}
-                    size={"xl"}
-                    style={{cursor: "pointer"}}
-                    color={isSelected(label) ? "green" : "blue"}
-                    leftSection={isSelected(label) ? <ActionIcon size={"sm"}><IconCheck/></ActionIcon> : undefined}
-                    onClick={() => toggle(label)}
-                >
-                    {label.label}
-                </Badge>)}
-            </Group>}
+            {prepend}
+            <Divider mt={"sm"} mb={"sm"}/>
+            <Center>
+                {labels.result.isLoading ? <Loader variant={"dots"} size={"sm"}/> : <Group spacing={"xs"}>
+                    {labels.data.map(label => <Badge
+                        key={label.id}
+                        size={"xl"}
+                        style={{cursor: "pointer"}}
+                        color={isSelected(label) ? "green" : "blue"}
+                        leftSection={isSelected(label) ? <ActionIcon size={"sm"}><IconCheck/></ActionIcon> : undefined}
+                        onClick={() => toggle(label)}
+                    >
+                        {label.label}
+                    </Badge>)}
+                </Group>}
+            </Center>
             <Center>
                 <Group spacing={"sm"}>
-                    <ActionIcon
-                        variant={"subtle"}
-                        size={"md"}
-                        radius={"xl"}
-                        color={"primary"}
-                    >
-                        <IconPlus/>
-                    </ActionIcon>
                     {isSelection() && <>
                         <ActionIcon
                             variant={"subtle"}

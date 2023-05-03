@@ -1,17 +1,17 @@
-import {type IContainer} from "@leight/container";
+import {type IContainer}   from "@leight/container";
 import {
     $LabelSource,
     $LabelSourceMapper,
     $LabelSourceService,
     type ILabelSource,
     type ILabelSourceMapper
-}                        from "@leight/label";
+}                          from "@leight/label";
+import {LabelSourceMapper} from "./mapper";
 import {
     type ILabelSourceService,
-    LabelBaseSourceMapper,
     LabelBaseSourceService
-}                        from "./sdk";
-import {LabelSource}     from "./source";
+}                          from "./sdk";
+import {LabelSource}       from "./source";
 
 export interface ILabelContainer {
     LabelSource: ILabelSource;
@@ -23,7 +23,7 @@ export const LabelContainer = (container: IContainer): ILabelContainer => {
     container
         .bindClass($LabelSource, LabelSource)
         .bindClass($LabelSourceService, LabelBaseSourceService)
-        .bindClass($LabelSourceMapper, LabelBaseSourceMapper);
+        .bindClass($LabelSourceMapper, LabelSourceMapper);
 
     return {
         get LabelSource() {

@@ -6,7 +6,10 @@ import {
 }                                    from "@leight/mantine";
 import {TableActionMenu}             from "@leight/table-client";
 import {Center}                      from "@mantine/core";
-import {LabelControl}                from "@monye.one/label-client";
+import {
+    LabelControl,
+    LabelCreateForm
+}                                    from "@monye.one/label-client";
 import {IconTags}                    from "@tabler/icons-react";
 import {type ITransactionTableProps} from "./TransactionTable";
 
@@ -22,6 +25,9 @@ export const TransactionTableAction: ITransactionTableProps["WithTableAction"] =
         >
             <Center mt={"xl"}>
                 <LabelControl
+                    prepend={<LabelCreateForm
+                        type={"@monye.one/transaction"}
+                    />}
                     withAutoClose={["transaction.labels"]}
                     withTranslation={{
                         namespace: "translation",
