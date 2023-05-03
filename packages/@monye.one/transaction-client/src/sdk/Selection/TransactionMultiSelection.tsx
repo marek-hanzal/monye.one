@@ -15,4 +15,4 @@ export const TransactionMultiSelection = createMultiSelectionStore<ITransactionS
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_iekdcp8a9683l1mdth8phjn2 = true;
+export const $leight_yoeb3zqaavvgl9c9j9d7jc41 = true;

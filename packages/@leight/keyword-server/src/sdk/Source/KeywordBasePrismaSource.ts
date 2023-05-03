@@ -54,6 +54,13 @@ export class KeywordBasePrismaSource extends AbstractSourceEx<IKeywordPrismaSche
             where: this.toWhereUnique(filter),
         });
     }
+    
+    async runPatchBy({patch, filter}: ISource.IPatchBy<IKeywordSourceSchemaType>): Promise<unknown> {
+        return this.prisma().updateMany({
+            data:  patch,
+            where: this.toWhere(filter),
+        });
+    }
 
     async runUpsert({filter, patch: update, create}: ISource.IUpsert<IKeywordSourceSchemaType>): Promise<IKeywordSourceSchemaType["Entity"]> {
         return this.prisma().upsert({
@@ -112,4 +119,4 @@ export class KeywordBasePrismaSource extends AbstractSourceEx<IKeywordPrismaSche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_p73en995yqfuzxk1p72n6i5s = true;
+export const $leight_vfunytygszh6kk2o1cglrmj0 = true;

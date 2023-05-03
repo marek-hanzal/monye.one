@@ -29,7 +29,7 @@ export class TransactionPairService implements ITransactionPairService {
     async withTransaction(transaction: ITransactionSourceSchemaType["Dto"]): Promise<ITransactionSourceSchemaType["Dto"] | null> {
         const {target} = transaction;
         const amount   = decimalOf(transaction.amount);
-        if (transaction.target && !transaction.fromId && amount > 0) {
+        if (transaction.target && amount > 0) {
             /**
              * From
              */
@@ -39,13 +39,13 @@ export class TransactionPairService implements ITransactionPairService {
                     amountFrom: targetAmount,
                     amountTo:   targetAmount,
                     account:    target,
-                    withoutTo:  true,
+                    isTransfer: false,
                 },
             });
             if (from) {
                 await this.transactionSource.patch({
                     patch:  {
-                        fromId: from.id,
+                        isTransfer: true,
                     },
                     filter: {
                         id: transaction.id,
@@ -53,7 +53,7 @@ export class TransactionPairService implements ITransactionPairService {
                 });
                 await this.transactionSource.patch({
                     patch:  {
-                        toId: transaction.id,
+                        isTransfer: true,
                     },
                     filter: {
                         id: from.id,
@@ -61,23 +61,23 @@ export class TransactionPairService implements ITransactionPairService {
                 });
                 return this.transactionSourceMapper.toDto(from);
             }
-        } else if (transaction.target && !transaction.toId) {
+        } else if (transaction.target && !transaction.isTransfer) {
             /**
              * To
              */
             const targetAmount = Math.abs(amount);
             const to           = await this.transactionSource.fetchOptional({
                 filter: {
-                    amountFrom:  targetAmount,
-                    amountTo:    targetAmount,
-                    account:     target,
-                    withoutFrom: true,
+                    amountFrom: targetAmount,
+                    amountTo:   targetAmount,
+                    account:    target,
+                    isTransfer: false,
                 },
             });
             if (to) {
                 await this.transactionSource.patch({
                     patch:  {
-                        toId: to.id,
+                        isTransfer: true,
                     },
                     filter: {
                         id: transaction.id,
@@ -85,7 +85,7 @@ export class TransactionPairService implements ITransactionPairService {
                 });
                 await this.transactionSource.patch({
                     patch:  {
-                        fromId: transaction.id,
+                        isTransfer: true,
                     },
                     filter: {
                         id: to.id,

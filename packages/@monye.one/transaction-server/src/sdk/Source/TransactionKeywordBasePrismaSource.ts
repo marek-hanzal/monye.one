@@ -52,6 +52,13 @@ export class TransactionKeywordBasePrismaSource extends AbstractSourceEx<ITransa
             where: this.toWhereUnique(filter),
         });
     }
+    
+    async runPatchBy({patch, filter}: ISource.IPatchBy<ITransactionKeywordSourceSchemaType>): Promise<unknown> {
+        return this.prisma().updateMany({
+            data:  patch,
+            where: this.toWhere(filter),
+        });
+    }
 
     async runUpsert({filter, patch: update, create}: ISource.IUpsert<ITransactionKeywordSourceSchemaType>): Promise<ITransactionKeywordSourceSchemaType["Entity"]> {
         return this.prisma().upsert({
@@ -110,4 +117,4 @@ export class TransactionKeywordBasePrismaSource extends AbstractSourceEx<ITransa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bafg1fl0bc2d43serutr8p3x = true;
+export const $leight_teitfqplz2anwt5hgwfmao8w = true;

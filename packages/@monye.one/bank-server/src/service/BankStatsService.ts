@@ -16,7 +16,7 @@ import {
     $TransactionPairService,
     $TransactionSource,
     type ITransactionKeywordService,
-    ITransactionPairService,
+    type ITransactionPairService,
     type ITransactionSource
 }                           from "@monye.one/transaction";
 
@@ -48,6 +48,15 @@ export class BankStatsService extends AbstractJobService<IBankStatsParamsSchema,
         });
 
         await jobProgress.setTotal(total);
+
+        await this.transactionSource.patchBy({
+            patch:  {
+                isTransfer: false,
+            },
+            filter: {
+                bankId,
+            },
+        });
 
         for (const transaction of await this.transactionSource.query({filter: {bankId}})) {
             try {

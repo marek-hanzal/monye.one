@@ -16,4 +16,4 @@ export type IBankCreateFormInputFactory = IFormInputsFactory<IBankCreateFormSche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_yyf7wdp062mpsj0h2s8xi0b2 = true;
+export const $leight_sfjokanoe7fjjbk4r380z19c = true;

@@ -51,6 +51,9 @@
     "TransactionBaseFilterForm.amountTo": "Maximální částka",
     "TransactionBaseFilterForm.amountTo.description": "Zadejte maximální částku",
     "TransactionBaseFilterForm.amountTo.placeholder": "Maximální částka",
+    "TransactionBaseFilterForm.isTransfer.none": "Vše",
+    "TransactionBaseFilterForm.isTransfer.true": "Převody mezi účty",
+    "TransactionBaseFilterForm.isTransfer.false": "Bez převodů",
     "selection.cancel.button": "Zpět",
     "selection.clear.button": "Zrušit výběr",
     "selection.submit.button": "Potvrdit výběr"

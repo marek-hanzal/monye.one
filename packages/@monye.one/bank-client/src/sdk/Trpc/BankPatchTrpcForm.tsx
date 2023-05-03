@@ -46,4 +46,4 @@ export const BankPatchTrpcForm: FC<IBankPatchTrpcFormProps> = ({onSuccess, onErr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_o457boka90wllmzykc5rabfh = true;
+export const $leight_ftsdvc20xbif4cn1yjswdtfo = true;

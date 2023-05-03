@@ -123,6 +123,13 @@ export const generatorServerPrismaSource: IGenerator<IGeneratorServerPrismaSourc
             where: this.toWhereUnique(filter),${withInclude ? `\n\t\t\tinclude: ${$withInclude},` : ''}
         });
     }
+    
+    async runPatchBy({patch, filter}: ISource.IPatchBy<I${name}SourceSchemaType>): Promise<unknown> {
+        return this.prisma().updateMany({
+            data:  patch,
+            where: this.toWhere(filter),
+        });
+    }
 
     async runUpsert({filter, patch: update, create}: ISource.IUpsert<I${name}SourceSchemaType>): Promise<I${name}SourceSchemaType["Entity"]> {
         return this.prisma().upsert({

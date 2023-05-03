@@ -1,4 +1,5 @@
 import {
+    BoolInput,
     DateInput,
     NumberInput,
     RangeOfInput,
@@ -154,6 +155,12 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
                 precision={2}
                 required={false}
             />,
+            "isTransfer": ({mandatory, withLabelPlaceholder, withDescription, withTranslation}) => <BoolInput
+                {...mandatory}
+                {...withLabelPlaceholder}
+                {...withDescription}
+                withTranslation={withTranslation}
+            />,
         })}
         {...props}
     >
@@ -186,5 +193,6 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
             />
             <TransactionFilterInput path={"amountTo"}/>
         </Group>
+        <TransactionFilterInput path={"isTransfer"}/>
     </TransactionBaseFilterForm>;
 };

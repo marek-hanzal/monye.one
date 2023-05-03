@@ -1,3 +1,4 @@
+export * from "./BoolInput";
 export * from "./DateInput";
 export * from "./Description";
 export * from "./Error";

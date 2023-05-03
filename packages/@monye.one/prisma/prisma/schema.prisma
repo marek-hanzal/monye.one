@@ -199,35 +199,31 @@ model Bank {
 }
 
 model Transaction {
-    id        String       @id @default(cuid())
+    id         String   @id @default(cuid())
     // bank transaction ID (transaction reference)
-    reference String
-    userId    String
-    user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-    bankId    String
-    bank      Bank         @relation(fields: [bankId], references: [id], onDelete: Cascade)
+    reference  String
+    userId     String
+    user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    bankId     String
+    bank       Bank     @relation(fields: [bankId], references: [id], onDelete: Cascade)
     // pure amount created/imported to transaction
-    amount    Decimal      @db.Decimal(16, 2)
+    amount     Decimal  @db.Decimal(16, 2)
     // variable symbol
-    variable  String?
+    variable   String?
     // constant symbol
-    symbol    String?
+    symbol     String?
     // static symbol
-    static    String?
+    static     String?
     // date of transaction
-    date      DateTime
+    date       DateTime
     // target of a transaction - maybe card number, target account number, whatever; used by an user to identify this transaction
-    target    String?      @db.Text
+    target     String?  @db.Text
     // note provided by bank/user to identify this transaction
-    note      String?      @db.Text
-    fromId    String?
-    from      Transaction? @relation("FromList", fields: [fromId], references: [id], onDelete: SetNull)
-    toId      String?
-    to        Transaction? @relation("ToList", fields: [toId], references: [id], onDelete: SetNull)
+    note       String?  @db.Text
+    // tells if this transaction is transfer between two owned accounts
+    isTransfer Boolean  @default(false)
 
     TransactionKeyword TransactionKeyword[]
-    FromList           Transaction[]        @relation("FromList")
-    ToList             Transaction[]        @relation("ToList")
 
     @@unique([userId, reference])
 }

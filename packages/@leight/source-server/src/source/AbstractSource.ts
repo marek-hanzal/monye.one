@@ -43,6 +43,15 @@ export abstract class AbstractSource<TSourceSchemaType extends ISourceSchemaType
         throw new SourceError(`Source [${this.name}] does not support patching.`);
     }
 
+    async patchBy(patch: ISource.IPatch<TSourceSchemaType>): Promise<unknown> {
+        return this.runPatchBy(patch);
+    }
+
+    async runPatchBy(patch: ISource.IPatch<TSourceSchemaType>): Promise<unknown> {
+        console.error(`Source [${this.name}] does not support patching by query.`, patch);
+        throw new SourceError(`Source [${this.name}] does not support patching by query.`);
+    }
+
     async delete(withIdentity: IWithIdentity): Promise<TSourceSchemaType["Entity"]> {
         return this.runDelete(withIdentity);
     }

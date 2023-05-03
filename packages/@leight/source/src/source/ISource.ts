@@ -11,6 +11,8 @@ export interface ISource<TSourceSchemaType extends ISourceSchemaType> {
 
     patch(patch: ISource.IPatch<TSourceSchemaType>): Promise<TSourceSchemaType["Entity"]>;
 
+    patchBy(patch: ISource.IPatchBy<TSourceSchemaType>): Promise<unknown>;
+
     delete(withIdentity: IWithIdentity): Promise<TSourceSchemaType["Entity"]>;
 
     deleteWith(query: TSourceSchemaType["Query"]): Promise<TSourceSchemaType["Entity"][]>;
@@ -36,6 +38,11 @@ export interface ISource<TSourceSchemaType extends ISourceSchemaType> {
 
 export namespace ISource {
     export interface IPatch<TSourceSchemaType extends ISourceSchemaType> {
+        patch: TSourceSchemaType["Patch"];
+        filter: TSourceSchemaType["Filter"];
+    }
+
+    export interface IPatchBy<TSourceSchemaType extends ISourceSchemaType> {
         patch: TSourceSchemaType["Patch"];
         filter: TSourceSchemaType["Filter"];
     }

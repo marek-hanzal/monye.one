@@ -16,6 +16,7 @@ export const TransactionFilterFormSchema = withFormSchema({
         rangeOf:    z.string().optional(),
         amountFrom: z.number().optional(),
         amountTo:   z.number().optional(),
+        isTransfer: z.boolean().optional(),
     }),
     RequestSchema: TransactionSourceSchema.FilterSchema,
 });

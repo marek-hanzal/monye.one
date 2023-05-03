@@ -10,6 +10,7 @@
         "migration": "npx dotenv -c development -- npx prisma migrate deploy --schema=../../packages/@monye.one/prisma/prisma/schema.prisma",
         "prisma:migrate-reset": "npx dotenv -c development -- npx prisma migrate reset --schema=../../packages/@monye.one/prisma/prisma/schema.prisma --force",
         "prisma:migrate-dev": "npx dotenv -c development -- npx prisma migrate dev --schema=../../packages/@monye.one/prisma/prisma/schema.prisma",
+        "prisma:db-push": "npx dotenv -c development -- npx prisma db push --accept-data-loss --schema=../../packages/@monye.one/prisma/prisma/schema.prisma",
         "depcheck": "depcheck",
         "lint": "npx dotenv -c development -- next lint",
         "start": "npm run migration && next start",

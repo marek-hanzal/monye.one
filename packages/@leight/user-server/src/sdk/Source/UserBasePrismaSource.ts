@@ -54,6 +54,13 @@ export class UserBasePrismaSource extends AbstractSourceEx<IUserPrismaSchemaType
             where: this.toWhereUnique(filter),
         });
     }
+    
+    async runPatchBy({patch, filter}: ISource.IPatchBy<IUserSourceSchemaType>): Promise<unknown> {
+        return this.prisma().updateMany({
+            data:  patch,
+            where: this.toWhere(filter),
+        });
+    }
 
     async runUpsert({filter, patch: update, create}: ISource.IUpsert<IUserSourceSchemaType>): Promise<IUserSourceSchemaType["Entity"]> {
         return this.prisma().upsert({
@@ -112,4 +119,4 @@ export class UserBasePrismaSource extends AbstractSourceEx<IUserPrismaSchemaType
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ggwryu2qk8brfwx8lz9cnq1l = true;
+export const $leight_l5ju5ekhmsqgvgr8kt6i9qk6 = true;

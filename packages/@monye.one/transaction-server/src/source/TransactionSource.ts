@@ -81,8 +81,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                   rangeOf: $rangeOf,
                   amountFrom,
                   amountTo,
-                  withoutTo,
-                  withoutFrom,
+                  isTransfer,
               }         = filter;
         const $fulltext = keywordsOf(fulltext);
         if ($fulltext) {
@@ -155,25 +154,18 @@ export class TransactionSource extends TransactionBasePrismaSource {
             ]) : [];
         }
 
-        if (amountTo) {
+        if (isTransfer !== undefined) {
             where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
                 {
-                    amount: {lte: amountTo},
+                    isTransfer,
                 },
             ]) : [];
         }
 
-        if (withoutFrom) {
+        if (amountTo) {
             where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
                 {
-                    fromId: null,
-                },
-            ]) : [];
-        }
-        if (withoutTo) {
-            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
-                {
-                    toId: null,
+                    amount: {lte: amountTo},
                 },
             ]) : [];
         }

@@ -1,5 +1,5 @@
 import {
-    IFormFields,
+    type IFormFields,
     type IFormInputsFactory,
     type IFormInputsOverrideFactory,
     type IFormMapper,

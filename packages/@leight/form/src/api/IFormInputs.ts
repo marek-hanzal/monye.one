@@ -1,3 +1,4 @@
+import {type IWithTranslation}  from "@leight/i18n";
 import {type FC}                from "react";
 import {type IFormFields}       from "./IFormFields";
 import {type IFormSchemaType}   from "./IFormSchemaType";
@@ -17,7 +18,8 @@ export namespace IFormInputs {
         };
         withDescription: {
             description: string;
-        },
+        };
+        withTranslation: IWithTranslation;
     }
 
     export interface IInputProps<TFormSchemaType extends IFormSchemaType> {
