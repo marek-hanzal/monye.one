@@ -1,18 +1,20 @@
-import {BankRouter} from "./bank";
-import {BookRouter} from "./book";
-import {ImportRouter} from "./import";
-import {JobRouter} from "./job";
-import {router} from "./router";
+import {BankRouter}        from "./bank";
+import {BookRouter}        from "./book";
+import {FilterRouter}      from "./filter";
+import {ImportRouter}      from "./import";
+import {JobRouter}         from "./job";
+import {LabelRouter}       from "./label";
+import {router}            from "./router";
 import {TransactionRouter} from "./transaction";
-import {FilterRouter} from "./filter";
 
 export const api = router({
-    import: ImportRouter,
-    job: JobRouter,
-    bank: BankRouter,
-    book: BookRouter,
+    import:      ImportRouter,
+    job:         JobRouter,
+    bank:        BankRouter,
+    book:        BookRouter,
     transaction: TransactionRouter,
-    filter: FilterRouter,
+    filter:      FilterRouter,
+    label:       LabelRouter,
 });
 
 export type IApi = typeof api;

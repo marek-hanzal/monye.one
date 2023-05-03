@@ -1,7 +1,7 @@
 {
     "version": "0.5.75",
     "name": "@leight/filter",
-    "description": "Common file stuff.",
+    "description": "Common filter stuff.",
     "license": "MIT",
     "repository": {
         "type": "git",

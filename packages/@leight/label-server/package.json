@@ -1,0 +1,64 @@
+{
+    "version": "0.5.0",
+    "name": "@leight/label-server",
+    "description": "Server-side label stuff.",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/leight-core/viv.git"
+    },
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "sideEffects": false,
+    "type": "module",
+    "module": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "files": [
+        "lib",
+        "src"
+    ],
+    "scripts": {
+        "dev": "turbowatch",
+        "generate": "concurrently npm:generate:*",
+        "generate:sdk": "tsx src/leight-sdk.ts",
+        "build": "concurrently npm:build:*",
+        "build:esbuild": "node esbuild.mjs",
+        "build:types": "tsc --outDir lib",
+        "no:depcheck": "depcheck",
+        "lint": "eslint src",
+        "cleanup": "concurrently npm:cleanup:*",
+        "cleanup:sdk": "del-cli src/sdk/**",
+        "cleanup:lib": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
+    },
+    "dependencies": {
+        "@leight/container": "^0.5.67",
+        "@leight/label": "^0.5.0",
+        "@leight/prisma": "^0.5.84",
+        "@leight/react-query": "^0.5.29",
+        "@leight/source": "^0.5.66",
+        "@leight/source-server": "^0.5.66",
+        "@leight/trpc-source-server": "^0.5.0",
+        "@leight/user": "^0.5.78",
+        "@leight/utils": "^0.5.70",
+        "@leight/zod": "^0.5.12"
+    },
+    "devDependencies": {
+        "@leight/esbuild": "^0.5.45",
+        "@leight/eslint-config-eslint": "^0.5.54",
+        "@leight/sdk": "^0.5.25",
+        "@leight/tsconfig": "^0.5.68",
+        "@leight/turbowatch": "^0.5.33",
+        "@types/node": "^18.15.0",
+        "concurrently": "^7.6.0",
+        "del-cli": "^5.0.0",
+        "depcheck": "^1.4.3",
+        "eslint": "^8.36.0",
+        "turbowatch": "^2.3.2",
+        "typescript": "^5.0.2"
+    },
+    "bugs": {
+        "url": "https://github.com/leight-core/viv/issues"
+    },
+    "homepage": "https://github.com/leight-core/viv#readme"
+}

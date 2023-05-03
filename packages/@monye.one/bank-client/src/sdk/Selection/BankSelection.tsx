@@ -15,4 +15,4 @@ export const BankSelection = createSelectionStore<IBankSourceSchemaType["Dto"]>(
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_r2cjs0ve2jy593irvrix0g5o = true;
+export const $leight_f3mlk9b9fi09mbt60decu9mv = true;

@@ -63,6 +63,7 @@ model User {
     File      File[]
     Job       Job[]
     Filter    Filter[]
+    Label     Label[]
 }
 
 model VerificationToken {
@@ -175,4 +176,12 @@ model Filter {
     dto    String? @db.Text
 
     @@unique([userId, type, name])
+}
+
+model Label {
+    id     String @id @default(cuid())
+    label  String
+    type   String
+    userId String
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

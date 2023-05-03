@@ -20,6 +20,10 @@ import {
     KeywordContainer
 }                        from "@leight/keyword-server";
 import {
+    ILabelContainer,
+    LabelContainer
+}                        from "@leight/label-server";
+import {
     type IUserContainer,
     UserContainer,
 }                        from "@leight/user-server";
@@ -37,6 +41,7 @@ export interface IServerContainer {
     ImportContainer: IImportContainer;
     KeywordContainer: IKeywordContainer;
     FilterContainer: IFilterContainer;
+    LabelContainer: ILabelContainer;
 }
 
 export const ServerContainer = (container: IContainer): IServerContainer => {
@@ -48,5 +53,6 @@ export const ServerContainer = (container: IContainer): IServerContainer => {
         ImportContainer:     ImportContainer(container),
         KeywordContainer:    KeywordContainer(container),
         FilterContainer:     FilterContainer(container),
+        LabelContainer:      LabelContainer(container),
     };
 };

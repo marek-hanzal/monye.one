@@ -41,6 +41,13 @@ void withSdk(
                     procedure: "@leight/filter-server",
                 },
             },
+            {
+                name:     "Label",
+                packages: {
+                    schema:    "@leight/label",
+                    procedure: "@leight/label-server",
+                },
+            },
         ],
     })
 );

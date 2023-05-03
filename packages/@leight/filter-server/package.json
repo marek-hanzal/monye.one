@@ -1,7 +1,7 @@
 {
     "version": "0.5.1",
     "name": "@leight/filter-server",
-    "description": "Server-side keyword stuff.",
+    "description": "Server-side filter stuff.",
     "license": "MIT",
     "repository": {
         "type": "git",

@@ -65,6 +65,7 @@ model User {
     File        File[]
     Bank        Bank[]
     Filter      Filter[]
+    Label       Label[]
 }
 
 model VerificationToken {
@@ -224,6 +225,7 @@ model Transaction {
     isTransfer Boolean  @default(false)
 
     TransactionKeyword TransactionKeyword[]
+    TransactionLabel   TransactionLabel[]
 
     @@unique([userId, reference])
 }
@@ -234,4 +236,22 @@ model TransactionKeyword {
     transaction   Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
     keywordId     String
     keyword       Keyword     @relation(fields: [keywordId], references: [id], onDelete: Cascade)
+}
+
+model Label {
+    id     String @id @default(cuid())
+    label  String
+    type   String
+    userId String
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    TransactionLabel TransactionLabel[]
+}
+
+model TransactionLabel {
+    id            String      @id @default(cuid())
+    transactionId String
+    transaction   Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+    labelId       String
+    label         Label       @relation(fields: [labelId], references: [id], onDelete: Cascade)
 }
