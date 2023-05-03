@@ -36,5 +36,6 @@ export const getServerSideProps = withTranslation([
     "common",
     "book",
     "bank",
+    "filter",
     "transaction",
 ]);

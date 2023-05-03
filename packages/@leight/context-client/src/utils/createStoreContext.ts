@@ -31,6 +31,7 @@ export const createStoreContext = <TStoreProps extends IStoreProps>(
     }: ICreateStoreContextProps<TStoreProps>): IStoreContext<TStoreProps> => {
     const Context = createContext<IStoreApi<TStoreProps>>();
     return {
+        name,
         Provider:         createProvider<TStoreProps>({
             name,
             Context,

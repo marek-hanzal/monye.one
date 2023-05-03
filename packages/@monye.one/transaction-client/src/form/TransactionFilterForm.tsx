@@ -59,6 +59,7 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
                 FormContext={TransactionFilterFormStoreContext}
                 Selector={({onClick}) => <FilterQueryProvider>
                     <FilterTable
+                        sourceCacheTime={0}
                         SelectionContext={FilterSelection}
                         disableActions
                         withFulltext
@@ -71,10 +72,16 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
                     {filter.name}
                 </Badge>}
                 onCommit={({item, form}) => {
-                    form.reset();
-                    if (item && item.dto) {
-                        form.setValues(item.dto);
-                    }
+                    setTimeout(() => {
+                        form.reset();
+                        if (item && item.dto) {
+                            form.setValues({
+                                ...item.dto,
+                                filter:   item?.name,
+                                filterId: item?.id,
+                            });
+                        }
+                    }, 0);
                 }}
             />,
             "bankIds":    ({mandatory, withLabelPlaceholder, withDescription}) => <BankMultiSourceSelect<ITransactionFilterFormSchemaType>

@@ -117,6 +117,7 @@ export const SourceMultiSelect = <TFormSchemaType extends IFormSchemaType, TSour
                                     variant={"subtle"}
                                     size={"md"}
                                     onClick={() => {
+                                        onChange([]);
                                         clear();
                                         close();
                                     }}

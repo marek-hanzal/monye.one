@@ -10,6 +10,7 @@ import {
     $UserService,
     type IUserService
 }                               from "@leight/user";
+import {keywordsOf}             from "@leight/utils";
 import {FilterBasePrismaSource} from "../sdk";
 
 export class FilterSource extends FilterBasePrismaSource {
@@ -30,15 +31,20 @@ export class FilterSource extends FilterBasePrismaSource {
             return;
         }
 
-        const {id, ids} = filter;
+        const where: IFilterPrismaSchemaType["Where"] = {
+            AND:    [],
+            userId: this.userService.required(),
+        };
 
-        if (id) {
+        const {fulltext, id, ids} = filter;
+
+        if (id !== undefined) {
             return {
                 id,
             };
         }
 
-        if (ids && ids.length) {
+        if (ids) {
             return {
                 id: {
                     in: ids,
@@ -46,10 +52,25 @@ export class FilterSource extends FilterBasePrismaSource {
             };
         }
 
-        return {
-            ...filter,
-            userId: this.userService.required(),
-        };
+        const $fulltext = keywordsOf(fulltext);
+        if ($fulltext) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    OR: $fulltext?.map(item => ({
+                        OR: [
+                            {
+                                name: {
+                                    contains: item,
+                                    mode:     "insensitive",
+                                },
+                            },
+                        ]
+                    })),
+                }
+            ]) : [];
+        }
+
+        return where;
     }
 
     toWhereUnique(filter: IFilterSourceSchemaType["Filter"]): IFilterPrismaSchemaType["WhereUnique"] {

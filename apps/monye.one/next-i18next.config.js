@@ -33,6 +33,7 @@ module.exports = {
         "book",
         "bank",
         "calendar",
+        "filter",
         "transaction",
     ],
     supportedLngs:            supported,

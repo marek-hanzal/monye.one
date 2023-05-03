@@ -70,7 +70,7 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
     const {onChange, value}                                   = form.getInputProps(props.path);
     const entity                                              = SourceStore.use.useFetchOptional({
         filter: {
-            id: value?.id || "",
+            id: value || "",
         }
     });
 
@@ -134,7 +134,7 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
                                 leftIcon={<IconClick/>}
                                 size={"lg"}
                                 onClick={() => {
-                                    onChange(selection);
+                                    onChange(selection?.id);
                                     commit();
                                     onCommit?.({item: selection, form});
                                     close();

@@ -41,9 +41,10 @@ export interface IUseOptionalState<TStoreProps extends IStoreProps> {
  * boilerplate code.
  */
 export interface IStoreContext<TStoreProps extends IStoreProps> {
-    readonly Provider: IStoreProvider<TStoreProps>;
-    readonly useState: IUseState<TStoreProps>;
-    readonly useOptionalState: IUseOptionalState<TStoreProps>;
-    readonly useStore: () => StoreApi<TStoreProps["StoreProps"]>;
-    readonly useOptionalStore: () => StoreApi<TStoreProps["StoreProps"]> | null;
+    name: string;
+    Provider: IStoreProvider<TStoreProps>;
+    useState: IUseState<TStoreProps>;
+    useOptionalState: IUseOptionalState<TStoreProps>;
+    useStore: () => StoreApi<TStoreProps["StoreProps"]>;
+    useOptionalStore: () => StoreApi<TStoreProps["StoreProps"]> | null;
 }
