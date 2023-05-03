@@ -81,6 +81,8 @@ export class TransactionSource extends TransactionBasePrismaSource {
                   rangeOf: $rangeOf,
                   amountFrom,
                   amountTo,
+                  withoutTo,
+                  withoutFrom,
               }         = filter;
         const $fulltext = keywordsOf(fulltext);
         if ($fulltext) {
@@ -161,6 +163,21 @@ export class TransactionSource extends TransactionBasePrismaSource {
             ]) : [];
         }
 
+        if (withoutFrom) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    fromId: null,
+                },
+            ]) : [];
+        }
+        if (withoutTo) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    toId: null,
+                },
+            ]) : [];
+        }
+
         if (withIncome) {
             where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
                 {
@@ -214,8 +231,23 @@ export class TransactionSource extends TransactionBasePrismaSource {
     }
 
     toWhereUnique(filter: ITransactionSourceSchemaType["Filter"]): ITransactionPrismaSchemaType["WhereUnique"] {
-        return {
-            userId_reference: filter.userId_reference,
-        };
+        const {
+                  id,
+                  userId_reference,
+              } = filter;
+
+        if (userId_reference) {
+            return {
+                userId_reference,
+            };
+        }
+
+        if (id) {
+            return {
+                id,
+            };
+        }
+
+        return {};
     }
 }

@@ -34,4 +34,4 @@ export const BankCreateBaseForm: FC<IBankCreateBaseFormProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bclicdtjtxhpwf3lp6izlipi = true;
+export const $leight_ppm1fnpimxnn34q2kryu0p7l = true;

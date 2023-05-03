@@ -44,4 +44,4 @@ export class CalendarEventBaseSourceService extends AbstractSourceService<ICalen
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_s7whkmxl42z1c68qpkyspdg9 = true;
+export const $leight_f5hjhwpejrwys67yftpq38d6 = true;

@@ -35,4 +35,4 @@ export const BankSourceTable = <TColumnKeys extends string>(props: IBankSourceTa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zrqttzfglnaxnie7pzyyoqh9 = true;
+export const $leight_zprhk0d9z4n8qwcu0vhaexey = true;

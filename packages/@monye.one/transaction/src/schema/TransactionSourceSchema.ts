@@ -26,6 +26,10 @@ export const TransactionSourceSchema = withSourceSchema({
     PatchSchema:    TransactionPartialSchema.merge(PatchSchema),
     FilterSchema:   FilterSchema.merge(z.object({
         bankId:           z.string().optional(),
+        amount:           z.number().optional(),
+        account:          z.string().optional(),
+        withoutFrom:      z.boolean().optional(),
+        withoutTo:        z.boolean().optional(),
         target:           z.string().optional(),
         bankIds:          z.array(z.string()).optional(),
         rangeOf:          z.string().optional(),

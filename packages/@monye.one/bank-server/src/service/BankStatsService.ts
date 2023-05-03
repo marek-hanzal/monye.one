@@ -5,6 +5,7 @@ import {
     type IJobService
 }                           from "@leight/job";
 import {AbstractJobService} from "@leight/job-server";
+import {decimalOf}          from "@leight/prisma";
 import {
     $BankStatsService,
     BankStatsParamsSchema,
@@ -48,6 +49,77 @@ export class BankStatsService extends AbstractJobService<IBankStatsParamsSchema,
         for (const transaction of await this.transactionSource.query({filter: {bankId}})) {
             try {
                 await this.transactionKeywordService.build({input: transaction});
+
+                {
+                    const {target} = transaction;
+                    const amount   = decimalOf(transaction.amount);
+                    if (transaction.target) {
+                        if (!transaction.fromId && amount > 0) {
+                            /**
+                             * From
+                             */
+                            const targetAmount = amount * -1;
+                            const from         = await this.transactionSource.fetchOptional({
+                                filter: {
+                                    amountFrom: targetAmount,
+                                    amountTo:   targetAmount,
+                                    account:    target,
+                                    withoutTo:  true,
+                                },
+                            });
+                            if (from) {
+                                await this.transactionSource.patch({
+                                    patch:  {
+                                        fromId: from.id,
+                                    },
+                                    filter: {
+                                        id: transaction.id,
+                                    },
+                                });
+                                await this.transactionSource.patch({
+                                    patch:  {
+                                        toId: transaction.id,
+                                    },
+                                    filter: {
+                                        id: from.id,
+                                    },
+                                });
+                            }
+                        } else if (!transaction.toId) {
+                            /**
+                             * To
+                             */
+                            const targetAmount = Math.abs(amount);
+                            const to           = await this.transactionSource.fetchOptional({
+                                filter: {
+                                    amountFrom:  targetAmount,
+                                    amountTo:    targetAmount,
+                                    account:     target,
+                                    withoutFrom: true,
+                                },
+                            });
+                            if (to) {
+                                await this.transactionSource.patch({
+                                    patch:  {
+                                        toId: to.id,
+                                    },
+                                    filter: {
+                                        id: transaction.id,
+                                    },
+                                });
+                                await this.transactionSource.patch({
+                                    patch:  {
+                                        fromId: transaction.id,
+                                    },
+                                    filter: {
+                                        id: to.id,
+                                    },
+                                });
+                            }
+                        }
+                    }
+                }
+
                 await jobProgress.onSuccess();
             } catch (e) {
                 console.error(e);

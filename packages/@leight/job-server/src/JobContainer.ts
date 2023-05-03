@@ -10,16 +10,16 @@ import {
     type IJobSource,
     type IJobSourceMapper
 }                        from "@leight/job";
+import {JobSourceMapper} from "./mapper";
 import {
     type IJobSourceService,
-    JobBasePrismaSource,
-    JobBaseSourceMapper,
     JobBaseSourceService
 }                        from "./sdk";
 import {
     JobExecutor,
     JobProgressService
 }                        from "./service";
+import {JobSource}       from "./source";
 
 export interface IJobContainer {
     JobProgressService: IJobProgressService;
@@ -33,9 +33,9 @@ export const JobContainer = (container: IContainer): IJobContainer => {
     container
         .bindClass($JobProgressService, JobProgressService)
         .bindClass($JobExecutor, JobExecutor)
-        .bindClass($JobSource, JobBasePrismaSource)
+        .bindClass($JobSource, JobSource)
         .bindClass($JobSourceService, JobBaseSourceService)
-        .bindClass($JobSourceMapper, JobBaseSourceMapper);
+        .bindClass($JobSourceMapper, JobSourceMapper);
 
     return {
         get JobProgressService() {
