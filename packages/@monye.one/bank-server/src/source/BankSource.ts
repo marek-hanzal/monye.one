@@ -36,7 +36,11 @@ export class BankSource extends BankBasePrismaSource {
             userId: this.userService.required(),
         };
 
-        const {fulltext, ids} = filter;
+        const {
+                  account,
+                  fulltext,
+                  ids,
+              } = filter;
         if (ids) {
             return {
                 id: {
@@ -64,6 +68,14 @@ export class BankSource extends BankBasePrismaSource {
                             },
                         ]
                     })),
+                }
+            ]) : [];
+        }
+
+        if (account) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    account,
                 }
             ]) : [];
         }

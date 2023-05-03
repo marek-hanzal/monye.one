@@ -49,6 +49,7 @@ export const BankSourceSchema = withSourceSchema({
             userId:  z.string(),
             account: z.string(),
         }).optional(),
+        account:        z.string().optional(),
     })),
     ParamsSchema:   ParamsSchema,
     SortSchema:     z.object({

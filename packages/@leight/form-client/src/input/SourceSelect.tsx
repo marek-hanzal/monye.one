@@ -9,6 +9,7 @@ import {
     type ISourceStore
 }                                    from "@leight/source";
 import {FulltextProvider}            from "@leight/source-client";
+import {generateId}                  from "@leight/utils";
 import {
     Button,
     Divider,
@@ -78,6 +79,7 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
         {...props}
         isLoading
     /> : (entity.isSuccess ? <SelectionContext.Provider
+        key={generateId()}
         defaults={{
             item:      entity.data,
             selection: entity.data,

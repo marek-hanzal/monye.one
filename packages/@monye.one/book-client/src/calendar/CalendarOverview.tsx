@@ -156,8 +156,8 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
                         }}
                         onChange={({weeks}) => {
                             $setFilter({
-                                withIncome:  transactionFilter.withIncome,
-                                withOutcome: transactionFilter.withOutcome,
+                                withIncome:  transactionFilter?.withIncome,
+                                withOutcome: transactionFilter?.withOutcome,
                                 fulltext,
                                 range:       {from: weeks.start, to: weeks.end},
                             });

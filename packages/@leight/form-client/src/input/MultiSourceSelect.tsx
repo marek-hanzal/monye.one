@@ -6,6 +6,7 @@ import {
     type ISourceStore
 }                                         from "@leight/source";
 import {FulltextProvider}                 from "@leight/source-client";
+import {generateId}                       from "@leight/utils";
 import {
     Button,
     Divider,
@@ -66,6 +67,7 @@ export const SourceMultiSelect = <TFormSchemaType extends IFormSchemaType, TSour
         {...props}
         isLoading
     /> : (entity.isSuccess ? <SelectionContext.Provider
+        key={generateId()}
         defaults={{
             items:     entity.data.reduce((prev, current) => {
                 prev[current.id] = current;

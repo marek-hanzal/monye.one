@@ -1,17 +1,11 @@
 import {type IStoreProvider} from "@leight/context";
-import {
-    isCallable,
-    Pack
-}                            from "@leight/utils";
+import {isCallable}          from "@leight/utils";
 import {
     type ICreateStore,
     type IStoreContext,
     type IStoreProps,
 }                            from "@leight/zustand";
-import {
-    useEffect,
-    useMemo
-}                            from "react";
+import {useMemo}             from "react";
 
 export interface ICreateProviderProps<TStoreProps extends IStoreProps> {
     name: string;
@@ -36,9 +30,6 @@ export const createProvider = <TStoreProps extends IStoreProps>(
             const store = createStore({defaults, state});
             return {name, state: store.getState(), store};
         }, []);
-        useEffect(() => {
-            defaults && memo.store.setState(defaults);
-        }, [Pack.pack(defaults)]);
         return (
             <Context.Provider value={memo}>
                 {isCallable(Children) ? <Children {...memo}/> : Children}

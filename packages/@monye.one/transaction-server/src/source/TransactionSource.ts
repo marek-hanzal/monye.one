@@ -81,6 +81,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                   rangeOf: $rangeOf,
                   amountFrom,
                   amountTo,
+                  account,
                   isTransfer,
               }         = filter;
         const $fulltext = keywordsOf(fulltext);
@@ -186,7 +187,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                     amount: {
                         lt: 0,
                     },
-                }
+                },
             ]) : [];
         }
 
@@ -194,7 +195,17 @@ export class TransactionSource extends TransactionBasePrismaSource {
             where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
                 {
                     bankId,
-                }
+                },
+            ]) : [];
+        }
+
+        if (account) {
+            where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
+                {
+                    bank: {
+                        account,
+                    },
+                },
             ]) : [];
         }
 
@@ -205,7 +216,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                         contains: target,
                         mode:     "insensitive",
                     },
-                }
+                },
             ]) : [];
         }
 
@@ -215,7 +226,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                     bankId: {
                         in: bankIds,
                     },
-                }
+                },
             ]) : [];
         }
 
