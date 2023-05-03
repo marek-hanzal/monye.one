@@ -39,7 +39,7 @@ export interface ITransactionFilterFormProps extends Omit<ITransactionBaseFilter
 export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
     return <TransactionBaseFilterForm
         withAutoClose={["filter"]}
-        toRequest={({values: {from, to, ...values}}) => {
+        toRequest={({values: {filter, filterId, from, to, ...values}}) => {
             return {
                 ...values,
                 from: wrapJsDate(from),
@@ -53,10 +53,9 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
                 {...withLabelPlaceholder}
                 {...withDescription}
             />,
-            "filterId":   ({mandatory, withLabelPlaceholder, withDescription}) => <FilterSourceSelect<ITransactionFilterFormSchemaType>
+            "filterId":   ({mandatory, withLabelPlaceholder}) => <FilterSourceSelect<ITransactionFilterFormSchemaType>
                 {...mandatory}
                 {...withLabelPlaceholder}
-                {...withDescription}
                 FormContext={TransactionFilterFormStoreContext}
                 Selector={({onClick}) => <FilterQueryProvider>
                     <FilterTable
@@ -71,6 +70,12 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
                 >
                     {filter.name}
                 </Badge>}
+                onCommit={({item, form}) => {
+                    form.reset();
+                    if (item && item.dto) {
+                        form.setValues(item.dto);
+                    }
+                }}
             />,
             "bankIds":    ({mandatory, withLabelPlaceholder, withDescription}) => <BankMultiSourceSelect<ITransactionFilterFormSchemaType>
                 {...mandatory}
@@ -145,6 +150,7 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
         })}
         {...props}
     >
+
         <TransactionFilterInput path={"filter"}/>
         <TransactionFilterInput path={"filterId"}/>
         <Divider mt={"sm"}/>

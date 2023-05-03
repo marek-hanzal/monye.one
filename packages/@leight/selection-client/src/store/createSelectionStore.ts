@@ -29,8 +29,8 @@ export const createSelectionStore = <TItem extends IWithIdentity>(
             cancel() {
                 set({selection: undefined});
             },
-            select(item) {
-                set({item});
+            select(selection) {
+                set({selection});
             },
             isSelected(item) {
                 return get().selection?.id === item.id;

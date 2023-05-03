@@ -1,4 +1,7 @@
-import {type IFormSchemaType}        from "@leight/form";
+import {
+    type IFormSchemaType,
+    type IUseForm
+}                                    from "@leight/form";
 import {Translation}                 from "@leight/i18n-client";
 import {type ISelectionStoreContext} from "@leight/selection";
 import {
@@ -33,6 +36,8 @@ export interface ISourceSelectProps<TFormSchemaType extends IFormSchemaType, TSo
     SelectionContext: ISelectionStoreContext<TSourceSchemaType["Dto"]>;
     SourceStore: ISourceStore<TSourceSchemaType>;
 
+    onCommit?(props: ISourceSelectProps.IOnCommitProps<TFormSchemaType, TSourceSchemaType>): void;
+
     render(item: TSourceSchemaType["Dto"]): ReactNode;
 }
 
@@ -43,6 +48,11 @@ export namespace ISourceSelectProps {
         SelectionContext?: ISelectionStoreContext<TSourceSchemaType["Dto"]>;
         onClick(item: TSourceSchemaType["Dto"]): void;
     }
+
+    export interface IOnCommitProps<TFormSchemaType extends IFormSchemaType, TSourceSchemaType extends ISourceSchemaType> {
+        item?: TSourceSchemaType["Dto"];
+        form: IUseForm<TFormSchemaType>;
+    }
 }
 
 export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSchemaType extends ISourceSchemaType>(
@@ -51,14 +61,16 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
         SelectionContext,
         SourceStore,
         render,
+        onCommit,
         ...props
     }: ISourceSelectProps<TFormSchemaType, TSourceSchemaType>) => {
     const [opened, {open, close}]                             = useDisclosure(false);
     const {MantineContext: {useFormContext}, withTranslation} = props.FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
-    const {onChange, value}                                   = useFormContext().getInputProps(props.path);
+    const form                                                = useFormContext();
+    const {onChange, value}                                   = form.getInputProps(props.path);
     const entity                                              = SourceStore.use.useFetchOptional({
         filter: {
-            id: value || "",
+            id: value?.id || "",
         }
     });
 
@@ -124,6 +136,7 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
                                 onClick={() => {
                                     onChange(selection);
                                     commit();
+                                    onCommit?.({item: selection, form});
                                     close();
                                 }}
                             >
