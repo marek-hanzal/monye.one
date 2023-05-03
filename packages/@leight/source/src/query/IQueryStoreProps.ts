@@ -27,6 +27,7 @@ export type IQueryStoreProps<TSourceSchemaType extends ISourceSchemaType> = ISto
     applyShallowFilter(filter?: TSourceSchemaType["Filter"]): void;
     setShallowFilter(filter?: TSourceSchemaType["Filter"]): void;
     setFilterDto(dto?: IQueryStoreProps.IFilterDto): void;
+    setShallowFilterDto(dto?: IQueryStoreProps.IFilterDto): void;
     /**
      * Is there active filter? Does not include applyFilter
      */

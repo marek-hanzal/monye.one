@@ -49,12 +49,12 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
         }}
         getFilterName={({values}) => values.filter}
         inputs={() => ({
-            "filter":      ({mandatory, withLabelPlaceholder, withDescription}) => <TextInput
+            "filter":     ({mandatory, withLabelPlaceholder, withDescription}) => <TextInput
                 {...mandatory}
                 {...withLabelPlaceholder}
                 {...withDescription}
             />,
-            "filterId":    ({mandatory, withLabelPlaceholder}) => <FilterSourceSelect<ITransactionFilterFormSchemaType>
+            "filterId":   ({mandatory, withLabelPlaceholder}) => <FilterSourceSelect<ITransactionFilterFormSchemaType>
                 {...mandatory}
                 {...withLabelPlaceholder}
                 FormContext={TransactionFilterFormStoreContext}
@@ -89,7 +89,7 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
                     }, 0);
                 }}
             />,
-            "bankIds":     ({mandatory, withLabelPlaceholder, withDescription}) => <BankMultiSourceSelect<ITransactionFilterFormSchemaType>
+            "bankIds":    ({mandatory, withLabelPlaceholder, withDescription}) => <BankMultiSourceSelect<ITransactionFilterFormSchemaType>
                 {...mandatory}
                 {...withLabelPlaceholder}
                 {...withDescription}
@@ -114,20 +114,12 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
                     </Badge>)}
                 </Group>}
             />,
-            "target":      ({mandatory, withLabelPlaceholder, withDescription}) => <TextInput
+            "target":     ({mandatory, withLabelPlaceholder, withDescription}) => <TextInput
                 {...mandatory}
                 {...withLabelPlaceholder}
                 {...withDescription}
             />,
-            "from":        ({mandatory, withLabelPlaceholder, withDescription}) => <DateInput
-                {...mandatory}
-                {...withLabelPlaceholder}
-                {...withDescription}
-                onChange={({form}) => {
-                    form.setValues({rangeOf: "none"});
-                }}
-            />,
-            "to":          ({mandatory, withLabelPlaceholder, withDescription}) => <DateInput
+            "from":       ({mandatory, withLabelPlaceholder, withDescription}) => <DateInput
                 {...mandatory}
                 {...withLabelPlaceholder}
                 {...withDescription}
@@ -135,7 +127,15 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
                     form.setValues({rangeOf: "none"});
                 }}
             />,
-            "rangeOf":     ({mandatory, withLabelPlaceholder, withDescription}) => <RangeOfInput
+            "to":         ({mandatory, withLabelPlaceholder, withDescription}) => <DateInput
+                {...mandatory}
+                {...withLabelPlaceholder}
+                {...withDescription}
+                onChange={({form}) => {
+                    form.setValues({rangeOf: "none"});
+                }}
+            />,
+            "rangeOf":    ({mandatory, withLabelPlaceholder, withDescription}) => <RangeOfInput
                 {...mandatory}
                 {...withLabelPlaceholder}
                 {...withDescription}
@@ -146,32 +146,20 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
                     });
                 }}
             />,
-            "amountFrom":  ({mandatory, withLabelPlaceholder, withDescription}) => <NumberInput
+            "amountFrom": ({mandatory, withLabelPlaceholder, withDescription}) => <NumberInput
                 {...mandatory}
                 {...withLabelPlaceholder}
                 {...withDescription}
                 precision={2}
             />,
-            "amountTo":    ({mandatory, withLabelPlaceholder, withDescription}) => <NumberInput
+            "amountTo":   ({mandatory, withLabelPlaceholder, withDescription}) => <NumberInput
                 {...mandatory}
                 {...withLabelPlaceholder}
                 {...withDescription}
                 precision={2}
                 required={false}
             />,
-            "isTransfer":  ({mandatory, withLabelPlaceholder, withDescription, withTranslation}) => <BoolInput
-                {...mandatory}
-                {...withLabelPlaceholder}
-                {...withDescription}
-                withTranslation={withTranslation}
-            />,
-            "withIncome":  ({mandatory, withLabelPlaceholder, withDescription, withTranslation}) => <BoolInput
-                {...mandatory}
-                {...withLabelPlaceholder}
-                {...withDescription}
-                withTranslation={withTranslation}
-            />,
-            "withOutcome": ({mandatory, withLabelPlaceholder, withDescription, withTranslation}) => <BoolInput
+            "isTransfer": ({mandatory, withLabelPlaceholder, withDescription, withTranslation}) => <BoolInput
                 {...mandatory}
                 {...withLabelPlaceholder}
                 {...withDescription}
@@ -209,8 +197,7 @@ export const TransactionFilterForm: FC<ITransactionFilterFormProps> = props => {
             />
             <TransactionFilterInput path={"amountTo"}/>
         </Group>
-        <TransactionFilterInput path={"isTransfer"}/>
-        <TransactionFilterInput path={"withIncome"}/>
-        <TransactionFilterInput path={"withOutcome"}/>
+        <Divider mt={"sm"}/>
+        <TransactionFilterInput mt={"sm"} path={"isTransfer"}/>
     </TransactionBaseFilterForm>;
 };

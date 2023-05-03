@@ -106,6 +106,14 @@ export const createQueryStore = <TSourceSchemaType extends ISourceSchemaType>(
             setFilterDto(dto) {
                 set({$filterDto: dto});
             },
+            setShallowFilterDto(dto) {
+                set(state => ({
+                    $filterDto: {
+                        ...state.$filterDto,
+                        ...dto,
+                    },
+                }));
+            },
             hasFilter() {
                 return !isEmpty(cleanOf(get().$filter));
             },
