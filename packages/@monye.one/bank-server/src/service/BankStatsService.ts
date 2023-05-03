@@ -51,8 +51,10 @@ export class BankStatsService extends AbstractJobService<IBankStatsParamsSchema,
 
         for (const transaction of await this.transactionSource.query({filter: {bankId}})) {
             try {
-                await this.transactionKeywordService.build({input: transaction});
-                await this.transactionPairService.withTransaction(transaction);
+                await Promise.all([
+                    this.transactionKeywordService.build({input: transaction}),
+                    this.transactionPairService.withTransaction(transaction),
+                ]);
                 await jobProgress.onSuccess();
             } catch (e) {
                 console.error(e);
