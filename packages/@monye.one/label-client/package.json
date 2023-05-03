@@ -38,6 +38,7 @@
         "@leight/i18n": "^0.5.72",
         "@leight/i18n-client": "^0.5.72",
         "@leight/label": "^0.5.0",
+        "@leight/label-client": "^0.5.0",
         "@leight/mantine": "^0.5.76",
         "@leight/selection": "^0.5.0",
         "@leight/selection-client": "^0.5.0",
