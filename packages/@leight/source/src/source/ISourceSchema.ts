@@ -1,6 +1,7 @@
 import {
     type IUseMutation,
-    type IUseQuery
+    type IUseQuery,
+    IUseQueryResult
 }          from "@leight/react-query";
 import {z} from "@leight/zod";
 import {
@@ -171,6 +172,7 @@ export namespace ISourceSchema {
                 TToPatchSchema
             >
         >;
+
     }
 
     export namespace Type {
@@ -184,11 +186,11 @@ export namespace ISourceSchema {
         > {
             Entity: z.infer<TEntitySchema>;
             Create: z.infer<TCreateSchema>;
-            Patch: Source.IPatch<
+            Patch: Source.Patch<
                 TPatchSchema,
                 TFilterSchema
             >;
-            PatchBy: Source.IPatchBy<
+            PatchBy: Source.PatchBy<
                 TPatchSchema,
                 TFilterSchema
             >;
@@ -196,7 +198,7 @@ export namespace ISourceSchema {
             DeleteBy: z.infer<TFilterSchema>;
             Count: z.infer<TFilterSchema>;
             Filter: z.infer<TFilterSchema>;
-            Upsert: Source.IUpsert<
+            Upsert: Source.Upsert<
                 TCreateSchema,
                 TPatchSchema,
                 TFilterSchema
@@ -204,12 +206,12 @@ export namespace ISourceSchema {
             Sort: z.infer<TSortSchema>;
             Params: z.infer<TParamsSchema>;
             Cursor: ICursor;
-            Query: Source.IQuery<
+            Query: Source.Query<
                 TFilterSchema,
                 TSortSchema,
                 TPatchSchema
             >;
-            Query$: Source.IQuery<
+            Query$: Source.Query<
                 TFilterSchema,
                 TSortSchema,
                 TPatchSchema
@@ -219,7 +221,7 @@ export namespace ISourceSchema {
         }
 
         export namespace Source {
-            export interface IPatch<
+            export interface Patch<
                 TPatchSchema extends IPatchSchema = IPatchSchema,
                 TFilterSchema extends IFilterSchema = IFilterSchema,
             > {
@@ -227,7 +229,7 @@ export namespace ISourceSchema {
                 filter: z.infer<TFilterSchema>;
             }
 
-            export interface IPatchBy<
+            export interface PatchBy<
                 TPatchSchema extends IPatchSchema = IPatchSchema,
                 TFilterSchema extends IFilterSchema = IFilterSchema,
             > {
@@ -235,7 +237,7 @@ export namespace ISourceSchema {
                 filter: z.infer<TFilterSchema>;
             }
 
-            export interface IUpsert<
+            export interface Upsert<
                 TCreateSchema extends ICreateSchema = ICreateSchema,
                 TPatchSchema extends IPatchSchema = IPatchSchema,
                 TFilterSchema extends IFilterSchema = IFilterSchema,
@@ -245,7 +247,7 @@ export namespace ISourceSchema {
                 filter: z.infer<TFilterSchema>;
             }
 
-            export interface IQuery<
+            export interface Query<
                 TFilterSchema extends IFilterSchema = IFilterSchema,
                 TSortSchema extends ISortSchema = ISortSchema,
                 TParamsSchema extends IParamsSchema = IParamsSchema,
@@ -265,15 +267,15 @@ export namespace ISourceSchema {
         > {
             Dto: z.infer<TDtoSchema>;
             ToCreate: z.infer<TToCreateSchema>;
-            ToPatch: Mapper.IToPatch<
+            ToPatch: Mapper.ToPatch<
                 TToPatchSchema,
                 TFilterSchema
             >;
-            ToPatchBy: Mapper.IToPatchBy<
+            ToPatchBy: Mapper.ToPatchBy<
                 TToPatchSchema,
                 TFilterSchema
             >;
-            Upsert: Mapper.IUpsert<
+            Upsert: Mapper.Upsert<
                 TToCreateSchema,
                 TToPatchSchema,
                 TFilterSchema
@@ -281,7 +283,7 @@ export namespace ISourceSchema {
         }
 
         export namespace Mapper {
-            export interface IToPatch<
+            export interface ToPatch<
                 TToPatchSchema extends IToPatchSchema = IToPatchSchema,
                 TFilterSchema extends IFilterSchema = IFilterSchema,
             > {
@@ -289,7 +291,7 @@ export namespace ISourceSchema {
                 filter: z.infer<TFilterSchema>;
             }
 
-            export interface IToPatchBy<
+            export interface ToPatchBy<
                 TToPatchSchema extends IToPatchSchema = IToPatchSchema,
                 TFilterSchema extends IFilterSchema = IFilterSchema,
             > {
@@ -297,7 +299,7 @@ export namespace ISourceSchema {
                 filter: z.infer<TFilterSchema>;
             }
 
-            export interface IUpsert<
+            export interface Upsert<
                 TToCreateSchema extends IToCreateSchema = IToCreateSchema,
                 TToPatchSchema extends IToPatchSchema = IToPatchSchema,
                 TFilterSchema extends IFilterSchema = IFilterSchema,
@@ -328,6 +330,22 @@ export namespace ISourceSchema {
 
         export namespace UseQuery {
             export type Invalidator = () => () => void;
+        }
+
+        export interface UseSource<
+            TDtoSchema extends IDtoSchema = IDtoSchema,
+        > {
+            Hook: ({cacheTime}?: { cacheTime: number }) => UseSource.Result<TDtoSchema>;
+            Result: UseSource.Result<TDtoSchema>;
+        }
+
+        export namespace UseSource {
+            export interface Result<
+                TDtoSchema extends IDtoSchema = IDtoSchema,
+            > {
+                result: IUseQueryResult<z.infer<TDtoSchema>[]>;
+                data: z.infer<TDtoSchema>[];
+            }
         }
     }
 }

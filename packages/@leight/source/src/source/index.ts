@@ -9,5 +9,4 @@ export * from "./ISourceMapper";
 export * from "./ISourceSchema";
 export * from "./ISourceService";
 export * from "./ISourceStore";
-export * from "./IUseSource";
 export * from "./IUseSourceProps";
