@@ -1,6 +1,6 @@
-import {z}                 from "@leight/zod";
-import {ISource}           from "./ISource";
-import {ISourceSchemaType} from "./ISourceSchemaType";
+import {z}                      from "@leight/zod";
+import {type ISource}           from "./ISource";
+import {type ISourceSchemaType} from "./ISourceSchemaType";
 
 export interface ISourceSchemaEx<
     TWhereSchema extends z.ZodType = z.ZodType,
