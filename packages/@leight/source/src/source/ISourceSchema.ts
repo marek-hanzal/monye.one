@@ -1,7 +1,7 @@
 import {
     type IUseMutation,
     type IUseQuery,
-    IUseQueryResult
+    type IUseQueryResult
 }          from "@leight/react-query";
 import {z} from "@leight/zod";
 import {
