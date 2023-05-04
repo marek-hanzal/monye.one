@@ -1,7 +1,7 @@
-import {type IQuery} from "../schema";
+import {type RepositoryType} from "../repository";
 
 export interface IWithCursorProps<T> {
-    query?: IQuery;
+    query?: RepositoryType["Query"];
     arg?: T;
     size?: number;
     page?: number;
