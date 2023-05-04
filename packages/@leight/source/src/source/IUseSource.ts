@@ -1,7 +1,7 @@
-import {type IUseQueryResult}   from "@leight/react-query";
-import {type ISourceSchemaType} from "./ISourceSchemaType";
+import {type IUseQueryResult} from "@leight/react-query";
+import {type ISourceSchema}   from "./ISourceSchema";
 
-export type IUseSource<TSourceSchemaType extends ISourceSchemaType> = {
-    result: IUseQueryResult<TSourceSchemaType["Dto"][]>;
-    data: TSourceSchemaType["Dto"][];
+export type IUseSource<TSourceSchema extends ISourceSchema> = {
+    result: IUseQueryResult<TSourceSchema["Type"]["Mapper"]["Dto"][]>;
+    data: TSourceSchema["Type"]["Mapper"]["Dto"][];
 }

@@ -15,12 +15,10 @@ import {
     type IToPatchSchema,
     ParamsSchema,
     PatchSchema,
-    QuerySchema,
     SortSchema,
     ToCreateSchema,
     ToPatchSchema
 }                           from "../schema";
-import {UpsertSchema}       from "../schema/UpsertSchema";
 import {type ISourceSchema} from "../source";
 
 export type IWithSourceSchemaProps<

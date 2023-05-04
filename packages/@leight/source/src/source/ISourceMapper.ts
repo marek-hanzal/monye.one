@@ -1,15 +1,9 @@
-import {type ISourceSchemaType} from "./ISourceSchemaType";
+import {type ISourceSchema} from "./ISourceSchema";
 
-export interface ISourceMapper<TSourceSchemaType extends ISourceSchemaType> {
-    toCreate(create: ISourceMapper.IToCreate<TSourceSchemaType>): Promise<TSourceSchemaType["Create"]>;
+export interface ISourceMapper<TSourceSchema extends ISourceSchema> {
+    toCreate(create: TSourceSchema["Type"]["Mapper"]["ToCreate"]): Promise<TSourceSchema["Type"]["Source"]["Create"]>;
 
-    toPatch(patch: ISourceMapper.IToPatch<TSourceSchemaType>): Promise<TSourceSchemaType["Patch"]>;
+    toPatch(patch: TSourceSchema["Type"]["Mapper"]["ToPatch"]): Promise<TSourceSchema["Type"]["Source"]["Patch"]>;
 
-    toDto(entity: ISourceMapper.IToDto<TSourceSchemaType>): Promise<TSourceSchemaType["Dto"]>;
-}
-
-export namespace ISourceMapper {
-    export type IToCreate<TSourceSchemaType extends ISourceSchemaType> = TSourceSchemaType["ToCreate"];
-    export type IToPatch<TSourceSchemaType extends ISourceSchemaType> = TSourceSchemaType["ToPatch"];
-    export type IToDto<TSourceSchemaType extends ISourceSchemaType> = TSourceSchemaType["Entity"];
+    toDto(entity: TSourceSchema["Type"]["Source"]["Entity"]): Promise<TSourceSchema["Type"]["Mapper"]["Dto"]>;
 }

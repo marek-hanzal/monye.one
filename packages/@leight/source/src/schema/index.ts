@@ -1,5 +1,5 @@
 export * from "./CursorSchema";
 export * from "./FilterSchema";
-export * from "./QuerySchema";
+export * from "./ParamsSchema";
 export * from "./SortSchema";
 export * from "./SourceSchema";

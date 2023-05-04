@@ -1,31 +1,28 @@
-import {type IStoreProps} from "@leight/zustand";
-import {type ISortOrder}  from "../schema";
-import {
-    type ISourceSchema,
-    type ISourceSchemaType
-}                         from "../source";
+import {type IStoreProps}   from "@leight/zustand";
+import {type ISortOrder}    from "../schema";
+import {type ISourceSchema} from "../source";
 
-export type IQueryStoreProps<TSourceSchemaType extends ISourceSchemaType> = IStoreProps<{
+export type IQueryStoreProps<TSourceSchema extends ISourceSchema> = IStoreProps<{
     $id: string;
-    $schema: ISourceSchema.of<TSourceSchemaType>;
+    $schema: TSourceSchema["Schema"]["Source"];
 
     $page: number;
     $size: number;
 
-    $filter: TSourceSchemaType["Filter"];
+    $filter: TSourceSchema["Type"]["Source"]["Filter"];
     /**
      * If set, all filter changes are shallow merged with this
      */
-    $applyFilter?: TSourceSchemaType["Filter"];
+    $applyFilter?: TSourceSchema["Type"]["Source"]["Filter"];
     $filterDto?: IQueryStoreProps.IFilterDto;
-    $sort: TSourceSchemaType["Sort"];
+    $sort: TSourceSchema["Type"]["Source"]["Sort"];
 
-    $query: TSourceSchemaType["Query"];
+    $query: TSourceSchema["Type"]["Source"]["Query"];
 
-    setFilter(filter?: TSourceSchemaType["Filter"]): void;
-    applyFilter(filter?: TSourceSchemaType["Filter"]): void;
-    applyShallowFilter(filter?: TSourceSchemaType["Filter"]): void;
-    setShallowFilter(filter?: TSourceSchemaType["Filter"]): void;
+    setFilter(filter?: TSourceSchema["Type"]["Source"]["Filter"]): void;
+    applyFilter(filter?: TSourceSchema["Type"]["Source"]["Filter"]): void;
+    applyShallowFilter(filter?: TSourceSchema["Type"]["Source"]["Filter"]): void;
+    setShallowFilter(filter?: TSourceSchema["Type"]["Source"]["Filter"]): void;
     setFilterDto(dto?: IQueryStoreProps.IFilterDto): void;
     setShallowFilterDto(dto?: IQueryStoreProps.IFilterDto): void;
     /**
@@ -37,7 +34,7 @@ export type IQueryStoreProps<TSourceSchemaType extends ISourceSchemaType> = ISto
      */
     hasApplyFilter(): boolean;
 
-    setSort(sort: keyof TSourceSchemaType["Sort"], order: ISortOrder): void;
+    setSort(sort: keyof TSourceSchema["Type"]["Source"]["Sort"], order: ISortOrder): void;
 
     setSize(size: number): void;
     setPage(page: number): void;

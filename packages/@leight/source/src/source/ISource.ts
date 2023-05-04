@@ -1,99 +1,66 @@
-import {type IWithIdentity}     from "../schema";
-import {type ISourceSchemaType} from "./ISourceSchemaType";
+import {type ISourceSchema} from "./ISourceSchema";
 
 /**
  * Implementation of data source (general, not just a database one).
  */
-export interface ISource<TSourceSchemaType extends ISourceSchemaType> {
+export interface ISource<TSourceSchema extends ISourceSchema> {
     /**
      * Create a new entity (low-level storage binding, like Prisma or so)
      */
-    create(entity: ISource.ICreate<TSourceSchemaType>): Promise<TSourceSchemaType["Entity"]>;
+    create(create: TSourceSchema["Type"]["Source"]["Create"]): Promise<TSourceSchema["Type"]["Source"]["Entity"]>;
 
     /**
      * Create or update an existing entity
      */
-    upsert(props: ISource.IUpsert<TSourceSchemaType>): Promise<TSourceSchemaType["Entity"]>;
+    upsert(upsert: TSourceSchema["Type"]["Source"]["Upsert"]): Promise<TSourceSchema["Type"]["Source"]["Entity"]>;
 
     /**
      * Patch an existing entity; only required changes could be provided (partial update)
      */
-    patch(patch: ISource.IPatch<TSourceSchemaType>): Promise<TSourceSchemaType["Entity"]>;
+    patch(patch: TSourceSchema["Type"]["Source"]["Patch"]): Promise<TSourceSchema["Type"]["Source"]["Entity"]>;
 
     /**
      * Patch all entities by the given query
      */
-    patchBy(patch: ISource.IPatchBy<TSourceSchemaType>): Promise<unknown>;
+    patchBy(patchBy: TSourceSchema["Type"]["Source"]["PatchBy"]): Promise<unknown>;
 
     /**
      * Delete an entity by an id
      */
-    delete(id: ISource.IDelete): Promise<TSourceSchemaType["Entity"]>;
+    delete(props: TSourceSchema["Type"]["Source"]["Delete"]): Promise<TSourceSchema["Type"]["Source"]["Entity"]>;
 
     /**
      * Delete entities by the given query; deleted entities are on the output
      */
-    deleteBy(query: ISource.IDeleteBy<TSourceSchemaType>): Promise<TSourceSchemaType["Entity"][]>;
+    deleteBy(deleteBy: TSourceSchema["Type"]["Source"]["DeleteBy"]): Promise<TSourceSchema["Type"]["Source"]["Entity"][]>;
 
     /**
      * Count items based on an optional query.
      */
-    count(query?: ISource.ICount<TSourceSchemaType>): Promise<number>;
+    count(count?: TSourceSchema["Type"]["Source"]["Count"]): Promise<number>;
 
     /**
      * Query items.
      */
-    query(query?: ISource.IQuery<TSourceSchemaType>): Promise<TSourceSchemaType["Entity"][]>;
+    query(query?: TSourceSchema["Type"]["Source"]["Query"]): Promise<TSourceSchema["Type"]["Source"]["Entity"][]>;
 
     /**
      * Fetch an entity by the given query
      */
-    fetch(query: ISource.IFetch<TSourceSchemaType>): Promise<TSourceSchemaType["Entity"]>;
+    fetch(fetch: TSourceSchema["Type"]["Source"]["Fetch"]): Promise<TSourceSchema["Type"]["Source"]["Entity"]>;
 
     /**
      * Same as fetch, just optional
      */
-    fetch$(query: ISource.IFetch$<TSourceSchemaType>): Promise<TSourceSchemaType["Entity"] | null>;
+    fetch$(fetch$: TSourceSchema["Type"]["Source"]["Fetch$"]): Promise<TSourceSchema["Type"]["Source"]["Entity"] | null>;
 
     /**
      * Get an entity by id
      */
-    get(id: string): Promise<TSourceSchemaType["Entity"]>;
+    get(id: string): Promise<TSourceSchema["Type"]["Source"]["Entity"]>;
 
     /**
      * Get an optional entity
      */
-    get$(id?: string | null): Promise<TSourceSchemaType["Entity"] | null>;
-}
-
-export namespace ISource {
-    export type ICreate<TSourceSchemaType extends ISourceSchemaType> = TSourceSchemaType["Create"];
-
-    export interface IPatch<TSourceSchemaType extends ISourceSchemaType> {
-        patch: TSourceSchemaType["Patch"];
-        filter: TSourceSchemaType["Filter"];
-    }
-
-    export interface IPatchBy<TSourceSchemaType extends ISourceSchemaType> {
-        patch: TSourceSchemaType["Patch"];
-        filter: TSourceSchemaType["Filter"];
-    }
-
-    export interface IUpsert<TSourceSchemaType extends ISourceSchemaType> {
-        create: TSourceSchemaType["Create"];
-        patch: TSourceSchemaType["Patch"];
-        filter: TSourceSchemaType["Filter"];
-    }
-
-    export type IDelete = IWithIdentity;
-
-    export type IDeleteBy<TSourceSchemaType extends ISourceSchemaType> = TSourceSchemaType["Query"];
-
-    export type ICount<TSourceSchemaType extends ISourceSchemaType> = TSourceSchemaType["Query"];
-
-    export type IQuery<TSourceSchemaType extends ISourceSchemaType> = TSourceSchemaType["Query"];
-
-    export type IFetch<TSourceSchemaType extends ISourceSchemaType> = TSourceSchemaType["Query"];
-
-    export type IFetch$<TSourceSchemaType extends ISourceSchemaType> = TSourceSchemaType["Query"];
+    get$(id?: string | null): Promise<TSourceSchema["Type"]["Source"]["Entity"] | null>;
 }

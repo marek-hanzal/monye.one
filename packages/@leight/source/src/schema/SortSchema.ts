@@ -8,5 +8,5 @@ export type ISortOrderSchema = typeof SortOrderSchema
 export type ISortOrder = z.infer<ISortOrderSchema>;
 
 export const SortSchema = z.object({});
-export type ISortSchema = typeof SortSchema;
+export type ISortSchema = z.ZodObject<any>;
 export type ISort = z.infer<ISortSchema>;
