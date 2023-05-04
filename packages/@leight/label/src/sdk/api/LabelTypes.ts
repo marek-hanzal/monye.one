@@ -12,4 +12,4 @@ export type ILabelSourceMapper = ISourceMapper<ILabelSourceSchemaType>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_v9ifx1jcjwp5a5mgl5f6ca55 = true;
+export const $leight_yyuiq625znh94nc8o30dkeqv = true;

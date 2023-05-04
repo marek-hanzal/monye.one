@@ -18,7 +18,6 @@ import {
     Stack,
     Tooltip
 }                                         from "@mantine/core";
-import {useLabelQueryInvalidator}         from "@monye.one/label-client";
 import {
     IconCheck,
     IconX
@@ -54,7 +53,7 @@ export const BaseLabelControl: FC<IBaseLabelControlProps> = (
     const modal                                               = ModalStore.useOptionalState();
     const drawer                                              = DrawerStore.useOptionalState();
     const deleteMutation                                      = SourceStore.use.useDelete();
-    const invalidator                                         = useLabelQueryInvalidator();
+    const invalidator                                         = SourceStore.useInvalidator();
     return <Box
         {...props}
     >

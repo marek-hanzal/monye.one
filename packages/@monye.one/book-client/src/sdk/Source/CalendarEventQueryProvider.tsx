@@ -27,4 +27,4 @@ export const CalendarEventQueryProvider: FC<ICalendarEventQueryProviderProps> = 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_pxgpnc517lwldc5i0zjjqsdg = true;
+export const $leight_k7g8ejxb943vov0a0i8jzg07 = true;

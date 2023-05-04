@@ -45,6 +45,10 @@ void withSdk(
                     withTrpc: {
                         path:    "transaction",
                         package: "@monye.one/trpc-client",
+                        invalidators: [
+                            "transaction.source.query",
+                            "transaction.source.count",
+                        ],
                     },
                 },
             ],

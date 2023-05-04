@@ -4,14 +4,16 @@
 import {withSourceStore} from "@leight/source-client";
 import {TransactionSourceSchema} from "@monye.one/transaction";
 import {UseTransactionSourceQuery} from "../Trpc/UseTransactionSourceQuery";
+import {useTransactionQueryInvalidator} from "../Trpc/useTransactionQueryInvalidator";
 
 export const TransactionSourceStore = withSourceStore({
     name: "Transaction",
     schema: TransactionSourceSchema,
     use: UseTransactionSourceQuery,
+    useInvalidator: useTransactionQueryInvalidator,
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rwri8sibv4gviik502sld7e4 = true;
+export const $leight_kwhdl1cb1xjxt2owjzv8gwzg = true;

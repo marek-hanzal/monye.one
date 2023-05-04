@@ -30,8 +30,12 @@ void withSdk(
                 {
                     name:     "CalendarEvent",
                     withTrpc: {
-                        path:    "book.calendar.event",
-                        package: "@monye.one/trpc-client",
+                        path:         "book.calendar.event",
+                        package:      "@monye.one/trpc-client",
+                        invalidators: [
+                            "book.calendar.event.source.query",
+                            "book.calendar.event.source.count",
+                        ],
                     },
                     packages: {
                         schema: "@monye.one/book",

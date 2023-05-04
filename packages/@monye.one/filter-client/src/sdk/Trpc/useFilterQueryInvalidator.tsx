@@ -3,9 +3,10 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
+import {type IUseQueryInvalidator} from "@leight/source";
 import {trpc} from "@monye.one/trpc-client";
 
-export const useFilterQueryInvalidator = () => {
+export const useFilterQueryInvalidator: IUseQueryInvalidator = () => {
     const trpcContext = trpc.useContext();
     return () => {
         trpcContext.filter.source.query.invalidate();
@@ -16,4 +17,4 @@ export const useFilterQueryInvalidator = () => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xtynsicr5vffqpnerl4djxgv = true;
+export const $leight_t9rhx6cjnkuk0u7tsjhq51om = true;

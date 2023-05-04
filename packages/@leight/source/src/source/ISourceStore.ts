@@ -1,5 +1,8 @@
 import {type IStoreContext}     from "@leight/context";
-import {type IQueryStoreProps}  from "../query";
+import {
+    type IQueryStoreProps,
+    type IUseQueryInvalidator
+}                               from "../query";
 import {type ISourceSchemaType} from "./ISourceSchemaType";
 import {type IUseSource}        from "./IUseSource";
 import {type IUseSourceProps}   from "./IUseSourceProps";
@@ -15,6 +18,7 @@ export type ISourceStore<TSourceSchemaType extends ISourceSchemaType> = {
      * Wrapper for all source's useXXX queries
      */
     use: IUseSourceQuery<TSourceSchemaType>;
+    useInvalidator: IUseQueryInvalidator;
     /**
      * Access to query state/provider.
      */

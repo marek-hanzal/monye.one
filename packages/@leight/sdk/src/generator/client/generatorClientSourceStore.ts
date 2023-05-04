@@ -49,8 +49,11 @@ export const generatorClientSourceStore: IGenerator<IGeneratorClientSourceStoreP
             })
             .withImports({
                 imports: {
-                    [`../Trpc/Use${name}SourceQuery`]: [
+                    [`../Trpc/Use${name}SourceQuery`]:      [
                         `Use${name}SourceQuery`,
+                    ],
+                    [`../Trpc/use${name}QueryInvalidator`]: [
+                        `use${name}QueryInvalidator`,
                     ],
                 },
             })
@@ -62,6 +65,7 @@ withSourceStore({
     name: "${name}",
     schema: ${name}SourceSchema,
     use: Use${name}SourceQuery,
+    useInvalidator: use${name}QueryInvalidator,
 })
                     `,
                     },

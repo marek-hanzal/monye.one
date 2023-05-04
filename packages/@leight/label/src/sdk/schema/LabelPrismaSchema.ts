@@ -24,4 +24,4 @@ export const LabelPrismaSchema = withSourceSchemaEx({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_z9ybdtq5287xig9zthhzopcc = true;
+export const $leight_nluhtfqt89w0goklpkuax8sq = true;

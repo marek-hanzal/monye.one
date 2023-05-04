@@ -44,4 +44,4 @@ export class LabelBaseSourceService extends AbstractSourceService<ILabelSourceSc
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tleia296anv2uecwgjm14ywv = true;
+export const $leight_juumiypbm84oidl80clr0rli = true;

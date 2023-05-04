@@ -49,6 +49,13 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
         withTrpc.invalidators && withSourceFile()
             .withImports({
                 imports: {
+                    "@leight/source": [
+                        "type IUseQueryInvalidator",
+                    ],
+                },
+            })
+            .withImports({
+                imports: {
                     [withTrpc.package]: [
                         "trpc",
                     ],
@@ -57,6 +64,7 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
             .withConsts({
                 exports: {
                     [`use${name}QueryInvalidator`]: {
+                        type: "IUseQueryInvalidator",
                         body: `
 () => {
     const trpcContext = trpc.useContext();

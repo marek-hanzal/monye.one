@@ -21,4 +21,4 @@ export const LabelEditInput: FC<Omit<IWithInputProps<ILabelEditFormSchemaType>, 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_yxws4kk37mpvd5dzy3qef7jr = true;
+export const $leight_vdkv783eo3z7l5cgp7dvrjki = true;

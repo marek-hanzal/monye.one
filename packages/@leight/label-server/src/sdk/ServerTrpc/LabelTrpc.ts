@@ -18,4 +18,4 @@ export const LabelSourceProcedure = withSourceProcedure<ILabelSourceSchemaType>(
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_j9lb7dn3x0fcky6hcrorjowu = true;
+export const $leight_reb2a56g32klbaxmyspjh3t7 = true;

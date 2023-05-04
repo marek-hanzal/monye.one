@@ -2,6 +2,7 @@ import {
     type ISourceSchema,
     type ISourceSchemaType,
     type ISourceStore,
+    type IUseQueryInvalidator,
     type IUseSourceQuery
 }                         from "@leight/source";
 import {createQueryStore} from "../query";
@@ -11,6 +12,7 @@ export interface IWithSourceStoreProps<TSourceSchema extends ISourceSchema> {
     name: string;
     schema: TSourceSchema;
     use: IUseSourceQuery<ISourceSchemaType.of<TSourceSchema>>;
+    useInvalidator: IUseQueryInvalidator;
 }
 
 export const withSourceStore = <TSourceSchema extends ISourceSchema>(
@@ -18,6 +20,7 @@ export const withSourceStore = <TSourceSchema extends ISourceSchema>(
         name,
         schema,
         use,
+        useInvalidator,
     }: IWithSourceStoreProps<TSourceSchema>): ISourceStore<ISourceSchemaType.of<TSourceSchema>> => {
     const $store: ISourceStore<ISourceSchemaType.of<TSourceSchema>> = {
         name,
@@ -29,6 +32,7 @@ export const withSourceStore = <TSourceSchema extends ISourceSchema>(
             });
         },
         use,
+        useInvalidator,
         Query:     createQueryStore<ISourceSchemaType.of<TSourceSchema>>({
             name,
             schema,

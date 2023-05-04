@@ -17,14 +17,12 @@ import {ModalStore}              from "../context";
 import {withSuccessNotification} from "../utils";
 
 export interface IDeleteModalProps<TSourceSchemaType extends ISourceSchemaType> extends IModalProps {
-    invalidator: () => void;
     SourceStore: ISourceStore<TSourceSchemaType>;
     entity: TSourceSchemaType["Dto"];
 }
 
 export const DeleteModal = <TSourceSchemaType extends ISourceSchemaType>(
     {
-        invalidator,
         withTranslation,
         SourceStore,
         entity,
@@ -32,6 +30,7 @@ export const DeleteModal = <TSourceSchemaType extends ISourceSchemaType>(
     }: IDeleteModalProps<TSourceSchemaType>) => {
     const {close}        = ModalStore.useState(({close}) => ({close}));
     const deleteMutation = SourceStore.use.useDelete();
+    const invalidator    = SourceStore.useInvalidator();
     return <Modal
         withTranslation={{
             ...withTranslation,
