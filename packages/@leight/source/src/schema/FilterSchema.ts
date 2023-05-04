@@ -5,7 +5,5 @@ export const FilterSchema = z.object({
     ids:      z.array(z.string()).optional(),
     fulltext: z.string().optional(),
 });
-export type IFilterSchema =
-    typeof FilterSchema
-    | z.ZodType;
+export type IFilterSchema = typeof FilterSchema;
 export type IFilter = z.infer<IFilterSchema>;
