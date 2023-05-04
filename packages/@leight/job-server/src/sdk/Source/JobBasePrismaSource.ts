@@ -110,6 +110,10 @@ export class JobBasePrismaSource extends AbstractSourceEx<IJobPrismaSchemaType, 
         }));
     }
     
+    withInclude() {
+        return undefined;
+    }
+    
     prisma() {
         return this.prismaClient.job;
     }
@@ -119,4 +123,4 @@ export class JobBasePrismaSource extends AbstractSourceEx<IJobPrismaSchemaType, 
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bk5oh8chpvxcno3jbnw840cp = true;
+export const $leight_waybl84d916m6uigwu44i3tj = true;

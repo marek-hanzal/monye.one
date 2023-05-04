@@ -110,6 +110,10 @@ export class FileBasePrismaSource extends AbstractSourceEx<IFilePrismaSchemaType
         }));
     }
     
+    withInclude() {
+        return undefined;
+    }
+    
     prisma() {
         return this.prismaClient.file;
     }
@@ -119,4 +123,4 @@ export class FileBasePrismaSource extends AbstractSourceEx<IFilePrismaSchemaType
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ndpfsjbb0937hgt8k53p5qc6 = true;
+export const $leight_o542ejg0m54e6xbid6dqa8wd = true;

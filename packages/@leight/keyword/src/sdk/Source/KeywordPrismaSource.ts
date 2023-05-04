@@ -21,4 +21,4 @@ export const $KeywordSourceService = Symbol.for("@leight/keyword/IKeywordSourceS
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wekm4pshqe6kwnllzcipwbg6 = true;
+export const $leight_pig5gu3a9q1lbmgke3qsagu2 = true;

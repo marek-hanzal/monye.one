@@ -110,6 +110,10 @@ export class LabelBasePrismaSource extends AbstractSourceEx<ILabelPrismaSchemaTy
         }));
     }
     
+    withInclude() {
+        return undefined;
+    }
+    
     prisma() {
         return this.prismaClient.label;
     }
@@ -119,4 +123,4 @@ export class LabelBasePrismaSource extends AbstractSourceEx<ILabelPrismaSchemaTy
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_e96xt2hjw84u4ai7p3w0og2e = true;
+export const $leight_ahkwmyp6u4bbk335odh1py7d = true;

@@ -15,4 +15,4 @@ export const LabelMultiSelection = createMultiSelectionStore<ILabelSourceSchemaT
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lrd85h1nblhjnnr5gjr1axst = true;
+export const $leight_d12gylcdidpm12qkuxb5n4cc = true;

@@ -38,8 +38,19 @@ export abstract class AbstractSourceService<TSourceSchemaType extends ISourceSch
         );
     }
 
+    async handlePatchBy({toPatch, filter}: ISourceService.IHandlePatchByProps<TSourceSchemaType>): Promise<unknown> {
+        return this.handleSourcePatchBy({
+            patch: await this.toPatch(toPatch),
+            filter,
+        });
+    }
+
     async handleSourcePatch(patch: ISource.IPatch<TSourceSchemaType>): Promise<TSourceSchemaType["Entity"]> {
         return this.source().patch(patch);
+    }
+
+    async handleSourcePatchBy(patch: ISource.IPatchBy<TSourceSchemaType>): Promise<unknown> {
+        return this.source().patchBy(patch);
     }
 
     async toPatch(toPatch: TSourceSchemaType["ToPatch"]): Promise<TSourceSchemaType["Patch"]> {

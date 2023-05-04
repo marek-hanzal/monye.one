@@ -108,6 +108,10 @@ export class TransactionKeywordBasePrismaSource extends AbstractSourceEx<ITransa
         }));
     }
     
+    withInclude() {
+        return undefined;
+    }
+    
     prisma() {
         return this.prismaClient.transactionKeyword;
     }
@@ -117,4 +121,4 @@ export class TransactionKeywordBasePrismaSource extends AbstractSourceEx<ITransa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nm5p9eni3y94fesyr228rnce = true;
+export const $leight_y4cy8cl3f9vo68gi4e36i6k5 = true;

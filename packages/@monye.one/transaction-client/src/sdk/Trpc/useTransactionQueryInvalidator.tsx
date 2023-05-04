@@ -17,4 +17,4 @@ export const useTransactionQueryInvalidator: IUseQueryInvalidator = () => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_pwq9ejmz2jujofled45rdpz5 = true;
+export const $leight_y2k22k7up29e315vtvi1wdwm = true;

@@ -46,4 +46,4 @@ export const LabelPatchTrpcForm: FC<ILabelPatchTrpcFormProps> = ({onSuccess, onE
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mllzordk7tftom4pejkmm42d = true;
+export const $leight_r100ea5s60x4rmdd3w7m6qjd = true;

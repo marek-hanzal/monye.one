@@ -21,4 +21,4 @@ export const $LabelSourceService = Symbol.for("@leight/label/ILabelSourceService
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ykenoavdl7feqhzdf6d41kym = true;
+export const $leight_p9quzbr54s7oueceognebkax = true;

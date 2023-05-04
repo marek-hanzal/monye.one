@@ -17,4 +17,4 @@ export const useFilterQueryInvalidator: IUseQueryInvalidator = () => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_t9rhx6cjnkuk0u7tsjhq51om = true;
+export const $leight_e2jfhwtc47e9m2u0dp5mji32 = true;

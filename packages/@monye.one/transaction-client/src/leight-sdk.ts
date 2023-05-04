@@ -43,12 +43,30 @@ void withSdk(
                         schema: "@monye.one/transaction",
                     },
                     withTrpc: {
-                        path:    "transaction",
-                        package: "@monye.one/trpc-client",
+                        path:         "transaction",
+                        package:      "@monye.one/trpc-client",
                         invalidators: [
                             "transaction.source.query",
                             "transaction.source.count",
                         ],
+                    },
+                },
+            ],
+        },
+        Form:           {
+            forms: [
+                {
+                    name:        "TransactionLabel",
+                    type:        "dto",
+                    translation: {
+                        namespace: "transaction",
+                    },
+                    packages:    {
+                        schema: "@monye.one/transaction",
+                    },
+                    withTrpc:    {
+                        source: "Transaction",
+                        use:    "usePatchBy",
                     },
                 },
             ],

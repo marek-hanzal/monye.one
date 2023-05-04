@@ -110,6 +110,10 @@ export class KeywordBasePrismaSource extends AbstractSourceEx<IKeywordPrismaSche
         }));
     }
     
+    withInclude() {
+        return undefined;
+    }
+    
     prisma() {
         return this.prismaClient.keyword;
     }
@@ -119,4 +123,4 @@ export class KeywordBasePrismaSource extends AbstractSourceEx<IKeywordPrismaSche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_p4duqf3izqpazsvltzynsp28 = true;
+export const $leight_f9b47cv6zob5azr2d35ag23m = true;

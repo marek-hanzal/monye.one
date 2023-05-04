@@ -62,6 +62,9 @@ router({
     patch:  procedure
                 .input(${name}SourceProcedure.PatchSchema)
                 .mutation(${name}SourceProcedure.handlePatch),
+    patchBy:  procedure
+                .input(${name}SourceProcedure.PatchBySchema)
+                .mutation(${name}SourceProcedure.handlePatchBy),
     upsert:  procedure
                 .input(${name}SourceProcedure.UpsertSchema)
                 .mutation(${name}SourceProcedure.handleUpsert),

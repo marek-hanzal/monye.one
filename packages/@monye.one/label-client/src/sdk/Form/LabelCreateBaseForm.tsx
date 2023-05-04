@@ -34,4 +34,4 @@ export const LabelCreateBaseForm: FC<ILabelCreateBaseFormProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_kstd708z406wv2z2e1gkjeve = true;
+export const $leight_bo1c5ices86d3m9c76w5olxp = true;

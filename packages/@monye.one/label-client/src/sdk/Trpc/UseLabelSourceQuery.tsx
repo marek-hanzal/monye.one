@@ -15,4 +15,4 @@ export const UseLabelSourceQuery: IUseLabelSourceQuery = withSourceQuery<ILabelS
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jleg5rx16s5q2iepjh47noip = true;
+export const $leight_xfjm2mh08vk12pgs9861cpdp = true;

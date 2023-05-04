@@ -21,4 +21,4 @@ export const LabelPatchInput: FC<Omit<IWithInputProps<ILabelPatchFormSchemaType>
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_eqg4fviqnp969j8i3s71p1aq = true;
+export const $leight_bw60dqxkpc4rqxlfooty07z8 = true;

@@ -15,4 +15,4 @@ export const LabelSelection = createSelectionStore<ILabelSourceSchemaType["Dto"]
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rto0i4n0ysqnva3axnmr7zv4 = true;
+export const $leight_ntyxj61c53j5bah9i5f7phve = true;

@@ -20,9 +20,13 @@ export const TransactionSourceSchema = withSourceSchema({
     DtoSchema:      TransactionSchema.merge(z.object({
         bank: BankSourceSchema["EntitySchema"],
     })),
-    ToCreateSchema: TransactionOptionalDefaultsSchema,
+    ToCreateSchema: TransactionOptionalDefaultsSchema.merge(z.object({
+        labelIds: z.array(z.string()).optional(),
+    })),
     CreateSchema:   TransactionOptionalDefaultsSchema,
-    ToPatchSchema:  TransactionPartialSchema.merge(PatchSchema),
+    ToPatchSchema:  TransactionPartialSchema.merge(PatchSchema).merge(z.object({
+        labelIds: z.array(z.string()).optional(),
+    })),
     PatchSchema:    TransactionPartialSchema.merge(PatchSchema),
     FilterSchema:   FilterSchema.merge(z.object({
         bankId:           z.string().optional(),

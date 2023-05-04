@@ -9,6 +9,7 @@ import {type ISourceService}    from "./ISourceService";
 export type IUseSourceQuery<TSourceSchemaType extends ISourceSchemaType> = {
     useCreate: IUseMutation<ISourceService.IHandleCreateProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>;
     usePatch: IUseMutation<ISourceService.IHandlePatchProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>;
+    usePatchBy: IUseMutation<ISourceService.IHandlePatchByProps<TSourceSchemaType>, unknown>;
     useUpsert: IUseMutation<ISourceService.IHandleUpsertProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>;
     useDelete: IUseMutation<IWithIdentity, TSourceSchemaType["Dto"]>;
     useDeleteWith: IUseMutation<TSourceSchemaType["Query"], TSourceSchemaType["Dto"][]>;

@@ -16,6 +16,9 @@ export const FilterSourceRouter = router({
     patch:  procedure
                 .input(FilterSourceProcedure.PatchSchema)
                 .mutation(FilterSourceProcedure.handlePatch),
+    patchBy:  procedure
+                .input(FilterSourceProcedure.PatchBySchema)
+                .mutation(FilterSourceProcedure.handlePatchBy),
     upsert:  procedure
                 .input(FilterSourceProcedure.UpsertSchema)
                 .mutation(FilterSourceProcedure.handleUpsert),
@@ -48,4 +51,4 @@ export const FilterSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qj8lyta8cbdrfupkr4edfvsq = true;
+export const $leight_h7tlljtg95aqhmsi93ct6clz = true;

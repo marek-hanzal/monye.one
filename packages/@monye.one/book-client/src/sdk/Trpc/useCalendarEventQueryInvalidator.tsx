@@ -17,4 +17,4 @@ export const useCalendarEventQueryInvalidator: IUseQueryInvalidator = () => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_sk3b3b3sa9mwjzrzbohc583z = true;
+export const $leight_df23zeowupygnvubp8gv778k = true;

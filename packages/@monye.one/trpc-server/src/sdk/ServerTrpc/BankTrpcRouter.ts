@@ -16,6 +16,9 @@ export const BankSourceRouter = router({
     patch:  procedure
                 .input(BankSourceProcedure.PatchSchema)
                 .mutation(BankSourceProcedure.handlePatch),
+    patchBy:  procedure
+                .input(BankSourceProcedure.PatchBySchema)
+                .mutation(BankSourceProcedure.handlePatchBy),
     upsert:  procedure
                 .input(BankSourceProcedure.UpsertSchema)
                 .mutation(BankSourceProcedure.handleUpsert),
@@ -48,4 +51,4 @@ export const BankSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_s44btmebxas4qvus4q7ncpt8 = true;
+export const $leight_t5yky1tjn7vwjtjfrq8fng5x = true;

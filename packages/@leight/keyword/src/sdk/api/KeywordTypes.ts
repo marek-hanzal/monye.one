@@ -12,4 +12,4 @@ export type IKeywordSourceMapper = ISourceMapper<IKeywordSourceSchemaType>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_h1eo8zs36iaa61km3d8wks7h = true;
+export const $leight_qf2hnj23jpuhrjh52m8ojb1y = true;

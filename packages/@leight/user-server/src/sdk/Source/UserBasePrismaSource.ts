@@ -110,6 +110,10 @@ export class UserBasePrismaSource extends AbstractSourceEx<IUserPrismaSchemaType
         }));
     }
     
+    withInclude() {
+        return undefined;
+    }
+    
     prisma() {
         return this.prismaClient.user;
     }
@@ -119,4 +123,4 @@ export class UserBasePrismaSource extends AbstractSourceEx<IUserPrismaSchemaType
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_dv9mcdr1n5wwlpg4wbhi2q3h = true;
+export const $leight_f6fzwkpatrg6owlvoictarys = true;

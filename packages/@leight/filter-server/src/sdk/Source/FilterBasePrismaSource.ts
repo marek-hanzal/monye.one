@@ -110,6 +110,10 @@ export class FilterBasePrismaSource extends AbstractSourceEx<IFilterPrismaSchema
         }));
     }
     
+    withInclude() {
+        return undefined;
+    }
+    
     prisma() {
         return this.prismaClient.filter;
     }
@@ -119,4 +123,4 @@ export class FilterBasePrismaSource extends AbstractSourceEx<IFilterPrismaSchema
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_b25lf2xcrbemgknb7af4uelj = true;
+export const $leight_ck009c4cvqzlv817cvors40z = true;

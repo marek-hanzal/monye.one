@@ -16,6 +16,9 @@ export const LabelSourceRouter = router({
     patch:  procedure
                 .input(LabelSourceProcedure.PatchSchema)
                 .mutation(LabelSourceProcedure.handlePatch),
+    patchBy:  procedure
+                .input(LabelSourceProcedure.PatchBySchema)
+                .mutation(LabelSourceProcedure.handlePatchBy),
     upsert:  procedure
                 .input(LabelSourceProcedure.UpsertSchema)
                 .mutation(LabelSourceProcedure.handleUpsert),
@@ -48,4 +51,4 @@ export const LabelSourceRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jr547a75uo44lnsk6ezq70wf = true;
+export const $leight_y0mzely9z4esta4j1gcd7xnt = true;

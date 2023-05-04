@@ -31,21 +31,21 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
     async runFind(id: string): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().findUniqueOrThrow({
             where: {id},
-			include: {"bank":true},
+			include: this.withInclude(),
         });
     }
 
     async runFetch({filter}: ITransactionSourceSchemaType["Query"]): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().findFirstOrThrow({
             where: this.toWhere(filter),
-			include: {"bank":true},
+			include: this.withInclude(),
         });
     }
 
     async runCreate(entity: ITransactionSourceSchemaType["Create"]): Promise<ITransactionSourceSchemaType["Entity"]> {
         return this.prisma().create({
             data: entity,
-			include: {"bank":true},
+			include: this.withInclude(),
         });
     }
 
@@ -53,7 +53,7 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
         return this.prisma().update({
             data: patch,
             where: this.toWhereUnique(filter),
-			include: {"bank":true},
+			include: this.withInclude(),
         });
     }
     
@@ -69,7 +69,7 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
             create,
             update,
             where: this.toWhereUnique(filter),
-			include: {"bank":true},
+			include: this.withInclude(),
         });
     }
 
@@ -109,9 +109,13 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
             arg: {
                 where:   this.toWhere(query?.filter),
                 orderBy: this.toOrderBy(query?.sort),
-			include: {"bank":true},
+				include: this.withInclude(),
             },
         }));
+    }
+    
+    withInclude() {
+        return {"bank":true} as const;
     }
     
     prisma() {
@@ -123,4 +127,4 @@ export class TransactionBasePrismaSource extends AbstractSourceEx<ITransactionPr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ic02xcequndz9el350syuqsg = true;
+export const $leight_fy4zareeiinf697lyomttok3 = true;

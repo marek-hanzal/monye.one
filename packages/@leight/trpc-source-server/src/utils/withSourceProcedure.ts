@@ -11,6 +11,7 @@ import {
     withCreateSchema,
     WithIdentitySchema,
     WithOptionalIdentitySchema,
+    withPatchBySchema,
     withPatchSchema,
     withUpsertSchema
 }                    from "@leight/source";
@@ -39,6 +40,10 @@ export const withSourceProcedure = <TSourceSchemaType extends ISourceSchemaType>
         PatchSchema:         withPatchSchema<TSourceSchemaType>(schema),
         handlePatch:         withHandler<ISourceService.IHandlePatchProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>({
             handler: async ({container, request}) => withSourceService(container).handlePatch(request),
+        }),
+        PatchBySchema:       withPatchBySchema<TSourceSchemaType>(schema),
+        handlePatchBy:       withHandler<ISourceService.IHandlePatchProps<TSourceSchemaType>, unknown>({
+            handler: async ({container, request}) => withSourceService(container).handlePatchBy(request),
         }),
         UpsertSchema:        withUpsertSchema<TSourceSchemaType>(schema),
         handleUpsert:        withHandler<ISourceService.IHandleUpsertProps<TSourceSchemaType>, TSourceSchemaType["Dto"]>({

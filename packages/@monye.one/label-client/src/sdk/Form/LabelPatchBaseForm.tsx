@@ -34,4 +34,4 @@ export const LabelPatchBaseForm: FC<ILabelPatchBaseFormProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ahtup4w74vhyfxkbffshbz4p = true;
+export const $leight_hoqgs47l0er0i8g17nfq5r54 = true;

@@ -108,6 +108,10 @@ export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType
         }));
     }
     
+    withInclude() {
+        return undefined;
+    }
+    
     prisma() {
         return this.prismaClient.bank;
     }
@@ -117,4 +121,4 @@ export class BankBasePrismaSource extends AbstractSourceEx<IBankPrismaSchemaType
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_aker2jvygvkpbkpkcvu088an = true;
+export const $leight_l94kpyhlumecvosm6cu4jpc1 = true;
