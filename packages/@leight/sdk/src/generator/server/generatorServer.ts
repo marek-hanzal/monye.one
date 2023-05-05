@@ -12,13 +12,13 @@ import {
     type IGeneratorServerSourceParams
 }                                from "./generatorServerSource";
 import {
-    generatorServerTrpcSource,
-    type IGeneratorServerTrpcSourceParams
-}                                from "./generatorServerTrpcSource";
-import {
     type IWithRepositoryExParams,
     withRepositoryEx
 }                                from "./withRepositoryEx";
+import {
+    type IWithSourceHandlerParams,
+    withSourceHandler
+}                                from "./withSourceHandler";
 import {
     type IWithSourceRouterParams,
     withSourceRouter
@@ -44,7 +44,7 @@ export type IGeneratorServerProps =
          * If you want to generate standard Source TRPC procedure API, put your entities
          * here.
          */
-        TrpcSource?: IGeneratorServerTrpcSourceParams;
+        TrpcSource?: IWithSourceHandlerParams;
     }
 
 export const generatorServer = (
@@ -82,7 +82,7 @@ export const generatorServer = (
                     ...$params,
                     params: params.Source,
                 }) : undefined,
-                params.TrpcSource ? generatorServerTrpcSource({
+                params.TrpcSource ? withSourceHandler({
                     ...$params,
                     params: params.TrpcSource,
                 }) : undefined,

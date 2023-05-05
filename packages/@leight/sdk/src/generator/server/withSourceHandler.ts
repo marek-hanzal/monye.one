@@ -2,11 +2,11 @@ import {withSourceFile}  from "@leight/generator-server";
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
-export interface IGeneratorServerTrpcSourceParams {
-    entities: IGeneratorServerTrpcSourceParams.IEntity[];
+export interface IWithSourceHandlerParams {
+    entities: IWithSourceHandlerParams.IEntity[];
 }
 
-export namespace IGeneratorServerTrpcSourceParams {
+export namespace IWithSourceHandlerParams {
     export interface IEntity {
         /**
          * Base name exported (used to name all exported objects)
@@ -26,7 +26,7 @@ export namespace IGeneratorServerTrpcSourceParams {
     }
 }
 
-export const generatorServerTrpcSource: IGenerator<IGeneratorServerTrpcSourceParams> = async (
+export const withSourceHandler: IGenerator<IWithSourceHandlerParams> = async (
     {
         barrel,
         directory,
@@ -37,26 +37,24 @@ export const generatorServerTrpcSource: IGenerator<IGeneratorServerTrpcSourcePar
             .withImports({
                 imports: {
                     "@leight/trpc-source-server": [
-                        "withSourceProcedure",
+                        "withSourceHandler",
                     ],
                 }
             })
             .withImports({
                 imports: {
                     [packages.schema]: [
-                        `$${name}SourceService`,
-                        `${name}SourceSchema`,
-                        `type I${name}SourceSchemaType`,
+                        `$${name}RepositoryService`,
+                        `type I${name}RepositorySchema`,
                     ],
                 },
             })
             .withConsts({
                 exports: {
-                    [`${name}SourceProcedure`]: {
+                    [`${name}RepositoryHandler`]: {
                         body: `
-withSourceProcedure<I${name}SourceSchemaType>({
-    sourceService: $${name}SourceService,
-    schema: ${name}SourceSchema,
+withSourceHandler<I${name}RepositorySchema>({
+    sourceService: $${name}RepositoryService,
 })
                     `,
                     },

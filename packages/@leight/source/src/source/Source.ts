@@ -1,8 +1,3 @@
-import {
-    type IRepository,
-    type IRepositoryMapper,
-    type IRepositoryService
-}                           from "../repository";
 import {type ISourceSchema} from "./ISourceSchema";
 import {type SourceType}    from "./SourceType";
 
@@ -24,17 +19,4 @@ export interface Source<
      * to Source
      */
     Type: TSourceType;
-
-    /**
-     * Can be used to type an instance of Repository
-     */
-    Repository: IRepository<TSourceSchema["Repository"]>;
-    /**
-     * Can be used to type an instance of Mapper
-     */
-    Mapper: IRepositoryMapper<TSourceSchema["Mapper"]>;
-    /**
-     * Can be used to type an instance of Service
-     */
-    Service: IRepositoryService<TSourceSchema["Service"]>;
 }
