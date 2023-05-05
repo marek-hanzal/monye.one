@@ -1,3 +1,4 @@
+import {z}                      from "@leight/zod";
 import {
     type ICreateSchema,
     type IDtoSchema,
@@ -32,4 +33,17 @@ export interface IRepositoryMapperSchema<
     DtoSchema: TDtoSchema;
     ToCreateSchema: TToCreateSchema;
     ToPatchSchema: TToPatchSchema;
+    ToPatchSchemaProps: z.ZodObject<{
+        patch: TToPatchSchema;
+        filter: TFilterSchema;
+    }>;
+    ToPatchBySchemaProps: z.ZodObject<{
+        patch: TToPatchSchema;
+        filter: TFilterSchema;
+    }>;
+    ToUpsertSchemaProps: z.ZodObject<{
+        create: TToCreateSchema;
+        patch: TToPatchSchema;
+        filter: TFilterSchema;
+    }>;
 }

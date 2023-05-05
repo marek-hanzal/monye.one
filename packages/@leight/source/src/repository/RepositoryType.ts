@@ -4,9 +4,10 @@ import {type IRepositorySchema} from "./IRepositorySchema";
 export interface RepositoryType<TRepositorySchema extends IRepositorySchema = IRepositorySchema> {
     Entity: z.infer<TRepositorySchema["EntitySchema"]>;
     Create: z.infer<TRepositorySchema["CreateSchema"]>;
-    Upsert: z.infer<TRepositorySchema["UpsertSchema"]>;
     Patch: z.infer<TRepositorySchema["PatchSchema"]>;
-    PatchBy: z.infer<TRepositorySchema["PatchBySchema"]>;
+    UpsertProps: z.infer<TRepositorySchema["UpsertSchemaProps"]>;
+    PatchProps: z.infer<TRepositorySchema["PatchSchemaProps"]>;
+    PatchByProps: z.infer<TRepositorySchema["PatchBySchemaProps"]>;
     Delete: z.infer<TRepositorySchema["DeleteSchema"]>;
     DeleteBy: z.infer<TRepositorySchema["DeleteBySchema"]>;
     Count: z.infer<TRepositorySchema["CountSchema"]>;

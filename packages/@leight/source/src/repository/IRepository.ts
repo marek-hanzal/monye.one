@@ -9,17 +9,17 @@ export interface IRepository<TRepositoryType extends RepositoryType = Repository
     /**
      * Create or update an existing entity
      */
-    upsert(upsert: TRepositoryType["Upsert"]): Promise<TRepositoryType["Entity"]>;
+    upsert(upsert: TRepositoryType["UpsertProps"]): Promise<TRepositoryType["Entity"]>;
 
     /**
      * Patch an existing entity; only required changes could be provided (partial update)
      */
-    patch(patch: TRepositoryType["Patch"]): Promise<TRepositoryType["Entity"]>;
+    patch(patch: TRepositoryType["PatchProps"]): Promise<TRepositoryType["Entity"]>;
 
     /**
      * Patch all entities by the given query
      */
-    patchBy(patchBy: TRepositoryType["PatchBy"]): Promise<unknown>;
+    patchBy(patchBy: TRepositoryType["PatchByProps"]): Promise<unknown>;
 
     /**
      * Delete an entity by an id

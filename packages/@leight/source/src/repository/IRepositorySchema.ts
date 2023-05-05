@@ -20,16 +20,17 @@ export interface IRepositorySchema<
 > {
     EntitySchema: TEntitySchema;
     CreateSchema: TCreateSchema;
-    UpsertSchema: z.ZodObject<{
+    PatchSchema: TPatchSchema;
+    UpsertSchemaProps: z.ZodObject<{
         create: TCreateSchema;
         patch: TPatchSchema;
         filter: TFilterSchema;
     }>;
-    PatchSchema: z.ZodObject<{
+    PatchSchemaProps: z.ZodObject<{
         patch: TPatchSchema;
         filter: TFilterSchema;
     }>;
-    PatchBySchema: z.ZodObject<{
+    PatchBySchemaProps: z.ZodObject<{
         patch: TPatchSchema;
         filter: TFilterSchema;
     }>;

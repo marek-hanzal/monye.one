@@ -7,15 +7,17 @@ export interface IRepositoryService<TRepositoryServiceType extends RepositorySer
 
     handleSourceCreate(create: TRepositoryServiceType["Create"]): Promise<TRepositoryServiceType["Entity"]>;
 
-    handlePatch(props: TRepositoryServiceType["ToPatch"]): Promise<TRepositoryServiceType["Dto"]>;
+    handlePatch(props: TRepositoryServiceType["ToPatchProps"]): Promise<TRepositoryServiceType["Dto"]>;
 
-    handleSourcePatch(patch: TRepositoryServiceType["Patch"]): Promise<TRepositoryServiceType["Entity"]>;
+    handleSourcePatch(patch: TRepositoryServiceType["PatchProps"]): Promise<TRepositoryServiceType["Entity"]>;
 
-    handlePatchBy(props: TRepositoryServiceType["PatchBy"]): Promise<unknown>;
+    handlePatchBy(props: TRepositoryServiceType["ToPatchByProps"]): Promise<unknown>;
 
-    handleSourcePatchBy(patch: TRepositoryServiceType["PatchBy"]): Promise<unknown>;
+    handleSourcePatchBy(patch: TRepositoryServiceType["PatchByProps"]): Promise<unknown>;
 
-    handleUpsert(props: TRepositoryServiceType["Upsert"]): Promise<TRepositoryServiceType["Dto"]>;
+    handleUpsert(props: TRepositoryServiceType["ToUpsertProps"]): Promise<TRepositoryServiceType["Dto"]>;
+
+    handleSourceUpsert(props: TRepositoryServiceType["UpsertProps"]): Promise<TRepositoryServiceType["Dto"]>;
 
     /**
      * Do something with a DTO; schema modifications are not allowed as this should

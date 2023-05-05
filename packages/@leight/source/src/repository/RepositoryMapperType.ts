@@ -6,4 +6,7 @@ export interface RepositoryMapperType<TRepositoryMapperSchema extends IRepositor
     Dto: z.infer<TRepositoryMapperSchema["DtoSchema"]>;
     ToCreate: z.infer<TRepositoryMapperSchema["ToCreateSchema"]>;
     ToPatch: z.infer<TRepositoryMapperSchema["ToPatchSchema"]>;
+    ToPatchProps: z.infer<TRepositoryMapperSchema["ToPatchSchemaProps"]>;
+    ToPatchByProps: z.infer<TRepositoryMapperSchema["ToPatchBySchemaProps"]>;
+    ToUpsertProps: z.infer<TRepositoryMapperSchema["ToUpsertSchemaProps"]>;
 }
