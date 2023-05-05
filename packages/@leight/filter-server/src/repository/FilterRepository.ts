@@ -1,6 +1,6 @@
 import {
-    type IFilterPrismaSchemaType,
-    type IFilterSourceSchemaType
+    type FilterSource,
+    type IFilterRepositorySchemaEx
 }                               from "@leight/filter";
 import {
     $PrismaClient,
@@ -11,9 +11,9 @@ import {
     type IUserService
 }                               from "@leight/user";
 import {keywordsOf}             from "@leight/utils";
-import {FilterBasePrismaSource} from "../sdk";
+import {BaseFilterRepositoryEx} from "../sdk";
 
-export class FilterSource extends FilterBasePrismaSource {
+export class FilterRepository extends BaseFilterRepositoryEx {
     static inject = [
         $PrismaClient,
         $UserService,
@@ -26,12 +26,12 @@ export class FilterSource extends FilterBasePrismaSource {
         super(prismaClient);
     }
 
-    toWhere(filter?: IFilterSourceSchemaType["Filter"]): IFilterPrismaSchemaType["Where"] | undefined {
+    toWhere(filter?: FilterSource["Type"]["Repository"]["Filter"]): IFilterRepositorySchemaEx["Type"]["Where"] | undefined {
         if (!filter) {
             return;
         }
 
-        const where: IFilterPrismaSchemaType["Where"] = {
+        const where: IFilterRepositorySchemaEx["Type"]["Where"] = {
             AND:    [],
             userId: this.userService.required(),
         };
@@ -81,7 +81,7 @@ export class FilterSource extends FilterBasePrismaSource {
         return where;
     }
 
-    toWhereUnique(filter: IFilterSourceSchemaType["Filter"]): IFilterPrismaSchemaType["WhereUnique"] {
+    toWhereUnique(filter: FilterSource["Type"]["Repository"]["Filter"]): IFilterRepositorySchemaEx["Type"]["WhereUnique"] {
         const {id, type_name} = filter;
 
         if (id) {

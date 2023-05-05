@@ -11,11 +11,4 @@ void generatorCommon({
             },
         ],
     },
-    withRepositoryContainer: {
-        repositories: [
-            {
-                name: "Filter",
-            },
-        ],
-    },
 });

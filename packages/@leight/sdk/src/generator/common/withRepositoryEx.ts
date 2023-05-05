@@ -66,11 +66,7 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
             .withConsts({
                 exports: {
                     [`${name}RepositorySchemaEx`]: {
-                        type: `IRepositorySchemaEx.Schema<
-    typeof ${name}WhereInputSchema,
-    typeof ${name}WhereUniqueInputSchema,
-    typeof ${name}OrderByWithRelationInputSchema
->`,
+                        type: `I${name}RepositorySchemaEx["Schema"]`,
                         body: `{
     WhereSchema:       ${name}WhereInputSchema,
     WhereUniqueSchema: ${name}WhereUniqueInputSchema,
@@ -82,7 +78,11 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
             })
             .withTypes({
                 exports: {
-                    [`I${name}RepositorySchemaEx`]: `typeof ${name}RepositorySchemaEx`,
+                    [`I${name}RepositorySchemaEx`]: `IRepositorySchemaEx<
+    typeof ${name}WhereInputSchema,
+    typeof ${name}WhereUniqueInputSchema,
+    typeof ${name}OrderByWithRelationInputSchema
+>`,
                 },
             })
             .saveTo({

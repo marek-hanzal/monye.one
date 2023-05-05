@@ -1,12 +1,12 @@
-import {type IFilterSourceSchemaType} from "@leight/filter";
+import {FilterSource}               from "@leight/filter";
 import {
     $UserService,
     type IUserService
-}                                     from "@leight/user";
-import {Pack}                         from "@leight/utils";
-import {FilterBaseSourceMapper}       from "../sdk";
+}                                   from "@leight/user";
+import {Pack}                       from "@leight/utils";
+import {BaseFilterRepositoryMapper} from "../sdk";
 
-export class FilterRepositoryMapper extends FilterBaseSourceMapper {
+export class FilterRepositoryMapper extends BaseFilterRepositoryMapper {
     static inject = [
         $UserService,
     ];
@@ -15,7 +15,7 @@ export class FilterRepositoryMapper extends FilterBaseSourceMapper {
         super();
     }
 
-    async toDto({filter, dto, ...entity}: IFilterSourceSchemaType["Entity"]): Promise<IFilterSourceSchemaType["Dto"]> {
+    async toDto({filter, dto, ...entity}: FilterSource["Type"]["Repository"]["Entity"]): Promise<FilterSource["Type"]["Mapper"]["Dto"]> {
         return {
             ...entity,
             filter: await Pack.unpack(filter),
@@ -23,7 +23,7 @@ export class FilterRepositoryMapper extends FilterBaseSourceMapper {
         };
     }
 
-    async toCreate({filter, dto, ...create}: IFilterSourceSchemaType["ToCreate"]): Promise<IFilterSourceSchemaType["Create"]> {
+    async toCreate({filter, dto, ...create}: FilterSource["Type"]["Mapper"]["ToCreate"]): Promise<FilterSource["Type"]["Repository"]["Create"]> {
         return {
             ...create,
             filter: await Pack.pack(filter),
@@ -32,7 +32,7 @@ export class FilterRepositoryMapper extends FilterBaseSourceMapper {
         };
     }
 
-    async toPatch({filter, dto, ...patch}: IFilterSourceSchemaType["ToPatch"]): Promise<IFilterSourceSchemaType["Patch"]> {
+    async toPatch({filter, dto, ...patch}: FilterSource["Type"]["Mapper"]["ToPatch"]): Promise<FilterSource["Type"]["Repository"]["Patch"]> {
         return {
             ...patch,
             filter: await Pack.pack(filter),

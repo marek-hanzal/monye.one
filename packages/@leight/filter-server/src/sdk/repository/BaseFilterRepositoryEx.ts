@@ -19,8 +19,10 @@ import {
 	type IFilterRepositorySchemaEx
 } from "@leight/filter";
 
-export class BaseFilterRepositoryEx extends AbstractRepositoryEx<
-    IFilterRepositorySchemaEx,
+export class BaseFilterRepositoryEx<
+    TRepositoryType extends FilterSource["Type"]["Repository"] = FilterSource["Type"]["Repository"]
+> extends AbstractRepositoryEx<
+    IFilterRepositorySchemaEx["Schema"],
     FilterSource["Schema"]["Repository"]
 > {
 	static inject = [
@@ -33,27 +35,27 @@ export class BaseFilterRepositoryEx extends AbstractRepositoryEx<
         super($FilterRepository);
     }
 
-    async create(entity: FilterSource["Type"]["Repository"]["Create"]): Promise<FilterSource["Type"]["Repository"]["Entity"]> {
+    async create(entity: TRepositoryType["Create"]): Promise<TRepositoryType["Entity"]> {
         return this.prisma().create({
             data: entity,
         });
     }
 
-    async patch({patch, filter}: FilterSource["Type"]["Repository"]["PatchProps"]): Promise<FilterSource["Type"]["Repository"]["Entity"]> {
+    async patch({patch, filter}: TRepositoryType["PatchProps"]): Promise<TRepositoryType["Entity"]> {
         return this.prisma().update({
             data: patch,
             where: this.toWhereUnique(filter),
         });
     }
     
-    async patchBy({patch, filter}: FilterSource["Type"]["Repository"]["PatchByProps"]): Promise<unknown> {
+    async patchBy({patch, filter}: TRepositoryType["PatchByProps"]): Promise<unknown> {
         return this.prisma().updateMany({
             data:  patch,
             where: this.toWhere(filter),
         });
     }
 
-    async upsert({filter, patch: update, create}: FilterSource["Type"]["Repository"]["UpsertProps"]): Promise<FilterSource["Type"]["Repository"]["Entity"]> {
+    async upsert({filter, patch: update, create}: TRepositoryType["UpsertProps"]): Promise<TRepositoryType["Entity"]> {
         return this.prisma().upsert({
             create,
             update,
@@ -61,7 +63,7 @@ export class BaseFilterRepositoryEx extends AbstractRepositoryEx<
         });
     }
 
-    async delete({id}: FilterSource["Type"]["Repository"]["Delete"]): Promise<FilterSource["Type"]["Repository"]["Entity"]> {
+    async delete({id}: TRepositoryType["Delete"]): Promise<TRepositoryType["Entity"]> {
         const item = await this.get(id);
         const where = this.toWhereUnique({id});
         if(!where) {
@@ -73,7 +75,7 @@ export class BaseFilterRepositoryEx extends AbstractRepositoryEx<
         return item;
     }
     
-    async deleteBy(query: FilterSource["Type"]["Repository"]["DeleteBy"]): Promise<unknown> {
+    async deleteBy(query: TRepositoryType["DeleteBy"]): Promise<unknown> {
         const where = this.toWhere(query);
         if(isEmpty(where)) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
@@ -83,13 +85,13 @@ export class BaseFilterRepositoryEx extends AbstractRepositoryEx<
         });
     }
 
-    async count(count?: FilterSource["Type"]["Repository"]["Count"]): Promise<number> {
+    async count(count?: TRepositoryType["Count"]): Promise<number> {
         return this.prisma().count({
             where: this.toWhere(count),
         });
     }
 
-    async query(query?: FilterSource["Type"]["Repository"]["Query"]): Promise<FilterSource["Type"]["Repository"]["Entity"][]> {
+    async query(query?: TRepositoryType["Query"]): Promise<TRepositoryType["Entity"][]> {
         return this.prisma().findMany(withCursor({
             query,
             arg: {
@@ -99,25 +101,25 @@ export class BaseFilterRepositoryEx extends AbstractRepositoryEx<
         }));
     }
     
-    async fetch(filter: FilterSource["Type"]["Repository"]["Fetch"]): Promise<FilterSource["Type"]["Repository"]["Entity"]> {
+    async fetch(filter: TRepositoryType["Fetch"]): Promise<TRepositoryType["Entity"]> {
         return this.prisma().findFirstOrThrow({
             where: this.toWhere(filter),
         });
     }
     
-    async fetch$(filter: FilterSource["Type"]["Repository"]["Fetch$"]): Promise<FilterSource["Type"]["Repository"]["Entity"] | null> {
+    async fetch$(filter: TRepositoryType["Fetch$"]): Promise<TRepositoryType["Entity"] | null> {
         return this.prisma().findFirst({
             where: this.toWhere(filter),
         });
     }
     
-    async get(id: string): Promise<FilterSource["Type"]["Repository"]["Entity"]> {
+    async get(id: string): Promise<TRepositoryType["Entity"]> {
         return this.prisma().findUniqueOrThrow({
             where: {id},
         });
     }
     
-    async get$(id: string): Promise<FilterSource["Type"]["Repository"]["Entity"] | null> {
+    async get$(id: string): Promise<TRepositoryType["Entity"] | null> {
         return this.prisma().findUnique({
             where: {id},
         });
@@ -136,4 +138,4 @@ export class BaseFilterRepositoryEx extends AbstractRepositoryEx<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_az5hwloxdljcrvez2xqostbm = true;
+export const $leight_hqbi4jjpysuxq8oby4rqwli3 = true;

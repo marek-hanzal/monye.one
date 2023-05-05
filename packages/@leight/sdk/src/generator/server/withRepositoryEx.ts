@@ -88,9 +88,11 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
             })
             .withClasses({
                 exports: {
-                    [`Base${name}RepositoryEx`]: {
+                    [`Base${name}RepositoryEx<
+    TRepositoryType extends ${name}Source["Type"]["Repository"] = ${name}Source["Type"]["Repository"]
+>`]: {
                         extends: `AbstractRepositoryEx<
-    I${name}RepositorySchemaEx,
+    I${name}RepositorySchemaEx["Schema"],
     ${name}Source["Schema"]["Repository"]
 >`,
                         body:    `
@@ -104,27 +106,27 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
         super($${name}Repository);
     }
 
-    async create(entity: ${name}Source["Type"]["Repository"]["Create"]): Promise<${name}Source["Type"]["Repository"]["Entity"]> {
+    async create(entity: TRepositoryType["Create"]): Promise<TRepositoryType["Entity"]> {
         return this.prisma().create({
             data: entity,${withInclude ? `\n\t\t\tinclude: this.withInclude(),` : ""}
         });
     }
 
-    async patch({patch, filter}: ${name}Source["Type"]["Repository"]["PatchProps"]): Promise<${name}Source["Type"]["Repository"]["Entity"]> {
+    async patch({patch, filter}: TRepositoryType["PatchProps"]): Promise<TRepositoryType["Entity"]> {
         return this.prisma().update({
             data: patch,
             where: this.toWhereUnique(filter),${withInclude ? `\n\t\t\tinclude: this.withInclude(),` : ""}
         });
     }
     
-    async patchBy({patch, filter}: ${name}Source["Type"]["Repository"]["PatchByProps"]): Promise<unknown> {
+    async patchBy({patch, filter}: TRepositoryType["PatchByProps"]): Promise<unknown> {
         return this.prisma().updateMany({
             data:  patch,
             where: this.toWhere(filter),
         });
     }
 
-    async upsert({filter, patch: update, create}: ${name}Source["Type"]["Repository"]["UpsertProps"]): Promise<${name}Source["Type"]["Repository"]["Entity"]> {
+    async upsert({filter, patch: update, create}: TRepositoryType["UpsertProps"]): Promise<TRepositoryType["Entity"]> {
         return this.prisma().upsert({
             create,
             update,
@@ -132,7 +134,7 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
         });
     }
 
-    async delete({id}: ${name}Source["Type"]["Repository"]["Delete"]): Promise<${name}Source["Type"]["Repository"]["Entity"]> {
+    async delete({id}: TRepositoryType["Delete"]): Promise<TRepositoryType["Entity"]> {
         const item = await this.get(id);
         const where = this.toWhereUnique({id});
         if(!where) {
@@ -144,7 +146,7 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
         return item;
     }
     
-    async deleteBy(query: ${name}Source["Type"]["Repository"]["DeleteBy"]): Promise<unknown> {
+    async deleteBy(query: TRepositoryType["DeleteBy"]): Promise<unknown> {
         const where = this.toWhere(query);
         if(isEmpty(where)) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
@@ -154,13 +156,13 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
         });
     }
 
-    async count(count?: ${name}Source["Type"]["Repository"]["Count"]): Promise<number> {
+    async count(count?: TRepositoryType["Count"]): Promise<number> {
         return this.prisma().count({
             where: this.toWhere(count),
         });
     }
 
-    async query(query?: ${name}Source["Type"]["Repository"]["Query"]): Promise<${name}Source["Type"]["Repository"]["Entity"][]> {
+    async query(query?: TRepositoryType["Query"]): Promise<TRepositoryType["Entity"][]> {
         return this.prisma().findMany(withCursor({
             query,
             arg: {
@@ -170,25 +172,25 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
         }));
     }
     
-    async fetch(filter: ${name}Source["Type"]["Repository"]["Fetch"]): Promise<${name}Source["Type"]["Repository"]["Entity"]> {
+    async fetch(filter: TRepositoryType["Fetch"]): Promise<TRepositoryType["Entity"]> {
         return this.prisma().findFirstOrThrow({
             where: this.toWhere(filter),${withInclude ? `\n\t\t\tinclude: this.withInclude(),` : ""}
         });
     }
     
-    async fetch$(filter: ${name}Source["Type"]["Repository"]["Fetch$"]): Promise<${name}Source["Type"]["Repository"]["Entity"] | null> {
+    async fetch$(filter: TRepositoryType["Fetch$"]): Promise<TRepositoryType["Entity"] | null> {
         return this.prisma().findFirst({
             where: this.toWhere(filter),${withInclude ? `\n\t\t\tinclude: this.withInclude(),` : ""}
         });
     }
     
-    async get(id: string): Promise<${name}Source["Type"]["Repository"]["Entity"]> {
+    async get(id: string): Promise<TRepositoryType["Entity"]> {
         return this.prisma().findUniqueOrThrow({
             where: {id},${withInclude ? `\n\t\t\tinclude: this.withInclude(),` : ""}
         });
     }
     
-    async get$(id: string): Promise<${name}Source["Type"]["Repository"]["Entity"] | null> {
+    async get$(id: string): Promise<TRepositoryType["Entity"] | null> {
         return this.prisma().findUnique({
             where: {id},${withInclude ? `\n\t\t\tinclude: this.withInclude(),` : ""}
         });

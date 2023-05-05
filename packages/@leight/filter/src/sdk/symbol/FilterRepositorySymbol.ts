@@ -3,14 +3,11 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {AbstractRepositoryMapper} from "@leight/source-server";
-import {type FilterSource} from "@leight/filter";
-
-export class BaseFilterRepositoryMapper extends AbstractRepositoryMapper<FilterSource["Schema"]["Mapper"]> {
-}
-
+export const $FilterRepository = Symbol.for("@leight/filter/IFilterRepository");
+export const $FilterRepositoryMapper = Symbol.for("@leight/filter/IFilterRepositoryMapper");
+export const $FilterRepositoryService = Symbol.for("@leight/filter/IFilterRepositoryService");
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_i9zy4pkd2704f8ilo55pmqx5 = true;
+export const $leight_zam25d2hgvaygaafervfops6 = true;

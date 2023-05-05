@@ -57,7 +57,7 @@ export const withRepositoryContainer: IGenerator<IWithRepositoryContainerParams>
             })
             .withConsts({
                 exports: {
-                    [`${name}Container`]: {
+                    [`with${name}RepositoryContainer`]: {
                         body: `
 (container: IContainer) => {
     container.bindClass($${name}Repository, ${repository});
@@ -69,7 +69,7 @@ export const withRepositoryContainer: IGenerator<IWithRepositoryContainerParams>
                 }
             })
             .saveTo({
-                file: normalize(`${directory}/container/${name}RepositoryContainer.ts`),
+                file: normalize(`${directory}/container/with${name}RepositoryContainer.ts`),
                 barrel,
             });
     });

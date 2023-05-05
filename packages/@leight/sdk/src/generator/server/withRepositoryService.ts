@@ -43,9 +43,9 @@ export const withRepositoryService: IGenerator<IWithRepositoryServiceParams> = a
                         "type IRepository",
                     ],
                     [packages.schema]:       [
-                        `$${name}Source`,
-                        `$${name}SourceMapper`,
-                        `type I${name}SourceSchemaType`,
+                        `$${name}Repository`,
+                        `$${name}RepositoryMapper`,
+                        `type ${name}Source`,
                     ],
                 },
             })
@@ -54,7 +54,7 @@ export const withRepositoryService: IGenerator<IWithRepositoryServiceParams> = a
                     [`I${name}RepositoryService`]: {
                         extends: [
                             {
-                                type: `IRepositoryService<I${name}SourceSchemaType>`,
+                                type: `IRepositoryService<${name}Source["Schema"]["Service"]>`,
                             },
                         ],
                     },
@@ -62,30 +62,32 @@ export const withRepositoryService: IGenerator<IWithRepositoryServiceParams> = a
             })
             .withClasses({
                 exports: {
-                    [`Base${name}RepositoryService`]: {
+                    [`Base${name}RepositoryService<
+    TServiceSchema extends ${name}Source["Schema"]["Service"] = ${name}Source["Schema"]["Service"]
+>`]: {
                         implements: `I${name}RepositoryService`,
-                        extends:    `AbstractRepositoryService<I${name}SourceSchemaType>`,
+                        extends:    `AbstractRepositoryService<TServiceSchema>`,
                         body:       `
 static inject = [
-        $${name}Source,
-        $${name}SourceMapper,
+        $${name}Repository,
+        $${name}RepositoryMapper,
     ];
     
     constructor(
-        protected $source: IRepository<I${name}SourceSchemaType>,
-        protected $mapper: IRepositoryMapper<I${name}SourceSchemaType>,
+        protected $repository: IRepository<TServiceSchema>,
+        protected $mapper: IRepositoryMapper<TServiceSchema>,
     ) {
         super();
     }
-    
-    source(): IRepository<I${name}SourceSchemaType> {
-        return this.$source;
-    }
-    
-    mapper(): IRepositoryMapper<I${name}SourceSchemaType> {
+
+    mapper(): IRepositoryMapper<TServiceSchema> {
         return this.$mapper;
     }
-                        `
+    
+    repository(): IRepository<TServiceSchema> {
+        return this.$repository;
+    }
+`
                     },
                 },
             })

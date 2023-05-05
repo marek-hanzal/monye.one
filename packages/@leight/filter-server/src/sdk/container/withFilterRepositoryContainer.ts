@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {type IContainer} from "@leight/container";
-import {BaseFilterRepository} from "../repository/BaseFilterRepository";
+import {BaseFilterRepositoryEx} from "../repository/BaseFilterRepositoryEx";
 import {BaseFilterRepositoryMapper} from "../mapper/BaseFilterRepositoryMapper";
 import {BaseFilterRepositoryService} from "../service/BaseFilterRepositoryService";
 import {
@@ -13,8 +13,8 @@ import {
 	$FilterRepositoryService
 } from "@leight/filter";
 
-export const FilterContainer = (container: IContainer) => {
-    container.bindClass($FilterRepository, BaseFilterRepository);
+export const withFilterRepositoryContainer = (container: IContainer) => {
+    container.bindClass($FilterRepository, BaseFilterRepositoryEx);
     container.bindClass($FilterRepositoryMapper, BaseFilterRepositoryMapper);
     container.bindClass($FilterRepositoryService, BaseFilterRepositoryService);
 };
@@ -22,4 +22,4 @@ export const FilterContainer = (container: IContainer) => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_yl0c4gr45frzdo20lilme730 = true;
+export const $leight_btcxguzmq7jm8aeawufx8lzp = true;

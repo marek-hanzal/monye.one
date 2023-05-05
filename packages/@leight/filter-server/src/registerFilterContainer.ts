@@ -1,16 +1,14 @@
-import {type IContainer}         from "@leight/container";
+import {type IContainer}               from "@leight/container";
 import {
-    $FilterSource,
-    $FilterSourceMapper,
-    $FilterSourceService
-}                                from "@leight/filter";
-import {FilterRepositoryMapper}  from "./mapper";
-import {FilterBaseSourceService} from "./sdk";
-import {FilterSource}            from "./source";
+    $FilterRepository,
+    $FilterRepositoryMapper
+}                                      from "@leight/filter";
+import {FilterRepositoryMapper}        from "./mapper";
+import {FilterRepository}              from "./repository";
+import {withFilterRepositoryContainer} from "./sdk";
 
 export const registerFilterContainer = (container: IContainer) => {
-    container
-        .bindClass($FilterSource, FilterSource)
-        .bindClass($FilterSourceService, FilterBaseSourceService)
-        .bindClass($FilterSourceMapper, FilterRepositoryMapper);
+    withFilterRepositoryContainer(container);
+    container.bindClass($FilterRepository, FilterRepository);
+    container.bindClass($FilterRepositoryMapper, FilterRepositoryMapper);
 };

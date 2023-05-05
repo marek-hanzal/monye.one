@@ -10,33 +10,35 @@ import {
 	type IRepository
 } from "@leight/source";
 import {
-	$FilterSource,
-	$FilterSourceMapper,
-	type IFilterSourceSchemaType
+	$FilterRepository,
+	$FilterRepositoryMapper,
+	type FilterSource
 } from "@leight/filter";
 
-export interface IFilterRepositoryService extends IRepositoryService<IFilterSourceSchemaType> {
+export interface IFilterRepositoryService extends IRepositoryService<FilterSource["Schema"]["Service"]> {
 }
 
-export class BaseFilterRepositoryService extends AbstractRepositoryService<IFilterSourceSchemaType> implements IFilterRepositoryService {
+export class BaseFilterRepositoryService<
+    TServiceSchema extends FilterSource["Schema"]["Service"] = FilterSource["Schema"]["Service"]
+> extends AbstractRepositoryService<TServiceSchema> implements IFilterRepositoryService {
 	static inject = [
-        $FilterSource,
-        $FilterSourceMapper,
+        $FilterRepository,
+        $FilterRepositoryMapper,
     ];
     
     constructor(
-        protected $source: IRepository<IFilterSourceSchemaType>,
-        protected $mapper: IRepositoryMapper<IFilterSourceSchemaType>,
+        protected $repository: IRepository<TServiceSchema>,
+        protected $mapper: IRepositoryMapper<TServiceSchema>,
     ) {
         super();
     }
-    
-    source(): IRepository<IFilterSourceSchemaType> {
-        return this.$source;
+
+    mapper(): IRepositoryMapper<TServiceSchema> {
+        return this.$mapper;
     }
     
-    mapper(): IRepositoryMapper<IFilterSourceSchemaType> {
-        return this.$mapper;
+    repository(): IRepository<TServiceSchema> {
+        return this.$repository;
     }
 }
 
@@ -44,4 +46,4 @@ export class BaseFilterRepositoryService extends AbstractRepositoryService<IFilt
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_s5l0mg0dkjdc46f7xqlwsjd4 = true;
+export const $leight_chl1w9cqm3boh1wphpawdvu2 = true;
