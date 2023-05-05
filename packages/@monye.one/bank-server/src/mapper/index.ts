@@ -1,1 +1,1 @@
-export * from "./BankSourceMapper";
+export * from "./BankRepositoryMapper";

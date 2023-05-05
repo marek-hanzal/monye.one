@@ -1,10 +1,7 @@
-import {
-    withSdk,
-    withServerTrpcRouter
-} from "@leight/sdk";
+import {generatorServer} from "@leight/sdk";
 
-void withSdk(
-    withServerTrpcRouter({
+void generatorServer({
+    withRepositoryRouter: {
         procedures: [
             {
                 name:     "Bank",
@@ -49,5 +46,5 @@ void withSdk(
                 },
             },
         ],
-    })
-);
+    },
+});

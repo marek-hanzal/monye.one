@@ -1,16 +1,12 @@
-import {
-    withSdk,
-    withSourceGenerators
-} from "@leight/sdk";
+import {generatorCommon} from "@leight/sdk";
 
-void withSdk(
-    withSourceGenerators({
-        EntitySource: {
-            entities: [
-                {
-                    name: "CalendarEvent",
-                },
-            ],
-        },
-    })
-);
+void generatorCommon({
+    withRepositorySymbol: {
+        repositories: [
+            {
+                name: "CalendarEvent",
+            },
+        ],
+    },
+
+});

@@ -1,10 +1,10 @@
 import {
     DtoSchema,
     FilterSchema,
-    type ISourceSchemaType,
     ParamsSchema,
     PatchSchema,
     SortOrderSchema,
+    Source,
     ToCreateSchema,
     ToPatchSchema,
     withSourceSchema
@@ -56,4 +56,4 @@ export const BankSourceSchema = withSourceSchema({
         account: SortOrderSchema,
     }),
 });
-export type IBankSourceSchemaType = ISourceSchemaType.of<typeof BankSourceSchema>;
+export type BankSource = Source<typeof BankSourceSchema>;

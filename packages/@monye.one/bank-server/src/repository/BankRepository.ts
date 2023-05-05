@@ -11,9 +11,9 @@ import {
     type IBankPrismaSchemaType,
     type IBankSourceSchemaType
 }                             from "@monye.one/bank";
-import {BankBasePrismaSource} from "../sdk/Source/BankBasePrismaSource";
+import {BaseBankRepositoryEx} from "../sdk";
 
-export class BankSource extends BankBasePrismaSource {
+export class BankRepository extends BaseBankRepositoryEx {
     static inject = [
         $UserService,
         $PrismaClient,

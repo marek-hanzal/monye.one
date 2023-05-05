@@ -1,41 +1,56 @@
-import {
-    withSdk,
-    withServerSourceGenerators
-} from "@leight/sdk";
+import {generatorServer} from "@leight/sdk";
 
-void withSdk(
-    withServerSourceGenerators({
-        PrismaSource: {
-            entities: [
-                {
-                    name:     "Bank",
-                    prisma:   "bank",
-                    packages: {
-                        schema: "@monye.one/bank",
-                        prisma: "@monye.one/prisma",
-                    },
+void generatorServer({
+    withRepositoryEx:        {
+        repositories: [
+            {
+                name:     "Bank",
+                prisma:   "bank",
+                packages: {
+                    schema: "@monye.one/bank",
+                    prisma: "@monye.one/prisma",
                 },
-            ],
-        },
-        Source:       {
-            entities: [
-                {
-                    name:      "Bank",
-                    packages:  {
-                        schema: "@monye.one/bank",
-                    },
+            },
+        ],
+    },
+    withRepositoryMapper:    {
+        repositories: [
+            {
+                name:     "Bank",
+                packages: {
+                    schema: "@monye.one/bank",
                 },
-            ],
-        },
-        TrpcSource:   {
-            entities: [
-                {
-                    name:     "Bank",
-                    packages: {
-                        schema: "@monye.one/bank",
-                    },
+            },
+        ],
+    },
+    withRepositoryService:   {
+        repositories: [
+            {
+                name:     "Bank",
+                packages: {
+                    schema: "@monye.one/bank",
                 },
-            ],
-        },
-    })
-);
+            },
+        ],
+    },
+    withRepositoryContainer: {
+        repositories: [
+            {
+                name:     "Bank",
+                packages: {
+                    schema: "@monye.one/bank",
+                },
+            },
+        ],
+    },
+    withRepositoryHandler:   {
+        repositories: [
+            {
+                name:     "Bank",
+                packages: {
+                    schema: "@monye.one/bank",
+                },
+            },
+        ],
+    },
+});
