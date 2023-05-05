@@ -1,19 +1,21 @@
-import {
-    withSdk,
-    withSourceGenerators
-} from "@leight/sdk";
+import {generatorCommon} from "@leight/sdk";
 
-void withSdk(
-    withSourceGenerators({
-        PrismaSource: {
-            entities: [
-                {
-                    name:         "Job",
-                    packages:     {
-                        prisma: "@leight/prisma",
-                    },
+void generatorCommon({
+    withRepositorySymbol: {
+        repositories: [
+            {
+                name: "Job",
+            },
+        ],
+    },
+    withRepositoryEx:     {
+        repositories: [
+            {
+                name:     "Job",
+                packages: {
+                    prisma: "@leight/prisma",
                 },
-            ],
-        },
-    })
-);
+            },
+        ],
+    },
+});

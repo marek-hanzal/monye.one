@@ -4,10 +4,9 @@ import {
     JobSchema
 }          from "@leight/prisma";
 import {
-    FilterSchema,
-    type ISourceSchemaType,
     PatchSchema,
     SortOrderSchema,
+    type Source,
     withSourceSchema
 }          from "@leight/source";
 import {z} from "@leight/zod";
@@ -24,10 +23,9 @@ export const JobSourceSchema = withSourceSchema({
     ToPatchSchema:  JobPartialSchema.merge(PatchSchema).merge(z.object({
         params: z.object({}).nullish(),
     })),
-    FilterSchema:   FilterSchema,
     PatchSchema:    JobPartialSchema.merge(PatchSchema),
     SortSchema:     z.object({
         started: SortOrderSchema,
     }),
 });
-export type IJobSourceSchemaType = ISourceSchemaType.of<typeof JobSourceSchema>;
+export type JobSource = Source<typeof JobSourceSchema>;

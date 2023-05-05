@@ -5,10 +5,10 @@ import {
 }          from "@leight/prisma";
 import {
     FilterSchema,
-    type ISourceSchemaType,
     ParamsSchema,
     PatchSchema,
     SortOrderSchema,
+    type Source,
     withSourceSchema
 }          from "@leight/source";
 import {z} from "@leight/zod";
@@ -28,4 +28,4 @@ export const KeywordSourceSchema = withSourceSchema({
         id: SortOrderSchema,
     }),
 });
-export type IKeywordSourceSchemaType = ISourceSchemaType.of<typeof KeywordSourceSchema>;
+export type KeywordSource = Source<typeof KeywordSourceSchema>;

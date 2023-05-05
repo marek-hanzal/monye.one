@@ -1,31 +1,56 @@
-import {
-    withSdk,
-    withServerSourceGenerators
-} from "@leight/sdk";
+import {generatorServer} from "@leight/sdk";
 
-void withSdk(
-    withServerSourceGenerators({
-        PrismaSource: {
-            entities: [
-                {
-                    name:     "Keyword",
-                    packages: {
-                        schema: "@leight/keyword",
-                        prisma: "@leight/prisma",
-                    },
-                    prisma:   "keyword",
+void generatorServer({
+    withRepositoryEx:        {
+        repositories: [
+            {
+                name:     "Keyword",
+                packages: {
+                    schema: "@leight/keyword",
+                    prisma: "@leight/prisma",
                 },
-            ],
-        },
-        Source:       {
-            entities: [
-                {
-                    name:     "Keyword",
-                    packages: {
-                        schema: "@leight/keyword",
-                    },
+                prisma:   "keyword",
+            },
+        ],
+    },
+    withRepositoryService:   {
+        repositories: [
+            {
+                name:     "Keyword",
+                packages: {
+                    schema: "@leight/keyword",
                 },
-            ],
-        },
-    })
-);
+            },
+        ],
+    },
+    withRepositoryMapper:    {
+        repositories: [
+            {
+                name:     "Keyword",
+                packages: {
+                    schema: "@leight/keyword",
+                },
+            },
+        ],
+    },
+    withRepositoryContainer: {
+        repositories: [
+            {
+                name:     "Keyword",
+                packages: {
+                    schema: "@leight/keyword",
+                },
+            },
+        ],
+    },
+    withRepositoryHandler:   {
+        repositories: [
+            {
+                name:     "Keyword",
+                packages: {
+                    schema: "@leight/keyword",
+                },
+            },
+        ],
+    },
+});

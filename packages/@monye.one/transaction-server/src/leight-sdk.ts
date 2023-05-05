@@ -1,68 +1,91 @@
-import {
-    withSdk,
-    withServerSourceGenerators
-} from "@leight/sdk";
+import {generatorServer} from "@leight/sdk";
 
-void withSdk(
-    withServerSourceGenerators({
-        PrismaSource: {
-            entities: [
-                {
-                    name:        "Transaction",
-                    prisma:      "transaction",
-                    packages:    {
-                        schema: "@monye.one/transaction",
-                        prisma: "@monye.one/prisma",
-                    },
-                    withInclude: {
-                        bank: true,
-                    },
+void generatorServer({
+    withRepositoryEx:        {
+        repositories: [
+            {
+                name:        "Transaction",
+                prisma:      "transaction",
+                packages:    {
+                    schema: "@monye.one/transaction",
+                    prisma: "@monye.one/prisma",
                 },
-                {
-                    name:     "TransactionKeyword",
-                    prisma:   "transactionKeyword",
-                    packages: {
-                        schema: "@monye.one/transaction",
-                        prisma: "@monye.one/prisma",
-                    },
+                withInclude: {
+                    bank: true,
                 },
-            ],
-        },
-        Source:       {
-            entities: [
-                {
-                    name:       "Transaction",
-                    packages:   {
-                        schema: "@monye.one/transaction",
-                    },
+            },
+            {
+                name:     "TransactionKeyword",
+                prisma:   "transactionKeyword",
+                packages: {
+                    schema: "@monye.one/transaction",
+                    prisma: "@monye.one/prisma",
                 },
-                {
-                    name:       "TransactionKeyword",
-                    packages:   {
-                        schema: "@monye.one/transaction",
-                    },
+            },
+        ],
+    },
+    withRepositoryMapper:    {
+        repositories: [
+            {
+                name:     "Transaction",
+                packages: {
+                    schema: "@monye.one/transaction",
                 },
-            ],
-        },
-        BaseSource:   {
-            entities: [
-                {
-                    name:     "Transaction",
-                    packages: {
-                        schema: "@monye.one/transaction",
-                    },
+            },
+            {
+                name:     "TransactionKeyword",
+                packages: {
+                    schema: "@monye.one/transaction",
                 },
-            ],
-        },
-        TrpcSource:   {
-            entities: [
-                {
-                    name:     "Transaction",
-                    packages: {
-                        schema: "@monye.one/transaction",
-                    },
+            },
+        ],
+    },
+    withRepositoryService:   {
+        repositories: [
+            {
+                name:     "Transaction",
+                packages: {
+                    schema: "@monye.one/transaction",
                 },
-            ],
-        },
-    })
-);
+            },
+            {
+                name:     "TransactionKeyword",
+                packages: {
+                    schema: "@monye.one/transaction",
+                },
+            },
+        ],
+    },
+    withRepositoryContainer: {
+        repositories: [
+            {
+                name:     "Transaction",
+                packages: {
+                    schema: "@monye.one/transaction",
+                },
+            },
+            {
+                name:     "TransactionKeyword",
+                packages: {
+                    schema: "@monye.one/transaction",
+                },
+            },
+        ],
+    },
+    withRepositoryHandler:   {
+        repositories: [
+            {
+                name:     "Transaction",
+                packages: {
+                    schema: "@monye.one/transaction",
+                },
+            },
+            {
+                name:     "TransactionKeyword",
+                packages: {
+                    schema: "@monye.one/transaction",
+                },
+            },
+        ],
+    }
+});

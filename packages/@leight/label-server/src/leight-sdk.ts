@@ -1,41 +1,56 @@
-import {
-    withSdk,
-    withServerSourceGenerators
-} from "@leight/sdk";
+import {generatorServer} from "@leight/sdk";
 
-void withSdk(
-    withServerSourceGenerators({
-        PrismaSource: {
-            entities: [
-                {
-                    name:     "Label",
-                    packages: {
-                        schema: "@leight/label",
-                        prisma: "@leight/prisma",
-                    },
-                    prisma:   "label",
+void generatorServer({
+    withRepositoryEx:        {
+        repositories: [
+            {
+                name:     "Label",
+                packages: {
+                    schema: "@leight/label",
+                    prisma: "@leight/prisma",
                 },
-            ],
-        },
-        Source:       {
-            entities: [
-                {
-                    name:     "Label",
-                    packages: {
-                        schema: "@leight/label",
-                    },
+                prisma:   "label",
+            },
+        ],
+    },
+    withRepositoryMapper:    {
+        repositories: [
+            {
+                name:     "Label",
+                packages: {
+                    schema: "@leight/label",
                 },
-            ],
-        },
-        TrpcSource:   {
-            entities: [
-                {
-                    name:     "Label",
-                    packages: {
-                        schema: "@leight/label",
-                    },
+            },
+        ],
+    },
+    withRepositoryService:   {
+        repositories: [
+            {
+                name:     "Label",
+                packages: {
+                    schema: "@leight/label",
                 },
-            ],
-        }
-    })
-);
+            },
+        ],
+    },
+    withRepositoryContainer: {
+        repositories: [
+            {
+                name:     "Label",
+                packages: {
+                    schema: "@leight/label",
+                },
+            },
+        ],
+    },
+    withRepositoryHandler:   {
+        repositories: [
+            {
+                name:     "Label",
+                packages: {
+                    schema: "@leight/label",
+                },
+            },
+        ],
+    },
+});

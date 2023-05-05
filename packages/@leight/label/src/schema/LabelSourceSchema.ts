@@ -4,9 +4,9 @@ import {
 }          from "@leight/prisma";
 import {
     FilterSchema,
-    type ISourceSchemaType,
     PatchSchema,
     SortOrderSchema,
+    type Source,
     withSourceSchema
 }          from "@leight/source";
 import {z} from "@leight/zod";
@@ -35,4 +35,4 @@ export const LabelSourceSchema = withSourceSchema({
         id: SortOrderSchema
     }),
 });
-export type ILabelSourceSchemaType = ISourceSchemaType.of<typeof LabelSourceSchema>;
+export type LabelSource = Source<typeof LabelSourceSchema>;

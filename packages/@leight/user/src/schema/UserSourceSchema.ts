@@ -4,9 +4,9 @@ import {
     UserSchema
 }          from "@leight/prisma";
 import {
-    type ISourceSchemaType,
     PatchSchema,
     SortOrderSchema,
+    type Source,
     withSourceSchema
 }          from "@leight/source";
 import {z} from "@leight/zod";
@@ -22,4 +22,4 @@ export const UserSourceSchema = withSourceSchema({
         id: SortOrderSchema,
     }),
 });
-export type IUserSourceSchemaType = ISourceSchemaType.of<typeof UserSourceSchema>;
+export type UserSource = Source<typeof UserSourceSchema>;

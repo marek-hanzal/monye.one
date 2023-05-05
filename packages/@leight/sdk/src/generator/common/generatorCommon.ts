@@ -21,7 +21,7 @@ export type IGeneratorCommonProps =
     & {
         withRepositoryEx?: IWithRepositoryExParams;
         withRepositorySymbol?: IWithRepositorySymbolParams;
-        Form?: IWithFormParams;
+        withForm?: IWithFormParams;
     }
 
 export const generatorCommon = (
@@ -51,9 +51,9 @@ export const generatorCommon = (
                     ...$params,
                     params: params.withRepositorySymbol,
                 }) : undefined,
-                params.Form ? withForm({
+                params.withForm ? withForm({
                     ...$params,
-                    params: params.Form,
+                    params: params.withForm,
                 }) : undefined,
             ]);
             await generatorSdkBarrel({

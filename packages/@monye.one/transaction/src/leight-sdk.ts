@@ -1,32 +1,37 @@
-import {
-    withSdk,
-    withSourceGenerators
-} from "@leight/sdk";
+import {generatorCommon} from "@leight/sdk";
 
-void withSdk(
-    withSourceGenerators({
-        PrismaSource: {
-            entities: [
-                {
-                    name:     "Transaction",
-                    packages: {
-                        prisma: "@monye.one/prisma",
-                    },
+void generatorCommon({
+    withRepositoryEx:     {
+        repositories: [
+            {
+                name:     "Transaction",
+                packages: {
+                    prisma: "@monye.one/prisma",
                 },
-                {
-                    name:     "TransactionKeyword",
-                    packages: {
-                        prisma: "@monye.one/prisma",
-                    },
+            },
+            {
+                name:     "TransactionKeyword",
+                packages: {
+                    prisma: "@monye.one/prisma",
                 },
-            ],
-        },
-        Form:         {
-            forms: [
-                {
-                    name: "TransactionFilter",
-                },
-            ],
-        },
-    })
-);
+            },
+        ],
+    },
+    withRepositorySymbol: {
+        repositories: [
+            {
+                name: "Transaction",
+            },
+            {
+                name: "TransactionKeyword",
+            },
+        ],
+    },
+    withForm:             {
+        forms: [
+            {
+                name: "TransactionFilter",
+            },
+        ],
+    },
+});

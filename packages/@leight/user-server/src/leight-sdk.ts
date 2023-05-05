@@ -1,31 +1,46 @@
-import {
-    withSdk,
-    withServerSourceGenerators
-} from "@leight/sdk";
+import {generatorServer} from "@leight/sdk";
 
-void withSdk(
-    withServerSourceGenerators({
-        PrismaSource: {
-            entities: [
-                {
-                    name:     "User",
-                    packages: {
-                        schema: "@leight/user",
-                        prisma: "@leight/prisma",
-                    },
-                    prisma:   "user",
+void generatorServer({
+    withRepositoryEx:        {
+        repositories: [
+            {
+                name:     "User",
+                packages: {
+                    schema: "@leight/user",
+                    prisma: "@leight/prisma",
                 },
-            ],
-        },
-        Source:       {
-            entities: [
-                {
-                    name:     "User",
-                    packages: {
-                        schema: "@leight/user",
-                    },
+                prisma:   "user",
+            },
+        ],
+    },
+    withRepositoryMapper:    {
+        repositories: [
+            {
+                name:     "User",
+                packages: {
+                    schema: "@leight/user",
                 },
-            ],
-        },
-    })
-);
+            },
+        ],
+    },
+    withRepositoryService:   {
+        repositories: [
+            {
+                name:     "User",
+                packages: {
+                    schema: "@leight/user",
+                },
+            },
+        ],
+    },
+    withRepositoryContainer: {
+        repositories: [
+            {
+                name:     "User",
+                packages: {
+                    schema: "@leight/user",
+                },
+            },
+        ],
+    },
+});

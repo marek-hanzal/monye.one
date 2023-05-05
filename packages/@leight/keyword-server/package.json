@@ -38,6 +38,7 @@
         "@leight/react-query": "^0.5.29",
         "@leight/source": "^0.5.66",
         "@leight/source-server": "^0.5.66",
+        "@leight/trpc-source-server": "^0.5.0",
         "@leight/utils": "^0.5.70",
         "@leight/zod": "^0.5.12"
     },

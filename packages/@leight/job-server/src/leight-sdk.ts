@@ -1,41 +1,56 @@
-import {
-    withSdk,
-    withServerSourceGenerators
-} from "@leight/sdk";
+import {generatorServer} from "@leight/sdk";
 
-void withSdk(
-    withServerSourceGenerators({
-        PrismaSource: {
-            entities: [
-                {
-                    name:     "Job",
-                    packages: {
-                        schema: "@leight/job",
-                        prisma: "@leight/prisma",
-                    },
-                    prisma:   "job",
+void generatorServer({
+    withRepositoryEx:        {
+        repositories: [
+            {
+                name:     "Job",
+                packages: {
+                    schema: "@leight/job",
+                    prisma: "@leight/prisma",
                 },
-            ],
-        },
-        Source:       {
-            entities: [
-                {
-                    name:     "Job",
-                    packages: {
-                        schema: "@leight/job",
-                    },
+                prisma:   "job",
+            },
+        ],
+    },
+    withRepositoryMapper:    {
+        repositories: [
+            {
+                name:     "Job",
+                packages: {
+                    schema: "@leight/job",
                 },
-            ],
-        },
-        TrpcSource:   {
-            entities: [
-                {
-                    name:     "Job",
-                    packages: {
-                        schema: "@leight/job",
-                    },
+            },
+        ],
+    },
+    withRepositoryService:   {
+        repositories: [
+            {
+                name:     "Job",
+                packages: {
+                    schema: "@leight/job",
                 },
-            ],
-        }
-    })
-);
+            },
+        ],
+    },
+    withRepositoryContainer: {
+        repositories: [
+            {
+                name:     "Job",
+                packages: {
+                    schema: "@leight/job",
+                },
+            },
+        ],
+    },
+    withRepositoryHandler:   {
+        repositories: [
+            {
+                name:     "Job",
+                packages: {
+                    schema: "@leight/job",
+                },
+            },
+        ],
+    },
+});
