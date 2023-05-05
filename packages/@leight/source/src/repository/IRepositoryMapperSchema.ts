@@ -2,10 +2,14 @@ import {
     type ICreateSchema,
     type IDtoSchema,
     type IEntitySchema,
+    type IFilterSchema,
+    type IParamsSchema,
     type IPatchSchema,
+    type ISortSchema,
     type IToCreateSchema,
     type IToPatchSchema
-} from "../schema";
+}                               from "../schema";
+import {type IRepositorySchema} from "./IRepositorySchema";
 
 export interface IRepositoryMapperSchema<
     TEntitySchema extends IEntitySchema = IEntitySchema,
@@ -14,11 +18,18 @@ export interface IRepositoryMapperSchema<
     TCreateSchema extends ICreateSchema = ICreateSchema,
     TToPatchSchema extends IToPatchSchema = IToPatchSchema,
     TPatchSchema extends IPatchSchema = IPatchSchema,
+    TFilterSchema extends IFilterSchema = IFilterSchema,
+    TSortSchema extends ISortSchema = ISortSchema,
+    TParamsSchema extends IParamsSchema = IParamsSchema,
+> extends IRepositorySchema<
+    TEntitySchema,
+    TCreateSchema,
+    TPatchSchema,
+    TFilterSchema,
+    TSortSchema,
+    TParamsSchema
 > {
-    EntitySchema: TEntitySchema;
     DtoSchema: TDtoSchema;
     ToCreateSchema: TToCreateSchema;
-    CreateSchema: TCreateSchema;
     ToPatchSchema: TToPatchSchema;
-    PatchSchema: TPatchSchema;
 }

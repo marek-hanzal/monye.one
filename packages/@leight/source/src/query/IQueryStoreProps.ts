@@ -1,28 +1,31 @@
-import {type IStoreProps}   from "@leight/zustand";
-import {type ISortOrder}    from "../schema";
-import {type ISourceSchema} from "../source";
+import {type IStoreProps} from "@leight/zustand";
+import {
+    type IRepositorySchema,
+    type RepositoryType
+}                         from "../repository";
+import {type ISortOrder}  from "../schema";
 
-export type IQueryStoreProps<TSourceSchema extends ISourceSchema> = IStoreProps<{
+export type IQueryStoreProps<TRepositorySchema extends IRepositorySchema, TRepositoryType extends RepositoryType = RepositoryType<TRepositorySchema>> = IStoreProps<{
     $id: string;
-    $schema: TSourceSchema["Schema"]["Source"];
+    $schema: TRepositorySchema;
 
     $page: number;
     $size: number;
 
-    $filter: TSourceSchema["Type"]["Source"]["Filter"];
+    $filter: TRepositoryType["Filter"];
     /**
      * If set, all filter changes are shallow merged with this
      */
-    $applyFilter?: TSourceSchema["Type"]["Source"]["Filter"];
+    $applyFilter?: TRepositoryType["Filter"];
     $filterDto?: IQueryStoreProps.IFilterDto;
-    $sort: TSourceSchema["Type"]["Source"]["Sort"];
+    $sort: TRepositoryType["Sort"];
 
-    $query: TSourceSchema["Type"]["Source"]["Query"];
+    $query: TRepositoryType["Query"];
 
-    setFilter(filter?: TSourceSchema["Type"]["Source"]["Filter"]): void;
-    applyFilter(filter?: TSourceSchema["Type"]["Source"]["Filter"]): void;
-    applyShallowFilter(filter?: TSourceSchema["Type"]["Source"]["Filter"]): void;
-    setShallowFilter(filter?: TSourceSchema["Type"]["Source"]["Filter"]): void;
+    setFilter(filter?: TRepositoryType["Filter"]): void;
+    applyFilter(filter?: TRepositoryType["Filter"]): void;
+    applyShallowFilter(filter?: TRepositoryType["Filter"]): void;
+    setShallowFilter(filter?: TRepositoryType["Filter"]): void;
     setFilterDto(dto?: IQueryStoreProps.IFilterDto): void;
     setShallowFilterDto(dto?: IQueryStoreProps.IFilterDto): void;
     /**
@@ -34,7 +37,7 @@ export type IQueryStoreProps<TSourceSchema extends ISourceSchema> = IStoreProps<
      */
     hasApplyFilter(): boolean;
 
-    setSort(sort: keyof TSourceSchema["Type"]["Source"]["Sort"], order: ISortOrder): void;
+    setSort(sort: keyof TRepositoryType["Sort"], order: ISortOrder): void;
 
     setSize(size: number): void;
     setPage(page: number): void;

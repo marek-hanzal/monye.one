@@ -1,6 +1,7 @@
 import {
     type IRepositoryMapperSchema,
-    type IRepositorySchema
+    type IRepositorySchema,
+    type IRepositoryServiceSchema
 } from "../repository";
 import {
     type ICreateSchema,
@@ -14,6 +15,11 @@ import {
     type IToPatchSchema
 } from "../schema";
 
+/**
+ * This is the basic building element for the whole Source package: define
+ * all schemas used in the Source and put it into a Source type to get all the
+ * supported services and other types.
+ */
 export interface ISourceSchema<
     TEntitySchema extends IEntitySchema = IEntitySchema,
     TDtoSchema extends IDtoSchema = IDtoSchema,
@@ -34,6 +40,14 @@ export interface ISourceSchema<
         TParamsSchema
     >;
     Mapper: IRepositoryMapperSchema<
+        TEntitySchema,
+        TDtoSchema,
+        TToCreateSchema,
+        TCreateSchema,
+        TToPatchSchema,
+        TPatchSchema
+    >;
+    Service: IRepositoryServiceSchema<
         TEntitySchema,
         TDtoSchema,
         TToCreateSchema,

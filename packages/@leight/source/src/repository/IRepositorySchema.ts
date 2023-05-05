@@ -44,4 +44,7 @@ export interface IRepositorySchema<
     }>;
     FetchSchema: TFilterSchema;
     Fetch$Schema: TFilterSchema;
+    FilterSchema: TFilterSchema;
+    SortSchema: TSortSchema;
+    ParamsSchema: TParamsSchema;
 }
