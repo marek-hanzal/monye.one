@@ -45,7 +45,10 @@ export interface ISourceSchema<
         TToCreateSchema,
         TCreateSchema,
         TToPatchSchema,
-        TPatchSchema
+        TPatchSchema,
+        TFilterSchema,
+        TSortSchema,
+        TParamsSchema
     >;
     Service: IRepositoryServiceSchema<
         TEntitySchema,
@@ -53,6 +56,9 @@ export interface ISourceSchema<
         TToCreateSchema,
         TCreateSchema,
         TToPatchSchema,
-        TPatchSchema
+        TPatchSchema,
+        TFilterSchema,
+        TSortSchema,
+        TParamsSchema
     >;
 }

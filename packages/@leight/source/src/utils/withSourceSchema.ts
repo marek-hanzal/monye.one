@@ -87,107 +87,50 @@ export const withSourceSchema = <
     TSortSchema,
     TParamsSchema
 > => {
+    const Repository = {
+        EntitySchema:   $EntitySchema,
+        CreateSchema:   $CreateSchema,
+        PatchSchema:    z.object({
+            patch:  $PatchSchema,
+            filter: $FilterSchema,
+        }),
+        PatchBySchema:  z.object({
+            patch:  $PatchSchema,
+            filter: $FilterSchema,
+        }),
+        UpsertSchema:   z.object({
+            create: $CreateSchema,
+            patch:  $PatchSchema,
+            filter: $FilterSchema,
+        }),
+        QuerySchema:    z.object({
+            filter: $FilterSchema.optional(),
+            sort:   $SortSchema.optional(),
+            cursor: CursorSchema.optional(),
+            params: $ParamsSchema.optional(),
+        }),
+        CountSchema:    $FilterSchema,
+        DeleteBySchema: $FilterSchema,
+        DeleteSchema:   WithIdentitySchema,
+        Fetch$Schema:   $FilterSchema,
+        FetchSchema:    $FilterSchema,
+        FilterSchema:   $FilterSchema,
+        SortSchema:     $SortSchema,
+        ParamsSchema:   $ParamsSchema,
+    } as const;
+    const Mapper     = {
+        ...Repository,
+        DtoSchema:      $DtoSchema,
+        ToCreateSchema: $ToCreateSchema,
+        ToPatchSchema:  $ToPatchSchema,
+    } as const;
+    const Service    = {
+        ...Mapper,
+    } as const;
+
     return {
-        Repository: {
-            EntitySchema:   $EntitySchema,
-            CreateSchema:   $CreateSchema,
-            PatchSchema:    z.object({
-                patch:  $PatchSchema,
-                filter: $FilterSchema,
-            }),
-            PatchBySchema:  z.object({
-                patch:  $PatchSchema,
-                filter: $FilterSchema,
-            }),
-            UpsertSchema:   z.object({
-                create: $CreateSchema,
-                patch:  $PatchSchema,
-                filter: $FilterSchema,
-            }),
-            QuerySchema:    z.object({
-                filter: $FilterSchema.optional(),
-                sort:   $SortSchema.optional(),
-                cursor: CursorSchema.optional(),
-                params: $ParamsSchema.optional(),
-            }),
-            CountSchema:    $FilterSchema,
-            DeleteBySchema: $FilterSchema,
-            DeleteSchema:   WithIdentitySchema,
-            Fetch$Schema:   $FilterSchema,
-            FetchSchema:    $FilterSchema,
-            FilterSchema:   $FilterSchema,
-            SortSchema:     $SortSchema,
-            ParamsSchema:   $ParamsSchema,
-        },
-        Mapper:     {
-            EntitySchema:   $EntitySchema,
-            CreateSchema:   $CreateSchema,
-            PatchSchema:    z.object({
-                patch:  $PatchSchema,
-                filter: $FilterSchema,
-            }),
-            PatchBySchema:  z.object({
-                patch:  $PatchSchema,
-                filter: $FilterSchema,
-            }),
-            UpsertSchema:   z.object({
-                create: $CreateSchema,
-                patch:  $PatchSchema,
-                filter: $FilterSchema,
-            }),
-            QuerySchema:    z.object({
-                filter: $FilterSchema.optional(),
-                sort:   $SortSchema.optional(),
-                cursor: CursorSchema.optional(),
-                params: $ParamsSchema.optional(),
-            }),
-            CountSchema:    $FilterSchema,
-            DeleteBySchema: $FilterSchema,
-            DeleteSchema:   WithIdentitySchema,
-            Fetch$Schema:   $FilterSchema,
-            FetchSchema:    $FilterSchema,
-            FilterSchema:   $FilterSchema,
-            SortSchema:     $SortSchema,
-            ParamsSchema:   $ParamsSchema,
-
-            DtoSchema:      $DtoSchema,
-            ToCreateSchema: $ToCreateSchema,
-            ToPatchSchema:  $ToPatchSchema,
-        },
-        Service:    {
-            EntitySchema:   $EntitySchema,
-            CreateSchema:   $CreateSchema,
-            PatchSchema:    z.object({
-                patch:  $PatchSchema,
-                filter: $FilterSchema,
-            }),
-            PatchBySchema:  z.object({
-                patch:  $PatchSchema,
-                filter: $FilterSchema,
-            }),
-            UpsertSchema:   z.object({
-                create: $CreateSchema,
-                patch:  $PatchSchema,
-                filter: $FilterSchema,
-            }),
-            QuerySchema:    z.object({
-                filter: $FilterSchema.optional(),
-                sort:   $SortSchema.optional(),
-                cursor: CursorSchema.optional(),
-                params: $ParamsSchema.optional(),
-            }),
-            CountSchema:    $FilterSchema,
-            DeleteBySchema: $FilterSchema,
-            DeleteSchema:   WithIdentitySchema,
-            Fetch$Schema:   $FilterSchema,
-            FetchSchema:    $FilterSchema,
-            FilterSchema:   $FilterSchema,
-            SortSchema:     $SortSchema,
-            ParamsSchema:   $ParamsSchema,
-
-            DtoSchema:      $DtoSchema,
-            ToCreateSchema: $ToCreateSchema,
-            ToPatchSchema:  $ToPatchSchema,
-        },
+        Repository,
+        Mapper,
+        Service,
     };
 };
