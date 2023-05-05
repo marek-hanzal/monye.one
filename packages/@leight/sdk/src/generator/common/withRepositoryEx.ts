@@ -1,7 +1,6 @@
-import {withSourceFile}       from "@leight/generator-server";
-import {normalize}            from "node:path";
-import {type IGenerator}      from "../../api";
-import {withRepositorySymbol} from "./withRepositorySymbol";
+import {withSourceFile}  from "@leight/generator-server";
+import {normalize}       from "node:path";
+import {type IGenerator} from "../../api";
 
 export interface IWithRepositoryExParams {
     repositories: IWithRepositoryExParams.IRepository[];
@@ -32,24 +31,11 @@ export namespace IWithRepositoryExParams {
  */
 export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
     {
-        packageName,
         barrel,
         directory,
         params: {repositories},
     }) => {
     for (const {name, packages} of repositories) {
-        await Promise.all([
-            withRepositorySymbol({
-                packageName,
-                directory,
-                barrel,
-                params: {
-                    symbols: [
-                        {name},
-                    ],
-                },
-            }),
-        ]);
         withSourceFile()
             .withImports({
                 imports: {

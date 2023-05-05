@@ -4,9 +4,9 @@ import {type ISdkGeneratorProps} from "../../api";
 import {withSdk}                 from "../../index";
 import {generatorSdkBarrel}      from "../generatorSdkBarrel";
 import {
-    generatorForm,
-    type IGeneratorFormParams
-}                                from "./generatorForm";
+    type IWithFormParams,
+    withForm
+}                                from "./withForm";
 import {
     type IWithRepositoryExParams,
     withRepositoryEx
@@ -21,7 +21,7 @@ export type IGeneratorCommonProps =
     & {
         withRepositoryEx?: IWithRepositoryExParams;
         withRepositorySymbol?: IWithRepositorySymbolParams;
-        Form?: IGeneratorFormParams;
+        Form?: IWithFormParams;
     }
 
 export const generatorCommon = (
@@ -51,7 +51,7 @@ export const generatorCommon = (
                     ...$params,
                     params: params.withRepositorySymbol,
                 }) : undefined,
-                params.Form ? generatorForm({
+                params.Form ? withForm({
                     ...$params,
                     params: params.Form,
                 }) : undefined,

@@ -3,7 +3,7 @@ import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
 export interface IWithRepositorySymbolParams {
-    symbols: IWithRepositorySymbolParams.ISymbol[];
+    repositories: IWithRepositorySymbolParams.ISymbol[];
 }
 
 export namespace IWithRepositorySymbolParams {
@@ -17,9 +17,9 @@ export const withRepositorySymbol: IGenerator<IWithRepositorySymbolParams> = asy
         packageName,
         directory,
         barrel,
-        params: {symbols},
+        params: {repositories},
     }) => {
-    symbols.forEach(({name}) => {
+    repositories.forEach(({name}) => {
         withSourceFile()
             .withConsts({
                 exports: {

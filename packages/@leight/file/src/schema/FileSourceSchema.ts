@@ -5,10 +5,9 @@ import {
 }          from "@leight/prisma";
 import {
     FilterSchema,
-    type ISourceSchemaType,
-    ParamsSchema,
     PatchSchema,
     SortOrderSchema,
+    type Source,
     withSourceSchema
 }          from "@leight/source";
 import {z} from "@leight/zod";
@@ -27,9 +26,8 @@ export const FileSourceSchema = withSourceSchema({
             userId: z.string(),
         }).optional(),
     })),
-    ParamsSchema:   ParamsSchema,
     SortSchema:     z.object({
         id: SortOrderSchema
     }),
 });
-export type IFileSourceSchemaType = ISourceSchemaType.of<typeof FileSourceSchema>;
+export type FileSource = Source<typeof FileSourceSchema>;

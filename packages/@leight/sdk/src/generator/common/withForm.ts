@@ -2,11 +2,11 @@ import {withSourceFile}  from "@leight/generator-server";
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
-export interface IGeneratorFormParams {
-    forms: IGeneratorFormParams.IForm[];
+export interface IWithFormParams {
+    forms: IWithFormParams.IForm[];
 }
 
-export namespace IGeneratorFormParams {
+export namespace IWithFormParams {
     export interface IForm {
         /**
          * Base name exported (used to name all exported objects)
@@ -23,7 +23,7 @@ export namespace IGeneratorFormParams {
     }
 }
 
-export const generatorForm: IGenerator<IGeneratorFormParams> = async (
+export const withForm: IGenerator<IWithFormParams> = async (
     {
         directory,
         params: {forms}
@@ -32,8 +32,7 @@ export const generatorForm: IGenerator<IGeneratorFormParams> = async (
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/form":                                      [
-                        "type IMantineFormContext",
+                    "@leight/form":                                         [
                         "type IFormInputsFactory",
                     ],
                     [packages?.schema || `../../schema/${name}FormSchema`]: [
@@ -43,12 +42,32 @@ export const generatorForm: IGenerator<IGeneratorFormParams> = async (
             })
             .withTypes({
                 exports: {
-                    [`I${name}MantineFormContext`]: `IMantineFormContext<I${name}FormSchemaType>`,
                     [`I${name}FormInputFactory`]:   `IFormInputsFactory<I${name}FormSchemaType>`,
                 }
             })
             .saveTo({
-                file:   normalize(`${directory}/api/${name}FormTypes.tsx`),
+                file:   normalize(`${directory}/form/I${name}FormInputFactory.tsx`),
+                barrel: false,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "@leight/form":                                         [
+                        "type IMantineFormContext",
+                    ],
+                    [packages?.schema || `../../schema/${name}FormSchema`]: [
+                        `type I${name}FormSchemaType`,
+                    ],
+                },
+            })
+            .withTypes({
+                exports: {
+                    [`I${name}MantineFormContext`]: `IMantineFormContext<I${name}FormSchemaType>`,
+                }
+            })
+            .saveTo({
+                file:   normalize(`${directory}/form/I${name}MantineFormContext.tsx`),
                 barrel: false,
             });
     });
