@@ -3,11 +3,11 @@ import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
 export interface IWithRepositoryExParams {
-    entities: IWithRepositoryExParams.IEntity[];
+    repositories: IWithRepositoryExParams.IRepository[];
 }
 
 export namespace IWithRepositoryExParams {
-    export interface IEntity {
+    export interface IRepository {
         /**
          * Base name exported (used to name all exported objects)
          */
@@ -42,9 +42,9 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
     {
         barrel,
         directory,
-        params: {entities},
+        params: {repositories},
     }) => {
-    entities.forEach(({name, prisma, packages, withInclude}) => {
+    repositories.forEach(({name, prisma, packages, withInclude}) => {
         const $withInclude = withInclude ? JSON.stringify(withInclude) : undefined;
 
         withSourceFile()

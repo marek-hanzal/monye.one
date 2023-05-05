@@ -3,17 +3,20 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {withRepositoryHandler} from "@leight/trpc-source-server";
+import {AbstractRepository} from "@leight/source-server";
 import {
-	$FilterRepositoryService,
+	$FilterRepository,
 	type FilterSource
 } from "@leight/filter";
 
-export const FilterRepositoryHandler = withRepositoryHandler<FilterSource["Schema"]["Service"]>({
-    service: $FilterRepositoryService,
-});
+export class BaseFilterRepository extends AbstractRepository<FilterSource["Schema"]["Repository"]> {
+	constructor() {
+        super($FilterRepository);
+    }
+}
+
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wzzughxvj1ynvmpy3x2rv38o = true;
+export const $leight_ofub9v47l3viouflwfdm6ts1 = true;

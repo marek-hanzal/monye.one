@@ -7,11 +7,12 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hyme4gtu4n6ckln06894aupt = true;
+export const $leight_plo2f2273jzn1b1d19y05zk3 = true;
 
 export * from "./index";
 export * from "./container/withFilterRepositoryContainer";
 export * from "./handler/FilterRepositoryHandler";
 export * from "./mapper/BaseFilterRepositoryMapper";
+export * from "./repository/BaseFilterRepository";
 export * from "./repository/BaseFilterRepositoryEx";
 export * from "./service/BaseFilterRepositoryService";

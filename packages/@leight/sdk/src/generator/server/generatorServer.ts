@@ -4,7 +4,11 @@ import {type ISdkGeneratorProps} from "../../api";
 import {withSdk}                 from "../../index";
 import {generatorSdkBarrel}      from "../generatorSdkBarrel";
 import {
-    IWithRepositoryContainerParams,
+    type IWithRepositoryParams,
+    withRepository
+}                                from "./withRepository";
+import {
+    type IWithRepositoryContainerParams,
     withRepositoryContainer
 }                                from "./withRepositoryContainer";
 import {
@@ -16,7 +20,7 @@ import {
     withRepositoryHandler
 }                                from "./withRepositoryHandler";
 import {
-    IWithRepositoryMapperParams,
+    type IWithRepositoryMapperParams,
     withRepositoryMapper
 }                                from "./withRepositoryMapper";
 import {
@@ -44,6 +48,7 @@ export type IGeneratorServerProps =
          */
         withRepositoryHandler?: IWithRepositoryHandlerParams;
         withRepositoryContainer?: IWithRepositoryContainerParams;
+        withRepository?: IWithRepositoryParams;
     }
 
 export const generatorServer = (
@@ -88,6 +93,10 @@ export const generatorServer = (
                 params.withRepositoryContainer ? withRepositoryContainer({
                     ...$params,
                     params: params.withRepositoryContainer,
+                }) : undefined,
+                params.withRepository ? withRepository({
+                    ...$params,
+                    params: params.withRepository,
                 }) : undefined,
             ]);
             await generatorSdkBarrel({

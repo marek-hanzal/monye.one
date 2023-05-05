@@ -2,7 +2,7 @@ import {generatorServer} from "@leight/sdk";
 
 void generatorServer({
     withRepositoryEx:        {
-        entities: [
+        repositories: [
             {
                 name:     "Filter",
                 packages: {

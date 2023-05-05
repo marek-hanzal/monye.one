@@ -2,12 +2,12 @@ import {withSourceFile}  from "@leight/generator-server";
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
-export interface IGeneratorServerBaseSourceParams {
-    entities: IGeneratorServerBaseSourceParams.IEntity[];
+export interface IWithRepositoryParams {
+    repositories: IWithRepositoryParams.IRepository[];
 }
 
-export namespace IGeneratorServerBaseSourceParams {
-    export interface IEntity {
+export namespace IWithRepositoryParams {
+    export interface IRepository {
         /**
          * Base name exported (used to name all exported objects)
          */
@@ -26,47 +26,43 @@ export namespace IGeneratorServerBaseSourceParams {
     }
 }
 
-export const generatorServerBaseSource: IGenerator<IGeneratorServerBaseSourceParams> = async (
+export const withRepository: IGenerator<IWithRepositoryParams> = async (
     {
         barrel,
         directory,
-        params: {entities},
+        params: {repositories},
     }) => {
-    entities.forEach(({name, packages}) => {
+    repositories.forEach(({name, packages}) => {
         withSourceFile()
-            .withHeader(`
-    Base Source contains default implementation of Source for entity ${name}. This could be used for further extensions,
-    also default export uses this as a parent class.
-        `)
             .withImports({
                 imports: {
                     "@leight/source-server": [
-                        "AbstractSource",
+                        "AbstractRepository",
                     ],
                 },
             })
             .withImports({
                 imports: {
                     [packages.schema]: [
-                        `$${name}Source`,
-                        `type I${name}SourceSchemaType`,
+                        `$${name}Repository`,
+                        `type ${name}Source`,
                     ],
                 }
             })
             .withClasses({
                 exports: {
-                    [`${name}BaseSource`]: {
-                        extends: `AbstractSource<I${name}SourceSchemaType>`,
+                    [`Base${name}Repository`]: {
+                        extends: `AbstractRepository<${name}Source["Schema"]["Repository"]>`,
                         body:    `
     constructor() {
-        super($${name}Source);
+        super($${name}Repository);
     }
                     `,
                     },
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/Source/${name}BaseSource.ts`),
+                file: normalize(`${directory}/repository/Base${name}Repository.ts`),
                 barrel,
             });
     });
