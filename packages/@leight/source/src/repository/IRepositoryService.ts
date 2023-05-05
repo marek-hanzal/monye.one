@@ -23,6 +23,38 @@ export interface IRepositoryService<
 
     handleSourceUpsert(props: TRepositoryServiceType["UpsertProps"]): Promise<TRepositoryServiceType["Dto"]>;
 
+    handleDelete(props: TRepositoryServiceType["Delete"]): Promise<TRepositoryServiceType["Dto"]>;
+
+    handleSourceDelete(props: TRepositoryServiceType["Delete"]): Promise<TRepositoryServiceType["Dto"]>;
+
+    handleCount(props: TRepositoryServiceType["Count"]): Promise<number>;
+
+    handleSourceCount(props: TRepositoryServiceType["Count"]): Promise<number>;
+
+    handleQuery(props: TRepositoryServiceType["Query"]): Promise<TRepositoryServiceType["Dto"][]>;
+
+    handleSourceQuery(props: TRepositoryServiceType["Query"]): Promise<TRepositoryServiceType["Dto"][]>;
+
+    handleDeleteBy(props: TRepositoryServiceType["DeleteBy"]): Promise<unknown>;
+
+    handleSourceDeleteBy(props: TRepositoryServiceType["DeleteBy"]): Promise<unknown>;
+
+    handleFetch(props: TRepositoryServiceType["Fetch"]): Promise<TRepositoryServiceType["Dto"]>;
+
+    handleSourceFetch(props: TRepositoryServiceType["Fetch"]): Promise<TRepositoryServiceType["Dto"]>;
+
+    handleFetch$(props: TRepositoryServiceType["Fetch$"]): Promise<TRepositoryServiceType["Dto"] | null>;
+
+    handleSourceFetch$(props: TRepositoryServiceType["Fetch$"]): Promise<TRepositoryServiceType["Dto"] | null>;
+
+    handleGet(id: string): Promise<TRepositoryServiceType["Dto"]>;
+
+    handleSourceGet(id: string): Promise<TRepositoryServiceType["Dto"]>;
+
+    handleGet$(id?: string | null): Promise<TRepositoryServiceType["Dto"] | null>;
+
+    handleSourceGet$(id?: string | null): Promise<TRepositoryServiceType["Dto"] | null>;
+
     /**
      * Do something with a DTO; schema modifications are not allowed as this should
      * handle SourceMapper
