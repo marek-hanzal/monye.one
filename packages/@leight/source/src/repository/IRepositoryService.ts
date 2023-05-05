@@ -1,8 +1,12 @@
-import {type IRepository}           from "./IRepository";
-import {type IRepositoryMapper}     from "./IRepositoryMapper";
-import {type RepositoryServiceType} from "./RepositoryServiceType";
+import {type IRepository}              from "./IRepository";
+import {type IRepositoryMapper}        from "./IRepositoryMapper";
+import {type IRepositoryServiceSchema} from "./IRepositoryServiceSchema";
+import {type RepositoryServiceType}    from "./RepositoryServiceType";
 
-export interface IRepositoryService<TRepositoryServiceType extends RepositoryServiceType> {
+export interface IRepositoryService<
+    TRepositoryServiceSchema extends IRepositoryServiceSchema,
+    TRepositoryServiceType extends RepositoryServiceType<TRepositoryServiceSchema> = RepositoryServiceType<TRepositoryServiceSchema>
+> {
     handleCreate(props: TRepositoryServiceType["ToCreate"]): Promise<TRepositoryServiceType["Dto"]>;
 
     handleSourceCreate(create: TRepositoryServiceType["Create"]): Promise<TRepositoryServiceType["Entity"]>;
@@ -34,10 +38,10 @@ export interface IRepositoryService<TRepositoryServiceType extends RepositorySer
     /**
      * Get source mapper
      */
-    mapper(): IRepositoryMapper<TRepositoryServiceType>;
+    mapper(): IRepositoryMapper<TRepositoryServiceSchema>;
 
     /**
      * Get current repository
      */
-    repository(): IRepository<TRepositoryServiceType>;
+    repository(): IRepository<TRepositoryServiceSchema>;
 }

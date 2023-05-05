@@ -1,23 +1,25 @@
 import {z} from "@leight/zod";
 
-export interface ISourceSchemaEx<
+export interface IRepositorySchemaEx<
     TWhereSchema extends z.ZodType = z.ZodType,
     TWhereUniqueSchema extends z.ZodType = z.ZodType,
     TOrderBySchema extends z.ZodType = z.ZodType,
 > {
-    Schema: ISourceSchemaEx.Schema<
+    Schema: IRepositorySchemaEx.Schema<
         TWhereSchema,
         TWhereUniqueSchema,
         TOrderBySchema
     >;
-    Type: ISourceSchemaEx.Type<
-        TWhereSchema,
-        TWhereUniqueSchema,
-        TOrderBySchema
+    Type: IRepositorySchemaEx.Type<
+        IRepositorySchemaEx.Schema<
+            TWhereSchema,
+            TWhereUniqueSchema,
+            TOrderBySchema
+        >
     >;
 }
 
-export namespace ISourceSchemaEx {
+export namespace IRepositorySchemaEx {
     export interface Schema<
         TWhereSchema extends z.ZodType = z.ZodType,
         TWhereUniqueSchema extends z.ZodType = z.ZodType,
@@ -29,12 +31,10 @@ export namespace ISourceSchemaEx {
     }
 
     export interface Type<
-        TWhereSchema extends z.ZodType = z.ZodType,
-        TWhereUniqueSchema extends z.ZodType = z.ZodType,
-        TOrderBySchema extends z.ZodType = z.ZodType,
+        TSchema extends Schema
     > {
-        Where: z.infer<TWhereSchema>;
-        WhereUnique: z.infer<TWhereUniqueSchema>;
-        OrderBy: z.infer<TOrderBySchema>;
+        Where: z.infer<TSchema["WhereSchema"]>;
+        WhereUnique: z.infer<TSchema["WhereUniqueSchema"]>;
+        OrderBy: z.infer<TSchema["OrderBySchema"]>;
     }
 }

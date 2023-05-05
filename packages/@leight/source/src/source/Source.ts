@@ -28,13 +28,13 @@ export interface Source<
     /**
      * Can be used to type an instance of Repository
      */
-    Repository: IRepository<TSourceType["Repository"]>;
+    Repository: IRepository<TSourceSchema["Repository"]>;
     /**
      * Can be used to type an instance of Mapper
      */
-    Mapper: IRepositoryMapper<TSourceType["Mapper"]>;
+    Mapper: IRepositoryMapper<TSourceSchema["Mapper"]>;
     /**
      * Can be used to type an instance of Service
      */
-    Service: IRepositoryService<TSourceType["Service"]>;
+    Service: IRepositoryService<TSourceSchema["Service"]>;
 }

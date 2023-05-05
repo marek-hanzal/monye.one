@@ -1,9 +1,13 @@
 import {
     type IRepositoryMapper,
+    type IRepositoryMapperSchema,
     type RepositoryMapperType
-} from "@leight/source/lib/repository";
+} from "@leight/source";
 
-export class AbstractRepositoryMapper<TRepositoryMapperType extends RepositoryMapperType> implements IRepositoryMapper<TRepositoryMapperType> {
+export class AbstractRepositoryMapper<
+    TRepositoryMapperSchema extends IRepositoryMapperSchema,
+    TRepositoryMapperType extends RepositoryMapperType<TRepositoryMapperSchema> = RepositoryMapperType<TRepositoryMapperSchema>
+> implements IRepositoryMapper<TRepositoryMapperSchema> {
     async toCreate(create: TRepositoryMapperType["ToCreate"]): Promise<TRepositoryMapperType["Create"]> {
         return create;
     }
@@ -13,9 +17,28 @@ export class AbstractRepositoryMapper<TRepositoryMapperType extends RepositoryMa
     }
 
     async toPatch(patch: TRepositoryMapperType["ToPatch"]): Promise<TRepositoryMapperType["Patch"]> {
+        return patch;
+    }
+
+    async toPatchByProps({patch, filter}: TRepositoryMapperType["ToPatchByProps"]): Promise<TRepositoryMapperType["PatchByProps"]> {
         return {
-            patch:  patch,
-            filter: {},
+            patch: await this.toPatch(patch),
+            filter,
+        };
+    }
+
+    async toPatchProps({patch, filter}: TRepositoryMapperType["ToPatchProps"]): Promise<TRepositoryMapperType["PatchProps"]> {
+        return {
+            patch: await this.toPatch(patch),
+            filter,
+        };
+    }
+
+    async toUpsertProps({create, patch, filter}: TRepositoryMapperType["ToUpsertProps"]): Promise<TRepositoryMapperType["UpsertProps"]> {
+        return {
+            create: await this.toCreate(create),
+            patch:  await this.toPatch(patch),
+            filter,
         };
     }
 }

@@ -1,6 +1,10 @@
-import {type RepositoryType} from "./RepositoryType";
+import {type IRepositorySchema} from "./IRepositorySchema";
+import {type RepositoryType}    from "./RepositoryType";
 
-export interface IRepository<TRepositoryType extends RepositoryType = RepositoryType> {
+export interface IRepository<
+    TRepositorySchema extends IRepositorySchema,
+    TRepositoryType extends RepositoryType<TRepositorySchema> = RepositoryType<TRepositorySchema>
+> {
     /**
      * Create a new entity (low-level storage binding, like Prisma or so)
      */

@@ -5,6 +5,5 @@ export type ISourceName =
     | IToString;
 
 export * from "./ISourceSchema";
-export * from "./ISourceSchemaEx";
 export * from "./Source";
 export * from "./SourceType";
