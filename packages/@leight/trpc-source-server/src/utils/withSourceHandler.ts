@@ -3,22 +3,20 @@ import {
     type IContainer
 }                    from "@leight/container";
 import {
-    IRepositoryService,
-    IRepositoryServiceSchema,
+    type IRepositoryService,
+    type IRepositoryServiceSchema,
     type RepositoryServiceType
 }                    from "@leight/source";
 import {withHandler} from "@leight/trpc-server";
 
-export interface IWithSourceHandlerProps<
-    TRepositoryServiceSchema extends IRepositoryServiceSchema,
-> {
+export interface IWithSourceHandlerProps {
     sourceService: BindKey;
 }
 
 export const withSourceHandler = <
     TRepositoryServiceSchema extends IRepositoryServiceSchema,
     TRepositoryServiceType extends RepositoryServiceType<TRepositoryServiceSchema> = RepositoryServiceType<TRepositoryServiceSchema>,
->({sourceService}: IWithSourceHandlerProps<TRepositoryServiceSchema>) => {
+>({sourceService}: IWithSourceHandlerProps) => {
 
     const withSourceService = (container: IContainer) => {
         return container.resolve<IRepositoryService<TRepositoryServiceSchema>>(sourceService);

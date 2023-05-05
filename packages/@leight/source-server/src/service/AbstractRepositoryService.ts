@@ -1,9 +1,9 @@
-import {type IRepositoryServiceSchema} from "@leight/source";
 import {
     type IRepository,
     type IRepositoryMapper,
+    type IRepositoryServiceSchema,
     type RepositoryServiceType
-}                                      from "@leight/source/lib/repository";
+} from "@leight/source";
 
 export abstract class AbstractRepositoryService<
     TRepositoryServiceSchema extends IRepositoryServiceSchema,
@@ -63,6 +63,38 @@ export abstract class AbstractRepositoryService<
                 )
             )
         );
+    }
+
+    handleCount(props: TRepositoryServiceType["Count"]): Promise<number> {
+        return this.repository().count(props);
+    }
+
+    handleDelete(props: TRepositoryServiceType["Delete"]): Promise<TRepositoryServiceType["Dto"]> {
+        return this.repository().delete(props);
+    }
+
+    handleDeleteBy(props: TRepositoryServiceType["DeleteBy"]): Promise<unknown> {
+        return this.repository().deleteBy(props);
+    }
+
+    handleFetch(props: TRepositoryServiceType["Fetch"]): Promise<TRepositoryServiceType["Dto"]> {
+        return this.repository().fetch(props);
+    }
+
+    handleFetch$(props: TRepositoryServiceType["Fetch$"]): Promise<TRepositoryServiceType["Dto"] | null> {
+        return this.repository().fetch$(props);
+    }
+
+    handleGet(id: string): Promise<TRepositoryServiceType["Dto"]> {
+        return this.repository().get(id);
+    }
+
+    handleGet$(id?: string | null): Promise<TRepositoryServiceType["Dto"] | null> {
+        return this.repository().get$(id);
+    }
+
+    handleQuery(props: TRepositoryServiceType["Query"]): Promise<TRepositoryServiceType["Dto"][]> {
+        return Promise.resolve([]);
     }
 
     async toPatch(toPatch: TRepositoryServiceType["ToPatch"]): Promise<TRepositoryServiceType["Patch"]> {
