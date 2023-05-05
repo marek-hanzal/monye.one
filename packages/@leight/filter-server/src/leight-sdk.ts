@@ -1,7 +1,7 @@
 import {generatorServer} from "@leight/sdk";
 
 void generatorServer({
-    withRepositoryEx: {
+    withRepositoryEx:        {
         entities: [
             {
                 name:     "Filter",
@@ -13,8 +13,8 @@ void generatorServer({
             },
         ],
     },
-    Source:           {
-        entities: [
+    withRepositoryService:   {
+        repositories: [
             {
                 name:     "Filter",
                 packages: {
@@ -23,8 +23,8 @@ void generatorServer({
             },
         ],
     },
-    TrpcSource:       {
-        entities: [
+    withRepositoryMapper:    {
+        repositories: [
             {
                 name:     "Filter",
                 packages: {
@@ -32,5 +32,25 @@ void generatorServer({
                 },
             },
         ],
-    }
+    },
+    withRepositoryHandler:   {
+        repositories: [
+            {
+                name:     "Filter",
+                packages: {
+                    schema: "@leight/filter",
+                },
+            },
+        ],
+    },
+    withRepositoryContainer: {
+        repositories: [
+            {
+                name:     "Filter",
+                packages: {
+                    schema: "@leight/filter",
+                },
+            }
+        ],
+    },
 });

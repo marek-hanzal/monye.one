@@ -3,17 +3,17 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {AbstractSourceMapper} from "@leight/source-server";
+import {withRepositoryHandler} from "@leight/trpc-source-server";
 import {
-	type IFilterSourceSchemaType,
-	type IFilterSourceMapper
+	$FilterRepositoryService,
+	type FilterSource
 } from "@leight/filter";
 
-export class FilterBaseSourceMapper extends AbstractSourceMapper<IFilterSourceSchemaType> implements IFilterSourceMapper {
-}
-
+export const FilterRepositoryHandler = withRepositoryHandler<FilterSource["Schema"]["Service"]>({
+    service: $FilterRepositoryService,
+});
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ordc3hdza5qb0b2eytmyw8w8 = true;
+export const $leight_t5llwhrfyhw68xso4qknw7hd = true;

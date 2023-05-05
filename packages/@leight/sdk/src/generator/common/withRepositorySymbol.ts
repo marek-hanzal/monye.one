@@ -29,7 +29,7 @@ export const withRepositorySymbol: IGenerator<IWithRepositorySymbolParams> = asy
                 }
             })
             .saveTo({
-                file: normalize(`${directory}/symbols/${name}Symbols.ts`),
+                file: normalize(`${directory}/symbol/${name}RepositorySymbol.ts`),
                 barrel,
             });
     });

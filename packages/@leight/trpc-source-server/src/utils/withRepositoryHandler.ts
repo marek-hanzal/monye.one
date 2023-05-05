@@ -9,17 +9,17 @@ import {
 }                    from "@leight/source";
 import {withHandler} from "@leight/trpc-server";
 
-export interface IWithSourceHandlerProps {
-    sourceService: BindKey;
+export interface IWithRepositoryHandlerProps {
+    service: BindKey;
 }
 
-export const withSourceHandler = <
+export const withRepositoryHandler = <
     TRepositoryServiceSchema extends IRepositoryServiceSchema,
     TRepositoryServiceType extends RepositoryServiceType<TRepositoryServiceSchema> = RepositoryServiceType<TRepositoryServiceSchema>,
->({sourceService}: IWithSourceHandlerProps) => {
+>({service}: IWithRepositoryHandlerProps) => {
 
     const withSourceService = (container: IContainer) => {
-        return container.resolve<IRepositoryService<TRepositoryServiceSchema>>(sourceService);
+        return container.resolve<IRepositoryService<TRepositoryServiceSchema>>(service);
     };
 
     return {

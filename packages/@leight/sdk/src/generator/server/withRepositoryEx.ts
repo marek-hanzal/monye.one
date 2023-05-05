@@ -91,7 +91,7 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
                     [`Base${name}RepositoryEx`]: {
                         extends: `AbstractRepositoryEx<
     I${name}RepositorySchemaEx,
-    ${name}Source['Schema']['Repository']
+    ${name}Source["Schema"]["Repository"]
 >`,
                         body:    `
     static inject = [

@@ -3,11 +3,11 @@ import {normalize}          from "node:path";
 import {type IGenerator}    from "../../api";
 import {generatorSdkBarrel} from "../generatorSdkBarrel";
 
-export interface IWithSourceRouterParams {
-    procedures: IWithSourceRouterParams.IProcedure[];
+export interface IWithRepositoryRouterParams {
+    procedures: IWithRepositoryRouterParams.IProcedure[];
 }
 
-export namespace IWithSourceRouterParams {
+export namespace IWithRepositoryRouterParams {
     export interface IProcedure {
         /**
          * Base name exported (used to name all exported objects)
@@ -26,7 +26,7 @@ export namespace IWithSourceRouterParams {
     }
 }
 
-export const withSourceRouter: IGenerator<IWithSourceRouterParams> = async (
+export const withRepositoryRouter: IGenerator<IWithRepositoryRouterParams> = async (
     {
         packageName,
         barrel,
@@ -46,13 +46,13 @@ export const withSourceRouter: IGenerator<IWithSourceRouterParams> = async (
             .withImports({
                 imports: {
                     [packages.procedure]: [
-                        `${name}SourceProcedure`,
+                        `${name}RepositoryHandler`,
                     ],
                 },
             })
             .withConsts({
                 exports: {
-                    [`${name}SourceRouter`]: {
+                    [`${name}RepositoryRouter`]: {
                         body: `
 router({
     create: procedure
@@ -70,9 +70,9 @@ router({
     delete:  procedure
                 .input(${name}SourceProcedure.DeleteSchema)
                 .mutation(${name}SourceProcedure.handleDelete),
-    deleteWith:  procedure
-                .input(${name}SourceProcedure.DeleteWithSchema)
-                .mutation(${name}SourceProcedure.handleDeleteWith),
+    deleteBy:  procedure
+                .input(${name}SourceProcedure.DeleteBySchema)
+                .mutation(${name}SourceProcedure.handleDeleteBy),
     query:  procedure
                 .input(${name}SourceProcedure.QuerySchema)
                 .query(${name}SourceProcedure.handleQuery),
@@ -82,14 +82,14 @@ router({
     fetch:  procedure
                 .input(${name}SourceProcedure.FetchSchema)
                 .query(${name}SourceProcedure.handleFetch),
-    fetchOptional:  procedure
-                .input(${name}SourceProcedure.FetchSchema)
+    fetch$:  procedure
+                .input(${name}SourceProcedure.Fetch$Schema)
                 .query(${name}SourceProcedure.handleFetchOptional),
-    find:   procedure
-                .input(${name}SourceProcedure.FindSchema)
-                .query(${name}SourceProcedure.handleFind),
-    findOptional:   procedure
-                .input(${name}SourceProcedure.FindOptionalSchema)
+    get:   procedure
+                .input(WithIdentitySchema)
+                .query(${name}SourceProcedure.handleGet),
+    get$:   procedure
+                .input(WithIdentitySchema)
                 .query(${name}SourceProcedure.handleFindOptional),
 })
                     `,

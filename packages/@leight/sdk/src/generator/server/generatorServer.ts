@@ -4,25 +4,29 @@ import {type ISdkGeneratorProps} from "../../api";
 import {withSdk}                 from "../../index";
 import {generatorSdkBarrel}      from "../generatorSdkBarrel";
 import {
-    generatorServerBaseSource,
-    type IGeneratorServerBaseSourceParams
-}                                from "./generatorServerBaseSource";
-import {
-    generatorServerSource,
-    type IGeneratorServerSourceParams
-}                                from "./generatorServerSource";
+    IWithRepositoryContainerParams,
+    withRepositoryContainer
+}                                from "./withRepositoryContainer";
 import {
     type IWithRepositoryExParams,
     withRepositoryEx
 }                                from "./withRepositoryEx";
 import {
-    type IWithSourceHandlerParams,
-    withSourceHandler
-}                                from "./withSourceHandler";
+    type IWithRepositoryHandlerParams,
+    withRepositoryHandler
+}                                from "./withRepositoryHandler";
 import {
-    type IWithSourceRouterParams,
-    withSourceRouter
-}                                from "./withSourceRouter";
+    IWithRepositoryMapperParams,
+    withRepositoryMapper
+}                                from "./withRepositoryMapper";
+import {
+    type IWithRepositoryRouterParams,
+    withRepositoryRouter
+}                                from "./withRepositoryRouter";
+import {
+    type IWithRepositoryServiceParams,
+    withRepositoryService
+}                                from "./withRepositoryService";
 
 export type IGeneratorServerProps =
     ISdkGeneratorProps
@@ -31,20 +35,15 @@ export type IGeneratorServerProps =
          * Prisma source generator parameters.
          */
         withRepositoryEx?: IWithRepositoryExParams;
-        withSourceRouter?: IWithSourceRouterParams;
-        /**
-         * Generator for Source without Prisma connection.
-         */
-        BaseSource?: IGeneratorServerBaseSourceParams;
-        /**
-         * Generates public Source (this should NOT be extended in userland)
-         */
-        Source?: IGeneratorServerSourceParams;
+        withRepositoryRouter?: IWithRepositoryRouterParams;
+        withRepositoryMapper?: IWithRepositoryMapperParams;
+        withRepositoryService?: IWithRepositoryServiceParams;
         /**
          * If you want to generate standard Source TRPC procedure API, put your entities
          * here.
          */
-        TrpcSource?: IWithSourceHandlerParams;
+        withRepositoryHandler?: IWithRepositoryHandlerParams;
+        withRepositoryContainer?: IWithRepositoryContainerParams;
     }
 
 export const generatorServer = (
@@ -66,25 +65,29 @@ export const generatorServer = (
     return withSdk([
         async () => {
             await Promise.all([
-                params.BaseSource ? generatorServerBaseSource({
-                    ...$params,
-                    params: params.BaseSource,
-                }) : undefined,
                 params.withRepositoryEx ? withRepositoryEx({
                     ...$params,
                     params: params.withRepositoryEx,
                 }) : undefined,
-                params.withSourceRouter ? withSourceRouter({
+                params.withRepositoryRouter ? withRepositoryRouter({
                     ...$params,
-                    params: params.withSourceRouter,
+                    params: params.withRepositoryRouter,
                 }) : undefined,
-                params.Source ? generatorServerSource({
+                params.withRepositoryMapper ? withRepositoryMapper({
                     ...$params,
-                    params: params.Source,
+                    params: params.withRepositoryMapper,
                 }) : undefined,
-                params.TrpcSource ? withSourceHandler({
+                params.withRepositoryService ? withRepositoryService({
                     ...$params,
-                    params: params.TrpcSource,
+                    params: params.withRepositoryService,
+                }) : undefined,
+                params.withRepositoryHandler ? withRepositoryHandler({
+                    ...$params,
+                    params: params.withRepositoryHandler,
+                }) : undefined,
+                params.withRepositoryContainer ? withRepositoryContainer({
+                    ...$params,
+                    params: params.withRepositoryContainer,
                 }) : undefined,
             ]);
             await generatorSdkBarrel({

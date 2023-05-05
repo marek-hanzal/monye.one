@@ -21,7 +21,7 @@ import {
 
 export class BaseFilterRepositoryEx extends AbstractRepositoryEx<
     IFilterRepositorySchemaEx,
-    FilterSource['Schema']['Repository']
+    FilterSource["Schema"]["Repository"]
 > {
 	static inject = [
         $PrismaClient,
@@ -136,4 +136,4 @@ export class BaseFilterRepositoryEx extends AbstractRepositoryEx<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fl7a71ecv5f90l3evqt14nzy = true;
+export const $leight_az5hwloxdljcrvez2xqostbm = true;

@@ -2,12 +2,12 @@ import {withSourceFile}  from "@leight/generator-server";
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
-export interface IWithSourceHandlerParams {
-    entities: IWithSourceHandlerParams.IEntity[];
+export interface IWithRepositoryHandlerParams {
+    repositories: IWithRepositoryHandlerParams.IRepository[];
 }
 
-export namespace IWithSourceHandlerParams {
-    export interface IEntity {
+export namespace IWithRepositoryHandlerParams {
+    export interface IRepository {
         /**
          * Base name exported (used to name all exported objects)
          */
@@ -26,18 +26,18 @@ export namespace IWithSourceHandlerParams {
     }
 }
 
-export const withSourceHandler: IGenerator<IWithSourceHandlerParams> = async (
+export const withRepositoryHandler: IGenerator<IWithRepositoryHandlerParams> = async (
     {
         barrel,
         directory,
-        params: {entities},
+        params: {repositories},
     }) => {
-    entities.forEach(({name, packages}) => {
+    repositories.forEach(({name, packages}) => {
         withSourceFile()
             .withImports({
                 imports: {
                     "@leight/trpc-source-server": [
-                        "withSourceHandler",
+                        "withRepositoryHandler",
                     ],
                 }
             })
@@ -45,7 +45,7 @@ export const withSourceHandler: IGenerator<IWithSourceHandlerParams> = async (
                 imports: {
                     [packages.schema]: [
                         `$${name}RepositoryService`,
-                        `type I${name}RepositorySchema`,
+                        `type ${name}Source`,
                     ],
                 },
             })
@@ -53,15 +53,15 @@ export const withSourceHandler: IGenerator<IWithSourceHandlerParams> = async (
                 exports: {
                     [`${name}RepositoryHandler`]: {
                         body: `
-withSourceHandler<I${name}RepositorySchema>({
-    sourceService: $${name}RepositoryService,
+withRepositoryHandler<${name}Source["Schema"]["Service"]>({
+    service: $${name}RepositoryService,
 })
                     `,
                     },
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/ServerTrpc/${name}Trpc.ts`),
+                file: normalize(`${directory}/handler/${name}RepositoryHandler.ts`),
                 barrel,
             });
     });

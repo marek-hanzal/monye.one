@@ -3,11 +3,11 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {AbstractSourceService} from "@leight/source-server";
+import {AbstractRepositoryService} from "@leight/source-server";
 import {
-	type ISourceService,
-	type ISourceMapper,
-	type ISource
+	type IRepositoryService,
+	type IRepositoryMapper,
+	type IRepository
 } from "@leight/source";
 import {
 	$FilterSource,
@@ -15,27 +15,27 @@ import {
 	type IFilterSourceSchemaType
 } from "@leight/filter";
 
-export interface IFilterSourceService extends ISourceService<IFilterSourceSchemaType> {
+export interface IFilterRepositoryService extends IRepositoryService<IFilterSourceSchemaType> {
 }
 
-export class FilterBaseSourceService extends AbstractSourceService<IFilterSourceSchemaType> implements IFilterSourceService {
+export class BaseFilterRepositoryService extends AbstractRepositoryService<IFilterSourceSchemaType> implements IFilterRepositoryService {
 	static inject = [
         $FilterSource,
         $FilterSourceMapper,
     ];
     
     constructor(
-        protected $source: ISource<IFilterSourceSchemaType>,
-        protected $mapper: ISourceMapper<IFilterSourceSchemaType>,
+        protected $source: IRepository<IFilterSourceSchemaType>,
+        protected $mapper: IRepositoryMapper<IFilterSourceSchemaType>,
     ) {
         super();
     }
     
-    source(): ISource<IFilterSourceSchemaType> {
+    source(): IRepository<IFilterSourceSchemaType> {
         return this.$source;
     }
     
-    mapper(): ISourceMapper<IFilterSourceSchemaType> {
+    mapper(): IRepositoryMapper<IFilterSourceSchemaType> {
         return this.$mapper;
     }
 }
@@ -44,4 +44,4 @@ export class FilterBaseSourceService extends AbstractSourceService<IFilterSource
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_urf7b7sv226ykq5wvgyj5koj = true;
+export const $leight_s5l0mg0dkjdc46f7xqlwsjd4 = true;
