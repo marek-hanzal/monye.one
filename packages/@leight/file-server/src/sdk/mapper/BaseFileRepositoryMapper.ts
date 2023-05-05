@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {AbstractRepositoryMapper} from "@leight/source-server";
-import {type FilterSource} from "@leight/file";
+import {type FileSource} from "@leight/file";
 
 export class BaseFileRepositoryMapper extends AbstractRepositoryMapper<FileSource["Schema"]["Mapper"]> {
 }
@@ -13,4 +13,4 @@ export class BaseFileRepositoryMapper extends AbstractRepositoryMapper<FileSourc
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_s9wf1sc97irf4nzj2yn6a9bk = true;
+export const $leight_pt3i4dm688kl4g479vdakro3 = true;

@@ -25,4 +25,4 @@ export const TransactionRepositorySchemaEx: ITransactionRepositorySchemaEx["Sche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lnwvvl8w20pziip61avfxuwy = true;
+export const $leight_bd4vylb2k4i2z3n4u7fm7vo1 = true;

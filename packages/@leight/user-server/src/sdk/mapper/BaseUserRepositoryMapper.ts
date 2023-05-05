@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {AbstractRepositoryMapper} from "@leight/source-server";
-import {type FilterSource} from "@leight/user";
+import {type UserSource} from "@leight/user";
 
 export class BaseUserRepositoryMapper extends AbstractRepositoryMapper<UserSource["Schema"]["Mapper"]> {
 }
@@ -13,4 +13,4 @@ export class BaseUserRepositoryMapper extends AbstractRepositoryMapper<UserSourc
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xrjje3aqxieyiq5ii6ybb5qc = true;
+export const $leight_vf9svhs5l26jgoxv4yq14lii = true;

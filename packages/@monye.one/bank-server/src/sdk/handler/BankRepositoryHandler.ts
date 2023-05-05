@@ -16,4 +16,4 @@ export const BankRepositoryHandler = withRepositoryHandler<BankSource["Schema"][
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_scwdexbj89hkw047czorbi1k = true;
+export const $leight_o5a309ehxchzy3gemkz4hjz7 = true;

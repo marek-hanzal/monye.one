@@ -46,4 +46,4 @@ export class BaseBankRepositoryService<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_aec7xt2pg03s0ei8t1urcz9l = true;
+export const $leight_ua8s0npo8oc28ys5q2fwrrj5 = true;

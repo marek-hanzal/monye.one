@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {AbstractRepositoryMapper} from "@leight/source-server";
-import {type FilterSource} from "@monye.one/transaction";
+import {type TransactionKeywordSource} from "@monye.one/transaction";
 
 export class BaseTransactionKeywordRepositoryMapper extends AbstractRepositoryMapper<TransactionKeywordSource["Schema"]["Mapper"]> {
 }
@@ -13,4 +13,4 @@ export class BaseTransactionKeywordRepositoryMapper extends AbstractRepositoryMa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_p9veecxl4zqnc4gckjutdci0 = true;
+export const $leight_r1u9g8yi3p4zgv9r5sks5b3m = true;

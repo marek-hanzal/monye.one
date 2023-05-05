@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mtykcwjpf1vzqtke04s6n6un = true;
+export const $leight_iuz2eckfz2ilcikkrfvkgu7x = true;
 
 export * from "./index";
 export * from "./schema/KeywordRepositorySchemaEx";

@@ -65,44 +65,44 @@ export abstract class AbstractRepositoryService<
         );
     }
 
-    handleCount(props: TRepositoryServiceType["Count"]): Promise<number> {
+    async handleCount(props: TRepositoryServiceType["Count"]): Promise<number> {
         return this.repository().count(props);
     }
 
-    handleDelete(props: TRepositoryServiceType["Delete"]): Promise<TRepositoryServiceType["Dto"]> {
+    async handleDelete(props: TRepositoryServiceType["Delete"]): Promise<TRepositoryServiceType["Dto"]> {
         return this.repository().delete(props);
     }
 
-    handleDeleteBy(props: TRepositoryServiceType["DeleteBy"]): Promise<unknown> {
+    async handleDeleteBy(props: TRepositoryServiceType["DeleteBy"]): Promise<unknown> {
         return this.repository().deleteBy(props);
     }
 
-    handleFetch(props: TRepositoryServiceType["Fetch"]): Promise<TRepositoryServiceType["Dto"]> {
+    async handleFetch(props: TRepositoryServiceType["Fetch"]): Promise<TRepositoryServiceType["Dto"]> {
         return this.repository().fetch(props);
     }
 
-    handleFetch$(props: TRepositoryServiceType["Fetch$"]): Promise<TRepositoryServiceType["Dto"] | null> {
+    async handleFetch$(props: TRepositoryServiceType["Fetch$"]): Promise<TRepositoryServiceType["Dto"] | null> {
         return this.repository().fetch$(props);
     }
 
-    handleGet(id: string): Promise<TRepositoryServiceType["Dto"]> {
+    async handleGet(id: string): Promise<TRepositoryServiceType["Dto"]> {
         return this.repository().get(id);
     }
 
-    handleGet$(id?: string | null): Promise<TRepositoryServiceType["Dto"] | null> {
+    async handleGet$(id?: string | null): Promise<TRepositoryServiceType["Dto"] | null> {
         return this.repository().get$(id);
     }
 
-    handleQuery(props: TRepositoryServiceType["Query"]): Promise<TRepositoryServiceType["Dto"][]> {
-        return Promise.resolve([]);
-    }
-
-    async toPatch(toPatch: TRepositoryServiceType["ToPatch"]): Promise<TRepositoryServiceType["Patch"]> {
-        return this.mapper().toPatch(toPatch);
+    async handleQuery(props: TRepositoryServiceType["Query"]): Promise<TRepositoryServiceType["Dto"][]> {
+        return this.repository().query(props);
     }
 
     async handleSourceUpsert(props: TRepositoryServiceType["UpsertProps"]): Promise<TRepositoryServiceType["Dto"]> {
         return this.repository().upsert(props);
+    }
+
+    async toPatch(toPatch: TRepositoryServiceType["ToPatch"]): Promise<TRepositoryServiceType["Patch"]> {
+        return this.mapper().toPatch(toPatch);
     }
 
     async toDto(entity: TRepositoryServiceType["Entity"]): Promise<TRepositoryServiceType["Dto"]> {

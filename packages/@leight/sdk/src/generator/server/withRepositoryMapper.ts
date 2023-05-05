@@ -38,7 +38,7 @@ export const withRepositoryMapper: IGenerator<IWithRepositoryMapperParams> = asy
                         `AbstractRepositoryMapper`,
                     ],
                     [packages.schema]:       [
-                        `type FilterSource`,
+                        `type ${name}Source`,
                     ],
                 },
             })

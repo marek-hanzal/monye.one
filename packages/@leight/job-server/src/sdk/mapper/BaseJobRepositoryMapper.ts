@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {AbstractRepositoryMapper} from "@leight/source-server";
-import {type FilterSource} from "@leight/job";
+import {type JobSource} from "@leight/job";
 
 export class BaseJobRepositoryMapper extends AbstractRepositoryMapper<JobSource["Schema"]["Mapper"]> {
 }
@@ -13,4 +13,4 @@ export class BaseJobRepositoryMapper extends AbstractRepositoryMapper<JobSource[
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mqc3kglmhu8i6wmhayv9lecw = true;
+export const $leight_vi3rtt83o9qq39wfa0revu6r = true;

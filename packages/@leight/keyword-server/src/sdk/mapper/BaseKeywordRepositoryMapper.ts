@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {AbstractRepositoryMapper} from "@leight/source-server";
-import {type FilterSource} from "@leight/keyword";
+import {type KeywordSource} from "@leight/keyword";
 
 export class BaseKeywordRepositoryMapper extends AbstractRepositoryMapper<KeywordSource["Schema"]["Mapper"]> {
 }
@@ -13,4 +13,4 @@ export class BaseKeywordRepositoryMapper extends AbstractRepositoryMapper<Keywor
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zrcopvk5ft9m8prx9ndt65am = true;
+export const $leight_m1b4o19zo2pmizcyv8neqpd0 = true;
