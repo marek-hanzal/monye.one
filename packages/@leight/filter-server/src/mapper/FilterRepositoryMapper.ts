@@ -6,7 +6,7 @@ import {
 import {Pack}                         from "@leight/utils";
 import {FilterBaseSourceMapper}       from "../sdk";
 
-export class FilterSourceMapper extends FilterBaseSourceMapper {
+export class FilterRepositoryMapper extends FilterBaseSourceMapper {
     static inject = [
         $UserService,
     ];

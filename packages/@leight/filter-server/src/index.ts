@@ -1,3 +1,3 @@
 export * from "./sdk";
 export * from "./source";
-export * from "./FilterContainer";
+export * from "./registerFilterContainer";

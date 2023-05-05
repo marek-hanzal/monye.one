@@ -1,50 +1,66 @@
-import {type IGenerator}    from "../../api";
-import {generatorSdkBarrel} from "../generatorSdkBarrel";
-import {
-    generatorCommonEntityPrismaSource,
-    type IGeneratorCommonEntityPrismaSourceParams
-}                           from "./generatorCommonEntityPrismaSource";
-import {
-    generatorCommonEntitySource,
-    type IGeneratorCommonEntitySourceParams
-}                           from "./generatorCommonEntitySource";
+import {resolvePackageJson}      from "@leight/utils-server";
+import {normalize}               from "node:path";
+import {type ISdkGeneratorProps} from "../../api";
+import {withSdk}                 from "../../index";
+import {generatorSdkBarrel}      from "../generatorSdkBarrel";
 import {
     generatorForm,
     type IGeneratorFormParams
-}                           from "./generatorForm";
+}                                from "./generatorForm";
+import {
+    type IWithRepositoryExParams,
+    withRepositoryEx
+}                                from "./withRepositoryEx";
+import {
+    type IWithRepositorySymbolParams,
+    withRepositorySymbol
+}                                from "./withRepositorySymbol";
 
-export interface IGeneratorCommonParams {
-    PrismaSource?: IGeneratorCommonEntityPrismaSourceParams;
-    EntitySource?: IGeneratorCommonEntitySourceParams;
-    Form?: IGeneratorFormParams;
-}
+export type IGeneratorCommonProps =
+    ISdkGeneratorProps
+    & {
+        withRepositoryEx?: IWithRepositoryExParams;
+        withRepositorySymbol?: IWithRepositorySymbolParams;
+        Form?: IGeneratorFormParams;
+    }
 
-export const generatorCommon: IGenerator<IGeneratorCommonParams> = async (
+export const generatorCommon = (
     {
-        params: {
-                    PrismaSource,
-                    EntitySource,
-                    Form,
-                },
-        ...     props
-    }) => {
-    await Promise.all([
-        PrismaSource ? generatorCommonEntityPrismaSource({
-            ...props,
-            params: PrismaSource,
-        }) : undefined,
-        EntitySource ? generatorCommonEntitySource({
-            ...props,
-            params: EntitySource,
-        }) : undefined,
-        Form ? generatorForm({
-            ...props,
-            params: Form,
-        }) : undefined,
+        packageName = resolvePackageJson().name,
+        folder = "src/sdk",
+        ...params
+    }: IGeneratorCommonProps) => {
+    if (!packageName) {
+        throw new Error("Cannot resolve packageName");
+    }
+
+    const $params = {
+        packageName,
+        barrel:    false,
+        directory: normalize(`${process.cwd()}/${folder}`),
+    } as const;
+
+    return withSdk([
+        async () => {
+            await Promise.all([
+                params.withRepositoryEx ? withRepositoryEx({
+                    ...$params,
+                    params: params.withRepositoryEx,
+                }) : undefined,
+                params.withRepositorySymbol ? withRepositorySymbol({
+                    ...$params,
+                    params: params.withRepositorySymbol,
+                }) : undefined,
+                params.Form ? generatorForm({
+                    ...$params,
+                    params: params.Form,
+                }) : undefined,
+            ]);
+            await generatorSdkBarrel({
+                ...$params,
+                barrel: true,
+                params: {},
+            });
+        },
     ]);
-    await generatorSdkBarrel({
-        ...props,
-        barrel: true,
-        params: {},
-    });
 };

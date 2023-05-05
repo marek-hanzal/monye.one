@@ -12,7 +12,7 @@ import {type SourceType}    from "./SourceType";
  * process and do other tasks not related to the Repository itself).
  */
 export interface Source<
-    TSourceSchema extends ISourceSchema,
+    TSourceSchema extends ISourceSchema = ISourceSchema,
     TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
 > {
     /**

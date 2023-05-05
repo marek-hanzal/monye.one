@@ -3,25 +3,26 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {
-	withSourceSchemaEx,
-	type ISourceSchemaExType
-} from "@leight/source";
+import {type IRepositorySchemaEx} from "@leight/source";
 import {
 	FilterWhereInputSchema,
 	FilterWhereUniqueInputSchema,
 	FilterOrderByWithRelationInputSchema
 } from "@leight/prisma";
 
-export type IFilterPrismaSchemaType = ISourceSchemaExType.of<typeof FilterPrismaSchema>;
+export type IFilterRepositorySchemaEx = typeof FilterRepositorySchemaEx;
 
-export const FilterPrismaSchema = withSourceSchemaEx({
+export const FilterRepositorySchemaEx: IRepositorySchemaEx.Schema<
+    typeof FilterWhereInputSchema,
+    typeof FilterWhereUniqueInputSchema,
+    typeof FilterOrderByWithRelationInputSchema
+> = {
     WhereSchema:       FilterWhereInputSchema,
     WhereUniqueSchema: FilterWhereUniqueInputSchema,
     OrderBySchema:     FilterOrderByWithRelationInputSchema,
-});
+};
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ii65yf3hrs6gefjx1mlq8v0t = true;
+export const $leight_vg09c3vbznk40wrnfszxbsad = true;

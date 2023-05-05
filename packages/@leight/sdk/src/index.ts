@@ -20,4 +20,3 @@ export const withSdk = async (generators: ISdkGenerator[]): Promise<void> => {
 
 export * from "./api";
 export * from "./generator";
-export * from "./utils";

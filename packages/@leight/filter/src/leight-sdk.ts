@@ -1,19 +1,14 @@
-import {
-    withSdk,
-    withSourceGenerators
-} from "@leight/sdk";
+import {generatorCommon} from "@leight/sdk";
 
-void withSdk(
-    withSourceGenerators({
-        PrismaSource: {
-            entities: [
-                {
-                    name:     "Filter",
-                    packages: {
-                        prisma: "@leight/prisma",
-                    },
+void generatorCommon({
+    withRepositoryEx: {
+        repositories: [
+            {
+                name:     "Filter",
+                packages: {
+                    prisma: "@leight/prisma",
                 },
-            ],
-        },
-    })
-);
+            },
+        ],
+    },
+});

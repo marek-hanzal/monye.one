@@ -33,7 +33,7 @@ export interface IRepository<
     /**
      * Delete entities by the given query; deleted entities are on the output
      */
-    deleteBy(deleteBy: TRepositoryType["DeleteBy"]): Promise<TRepositoryType["Entity"][]>;
+    deleteBy(deleteBy: TRepositoryType["DeleteBy"]): Promise<unknown>;
 
     /**
      * Count items based on an optional query.

@@ -7,10 +7,6 @@ export type ITemplate<TParams = void> = IfExtends<
          */
         packageName: string;
         /**
-         * Where to put generated content
-         */
-        folder: string;
-        /**
          * Precomputed normalized target path
          */
         directory: string;

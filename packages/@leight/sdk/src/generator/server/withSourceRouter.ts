@@ -3,11 +3,11 @@ import {normalize}          from "node:path";
 import {type IGenerator}    from "../../api";
 import {generatorSdkBarrel} from "../generatorSdkBarrel";
 
-export interface IGeneratorServerTrpcRouterParams {
-    procedures: IGeneratorServerTrpcRouterParams.IProcedure[];
+export interface IWithSourceRouterParams {
+    procedures: IWithSourceRouterParams.IProcedure[];
 }
 
-export namespace IGeneratorServerTrpcRouterParams {
+export namespace IWithSourceRouterParams {
     export interface IProcedure {
         /**
          * Base name exported (used to name all exported objects)
@@ -26,10 +26,9 @@ export namespace IGeneratorServerTrpcRouterParams {
     }
 }
 
-export const generatorServerTrpcRouter: IGenerator<IGeneratorServerTrpcRouterParams> = async (
+export const withSourceRouter: IGenerator<IWithSourceRouterParams> = async (
     {
         packageName,
-        folder,
         barrel,
         directory,
         params: {procedures},
@@ -98,7 +97,7 @@ router({
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/ServerTrpc/${name}TrpcRouter.ts`),
+                file: normalize(`${directory}/trpc/${name}SourceRouter.ts`),
                 barrel,
             });
     });
@@ -106,7 +105,6 @@ router({
         directory,
         barrel: true,
         packageName,
-        folder,
         params: {},
     });
 };

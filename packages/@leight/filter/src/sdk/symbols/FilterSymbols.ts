@@ -3,13 +3,11 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IFilterSourceSchemaType} from "../../schema/FilterSourceSchema";
-import {type ISourceMapper} from "@leight/source";
-
-export type IFilterSourceMapper = ISourceMapper<IFilterSourceSchemaType>;
-
+export const $FilterRepository = Symbol.for("@leight/filter/IFilterRepository");
+export const $FilterRepositoryMapper = Symbol.for("@leight/filter/IFilterRepositoryMapper");
+export const $FilterRepositoryService = Symbol.for("@leight/filter/IFilterRepositoryService");
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ehca0nz42p10nrdcsvh3fjri = true;
+export const $leight_zo9vnjy48kuakzummzrs59zn = true;
