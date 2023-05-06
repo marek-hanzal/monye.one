@@ -2,7 +2,7 @@ import {DateTime} from "@leight/i18n";
 import {
     DtoSchema,
     FilterSchema,
-    type ISourceSchemaType,
+    type Source,
     withSourceSchema
 }                 from "@leight/source";
 import {z}        from "@leight/zod";
@@ -23,7 +23,7 @@ export const CalendarEventSourceSchema = withSourceSchema({
         }).optional(),
     })),
 });
-export type ICalendarEventSourceSchemaType = ISourceSchemaType.of<typeof CalendarEventSourceSchema>;
+export type CalendarEventSource = Source<typeof CalendarEventSourceSchema>;
 
 export interface IDateRange {
     from: DateTime;

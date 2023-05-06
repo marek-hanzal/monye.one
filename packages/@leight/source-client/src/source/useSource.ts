@@ -1,15 +1,11 @@
-import {
-    type ISourceSchemaType,
-    type IUseSource,
-    type IUseSourceProps
-} from "@leight/source";
+import {type ISourceSchema} from "@leight/source";
 
-export const useSource = <TSourceSchemaType extends ISourceSchemaType>(
+export const useSource = <TSourceSchema extends ISourceSchema>(
     {
         cacheTime = 120,
         schema,
         SourceStore,
-    }: IUseSourceProps<TSourceSchemaType>): IUseSource<TSourceSchemaType> => {
+    }: IUseSourceProps<TSourceSchema>): IUseSource<TSourceSchema> => {
     const $cacheTime = cacheTime ? cacheTime * 1000 : undefined;
     const {query}    = SourceStore.Query.useState(({$query}) => ({query: $query}));
     const result     = SourceStore.use.useQuery(query, {
