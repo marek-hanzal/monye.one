@@ -6,6 +6,8 @@ export * from "./IRepositorySchema";
 export * from "./IRepositorySchemaEx";
 export * from "./IRepositoryService";
 export * from "./IRepositoryServiceSchema";
+export * from "./IUseRepository";
+export * from "./IUseRepositoryQuery";
 export * from "./RepositoryMapperType";
 export * from "./RepositoryServiceType";
 export * from "./RepositoryType";
