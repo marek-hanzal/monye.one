@@ -1,10 +1,5 @@
-import {
-    ISourceSchema,
-    ISourceSchemaType,
-    withCreateSchema,
-    withPatchSchema
-}                         from "@leight/source";
-import {type IFormSchema} from "../api";
+import {type ISourceSchema} from "@leight/source";
+import {type IFormSchema}   from "../api";
 import {
     FormDtoSchema,
     FormRequestSchema,
@@ -12,7 +7,7 @@ import {
     type IFormDtoSchema,
     type IFormRequestSchema,
     type IFormValuesSchema
-}                         from "../schema";
+}                           from "../schema";
 
 export type IWithFormSchemaProps<
     TValuesSchema extends IFormValuesSchema,
@@ -35,40 +30,38 @@ export const withFormSchema = <
     DtoSchema,
 });
 
-export interface IWithFormCreateSchemaProps<TSourceSchemaType extends ISourceSchemaType, TValuesSchema extends IFormValuesSchema> {
-    schema: ISourceSchema.of<TSourceSchemaType>;
+export interface IWithFormCreateSchemaProps<TSourceSchema extends ISourceSchema, TValuesSchema extends IFormValuesSchema> {
+    schema: TSourceSchema;
     ValuesSchema: TValuesSchema;
 }
 
-export const withFormCreateSchema = <TSourceSchemaType extends ISourceSchemaType, TValuesSchema extends IFormValuesSchema>(
+export const withFormCreateSchema = <TSourceSchema extends ISourceSchema, TValuesSchema extends IFormValuesSchema>(
     {
         schema,
         ValuesSchema,
-    }: IWithFormCreateSchemaProps<TSourceSchemaType, TValuesSchema>
+    }: IWithFormCreateSchemaProps<TSourceSchema, TValuesSchema>
 ) => {
-    const RequestSchema = withCreateSchema<TSourceSchemaType>(schema);
-    return withFormSchema<TValuesSchema, typeof RequestSchema, TSourceSchemaType["DtoSchema"]>({
+    return withFormSchema<TValuesSchema, TSourceSchema["Mapper"]["ToCreateSchema"], TSourceSchema["Mapper"]["DtoSchema"]>({
         ValuesSchema,
-        RequestSchema,
-        DtoSchema: schema.DtoSchema,
+        RequestSchema: schema.Mapper.ToCreateSchema,
+        DtoSchema:     schema.Mapper.DtoSchema,
     });
 };
 
-export interface IWithFormPatchSchemaProps<TSourceSchemaType extends ISourceSchemaType, TValuesSchema extends IFormValuesSchema> {
-    schema: ISourceSchema.of<TSourceSchemaType>;
+export interface IWithFormPatchSchemaProps<TSourceSchema extends ISourceSchema, TValuesSchema extends IFormValuesSchema> {
+    schema: TSourceSchema;
     ValuesSchema: TValuesSchema;
 }
 
-export const withFormPatchSchema = <TSourceSchemaType extends ISourceSchemaType, TValuesSchema extends IFormValuesSchema>(
+export const withFormPatchSchema = <TSourceSchema extends ISourceSchema, TValuesSchema extends IFormValuesSchema>(
     {
         schema,
         ValuesSchema,
-    }: IWithFormPatchSchemaProps<TSourceSchemaType, TValuesSchema>
+    }: IWithFormPatchSchemaProps<TSourceSchema, TValuesSchema>
 ) => {
-    const RequestSchema = withPatchSchema<TSourceSchemaType>(schema);
-    return withFormSchema<TValuesSchema, typeof RequestSchema, TSourceSchemaType["DtoSchema"]>({
+    return withFormSchema<TValuesSchema, TSourceSchema["Mapper"]["ToPatchSchemaProps"], TSourceSchema["Mapper"]["DtoSchema"]>({
         ValuesSchema,
-        RequestSchema,
-        DtoSchema: schema.DtoSchema,
+        RequestSchema: schema.Mapper.ToPatchSchemaProps,
+        DtoSchema:     schema.Mapper.DtoSchema,
     });
 };
