@@ -4,51 +4,56 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
+	WithIdentitySchema,
+	WithOptionalIdentitySchema
+} from "@leight/source";
+import {
 	router,
 	procedure
 } from "../../router";
+import {CalendarEventSourceSchema} from "@monye.one/book";
 import {CalendarEventRepositoryHandler} from "@monye.one/book-server";
 
 export const CalendarEventRepositoryRouter = router({
     create: procedure
-                .input(CalendarEventSourceProcedure.CreateSchema)
-                .mutation(CalendarEventSourceProcedure.handleCreate),
+                .input(CalendarEventSourceSchema.CreateSchema)
+                .mutation(CalendarEventRepositoryHandler.handleCreate),
     patch:  procedure
-                .input(CalendarEventSourceProcedure.PatchSchema)
-                .mutation(CalendarEventSourceProcedure.handlePatch),
+                .input(CalendarEventSourceSchema.PatchSchema)
+                .mutation(CalendarEventRepositoryHandler.handlePatch),
     patchBy:  procedure
-                .input(CalendarEventSourceProcedure.PatchBySchema)
-                .mutation(CalendarEventSourceProcedure.handlePatchBy),
+                .input(CalendarEventSourceSchema.PatchBySchema)
+                .mutation(CalendarEventRepositoryHandler.handlePatchBy),
     upsert:  procedure
-                .input(CalendarEventSourceProcedure.UpsertSchema)
-                .mutation(CalendarEventSourceProcedure.handleUpsert),
+                .input(CalendarEventSourceSchema.UpsertSchema)
+                .mutation(CalendarEventRepositoryHandler.handleUpsert),
     delete:  procedure
-                .input(CalendarEventSourceProcedure.DeleteSchema)
-                .mutation(CalendarEventSourceProcedure.handleDelete),
+                .input(CalendarEventSourceSchema.DeleteSchema)
+                .mutation(CalendarEventRepositoryHandler.handleDelete),
     deleteBy:  procedure
-                .input(CalendarEventSourceProcedure.DeleteBySchema)
-                .mutation(CalendarEventSourceProcedure.handleDeleteBy),
+                .input(CalendarEventSourceSchema.DeleteBySchema)
+                .mutation(CalendarEventRepositoryHandler.handleDeleteBy),
     query:  procedure
-                .input(CalendarEventSourceProcedure.QuerySchema)
-                .query(CalendarEventSourceProcedure.handleQuery),
+                .input(CalendarEventSourceSchema.QuerySchema)
+                .query(CalendarEventRepositoryHandler.handleQuery),
     count:  procedure
-                .input(CalendarEventSourceProcedure.CountSchema)
-                .query(CalendarEventSourceProcedure.handleCount),
+                .input(CalendarEventSourceSchema.CountSchema)
+                .query(CalendarEventRepositoryHandler.handleCount),
     fetch:  procedure
-                .input(CalendarEventSourceProcedure.FetchSchema)
-                .query(CalendarEventSourceProcedure.handleFetch),
+                .input(CalendarEventSourceSchema.FetchSchema)
+                .query(CalendarEventRepositoryHandler.handleFetch),
     fetch$:  procedure
-                .input(CalendarEventSourceProcedure.Fetch$Schema)
-                .query(CalendarEventSourceProcedure.handleFetchOptional),
+                .input(CalendarEventSourceSchema.Fetch$Schema)
+                .query(CalendarEventRepositoryHandler.handleFetch$),
     get:   procedure
                 .input(WithIdentitySchema)
-                .query(CalendarEventSourceProcedure.handleGet),
+                .query(CalendarEventRepositoryHandler.handleGet),
     get$:   procedure
-                .input(WithIdentitySchema)
-                .query(CalendarEventSourceProcedure.handleFindOptional),
+                .input(WithOptionalIdentitySchema)
+                .query(CalendarEventRepositoryHandler.handleGet$),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_z1mcrlzwq936ok28m80rdhrd = true;
+export const $leight_las73z5jtvqtyloykyp34row = true;

@@ -4,51 +4,56 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
+	WithIdentitySchema,
+	WithOptionalIdentitySchema
+} from "@leight/source";
+import {
 	router,
 	procedure
 } from "../../router";
+import {FilterSourceSchema} from "@leight/filter";
 import {FilterRepositoryHandler} from "@leight/filter-server";
 
 export const FilterRepositoryRouter = router({
     create: procedure
-                .input(FilterSourceProcedure.CreateSchema)
-                .mutation(FilterSourceProcedure.handleCreate),
+                .input(FilterSourceSchema.CreateSchema)
+                .mutation(FilterRepositoryHandler.handleCreate),
     patch:  procedure
-                .input(FilterSourceProcedure.PatchSchema)
-                .mutation(FilterSourceProcedure.handlePatch),
+                .input(FilterSourceSchema.PatchSchema)
+                .mutation(FilterRepositoryHandler.handlePatch),
     patchBy:  procedure
-                .input(FilterSourceProcedure.PatchBySchema)
-                .mutation(FilterSourceProcedure.handlePatchBy),
+                .input(FilterSourceSchema.PatchBySchema)
+                .mutation(FilterRepositoryHandler.handlePatchBy),
     upsert:  procedure
-                .input(FilterSourceProcedure.UpsertSchema)
-                .mutation(FilterSourceProcedure.handleUpsert),
+                .input(FilterSourceSchema.UpsertSchema)
+                .mutation(FilterRepositoryHandler.handleUpsert),
     delete:  procedure
-                .input(FilterSourceProcedure.DeleteSchema)
-                .mutation(FilterSourceProcedure.handleDelete),
+                .input(FilterSourceSchema.DeleteSchema)
+                .mutation(FilterRepositoryHandler.handleDelete),
     deleteBy:  procedure
-                .input(FilterSourceProcedure.DeleteBySchema)
-                .mutation(FilterSourceProcedure.handleDeleteBy),
+                .input(FilterSourceSchema.DeleteBySchema)
+                .mutation(FilterRepositoryHandler.handleDeleteBy),
     query:  procedure
-                .input(FilterSourceProcedure.QuerySchema)
-                .query(FilterSourceProcedure.handleQuery),
+                .input(FilterSourceSchema.QuerySchema)
+                .query(FilterRepositoryHandler.handleQuery),
     count:  procedure
-                .input(FilterSourceProcedure.CountSchema)
-                .query(FilterSourceProcedure.handleCount),
+                .input(FilterSourceSchema.CountSchema)
+                .query(FilterRepositoryHandler.handleCount),
     fetch:  procedure
-                .input(FilterSourceProcedure.FetchSchema)
-                .query(FilterSourceProcedure.handleFetch),
+                .input(FilterSourceSchema.FetchSchema)
+                .query(FilterRepositoryHandler.handleFetch),
     fetch$:  procedure
-                .input(FilterSourceProcedure.Fetch$Schema)
-                .query(FilterSourceProcedure.handleFetchOptional),
+                .input(FilterSourceSchema.Fetch$Schema)
+                .query(FilterRepositoryHandler.handleFetch$),
     get:   procedure
                 .input(WithIdentitySchema)
-                .query(FilterSourceProcedure.handleGet),
+                .query(FilterRepositoryHandler.handleGet),
     get$:   procedure
-                .input(WithIdentitySchema)
-                .query(FilterSourceProcedure.handleFindOptional),
+                .input(WithOptionalIdentitySchema)
+                .query(FilterRepositoryHandler.handleGet$),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_k3gvbc9js06tauw1jpzgbpfq = true;
+export const $leight_a8i5plp4h8b4h6c41fku6j0x = true;

@@ -4,51 +4,56 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
+	WithIdentitySchema,
+	WithOptionalIdentitySchema
+} from "@leight/source";
+import {
 	router,
 	procedure
 } from "../../router";
+import {TransactionSourceSchema} from "@monye.one/transaction";
 import {TransactionRepositoryHandler} from "@monye.one/transaction-server";
 
 export const TransactionRepositoryRouter = router({
     create: procedure
-                .input(TransactionSourceProcedure.CreateSchema)
-                .mutation(TransactionSourceProcedure.handleCreate),
+                .input(TransactionSourceSchema.CreateSchema)
+                .mutation(TransactionRepositoryHandler.handleCreate),
     patch:  procedure
-                .input(TransactionSourceProcedure.PatchSchema)
-                .mutation(TransactionSourceProcedure.handlePatch),
+                .input(TransactionSourceSchema.PatchSchema)
+                .mutation(TransactionRepositoryHandler.handlePatch),
     patchBy:  procedure
-                .input(TransactionSourceProcedure.PatchBySchema)
-                .mutation(TransactionSourceProcedure.handlePatchBy),
+                .input(TransactionSourceSchema.PatchBySchema)
+                .mutation(TransactionRepositoryHandler.handlePatchBy),
     upsert:  procedure
-                .input(TransactionSourceProcedure.UpsertSchema)
-                .mutation(TransactionSourceProcedure.handleUpsert),
+                .input(TransactionSourceSchema.UpsertSchema)
+                .mutation(TransactionRepositoryHandler.handleUpsert),
     delete:  procedure
-                .input(TransactionSourceProcedure.DeleteSchema)
-                .mutation(TransactionSourceProcedure.handleDelete),
+                .input(TransactionSourceSchema.DeleteSchema)
+                .mutation(TransactionRepositoryHandler.handleDelete),
     deleteBy:  procedure
-                .input(TransactionSourceProcedure.DeleteBySchema)
-                .mutation(TransactionSourceProcedure.handleDeleteBy),
+                .input(TransactionSourceSchema.DeleteBySchema)
+                .mutation(TransactionRepositoryHandler.handleDeleteBy),
     query:  procedure
-                .input(TransactionSourceProcedure.QuerySchema)
-                .query(TransactionSourceProcedure.handleQuery),
+                .input(TransactionSourceSchema.QuerySchema)
+                .query(TransactionRepositoryHandler.handleQuery),
     count:  procedure
-                .input(TransactionSourceProcedure.CountSchema)
-                .query(TransactionSourceProcedure.handleCount),
+                .input(TransactionSourceSchema.CountSchema)
+                .query(TransactionRepositoryHandler.handleCount),
     fetch:  procedure
-                .input(TransactionSourceProcedure.FetchSchema)
-                .query(TransactionSourceProcedure.handleFetch),
+                .input(TransactionSourceSchema.FetchSchema)
+                .query(TransactionRepositoryHandler.handleFetch),
     fetch$:  procedure
-                .input(TransactionSourceProcedure.Fetch$Schema)
-                .query(TransactionSourceProcedure.handleFetchOptional),
+                .input(TransactionSourceSchema.Fetch$Schema)
+                .query(TransactionRepositoryHandler.handleFetch$),
     get:   procedure
                 .input(WithIdentitySchema)
-                .query(TransactionSourceProcedure.handleGet),
+                .query(TransactionRepositoryHandler.handleGet),
     get$:   procedure
-                .input(WithIdentitySchema)
-                .query(TransactionSourceProcedure.handleFindOptional),
+                .input(WithOptionalIdentitySchema)
+                .query(TransactionRepositoryHandler.handleGet$),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_phqgoir45w7svv9vl7skp3jl = true;
+export const $leight_mq3twpsgxsktr0wquyabwfug = true;

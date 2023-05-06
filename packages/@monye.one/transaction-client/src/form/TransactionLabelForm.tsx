@@ -11,9 +11,9 @@ export const TransactionLabelForm: FC<ITransactionLabelFormProps> = props => {
     return <TransactionLabelTrpcForm
         toRequest={({values}) => values}
         toValues={values => ({labelIds: []})}
-        inputs={() => ({
-            ""
-        })}
+        // inputs={() => ({
+        //     ""
+        // })}
         dto={{id: "undefined"}}
         {...props}
     >

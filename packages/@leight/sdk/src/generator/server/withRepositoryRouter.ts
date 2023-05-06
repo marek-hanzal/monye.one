@@ -37,9 +37,24 @@ export const withRepositoryRouter: IGenerator<IWithRepositoryRouterParams> = asy
         withSourceFile()
             .withImports({
                 imports: {
+                    "@leight/source": [
+                        "WithIdentitySchema",
+                        "WithOptionalIdentitySchema",
+                    ],
+                },
+            })
+            .withImports({
+                imports: {
                     [packages.router || "../../router"]: [
                         "router",
                         "procedure",
+                    ],
+                },
+            })
+            .withImports({
+                imports: {
+                    [packages.schema]: [
+                        `${name}SourceSchema`,
                     ],
                 },
             })
@@ -56,41 +71,41 @@ export const withRepositoryRouter: IGenerator<IWithRepositoryRouterParams> = asy
                         body: `
 router({
     create: procedure
-                .input(${name}SourceProcedure.CreateSchema)
-                .mutation(${name}SourceProcedure.handleCreate),
+                .input(${name}SourceSchema.CreateSchema)
+                .mutation(${name}RepositoryHandler.handleCreate),
     patch:  procedure
-                .input(${name}SourceProcedure.PatchSchema)
-                .mutation(${name}SourceProcedure.handlePatch),
+                .input(${name}SourceSchema.PatchSchema)
+                .mutation(${name}RepositoryHandler.handlePatch),
     patchBy:  procedure
-                .input(${name}SourceProcedure.PatchBySchema)
-                .mutation(${name}SourceProcedure.handlePatchBy),
+                .input(${name}SourceSchema.PatchBySchema)
+                .mutation(${name}RepositoryHandler.handlePatchBy),
     upsert:  procedure
-                .input(${name}SourceProcedure.UpsertSchema)
-                .mutation(${name}SourceProcedure.handleUpsert),
+                .input(${name}SourceSchema.UpsertSchema)
+                .mutation(${name}RepositoryHandler.handleUpsert),
     delete:  procedure
-                .input(${name}SourceProcedure.DeleteSchema)
-                .mutation(${name}SourceProcedure.handleDelete),
+                .input(${name}SourceSchema.DeleteSchema)
+                .mutation(${name}RepositoryHandler.handleDelete),
     deleteBy:  procedure
-                .input(${name}SourceProcedure.DeleteBySchema)
-                .mutation(${name}SourceProcedure.handleDeleteBy),
+                .input(${name}SourceSchema.DeleteBySchema)
+                .mutation(${name}RepositoryHandler.handleDeleteBy),
     query:  procedure
-                .input(${name}SourceProcedure.QuerySchema)
-                .query(${name}SourceProcedure.handleQuery),
+                .input(${name}SourceSchema.QuerySchema)
+                .query(${name}RepositoryHandler.handleQuery),
     count:  procedure
-                .input(${name}SourceProcedure.CountSchema)
-                .query(${name}SourceProcedure.handleCount),
+                .input(${name}SourceSchema.CountSchema)
+                .query(${name}RepositoryHandler.handleCount),
     fetch:  procedure
-                .input(${name}SourceProcedure.FetchSchema)
-                .query(${name}SourceProcedure.handleFetch),
+                .input(${name}SourceSchema.FetchSchema)
+                .query(${name}RepositoryHandler.handleFetch),
     fetch$:  procedure
-                .input(${name}SourceProcedure.Fetch$Schema)
-                .query(${name}SourceProcedure.handleFetchOptional),
+                .input(${name}SourceSchema.Fetch$Schema)
+                .query(${name}RepositoryHandler.handleFetch$),
     get:   procedure
                 .input(WithIdentitySchema)
-                .query(${name}SourceProcedure.handleGet),
+                .query(${name}RepositoryHandler.handleGet),
     get$:   procedure
-                .input(WithIdentitySchema)
-                .query(${name}SourceProcedure.handleFindOptional),
+                .input(WithOptionalIdentitySchema)
+                .query(${name}RepositoryHandler.handleGet$),
 })
                     `,
                     },

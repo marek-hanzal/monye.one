@@ -4,51 +4,56 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
+	WithIdentitySchema,
+	WithOptionalIdentitySchema
+} from "@leight/source";
+import {
 	router,
 	procedure
 } from "../../router";
+import {LabelSourceSchema} from "@leight/label";
 import {LabelRepositoryHandler} from "@leight/label-server";
 
 export const LabelRepositoryRouter = router({
     create: procedure
-                .input(LabelSourceProcedure.CreateSchema)
-                .mutation(LabelSourceProcedure.handleCreate),
+                .input(LabelSourceSchema.CreateSchema)
+                .mutation(LabelRepositoryHandler.handleCreate),
     patch:  procedure
-                .input(LabelSourceProcedure.PatchSchema)
-                .mutation(LabelSourceProcedure.handlePatch),
+                .input(LabelSourceSchema.PatchSchema)
+                .mutation(LabelRepositoryHandler.handlePatch),
     patchBy:  procedure
-                .input(LabelSourceProcedure.PatchBySchema)
-                .mutation(LabelSourceProcedure.handlePatchBy),
+                .input(LabelSourceSchema.PatchBySchema)
+                .mutation(LabelRepositoryHandler.handlePatchBy),
     upsert:  procedure
-                .input(LabelSourceProcedure.UpsertSchema)
-                .mutation(LabelSourceProcedure.handleUpsert),
+                .input(LabelSourceSchema.UpsertSchema)
+                .mutation(LabelRepositoryHandler.handleUpsert),
     delete:  procedure
-                .input(LabelSourceProcedure.DeleteSchema)
-                .mutation(LabelSourceProcedure.handleDelete),
+                .input(LabelSourceSchema.DeleteSchema)
+                .mutation(LabelRepositoryHandler.handleDelete),
     deleteBy:  procedure
-                .input(LabelSourceProcedure.DeleteBySchema)
-                .mutation(LabelSourceProcedure.handleDeleteBy),
+                .input(LabelSourceSchema.DeleteBySchema)
+                .mutation(LabelRepositoryHandler.handleDeleteBy),
     query:  procedure
-                .input(LabelSourceProcedure.QuerySchema)
-                .query(LabelSourceProcedure.handleQuery),
+                .input(LabelSourceSchema.QuerySchema)
+                .query(LabelRepositoryHandler.handleQuery),
     count:  procedure
-                .input(LabelSourceProcedure.CountSchema)
-                .query(LabelSourceProcedure.handleCount),
+                .input(LabelSourceSchema.CountSchema)
+                .query(LabelRepositoryHandler.handleCount),
     fetch:  procedure
-                .input(LabelSourceProcedure.FetchSchema)
-                .query(LabelSourceProcedure.handleFetch),
+                .input(LabelSourceSchema.FetchSchema)
+                .query(LabelRepositoryHandler.handleFetch),
     fetch$:  procedure
-                .input(LabelSourceProcedure.Fetch$Schema)
-                .query(LabelSourceProcedure.handleFetchOptional),
+                .input(LabelSourceSchema.Fetch$Schema)
+                .query(LabelRepositoryHandler.handleFetch$),
     get:   procedure
                 .input(WithIdentitySchema)
-                .query(LabelSourceProcedure.handleGet),
+                .query(LabelRepositoryHandler.handleGet),
     get$:   procedure
-                .input(WithIdentitySchema)
-                .query(LabelSourceProcedure.handleFindOptional),
+                .input(WithOptionalIdentitySchema)
+                .query(LabelRepositoryHandler.handleGet$),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_dqjv675i5tbw5ce818uskfay = true;
+export const $leight_eyouyhigwgjiix8te1jzla7b = true;

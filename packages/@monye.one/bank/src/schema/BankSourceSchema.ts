@@ -4,7 +4,7 @@ import {
     ParamsSchema,
     PatchSchema,
     SortOrderSchema,
-    Source,
+    type Source,
     ToCreateSchema,
     ToPatchSchema,
     withSourceSchema

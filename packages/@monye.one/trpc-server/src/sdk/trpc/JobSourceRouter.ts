@@ -4,51 +4,56 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
+	WithIdentitySchema,
+	WithOptionalIdentitySchema
+} from "@leight/source";
+import {
 	router,
 	procedure
 } from "../../router";
+import {JobSourceSchema} from "@leight/job";
 import {JobRepositoryHandler} from "@leight/job-server";
 
 export const JobRepositoryRouter = router({
     create: procedure
-                .input(JobSourceProcedure.CreateSchema)
-                .mutation(JobSourceProcedure.handleCreate),
+                .input(JobSourceSchema.CreateSchema)
+                .mutation(JobRepositoryHandler.handleCreate),
     patch:  procedure
-                .input(JobSourceProcedure.PatchSchema)
-                .mutation(JobSourceProcedure.handlePatch),
+                .input(JobSourceSchema.PatchSchema)
+                .mutation(JobRepositoryHandler.handlePatch),
     patchBy:  procedure
-                .input(JobSourceProcedure.PatchBySchema)
-                .mutation(JobSourceProcedure.handlePatchBy),
+                .input(JobSourceSchema.PatchBySchema)
+                .mutation(JobRepositoryHandler.handlePatchBy),
     upsert:  procedure
-                .input(JobSourceProcedure.UpsertSchema)
-                .mutation(JobSourceProcedure.handleUpsert),
+                .input(JobSourceSchema.UpsertSchema)
+                .mutation(JobRepositoryHandler.handleUpsert),
     delete:  procedure
-                .input(JobSourceProcedure.DeleteSchema)
-                .mutation(JobSourceProcedure.handleDelete),
+                .input(JobSourceSchema.DeleteSchema)
+                .mutation(JobRepositoryHandler.handleDelete),
     deleteBy:  procedure
-                .input(JobSourceProcedure.DeleteBySchema)
-                .mutation(JobSourceProcedure.handleDeleteBy),
+                .input(JobSourceSchema.DeleteBySchema)
+                .mutation(JobRepositoryHandler.handleDeleteBy),
     query:  procedure
-                .input(JobSourceProcedure.QuerySchema)
-                .query(JobSourceProcedure.handleQuery),
+                .input(JobSourceSchema.QuerySchema)
+                .query(JobRepositoryHandler.handleQuery),
     count:  procedure
-                .input(JobSourceProcedure.CountSchema)
-                .query(JobSourceProcedure.handleCount),
+                .input(JobSourceSchema.CountSchema)
+                .query(JobRepositoryHandler.handleCount),
     fetch:  procedure
-                .input(JobSourceProcedure.FetchSchema)
-                .query(JobSourceProcedure.handleFetch),
+                .input(JobSourceSchema.FetchSchema)
+                .query(JobRepositoryHandler.handleFetch),
     fetch$:  procedure
-                .input(JobSourceProcedure.Fetch$Schema)
-                .query(JobSourceProcedure.handleFetchOptional),
+                .input(JobSourceSchema.Fetch$Schema)
+                .query(JobRepositoryHandler.handleFetch$),
     get:   procedure
                 .input(WithIdentitySchema)
-                .query(JobSourceProcedure.handleGet),
+                .query(JobRepositoryHandler.handleGet),
     get$:   procedure
-                .input(WithIdentitySchema)
-                .query(JobSourceProcedure.handleFindOptional),
+                .input(WithOptionalIdentitySchema)
+                .query(JobRepositoryHandler.handleGet$),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hbgbxo4frx2aahqm6q3jqp02 = true;
+export const $leight_u16rwzv18oiwbg021bp6ugbu = true;

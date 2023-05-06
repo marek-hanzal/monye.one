@@ -4,51 +4,56 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
+	WithIdentitySchema,
+	WithOptionalIdentitySchema
+} from "@leight/source";
+import {
 	router,
 	procedure
 } from "../../router";
+import {BankSourceSchema} from "@monye.one/bank";
 import {BankRepositoryHandler} from "@monye.one/bank-server";
 
 export const BankRepositoryRouter = router({
     create: procedure
-                .input(BankSourceProcedure.CreateSchema)
-                .mutation(BankSourceProcedure.handleCreate),
+                .input(BankSourceSchema.CreateSchema)
+                .mutation(BankRepositoryHandler.handleCreate),
     patch:  procedure
-                .input(BankSourceProcedure.PatchSchema)
-                .mutation(BankSourceProcedure.handlePatch),
+                .input(BankSourceSchema.PatchSchema)
+                .mutation(BankRepositoryHandler.handlePatch),
     patchBy:  procedure
-                .input(BankSourceProcedure.PatchBySchema)
-                .mutation(BankSourceProcedure.handlePatchBy),
+                .input(BankSourceSchema.PatchBySchema)
+                .mutation(BankRepositoryHandler.handlePatchBy),
     upsert:  procedure
-                .input(BankSourceProcedure.UpsertSchema)
-                .mutation(BankSourceProcedure.handleUpsert),
+                .input(BankSourceSchema.UpsertSchema)
+                .mutation(BankRepositoryHandler.handleUpsert),
     delete:  procedure
-                .input(BankSourceProcedure.DeleteSchema)
-                .mutation(BankSourceProcedure.handleDelete),
+                .input(BankSourceSchema.DeleteSchema)
+                .mutation(BankRepositoryHandler.handleDelete),
     deleteBy:  procedure
-                .input(BankSourceProcedure.DeleteBySchema)
-                .mutation(BankSourceProcedure.handleDeleteBy),
+                .input(BankSourceSchema.DeleteBySchema)
+                .mutation(BankRepositoryHandler.handleDeleteBy),
     query:  procedure
-                .input(BankSourceProcedure.QuerySchema)
-                .query(BankSourceProcedure.handleQuery),
+                .input(BankSourceSchema.QuerySchema)
+                .query(BankRepositoryHandler.handleQuery),
     count:  procedure
-                .input(BankSourceProcedure.CountSchema)
-                .query(BankSourceProcedure.handleCount),
+                .input(BankSourceSchema.CountSchema)
+                .query(BankRepositoryHandler.handleCount),
     fetch:  procedure
-                .input(BankSourceProcedure.FetchSchema)
-                .query(BankSourceProcedure.handleFetch),
+                .input(BankSourceSchema.FetchSchema)
+                .query(BankRepositoryHandler.handleFetch),
     fetch$:  procedure
-                .input(BankSourceProcedure.Fetch$Schema)
-                .query(BankSourceProcedure.handleFetchOptional),
+                .input(BankSourceSchema.Fetch$Schema)
+                .query(BankRepositoryHandler.handleFetch$),
     get:   procedure
                 .input(WithIdentitySchema)
-                .query(BankSourceProcedure.handleGet),
+                .query(BankRepositoryHandler.handleGet),
     get$:   procedure
-                .input(WithIdentitySchema)
-                .query(BankSourceProcedure.handleFindOptional),
+                .input(WithOptionalIdentitySchema)
+                .query(BankRepositoryHandler.handleGet$),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_s7qggmh65t59oqc76yghmu51 = true;
+export const $leight_pwob0rr7xx7f0xdapn756nsl = true;
