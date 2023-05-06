@@ -17,7 +17,7 @@ export const Pagination: FC<IPaginationProps> = (
         ...props
     }) => {
     const $cacheTime                       = 120;
-    const {$filter, $size, $page, setPage} = Source.Query.useState(({$filter, $size, $page, setPage}) => ({$filter, $size, $page, setPage}));
+    const {$filter, $size, $page, setPage} = Source.query.useState(({$filter, $size, $page, setPage}) => ({$filter, $size, $page, setPage}));
     const result                           = Source.repository.useCount($filter, {
         cacheTime: $cacheTime * 1000,
         staleTime: $cacheTime * 1000,

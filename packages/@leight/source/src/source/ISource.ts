@@ -8,5 +8,5 @@ import {type Source}           from "./Source";
  */
 export interface ISource<TSource extends Source = Source> {
     repository: IUseRepository<TSource["Schema"]["Mapper"]>;
-    Query: IStoreContext<IQueryStoreProps<TSource["Schema"]["Repository"]>>;
+    query: IStoreContext<IQueryStoreProps<TSource["Schema"]["Repository"]>>;
 }
