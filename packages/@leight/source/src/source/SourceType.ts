@@ -1,6 +1,5 @@
 import {type IQueryStoreProps} from "../query";
 import {
-    type IUseRepository,
     type IUseRepositoryQuery,
     type RepositoryMapperType,
     type RepositoryServiceType,
@@ -19,6 +18,5 @@ export interface SourceType<TSourceSchema extends ISourceSchema = ISourceSchema>
         TSourceSchema["Service"]
     >;
     QueryStore: IQueryStoreProps<TSourceSchema["Repository"]>;
-    UseRepository: IUseRepository<TSourceSchema["Mapper"]>;
     UseRepositoryQuery: IUseRepositoryQuery<TSourceSchema["Mapper"]>;
 }

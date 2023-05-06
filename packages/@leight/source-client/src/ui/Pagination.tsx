@@ -1,4 +1,4 @@
-import {type ISourceStore}            from "@leight/source";
+import {type ISource}                 from "@leight/source";
 import {Pagination as CoolPagination} from "@mantine/core";
 import {
     type ComponentProps,
@@ -6,23 +6,23 @@ import {
 }                                     from "react";
 
 export interface IPaginationProps extends Partial<ComponentProps<typeof CoolPagination>> {
-    SourceStore: ISourceStore<any>;
+    Source: ISource;
     hideOnSingle?: boolean;
 }
 
 export const Pagination: FC<IPaginationProps> = (
     {
-        SourceStore,
+        Source,
         hideOnSingle = true,
         ...props
     }) => {
-    const $cacheTime       = 120;
-    const {query, setPage} = SourceStore.Query.useState(({$query, setPage}) => ({query: $query, setPage}));
-    const result           = SourceStore.use.useCount(query, {
+    const $cacheTime                       = 120;
+    const {$filter, $size, $page, setPage} = Source.Query.useState(({$filter, $size, $page, setPage}) => ({$filter, $size, $page, setPage}));
+    const result                           = Source.repository.useCount($filter, {
         cacheTime: $cacheTime * 1000,
         staleTime: $cacheTime * 1000,
     });
-    const pages            = Math.ceil((result.data || 0) / query.cursor.size);
+    const pages                            = Math.ceil((result.data || 0) / $size);
     return hideOnSingle && pages === 1 ? null : <CoolPagination
         withEdges
         size={"md"}
@@ -30,7 +30,7 @@ export const Pagination: FC<IPaginationProps> = (
         total={pages}
         boundaries={2}
         siblings={2}
-        value={query.cursor.page + 1}
+        value={$page + 1}
         onChange={page => setPage(page - 1)}
         {...props}
     />;
