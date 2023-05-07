@@ -1,7 +1,7 @@
-import {IStoreContext}         from "@leight/context";
+import {type IStoreContext}    from "@leight/context";
 import {type IQueryStoreProps} from "../query";
 import {
-    IUseRepository,
+    type IUseRepository,
     type IUseRepositoryQuery,
     type RepositoryMapperType,
     type RepositoryServiceType,

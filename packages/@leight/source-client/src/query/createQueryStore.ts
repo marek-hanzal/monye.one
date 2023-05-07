@@ -1,5 +1,5 @@
 import {createStoreContext} from "@leight/context-client";
-import {type Source,}       from "@leight/source";
+import {type Source}        from "@leight/source";
 import {
     cleanOf,
     generateId,
@@ -14,6 +14,7 @@ export const createQueryStore = <TSource extends Source>(
     {
         name,
     }: ICreateQueryStoreProps) => {
+    // IQueryStoreProps<TSource["Schema"]["Mapper"] -> this works... !?
     return createStoreContext<TSource["Type"]["QueryStore"]>({
         state: ({defaults}) => (set, get) => ({
             $id:          generateId(),
