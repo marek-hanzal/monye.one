@@ -1,33 +1,23 @@
 import {createStoreContext} from "@leight/context-client";
-import {
-    type IQueryStoreProps,
-    type IRepositorySchema,
-    type RepositoryType,
-}                           from "@leight/source";
+import {type Source,}       from "@leight/source";
 import {
     cleanOf,
     generateId,
     isEmpty
 }                           from "@leight/utils";
 
-export interface ICreateQueryStoreProps<TRepositorySchema extends IRepositorySchema> {
+export interface ICreateQueryStoreProps {
     name: string;
-    schema: TRepositorySchema;
 }
 
-export const createQueryStore = <
-    TRepositorySchema extends IRepositorySchema,
-    TRepositoryType extends RepositoryType<TRepositorySchema> = RepositoryType<TRepositorySchema>
->(
+export const createQueryStore = <TSource extends Source>(
     {
         name,
-        schema,
-    }: ICreateQueryStoreProps<TRepositorySchema>) => {
-    return createStoreContext<IQueryStoreProps<TRepositorySchema>>({
+    }: ICreateQueryStoreProps) => {
+    return createStoreContext<TSource["Type"]["QueryStore"]>({
         state: ({defaults}) => (set, get) => ({
             $id:          generateId(),
-            $schema:      schema,
-            $filter:      defaults?.$query?.filter as TRepositoryType["Filter"],
+            $filter:      defaults?.$query?.filter as TSource["Type"]["Mapper"]["Filter"],
             $applyFilter: undefined,
             $filterDto:   undefined,
             $sort:        defaults?.$query?.sort || {},

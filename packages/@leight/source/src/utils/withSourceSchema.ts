@@ -118,6 +118,7 @@ export const withSourceSchema = <
         FilterSchema:       $FilterSchema,
         SortSchema:         $SortSchema,
         ParamsSchema:       $ParamsSchema,
+        CursorSchema,
     } as const;
     const Mapper     = {
         ...Repository,

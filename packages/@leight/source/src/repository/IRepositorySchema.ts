@@ -48,4 +48,5 @@ export interface IRepositorySchema<
     FilterSchema: TFilterSchema;
     SortSchema: TSortSchema;
     ParamsSchema: TParamsSchema;
+    CursorSchema: ICursorSchema;
 }

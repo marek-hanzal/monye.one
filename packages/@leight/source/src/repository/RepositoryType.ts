@@ -17,4 +17,5 @@ export interface RepositoryType<TRepositorySchema extends IRepositorySchema = IR
     Filter: z.infer<TRepositorySchema["FilterSchema"]>;
     Sort: z.infer<TRepositorySchema["SortSchema"]>;
     Params: z.infer<TRepositorySchema["ParamsSchema"]>;
+    Cursor: z.infer<TRepositorySchema["CursorSchema"]>;
 }

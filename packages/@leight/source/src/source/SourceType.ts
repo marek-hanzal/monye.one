@@ -1,5 +1,7 @@
+import {IStoreContext}         from "@leight/context";
 import {type IQueryStoreProps} from "../query";
 import {
+    IUseRepository,
     type IUseRepositoryQuery,
     type RepositoryMapperType,
     type RepositoryServiceType,
@@ -17,6 +19,8 @@ export interface SourceType<TSourceSchema extends ISourceSchema = ISourceSchema>
     Service: RepositoryServiceType<
         TSourceSchema["Service"]
     >;
-    QueryStore: IQueryStoreProps<TSourceSchema["Repository"]>;
+    QueryStore: IQueryStoreProps<TSourceSchema["Mapper"]>;
+    QueryStoreContext: IStoreContext<IQueryStoreProps<TSourceSchema["Mapper"]>>;
+    UseRepository: IUseRepository<TSourceSchema["Mapper"]>;
     UseRepositoryQuery: IUseRepositoryQuery<TSourceSchema["Mapper"]>;
 }
