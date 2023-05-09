@@ -12,4 +12,4 @@ export type IBankEditFormInputFactory = IFormInputsFactory<IBankEditFormSchemaTy
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ywl0mo2l0xfzj5tq70jgi0p4 = true;
+export const $leight_kw3rkea9v25hoy58mkbwhqs9 = true;
