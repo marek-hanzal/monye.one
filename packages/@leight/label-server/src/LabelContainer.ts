@@ -1,39 +1,12 @@
-import {type IContainer}   from "@leight/container";
-import {
-    $LabelSource,
-    $LabelSourceMapper,
-    $LabelSourceService,
-    type ILabelSource,
-    type ILabelSourceMapper
-}                          from "@leight/label";
-import {LabelSourceMapper} from "./mapper";
-import {
-    type ILabelSourceService,
-    LabelBaseSourceService
-}                          from "./sdk";
-import {LabelSource}       from "./source";
+import {type IContainer} from "@leight/container";
+import {$LabelRepository, $LabelRepositoryMapper} from "@leight/label";
+import {LabelRepositoryMapper} from "./mapper";
+import {LabelRepository} from "./repository";
+import {withLabelRepositoryContainer} from "./sdk";
 
-export interface ILabelContainer {
-    LabelSource: ILabelSource;
-    LabelSourceService: ILabelSourceService;
-    LabelSourceMapper: ILabelSourceMapper;
-}
-
-export const LabelContainer = (container: IContainer): ILabelContainer => {
+export const LabelContainer = (container: IContainer) => {
+    withLabelRepositoryContainer(container);
     container
-        .bindClass($LabelSource, LabelSource)
-        .bindClass($LabelSourceService, LabelBaseSourceService)
-        .bindClass($LabelSourceMapper, LabelSourceMapper);
-
-    return {
-        get LabelSource() {
-            return container.resolve<ILabelSource>($LabelSource);
-        },
-        get LabelSourceService() {
-            return container.resolve<ILabelSourceService>($LabelSourceService);
-        },
-        get LabelSourceMapper() {
-            return container.resolve<ILabelSourceMapper>($LabelSourceMapper);
-        },
-    };
+        .bindClass($LabelRepository, LabelRepository)
+        .bindClass($LabelRepositoryMapper, LabelRepositoryMapper);
 };

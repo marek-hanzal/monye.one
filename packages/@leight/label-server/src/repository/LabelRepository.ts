@@ -1,19 +1,10 @@
-import {
-    type ILabelPrismaSchemaType,
-    type ILabelSourceSchemaType
-}                              from "@leight/label";
-import {
-    $PrismaClient,
-    PrismaClient
-}                              from "@leight/prisma";
-import {
-    $UserService,
-    type IUserService
-}                              from "@leight/user";
-import {keywordsOf}            from "@leight/utils";
-import {LabelBasePrismaSource} from "../sdk";
+import {type ILabelRepositorySchemaEx, LabelSource} from "@leight/label";
+import {$PrismaClient, PrismaClient} from "@leight/prisma";
+import {$UserService, type IUserService} from "@leight/user";
+import {keywordsOf} from "@leight/utils";
+import {BaseLabelRepositoryEx} from "../sdk";
 
-export class LabelSource extends LabelBasePrismaSource {
+export class LabelRepository extends BaseLabelRepositoryEx {
     static inject = [
         $PrismaClient,
         $UserService,
@@ -26,13 +17,13 @@ export class LabelSource extends LabelBasePrismaSource {
         super(prismaClient);
     }
 
-    toWhere(label?: ILabelSourceSchemaType["Filter"]): ILabelPrismaSchemaType["Where"] | undefined {
+    toWhere(label?: LabelSource["Type"]["Filter"]): ILabelRepositorySchemaEx["Type"]["Where"] | undefined {
         if (!label) {
             return;
         }
 
-        const where: ILabelPrismaSchemaType["Where"] = {
-            AND:    [],
+        const where: ILabelRepositorySchemaEx["Type"]["Where"] = {
+            AND: [],
             userId: this.userService.required(),
         };
 
@@ -61,13 +52,13 @@ export class LabelSource extends LabelBasePrismaSource {
                             {
                                 label: {
                                     contains: item,
-                                    mode:     "insensitive",
+                                    mode: "insensitive",
                                 },
                             },
                             {
                                 type: {
                                     contains: item,
-                                    mode:     "insensitive",
+                                    mode: "insensitive",
                                 },
                             },
                         ]
@@ -87,7 +78,7 @@ export class LabelSource extends LabelBasePrismaSource {
         return where;
     }
 
-    toWhereUnique(label: ILabelSourceSchemaType["Filter"]): ILabelPrismaSchemaType["WhereUnique"] {
+    toWhereUnique(label: LabelSource["Type"]["Filter"]): ILabelRepositorySchemaEx["Type"]["WhereUnique"] {
         const {id} = label;
 
         if (id) {

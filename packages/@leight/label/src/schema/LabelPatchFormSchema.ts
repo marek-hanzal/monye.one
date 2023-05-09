@@ -1,18 +1,12 @@
-import {
-    type IFormSchemaType,
-    withFormPatchSchema
-}          from "@leight/form";
+import {type IFormSchemaType, withFormPatchSchema} from "@leight/form";
 import {z} from "@leight/zod";
-import {
-    type ILabelSourceSchemaType,
-    LabelSourceSchema
-}          from "./LabelSourceSchema";
+import {type LabelSource, LabelSourceSchema} from "./LabelSourceSchema";
 
 const ValuesSchema = z.object({
     label: z.string().trim().optional(),
 });
 
-export const LabelPatchFormSchema = withFormPatchSchema<ILabelSourceSchemaType, typeof ValuesSchema>({
+export const LabelPatchFormSchema = withFormPatchSchema<LabelSource["Schema"], typeof ValuesSchema>({
     schema: LabelSourceSchema,
     ValuesSchema,
 });

@@ -1,1 +1,1 @@
-export * from "./LabelSourceMapper";
+export * from "./LabelRepositoryMapper";

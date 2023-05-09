@@ -1,13 +1,6 @@
 import {type ISourceSchema} from "@leight/source";
-import {type IFormSchema}   from "../api";
-import {
-    FormDtoSchema,
-    FormRequestSchema,
-    FormValuesSchema,
-    type IFormDtoSchema,
-    type IFormRequestSchema,
-    type IFormValuesSchema
-}                           from "../schema";
+import {type IFormSchema} from "../api";
+import {FormDtoSchema, FormRequestSchema, FormValuesSchema, type IFormDtoSchema, type IFormRequestSchema, type IFormValuesSchema} from "../schema";
 
 export type IWithFormSchemaProps<
     TValuesSchema extends IFormValuesSchema,
@@ -41,10 +34,10 @@ export const withFormCreateSchema = <TSourceSchema extends ISourceSchema, TValue
         ValuesSchema,
     }: IWithFormCreateSchemaProps<TSourceSchema, TValuesSchema>
 ) => {
-    return withFormSchema<TValuesSchema, TSourceSchema["Mapper"]["ToCreateSchema"], TSourceSchema["Mapper"]["DtoSchema"]>({
+    return withFormSchema<TValuesSchema, TSourceSchema["ToCreateSchema"], TSourceSchema["DtoSchema"]>({
         ValuesSchema,
         RequestSchema: schema.Mapper.ToCreateSchema,
-        DtoSchema:     schema.Mapper.DtoSchema,
+        DtoSchema: schema.Mapper.DtoSchema,
     });
 };
 
@@ -59,9 +52,9 @@ export const withFormPatchSchema = <TSourceSchema extends ISourceSchema, TValues
         ValuesSchema,
     }: IWithFormPatchSchemaProps<TSourceSchema, TValuesSchema>
 ) => {
-    return withFormSchema<TValuesSchema, TSourceSchema["Mapper"]["ToPatchSchemaProps"], TSourceSchema["Mapper"]["DtoSchema"]>({
+    return withFormSchema<TValuesSchema, TSourceSchema["ToPatchSchemaProps"], TSourceSchema["DtoSchema"]>({
         ValuesSchema,
         RequestSchema: schema.Mapper.ToPatchSchemaProps,
-        DtoSchema:     schema.Mapper.DtoSchema,
+        DtoSchema: schema.Mapper.DtoSchema,
     });
 };

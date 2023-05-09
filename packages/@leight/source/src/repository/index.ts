@@ -2,6 +2,7 @@ export * from "./IRepository";
 export * from "./IRepositoryEx";
 export * from "./IRepositoryMapper";
 export * from "./IRepositoryMapperSchema";
+export * from "./IRepositoryResult";
 export * from "./IRepositorySchema";
 export * from "./IRepositorySchemaEx";
 export * from "./IRepositoryService";
