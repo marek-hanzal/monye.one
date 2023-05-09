@@ -1,7 +1,7 @@
-import {type IKeywordService}              from "@leight/keyword";
-import {type ITransactionSourceSchemaType} from "../schema";
+import {type IKeywordService} from "@leight/keyword";
+import {type TransactionSource} from "../schema";
 
-export interface ITransactionKeywordService extends IKeywordService<ITransactionSourceSchemaType["Entity"]> {
+export interface ITransactionKeywordService extends IKeywordService<TransactionSource["Type"]["Entity"]> {
 }
 
 export const $TransactionKeywordService = Symbol.for("@monye.one/transaction/ITransactionKeywordService");

@@ -1,9 +1,4 @@
-import {
-    $UserSource,
-    type IRegistrationService,
-    type IToken,
-    type IUserSource
-} from "@leight/user";
+import {$UserRepository, type IRegistrationService, type IToken, type IUserRepository} from "@leight/user";
 
 /**
  * Service used to register new users with en eventual case where the
@@ -11,11 +6,11 @@ import {
  */
 export class RegistrationService implements IRegistrationService {
     static inject = [
-        $UserSource,
+        $UserRepository,
     ];
 
     constructor(
-        protected userSource: IUserSource,
+        protected userRepository: IUserRepository,
     ) {
     }
 
@@ -27,7 +22,7 @@ export class RegistrationService implements IRegistrationService {
         if (!isNewUser || !token.sub) {
             return;
         }
-        if ((await this.userSource.count()) === 1) {
+        if ((await this.userRepository.count()) === 1) {
             await this.registerRootUser({token, isNewUser});
             return;
         }
@@ -44,8 +39,8 @@ export class RegistrationService implements IRegistrationService {
         if (!sub) {
             return;
         }
-        const user = await this.userSource.find(sub);
-        user.id    = "user.id";
+        const user = await this.userRepository.get(sub);
+        user.id = "user.id";
     }
 
     /**
@@ -58,7 +53,7 @@ export class RegistrationService implements IRegistrationService {
         if (!sub) {
             return;
         }
-        const user = await this.userSource.find(sub);
-        user.id    = "user.id";
+        const user = await this.userRepository.get(sub);
+        user.id = "user.id";
     }
 }

@@ -1,36 +1,26 @@
-import {Translation}             from "@leight/i18n-client";
-import {
-    type ISourceSchemaType,
-    type ISourceStore
-}                                from "@leight/source";
-import {
-    Button,
-    Divider,
-    Group
-}                                from "@mantine/core";
-import {IconTrash}               from "@tabler/icons-react";
-import {
-    type IModalProps,
-    Modal
-}                                from "../component";
-import {ModalStore}              from "../context";
+import {Translation} from "@leight/i18n-client";
+import {ISource, Source} from "@leight/source";
+import {Button, Divider, Group} from "@mantine/core";
+import {IconTrash} from "@tabler/icons-react";
+import {type IModalProps, Modal} from "../component";
+import {ModalStore} from "../context";
 import {withSuccessNotification} from "../utils";
 
-export interface IDeleteModalProps<TSourceSchemaType extends ISourceSchemaType> extends IModalProps {
-    SourceStore: ISourceStore<TSourceSchemaType>;
-    entity: TSourceSchemaType["Dto"];
+export interface IDeleteModalProps<TSource extends Source> extends IModalProps {
+    Source: ISource<TSource>;
+    entity: TSource["Type"]["Dto"];
 }
 
-export const DeleteModal = <TSourceSchemaType extends ISourceSchemaType>(
+export const DeleteModal = <TSource extends Source>(
     {
         withTranslation,
-        SourceStore,
+        Source,
         entity,
         ...props
-    }: IDeleteModalProps<TSourceSchemaType>) => {
-    const {close}        = ModalStore.useState(({close}) => ({close}));
-    const deleteMutation = SourceStore.use.useDelete();
-    const invalidator    = SourceStore.useInvalidator();
+    }: IDeleteModalProps<TSource>) => {
+    const {close} = ModalStore.use(({close}) => ({close}));
+    const deleteMutation = Source.repository.useDelete();
+    const invalidator = Source.useInvalidator();
     return <Modal
         withTranslation={{
             ...withTranslation,
@@ -67,7 +57,7 @@ export const DeleteModal = <TSourceSchemaType extends ISourceSchemaType>(
                             withSuccessNotification({
                                 withTranslation: {
                                     ...withTranslation,
-                                    label:  withTranslation?.label ? `${withTranslation.label}.delete` : "delete",
+                                    label: withTranslation?.label ? `${withTranslation.label}.delete` : "delete",
                                     values: dto,
                                 }
                             });

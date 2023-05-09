@@ -1,18 +1,9 @@
-import {
-    type IChunkService,
-    type IFileSourceSchemaType,
-    type IFileWithPath
-}                        from "@leight/file";
+import {type FileSource, type IChunkService, type IFileWithPath} from "@leight/file";
 import {type IHrefProps} from "@leight/utils";
-import {
-    type IOnFinishProps,
-    type IUseChunkProps,
-    toHref,
-    useChunk
-}                        from "@leight/utils-client";
-import axios             from "axios";
-import {useRef}          from "react";
-import {v4}              from "uuid";
+import {type IOnFinishProps, type IUseChunkProps, toHref, useChunk} from "@leight/utils-client";
+import axios from "axios";
+import {useRef} from "react";
+import {v4} from "uuid";
 
 const defaultChunkSize = 1048576 * 4;
 
@@ -24,7 +15,7 @@ export interface IUseUploadProps
     path: string;
     replace?: boolean;
 
-    onFinish?(props: IOnFinishProps & { file: IFileSourceSchemaType["Entity"] }): Promise<void>;
+    onFinish?(props: IOnFinishProps & { file: FileSource["Type"]["Entity"] }): Promise<void>;
 }
 
 export const useUpload = (
@@ -40,9 +31,9 @@ export const useUpload = (
     }: IUseUploadProps) => {
     const uuid = useRef(v4());
     return useChunk({
-        chunk:    defaultChunkSize,
+        chunk: defaultChunkSize,
         throttle: 0,
-        size:     file.size,
+        size: file.size,
         async onTick({start, end}) {
             return axios.post(
                 toHref({...chunkHref, query: {chunkId: uuid.current}}),
@@ -57,12 +48,12 @@ export const useUpload = (
         onStart,
         onFinish: async (props) => {
             return axios
-                .post<unknown, { data: IFileSourceSchemaType["Entity"] }, IChunkService.CommitProps>(
+                .post<unknown, { data: FileSource["Type"]["Dto"] }, IChunkService.CommitProps>(
                     toHref({...commitHref, query: {chunkId: uuid.current}}),
                     {
-                        name:    file.name,
+                        name: file.name,
                         path,
-                        mime:    file.type,
+                        mime: file.type,
                         chunkId: uuid.current,
                         replace,
                     }
