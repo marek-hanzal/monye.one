@@ -16,24 +16,10 @@ import {
     type ITransactionPairService,
     type ITransactionSource,
     type ITransactionSourceMapper
-}                        from "@monye.one/transaction";
-import {
-    type ITransactionKeywordSourceService,
-    type ITransactionSourceService,
-    TransactionBaseSourceMapper,
-    TransactionBaseSourceService,
-    TransactionKeywordBaseSourceMapper,
-    TransactionKeywordBaseSourceService
-}                        from "./sdk";
-import {
-    TransactionImportHandler,
-    TransactionKeywordService,
-    TransactionPairService
-}                        from "./service";
-import {
-    TransactionKeywordSource,
-    TransactionSource
-}                        from "./source";
+} from "@monye.one/transaction";
+import {type ITransactionKeywordSourceService, type ITransactionSourceService, TransactionBaseSourceMapper, TransactionBaseSourceService, TransactionKeywordBaseSourceMapper, TransactionKeywordBaseSourceService} from "./sdk";
+import {TransactionImportHandler, TransactionKeywordService, TransactionPairService} from "./service";
+import {TransactionKeywordRepository, TransactionRepository} from "./source";
 
 export interface ITransactionContainer {
     TransactionImportHandler: ITransactionImportHandler;
@@ -54,11 +40,11 @@ export const TransactionContainer = (container: IContainer): ITransactionContain
     container
         .bindClass($TransactionImportHandler, TransactionImportHandler)
 
-        .bindClass($TransactionSource, TransactionSource)
+        .bindClass($TransactionSource, TransactionRepository)
         .bindClass($TransactionSourceService, TransactionBaseSourceService)
         .bindClass($TransactionSourceMapper, TransactionBaseSourceMapper)
 
-        .bindClass($TransactionKeywordSource, TransactionKeywordSource)
+        .bindClass($TransactionKeywordSource, TransactionKeywordRepository)
         .bindClass($TransactionKeywordSourceService, TransactionKeywordBaseSourceService)
         .bindClass($TransactionKeywordSourceMapper, TransactionKeywordBaseSourceMapper)
 

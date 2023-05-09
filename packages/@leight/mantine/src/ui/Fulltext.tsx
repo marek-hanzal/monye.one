@@ -30,13 +30,13 @@ export const Fulltext: FC<IFulltextProps> = (
     }) => {
     const {t} = useTranslation(withTranslation?.namespace);
     const {fulltext, setFulltext} = FulltextStoreContext.use(({fulltext, setFulltext}) => ({fulltext, setFulltext}));
-    const {setPage} = Source.query.use(({setPage}) => ({setPage}));
+    const {withPage} = Source.query.use(({withPage}) => ({withPage}));
     const [debounced, setDebounced] = useDebouncedState(fulltext || "", debounce);
 
     useEffect(() => {
         setFulltext(debounced || undefined);
         onSearch?.(debounced || undefined);
-        setPage(0);
+        withPage(0);
     }, [debounced]);
 
     return <TextInput

@@ -16,4 +16,4 @@ export const TransactionKeywordSourceSchema = withSourceSchema({
         id: SortOrderSchema,
     }),
 });
-export type ITransactionKeywordSourceSchemaType = Source<typeof TransactionKeywordSourceSchema>;
+export type TransactionKeywordSource = Source<typeof TransactionKeywordSourceSchema>;

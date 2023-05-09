@@ -1,22 +1,11 @@
-import {rangeOf}                     from "@leight/i18n";
-import {
-    $PrismaClient,
-    decimalOf,
-    PrismaClient
-}                                    from "@leight/prisma";
-import {
-    $UserService,
-    type IUserService
-}                                    from "@leight/user";
-import {keywordsOf}                  from "@leight/utils";
-import {
-    type ITransactionPrismaSchemaType,
-    type ITransactionSourceSchemaType,
-    type ITransactionSumBy,
-}                                    from "@monye.one/transaction";
-import {TransactionBasePrismaSource} from "../sdk";
+import {rangeOf} from "@leight/i18n";
+import {$PrismaClient, decimalOf, PrismaClient} from "@leight/prisma";
+import {$UserService, type IUserService} from "@leight/user";
+import {keywordsOf} from "@leight/utils";
+import {ITransactionRepositorySchemaEx, type ITransactionSumBy, TransactionSource} from "@monye.one/transaction";
+import {BaseTransactionRepositoryEx} from "../sdk";
 
-export class TransactionSource extends TransactionBasePrismaSource {
+export class TransactionRepository extends BaseTransactionRepositoryEx {
     static inject = [
         $UserService,
         $PrismaClient,
@@ -29,10 +18,10 @@ export class TransactionSource extends TransactionBasePrismaSource {
         super(prismaClient);
     }
 
-    async sumBy(filter?: ITransactionSourceSchemaType["Filter"]): Promise<ITransactionSumBy> {
+    async sumBy(filter?: TransactionSource["Type"]["Filter"]): Promise<ITransactionSumBy> {
         return {
-            sum:     decimalOf((await this.prisma().aggregate({
-                _sum:  {
+            sum: decimalOf((await this.prisma().aggregate({
+                _sum: {
                     amount: true,
                 },
                 where: this.toWhere({
@@ -40,8 +29,8 @@ export class TransactionSource extends TransactionBasePrismaSource {
                     isTransfer: undefined,
                 }),
             }))._sum.amount || 0),
-            income:  decimalOf((await this.prisma().aggregate({
-                _sum:  {
+            income: decimalOf((await this.prisma().aggregate({
+                _sum: {
                     amount: true,
                 },
                 where: this.toWhere({
@@ -50,7 +39,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                 }),
             }))._sum.amount || 0),
             outcome: decimalOf((await this.prisma().aggregate({
-                _sum:  {
+                _sum: {
                     amount: true,
                 },
                 where: this.toWhere({
@@ -61,32 +50,32 @@ export class TransactionSource extends TransactionBasePrismaSource {
         };
     }
 
-    toWhere(filter?: ITransactionSourceSchemaType["Filter"]): ITransactionPrismaSchemaType["Where"] | undefined {
+    toWhere(filter?: TransactionSource["Type"]["Filter"]): ITransactionRepositorySchemaEx["Type"]["Where"] | undefined {
         if (!filter) {
             return;
         }
 
-        const where: ITransactionPrismaSchemaType["Where"] = {
-            AND:    [],
+        const where: ITransactionRepositorySchemaEx["Type"]["Where"] = {
+            AND: [],
             userId: this.userService.required(),
         };
 
         const {
-                  withRange,
-                  withIncome,
-                  withOutcome,
-                  fulltext,
-                  bankId,
-                  bankIds,
-                  target,
-                  from,
-                  to,
-                  rangeOf: $rangeOf,
-                  amountFrom,
-                  amountTo,
-                  account,
-                  isTransfer,
-              }         = filter;
+            withRange,
+            withIncome,
+            withOutcome,
+            fulltext,
+            bankId,
+            bankIds,
+            target,
+            from,
+            to,
+            rangeOf: $rangeOf,
+            amountFrom,
+            amountTo,
+            account,
+            isTransfer,
+        } = filter;
         const $fulltext = keywordsOf(fulltext);
         if ($fulltext) {
             where["AND"] = Array.isArray(where["AND"]) ? where["AND"].concat([
@@ -99,7 +88,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                                         keyword: {
                                             text: {
                                                 contains: item,
-                                                mode:     "insensitive",
+                                                mode: "insensitive",
                                             },
                                         }
                                     },
@@ -217,7 +206,7 @@ export class TransactionSource extends TransactionBasePrismaSource {
                 {
                     target: {
                         contains: target,
-                        mode:     "insensitive",
+                        mode: "insensitive",
                     },
                 },
             ]) : [];
@@ -236,11 +225,11 @@ export class TransactionSource extends TransactionBasePrismaSource {
         return where;
     }
 
-    toWhereUnique(filter: ITransactionSourceSchemaType["Filter"]): ITransactionPrismaSchemaType["WhereUnique"] {
+    toWhereUnique(filter: TransactionSource["Type"]["Filter"]): ITransactionRepositorySchemaEx["Type"]["WhereUnique"] {
         const {
-                  id,
-                  userId_reference,
-              } = filter;
+            id,
+            userId_reference,
+        } = filter;
 
         if (userId_reference) {
             return {
