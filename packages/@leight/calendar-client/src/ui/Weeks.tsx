@@ -77,7 +77,7 @@ export const Weeks = <TSource extends CalendarEventSource = CalendarEventSource>
     const [withWeeks, setWithWeeks] = useState(defaultWithWeekNo);
 
     useEffect(() => {
-        filter?.setFilter({
+        filter?.withFilter({
             fulltext: fulltextContext?.fulltext || undefined,
             withRange: {
                 from: start.toUTC().toJSDate(),
@@ -89,7 +89,7 @@ export const Weeks = <TSource extends CalendarEventSource = CalendarEventSource>
     ]);
 
     const onChange: IWeeksProps<TSource>["onChange"] = props => {
-        filter?.setFilter({
+        filter?.withFilter({
             fulltext: fulltextContext?.fulltext || undefined,
             withRange: {
                 from: props.weeks.start.toUTC().toJSDate(),
