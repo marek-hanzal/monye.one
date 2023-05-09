@@ -1,14 +1,14 @@
-import {withSdk} from "@leight/sdk";
+import {generatorClient} from "@leight/sdk";
 
-void withSdk([]);
-
-// void withSdk(
-//     withClientSourceGenerators({
-//         SourceStore:    {
-//             entities: [],
-//         },
-//         SourceProvider: {
-//             entities: [],
-//         },
-//     })
-// );
+void generatorClient({
+    withSelection: {
+        selections: [
+            {
+                name: "Job",
+                packages: {
+                    schema: "@leight/job",
+                },
+            },
+        ],
+    },
+});

@@ -1,3 +1,14 @@
-import {withSdk} from "@leight/sdk";
+import {generatorClient} from "@leight/sdk";
 
-void withSdk([]);
+void generatorClient({
+    withSelection: {
+        selections: [
+            {
+                name: "File",
+                packages: {
+                    schema: "@leight/file",
+                },
+            },
+        ],
+    },
+});

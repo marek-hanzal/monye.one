@@ -1,6 +1,6 @@
-import {withSourceFile}     from "@leight/generator-server";
-import {normalize}          from "node:path";
-import {type IGenerator}    from "../../api";
+import {withSourceFile} from "@leight/generator-server";
+import {normalize} from "node:path";
+import {type IGenerator} from "../../api";
 import {generatorSdkBarrel} from "../generatorSdkBarrel";
 
 export interface IWithRepositoryRouterParams {
@@ -34,6 +34,8 @@ export const withRepositoryRouter: IGenerator<IWithRepositoryRouterParams> = asy
         params: {procedures},
     }) => {
     procedures.forEach(({name, packages}) => {
+        console.log(`- Generating [withRepositoryRouter] [${name}]`);
+
         withSourceFile()
             .withImports({
                 imports: {

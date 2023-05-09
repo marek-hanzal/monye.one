@@ -32,10 +32,13 @@
         "cleanup:lib": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
+        "@leight/context": "^0.5.0",
         "@leight/i18n": "^0.5.72",
         "@leight/i18n-client": "^0.5.72",
         "@leight/job": "^0.5.78",
         "@leight/sdk": "^0.5.25",
+        "@leight/selection": "^0.5.0",
+        "@leight/selection-client": "^0.5.0",
         "@leight/source": "^0.5.66",
         "@leight/source-client": "^0.5.37",
         "@leight/utils": "^0.5.70",

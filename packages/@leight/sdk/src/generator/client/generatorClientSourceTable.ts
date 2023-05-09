@@ -1,5 +1,5 @@
-import {withSourceFile}  from "@leight/generator-server";
-import {normalize}       from "node:path";
+import {withSourceFile} from "@leight/generator-server";
+import {normalize} from "node:path";
 import {type IGenerator} from "../../api";
 
 export interface IGeneratorClientSourceTableParams {
@@ -87,7 +87,7 @@ sourceCacheTime?: number;
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/Table/${name}SourceTable.tsx`),
+                file: normalize(`${directory}/table/${name}SourceTable.tsx`),
                 barrel,
             });
     });

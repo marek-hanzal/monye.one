@@ -25,6 +25,8 @@ export const withRepository: IGenerator<IWithRepositoryParams> = async (
         params: {repositories},
     }) => {
     for (const {name} of repositories) {
+        console.log(`- Generating [withRepository] [${name}]`);
+
         withSourceFile()
             .withImports({
                 imports: {

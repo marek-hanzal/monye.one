@@ -1,5 +1,5 @@
-import {withSourceFile}  from "@leight/generator-server";
-import {normalize}       from "node:path";
+import {withSourceFile} from "@leight/generator-server";
+import {normalize} from "node:path";
 import {type IGenerator} from "../../api";
 
 export interface IWithRepositorySymbolParams {
@@ -20,6 +20,8 @@ export const withRepositorySymbol: IGenerator<IWithRepositorySymbolParams> = asy
         params: {repositories},
     }) => {
     repositories.forEach(({name}) => {
+        console.log(`- Generating [withRepositorySymbol] [${name}]`);
+
         withSourceFile()
             .withConsts({
                 exports: {

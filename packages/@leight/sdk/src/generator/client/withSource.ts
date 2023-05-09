@@ -1,13 +1,13 @@
-import {withSourceFile}  from "@leight/generator-server";
-import {normalize}       from "node:path";
+import {withSourceFile} from "@leight/generator-server";
+import {normalize} from "node:path";
 import {type IGenerator} from "../../api";
 
-export interface IGeneratorClientSourceStoreParams {
-    entities: IGeneratorClientSourceStoreParams.IEntity[];
+export interface IWithSourceParams {
+    sources: IWithSourceParams.ISource[];
 }
 
-export namespace IGeneratorClientSourceStoreParams {
-    export interface IEntity {
+export namespace IWithSourceParams {
+    export interface ISource {
         /**
          * Base name exported (used to name all exported objects)
          */
@@ -26,13 +26,15 @@ export namespace IGeneratorClientSourceStoreParams {
     }
 }
 
-export const generatorClientSourceStore: IGenerator<IGeneratorClientSourceStoreParams> = async (
+export const withSource: IGenerator<IWithSourceParams> = async (
     {
         barrel,
         directory,
-        params: {entities}
+        params: {sources}
     }) => {
-    entities.forEach(({name, packages}) => {
+    sources.forEach(({name, packages}) => {
+        console.log(`- Generating [withSource] [${name}]`);
+
         withSourceFile()
             .withHeader(`
     Source code containing improved Zustand store stuff for Source support (client-side).
@@ -42,14 +44,14 @@ export const generatorClientSourceStore: IGenerator<IGeneratorClientSourceStoreP
                     "@leight/source-client": [
                         "withSourceStore",
                     ],
-                    [packages.schema]:       [
+                    [packages.schema]: [
                         `${name}SourceSchema`,
                     ],
                 },
             })
             .withImports({
                 imports: {
-                    [`../Trpc/Use${name}SourceQuery`]:      [
+                    [`../Trpc/Use${name}SourceQuery`]: [
                         `Use${name}SourceQuery`,
                     ],
                     [`../Trpc/use${name}QueryInvalidator`]: [
@@ -72,7 +74,7 @@ withSourceStore({
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/Source/${name}SourceStore.ts`),
+                file: normalize(`${directory}/source/${name}Source.ts`),
                 barrel,
             });
     });

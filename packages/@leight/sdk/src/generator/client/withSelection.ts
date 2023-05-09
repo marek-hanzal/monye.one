@@ -1,13 +1,13 @@
-import {withSourceFile}  from "@leight/generator-server";
-import {normalize}       from "node:path";
+import {withSourceFile} from "@leight/generator-server";
+import {normalize} from "node:path";
 import {type IGenerator} from "../../api";
 
-export interface IGeneratorClientSelectionParams {
-    selections: IGeneratorClientSelectionParams.IForm[];
+export interface IWithSelectionParams {
+    selections: IWithSelectionParams.ISelection[];
 }
 
-export namespace IGeneratorClientSelectionParams {
-    export interface IForm {
+export namespace IWithSelectionParams {
+    export interface ISelection {
         /**
          * Base name exported (used to name all exported objects)
          */
@@ -23,23 +23,25 @@ export namespace IGeneratorClientSelectionParams {
     }
 }
 
-export const generatorClientSelection: IGenerator<IGeneratorClientSelectionParams> = async (
+export const withSelection: IGenerator<IWithSelectionParams> = async (
     {
         barrel,
         directory,
         params: {selections}
     }) => {
     selections.forEach(({name, packages}) => {
+        console.log(`- Generating [withSelection] [${name}]`);
+
         withSourceFile()
             .withImports({
                 imports: {
                     "@leight/selection-client": [
                         "createSelectionStore",
                     ],
-                    "@leight/context":          [
+                    "@leight/context": [
                         "type IStoreContext",
                     ],
-                    "@leight/selection":        [
+                    "@leight/selection": [
                         "type ISelectionStoreProps",
                     ],
                 },
@@ -47,14 +49,14 @@ export const generatorClientSelection: IGenerator<IGeneratorClientSelectionParam
             .withImports({
                 imports: {
                     [packages.schema]: [
-                        `type I${name}SourceSchemaType`,
+                        `type ${name}Source`,
                     ],
                 }
             })
             .withTypes({
                 exports: {
                     [`I${name}SelectionStore`]: `
-IStoreContext<ISelectionStoreProps<I${name}SourceSchemaType["Dto"]>>
+IStoreContext<ISelectionStoreProps<${name}Source["Type"]["Dto"]>>
                     `,
                 },
             })
@@ -62,13 +64,13 @@ IStoreContext<ISelectionStoreProps<I${name}SourceSchemaType["Dto"]>>
                 exports: {
                     [`${name}Selection`]: {
                         body: `
-createSelectionStore<I${name}SourceSchemaType["Dto"]>({name: "${name}"})
+createSelectionStore<${name}Source["Type"]["Dto"]>({name: "${name}"})
                         `,
                     }
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/Selection/${name}Selection.tsx`),
+                file: normalize(`${directory}/selection/${name}Selection.tsx`),
                 barrel,
             });
 
@@ -78,10 +80,10 @@ createSelectionStore<I${name}SourceSchemaType["Dto"]>({name: "${name}"})
                     "@leight/selection-client": [
                         "createMultiSelectionStore",
                     ],
-                    "@leight/context":          [
+                    "@leight/context": [
                         "type IStoreContext",
                     ],
-                    "@leight/selection":        [
+                    "@leight/selection": [
                         "type IMultiSelectionStoreProps",
                     ],
                 },
@@ -89,14 +91,14 @@ createSelectionStore<I${name}SourceSchemaType["Dto"]>({name: "${name}"})
             .withImports({
                 imports: {
                     [packages.schema]: [
-                        `type I${name}SourceSchemaType`,
+                        `type ${name}Source`,
                     ],
                 }
             })
             .withTypes({
                 exports: {
                     [`I${name}MultiSelectionStore`]: `
-IStoreContext<IMultiSelectionStoreProps<I${name}SourceSchemaType["Dto"]>>
+IStoreContext<IMultiSelectionStoreProps<${name}Source["Type"]["Dto"]>>
                     `,
                 },
             })
@@ -104,13 +106,13 @@ IStoreContext<IMultiSelectionStoreProps<I${name}SourceSchemaType["Dto"]>>
                 exports: {
                     [`${name}MultiSelection`]: {
                         body: `
-createMultiSelectionStore<I${name}SourceSchemaType["Dto"]>({name: "${name}"})
+createMultiSelectionStore<${name}Source["Type"]["Dto"]>({name: "${name}"})
                         `,
                     }
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/Selection/${name}MultiSelection.tsx`),
+                file: normalize(`${directory}/selection/${name}MultiSelection.tsx`),
                 barrel,
             });
     });

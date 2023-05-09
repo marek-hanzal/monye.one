@@ -1,5 +1,5 @@
-import {withSourceFile}  from "@leight/generator-server";
-import {normalize}       from "node:path";
+import {withSourceFile} from "@leight/generator-server";
+import {normalize} from "node:path";
 import {type IGenerator} from "../../api";
 
 export interface IWithRepositoryExParams {
@@ -45,6 +45,8 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
         params: {repositories},
     }) => {
     repositories.forEach(({name, prisma, packages, withInclude}) => {
+        console.log(`- Generating [withRepositoryEx] [${name}]`);
+
         const $withInclude = withInclude ? JSON.stringify(withInclude) : undefined;
 
         withSourceFile()
