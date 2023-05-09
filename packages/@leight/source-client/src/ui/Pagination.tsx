@@ -14,12 +14,12 @@ export const Pagination: FC<IPaginationProps> = (
         ...props
     }) => {
     const $cacheTime = 120;
-    const {$filter, $size, $page, setPage} = Source.query.use(({$filter, $size, $page, setPage}) => ({$filter, $size, $page, setPage}));
-    const result = Source.repository.useCount($filter, {
+    const {filter, size, page, withPage} = Source.query.use(({filter, size, page, withPage}) => ({filter, size, page, withPage}));
+    const result = Source.repository.useCount(filter, {
         cacheTime: $cacheTime * 1000,
         staleTime: $cacheTime * 1000,
     });
-    const pages = Math.ceil((result.data || 0) / $size);
+    const pages = Math.ceil((result.data || 0) / size);
     return hideOnSingle && pages === 1 ? null : <CoolPagination
         withEdges
         size={"md"}
@@ -27,8 +27,8 @@ export const Pagination: FC<IPaginationProps> = (
         total={pages}
         boundaries={2}
         siblings={2}
-        value={$page + 1}
-        onChange={page => setPage(page - 1)}
+        value={page + 1}
+        onChange={page => withPage(page - 1)}
         {...props}
     />;
 };

@@ -22,4 +22,4 @@ export const withBankRepositoryContainer = (container: IContainer) => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_yk0cmhzylcmrtkdjrn18js21 = true;
+export const $leight_bcaxuo7vvunkbzpd7639qsx1 = true;

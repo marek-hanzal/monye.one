@@ -1,18 +1,13 @@
-import {
-    $KeywordSource,
-    type IKeywords,
-    type IKeywordService,
-    type IKeywordSource
-}                   from "@leight/keyword";
+import {$KeywordRepository, type IKeywordRepository, type IKeywords, type IKeywordService} from "@leight/keyword";
 import {keywordsOf} from "@leight/utils";
 
 export abstract class AbstractKeywordService<TInput> implements IKeywordService<TInput> {
     static inject = [
-        $KeywordSource,
+        $KeywordRepository,
     ];
 
     protected constructor(
-        protected keywordSource: IKeywordSource,
+        protected keywordRepository: IKeywordRepository,
     ) {
     }
 
@@ -27,12 +22,12 @@ export abstract class AbstractKeywordService<TInput> implements IKeywordService<
             await this.onKeyword({
                 input,
                 keyword,
-                entity: await this.keywordSource.upsert({
+                entity: await this.keywordRepository.upsert({
                     filter: {keyword},
                     create: {
                         text: keyword,
                     },
-                    patch:  {
+                    patch: {
                         text: keyword,
                     },
                 }),

@@ -1,19 +1,15 @@
-import {
-    $ChunkService,
-    type IChunkService,
-    type IFileSourceSchemaType
-}                              from "@leight/file";
+import {$ChunkService, type FileSource, type IChunkService} from "@leight/file";
 import {type IEndpointFactory} from "@leight/next.js";
-import {Endpoint}              from "@leight/next.js-server";
+import {Endpoint} from "@leight/next.js-server";
 
 /**
  * Export default this to handle chunk commits.
  */
-export const ChunkCommitEndpoint: IEndpointFactory<IFileSourceSchemaType["Entity"]> = (
+export const ChunkCommitEndpoint: IEndpointFactory<FileSource["Type"]["Dto"]> = (
     container,
     withTokens
 ) => {
-    return Endpoint<IChunkService.CommitProps, IFileSourceSchemaType["Entity"]>({
+    return Endpoint<IChunkService.CommitProps, FileSource["Type"]["Dto"]>({
         container,
         withTokens: withTokens || ["user"],
         async handler({body, userService}) {

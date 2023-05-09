@@ -11,19 +11,19 @@ export type IQueryProviderInternalProps<TSource extends Source> = PropsWithChild
     /**
      * The default filter could be replaced or merged, but it's not applied all the times
      */
-    defaultFilter?: TSource["Type"]["Mapper"]["Filter"];
+    defaultFilter?: TSource["Type"]["Filter"];
     /**
      * Filter applied all the times (for example when you need to fix filters on clientId or
      * whatever).
      */
-    applyFilter?: TSource["Type"]["Mapper"]["Filter"];
+    applyFilter?: TSource["Type"]["Filter"];
     /**
      * Default sorting could be replaced or merged, but it's not forced
      */
-    defaultSort?: TSource["Type"]["Mapper"]["Sort"];
-    defaultCursor?: TSource["Type"]["Mapper"]["Cursor"];
+    defaultSort?: TSource["Type"]["Sort"];
+    defaultCursor?: TSource["Type"]["Cursor"];
 }>;
-export type IQueryProviderProps<TSource extends Source> = Omit<IQueryProviderInternalProps<TSource>, "SourceStore" | "UseSourceQuery">;
+export type IQueryProviderProps<TSource extends Source> = IQueryProviderInternalProps<TSource>;
 
 export const QueryProvider = <TSource extends Source>(
     {
@@ -36,11 +36,11 @@ export const QueryProvider = <TSource extends Source>(
     }: IQueryProviderInternalProps<TSource>) => {
     return <QueryContext.Provider
         defaults={{
-            $filter: defaultFilter,
-            $applyFilter: applyFilter,
-            $sort: defaultSort,
-            $page: defaultCursor?.page || 0,
-            $size: defaultCursor?.size || 30,
+            filter: defaultFilter,
+            applyFilter: applyFilter,
+            sort: defaultSort,
+            page: defaultCursor?.page || 0,
+            size: defaultCursor?.size || 30,
         }}
     >
         {children}

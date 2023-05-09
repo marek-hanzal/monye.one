@@ -65,11 +65,11 @@ export const Weeks = <TSource extends CalendarEventSource = CalendarEventSource>
             isCurrent,
         }
     } = WeeksOfStore.use();
-    const source = events?.Source.useSource();
-    const filter = events?.Source.Query.useState();
+    const source = events?.Source.use();
+    const filter = events?.Source.query.use();
     const fulltextContext = FulltextStoreContext.use$();
     const $events = events && source?.data
-        .reduce<Record<string, TSource["Dto"][]>>((prev, current) => {
+        .reduce<Record<string, TSource["Type"]["Dto"][]>>((prev, current) => {
             const stamp = DateTime.fromJSDate(current.date).toLocaleString({day: "numeric", month: "numeric", year: "numeric"});
             prev[stamp] = (prev[stamp] || []).concat(current);
             return prev;

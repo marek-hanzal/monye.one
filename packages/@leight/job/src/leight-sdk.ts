@@ -8,6 +8,13 @@ void generatorCommon({
             },
         ],
     },
+    withRepositoryMapper: {
+        repositories: [
+            {
+                name: "Job",
+            },
+        ],
+    },
     withRepository: {
         repositories: [
             {

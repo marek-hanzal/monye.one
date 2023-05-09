@@ -5,7 +5,7 @@ import {JobRepository} from "./repository";
 import {withJobRepositoryContainer} from "./sdk";
 import {JobExecutor, JobProgressService} from "./service";
 
-export const JobContainer = (container: IContainer) => {
+export const withJobContainer = (container: IContainer) => {
     withJobRepositoryContainer(container);
     container
         .bindClass($JobProgressService, JobProgressService)

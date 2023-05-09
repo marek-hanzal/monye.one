@@ -156,7 +156,7 @@ export type ICalendarComponent<TSource extends CalendarEventSource> =
 export namespace ICalendarComponent {
     export interface IRenderProps<TSource extends CalendarEventSource> {
         classes: ICalendarStyles;
-        source?: IUseSource<TSource>;
+        source?: TSource["Type"]["UseRepositoryResult"];
         compact?: boolean;
     }
 }
@@ -179,12 +179,12 @@ export interface ICalendarShellProps<TSource extends CalendarEventSource> extend
     children: ICalendarComponent<TSource>;
 }
 
-const renderComponent = <TSourceSchemaType extends ICalendarEventSourceSchemaType>(component: ICalendarComponent<TSourceSchemaType> | undefined, props: ICalendarComponent.IRenderProps<TSourceSchemaType>) => isCallable(component) ? component(props) : component;
+const renderComponent = <TSource extends CalendarEventSource>(component: ICalendarComponent<TSource> | undefined, props: ICalendarComponent.IRenderProps<TSource>) => isCallable(component) ? component(props) : component;
 
 /**
  * Styled shell for Calendar.
  */
-export const CalendarShell = <TSourceSchemaType extends ICalendarEventSourceSchemaType = ICalendarEventSourceSchemaType>(
+export const CalendarShell = <TSource extends CalendarEventSource = CalendarEventSource>(
     {
         events,
         withControls = true,
@@ -197,14 +197,14 @@ export const CalendarShell = <TSourceSchemaType extends ICalendarEventSourceSche
         compact = false,
         children,
         ...props
-    }: ICalendarShellProps<TSourceSchemaType>) => {
+    }: ICalendarShellProps<TSource>) => {
     const blockStore = BlockStore.use$();
     const source = events?.Source.use();
     const {classes} = useStyles();
     const controlColumnCount = 18;
     const controlWidth = 7;
 
-    const renderProps: ICalendarComponent.IRenderProps<TSourceSchemaType> = {
+    const renderProps: ICalendarComponent.IRenderProps<TSource> = {
         classes,
         source,
         compact,

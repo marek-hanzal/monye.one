@@ -15,4 +15,4 @@ export const JobSelection = createSelectionStore<JobSource["Type"]["Dto"]>({name
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ttpr05dldized24hu0vpe85d = true;
+export const $leight_bkuodas6tnz3v6chtpsmlqh5 = true;

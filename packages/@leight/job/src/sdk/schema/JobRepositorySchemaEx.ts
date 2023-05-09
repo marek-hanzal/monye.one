@@ -25,4 +25,4 @@ export const JobRepositorySchemaEx: IJobRepositorySchemaEx["Schema"] = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_kujimhul4bud808o22rt572g = true;
+export const $leight_a979x6c4x839g5bxn5rygdiu = true;

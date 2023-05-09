@@ -1,2 +1,3 @@
+export * from "./repository";
 export * from "./sdk";
-export * from "./BookContainer";
+export * from "./WithBookContainer";

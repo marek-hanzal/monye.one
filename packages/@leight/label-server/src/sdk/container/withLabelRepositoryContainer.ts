@@ -22,4 +22,4 @@ export const withLabelRepositoryContainer = (container: IContainer) => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qgxyxvodp2r5qfimqy8c1ocm = true;
+export const $leight_sf1b3uub5nx2pnmu8ic7q9aa = true;

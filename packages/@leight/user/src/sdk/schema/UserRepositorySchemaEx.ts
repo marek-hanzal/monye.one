@@ -25,4 +25,4 @@ export const UserRepositorySchemaEx: IUserRepositorySchemaEx["Schema"] = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_iglvabpz8clfsn405mrbgc37 = true;
+export const $leight_jhupeeimt9vxda5lguxua8ob = true;

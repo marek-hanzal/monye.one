@@ -13,4 +13,4 @@ export class BaseTransactionRepositoryMapper extends AbstractRepositoryMapper<Tr
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rnx5522yonee2az2e996fbfh = true;
+export const $leight_he4x8g2of0pw53ch3c91pqfq = true;

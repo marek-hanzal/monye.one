@@ -1,16 +1,23 @@
 import {generatorCommon} from "@leight/sdk";
 
 void generatorCommon({
-    withRepositoryEx:     {
+    withRepository: {
         repositories: [
             {
-                name:     "Transaction",
+                name: "Transaction",
+            },
+        ],
+    },
+    withRepositoryEx: {
+        repositories: [
+            {
+                name: "Transaction",
                 packages: {
                     prisma: "@monye.one/prisma",
                 },
             },
             {
-                name:     "TransactionKeyword",
+                name: "TransactionKeyword",
                 packages: {
                     prisma: "@monye.one/prisma",
                 },
@@ -27,7 +34,7 @@ void generatorCommon({
             },
         ],
     },
-    withForm:             {
+    withForm: {
         forms: [
             {
                 name: "TransactionFilter",

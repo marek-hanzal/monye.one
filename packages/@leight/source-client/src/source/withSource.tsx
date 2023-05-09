@@ -21,7 +21,7 @@ export const withSource = <TSource extends Source>(
     return {
         name,
         schema,
-        use: ({cacheTime}) => {
+        use: ({cacheTime} = {cacheTime: 120}) => {
             // eslint-disable-next-line react-hooks/rules-of-hooks
             return useRepository<TSource>({
                 UseRepository,

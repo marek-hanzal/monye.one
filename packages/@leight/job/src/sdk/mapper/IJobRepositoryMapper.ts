@@ -3,13 +3,14 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type IMantineFormContext} from "@leight/form";
-import {type ITransactionFilterFormSchemaType} from "../../schema/TransactionFilterFormSchema";
+import {type IRepositoryMapper} from "@leight/source";
+import {type JobSource} from "../../schema";
 
-export type ITransactionFilterMantineFormContext = IMantineFormContext<ITransactionFilterFormSchemaType>;
+export interface IJobRepositoryMapper extends IRepositoryMapper<JobSource["Schema"]["Mapper"]> {
+}
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_flqdxz3lcg3cxk5bg09igugn = true;
+export const $leight_ccw8hv97cptzqjhmd2ig48h2 = true;

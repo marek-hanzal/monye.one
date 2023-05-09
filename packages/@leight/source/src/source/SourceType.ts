@@ -16,7 +16,7 @@ export interface SourceType<TSourceSchema extends ISourceSchema = ISourceSchema>
     UseRepository: IUseRepository<TSourceSchema["Mapper"]>;
     UseRepositoryQuery: IUseRepositoryQuery<TSourceSchema["Mapper"]>;
     UseInvalidator: () => () => void;
-    Use: ({cacheTime}: { cacheTime?: number }) => IRepositoryResult<TSourceSchema>;
+    Use: ({cacheTime}?: { cacheTime?: number }) => IRepositoryResult<TSourceSchema>;
     UseRepositoryResult: IRepositoryResult<TSourceSchema>;
     QueryContext: IStoreContext<IQueryStoreProps<TSourceSchema["Mapper"]>>;
 }

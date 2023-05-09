@@ -13,7 +13,7 @@ export const useRepository = <TSource extends Source>(
         QueryContext,
     }: IUseRepositoryProps<TSource>): TSource["Type"]["UseRepositoryResult"] => {
     const $cacheTime = cacheTime ? cacheTime * 1000 : undefined;
-    const {query} = QueryContext.use(({$query}) => ({query: $query}));
+    const {query} = QueryContext.use(({query}) => ({query}));
     const result = UseRepository.useQuery(query, {
         staleTime: $cacheTime,
         cacheTime: $cacheTime,

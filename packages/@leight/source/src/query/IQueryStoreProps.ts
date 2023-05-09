@@ -6,27 +6,25 @@ export type IQueryStoreProps<
     TRepositoryMapperSchema extends IRepositoryMapperSchema,
     TRepositoryMapperType extends RepositoryMapperType<TRepositoryMapperSchema> = RepositoryMapperType<TRepositoryMapperSchema>
 > = IStoreProps<{
-    $id: string;
+    page: number;
+    size: number;
 
-    $page: number;
-    $size: number;
-
-    $filter: TRepositoryMapperType["Filter"];
+    filter: TRepositoryMapperType["Filter"];
     /**
      * If set, all filter changes are shallow merged with this
      */
-    $applyFilter?: TRepositoryMapperType["Filter"];
-    $filterDto?: IQueryStoreProps.IFilterDto;
-    $sort: TRepositoryMapperType["Sort"];
+    applyFilter?: TRepositoryMapperType["Filter"];
+    filterDto?: IQueryStoreProps.IFilterDto;
+    sort: TRepositoryMapperType["Sort"];
 
-    $query: TRepositoryMapperType["Query"];
+    query: TRepositoryMapperType["Query"];
 
-    setFilter(filter?: TRepositoryMapperType["Filter"]): void;
-    applyFilter(filter?: TRepositoryMapperType["Filter"]): void;
-    applyShallowFilter(filter?: TRepositoryMapperType["Filter"]): void;
-    setShallowFilter(filter?: TRepositoryMapperType["Filter"]): void;
-    setFilterDto(dto?: IQueryStoreProps.IFilterDto): void;
-    setShallowFilterDto(dto?: IQueryStoreProps.IFilterDto): void;
+    withFilter(filter?: TRepositoryMapperType["Filter"]): void;
+    withApplyFilter(filter?: TRepositoryMapperType["Filter"]): void;
+    withApplyShallowFilter(filter?: TRepositoryMapperType["Filter"]): void;
+    withShallowFilter(filter?: TRepositoryMapperType["Filter"]): void;
+    withFilterDto(dto?: IQueryStoreProps.IFilterDto): void;
+    withShallowFilterDto(dto?: IQueryStoreProps.IFilterDto): void;
     /**
      * Is there active filter? Does not include applyFilter
      */
@@ -36,10 +34,10 @@ export type IQueryStoreProps<
      */
     hasApplyFilter(): boolean;
 
-    setSort(sort: keyof TRepositoryMapperType["Sort"], order: ISortOrder): void;
+    withSort(sort: keyof TRepositoryMapperType["Sort"], order: ISortOrder): void;
 
-    setSize(size: number): void;
-    setPage(page: number): void;
+    withSize(size: number): void;
+    withPage(page: number): void;
 }>;
 
 export namespace IQueryStoreProps {

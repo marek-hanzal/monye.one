@@ -1,4 +1,4 @@
 export * from "./mapper";
 export * from "./repository";
 export * from "./sdk";
-export * from "./registerFilterContainer";
+export * from "./withFilterContainer";

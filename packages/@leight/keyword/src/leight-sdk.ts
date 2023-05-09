@@ -8,10 +8,24 @@ void generatorCommon({
             },
         ],
     },
-    withRepositoryEx:     {
+    withRepository: {
         repositories: [
             {
-                name:     "Keyword",
+                name: "Keyword",
+            },
+        ],
+    },
+    withRepositoryMapper: {
+        repositories: [
+            {
+                name: "Keyword",
+            },
+        ],
+    },
+    withRepositoryEx: {
+        repositories: [
+            {
+                name: "Keyword",
                 packages: {
                     prisma: "@leight/prisma",
                 },

@@ -4,7 +4,7 @@ import {UserRepository} from "./repository";
 import {withUserRepositoryContainer} from "./sdk";
 import {RegistrationService, UserJwtService, UserService} from "./service";
 
-export const UserContainer = (container: IContainer) => {
+export const withUserContainer = (container: IContainer) => {
     withUserRepositoryContainer(container);
     container
         .bindClass($RegistrationService, RegistrationService)

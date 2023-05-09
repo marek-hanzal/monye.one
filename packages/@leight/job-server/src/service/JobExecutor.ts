@@ -1,41 +1,35 @@
-import {
-    $Container,
-    type IContainer
-}               from "@leight/container";
+import {$Container, type IContainer} from "@leight/container";
 import {
     $JobProgressService,
-    $JobSource,
-    $JobSourceMapper,
+    $JobRepository,
+    $JobRepositoryMapper,
     type IJobExecutor,
     type IJobParamsSchema,
     type IJobProgressService,
+    type IJobRepository,
+    type IJobRepositoryMapper,
     type IJobService,
-    type IJobSource,
-    type IJobSourceMapper,
     type IJobWithParams
-}               from "@leight/job";
-import {
-    $UserService,
-    type IUserService
-}               from "@leight/user";
-import {Pack}   from "@leight/utils";
+} from "@leight/job";
+import {$UserService, type IUserService} from "@leight/user";
+import {Pack} from "@leight/utils";
 import {Logger} from "@leight/winston";
-import delay    from "delay";
+import delay from "delay";
 
 export class JobExecutor implements IJobExecutor {
     static inject = [
         $JobProgressService,
         $UserService,
-        $JobSource,
-        $JobSourceMapper,
+        $JobRepository,
+        $JobRepositoryMapper,
         $Container,
     ];
 
     constructor(
         protected jobProgressService: IJobProgressService,
         protected userService: IUserService,
-        protected jobSource: IJobSource,
-        protected jobSourceMapper: IJobSourceMapper,
+        protected jobRepository: IJobRepository,
+        protected jobRepositoryMapper: IJobRepositoryMapper,
         protected container: IContainer,
     ) {
     }
@@ -45,31 +39,31 @@ export class JobExecutor implements IJobExecutor {
             service,
             params,
         }: IJobExecutor.IExecuteProps<TJobParamsSchema>): Promise<IJobWithParams<TJobParamsSchema>> {
-        const name        = service.toString();
-        let logger        = Logger(name);
-        const job         = await this.jobSourceMapper.toDto(
-            await this.jobSource.create({
+        const name = service.toString();
+        let logger = Logger(name);
+        const job = await this.jobRepositoryMapper.toDto(
+            await this.jobRepository.create({
                 created: new Date(),
                 name,
-                userId:  this.userService.required(),
-                params:  await Pack.packIf(params),
+                userId: this.userService.required(),
+                params: await Pack.packIf(params),
             })
         ) as IJobWithParams<TJobParamsSchema>;
-        const labels      = {name, jobId: job.id};
-        logger            = logger.child({labels, jobId: labels.jobId, name});
+        const labels = {name, jobId: job.id};
+        logger = logger.child({labels, jobId: labels.jobId, name});
         const jobProgress = this.jobProgressService.create(job.id);
         setTimeout(() => {
             (async () => {
                 try {
                     const jobService = this.container.resolve<IJobService<TJobParamsSchema>>(service);
-                    await this.jobSource.find(job.id);
+                    await this.jobRepository.get(job.id);
                     await jobProgress.setStatus("RUNNING");
                     const $params = jobService.validator()?.parse(params) || params;
                     await jobService.handle({
                         name,
                         job,
-                        params:   $params,
-                        userId:   this.userService.required(),
+                        params: $params,
+                        userId: this.userService.required(),
                         jobProgress,
                         logger,
                         progress: async (callback, $sleep = 0) => {

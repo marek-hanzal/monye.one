@@ -22,4 +22,4 @@ export const withTransactionRepositoryContainer = (container: IContainer) => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hzflbzgkgxsq4ie57uv9asjp = true;
+export const $leight_loqynhb6ycmie6pskq1aa4wv = true;

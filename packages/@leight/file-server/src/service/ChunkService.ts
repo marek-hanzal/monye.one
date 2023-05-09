@@ -1,15 +1,5 @@
-import {
-    $ChunkServiceConfig,
-    $FileService,
-    type IChunkService,
-    type IChunkServiceConfig,
-    type IFileService,
-    type IFileSourceSchemaType,
-} from "@leight/file";
-import {
-    outputFileSync,
-    removeSync
-} from "fs-extra";
+import {$ChunkServiceConfig, $FileService, type FileSource, type IChunkService, type IChunkServiceConfig, type IFileService} from "@leight/file";
+import {outputFileSync, removeSync} from "fs-extra";
 
 export class ChunkService implements IChunkService {
     static inject = [
@@ -35,9 +25,9 @@ export class ChunkService implements IChunkService {
             mime,
             userId,
             replace,
-        }: IChunkService.CommitProps): Promise<IFileSourceSchemaType["Entity"]> {
+        }: IChunkService.CommitProps): Promise<FileSource["Type"]["Dto"]> {
         const $file = this.pathOf(chunkId);
-        const file  = await this.fileService.store({
+        const file = await this.fileService.store({
             file: $file,
             path,
             name,

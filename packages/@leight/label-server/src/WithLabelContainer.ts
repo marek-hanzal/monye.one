@@ -4,7 +4,7 @@ import {LabelRepositoryMapper} from "./mapper";
 import {LabelRepository} from "./repository";
 import {withLabelRepositoryContainer} from "./sdk";
 
-export const LabelContainer = (container: IContainer) => {
+export const withLabelContainer = (container: IContainer) => {
     withLabelRepositoryContainer(container);
     container
         .bindClass($LabelRepository, LabelRepository)

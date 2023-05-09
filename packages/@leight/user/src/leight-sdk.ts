@@ -4,7 +4,14 @@ void generatorCommon({
     withRepository: {
         repositories: [
             {
-                name: 'User',
+                name: "User",
+            },
+        ],
+    },
+    withRepositoryMapper: {
+        repositories: [
+            {
+                name: "User",
             },
         ],
     },
