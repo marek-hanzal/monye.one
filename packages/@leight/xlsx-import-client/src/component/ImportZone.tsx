@@ -1,20 +1,14 @@
 import {type IWithImportMutation} from "@leight/import";
-import {type IUseJobSourceQuery}  from "@leight/job";
-import {
-    type IJobInlineProps,
-    withJobNotification
-}                                 from "@leight/job-client";
-import {
-    DropZone,
-    type IDropZoneProps
-}                                 from "@leight/mantine";
-import {LoopsProvider}            from "@leight/utils-client";
-import {MIME_TYPES}               from "@mantine/dropzone";
+import {type JobSource} from "@leight/job";
+import {type IJobInlineProps, withJobNotification} from "@leight/job-client";
+import {DropZone, type IDropZoneProps} from "@leight/mantine";
+import {LoopsProvider} from "@leight/utils-client";
+import {MIME_TYPES} from "@mantine/dropzone";
 
 export interface IImportZoneProps<TParams extends Record<string, any>> extends Omit<IDropZoneProps, "path"> {
     mutation: IWithImportMutation;
     onSuccess?: IJobInlineProps["onSuccess"];
-    useJobFindQuery: IUseJobSourceQuery["useFind"];
+    useJobGetQuery: JobSource["Type"]["UseRepository"]["useGet"];
     path?: string;
     /**
      * Override import service name
@@ -28,7 +22,7 @@ export const ImportZone = <TParams extends Record<string, any>>(
         withTranslation,
         onSuccess,
         onUpload,
-        useJobFindQuery,
+        useJobGetQuery,
         mutation: {useMutation},
         service,
         params,
@@ -50,7 +44,7 @@ export const ImportZone = <TParams extends Record<string, any>>(
                             withJobNotification({
                                 job,
                                 withTranslation,
-                                useJobFindQuery,
+                                useJobGetQuery,
                                 onSuccess,
                             });
                         },

@@ -1,7 +1,7 @@
-import {type IJobSourceSchemaType}  from "@leight/job";
-import {withJobNotification}        from "@leight/job-client";
+import {type IJobSourceSchemaType} from "@leight/job";
+import {withJobNotification} from "@leight/job-client";
 import {type IBankSourceSchemaType} from "@monye.one/bank";
-import {trpc}                       from "@monye.one/trpc-client";
+import {trpc} from "@monye.one/trpc-client";
 
 export interface IWithStatsJobNotificationProps {
     bank: IBankSourceSchemaType["Dto"];
@@ -20,7 +20,7 @@ export const withStatsJobNotification = (
                     label:     "stats.update",
                     values:    bank,
                 },
-                useJobFindQuery: trpc.job.source.find.useQuery,
+                useJobGetQuery: trpc.job.source.find.useQuery,
             });
         }
     };

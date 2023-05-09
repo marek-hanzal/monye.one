@@ -1,49 +1,26 @@
-import {type ICalendarEventSourceSchemaType} from "@leight/calendar";
-import {
-    type InferSelectors,
-    switchScheme,
-    withPrimaryColor,
-    withSecondaryPrimaryColor
-}                                            from "@leight/mantine";
-import {
-    type ISourceStore,
-    type IUseSource
-}                                            from "@leight/source";
-import {
-    isCallable,
-    withBool
-}                                            from "@leight/utils";
-import {
-    BlockStore,
-    classNames
-}                                            from "@leight/utils-client";
-import {
-    Box,
-    Container,
-    createStyles,
-    Grid,
-    LoadingOverlay
-}                                            from "@mantine/core";
-import {
-    type ComponentProps,
-    type ReactNode
-}                                            from "react";
+import {type CalendarEventSource} from "@leight/calendar";
+import {type InferSelectors, switchScheme, withPrimaryColor, withSecondaryPrimaryColor} from "@leight/mantine";
+import {ISource} from "@leight/source";
+import {isCallable, withBool} from "@leight/utils";
+import {BlockStore, classNames} from "@leight/utils-client";
+import {Box, Container, createStyles, Grid, LoadingOverlay} from "@mantine/core";
+import {type ComponentProps, type ReactNode} from "react";
 
 const useStyles = createStyles(theme => ({
-    calendar:       {
+    calendar: {
         userSelect: "none",
     },
-    calendarGrid:   {
-        border:         "1px solid",
-        borderColor:    switchScheme(
+    calendarGrid: {
+        border: "1px solid",
+        borderColor: switchScheme(
             theme,
             theme.colors.gray[6],
             theme.colors.gray[4]
         ),
-        borderBottom:   "none",
-        borderRight:    "none",
+        borderBottom: "none",
+        borderRight: "none",
         "&:last-child": {
-            border:      "1px solid",
+            border: "1px solid",
             borderColor: switchScheme(
                 theme,
                 theme.colors.gray[6],
@@ -52,9 +29,9 @@ const useStyles = createStyles(theme => ({
             borderRight: "none",
         },
     },
-    controlsGrid:   {
+    controlsGrid: {
         "& > div:last-child": {
-            borderRight:      "1px solid",
+            borderRight: "1px solid",
             borderRightColor: switchScheme(
                 theme,
                 theme.colors.gray[6],
@@ -62,40 +39,40 @@ const useStyles = createStyles(theme => ({
             ),
         },
     },
-    controls:       {
-        display:    "flex",
-        flex:       "1 1 auto",
+    controls: {
+        display: "flex",
+        flex: "1 1 auto",
         alignItems: "center",
     },
-    controlsLeft:   {},
+    controlsLeft: {},
     controlsMiddle: {
         justifyContent: "center",
     },
-    controlsRight:  {
+    controlsRight: {
         justifyContent: "end",
     },
     controlsPrefix: {},
     controlsSuffix: {},
-    header:         {
+    header: {
         backgroundColor: switchScheme(
             theme,
             theme.colors.gray[6],
             theme.colors.gray[0]
         ),
-        fontWeight:      "bold",
-        height:          "3em",
-        display:         "flex",
-        flex:            "1 1 auto",
-        justifyContent:  "center",
-        alignItems:      "center",
-        "&.compact":     {
+        fontWeight: "bold",
+        height: "3em",
+        display: "flex",
+        flex: "1 1 auto",
+        justifyContent: "center",
+        alignItems: "center",
+        "&.compact": {
             height: "2em",
         },
     },
-    cell:           {
-        height:      "6em",
-        padding:     "0",
-        "&:hover":   {
+    cell: {
+        height: "6em",
+        padding: "0",
+        "&:hover": {
             backgroundColor: switchScheme(
                 theme,
                 theme.colors.gray[6],
@@ -103,27 +80,27 @@ const useStyles = createStyles(theme => ({
             ),
         },
         "&.compact": {
-            fontWeight:     "normal",
-            height:         "2em",
-            display:        "flex",
-            flex:           "1 1 auto",
+            fontWeight: "normal",
+            height: "2em",
+            display: "flex",
+            flex: "1 1 auto",
             justifyContent: "center",
-            alignItems:     "center",
+            alignItems: "center",
         }
     },
-    monthCell:      {
-        display:        "flex",
-        flex:           "1 1 auto",
+    monthCell: {
+        display: "flex",
+        flex: "1 1 auto",
         justifyContent: "center",
-        alignItems:     "center",
+        alignItems: "center",
     },
-    yearCell:       {
-        display:        "flex",
-        flex:           "1 1 auto",
+    yearCell: {
+        display: "flex",
+        flex: "1 1 auto",
         justifyContent: "center",
-        alignItems:     "center",
+        alignItems: "center",
     },
-    row:            {
+    row: {
         "& > div": {
             borderRight: "1px solid",
             borderColor: switchScheme(
@@ -133,35 +110,35 @@ const useStyles = createStyles(theme => ({
             ),
         },
     },
-    currentMonth:   {
-        fontWeight:      "bold",
+    currentMonth: {
+        fontWeight: "bold",
         backgroundColor: switchScheme(
             theme,
             theme.colors.gray[6],
             theme.colors.gray[1]
         ),
     },
-    currentYear:    {
-        fontWeight:      "bold",
+    currentYear: {
+        fontWeight: "bold",
         backgroundColor: switchScheme(
             theme,
             theme.colors.gray[6],
             theme.colors.gray[1]
         ),
     },
-    currentWeek:    {},
-    currentDay:     {
+    currentWeek: {},
+    currentDay: {
         backgroundColor: withPrimaryColor(theme, -4),
-        color:           withSecondaryPrimaryColor(theme, -4),
-        "&:hover":       {
+        color: withSecondaryPrimaryColor(theme, -4),
+        "&:hover": {
             backgroundColor: withPrimaryColor(theme, -3),
-            color:           withSecondaryPrimaryColor(theme, -2),
+            color: withSecondaryPrimaryColor(theme, -2),
         },
     },
-    inRange:        {
+    inRange: {
         fontWeight: "bold",
     },
-    outOfRange:     {
+    outOfRange: {
         backgroundColor: switchScheme(
             theme,
             theme.colors.gray[6],
@@ -172,34 +149,34 @@ const useStyles = createStyles(theme => ({
 
 export type ICalendarStyles = InferSelectors<typeof useStyles>;
 
-export type ICalendarComponent<TSourceSchemaType extends ICalendarEventSourceSchemaType> =
-    ((props: ICalendarComponent.IRenderProps<TSourceSchemaType>) => ReactNode)
+export type ICalendarComponent<TSource extends CalendarEventSource> =
+    ((props: ICalendarComponent.IRenderProps<TSource>) => ReactNode)
     | ReactNode;
 
 export namespace ICalendarComponent {
-    export interface IRenderProps<TSourceSchemaType extends ICalendarEventSourceSchemaType> {
+    export interface IRenderProps<TSource extends CalendarEventSource> {
         classes: ICalendarStyles;
-        source?: IUseSource<TSourceSchemaType>;
+        source?: IUseSource<TSource>;
         compact?: boolean;
     }
 }
 
-export interface ICalendarShellEvents<TSourceSchemaType extends ICalendarEventSourceSchemaType> {
-    schema: TSourceSchemaType["DtoSchema"];
-    SourceStore: ISourceStore<TSourceSchemaType>;
+export interface ICalendarShellEvents<TSource extends CalendarEventSource> {
+    schema: TSource["Schema"]["DtoSchema"];
+    Source: ISource<TSource>;
 }
 
-export interface ICalendarShellProps<TSourceSchemaType extends ICalendarEventSourceSchemaType> extends Omit<ComponentProps<typeof Container>, "children"> {
-    events?: ICalendarShellEvents<TSourceSchemaType>;
+export interface ICalendarShellProps<TSource extends CalendarEventSource> extends Omit<ComponentProps<typeof Container>, "children"> {
+    events?: ICalendarShellEvents<TSource>;
     withControls?: boolean;
-    controlsTopLeft?: ICalendarComponent<TSourceSchemaType>;
-    controlsTopMiddle?: ICalendarComponent<TSourceSchemaType>;
-    controlsTopRight?: ICalendarComponent<TSourceSchemaType>;
-    controlsBottomLeft?: ICalendarComponent<TSourceSchemaType>;
-    controlsBottomMiddle?: ICalendarComponent<TSourceSchemaType>;
-    controlsBottomRight?: ICalendarComponent<TSourceSchemaType>;
+    controlsTopLeft?: ICalendarComponent<TSource>;
+    controlsTopMiddle?: ICalendarComponent<TSource>;
+    controlsTopRight?: ICalendarComponent<TSource>;
+    controlsBottomLeft?: ICalendarComponent<TSource>;
+    controlsBottomMiddle?: ICalendarComponent<TSource>;
+    controlsBottomRight?: ICalendarComponent<TSource>;
     compact?: boolean;
-    children: ICalendarComponent<TSourceSchemaType>;
+    children: ICalendarComponent<TSource>;
 }
 
 const renderComponent = <TSourceSchemaType extends ICalendarEventSourceSchemaType>(component: ICalendarComponent<TSourceSchemaType> | undefined, props: ICalendarComponent.IRenderProps<TSourceSchemaType>) => isCallable(component) ? component(props) : component;
@@ -221,11 +198,11 @@ export const CalendarShell = <TSourceSchemaType extends ICalendarEventSourceSche
         children,
         ...props
     }: ICalendarShellProps<TSourceSchemaType>) => {
-    const blockStore         = BlockStore.useOptionalState();
-    const source             = events?.SourceStore.useSource();
-    const {classes}          = useStyles();
+    const blockStore = BlockStore.use$();
+    const source = events?.Source.use();
+    const {classes} = useStyles();
     const controlColumnCount = 18;
-    const controlWidth       = 7;
+    const controlWidth = 7;
 
     const renderProps: ICalendarComponent.IRenderProps<TSourceSchemaType> = {
         classes,

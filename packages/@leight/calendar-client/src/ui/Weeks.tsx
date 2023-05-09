@@ -1,43 +1,18 @@
-import {
-    type ICalendarEventSourceSchemaType,
-    type IDay,
-    type IWeeks
-}                             from "@leight/calendar";
-import {DateTime}             from "@leight/i18n";
-import {DateInline}           from "@leight/i18n-client";
+import {type CalendarEventSource, type IDay, type IWeeks} from "@leight/calendar";
+import {DateTime} from "@leight/i18n";
+import {DateInline} from "@leight/i18n-client";
 import {FulltextStoreContext} from "@leight/source-client";
-import {classNames}           from "@leight/utils-client";
-import {
-    ActionIcon,
-    Button,
-    Grid,
-    Group,
-    Stack,
-    Text
-}                             from "@mantine/core";
-import {
-    IconCalendarEvent,
-    IconChevronLeft,
-    IconChevronRight,
-    IconChevronsLeft,
-    IconChevronsRight
-}                             from "@tabler/icons-react";
-import {
-    type PropsWithChildren,
-    type ReactNode,
-    useEffect,
-    useState
-}                             from "react";
-import {WeeksOfStore}         from "../context";
-import {
-    CalendarShell,
-    type ICalendarShellProps
-}                             from "./CalendarShell";
+import {classNames} from "@leight/utils-client";
+import {ActionIcon, Button, Grid, Group, Stack, Text} from "@mantine/core";
+import {IconCalendarEvent, IconChevronLeft, IconChevronRight, IconChevronsLeft, IconChevronsRight} from "@tabler/icons-react";
+import {type PropsWithChildren, type ReactNode, useEffect, useState} from "react";
+import {WeeksOfStore} from "../context";
+import {CalendarShell, type ICalendarShellProps} from "./CalendarShell";
 
-export type IWeeksProps<TSourceSchemaType extends ICalendarEventSourceSchemaType = ICalendarEventSourceSchemaType> = PropsWithChildren<Omit<ICalendarShellProps<TSourceSchemaType>, "children" | "onClick" | "onChange"> & {
+export type IWeeksProps<TSource extends CalendarEventSource = CalendarEventSource> = PropsWithChildren<Omit<ICalendarShellProps<TSource>, "children" | "onClick" | "onChange"> & {
     onClick?(props: IWeeksProps.IOnClickProps): void;
     onChange?(props: IWeeksProps.IOnChangeProps): void;
-    renderDayInline?(props: IWeeksProps.IRenderInlineProps<TSourceSchemaType>): ReactNode;
+    renderDayInline?(props: IWeeksProps.IRenderInlineProps<TSource>): ReactNode;
 
     weekCountSize?: number;
     defaultWithWeekNo?: boolean;
@@ -54,15 +29,15 @@ export namespace IWeeksProps {
         weeks: IWeeks;
     }
 
-    export interface IRenderInlineProps<TSourceSchemaType extends ICalendarEventSourceSchemaType> {
-        schema: TSourceSchemaType["DtoSchema"];
+    export interface IRenderInlineProps<TSource extends CalendarEventSource> {
+        schema: TSource["Schema"]["DtoSchema"];
         day: IDay;
-        events: TSourceSchemaType["Dto"][];
+        events: TSource["Type"]["Dto"][];
         compact?: boolean;
     }
 }
 
-export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType = ICalendarEventSourceSchemaType>(
+export const Weeks = <TSource extends CalendarEventSource = CalendarEventSource>(
     {
         onClick,
         onChange: $onChange = () => null,
@@ -74,27 +49,27 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
         columnSize = 3,
         children,
         ...props
-    }: IWeeksProps<TSourceSchemaType>) => {
+    }: IWeeksProps<TSource>) => {
     const {
-              id,
-              nextMonth,
-              prevMonth,
-              prevYear,
-              nextYear,
-              today,
-              weeks: {
-                         weeks,
-                         list,
-                         start,
-                         end,
-                         isCurrent,
-                     }
-          }                         = WeeksOfStore.useState();
-    const source                    = events?.SourceStore.useSource();
-    const filter                    = events?.SourceStore.Query.useState();
-    const fulltextContext           = FulltextStoreContext.useOptionalState();
-    const $events                   = events && source?.data
-        .reduce<Record<string, TSourceSchemaType["Dto"][]>>((prev, current) => {
+        id,
+        nextMonth,
+        prevMonth,
+        prevYear,
+        nextYear,
+        today,
+        weeks: {
+            weeks,
+            list,
+            start,
+            end,
+            isCurrent,
+        }
+    } = WeeksOfStore.use();
+    const source = events?.Source.useSource();
+    const filter = events?.Source.Query.useState();
+    const fulltextContext = FulltextStoreContext.use$();
+    const $events = events && source?.data
+        .reduce<Record<string, TSource["Dto"][]>>((prev, current) => {
             const stamp = DateTime.fromJSDate(current.date).toLocaleString({day: "numeric", month: "numeric", year: "numeric"});
             prev[stamp] = (prev[stamp] || []).concat(current);
             return prev;
@@ -103,22 +78,22 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
 
     useEffect(() => {
         filter?.setFilter({
-            fulltext:  fulltextContext?.fulltext || undefined,
+            fulltext: fulltextContext?.fulltext || undefined,
             withRange: {
                 from: start.toUTC().toJSDate(),
-                to:   end.toUTC().toJSDate(),
+                to: end.toUTC().toJSDate(),
             },
         });
     }, [
         id,
     ]);
 
-    const onChange: IWeeksProps<TSourceSchemaType>["onChange"] = props => {
+    const onChange: IWeeksProps<TSource>["onChange"] = props => {
         filter?.setFilter({
-            fulltext:  fulltextContext?.fulltext || undefined,
+            fulltext: fulltextContext?.fulltext || undefined,
             withRange: {
                 from: props.weeks.start.toUTC().toJSDate(),
-                to:   props.weeks.end.toUTC().toJSDate(),
+                to: props.weeks.end.toUTC().toJSDate(),
             },
         });
         $onChange?.(props);
@@ -307,9 +282,9 @@ export const Weeks = <TSourceSchemaType extends ICalendarEventSourceSchemaType =
                         </Group>
                         {renderDayInline && events ? <div>
                             {renderDayInline({
-                                schema:  events.schema,
+                                schema: events.schema,
                                 day,
-                                events:  $events?.[day.id] || [],
+                                events: $events?.[day.id] || [],
                                 compact: props.compact,
                             })}
                         </div> : null}
