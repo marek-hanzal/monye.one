@@ -1,9 +1,6 @@
-import {type ISource}                 from "@leight/source";
+import {type ISource} from "@leight/source";
 import {Pagination as CoolPagination} from "@mantine/core";
-import {
-    type ComponentProps,
-    type FC
-}                                     from "react";
+import {type ComponentProps, type FC} from "react";
 
 export interface IPaginationProps extends Partial<ComponentProps<typeof CoolPagination>> {
     Source: ISource;
@@ -16,13 +13,13 @@ export const Pagination: FC<IPaginationProps> = (
         hideOnSingle = true,
         ...props
     }) => {
-    const $cacheTime                       = 120;
-    const {$filter, $size, $page, setPage} = Source.query.useState(({$filter, $size, $page, setPage}) => ({$filter, $size, $page, setPage}));
-    const result                           = Source.repository.useCount($filter, {
+    const $cacheTime = 120;
+    const {$filter, $size, $page, setPage} = Source.query.use(({$filter, $size, $page, setPage}) => ({$filter, $size, $page, setPage}));
+    const result = Source.repository.useCount($filter, {
         cacheTime: $cacheTime * 1000,
         staleTime: $cacheTime * 1000,
     });
-    const pages                            = Math.ceil((result.data || 0) / $size);
+    const pages = Math.ceil((result.data || 0) / $size);
     return hideOnSingle && pages === 1 ? null : <CoolPagination
         withEdges
         size={"md"}

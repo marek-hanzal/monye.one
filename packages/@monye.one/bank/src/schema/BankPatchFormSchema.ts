@@ -1,23 +1,17 @@
-import {
-    type IFormSchemaType,
-    withFormPatchSchema
-}          from "@leight/form";
+import {type IFormSchemaType, withFormPatchSchema} from "@leight/form";
 import {z} from "@leight/zod";
-import {
-    BankSourceSchema,
-    type IBankSourceSchemaType
-}          from "./BankSourceSchema";
+import {type BankSource, BankSourceSchema} from "./BankSourceSchema";
 
 const ValuesSchema = z.object({
-    account:     z.string().trim().optional(),
+    account: z.string().trim().optional(),
     description: z.string().optional(),
-    balance:     z.object({
+    balance: z.object({
         value: z.number({invalid_type_error: "Empty"}),
-        date:  z.string().trim().min(1, {message: "Empty"}),
+        date: z.string().trim().min(1, {message: "Empty"}),
     }).optional(),
 });
 
-export const BankPatchFormSchema = withFormPatchSchema<IBankSourceSchemaType, typeof ValuesSchema>({
+export const BankPatchFormSchema = withFormPatchSchema<BankSource["Schema"], typeof ValuesSchema>({
     schema: BankSourceSchema,
     ValuesSchema,
 });

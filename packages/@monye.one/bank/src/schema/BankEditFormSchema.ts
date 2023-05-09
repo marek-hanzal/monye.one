@@ -1,12 +1,6 @@
-import {
-    type IFormSchemaType,
-    withFormPatchSchema
-}          from "@leight/form";
+import {type IFormSchemaType, withFormPatchSchema} from "@leight/form";
 import {z} from "@leight/zod";
-import {
-    BankSourceSchema,
-    type IBankSourceSchemaType
-}          from "./BankSourceSchema";
+import {type BankSource, BankSourceSchema} from "./BankSourceSchema";
 
 const ValuesSchema = z.object({
     account:     z.string().trim().optional(),
@@ -17,7 +11,7 @@ const ValuesSchema = z.object({
     }).optional(),
 });
 
-export const BankEditFormSchema = withFormPatchSchema<IBankSourceSchemaType, typeof ValuesSchema>({
+export const BankEditFormSchema = withFormPatchSchema<BankSource["Schema"], typeof ValuesSchema>({
     schema: BankSourceSchema,
     ValuesSchema,
 });
