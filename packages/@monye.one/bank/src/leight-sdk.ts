@@ -1,10 +1,17 @@
 import {generatorCommon} from "@leight/sdk";
 
 void generatorCommon({
-    withRepositoryEx:     {
+    withRepository: {
         repositories: [
             {
-                name:     "Bank",
+                name: "Bank",
+            },
+        ],
+    },
+    withRepositoryEx: {
+        repositories: [
+            {
+                name: "Bank",
                 packages: {
                     prisma: "@monye.one/prisma",
                 },
@@ -18,7 +25,7 @@ void generatorCommon({
             },
         ],
     },
-    withForm:             {
+    withForm: {
         forms: [
             {
                 name: "BankCreate",

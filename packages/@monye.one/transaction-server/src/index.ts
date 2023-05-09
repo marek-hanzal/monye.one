@@ -1,4 +1,4 @@
-export * from "./procedure";
+export * from "./handler";
 export * from "./repository";
 export * from "./sdk";
 export * from "./service";

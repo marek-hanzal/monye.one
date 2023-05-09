@@ -1,64 +1,51 @@
 import {type IImportHandler} from "@leight/import";
-import {
-    $UserService,
-    type IUserService
-}                            from "@leight/user";
-import {z}                   from "@leight/zod";
-import {
-    $BankSource,
-    type IBankSource
-}                            from "@monye.one/bank";
-import {
-    $TransactionSource,
-    type ITransactionImport,
-    type ITransactionImportHandler,
-    type ITransactionImportParams,
-    type ITransactionSource,
-    TransactionImportSchema
-}                            from "@monye.one/transaction";
+import {$UserService, type IUserService} from "@leight/user";
+import {z} from "@leight/zod";
+import {$BankRepository, type IBankRepository} from "@monye.one/bank";
+import {$TransactionRepository, type ITransactionImport, type ITransactionImportHandler, type ITransactionImportParams, ITransactionRepository, TransactionImportSchema} from "@monye.one/transaction";
 
 export class TransactionImportHandler implements ITransactionImportHandler {
     static inject = [
-        $BankSource,
-        $TransactionSource,
+        $BankRepository,
+        $TransactionRepository,
         $UserService,
     ];
 
     constructor(
-        protected bankSource: IBankSource,
-        protected transactionSource: ITransactionSource,
+        protected bankRepository: IBankRepository,
+        protected transactionRepository: ITransactionRepository,
         protected userService: IUserService,
     ) {
     }
 
     async handler({item, params}: IImportHandler.IHandlerProps<ITransactionImport, ITransactionImportParams>): Promise<any> {
         const {bank: account, ...transaction} = item;
-        const $account                        = params.account || account;
+        const $account = params.account || account;
         if (!$account) {
             console.error("Missing bank account in import or import params.");
             return;
         }
-        const bank = await this.bankSource.upsert({
+        const bank = await this.bankRepository.upsert({
             filter: {
                 userId_account: {
-                    userId:  this.userService.required(),
+                    userId: this.userService.required(),
                     account: $account,
                 },
             },
             create: {
-                userId:  this.userService.required(),
+                userId: this.userService.required(),
                 account: $account,
             },
-            patch:  {
-                userId:  this.userService.required(),
+            patch: {
+                userId: this.userService.required(),
                 account: $account,
             },
         });
 
-        return this.transactionSource.upsert({
+        return this.transactionRepository.upsert({
             filter: {
                 userId_reference: {
-                    userId:    this.userService.required(),
+                    userId: this.userService.required(),
                     reference: transaction.reference,
                 },
             },
@@ -67,7 +54,7 @@ export class TransactionImportHandler implements ITransactionImportHandler {
                 userId: this.userService.required(),
                 bankId: bank.id,
             },
-            patch:  {
+            patch: {
                 ...transaction,
                 bankId: bank.id,
             },

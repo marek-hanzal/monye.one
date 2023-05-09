@@ -6,6 +6,9 @@ void generatorCommon({
             {
                 name: "Transaction",
             },
+            {
+                name: "TransactionKeyword",
+            },
         ],
     },
     withRepositoryEx: {
@@ -25,6 +28,16 @@ void generatorCommon({
         ],
     },
     withRepositorySymbol: {
+        repositories: [
+            {
+                name: "Transaction",
+            },
+            {
+                name: "TransactionKeyword",
+            },
+        ],
+    },
+    withRepositoryMapper: {
         repositories: [
             {
                 name: "Transaction",
