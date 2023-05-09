@@ -1,8 +1,4 @@
-import {
-    type IRepositoryMapperSchema,
-    type IRepositorySchema,
-    type IRepositoryServiceSchema
-} from "../repository";
+import {type IRepositoryMapperSchema, type IRepositorySchema, type IRepositoryServiceSchema} from "../repository";
 import {
     type ICreateSchema,
     type IDtoSchema,
@@ -30,6 +26,16 @@ export interface ISourceSchema<
     TFilterSchema extends IFilterSchema = IFilterSchema,
     TSortSchema extends ISortSchema = ISortSchema,
     TParamsSchema extends IParamsSchema = IParamsSchema,
+> extends IRepositoryServiceSchema<
+    TEntitySchema,
+    TDtoSchema,
+    TToCreateSchema,
+    TCreateSchema,
+    TToPatchSchema,
+    TPatchSchema,
+    TFilterSchema,
+    TSortSchema,
+    TParamsSchema
 > {
     Repository: IRepositorySchema<
         TEntitySchema,

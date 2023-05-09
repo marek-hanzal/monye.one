@@ -1,10 +1,6 @@
 import {createStoreContext} from "@leight/context-client";
-import {type Source}        from "@leight/source";
-import {
-    cleanOf,
-    generateId,
-    isEmpty
-}                           from "@leight/utils";
+import {type IQueryStoreProps, type Source} from "@leight/source";
+import {cleanOf, generateId, isEmpty} from "@leight/utils";
 
 export interface ICreateQueryStoreProps {
     name: string;
@@ -14,17 +10,16 @@ export const createQueryStore = <TSource extends Source>(
     {
         name,
     }: ICreateQueryStoreProps) => {
-    // IQueryStoreProps<TSource["Schema"]["Mapper"] -> this works... !?
-    return createStoreContext<TSource["Type"]["QueryStore"]>({
+    return createStoreContext<IQueryStoreProps<TSource["Schema"]["Mapper"]>>({
         state: ({defaults}) => (set, get) => ({
-            $id:          generateId(),
-            $filter:      defaults?.$query?.filter as TSource["Type"]["Mapper"]["Filter"],
+            $id: generateId(),
+            $filter: defaults?.$query?.filter as TSource["Type"]["Mapper"]["Filter"],
             $applyFilter: undefined,
-            $filterDto:   undefined,
-            $sort:        defaults?.$query?.sort || {},
-            $page:        defaults?.$query?.cursor?.page || 0,
-            $size:        defaults?.$query?.cursor?.size || 30,
-            $query:       defaults?.$query || {
+            $filterDto: undefined,
+            $sort: defaults?.$query?.sort || {},
+            $page: defaults?.$query?.cursor?.page || 0,
+            $size: defaults?.$query?.cursor?.size || 30,
+            $query: defaults?.$query || {
                 cursor: {
                     page: 0,
                     size: 30,
@@ -32,12 +27,12 @@ export const createQueryStore = <TSource extends Source>(
             },
             setFilter(filter) {
                 set(({$query, $applyFilter}) => ({
-                    $id:     generateId(),
+                    $id: generateId(),
                     $filter: {
                         ...filter,
                         ...$applyFilter,
                     },
-                    $query:  {
+                    $query: {
                         ...$query,
                         filter: {
                             ...filter,
@@ -48,10 +43,10 @@ export const createQueryStore = <TSource extends Source>(
             },
             applyFilter(filter) {
                 set(({$query}) => ({
-                    $id:          generateId(),
+                    $id: generateId(),
                     $applyFilter: filter,
-                    $filter:      filter,
-                    $query:       {
+                    $filter: filter,
+                    $query: {
                         ...$query,
                         filter: filter,
                     },
@@ -59,17 +54,17 @@ export const createQueryStore = <TSource extends Source>(
             },
             applyShallowFilter(filter) {
                 set(({$query, $applyFilter}) => ({
-                    $id:          generateId(),
+                    $id: generateId(),
                     $applyFilter: {
                         ...$applyFilter,
                         ...filter,
                     },
-                    $filter:      {
+                    $filter: {
                         ...$query.filter,
                         ...$applyFilter,
                         ...filter,
                     },
-                    $query:       {
+                    $query: {
                         ...$query,
                         filter: {
                             ...$query.filter,
@@ -81,13 +76,13 @@ export const createQueryStore = <TSource extends Source>(
             },
             setShallowFilter(filter) {
                 set(({$query, $applyFilter}) => ({
-                    $id:     generateId(),
+                    $id: generateId(),
                     $filter: {
                         ...$query.filter,
                         ...filter,
                         ...$applyFilter,
                     },
-                    $query:  {
+                    $query: {
                         ...$query,
                         filter: {
                             ...$query.filter,
@@ -116,8 +111,8 @@ export const createQueryStore = <TSource extends Source>(
             },
             setSort(key, order) {
                 set(({$query}) => ({
-                    $id:    generateId(),
-                    $sort:  {
+                    $id: generateId(),
+                    $sort: {
                         [key as any]: order,
                     },
                     $query: {
@@ -130,8 +125,8 @@ export const createQueryStore = <TSource extends Source>(
             },
             setSize(size) {
                 set(({$query}) => ({
-                    $id:    generateId(),
-                    $size:  size,
+                    $id: generateId(),
+                    $size: size,
                     $query: {
                         ...$query,
                         cursor: {
@@ -143,8 +138,8 @@ export const createQueryStore = <TSource extends Source>(
             },
             setPage(page) {
                 set(({$query}) => ({
-                    $id:    generateId(),
-                    $page:  page,
+                    $id: generateId(),
+                    $page: page,
                     $query: {
                         ...$query,
                         cursor: {

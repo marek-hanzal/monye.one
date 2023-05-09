@@ -1,6 +1,6 @@
-import {type IUserSourceSchemaType} from "../schema";
-import {type IUserSource}           from "../sdk";
+import {type UserSource} from "../schema";
+import {type IUserRepository} from "../sdk";
 
-export interface IUserSourceEx extends IUserSource {
-    findByEmail(email: string): Promise<IUserSourceSchemaType["Entity"]>;
+export interface IUserSourceEx extends IUserRepository {
+    findByEmail(email: string): Promise<UserSource['Type']["Entity"]>;
 }

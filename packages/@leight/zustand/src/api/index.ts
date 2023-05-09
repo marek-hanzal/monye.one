@@ -1,12 +1,6 @@
-import {
-    type CheckIfExtends,
-    type IfExtends
-}                     from "@leight/utils";
+import {type CheckIfExtends, type IfExtends} from "@leight/utils";
 import {type Context} from "react";
-import {
-    type StateCreator,
-    type StoreApi
-}                     from "zustand";
+import {type StateCreator, type StoreApi} from "zustand";
 
 /**
  * Basic constraint for actual store implementation (Zustand store).
@@ -19,7 +13,7 @@ export type IStorePropsType = Record<string, any>;
  */
 export interface IStoreProps<TStoreProps extends IStorePropsType = IStorePropsType, TStoreValueProps extends IStorePropsType | unknown = unknown> {
     Props: TStoreProps;
-    OptionalProps: Partial<TStoreProps>;
+    Props$: Partial<TStoreProps>;
     State: TStoreValueProps;
     StoreProps: IfExtends<TStoreProps, TStoreValueProps>;
 }
@@ -32,7 +26,7 @@ export interface IStoreApi<TStoreProps extends IStoreProps> {
 
 export type IStateCreatorProps<TStoreProps extends IStoreProps> =
     {
-        defaults?: Partial<TStoreProps["OptionalProps"]>;
+        defaults?: TStoreProps["Props$"];
     }
     & CheckIfExtends<TStoreProps["State"], IStorePropsType, {
     state: TStoreProps["State"];

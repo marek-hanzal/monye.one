@@ -1,11 +1,5 @@
-import {
-    useEffect,
-    useRef
-} from "react";
-import {
-    LoopsStore,
-    LoopStore
-} from "../context";
+import {useEffect, useRef} from "react";
+import {LoopsStore, LoopStore} from "../context";
 
 export interface IOnStartProps {
     total: number;
@@ -50,16 +44,16 @@ export const useLoop = (
         onFinish = () => Promise.resolve(),
     }: IUseLoopProps) => {
     const isMountedRef = useRef(false);
-    const loopState    = LoopStore.useState();
-    const loopsState   = LoopsStore.useOptionalState();
+    const loop = LoopStore.use();
+    const loops = LoopsStore.use$();
 
     useEffect(() => {
-        if (isMountedRef.current || loopState.isRunning) {
+        if (isMountedRef.current || loop.isRunning) {
             return;
         }
         isMountedRef.current = true;
-        loopState.start(total);
-        loopsState?.inc();
+        loop.start(total);
+        loops?.inc();
         (async () => {
             try {
                 await onStart({total});
@@ -70,40 +64,40 @@ export const useLoop = (
     }, []);
 
     useEffect(() => {
-        if (!loopState.isRunning) {
+        if (!loop.isRunning) {
             return;
         }
-        if (loopState.current === total) {
+        if (loop.current === total) {
             onFinish?.({})
-                .then(() => loopState.finish())
+                .then(() => loop.finish())
                 .catch((e) => {
                     console.error(e);
-                    loopState.finish(true);
+                    loop.finish(true);
                     onError(e);
                 })
                 .finally(() => {
-                    loopsState?.dec();
+                    loops?.dec();
                 });
             return;
         }
         setTimeout(() => {
             onTick({
-                current: loopState.current,
+                current: loop.current,
                 total,
-                percent: loopState.percent(),
+                percent: loop.percent(),
             })
-                .then(() => loopState.progress())
+                .then(() => loop.progress())
                 .catch((e) => {
-                    loopsState?.dec();
+                    loops?.dec();
                     console.error(e);
-                    loopState.finish(true);
+                    loop.finish(true);
                     onError(e);
                 });
         }, throttle);
     }, [
-        loopState.isRunning,
-        loopState.current
+        loop.isRunning,
+        loop.current
     ]);
 
-    return loopState;
+    return loop;
 };

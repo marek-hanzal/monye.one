@@ -1,5 +1,5 @@
-import {type IKeywordSourceSchemaType} from "../schema";
-import {type IKeywords}                from "./IKeywords";
+import {type IKeywords} from "./IKeywords";
+import {KeywordSource} from "../schema";
 
 export interface IKeywordService<TInput> {
     build(props: IKeywordService.IBuildProps<TInput>): Promise<string[]>;
@@ -18,7 +18,7 @@ export namespace IKeywordService {
     export interface IOnKeywordProps<TInput> {
         input: TInput;
         keyword: string;
-        entity: IKeywordSourceSchemaType["Entity"];
+        entity: KeywordSource["Type"]["Entity"];
     }
 
     export interface IBuildProps<TInput> {

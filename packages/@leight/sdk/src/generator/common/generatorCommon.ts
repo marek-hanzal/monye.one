@@ -1,28 +1,21 @@
-import {resolvePackageJson}      from "@leight/utils-server";
-import {normalize}               from "node:path";
+import {resolvePackageJson} from "@leight/utils-server";
+import {normalize} from "node:path";
 import {type ISdkGeneratorProps} from "../../api";
-import {withSdk}                 from "../../index";
-import {generatorSdkBarrel}      from "../generatorSdkBarrel";
-import {
-    type IWithFormParams,
-    withForm
-}                                from "./withForm";
-import {
-    type IWithRepositoryExParams,
-    withRepositoryEx
-}                                from "./withRepositoryEx";
-import {
-    type IWithRepositorySymbolParams,
-    withRepositorySymbol
-}                                from "./withRepositorySymbol";
+import {withSdk} from "../../index";
+import {generatorSdkBarrel} from "../generatorSdkBarrel";
+import {type IWithFormParams, withForm} from "./withForm";
+import {type IWithRepositoryExParams, withRepositoryEx} from "./withRepositoryEx";
+import {type IWithRepositorySymbolParams, withRepositorySymbol} from "./withRepositorySymbol";
+import {type IWithRepositoryParams, withRepository} from "./withRepository";
 
 export type IGeneratorCommonProps =
     ISdkGeneratorProps
     & {
-        withRepositoryEx?: IWithRepositoryExParams;
-        withRepositorySymbol?: IWithRepositorySymbolParams;
-        withForm?: IWithFormParams;
-    }
+    withRepository?: IWithRepositoryParams;
+    withRepositoryEx?: IWithRepositoryExParams;
+    withRepositorySymbol?: IWithRepositorySymbolParams;
+    withForm?: IWithFormParams;
+}
 
 export const generatorCommon = (
     {
@@ -36,13 +29,17 @@ export const generatorCommon = (
 
     const $params = {
         packageName,
-        barrel:    false,
+        barrel: false,
         directory: normalize(`${process.cwd()}/${folder}`),
     } as const;
 
     return withSdk([
         async () => {
             await Promise.all([
+                params.withRepository ? withRepository({
+                    ...$params,
+                    params: params.withRepository,
+                }) : undefined,
                 params.withRepositoryEx ? withRepositoryEx({
                     ...$params,
                     params: params.withRepositoryEx,

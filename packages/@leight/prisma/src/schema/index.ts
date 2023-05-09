@@ -127,6 +127,18 @@ export const AccountPartialWithRelationsSchema: z.ZodType<AccountPartialWithRela
   user: z.lazy(() => UserPartialWithRelationsSchema),
 })).partial()
 
+export type AccountOptionalDefaultsWithPartialRelations = z.infer<typeof AccountOptionalDefaultsSchema> & AccountPartialRelations
+
+export const AccountOptionalDefaultsWithPartialRelationsSchema: z.ZodType<AccountOptionalDefaultsWithPartialRelations> = AccountOptionalDefaultsSchema.merge(z.object({
+  user: z.lazy(() => UserPartialWithRelationsSchema),
+}).partial())
+
+export type AccountWithPartialRelations = z.infer<typeof AccountSchema> & AccountPartialRelations
+
+export const AccountWithPartialRelationsSchema: z.ZodType<AccountWithPartialRelations> = AccountSchema.merge(z.object({
+  user: z.lazy(() => UserPartialWithRelationsSchema),
+}).partial())
+
 /////////////////////////////////////////
 // SESSION SCHEMA
 /////////////////////////////////////////
@@ -195,6 +207,18 @@ export type SessionPartialWithRelations = z.infer<typeof SessionPartialSchema> &
 export const SessionPartialWithRelationsSchema: z.ZodType<SessionPartialWithRelations> = SessionPartialSchema.merge(z.object({
   user: z.lazy(() => UserPartialWithRelationsSchema),
 })).partial()
+
+export type SessionOptionalDefaultsWithPartialRelations = z.infer<typeof SessionOptionalDefaultsSchema> & SessionPartialRelations
+
+export const SessionOptionalDefaultsWithPartialRelationsSchema: z.ZodType<SessionOptionalDefaultsWithPartialRelations> = SessionOptionalDefaultsSchema.merge(z.object({
+  user: z.lazy(() => UserPartialWithRelationsSchema),
+}).partial())
+
+export type SessionWithPartialRelations = z.infer<typeof SessionSchema> & SessionPartialRelations
+
+export const SessionWithPartialRelationsSchema: z.ZodType<SessionWithPartialRelations> = SessionSchema.merge(z.object({
+  user: z.lazy(() => UserPartialWithRelationsSchema),
+}).partial())
 
 /////////////////////////////////////////
 // USER SCHEMA
@@ -302,6 +326,30 @@ export const UserPartialWithRelationsSchema: z.ZodType<UserPartialWithRelations>
   Label: z.lazy(() => LabelPartialWithRelationsSchema).array(),
 })).partial()
 
+export type UserOptionalDefaultsWithPartialRelations = z.infer<typeof UserOptionalDefaultsSchema> & UserPartialRelations
+
+export const UserOptionalDefaultsWithPartialRelationsSchema: z.ZodType<UserOptionalDefaultsWithPartialRelations> = UserOptionalDefaultsSchema.merge(z.object({
+  accounts: z.lazy(() => AccountPartialWithRelationsSchema).array(),
+  sessions: z.lazy(() => SessionPartialWithRelationsSchema).array(),
+  UserToken: z.lazy(() => UserTokenPartialWithRelationsSchema).array(),
+  File: z.lazy(() => FilePartialWithRelationsSchema).array(),
+  Job: z.lazy(() => JobPartialWithRelationsSchema).array(),
+  Filter: z.lazy(() => FilterPartialWithRelationsSchema).array(),
+  Label: z.lazy(() => LabelPartialWithRelationsSchema).array(),
+}).partial())
+
+export type UserWithPartialRelations = z.infer<typeof UserSchema> & UserPartialRelations
+
+export const UserWithPartialRelationsSchema: z.ZodType<UserWithPartialRelations> = UserSchema.merge(z.object({
+  accounts: z.lazy(() => AccountPartialWithRelationsSchema).array(),
+  sessions: z.lazy(() => SessionPartialWithRelationsSchema).array(),
+  UserToken: z.lazy(() => UserTokenPartialWithRelationsSchema).array(),
+  File: z.lazy(() => FilePartialWithRelationsSchema).array(),
+  Job: z.lazy(() => JobPartialWithRelationsSchema).array(),
+  Filter: z.lazy(() => FilterPartialWithRelationsSchema).array(),
+  Label: z.lazy(() => LabelPartialWithRelationsSchema).array(),
+}).partial())
+
 /////////////////////////////////////////
 // VERIFICATION TOKEN SCHEMA
 /////////////////////////////////////////
@@ -397,6 +445,18 @@ export const TokenPartialWithRelationsSchema: z.ZodType<TokenPartialWithRelation
   UserToken: z.lazy(() => UserTokenPartialWithRelationsSchema).array(),
 })).partial()
 
+export type TokenOptionalDefaultsWithPartialRelations = z.infer<typeof TokenOptionalDefaultsSchema> & TokenPartialRelations
+
+export const TokenOptionalDefaultsWithPartialRelationsSchema: z.ZodType<TokenOptionalDefaultsWithPartialRelations> = TokenOptionalDefaultsSchema.merge(z.object({
+  UserToken: z.lazy(() => UserTokenPartialWithRelationsSchema).array(),
+}).partial())
+
+export type TokenWithPartialRelations = z.infer<typeof TokenSchema> & TokenPartialRelations
+
+export const TokenWithPartialRelationsSchema: z.ZodType<TokenWithPartialRelations> = TokenSchema.merge(z.object({
+  UserToken: z.lazy(() => UserTokenPartialWithRelationsSchema).array(),
+}).partial())
+
 /////////////////////////////////////////
 // USER TOKEN SCHEMA
 /////////////////////////////////////////
@@ -470,6 +530,20 @@ export const UserTokenPartialWithRelationsSchema: z.ZodType<UserTokenPartialWith
   user: z.lazy(() => UserPartialWithRelationsSchema),
   token: z.lazy(() => TokenPartialWithRelationsSchema),
 })).partial()
+
+export type UserTokenOptionalDefaultsWithPartialRelations = z.infer<typeof UserTokenOptionalDefaultsSchema> & UserTokenPartialRelations
+
+export const UserTokenOptionalDefaultsWithPartialRelationsSchema: z.ZodType<UserTokenOptionalDefaultsWithPartialRelations> = UserTokenOptionalDefaultsSchema.merge(z.object({
+  user: z.lazy(() => UserPartialWithRelationsSchema),
+  token: z.lazy(() => TokenPartialWithRelationsSchema),
+}).partial())
+
+export type UserTokenWithPartialRelations = z.infer<typeof UserTokenSchema> & UserTokenPartialRelations
+
+export const UserTokenWithPartialRelationsSchema: z.ZodType<UserTokenWithPartialRelations> = UserTokenSchema.merge(z.object({
+  user: z.lazy(() => UserPartialWithRelationsSchema),
+  token: z.lazy(() => TokenPartialWithRelationsSchema),
+}).partial())
 
 /////////////////////////////////////////
 // FILE SCHEMA
@@ -545,6 +619,18 @@ export type FilePartialWithRelations = z.infer<typeof FilePartialSchema> & FileP
 export const FilePartialWithRelationsSchema: z.ZodType<FilePartialWithRelations> = FilePartialSchema.merge(z.object({
   user: z.lazy(() => UserPartialWithRelationsSchema).nullish(),
 })).partial()
+
+export type FileOptionalDefaultsWithPartialRelations = z.infer<typeof FileOptionalDefaultsSchema> & FilePartialRelations
+
+export const FileOptionalDefaultsWithPartialRelationsSchema: z.ZodType<FileOptionalDefaultsWithPartialRelations> = FileOptionalDefaultsSchema.merge(z.object({
+  user: z.lazy(() => UserPartialWithRelationsSchema).nullish(),
+}).partial())
+
+export type FileWithPartialRelations = z.infer<typeof FileSchema> & FilePartialRelations
+
+export const FileWithPartialRelationsSchema: z.ZodType<FileWithPartialRelations> = FileSchema.merge(z.object({
+  user: z.lazy(() => UserPartialWithRelationsSchema).nullish(),
+}).partial())
 
 /////////////////////////////////////////
 // TRANSLATION SCHEMA
@@ -667,6 +753,20 @@ export const JobPartialWithRelationsSchema: z.ZodType<JobPartialWithRelations> =
   logs: z.lazy(() => JobLogPartialWithRelationsSchema).array(),
 })).partial()
 
+export type JobOptionalDefaultsWithPartialRelations = z.infer<typeof JobOptionalDefaultsSchema> & JobPartialRelations
+
+export const JobOptionalDefaultsWithPartialRelationsSchema: z.ZodType<JobOptionalDefaultsWithPartialRelations> = JobOptionalDefaultsSchema.merge(z.object({
+  user: z.lazy(() => UserPartialWithRelationsSchema).nullish(),
+  logs: z.lazy(() => JobLogPartialWithRelationsSchema).array(),
+}).partial())
+
+export type JobWithPartialRelations = z.infer<typeof JobSchema> & JobPartialRelations
+
+export const JobWithPartialRelationsSchema: z.ZodType<JobWithPartialRelations> = JobSchema.merge(z.object({
+  user: z.lazy(() => UserPartialWithRelationsSchema).nullish(),
+  logs: z.lazy(() => JobLogPartialWithRelationsSchema).array(),
+}).partial())
+
 /////////////////////////////////////////
 // JOB LOG SCHEMA
 /////////////////////////////////////////
@@ -734,6 +834,18 @@ export type JobLogPartialWithRelations = z.infer<typeof JobLogPartialSchema> & J
 export const JobLogPartialWithRelationsSchema: z.ZodType<JobLogPartialWithRelations> = JobLogPartialSchema.merge(z.object({
   job: z.lazy(() => JobPartialWithRelationsSchema),
 })).partial()
+
+export type JobLogOptionalDefaultsWithPartialRelations = z.infer<typeof JobLogOptionalDefaultsSchema> & JobLogPartialRelations
+
+export const JobLogOptionalDefaultsWithPartialRelationsSchema: z.ZodType<JobLogOptionalDefaultsWithPartialRelations> = JobLogOptionalDefaultsSchema.merge(z.object({
+  job: z.lazy(() => JobPartialWithRelationsSchema),
+}).partial())
+
+export type JobLogWithPartialRelations = z.infer<typeof JobLogSchema> & JobLogPartialRelations
+
+export const JobLogWithPartialRelationsSchema: z.ZodType<JobLogWithPartialRelations> = JobLogSchema.merge(z.object({
+  job: z.lazy(() => JobPartialWithRelationsSchema),
+}).partial())
 
 /////////////////////////////////////////
 // KEYWORD SCHEMA
@@ -834,6 +946,18 @@ export const FilterPartialWithRelationsSchema: z.ZodType<FilterPartialWithRelati
   user: z.lazy(() => UserPartialWithRelationsSchema),
 })).partial()
 
+export type FilterOptionalDefaultsWithPartialRelations = z.infer<typeof FilterOptionalDefaultsSchema> & FilterPartialRelations
+
+export const FilterOptionalDefaultsWithPartialRelationsSchema: z.ZodType<FilterOptionalDefaultsWithPartialRelations> = FilterOptionalDefaultsSchema.merge(z.object({
+  user: z.lazy(() => UserPartialWithRelationsSchema),
+}).partial())
+
+export type FilterWithPartialRelations = z.infer<typeof FilterSchema> & FilterPartialRelations
+
+export const FilterWithPartialRelationsSchema: z.ZodType<FilterWithPartialRelations> = FilterSchema.merge(z.object({
+  user: z.lazy(() => UserPartialWithRelationsSchema),
+}).partial())
+
 /////////////////////////////////////////
 // LABEL SCHEMA
 /////////////////////////////////////////
@@ -902,6 +1026,18 @@ export type LabelPartialWithRelations = z.infer<typeof LabelPartialSchema> & Lab
 export const LabelPartialWithRelationsSchema: z.ZodType<LabelPartialWithRelations> = LabelPartialSchema.merge(z.object({
   user: z.lazy(() => UserPartialWithRelationsSchema),
 })).partial()
+
+export type LabelOptionalDefaultsWithPartialRelations = z.infer<typeof LabelOptionalDefaultsSchema> & LabelPartialRelations
+
+export const LabelOptionalDefaultsWithPartialRelationsSchema: z.ZodType<LabelOptionalDefaultsWithPartialRelations> = LabelOptionalDefaultsSchema.merge(z.object({
+  user: z.lazy(() => UserPartialWithRelationsSchema),
+}).partial())
+
+export type LabelWithPartialRelations = z.infer<typeof LabelSchema> & LabelPartialRelations
+
+export const LabelWithPartialRelationsSchema: z.ZodType<LabelWithPartialRelations> = LabelSchema.merge(z.object({
+  user: z.lazy(() => UserPartialWithRelationsSchema),
+}).partial())
 
 /////////////////////////////////////////
 // SELECT & INCLUDE
@@ -2722,8 +2858,8 @@ export const LabelUncheckedUpdateManyInputSchema: z.ZodType<Prisma.LabelUnchecke
 
 export const StringFilterSchema: z.ZodType<Prisma.StringFilter> = z.object({
   equals: z.string().optional(),
-  in: z.string().array().optional(),
-  notIn: z.string().array().optional(),
+  in: z.union([ z.string().array(),z.string() ]).optional(),
+  notIn: z.union([ z.string().array(),z.string() ]).optional(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -2737,8 +2873,8 @@ export const StringFilterSchema: z.ZodType<Prisma.StringFilter> = z.object({
 
 export const StringNullableFilterSchema: z.ZodType<Prisma.StringNullableFilter> = z.object({
   equals: z.string().optional().nullable(),
-  in: z.string().array().optional().nullable(),
-  notIn: z.string().array().optional().nullable(),
+  in: z.union([ z.string().array(),z.string() ]).optional().nullable(),
+  notIn: z.union([ z.string().array(),z.string() ]).optional().nullable(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -2752,8 +2888,8 @@ export const StringNullableFilterSchema: z.ZodType<Prisma.StringNullableFilter> 
 
 export const IntNullableFilterSchema: z.ZodType<Prisma.IntNullableFilter> = z.object({
   equals: z.number().optional().nullable(),
-  in: z.number().array().optional().nullable(),
-  notIn: z.number().array().optional().nullable(),
+  in: z.union([ z.number().array(),z.number() ]).optional().nullable(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional().nullable(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -2826,8 +2962,8 @@ export const AccountSumOrderByAggregateInputSchema: z.ZodType<Prisma.AccountSumO
 
 export const StringWithAggregatesFilterSchema: z.ZodType<Prisma.StringWithAggregatesFilter> = z.object({
   equals: z.string().optional(),
-  in: z.string().array().optional(),
-  notIn: z.string().array().optional(),
+  in: z.union([ z.string().array(),z.string() ]).optional(),
+  notIn: z.union([ z.string().array(),z.string() ]).optional(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -2844,8 +2980,8 @@ export const StringWithAggregatesFilterSchema: z.ZodType<Prisma.StringWithAggreg
 
 export const StringNullableWithAggregatesFilterSchema: z.ZodType<Prisma.StringNullableWithAggregatesFilter> = z.object({
   equals: z.string().optional().nullable(),
-  in: z.string().array().optional().nullable(),
-  notIn: z.string().array().optional().nullable(),
+  in: z.union([ z.string().array(),z.string() ]).optional().nullable(),
+  notIn: z.union([ z.string().array(),z.string() ]).optional().nullable(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -2862,8 +2998,8 @@ export const StringNullableWithAggregatesFilterSchema: z.ZodType<Prisma.StringNu
 
 export const IntNullableWithAggregatesFilterSchema: z.ZodType<Prisma.IntNullableWithAggregatesFilter> = z.object({
   equals: z.number().optional().nullable(),
-  in: z.number().array().optional().nullable(),
-  notIn: z.number().array().optional().nullable(),
+  in: z.union([ z.number().array(),z.number() ]).optional().nullable(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional().nullable(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -2878,8 +3014,8 @@ export const IntNullableWithAggregatesFilterSchema: z.ZodType<Prisma.IntNullable
 
 export const DateTimeFilterSchema: z.ZodType<Prisma.DateTimeFilter> = z.object({
   equals: z.coerce.date().optional(),
-  in: z.coerce.date().array().optional(),
-  notIn: z.coerce.date().array().optional(),
+  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
+  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -2910,8 +3046,8 @@ export const SessionMinOrderByAggregateInputSchema: z.ZodType<Prisma.SessionMinO
 
 export const DateTimeWithAggregatesFilterSchema: z.ZodType<Prisma.DateTimeWithAggregatesFilter> = z.object({
   equals: z.coerce.date().optional(),
-  in: z.coerce.date().array().optional(),
-  notIn: z.coerce.date().array().optional(),
+  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
+  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -2924,8 +3060,8 @@ export const DateTimeWithAggregatesFilterSchema: z.ZodType<Prisma.DateTimeWithAg
 
 export const DateTimeNullableFilterSchema: z.ZodType<Prisma.DateTimeNullableFilter> = z.object({
   equals: z.coerce.date().optional().nullable(),
-  in: z.coerce.date().array().optional().nullable(),
-  notIn: z.coerce.date().array().optional().nullable(),
+  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
+  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -3029,8 +3165,8 @@ export const UserMinOrderByAggregateInputSchema: z.ZodType<Prisma.UserMinOrderBy
 
 export const DateTimeNullableWithAggregatesFilterSchema: z.ZodType<Prisma.DateTimeNullableWithAggregatesFilter> = z.object({
   equals: z.coerce.date().optional().nullable(),
-  in: z.coerce.date().array().optional().nullable(),
-  notIn: z.coerce.date().array().optional().nullable(),
+  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
+  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -3109,8 +3245,8 @@ export const UserTokenMinOrderByAggregateInputSchema: z.ZodType<Prisma.UserToken
 
 export const IntFilterSchema: z.ZodType<Prisma.IntFilter> = z.object({
   equals: z.number().optional(),
-  in: z.number().array().optional(),
-  notIn: z.number().array().optional(),
+  in: z.union([ z.number().array(),z.number() ]).optional(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -3175,8 +3311,8 @@ export const FileSumOrderByAggregateInputSchema: z.ZodType<Prisma.FileSumOrderBy
 
 export const IntWithAggregatesFilterSchema: z.ZodType<Prisma.IntWithAggregatesFilter> = z.object({
   equals: z.number().optional(),
-  in: z.number().array().optional(),
-  notIn: z.number().array().optional(),
+  in: z.union([ z.number().array(),z.number() ]).optional(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -3220,15 +3356,15 @@ export const TranslationMinOrderByAggregateInputSchema: z.ZodType<Prisma.Transla
 
 export const EnumJobStatusFilterSchema: z.ZodType<Prisma.EnumJobStatusFilter> = z.object({
   equals: z.lazy(() => JobStatusSchema).optional(),
-  in: z.lazy(() => JobStatusSchema).array().optional(),
-  notIn: z.lazy(() => JobStatusSchema).array().optional(),
+  in: z.union([ z.lazy(() => JobStatusSchema).array(),z.lazy(() => JobStatusSchema) ]).optional(),
+  notIn: z.union([ z.lazy(() => JobStatusSchema).array(),z.lazy(() => JobStatusSchema) ]).optional(),
   not: z.union([ z.lazy(() => JobStatusSchema),z.lazy(() => NestedEnumJobStatusFilterSchema) ]).optional(),
 }).strict();
 
 export const FloatFilterSchema: z.ZodType<Prisma.FloatFilter> = z.object({
   equals: z.number().optional(),
-  in: z.number().array().optional(),
-  notIn: z.number().array().optional(),
+  in: z.union([ z.number().array(),z.number() ]).optional(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -3238,8 +3374,8 @@ export const FloatFilterSchema: z.ZodType<Prisma.FloatFilter> = z.object({
 
 export const FloatNullableFilterSchema: z.ZodType<Prisma.FloatNullableFilter> = z.object({
   equals: z.number().optional().nullable(),
-  in: z.number().array().optional().nullable(),
-  notIn: z.number().array().optional().nullable(),
+  in: z.union([ z.number().array(),z.number() ]).optional().nullable(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional().nullable(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -3338,8 +3474,8 @@ export const JobSumOrderByAggregateInputSchema: z.ZodType<Prisma.JobSumOrderByAg
 
 export const EnumJobStatusWithAggregatesFilterSchema: z.ZodType<Prisma.EnumJobStatusWithAggregatesFilter> = z.object({
   equals: z.lazy(() => JobStatusSchema).optional(),
-  in: z.lazy(() => JobStatusSchema).array().optional(),
-  notIn: z.lazy(() => JobStatusSchema).array().optional(),
+  in: z.union([ z.lazy(() => JobStatusSchema).array(),z.lazy(() => JobStatusSchema) ]).optional(),
+  notIn: z.union([ z.lazy(() => JobStatusSchema).array(),z.lazy(() => JobStatusSchema) ]).optional(),
   not: z.union([ z.lazy(() => JobStatusSchema),z.lazy(() => NestedEnumJobStatusWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumJobStatusFilterSchema).optional(),
@@ -3348,8 +3484,8 @@ export const EnumJobStatusWithAggregatesFilterSchema: z.ZodType<Prisma.EnumJobSt
 
 export const FloatWithAggregatesFilterSchema: z.ZodType<Prisma.FloatWithAggregatesFilter> = z.object({
   equals: z.number().optional(),
-  in: z.number().array().optional(),
-  notIn: z.number().array().optional(),
+  in: z.union([ z.number().array(),z.number() ]).optional(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -3364,8 +3500,8 @@ export const FloatWithAggregatesFilterSchema: z.ZodType<Prisma.FloatWithAggregat
 
 export const FloatNullableWithAggregatesFilterSchema: z.ZodType<Prisma.FloatNullableWithAggregatesFilter> = z.object({
   equals: z.number().optional().nullable(),
-  in: z.number().array().optional().nullable(),
-  notIn: z.number().array().optional().nullable(),
+  in: z.union([ z.number().array(),z.number() ]).optional().nullable(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional().nullable(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -4038,8 +4174,8 @@ export const UserUpdateOneRequiredWithoutLabelNestedInputSchema: z.ZodType<Prism
 
 export const NestedStringFilterSchema: z.ZodType<Prisma.NestedStringFilter> = z.object({
   equals: z.string().optional(),
-  in: z.string().array().optional(),
-  notIn: z.string().array().optional(),
+  in: z.union([ z.string().array(),z.string() ]).optional(),
+  notIn: z.union([ z.string().array(),z.string() ]).optional(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -4052,8 +4188,8 @@ export const NestedStringFilterSchema: z.ZodType<Prisma.NestedStringFilter> = z.
 
 export const NestedStringNullableFilterSchema: z.ZodType<Prisma.NestedStringNullableFilter> = z.object({
   equals: z.string().optional().nullable(),
-  in: z.string().array().optional().nullable(),
-  notIn: z.string().array().optional().nullable(),
+  in: z.union([ z.string().array(),z.string() ]).optional().nullable(),
+  notIn: z.union([ z.string().array(),z.string() ]).optional().nullable(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -4066,8 +4202,8 @@ export const NestedStringNullableFilterSchema: z.ZodType<Prisma.NestedStringNull
 
 export const NestedIntNullableFilterSchema: z.ZodType<Prisma.NestedIntNullableFilter> = z.object({
   equals: z.number().optional().nullable(),
-  in: z.number().array().optional().nullable(),
-  notIn: z.number().array().optional().nullable(),
+  in: z.union([ z.number().array(),z.number() ]).optional().nullable(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional().nullable(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -4077,8 +4213,8 @@ export const NestedIntNullableFilterSchema: z.ZodType<Prisma.NestedIntNullableFi
 
 export const NestedStringWithAggregatesFilterSchema: z.ZodType<Prisma.NestedStringWithAggregatesFilter> = z.object({
   equals: z.string().optional(),
-  in: z.string().array().optional(),
-  notIn: z.string().array().optional(),
+  in: z.union([ z.string().array(),z.string() ]).optional(),
+  notIn: z.union([ z.string().array(),z.string() ]).optional(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -4094,8 +4230,8 @@ export const NestedStringWithAggregatesFilterSchema: z.ZodType<Prisma.NestedStri
 
 export const NestedIntFilterSchema: z.ZodType<Prisma.NestedIntFilter> = z.object({
   equals: z.number().optional(),
-  in: z.number().array().optional(),
-  notIn: z.number().array().optional(),
+  in: z.union([ z.number().array(),z.number() ]).optional(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -4105,8 +4241,8 @@ export const NestedIntFilterSchema: z.ZodType<Prisma.NestedIntFilter> = z.object
 
 export const NestedStringNullableWithAggregatesFilterSchema: z.ZodType<Prisma.NestedStringNullableWithAggregatesFilter> = z.object({
   equals: z.string().optional().nullable(),
-  in: z.string().array().optional().nullable(),
-  notIn: z.string().array().optional().nullable(),
+  in: z.union([ z.string().array(),z.string() ]).optional().nullable(),
+  notIn: z.union([ z.string().array(),z.string() ]).optional().nullable(),
   lt: z.string().optional(),
   lte: z.string().optional(),
   gt: z.string().optional(),
@@ -4122,8 +4258,8 @@ export const NestedStringNullableWithAggregatesFilterSchema: z.ZodType<Prisma.Ne
 
 export const NestedIntNullableWithAggregatesFilterSchema: z.ZodType<Prisma.NestedIntNullableWithAggregatesFilter> = z.object({
   equals: z.number().optional().nullable(),
-  in: z.number().array().optional().nullable(),
-  notIn: z.number().array().optional().nullable(),
+  in: z.union([ z.number().array(),z.number() ]).optional().nullable(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional().nullable(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -4138,8 +4274,8 @@ export const NestedIntNullableWithAggregatesFilterSchema: z.ZodType<Prisma.Neste
 
 export const NestedFloatNullableFilterSchema: z.ZodType<Prisma.NestedFloatNullableFilter> = z.object({
   equals: z.number().optional().nullable(),
-  in: z.number().array().optional().nullable(),
-  notIn: z.number().array().optional().nullable(),
+  in: z.union([ z.number().array(),z.number() ]).optional().nullable(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional().nullable(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -4149,8 +4285,8 @@ export const NestedFloatNullableFilterSchema: z.ZodType<Prisma.NestedFloatNullab
 
 export const NestedDateTimeFilterSchema: z.ZodType<Prisma.NestedDateTimeFilter> = z.object({
   equals: z.coerce.date().optional(),
-  in: z.coerce.date().array().optional(),
-  notIn: z.coerce.date().array().optional(),
+  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
+  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -4160,8 +4296,8 @@ export const NestedDateTimeFilterSchema: z.ZodType<Prisma.NestedDateTimeFilter> 
 
 export const NestedDateTimeWithAggregatesFilterSchema: z.ZodType<Prisma.NestedDateTimeWithAggregatesFilter> = z.object({
   equals: z.coerce.date().optional(),
-  in: z.coerce.date().array().optional(),
-  notIn: z.coerce.date().array().optional(),
+  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
+  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -4174,8 +4310,8 @@ export const NestedDateTimeWithAggregatesFilterSchema: z.ZodType<Prisma.NestedDa
 
 export const NestedDateTimeNullableFilterSchema: z.ZodType<Prisma.NestedDateTimeNullableFilter> = z.object({
   equals: z.coerce.date().optional().nullable(),
-  in: z.coerce.date().array().optional().nullable(),
-  notIn: z.coerce.date().array().optional().nullable(),
+  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
+  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -4185,8 +4321,8 @@ export const NestedDateTimeNullableFilterSchema: z.ZodType<Prisma.NestedDateTime
 
 export const NestedDateTimeNullableWithAggregatesFilterSchema: z.ZodType<Prisma.NestedDateTimeNullableWithAggregatesFilter> = z.object({
   equals: z.coerce.date().optional().nullable(),
-  in: z.coerce.date().array().optional().nullable(),
-  notIn: z.coerce.date().array().optional().nullable(),
+  in: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
+  notIn: z.union([ z.coerce.date().array(),z.coerce.date() ]).optional().nullable(),
   lt: z.coerce.date().optional(),
   lte: z.coerce.date().optional(),
   gt: z.coerce.date().optional(),
@@ -4199,8 +4335,8 @@ export const NestedDateTimeNullableWithAggregatesFilterSchema: z.ZodType<Prisma.
 
 export const NestedIntWithAggregatesFilterSchema: z.ZodType<Prisma.NestedIntWithAggregatesFilter> = z.object({
   equals: z.number().optional(),
-  in: z.number().array().optional(),
-  notIn: z.number().array().optional(),
+  in: z.union([ z.number().array(),z.number() ]).optional(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -4215,8 +4351,8 @@ export const NestedIntWithAggregatesFilterSchema: z.ZodType<Prisma.NestedIntWith
 
 export const NestedFloatFilterSchema: z.ZodType<Prisma.NestedFloatFilter> = z.object({
   equals: z.number().optional(),
-  in: z.number().array().optional(),
-  notIn: z.number().array().optional(),
+  in: z.union([ z.number().array(),z.number() ]).optional(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -4226,15 +4362,15 @@ export const NestedFloatFilterSchema: z.ZodType<Prisma.NestedFloatFilter> = z.ob
 
 export const NestedEnumJobStatusFilterSchema: z.ZodType<Prisma.NestedEnumJobStatusFilter> = z.object({
   equals: z.lazy(() => JobStatusSchema).optional(),
-  in: z.lazy(() => JobStatusSchema).array().optional(),
-  notIn: z.lazy(() => JobStatusSchema).array().optional(),
+  in: z.union([ z.lazy(() => JobStatusSchema).array(),z.lazy(() => JobStatusSchema) ]).optional(),
+  notIn: z.union([ z.lazy(() => JobStatusSchema).array(),z.lazy(() => JobStatusSchema) ]).optional(),
   not: z.union([ z.lazy(() => JobStatusSchema),z.lazy(() => NestedEnumJobStatusFilterSchema) ]).optional(),
 }).strict();
 
 export const NestedEnumJobStatusWithAggregatesFilterSchema: z.ZodType<Prisma.NestedEnumJobStatusWithAggregatesFilter> = z.object({
   equals: z.lazy(() => JobStatusSchema).optional(),
-  in: z.lazy(() => JobStatusSchema).array().optional(),
-  notIn: z.lazy(() => JobStatusSchema).array().optional(),
+  in: z.union([ z.lazy(() => JobStatusSchema).array(),z.lazy(() => JobStatusSchema) ]).optional(),
+  notIn: z.union([ z.lazy(() => JobStatusSchema).array(),z.lazy(() => JobStatusSchema) ]).optional(),
   not: z.union([ z.lazy(() => JobStatusSchema),z.lazy(() => NestedEnumJobStatusWithAggregatesFilterSchema) ]).optional(),
   _count: z.lazy(() => NestedIntFilterSchema).optional(),
   _min: z.lazy(() => NestedEnumJobStatusFilterSchema).optional(),
@@ -4243,8 +4379,8 @@ export const NestedEnumJobStatusWithAggregatesFilterSchema: z.ZodType<Prisma.Nes
 
 export const NestedFloatWithAggregatesFilterSchema: z.ZodType<Prisma.NestedFloatWithAggregatesFilter> = z.object({
   equals: z.number().optional(),
-  in: z.number().array().optional(),
-  notIn: z.number().array().optional(),
+  in: z.union([ z.number().array(),z.number() ]).optional(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),
@@ -4259,8 +4395,8 @@ export const NestedFloatWithAggregatesFilterSchema: z.ZodType<Prisma.NestedFloat
 
 export const NestedFloatNullableWithAggregatesFilterSchema: z.ZodType<Prisma.NestedFloatNullableWithAggregatesFilter> = z.object({
   equals: z.number().optional().nullable(),
-  in: z.number().array().optional().nullable(),
-  notIn: z.number().array().optional().nullable(),
+  in: z.union([ z.number().array(),z.number() ]).optional().nullable(),
+  notIn: z.union([ z.number().array(),z.number() ]).optional().nullable(),
   lt: z.number().optional(),
   lte: z.number().optional(),
   gt: z.number().optional(),

@@ -1,10 +1,17 @@
 import {generatorCommon} from "@leight/sdk";
 
 void generatorCommon({
-    withRepositoryEx:     {
+    withRepository: {
         repositories: [
             {
-                name:     "User",
+                name: 'User',
+            },
+        ],
+    },
+    withRepositoryEx: {
+        repositories: [
+            {
+                name: "User",
                 packages: {
                     prisma: "@leight/prisma",
                 },

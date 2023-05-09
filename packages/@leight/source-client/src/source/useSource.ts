@@ -1,4 +1,4 @@
-import {Source} from "@leight/source";
+import {type Source} from "@leight/source";
 
 export const useSource = <TSource extends Source>(
     {

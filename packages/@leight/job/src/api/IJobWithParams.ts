@@ -1,11 +1,8 @@
 import {z} from "@leight/zod";
-import {
-    type IJobParamsSchema,
-    type IJobSourceSchemaType
-}          from "../schema";
+import {type IJobParamsSchema, type JobSource} from "../schema";
 
 export type IJobWithParams<TParamsSchema extends IJobParamsSchema> =
-    IJobSourceSchemaType["Dto"]
+    JobSource["Type"]["Dto"]
     & {
-        params: z.infer<TParamsSchema>;
-    }
+    params: z.infer<TParamsSchema>;
+}

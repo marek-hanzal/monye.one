@@ -3,11 +3,14 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-export const $UserRepository = Symbol.for("@leight/user/IUserRepository");
-export const $UserRepositoryMapper = Symbol.for("@leight/user/IUserRepositoryMapper");
-export const $UserRepositoryService = Symbol.for("@leight/user/IUserRepositoryService");
+import {type IRepository} from "@leight/source";
+import {type UserSource} from "../../schema";
+
+export interface IUserRepository extends IRepository<UserSource["Schema"]["Repository"]> {
+}
+
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_q5ya9u8qxjjp8t4822ygy6cu = true;
+export const $leight_xerwymw3os2eivqnybu4e7eg = true;

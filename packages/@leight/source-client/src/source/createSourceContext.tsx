@@ -1,39 +1,33 @@
-import {
-    type ISourceSchema,
-    type ISourceSchemaType,
-    type ISourceStore,
-    type IUseQueryInvalidator,
-    type IUseSourceQuery
-}                         from "@leight/source";
+import {type Source} from "@leight/source";
 import {createQueryStore} from "../query";
-import {useSource}        from "../source";
+import {useSource} from "../source";
 
-export interface IWithSourceStoreProps<TSourceSchema extends ISourceSchema> {
+export interface IWithSourceStoreProps<TSource extends Source> {
     name: string;
-    schema: TSourceSchema;
-    use: IUseSourceQuery<ISourceSchemaType.of<TSourceSchema>>;
-    useInvalidator: IUseQueryInvalidator;
+    schema: TSource["Schema"];
+    use: TSource["Type"]["UseRepository"];
+    useInvalidator: TSource["Type"]["UseInvalidator"];
 }
 
-export const withSourceStore = <TSourceSchema extends ISourceSchema>(
+export const withSourceStore = <TSource extends Source>(
     {
         name,
         schema,
         use,
         useInvalidator,
-    }: IWithSourceStoreProps<TSourceSchema>): ISourceStore<ISourceSchemaType.of<TSourceSchema>> => {
+    }: IWithSourceStoreProps<TSource>): ISourceStore<ISourceSchemaType.of<TSourceSchema>> => {
     const $store: ISourceStore<ISourceSchemaType.of<TSourceSchema>> = {
         name,
         useSource: ({cacheTime} = {cacheTime: undefined}) => {
-            return useSource<ISourceSchemaType.of<TSourceSchema>>({
+            return useSource<TSource>({
                 SourceStore: $store,
-                schema:      schema.DtoSchema,
+                schema: schema.DtoSchema,
                 cacheTime,
             });
         },
         use,
         useInvalidator,
-        Query:     createQueryStore<ISourceSchemaType.of<TSourceSchema>>({
+        Query: createQueryStore<TSource>({
             name,
             schema,
         }),

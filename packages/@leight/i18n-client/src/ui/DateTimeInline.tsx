@@ -1,8 +1,5 @@
-import {
-    type DateTimeFormatOptions,
-    type IDateInput
-}                      from "@leight/i18n";
-import {type FC}       from "react";
+import {type DateTimeFormatOptions, type IDateInput} from "@leight/i18n";
+import {type FC} from "react";
 import {DateTimeStore} from "../context";
 
 export interface IDateTimeInlineProps {
@@ -12,7 +9,7 @@ export interface IDateTimeInlineProps {
 }
 
 export const DateTimeInline: FC<IDateTimeInlineProps> = ({date, fallback, options}) => {
-    const {toLocalDateTime} = DateTimeStore.useState(({toLocalDateTime}) => ({toLocalDateTime}));
+    const {toLocalDateTime} = DateTimeStore.use(({toLocalDateTime}) => ({toLocalDateTime}));
     return <>
         {toLocalDateTime(date, fallback, options)}
     </>;

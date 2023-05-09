@@ -1,13 +1,10 @@
 import {type IStoreProps} from "@leight/zustand";
-import {
-    type IRepositoryMapperSchema,
-    type RepositoryMapperType
-}                         from "../repository";
-import {type ISortOrder}  from "../schema";
+import {type IRepositoryMapperSchema, type RepositoryMapperType} from "../repository";
+import {type ISortOrder} from "../schema";
 
 export type IQueryStoreProps<
     TRepositoryMapperSchema extends IRepositoryMapperSchema,
-    TRepositoryMapperType extends RepositoryMapperType = RepositoryMapperType<TRepositoryMapperSchema>
+    TRepositoryMapperType extends RepositoryMapperType<TRepositoryMapperSchema> = RepositoryMapperType<TRepositoryMapperSchema>
 > = IStoreProps<{
     $id: string;
 
