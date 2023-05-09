@@ -1,26 +1,18 @@
-import {
-    $FileServiceConfig,
-    $FileSource,
-    type IFileService,
-    type IFileServiceConfig,
-    type IFileServiceStoreProps,
-    type IFileSource,
-    type IFileSourceSchemaType,
-}                   from "@leight/file";
+import {$FileRepository, $FileServiceConfig, FileSource, type IFileRepository, type IFileService, type IFileServiceConfig, type IFileServiceStoreProps} from "@leight/file";
 import {generateId} from "@leight/utils";
-import {copySync}   from "fs-extra";
-import fs           from "node:fs";
-import coolPath     from "node:path";
+import {copySync} from "fs-extra";
+import fs from "node:fs";
+import coolPath from "node:path";
 
 export class FileService implements IFileService {
     static inject = [
         $FileServiceConfig,
-        $FileSource,
+        $FileRepository,
     ];
 
     constructor(
         private fileServiceConfig: IFileServiceConfig,
-        private fileSource: IFileSource,
+        private fileRepository: IFileRepository,
     ) {
     }
 
@@ -31,8 +23,8 @@ export class FileService implements IFileService {
         );
     }
 
-    public fetch(fileId: string): Promise<IFileSourceSchemaType["Entity"]> {
-        return this.fileSource.find(fileId);
+    public fetch(fileId: string): Promise<FileSource['Type']["Dto"]> {
+        return this.fileRepository.get(fileId);
     }
 
     public async store(
@@ -43,8 +35,8 @@ export class FileService implements IFileService {
             userId,
             mime,
             replace = false,
-        }: IFileServiceStoreProps): Promise<IFileSourceSchemaType["Entity"]> {
-        const id       = generateId();
+        }: IFileServiceStoreProps): Promise<FileSource['Type']["Dto"]> {
+        const id = generateId();
         const location = this.pathOf(id);
         fs.mkdirSync(coolPath.dirname(location), {recursive: true});
         file
@@ -55,15 +47,15 @@ export class FileService implements IFileService {
             location,
             name,
             path,
-            mime:    mime || (await this.mimeOf(location)),
-            size:    this.sizeOf(location),
+            mime: mime || (await this.mimeOf(location)),
+            size: this.sizeOf(location),
             created: new Date(),
-            ttl:     undefined,
+            ttl: undefined,
             userId,
         };
 
         return replace && userId
-            ? this.fileSource.upsert({
+            ? this.fileRepository.upsert({
                 filter: {
                     userId_path_name: {
                         name,
@@ -72,9 +64,9 @@ export class FileService implements IFileService {
                     },
                 },
                 create: data,
-                patch:  data,
+                patch: data,
             })
-            : this.fileSource.create(data);
+            : this.fileRepository.create(data);
     }
 
     protected async mimeOf(file?: string): Promise<string> {

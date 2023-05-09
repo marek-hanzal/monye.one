@@ -8,10 +8,17 @@ void generatorCommon({
             },
         ],
     },
-    withRepositoryEx:     {
+    withRepository: {
         repositories: [
             {
-                name:     "Job",
+                name: "Job",
+            },
+        ],
+    },
+    withRepositoryEx: {
+        repositories: [
+            {
+                name: "Job",
                 packages: {
                     prisma: "@leight/prisma",
                 },

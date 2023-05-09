@@ -3,11 +3,14 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-export const $FileRepository = Symbol.for("@leight/file/IFileRepository");
-export const $FileRepositoryMapper = Symbol.for("@leight/file/IFileRepositoryMapper");
-export const $FileRepositoryService = Symbol.for("@leight/file/IFileRepositoryService");
+import {type IRepository} from "@leight/source";
+import {type FileSource} from "../../schema";
+
+export interface IFileRepository extends IRepository<FileSource["Schema"]["Repository"]> {
+}
+
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mzwsua22vembtrnew6521sk6 = true;
+export const $leight_vfsiyk677j64x0m9qlt1coeo = true;

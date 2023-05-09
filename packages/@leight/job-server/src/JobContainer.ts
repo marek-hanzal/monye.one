@@ -1,24 +1,15 @@
-import {type IContainer}      from "@leight/container";
-import {
-    $JobExecutor,
-    $JobProgressService,
-    $JobSource,
-    $JobSourceMapper,
-    $JobSourceService
-}                             from "@leight/job";
-import {JobSourceMapper}      from "./mapper";
-import {JobBaseSourceService} from "./sdk";
-import {
-    JobExecutor,
-    JobProgressService
-}                             from "./service";
-import {JobSource}            from "./source";
+import {type IContainer} from "@leight/container";
+import {$JobExecutor, $JobProgressService, $JobRepository, $JobRepositoryMapper} from "@leight/job";
+import {JobRepositoryMapper} from "./mapper";
+import {JobRepository} from "./repository";
+import {withJobRepositoryContainer} from "./sdk";
+import {JobExecutor, JobProgressService} from "./service";
 
 export const JobContainer = (container: IContainer) => {
+    withJobRepositoryContainer(container);
     container
         .bindClass($JobProgressService, JobProgressService)
         .bindClass($JobExecutor, JobExecutor)
-        .bindClass($JobSource, JobSource)
-        .bindClass($JobSourceService, JobBaseSourceService)
-        .bindClass($JobSourceMapper, JobSourceMapper);
+        .bindClass($JobRepository, JobRepository)
+        .bindClass($JobRepositoryMapper, JobRepositoryMapper);
 };
