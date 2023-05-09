@@ -1,15 +1,10 @@
-import {env}                                         from "@/monye.one/env.mjs";
-import {
-    type IContainer,
-    PumpIt,
-    SCOPE,
-    wrapContainer
-}                                                    from "@leight/container";
-import {ServerContainer as $LeightServerContainer}   from "@leight/container-server";
-import {$PrismaClient}                               from "@leight/prisma";
-import {BootstrapLogger}                             from "@leight/winston";
-import {ServerContainer as $MonyeOneServerContainer} from "@monye.one/container-server";
-import {PrismaClient}                                from "@monye.one/prisma";
+import {env} from "@/monye.one/env.mjs";
+import {type IContainer, PumpIt, SCOPE, wrapContainer} from "@leight/container";
+import {ServerContainer as $LeightServerContainer} from "@leight/container-server";
+import {$PrismaClient} from "@leight/prisma";
+import {BootstrapLogger} from "@leight/winston";
+import {withServerContainer as $withMonyeOneServerContainer} from "@monye.one/container-server";
+import {PrismaClient} from "@monye.one/prisma";
 
 BootstrapLogger({
     loggers: [
@@ -25,13 +20,13 @@ export const MonyeOneContainer = ((container: IContainer) => {
             return new PrismaClient({
                 errorFormat: "pretty",
                 log:
-                             env.NODE_ENV === "development"
-                                 ? [
-                                     // "query",
-                                     "error",
-                                     "warn"
-                                 ]
-                                 : ["error"],
+                    env.NODE_ENV === "development"
+                        ? [
+                            // "query",
+                            "error",
+                            "warn"
+                        ]
+                        : ["error"],
             });
         }, {
             scope: SCOPE.SINGLETON,
@@ -44,5 +39,5 @@ export const MonyeOneContainer = ((container: IContainer) => {
     };
 })(container);
 
-export const LeightServerContainer   = $LeightServerContainer(container);
-export const MonyeOneServerContainer = $MonyeOneServerContainer(container);
+export const LeightServerContainer = $LeightServerContainer(container);
+$withMonyeOneServerContainer(container);

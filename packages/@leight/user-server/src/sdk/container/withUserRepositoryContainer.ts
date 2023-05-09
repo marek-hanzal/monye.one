@@ -22,4 +22,4 @@ export const withUserRepositoryContainer = (container: IContainer) => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fwd0jbjw66vqncn85pavejgr = true;
+export const $leight_gbtr8zghzbfa69e08d4r1lsu = true;

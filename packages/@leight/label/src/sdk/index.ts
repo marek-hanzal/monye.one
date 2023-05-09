@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_e3puuy0j93czeuctbszs7wbr = true;
+export const $leight_d2jqa4x28nm167xul6jm7tnu = true;
 
 export * from "./index";
 export * from "./mapper/ILabelRepositoryMapper";

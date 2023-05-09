@@ -10,4 +10,4 @@ export const $FileRepositoryService = Symbol.for("@leight/file/IFileRepositorySe
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vsno59e8b4rtqs1i4lv006s5 = true;
+export const $leight_adbp36zwao26d9016ha3oid2 = true;

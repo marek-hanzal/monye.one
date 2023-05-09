@@ -11,6 +11,36 @@ void generatorServer({
             },
         ],
     },
+    withRepositoryMapper: {
+        repositories: [
+            {
+                name: "CalendarEvent",
+                packages: {
+                    schema: "@monye.one/book",
+                },
+            },
+        ],
+    },
+    withRepositoryService: {
+        repositories: [
+            {
+                name: "CalendarEvent",
+                packages: {
+                    schema: "@monye.one/book",
+                },
+            },
+        ],
+    },
+    withRepositoryHandler: {
+        repositories: [
+            {
+                name: "CalendarEvent",
+                packages: {
+                    schema: "@monye.one/book",
+                },
+            },
+        ],
+    },
     withRepositoryContainer: {
         repositories: [
             {

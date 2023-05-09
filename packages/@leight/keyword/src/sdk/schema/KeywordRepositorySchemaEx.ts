@@ -25,4 +25,4 @@ export const KeywordRepositorySchemaEx: IKeywordRepositorySchemaEx["Schema"] = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_sbyvc5aw1rwn8bdquwo8b1p2 = true;
+export const $leight_y0m1wcp8494odg8fdeyste1c = true;
