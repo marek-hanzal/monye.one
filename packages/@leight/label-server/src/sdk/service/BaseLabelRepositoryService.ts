@@ -46,4 +46,4 @@ export class BaseLabelRepositoryService<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xuabypzk4n1noru2owgywdd6 = true;
+export const $leight_yoz2wvhmd5173rvlmhn18jlb = true;

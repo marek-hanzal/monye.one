@@ -5,7 +5,7 @@
  */
 import {
 	WithIdentitySchema,
-	WithOptionalIdentitySchema
+	WithIdentity$Schema
 } from "@leight/source";
 import {
 	router,
@@ -49,11 +49,11 @@ export const CalendarEventRepositoryRouter = router({
                 .input(WithIdentitySchema)
                 .query(CalendarEventRepositoryHandler.handleGet),
     get$:   procedure
-                .input(WithOptionalIdentitySchema)
+                .input(WithIdentity$Schema)
                 .query(CalendarEventRepositoryHandler.handleGet$),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_s0cgusxwsprqffw45ufzkti4 = true;
+export const $leight_t1eykg9x7bqegocyvlnsgprz = true;

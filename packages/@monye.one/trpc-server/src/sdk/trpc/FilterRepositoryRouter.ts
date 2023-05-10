@@ -5,7 +5,7 @@
  */
 import {
 	WithIdentitySchema,
-	WithOptionalIdentitySchema
+	WithIdentity$Schema
 } from "@leight/source";
 import {
 	router,
@@ -49,11 +49,11 @@ export const FilterRepositoryRouter = router({
                 .input(WithIdentitySchema)
                 .query(FilterRepositoryHandler.handleGet),
     get$:   procedure
-                .input(WithOptionalIdentitySchema)
+                .input(WithIdentity$Schema)
                 .query(FilterRepositoryHandler.handleGet$),
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bb1cn9prszn82mygu0p0nmiy = true;
+export const $leight_n58uuxau1w5uux75tmxqxp2e = true;

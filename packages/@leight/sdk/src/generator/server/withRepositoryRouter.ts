@@ -41,7 +41,7 @@ export const withRepositoryRouter: IGenerator<IWithRepositoryRouterParams> = asy
                 imports: {
                     "@leight/source": [
                         "WithIdentitySchema",
-                        "WithOptionalIdentitySchema",
+                        "WithIdentity$Schema",
                     ],
                 },
             })
@@ -106,7 +106,7 @@ router({
                 .input(WithIdentitySchema)
                 .query(${name}RepositoryHandler.handleGet),
     get$:   procedure
-                .input(WithOptionalIdentitySchema)
+                .input(WithIdentity$Schema)
                 .query(${name}RepositoryHandler.handleGet$),
 })
                     `,

@@ -11,4 +11,4 @@ export type UseTransactionRepository = TransactionSource["Type"]["UseRepository"
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_f7khp1ehx1rqxwef99vo44yx = true;
+export const $leight_uctmsd8cwd5mds4u7s167yu6 = true;

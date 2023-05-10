@@ -10,4 +10,4 @@ export const $LabelRepositoryService = Symbol.for("@leight/label/ILabelRepositor
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_m9onpbt1ppi4miteem8andzq = true;
+export const $leight_z3qwe72oo2cx0lvjgzn58z6q = true;

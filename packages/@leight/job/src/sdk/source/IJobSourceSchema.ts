@@ -11,4 +11,4 @@ export type IJobSourceSchema = JobSource["Schema"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_isrh5j4cwvqrguyrsi72zb1o = true;
+export const $leight_vawp4c2054kyjnc7lvi1rzek = true;
