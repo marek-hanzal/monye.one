@@ -4,31 +4,29 @@ void generatorCommon({
     withRepository: {
         repositories: [
             {
-                name: "Transaction",
-            },
-            {
-                name: "TransactionKeyword",
-            },
-        ],
-    },
-    withRepositoryEx: {
-        repositories: [
-            {
-                name: "Transaction",
-                packages: {
-                    prisma: "@monye.one/prisma",
+                name:                 "Transaction",
+                withRepositoryEx:     {
+                    packages: {
+                        prisma: "@monye.one/prisma",
+                    },
                 },
+                withRepositorySymbol: {},
+                withRepositoryMapper: {},
             },
             {
-                name: "TransactionKeyword",
-                packages: {
-                    prisma: "@monye.one/prisma",
+                name:                 "TransactionKeyword",
+                withRepositoryEx:     {
+                    packages: {
+                        prisma: "@monye.one/prisma",
+                    },
                 },
+                withRepositorySymbol: {},
+                withRepositoryMapper: {},
             },
         ],
     },
-    withRepositorySymbol: {
-        repositories: [
+    withSourceType: {
+        sources: [
             {
                 name: "Transaction",
             },
@@ -37,17 +35,7 @@ void generatorCommon({
             },
         ],
     },
-    withRepositoryMapper: {
-        repositories: [
-            {
-                name: "Transaction",
-            },
-            {
-                name: "TransactionKeyword",
-            },
-        ],
-    },
-    withForm: {
+    withForm:       {
         forms: [
             {
                 name: "TransactionFilter",

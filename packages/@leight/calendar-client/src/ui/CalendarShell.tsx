@@ -1,6 +1,5 @@
 import {type CalendarEventSource} from "@leight/calendar";
 import {type InferSelectors, switchScheme, withPrimaryColor, withSecondaryPrimaryColor} from "@leight/mantine";
-import {ISource} from "@leight/source";
 import {isCallable, withBool} from "@leight/utils";
 import {BlockStore, classNames} from "@leight/utils-client";
 import {Box, Container, createStyles, Grid, LoadingOverlay} from "@mantine/core";
@@ -163,7 +162,7 @@ export namespace ICalendarComponent {
 
 export interface ICalendarShellEvents<TSource extends CalendarEventSource> {
     schema: TSource["Schema"]["DtoSchema"];
-    Source: ISource<TSource>;
+    Source: TSource["Type"]["Source"];
 }
 
 export interface ICalendarShellProps<TSource extends CalendarEventSource> extends Omit<ComponentProps<typeof Container>, "children"> {

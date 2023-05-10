@@ -1,17 +1,14 @@
 import {DateTime} from "@leight/i18n";
-import {
-    DtoSchema,
-    FilterSchema,
-    type Source,
-    withSourceSchema
-}                 from "@leight/source";
-import {z}        from "@leight/zod";
+import {CreateSchema, DtoSchema, FilterSchema, type Source, ToCreateSchema, withSourceSchema} from "@leight/source";
+import {z} from "@leight/zod";
 
 export const CalendarEventSourceSchema = withSourceSchema({
+    CreateSchema: CreateSchema,
+    ToCreateSchema: ToCreateSchema,
     /**
      * Defines an individual calendar item being rendered/handled in a particular day.
      */
-    DtoSchema:    DtoSchema.merge(z.object({
+    DtoSchema: DtoSchema.merge(z.object({
         date: z.date(),
         prev: z.date().optional(),
         next: z.date().optional(),
@@ -19,7 +16,7 @@ export const CalendarEventSourceSchema = withSourceSchema({
     FilterSchema: FilterSchema.merge(z.object({
         withRange: z.object({
             from: z.date(),
-            to:   z.date(),
+            to: z.date(),
         }).optional(),
     })),
 });

@@ -4,28 +4,25 @@ void generatorCommon({
     withRepository: {
         repositories: [
             {
-                name: "Bank",
-            },
-        ],
-    },
-    withRepositoryEx: {
-        repositories: [
-            {
-                name: "Bank",
-                packages: {
-                    prisma: "@monye.one/prisma",
+                name:                 "Bank",
+                withRepositoryEx:     {
+                    packages: {
+                        prisma: "@monye.one/prisma",
+                    },
                 },
+                withRepositoryMapper: {},
+                withRepositorySymbol: {},
             },
         ],
     },
-    withRepositorySymbol: {
-        repositories: [
+    withSourceType: {
+        sources: [
             {
                 name: "Bank",
             },
         ],
     },
-    withForm: {
+    withForm:       {
         forms: [
             {
                 name: "BankCreate",

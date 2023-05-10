@@ -1,6 +1,6 @@
 import {type IWithTranslation} from "@leight/i18n";
 import {useTranslation} from "@leight/i18n-client";
-import {type ISource} from "@leight/source";
+import {type Source} from "@leight/source";
 import {FulltextStoreContext} from "@leight/source-client";
 import {generateId} from "@leight/utils";
 import {ActionIcon, Loader, TextInput} from "@mantine/core";
@@ -12,7 +12,7 @@ import {WithIcon} from "../component";
 export type IFulltextProps =
     ComponentProps<typeof TextInput>
     & {
-    Source: ISource;
+    Source: Source["Type"]["Source"];
     loading?: boolean;
     debounce?: number;
     withTranslation?: IWithTranslation;

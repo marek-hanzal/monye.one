@@ -1,38 +1,58 @@
-import {resolvePackageJson} from "@leight/utils-server";
-import {normalize} from "node:path";
+import {resolvePackageJson}      from "@leight/utils-server";
+import {normalize}               from "node:path";
 import {type ISdkGeneratorProps} from "../../api";
-import {withSdk} from "../../index";
-import {generatorSdkBarrel} from "../generatorSdkBarrel";
-import {type IWithFormParams, withForm} from "./withForm";
-import {type IWithRepositoryParams, withRepository} from "./withRepository";
-import {type IWithRepositoryExParams, withRepositoryEx} from "./withRepositoryEx";
-import {type IWithRepositoryMapperParams, withRepositoryMapper} from "./withRepositoryMapper";
-import {type IWithRepositorySymbolParams, withRepositorySymbol} from "./withRepositorySymbol";
+import {withSdk}                 from "../../index";
+import {generatorSdkBarrel}      from "../generatorSdkBarrel";
+import {
+    type IWithFormParams,
+    withForm
+}                                from "./withForm";
+import {
+    type IWithRepositoryParams,
+    withRepository
+}                                from "./withRepository";
+import {
+    type IWithRepositoryExParams,
+    withRepositoryEx
+}                                from "./withRepositoryEx";
+import {
+    type IWithRepositoryMapperParams,
+    withRepositoryMapper
+}                                from "./withRepositoryMapper";
+import {
+    type IWithRepositorySymbolParams,
+    withRepositorySymbol
+}                                from "./withRepositorySymbol";
+import {
+    IWithSourceTypeParams,
+    withSourceType
+}                                from "./withSourceType";
 
 export type IGeneratorCommonProps =
     ISdkGeneratorProps
     & {
-    /**
-     * Generate base Repository interface
-     */
-    withRepository?: IWithRepositoryParams;
-    /**
-     * Generate extended Repository interface
-     */
-    withRepositoryEx?: IWithRepositoryExParams;
-    /**
-     * Generate base Repository symbols (for usage in Container)
-     */
-    withRepositorySymbol?: IWithRepositorySymbolParams;
-    /**
-     * Generate base Repository mapper
-     */
-    withRepositoryMapper?: IWithRepositoryMapperParams;
-    /**
-     * Generate base form stuff (interfaces)
-     */
-    withForm?: IWithFormParams;
-}
+        /**
+         * Generate base Repository interface
+         */
+        withRepository?: IWithRepositoryParams;
+        /**
+         * Generate extended Repository interface
+         */
+        withRepositoryEx?: IWithRepositoryExParams;
+        /**
+         * Generate base Repository symbols (for usage in Container)
+         */
+        withRepositorySymbol?: IWithRepositorySymbolParams;
+        /**
+         * Generate base Repository mapper
+         */
+        withRepositoryMapper?: IWithRepositoryMapperParams;
+        withSourceType?: IWithSourceTypeParams;
+        /**
+         * Generate base form stuff (interfaces)
+         */
+        withForm?: IWithFormParams;
+    }
 
 export const generatorCommon = (
     {
@@ -46,7 +66,7 @@ export const generatorCommon = (
 
     const $params = {
         packageName,
-        barrel: false,
+        barrel:    false,
         directory: normalize(`${process.cwd()}/${folder}`),
     } as const;
 
@@ -68,6 +88,10 @@ export const generatorCommon = (
                 params.withRepositoryMapper ? withRepositoryMapper({
                     ...$params,
                     params: params.withRepositoryMapper,
+                }) : undefined,
+                params.withSourceType ? withSourceType({
+                    ...$params,
+                    params: params.withSourceType,
                 }) : undefined,
                 params.withForm ? withForm({
                     ...$params,

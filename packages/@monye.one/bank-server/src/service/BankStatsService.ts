@@ -14,24 +14,24 @@ import {
 import {
     $TransactionKeywordService,
     $TransactionPairService,
-    $TransactionSource,
+    $TransactionRepository,
     type ITransactionKeywordService,
     type ITransactionPairService,
-    type ITransactionSource
+    type ITransactionRepository
 }                           from "@monye.one/transaction";
 
 export class BankStatsService extends AbstractJobService<IBankStatsParamsSchema, void> implements IBankStatsService {
     static inject = [
         $JobExecutor,
         $TransactionKeywordService,
-        $TransactionSource,
+        $TransactionRepository,
         $TransactionPairService,
     ];
 
     constructor(
         jobExecutor: IJobExecutor,
         protected transactionKeywordService: ITransactionKeywordService,
-        protected transactionSource: ITransactionSource,
+        protected transactionRepository: ITransactionRepository,
         protected transactionPairService: ITransactionPairService,
     ) {
         super($BankStatsService, jobExecutor);
@@ -43,13 +43,13 @@ export class BankStatsService extends AbstractJobService<IBankStatsParamsSchema,
             jobProgress,
         }: IJobService.IHandleProps<IBankStatsParamsSchema>): Promise<void> {
         let total = 0;
-        total += await this.transactionSource.count({
-            filter: {bankId},
+        total += await this.transactionRepository.count({
+            bankId
         });
 
         await jobProgress.setTotal(total);
 
-        await this.transactionSource.patchBy({
+        await this.transactionRepository.patchBy({
             patch:  {
                 isTransfer: false,
             },
@@ -58,7 +58,7 @@ export class BankStatsService extends AbstractJobService<IBankStatsParamsSchema,
             },
         });
 
-        for (const transaction of await this.transactionSource.query({filter: {bankId}})) {
+        for (const transaction of await this.transactionRepository.query({filter: {bankId}})) {
             try {
                 await Promise.all([
                     this.transactionKeywordService.build({input: transaction}),

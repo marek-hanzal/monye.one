@@ -1,16 +1,7 @@
-import {
-    $PrismaClient,
-    PrismaClient
-}                             from "@leight/prisma";
-import {
-    $UserService,
-    type IUserService
-}                             from "@leight/user";
-import {keywordsOf}           from "@leight/utils";
-import {
-    type IBankPrismaSchemaType,
-    type IBankSourceSchemaType
-}                             from "@monye.one/bank";
+import {$PrismaClient, PrismaClient} from "@leight/prisma";
+import {$UserService, type IUserService} from "@leight/user";
+import {keywordsOf} from "@leight/utils";
+import {type BankSource, type IBankRepositorySchemaEx} from "@monye.one/bank";
 import {BaseBankRepositoryEx} from "../sdk";
 
 export class BankRepository extends BaseBankRepositoryEx {
@@ -26,21 +17,21 @@ export class BankRepository extends BaseBankRepositoryEx {
         super(prismaClient);
     }
 
-    toWhere(filter?: IBankSourceSchemaType["Filter"]): IBankPrismaSchemaType["Where"] | undefined {
+    toWhere(filter?: BankSource["Type"]["Filter"]): IBankRepositorySchemaEx["Type"]["Where"] | undefined {
         if (!filter) {
             return;
         }
 
-        const where: IBankPrismaSchemaType["Where"] = {
-            AND:    [],
+        const where: IBankRepositorySchemaEx["Type"]["Where"] = {
+            AND: [],
             userId: this.userService.required(),
         };
 
         const {
-                  account,
-                  fulltext,
-                  ids,
-              } = filter;
+            account,
+            fulltext,
+            ids,
+        } = filter;
         if (ids) {
             return {
                 id: {
@@ -57,13 +48,13 @@ export class BankRepository extends BaseBankRepositoryEx {
                             {
                                 account: {
                                     contains: item,
-                                    mode:     "insensitive",
+                                    mode: "insensitive",
                                 }
                             },
                             {
                                 description: {
                                     contains: item,
-                                    mode:     "insensitive",
+                                    mode: "insensitive",
                                 }
                             },
                         ]
@@ -83,7 +74,7 @@ export class BankRepository extends BaseBankRepositoryEx {
         return where;
     }
 
-    toWhereUnique(filter: IBankSourceSchemaType["Filter"]): IBankPrismaSchemaType["WhereUnique"] {
+    toWhereUnique(filter: BankSource["Type"]["Filter"]): IBankRepositorySchemaEx["Type"]["WhereUnique"] {
         const {userId_account, id} = filter;
         return {
             id,

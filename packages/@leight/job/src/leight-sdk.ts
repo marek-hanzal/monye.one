@@ -1,34 +1,24 @@
 import {generatorCommon} from "@leight/sdk";
 
 void generatorCommon({
-    withRepositorySymbol: {
-        repositories: [
-            {
-                name: "Job",
-            },
-        ],
-    },
-    withRepositoryMapper: {
-        repositories: [
-            {
-                name: "Job",
-            },
-        ],
-    },
     withRepository: {
         repositories: [
             {
-                name: "Job",
+                name:                 "Job",
+                withRepositoryEx:     {
+                    packages: {
+                        prisma: "@leight/prisma",
+                    },
+                },
+                withRepositoryMapper: {},
+                withRepositorySymbol: {},
             },
         ],
     },
-    withRepositoryEx: {
-        repositories: [
+    withSourceType: {
+        sources: [
             {
                 name: "Job",
-                packages: {
-                    prisma: "@leight/prisma",
-                },
             },
         ],
     },

@@ -1,9 +1,8 @@
-import {type ISource, type Source} from "@leight/source";
+import {type Source} from "@leight/source";
 import {createQueryStore} from "../query";
 import {useRepository} from "./useRepository";
 
-export interface IWithSourceStoreProps<TSource extends Source> extends ISource<TSource>, Pick<TSource["Type"], "UseRepository" | "QueryContext"> {
-}
+export type IWithSourceStoreProps<TSource extends Source> = TSource["Type"]["Source"] & Pick<TSource["Type"], "UseRepository" | "QueryContext">;
 
 /**
  * Entry point for client-side Source/Repository context wrapping all
@@ -17,7 +16,7 @@ export const withSource = <TSource extends Source>(
         useInvalidator,
         UseRepository,
         QueryContext,
-    }: IWithSourceStoreProps<TSource>): ISource<TSource> => {
+    }: IWithSourceStoreProps<TSource>): TSource["Type"]["Source"] => {
     return {
         name,
         schema,

@@ -22,4 +22,4 @@ export const withJobRepositoryContainer = (container: IContainer) => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qe4qq5o3hh7tpv1g83k2bbsl = true;
+export const $leight_bkouniv2qzacjbwrv6mxgcu1 = true;

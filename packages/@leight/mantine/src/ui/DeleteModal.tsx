@@ -1,5 +1,5 @@
 import {Translation} from "@leight/i18n-client";
-import {ISource, Source} from "@leight/source";
+import {Source} from "@leight/source";
 import {Button, Divider, Group} from "@mantine/core";
 import {IconTrash} from "@tabler/icons-react";
 import {type IModalProps, Modal} from "../component";
@@ -7,7 +7,7 @@ import {ModalStore} from "../context";
 import {withSuccessNotification} from "../utils";
 
 export interface IDeleteModalProps<TSource extends Source> extends IModalProps {
-    Source: ISource<TSource>;
+    Source: TSource["Type"]["Source"];
     entity: TSource["Type"]["Dto"];
 }
 

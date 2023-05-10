@@ -1,9 +1,9 @@
-import {type ISource} from "@leight/source";
+import {type Source} from "@leight/source";
 import {Pagination as CoolPagination} from "@mantine/core";
 import {type ComponentProps, type FC} from "react";
 
 export interface IPaginationProps extends Partial<ComponentProps<typeof CoolPagination>> {
-    Source: ISource;
+    Source: Source["Type"]["Source"];
     hideOnSingle?: boolean;
 }
 

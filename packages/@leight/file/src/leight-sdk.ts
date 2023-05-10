@@ -4,29 +4,19 @@ void generatorCommon({
     withRepository: {
         repositories: [
             {
-                name: "File",
-            },
-        ],
-    },
-    withRepositoryMapper: {
-        repositories: [
-            {
-                name: "File",
-            },
-        ],
-    },
-    withRepositoryEx: {
-        repositories: [
-            {
-                name: "File",
-                packages: {
-                    prisma: "@leight/prisma",
+                name:                 "File",
+                withRepositoryEx:     {
+                    packages: {
+                        prisma: "@leight/prisma",
+                    },
                 },
+                withRepositoryMapper: {},
+                withRepositorySymbol: {},
             },
         ],
     },
-    withRepositorySymbol: {
-        repositories: [
+    withSourceType: {
+        sources: [
             {
                 name: "File",
             },

@@ -4,29 +4,19 @@ void generatorCommon({
     withRepository: {
         repositories: [
             {
-                name: "User",
-            },
-        ],
-    },
-    withRepositoryMapper: {
-        repositories: [
-            {
-                name: "User",
-            },
-        ],
-    },
-    withRepositoryEx: {
-        repositories: [
-            {
-                name: "User",
-                packages: {
-                    prisma: "@leight/prisma",
+                name:                 "User",
+                withRepositoryEx:     {
+                    packages: {
+                        prisma: "@leight/prisma",
+                    },
                 },
+                withRepositorySymbol: {},
+                withRepositoryMapper: {},
             },
         ],
     },
-    withRepositorySymbol: {
-        repositories: [
+    withSourceType: {
+        sources: [
             {
                 name: "User",
             },

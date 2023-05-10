@@ -56,4 +56,4 @@ export const LabelRepositoryRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_quvrfd3ivn1cue6wm7ruhhcs = true;
+export const $leight_qtg2wnt62myg2m5pnxf0nyz7 = true;

@@ -22,4 +22,4 @@ export const withFilterRepositoryContainer = (container: IContainer) => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_usx402ssrbkg2nqt7jw4cta0 = true;
+export const $leight_bbn3oi6o9ix3mtoog2h9h72p = true;

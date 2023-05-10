@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ulb020zkfwirpca2gh50tvgy = true;
+export const $leight_a1aglobaxb55dwv23wei3bkq = true;
 
 export * from "./index";
 export * from "./container/withLabelRepositoryContainer";
