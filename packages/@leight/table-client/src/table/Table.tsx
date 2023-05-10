@@ -3,7 +3,7 @@ import {Translation}           from "@leight/i18n-client";
 import {withPrimaryColor}      from "@leight/mantine";
 import {
     type IMultiSelectionStoreContext,
-    ISelectionStoreContext
+    type ISelectionStoreContext
 }                              from "@leight/selection";
 import {type IWithIdentity}    from "@leight/source";
 import {
@@ -30,7 +30,7 @@ import {TableRowAction}        from "./TableRowAction";
 
 const useStyles = createStyles(theme => ({
     table: {
-        "&[data-striped] tbody tr.selection":                  {
+        "&[data-striped] tbody tr.selection": {
             backgroundColor: withPrimaryColor(theme, -5),
             "&:hover":       {
                 backgroundColor: withPrimaryColor(theme, -6),
@@ -198,8 +198,8 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
         overrideColumns[column] || columns[column],
     ]);
 
-    const selection      = SelectionContext?.useState();
-    const multiSelection = MultiSelectionContext?.useState();
+    const selection = SelectionContext?.use();
+    const multiSelection = MultiSelectionContext?.use();
 
     return <ScrollArea
         w={"100%"}
@@ -210,7 +210,10 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
                 overlayBlur={2}
                 transitionDuration={250}
             />
-            {renderPrefix?.({items, columns: $columns.map(([, column]) => column)})}
+            {renderPrefix?.({
+                items,
+                columns: $columns.map(([, column]) => column)
+            })}
             <CoolTable
                 striped
                 highlightOnHover
@@ -240,7 +243,7 @@ export const Table = <TColumn extends ITableColumn, TColumnKeys extends string>(
                             />
                         </th>}
                         {$columns?.map(([name, column]) => {
-                            const defaultContent              = <Translation
+                            const defaultContent = <Translation
                                 {...withTranslation}
                                 label={"table.column"}
                                 withLabel={column?.title || name}

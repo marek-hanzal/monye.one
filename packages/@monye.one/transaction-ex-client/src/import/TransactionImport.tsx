@@ -9,7 +9,7 @@ import {
 import {trpc}    from "@monye.one/trpc-client";
 import {type FC} from "react";
 
-export interface ITransactionImportProps extends Omit<IImportZoneProps<ITransactionImportParams>, "useJobFindQuery" | "withTranslation" | "mutation" | "params"> {
+export interface ITransactionImportProps extends Omit<IImportZoneProps<ITransactionImportParams>, "useJobGetQuery" | "withTranslation" | "mutation" | "params"> {
     account?: string;
 }
 
@@ -20,12 +20,12 @@ export const TransactionImport: FC<ITransactionImportProps> = (
         ...props
     }) => {
     const context = trpc.useContext();
+    const transactionInvalidator = useTransactyionInvalidator();
     return <ImportZone<ITransactionImportParams>
-        useJobFindQuery={trpc.job.source.find.useQuery}
+        useJobGetQuery={trpc.job.repository.get.useQuery}
         mutation={trpc.transaction.import.xlsx.job}
         onSuccess={props => {
-            context.transaction.source.query.invalidate();
-            context.transaction.source.count.invalidate();
+            transactionInvalidator();
             onSuccess?.(props);
         }}
         params={{

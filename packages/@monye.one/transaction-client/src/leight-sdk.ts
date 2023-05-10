@@ -1,6 +1,17 @@
-import {withSdk} from "@leight/sdk";
+import {generatorClient} from "@leight/sdk";
 
-void withSdk([]);
+void generatorClient({
+    withSource: {
+        sources: [
+            {
+                name:     "Transaction",
+                packages: {
+                    schema: "@monye.one/transaction",
+                },
+            },
+        ],
+    },
+});
 
 // void withSdk(
 //     withClientSourceGenerators({

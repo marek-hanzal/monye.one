@@ -287,6 +287,7 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/label/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/label-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/label-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-ex-client/.turbo" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

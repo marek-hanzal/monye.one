@@ -25,15 +25,15 @@ export interface IRepositorySchema<
         create: TCreateSchema;
         patch: TPatchSchema;
         filter: TFilterSchema;
-    }>;
+    }, "strip">;
     PatchSchemaProps: z.ZodObject<{
         patch: TPatchSchema;
         filter: TFilterSchema;
-    }>;
+    }, "strip">;
     PatchBySchemaProps: z.ZodObject<{
         patch: TPatchSchema;
         filter: TFilterSchema;
-    }>;
+    }, "strip">;
     DeleteSchema: IWithIdentitySchema;
     DeleteBySchema: TFilterSchema;
     CountSchema: TFilterSchema;
@@ -42,7 +42,7 @@ export interface IRepositorySchema<
         sort: z.ZodOptional<TSortSchema>;
         cursor: z.ZodOptional<ICursorSchema>;
         params: z.ZodOptional<TParamsSchema>;
-    }>;
+    }, "strip">;
     FetchSchema: TFilterSchema;
     Fetch$Schema: TFilterSchema;
     FilterSchema: TFilterSchema;

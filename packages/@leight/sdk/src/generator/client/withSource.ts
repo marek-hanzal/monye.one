@@ -1,5 +1,5 @@
-import {withSourceFile} from "@leight/generator-server";
-import {normalize} from "node:path";
+import {withSourceFile}  from "@leight/generator-server";
+import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
 export interface IWithSourceParams {
@@ -32,7 +32,10 @@ export const withSource: IGenerator<IWithSourceParams> = async (
         directory,
         params: {sources}
     }) => {
-    sources.forEach(({name, packages}) => {
+    sources.forEach(({
+                         name,
+                         packages
+                     }) => {
         console.log(`- Generating [withSource] [${name}]`);
 
         withSourceFile()
@@ -42,16 +45,17 @@ export const withSource: IGenerator<IWithSourceParams> = async (
             .withImports({
                 imports: {
                     "@leight/source-client": [
-                        "withSourceStore",
+                        "withSource",
                     ],
-                    [packages.schema]: [
-                        `${name}SourceSchema`,
+                    [packages.schema]:       [
+                        `${name}SourceSchema as SourceSchema`,
+                        `type ${name}Source as Source`,
                     ],
                 },
             })
             .withImports({
                 imports: {
-                    [`../Trpc/Use${name}SourceQuery`]: [
+                    [`../Trpc/Use${name}SourceQuery`]:      [
                         `Use${name}SourceQuery`,
                     ],
                     [`../Trpc/use${name}QueryInvalidator`]: [
@@ -61,11 +65,11 @@ export const withSource: IGenerator<IWithSourceParams> = async (
             })
             .withConsts({
                 exports: {
-                    [`${name}SourceStore`]: {
+                    [`${name}Source`]: {
                         body: `
-withSourceStore({
+withSource<Source>({
     name: "${name}",
-    schema: ${name}SourceSchema,
+    schema: SourceSchema,
     use: Use${name}SourceQuery,
     useInvalidator: use${name}QueryInvalidator,
 })

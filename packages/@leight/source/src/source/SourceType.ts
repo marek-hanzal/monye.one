@@ -1,8 +1,15 @@
-import {type IStoreContext} from "@leight/context";
+import {type IStoreContext}    from "@leight/context";
 import {type IQueryStoreProps} from "../query";
-import {type IRepositoryResult, type IUseRepository, type IUseRepositoryQuery, type RepositoryMapperType, type RepositoryServiceType, type RepositoryType} from "../repository";
-import {ISource} from "./ISource";
-import {type ISourceSchema} from "./ISourceSchema";
+import {
+    type IRepositoryResult,
+    type IUseRepository,
+    type IUseRepositoryQuery,
+    type RepositoryMapperType,
+    type RepositoryServiceType,
+    type RepositoryType
+}                              from "../repository";
+import {type ISource}          from "./ISource";
+import {type ISourceSchema}    from "./ISourceSchema";
 
 export interface SourceType<TSourceSchema extends ISourceSchema = ISourceSchema> extends RepositoryServiceType<TSourceSchema["Service"]> {
     Repository: RepositoryType<
@@ -17,7 +24,9 @@ export interface SourceType<TSourceSchema extends ISourceSchema = ISourceSchema>
     UseRepository: IUseRepository<TSourceSchema["Mapper"]>;
     UseRepositoryQuery: IUseRepositoryQuery<TSourceSchema["Mapper"]>;
     UseInvalidator: () => () => void;
-    Use: ({cacheTime}?: { cacheTime?: number }) => IRepositoryResult<TSourceSchema>;
+    Use: ({cacheTime}?: {
+        cacheTime?: number
+    }) => IRepositoryResult<TSourceSchema>;
     UseRepositoryResult: IRepositoryResult<TSourceSchema>;
     QueryContext: IStoreContext<IQueryStoreProps<TSourceSchema["Mapper"]>>;
     Source: ISource<TSourceSchema>;

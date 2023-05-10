@@ -36,14 +36,14 @@ export interface IRepositoryMapperSchema<
     ToPatchSchemaProps: z.ZodObject<{
         patch: TToPatchSchema;
         filter: TFilterSchema;
-    }>;
+    }, "strip">;
     ToPatchBySchemaProps: z.ZodObject<{
         patch: TToPatchSchema;
         filter: TFilterSchema;
-    }>;
+    }, "strip">;
     ToUpsertSchemaProps: z.ZodObject<{
         create: TToCreateSchema;
         patch: TToPatchSchema;
         filter: TFilterSchema;
-    }>;
+    }, "strip">;
 }

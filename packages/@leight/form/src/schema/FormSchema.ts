@@ -1,14 +1,11 @@
-import {
-    DtoSchema,
-    type IDtoSchema
-}          from "@leight/source";
-import {z} from "@leight/zod";
+import {DtoSchema} from "@leight/source";
+import {z}         from "@leight/zod";
 
 export const FormValuesSchema = z.object({});
-export type IFormValuesSchema = z.ZodObject<any>;
+export type IFormValuesSchema = typeof FormValuesSchema;
 
 export const FormRequestSchema = z.object({});
-export type IFormRequestSchema = z.ZodObject<any>;
+export type IFormRequestSchema = typeof FormRequestSchema;
 
 export const FormDtoSchema = DtoSchema;
-export type IFormDtoSchema = IDtoSchema;
+export type IFormDtoSchema = typeof FormDtoSchema;

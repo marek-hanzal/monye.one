@@ -5,8 +5,8 @@ import {
 import {
     type IRepositoryService,
     type IRepositoryServiceSchema,
-    IWithIdentity,
-    IWithOptionalIdentity,
+    type IWithIdentity,
+    type IWithIdentity$,
     type RepositoryServiceType
 }                    from "@leight/source";
 import {withHandler} from "@leight/trpc-server";
@@ -102,7 +102,7 @@ export const withRepositoryHandler = <
                     request: {id}
                 }) => withSourceService(container).handleGet(id),
         }),
-        handleGet$:     withHandler<IWithOptionalIdentity, TRepositoryServiceType["Dto"] | null>({
+        handleGet$:     withHandler<IWithIdentity$, TRepositoryServiceType["Dto"] | null>({
             handler: async (
                 {
                     container,

@@ -4,7 +4,7 @@ import {
 }                                     from "@leight/react-query";
 import {
     type IWithIdentity,
-    type IWithOptionalIdentity
+    type IWithIdentity$
 }                                     from "../schema";
 import {type IRepositoryMapperSchema} from "./IRepositoryMapperSchema";
 import {type RepositoryMapperType}    from "./RepositoryMapperType";
@@ -24,5 +24,5 @@ export interface IUseRepository<
     useFetch: IUseQuery<TRepositoryMapperType["Fetch"], TRepositoryMapperType["Dto"]>;
     useFetch$: IUseQuery<TRepositoryMapperType["Fetch$"], TRepositoryMapperType["Dto"] | null>;
     useGet: IUseQuery<IWithIdentity, TRepositoryMapperType["Dto"]>;
-    useGet$: IUseQuery<IWithOptionalIdentity, TRepositoryMapperType["Dto"] | null>;
+    useGet$: IUseQuery<IWithIdentity$, TRepositoryMapperType["Dto"] | null>;
 }
