@@ -1,10 +1,27 @@
 import {generatorClient} from "@leight/sdk";
 
 void generatorClient({
-    withSource: {
+    withSource:      {
         sources: [
             {
                 name:     "Transaction",
+                packages: {
+                    schema: "@monye.one/transaction",
+                },
+            },
+        ],
+    },
+    withInvalidator: {
+        invalidators: [
+            {
+                name:     "Transaction",
+                trpc:     {
+                    path:         "transaction",
+                    package:      "@monye.one/trpc-client",
+                    invalidators: [
+                        "$query",
+                    ],
+                },
                 packages: {
                     schema: "@monye.one/transaction",
                 },

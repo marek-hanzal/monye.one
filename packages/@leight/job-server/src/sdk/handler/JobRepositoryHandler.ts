@@ -16,4 +16,4 @@ export const JobRepositoryHandler = withRepositoryHandler<JobSource["Schema"]["S
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hvtwfqd2lg87pgghz95ysxfc = true;
+export const $leight_ntpwsr8gnobodwlwsrywt3w8 = true;

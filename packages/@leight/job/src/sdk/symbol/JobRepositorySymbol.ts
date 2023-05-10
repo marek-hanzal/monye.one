@@ -10,4 +10,4 @@ export const $JobRepositoryService = Symbol.for("@leight/job/IJobRepositoryServi
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fw46zgzw0k81uhh3qudspa0c = true;
+export const $leight_eagx08vzck1tvewvxj4qy0zw = true;

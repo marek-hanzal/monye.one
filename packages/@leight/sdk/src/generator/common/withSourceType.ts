@@ -116,5 +116,23 @@ export const withSourceType: IGenerator<IWithSourceTypeParams> = async (
                 file: normalize(`${directory}/source/I${name}SourceSchema.ts`),
                 barrel,
             });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "../../schema": [
+                        `type ${name}Source`,
+                    ],
+                },
+            })
+            .withTypes({
+                exports: {
+                    [`IUse${name}Invalidator`]: `${name}Source["Type"]["UseInvalidator"]`,
+                },
+            })
+            .saveTo({
+                file: normalize(`${directory}/source/IUse${name}Invalidator.ts`),
+                barrel,
+            });
     }
 };

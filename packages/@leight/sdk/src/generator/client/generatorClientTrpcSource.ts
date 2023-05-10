@@ -16,7 +16,7 @@ export namespace IGeneratorClientTrpcSourceParams {
          * Required package imports
          */
         packages: IPackages;
-        withTrpc: IWithTrpc;
+        trpc: ITrpc;
     }
 
     export interface IPackages {
@@ -26,7 +26,7 @@ export namespace IGeneratorClientTrpcSourceParams {
         schema: string;
     }
 
-    export interface IWithTrpc {
+    export interface ITrpc {
         /**
          * Package (import) of client-side TRPC (should export named trpc)
          */
@@ -35,7 +35,6 @@ export namespace IGeneratorClientTrpcSourceParams {
          * Part of the trpc call chain (base is `trpc`.${trpcPath}.`...rest of standard trpc router`
          */
         path: string;
-        invalidators?: string[];
     }
 }
 
@@ -45,42 +44,12 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
         directory,
         params: {entities}
     }) => {
-    entities.forEach(({name, withTrpc, packages}) => {
-        withTrpc.invalidators && withSourceFile()
-            .withImports({
-                imports: {
-                    "@leight/source": [
-                        "type IUseQueryInvalidator",
-                    ],
-                },
-            })
-            .withImports({
-                imports: {
-                    [withTrpc.package]: [
-                        "trpc",
-                    ],
-                },
-            })
-            .withConsts({
-                exports: {
-                    [`use${name}QueryInvalidator`]: {
-                        type: "IUseQueryInvalidator",
-                        body: `
-() => {
-    const trpcContext = trpc.useContext();
-    return () => {
-        ${withTrpc.invalidators.map(invalidator => `trpcContext.${invalidator}.invalidate();`).join("\n\t\t")}
-    };
-}
-                        `,
-                    },
-                },
-            })
-            .saveTo({
-                file: normalize(`${directory}/Trpc/use${name}QueryInvalidator.tsx`),
-                barrel,
-            });
-
+    entities.forEach((
+        {
+            name,
+            trpc,
+            packages
+        }) => {
         withSourceFile()
             .withImports({
                 imports: {
@@ -95,7 +64,7 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
             })
             .withImports({
                 imports: {
-                    [withTrpc.package]: [
+                    [trpc.package]: [
                         "trpc",
                     ],
                 },
@@ -104,12 +73,12 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
                 exports: {
                     [`Use${name}SourceQuery`]: {
                         type: `IUse${name}SourceQuery`,
-                        body: `withSourceQuery<I${name}SourceSchemaType>(trpc.${withTrpc.path}.source)`,
+                        body: `withSourceQuery<I${name}SourceSchemaType>(trpc.${trpc.path}.source)`,
                     },
                 }
             })
             .saveTo({
-                file: normalize(`${directory}/Trpc/Use${name}SourceQuery.tsx`),
+                file: normalize(`${directory}/trpc/Use${name}SourceQuery.tsx`),
                 barrel,
             });
     });

@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_gkui04v29kchl0xytd37pifi = true;
+export const $leight_nmz5i5i0im8kmgx9gz10qngs = true;
 
 export * from "./index";
 export * from "./mapper/IJobRepositoryMapper";
@@ -18,4 +18,5 @@ export * from "./schema/JobRepositorySchemaEx";
 export * from "./source/IJobSource";
 export * from "./source/IJobSourceSchema";
 export * from "./source/IJobSourceType";
+export * from "./source/IUseJobInvalidator";
 export * from "./symbol/JobRepositorySymbol";

@@ -12,4 +12,4 @@ export type ITransactionFilterMantineFormContext = IMantineFormContext<ITransact
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ea69bl08nbtxjrdxcei7s2hi = true;
+export const $leight_wzrzghkdhartw46tqwj5k9s8 = true;

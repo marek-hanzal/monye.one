@@ -11,4 +11,4 @@ export type UseKeywordRepositoryQuery = KeywordSource["Type"]["UseRepositoryQuer
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ijvsse6441v8ulccmqyrvfin = true;
+export const $leight_h5upjxe8dv13jw665ux68t8j = true;

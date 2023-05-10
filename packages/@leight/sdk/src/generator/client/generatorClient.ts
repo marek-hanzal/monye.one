@@ -1,17 +1,28 @@
-import {resolvePackageJson} from "@leight/utils-server";
-import {normalize} from "node:path";
+import {resolvePackageJson}      from "@leight/utils-server";
+import {normalize}               from "node:path";
 import {type ISdkGeneratorProps} from "../../api";
-import {withSdk} from "../../index";
-import {generatorSdkBarrel} from "../generatorSdkBarrel";
-import {type IWithSelectionParams, withSelection} from "./withSelection";
-import {IWithSourceParams, withSource} from "./withSource";
+import {withSdk}                 from "../../index";
+import {generatorSdkBarrel}      from "../generatorSdkBarrel";
+import {
+    type IWithInvalidatorParams,
+    withInvalidator
+}                                from "./withInvalidator";
+import {
+    type IWithSelectionParams,
+    withSelection
+}                                from "./withSelection";
+import {
+    type IWithSourceParams,
+    withSource
+}                                from "./withSource";
 
 export type IGeneratorClientProps =
     ISdkGeneratorProps
     & {
-    withSelection?: IWithSelectionParams;
-    withSource?: IWithSourceParams;
-};
+        withSelection?: IWithSelectionParams;
+        withSource?: IWithSourceParams;
+        withInvalidator?: IWithInvalidatorParams;
+    };
 
 export const generatorClient = (
     {
@@ -25,7 +36,7 @@ export const generatorClient = (
 
     const $params = {
         packageName,
-        barrel: false,
+        barrel:    false,
         directory: normalize(`${process.cwd()}/${folder}`),
     } as const;
 
@@ -39,6 +50,10 @@ export const generatorClient = (
                 params.withSource ? withSource({
                     ...$params,
                     params: params.withSource,
+                }) : undefined,
+                params.withInvalidator ? withInvalidator({
+                    ...$params,
+                    params: params.withInvalidator,
                 }) : undefined,
             ]);
             await generatorSdkBarrel({

@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bfdgw90bhoozcwywxg26kf1m = true;
+export const $leight_qjxoms5hr1xfzpxxgf18a41h = true;
 
 export * from "./index";
 export * from "./form/IBankCreateFormInputFactory";
@@ -24,4 +24,5 @@ export * from "./schema/BankRepositorySchemaEx";
 export * from "./source/IBankSource";
 export * from "./source/IBankSourceSchema";
 export * from "./source/IBankSourceType";
+export * from "./source/IUseBankInvalidator";
 export * from "./symbol/BankRepositorySymbol";

@@ -1,6 +1,24 @@
-import {withSdk} from "@leight/sdk";
+import {generatorClient} from "@leight/sdk";
 
-void withSdk([]);
+void generatorClient({
+    withInvalidator: {
+        invalidators: [
+            {
+                name:     "Bank",
+                trpc:     {
+                    path:         "bank",
+                    package:      "@monye.one/trpc-client",
+                    invalidators: [
+                        "$query",
+                    ],
+                },
+                packages: {
+                    schema: "@monye.one/bank",
+                },
+            },
+        ],
+    },
+});
 
 // void withSdk(
 //     withClientSourceGenerators({
