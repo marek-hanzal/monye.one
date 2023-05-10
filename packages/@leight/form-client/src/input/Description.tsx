@@ -8,11 +8,15 @@ export interface IDescriptionProps {
     description?: string;
 }
 
-export const Description: FC<IDescriptionProps> = ({withTranslation, description}) => {
+export const Description: FC<IDescriptionProps> = (
+    {
+        withTranslation,
+        description
+    }) => {
     return description ? <Text
         c={"dimmed"}
         size={"sm"}
     >
-        <Translation {...withTranslation} label={`${withTranslation.label}.${description}`}/>
+        <Translation {...withTranslation} withLabel={description}/>
     </Text> : null;
 };

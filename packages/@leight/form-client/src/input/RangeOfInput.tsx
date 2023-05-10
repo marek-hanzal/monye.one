@@ -30,9 +30,12 @@ export const RangeOfInput = <TFormSchemaType extends IFormSchemaType>(
         onRange,
         ...props
     }: IRangeOfInputProps<TFormSchemaType>) => {
-    const {MantineContext: {useFormContext}} = FormContext.useState(({MantineContext}) => ({MantineContext}));
-    const form                               = useFormContext();
-    const {onChange, value}                  = form.getInputProps(path);
+    const {MantineContext: {useFormContext}} = FormContext.use(({MantineContext}) => ({MantineContext}));
+    const form = useFormContext();
+    const {
+        onChange,
+        value
+    } = form.getInputProps(path);
     return <SegmentedControl
         fullWidth
         value={value}
@@ -44,7 +47,10 @@ export const RangeOfInput = <TFormSchemaType extends IFormSchemaType>(
             });
         }}
         mt={"sm"}
-        data={RangeOfList.map(label => ({label: <Translation namespace={"common"} label={"range-of"} withLabel={label}/>, value: label}))}
+        data={RangeOfList.map(label => ({
+            label: <Translation namespace={"common"} label={"range-of"} withLabel={label}/>,
+            value: label
+        }))}
         {...props}
     />;
 };

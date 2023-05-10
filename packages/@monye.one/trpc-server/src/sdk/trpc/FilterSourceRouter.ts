@@ -16,16 +16,16 @@ import {FilterRepositoryHandler} from "@leight/filter-server";
 
 export const FilterRepositoryRouter = router({
     create: procedure
-                .input(FilterSourceSchema.CreateSchema)
+                .input(FilterSourceSchema.ToCreateSchema)
                 .mutation(FilterRepositoryHandler.handleCreate),
     patch:  procedure
-                .input(FilterSourceSchema.PatchSchema)
+                .input(FilterSourceSchema.ToPatchSchemaProps)
                 .mutation(FilterRepositoryHandler.handlePatch),
     patchBy:  procedure
-                .input(FilterSourceSchema.PatchBySchema)
+                .input(FilterSourceSchema.ToPatchBySchemaProps)
                 .mutation(FilterRepositoryHandler.handlePatchBy),
     upsert:  procedure
-                .input(FilterSourceSchema.UpsertSchema)
+                .input(FilterSourceSchema.ToUpsertSchemaProps)
                 .mutation(FilterRepositoryHandler.handleUpsert),
     delete:  procedure
                 .input(FilterSourceSchema.DeleteSchema)
@@ -56,4 +56,4 @@ export const FilterRepositoryRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_kh44wm21q32pmm4g99hquryl = true;
+export const $leight_fhmn3nr3x0ar0fnlzn8fk1jr = true;

@@ -5,7 +5,7 @@ import {
 import {
     type IFormInputs,
     type IFormSchemaType,
-    IUseForm
+    type IUseForm
 }                      from "@leight/form";
 import {DateTime}      from "@leight/i18n";
 import {
@@ -48,10 +48,25 @@ export const DateInput = <TFormSchemaType extends IFormSchemaType>(
         onChange: $onChange,
         ...       props
     }: IDateInputProps<TFormSchemaType>) => {
-    const [opened, {open, close}]                             = useDisclosure(false);
-    const {MantineContext: {useFormContext}, withTranslation} = props.FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
-    const form                                                = useFormContext();
-    const {onChange, value}                                   = form.getInputProps(props.path);
+    const [opened, {
+        open,
+        close
+    }] = useDisclosure(false);
+    const {
+        MantineContext: {useFormContext},
+        withTranslation
+    } = props.FormContext.use(({
+                                   MantineContext,
+                                   withTranslation
+                               }) => ({
+        MantineContext,
+        withTranslation
+    }));
+    const form = useFormContext();
+    const {
+        onChange,
+        value
+    } = form.getInputProps(props.path);
     return <DateTimeProvider>
         <Modal
             opened={opened}
@@ -89,7 +104,11 @@ export const DateInput = <TFormSchemaType extends IFormSchemaType>(
         >
             {value ? <DateInline
                 date={value}
-                options={{day: "numeric", month: "long", year: "numeric"}}
+                options={{
+                    day:   "numeric",
+                    month: "long",
+                    year:  "numeric"
+                }}
             /> : null}
         </InputEx>
     </DateTimeProvider>;

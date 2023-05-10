@@ -16,16 +16,16 @@ import {TransactionRepositoryHandler} from "@monye.one/transaction-server";
 
 export const TransactionRepositoryRouter = router({
     create: procedure
-                .input(TransactionSourceSchema.CreateSchema)
+                .input(TransactionSourceSchema.ToCreateSchema)
                 .mutation(TransactionRepositoryHandler.handleCreate),
     patch:  procedure
-                .input(TransactionSourceSchema.PatchSchema)
+                .input(TransactionSourceSchema.ToPatchSchemaProps)
                 .mutation(TransactionRepositoryHandler.handlePatch),
     patchBy:  procedure
-                .input(TransactionSourceSchema.PatchBySchema)
+                .input(TransactionSourceSchema.ToPatchBySchemaProps)
                 .mutation(TransactionRepositoryHandler.handlePatchBy),
     upsert:  procedure
-                .input(TransactionSourceSchema.UpsertSchema)
+                .input(TransactionSourceSchema.ToUpsertSchemaProps)
                 .mutation(TransactionRepositoryHandler.handleUpsert),
     delete:  procedure
                 .input(TransactionSourceSchema.DeleteSchema)
@@ -56,4 +56,4 @@ export const TransactionRepositoryRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_gy0uqzlvn27d5hscsbcilufe = true;
+export const $leight_it29u0xpp83ak2ap96dz34iy = true;

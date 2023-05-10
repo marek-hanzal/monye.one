@@ -16,16 +16,16 @@ import {CalendarEventRepositoryHandler} from "@monye.one/book-server";
 
 export const CalendarEventRepositoryRouter = router({
     create: procedure
-                .input(CalendarEventSourceSchema.CreateSchema)
+                .input(CalendarEventSourceSchema.ToCreateSchema)
                 .mutation(CalendarEventRepositoryHandler.handleCreate),
     patch:  procedure
-                .input(CalendarEventSourceSchema.PatchSchema)
+                .input(CalendarEventSourceSchema.ToPatchSchemaProps)
                 .mutation(CalendarEventRepositoryHandler.handlePatch),
     patchBy:  procedure
-                .input(CalendarEventSourceSchema.PatchBySchema)
+                .input(CalendarEventSourceSchema.ToPatchBySchemaProps)
                 .mutation(CalendarEventRepositoryHandler.handlePatchBy),
     upsert:  procedure
-                .input(CalendarEventSourceSchema.UpsertSchema)
+                .input(CalendarEventSourceSchema.ToUpsertSchemaProps)
                 .mutation(CalendarEventRepositoryHandler.handleUpsert),
     delete:  procedure
                 .input(CalendarEventSourceSchema.DeleteSchema)
@@ -56,4 +56,4 @@ export const CalendarEventRepositoryRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vuu26mqerjwp3yb45zac0vbf = true;
+export const $leight_iwklxqcfpggtofwwjhcg86g5 = true;

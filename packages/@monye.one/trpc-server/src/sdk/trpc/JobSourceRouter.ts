@@ -16,16 +16,16 @@ import {JobRepositoryHandler} from "@leight/job-server";
 
 export const JobRepositoryRouter = router({
     create: procedure
-                .input(JobSourceSchema.CreateSchema)
+                .input(JobSourceSchema.ToCreateSchema)
                 .mutation(JobRepositoryHandler.handleCreate),
     patch:  procedure
-                .input(JobSourceSchema.PatchSchema)
+                .input(JobSourceSchema.ToPatchSchemaProps)
                 .mutation(JobRepositoryHandler.handlePatch),
     patchBy:  procedure
-                .input(JobSourceSchema.PatchBySchema)
+                .input(JobSourceSchema.ToPatchBySchemaProps)
                 .mutation(JobRepositoryHandler.handlePatchBy),
     upsert:  procedure
-                .input(JobSourceSchema.UpsertSchema)
+                .input(JobSourceSchema.ToUpsertSchemaProps)
                 .mutation(JobRepositoryHandler.handleUpsert),
     delete:  procedure
                 .input(JobSourceSchema.DeleteSchema)
@@ -56,4 +56,4 @@ export const JobRepositoryRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wezdxwtc51bu1ssul1exvnp3 = true;
+export const $leight_qcd57jveolfubmdgau44nb0o = true;

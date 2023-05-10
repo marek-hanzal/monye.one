@@ -11,8 +11,28 @@ import {
 export interface IWithInputProps<TFormSchemaType extends IFormSchemaType> extends ComponentProps<typeof Box<"div">>, IFormInputs.IInputProps<TFormSchemaType> {
 }
 
-export const WithInput = <TFormSchemaType extends IFormSchemaType>({FormContext, path, ...props}: IWithInputProps<TFormSchemaType>) => {
-    const {inputs, hidden, inputOverrides, withTranslation}         = FormContext.useState(({inputs, hidden, inputOverrides, withTranslation}) => ({inputs, hidden, inputOverrides, withTranslation}));
+export const WithInput = <TFormSchemaType extends IFormSchemaType>({
+                                                                       FormContext,
+                                                                       path,
+                                                                       ...props
+                                                                   }: IWithInputProps<TFormSchemaType>) => {
+    const {
+        inputs,
+        hidden,
+        inputOverrides,
+        withTranslation
+    } = FormContext.use((
+        {
+            inputs,
+            hidden,
+            inputOverrides,
+            withTranslation
+        }) => ({
+        inputs,
+        hidden,
+        inputOverrides,
+        withTranslation
+    }));
     const Input: FC<IFormInputs.IInputRenderProps<TFormSchemaType>> = inputOverrides?.[path] || inputs[path];
     return hidden?.includes(path) ? null : <Box
         {...props}

@@ -1,6 +1,6 @@
-import {withSourceFile} from "@leight/generator-server";
-import {normalize} from "node:path";
-import {type IGenerator} from "../../api";
+import {withSourceFile}     from "@leight/generator-server";
+import {normalize}          from "node:path";
+import {type IGenerator}    from "../../api";
 import {generatorSdkBarrel} from "../generatorSdkBarrel";
 
 export interface IWithRepositoryRouterParams {
@@ -73,16 +73,16 @@ export const withRepositoryRouter: IGenerator<IWithRepositoryRouterParams> = asy
                         body: `
 router({
     create: procedure
-                .input(${name}SourceSchema.CreateSchema)
+                .input(${name}SourceSchema.ToCreateSchema)
                 .mutation(${name}RepositoryHandler.handleCreate),
     patch:  procedure
-                .input(${name}SourceSchema.PatchSchema)
+                .input(${name}SourceSchema.ToPatchSchemaProps)
                 .mutation(${name}RepositoryHandler.handlePatch),
     patchBy:  procedure
-                .input(${name}SourceSchema.PatchBySchema)
+                .input(${name}SourceSchema.ToPatchBySchemaProps)
                 .mutation(${name}RepositoryHandler.handlePatchBy),
     upsert:  procedure
-                .input(${name}SourceSchema.UpsertSchema)
+                .input(${name}SourceSchema.ToUpsertSchemaProps)
                 .mutation(${name}RepositoryHandler.handleUpsert),
     delete:  procedure
                 .input(${name}SourceSchema.DeleteSchema)

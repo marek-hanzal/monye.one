@@ -9,13 +9,17 @@ export interface ILabelProps {
     label?: string;
 }
 
-export const Label: FC<ILabelProps> = ({withTranslation, withAsterisk, label}) => {
+export const Label: FC<ILabelProps> = ({
+                                           withTranslation,
+                                           withAsterisk,
+                                           label
+                                       }) => {
     return label ? <div>
         <Text
             fw={"500"}
             span
         >
-            <Translation {...withTranslation} label={`${withTranslation.label}.${label}`}/>
+            <Translation {...withTranslation} withLabel={label}/>
         </Text>
         {withAsterisk && <Text ml={4} c={"red"} span>*</Text>}
     </div> : null;

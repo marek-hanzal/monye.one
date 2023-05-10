@@ -25,9 +25,12 @@ export const BoolInput = <TFormSchema extends IFormSchemaType>(
         withTranslation,
         ...props
     }: IBoolInputProps<TFormSchema>) => {
-    const {MantineContext: {useFormContext}} = FormContext.useState(({MantineContext}) => ({MantineContext}));
-    const form                               = useFormContext();
-    const {onChange, value}                  = form.getInputProps(path);
+    const {MantineContext: {useFormContext}} = FormContext.use(({MantineContext}) => ({MantineContext}));
+    const form = useFormContext();
+    const {
+        onChange,
+        value
+    } = form.getInputProps(path);
     return <SegmentedControl
         fullWidth
         value={((value) => {

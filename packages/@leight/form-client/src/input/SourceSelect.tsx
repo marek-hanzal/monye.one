@@ -4,10 +4,7 @@ import {
 }                                    from "@leight/form";
 import {Translation}                 from "@leight/i18n-client";
 import {type ISelectionStoreContext} from "@leight/selection";
-import {
-    type ISourceSchemaType,
-    type ISourceStore
-}                                    from "@leight/source";
+import {Source}                      from "@leight/source";
 import {FulltextProvider}            from "@leight/source-client";
 import {generateId}                  from "@leight/utils";
 import {
@@ -32,47 +29,61 @@ import {
 }                                    from "./InputEx";
 import {Label}                       from "./Label";
 
-export interface ISourceSelectProps<TFormSchemaType extends IFormSchemaType, TSourceSchemaType extends ISourceSchemaType> extends IInputExProps<TFormSchemaType> {
-    Selector: ISourceSelectProps.ISelectorComponent<TSourceSchemaType>;
-    SelectionContext: ISelectionStoreContext<TSourceSchemaType["Dto"]>;
-    SourceStore: ISourceStore<TSourceSchemaType>;
+export interface ISourceSelectProps<TFormSchemaType extends IFormSchemaType, TSource extends Source> extends IInputExProps<TFormSchemaType> {
+    Selector: ISourceSelectProps.ISelectorComponent<TSource>;
+    SelectionContext: ISelectionStoreContext<TSource["Type"]["Dto"]>;
+    Source: TSource["Type"]["Source"];
 
-    onCommit?(props: ISourceSelectProps.IOnCommitProps<TFormSchemaType, TSourceSchemaType>): void;
+    onCommit?(props: ISourceSelectProps.IOnCommitProps<TFormSchemaType, TSource>): void;
 
-    render(item: TSourceSchemaType["Dto"]): ReactNode;
+    render(item: TSource["Type"]["Dto"]): ReactNode;
 }
 
 export namespace ISourceSelectProps {
-    export type ISelectorComponent<TSourceSchemaType extends ISourceSchemaType> = FC<ISelectorComponentProps<TSourceSchemaType>>;
+    export type ISelectorComponent<TSource extends Source> = FC<ISelectorComponentProps<TSource>>;
 
-    export type ISelectorComponentProps<TSourceSchemaType extends ISourceSchemaType> = {
-        SelectionContext?: ISelectionStoreContext<TSourceSchemaType["Dto"]>;
-        onClick(item: TSourceSchemaType["Dto"]): void;
+    export type ISelectorComponentProps<TSource extends Source> = {
+        SelectionContext?: ISelectionStoreContext<TSource["Type"]["Dto"]>;
+        onClick(item: TSource["Type"]["Dto"]): void;
     }
 
-    export interface IOnCommitProps<TFormSchemaType extends IFormSchemaType, TSourceSchemaType extends ISourceSchemaType> {
-        item?: TSourceSchemaType["Dto"];
+    export interface IOnCommitProps<TFormSchemaType extends IFormSchemaType, TSource extends Source> {
+        item?: TSource["Type"]["Dto"];
         form: IUseForm<TFormSchemaType>;
     }
 }
 
-export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSchemaType extends ISourceSchemaType>(
+export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSource extends Source>(
     {
         Selector,
         SelectionContext,
-        SourceStore,
+        Source,
         render,
         onCommit,
         ...props
-    }: ISourceSelectProps<TFormSchemaType, TSourceSchemaType>) => {
-    const [opened, {open, close}]                             = useDisclosure(false);
-    const {MantineContext: {useFormContext}, withTranslation} = props.FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
-    const form                                                = useFormContext();
-    const {onChange, value}                                   = form.getInputProps(props.path);
-    const entity                                              = SourceStore.use.useFetchOptional({
-        filter: {
-            id: value || "",
-        }
+    }: ISourceSelectProps<TFormSchemaType, TSource>) => {
+    const [opened, {
+        open,
+        close
+    }] = useDisclosure(false);
+    const {
+        MantineContext: {useFormContext},
+        withTranslation
+    } = props.FormContext.use((
+        {
+            MantineContext,
+            withTranslation
+        }) => ({
+        MantineContext,
+        withTranslation
+    }));
+    const form = useFormContext();
+    const {
+        onChange,
+        value
+    } = form.getInputProps(props.path);
+    const entity = Source.repository.useFetch$({
+        id: value || "",
     });
 
     return entity.isLoading ? <InputEx
@@ -81,13 +92,20 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
     /> : (entity.isSuccess ? <SelectionContext.Provider
         key={generateId()}
         defaults={{
-            item:      entity.data,
-            selection: entity.data,
+            item:      entity.data || undefined,
+            selection: entity.data || undefined,
         }}
     >
         {() => {
             // eslint-disable-next-line react-hooks/rules-of-hooks
-            const {item, select, selection, cancel, clear, commit} = SelectionContext.useState();
+            const {
+                item,
+                select,
+                selection,
+                cancel,
+                clear,
+                commit
+            } = SelectionContext.use();
             return <>
                 <Modal
                     opened={opened}
@@ -138,7 +156,10 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSourceSch
                                 onClick={() => {
                                     onChange(selection?.id);
                                     commit();
-                                    onCommit?.({item: selection, form});
+                                    onCommit?.({
+                                        item: selection || undefined,
+                                        form
+                                    });
                                     close();
                                 }}
                             >

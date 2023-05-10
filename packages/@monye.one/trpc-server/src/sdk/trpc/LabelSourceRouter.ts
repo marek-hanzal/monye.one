@@ -16,16 +16,16 @@ import {LabelRepositoryHandler} from "@leight/label-server";
 
 export const LabelRepositoryRouter = router({
     create: procedure
-                .input(LabelSourceSchema.CreateSchema)
+                .input(LabelSourceSchema.ToCreateSchema)
                 .mutation(LabelRepositoryHandler.handleCreate),
     patch:  procedure
-                .input(LabelSourceSchema.PatchSchema)
+                .input(LabelSourceSchema.ToPatchSchemaProps)
                 .mutation(LabelRepositoryHandler.handlePatch),
     patchBy:  procedure
-                .input(LabelSourceSchema.PatchBySchema)
+                .input(LabelSourceSchema.ToPatchBySchemaProps)
                 .mutation(LabelRepositoryHandler.handlePatchBy),
     upsert:  procedure
-                .input(LabelSourceSchema.UpsertSchema)
+                .input(LabelSourceSchema.ToUpsertSchemaProps)
                 .mutation(LabelRepositoryHandler.handleUpsert),
     delete:  procedure
                 .input(LabelSourceSchema.DeleteSchema)
@@ -56,4 +56,4 @@ export const LabelRepositoryRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qtg2wnt62myg2m5pnxf0nyz7 = true;
+export const $leight_qzoq4cv0jfb68awy9c0mruv5 = true;

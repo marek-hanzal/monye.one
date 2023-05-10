@@ -33,8 +33,8 @@ export const withDefaultInputProps = <TFormSchema extends IFormSchemaType>(
         ...form.getInputProps(path),
         mt:          "md",
         size:        "md",
-        label:       label ? <Translation {...withTranslation} label={`${withTranslation.label}.${label}`}/> : undefined,
+        label:       label ? <Translation {...withTranslation} withLabel={label}/> : undefined,
         placeholder: placeholder ? t(`${withTranslation.label}.${placeholder}`, withTranslation.values) : undefined,
-        description: description ? <Translation {...withTranslation} label={`${withTranslation.label}.${description}`}/> : description,
+        description: description ? <Translation {...withTranslation} withLabel={description}/> : description,
     };
 };

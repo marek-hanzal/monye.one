@@ -53,8 +53,21 @@ export const InputEx = <TFormSchemaType extends IFormSchemaType>(
         ...props
     }: IInputExProps<TFormSchemaType>
 ) => {
-    const {MantineContext: {useFormContext}, withTranslation} = FormContext.useState(({MantineContext, withTranslation}) => ({MantineContext, withTranslation}));
-    const {onChange, error}                                   = useFormContext().getInputProps(path);
+    const {
+        MantineContext: {useFormContext},
+        withTranslation
+    } = FormContext.use((
+        {
+            MantineContext,
+            withTranslation
+        }) => ({
+        MantineContext,
+        withTranslation
+    }));
+    const {
+        onChange,
+        error
+    } = useFormContext().getInputProps(path);
     return <Box
         mt={"md"}
         {...props}
