@@ -24,10 +24,10 @@ export const TransactionSourceSchema = withSourceSchema({
         labelIds: z.array(z.string()).optional(),
     })),
     CreateSchema:   TransactionOptionalDefaultsSchema,
-    ToPatchSchema:  TransactionPartialSchema.merge(PatchSchema).merge(z.object({
+    ToPatchSchema:  PatchSchema.merge(TransactionPartialSchema).merge(z.object({
         labelIds: z.array(z.string()).optional(),
     })),
-    PatchSchema:    TransactionPartialSchema.merge(PatchSchema),
+    PatchSchema:    PatchSchema.merge(TransactionPartialSchema),
     FilterSchema:   FilterSchema.merge(z.object({
         bankId:           z.string().optional(),
         amount:           z.number().optional(),

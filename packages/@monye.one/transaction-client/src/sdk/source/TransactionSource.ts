@@ -1,19 +1,15 @@
 /**
-	Source code containing improved Zustand store stuff for Source support (client-side).
+ Source code containing improved Zustand store stuff for Source support (client-side).
  */
 import {withSource} from "@leight/source-client";
 import {
-	TransactionSourceSchema as SourceSchema,
-	type TransactionSource as Source
-} from "@monye.one/transaction";
-import {UseTransactionSourceQuery} from "../Trpc/UseTransactionSourceQuery";
-import {useTransactionQueryInvalidator} from "../Trpc/useTransactionQueryInvalidator";
+    type TransactionSource as Source,
+    TransactionSourceSchema as SourceSchema
+}                   from "@monye.one/transaction";
 
 export const TransactionSource = withSource<Source>({
-    name: "Transaction",
+    name:   "Transaction",
     schema: SourceSchema,
-    use: UseTransactionSourceQuery,
-    useInvalidator: useTransactionQueryInvalidator,
 });
 /**
  * Default export marking a file it's generated and also preventing failing

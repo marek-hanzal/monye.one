@@ -1,19 +1,43 @@
-import {type IRepositoryMapperSchema} from "./IRepositoryMapperSchema";
-import {type IUseRepository}          from "./IUseRepository";
+import {type ISourceSchema}  from "../source";
+import {type IUseRepository} from "./IUseRepository";
 
 export interface IUseRepositoryQuery<
-    TRepositoryMapperSchema extends IRepositoryMapperSchema
+    TSourceSchema extends ISourceSchema
 > {
-    create: { useMutation: IUseRepository<TRepositoryMapperSchema>["useCreate"]; };
-    patch: { useMutation: IUseRepository<TRepositoryMapperSchema>["usePatch"]; };
-    patchBy: { useMutation: IUseRepository<TRepositoryMapperSchema>["usePatchBy"]; };
-    upsert: { useMutation: IUseRepository<TRepositoryMapperSchema>["useUpsert"]; };
-    delete: { useMutation: IUseRepository<TRepositoryMapperSchema>["useDelete"]; };
-    deleteBy: { useMutation: IUseRepository<TRepositoryMapperSchema>["useDeleteBy"]; };
-    query: { useQuery: IUseRepository<TRepositoryMapperSchema>["useQuery"]; };
-    count: { useQuery: IUseRepository<TRepositoryMapperSchema>["useCount"]; };
-    fetch: { useQuery: IUseRepository<TRepositoryMapperSchema>["useFetch"]; };
-    fetch$: { useQuery: IUseRepository<TRepositoryMapperSchema>["useFetch$"]; };
-    get: { useQuery: IUseRepository<TRepositoryMapperSchema>["useGet"]; };
-    get$: { useQuery: IUseRepository<TRepositoryMapperSchema>["useGet$"]; };
+    create: {
+        useMutation: IUseRepository<TSourceSchema>["useCreate"];
+    };
+    patch: {
+        useMutation: IUseRepository<TSourceSchema>["usePatch"];
+    };
+    patchBy: {
+        useMutation: IUseRepository<TSourceSchema>["usePatchBy"];
+    };
+    upsert: {
+        useMutation: IUseRepository<TSourceSchema>["useUpsert"];
+    };
+    delete: {
+        useMutation: IUseRepository<TSourceSchema>["useDelete"];
+    };
+    deleteBy: {
+        useMutation: IUseRepository<TSourceSchema>["useDeleteBy"];
+    };
+    query: {
+        useQuery: IUseRepository<TSourceSchema>["useQuery"];
+    };
+    count: {
+        useQuery: IUseRepository<TSourceSchema>["useCount"];
+    };
+    fetch: {
+        useQuery: IUseRepository<TSourceSchema>["useFetch"];
+    };
+    fetch$: {
+        useQuery: IUseRepository<TSourceSchema>["useFetch$"];
+    };
+    get: {
+        useQuery: IUseRepository<TSourceSchema>["useGet"];
+    };
+    get$: {
+        useQuery: IUseRepository<TSourceSchema>["useGet$"];
+    };
 }

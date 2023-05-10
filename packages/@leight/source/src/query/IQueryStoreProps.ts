@@ -1,28 +1,31 @@
 import {type IStoreProps} from "@leight/zustand";
-import {type IRepositoryMapperSchema, type RepositoryMapperType} from "../repository";
-import {type ISortOrder} from "../schema";
+import {type ISortOrder}  from "../schema";
+import {
+    type ISourceSchema,
+    type SourceType
+}                         from "../source";
 
 export type IQueryStoreProps<
-    TRepositoryMapperSchema extends IRepositoryMapperSchema,
-    TRepositoryMapperType extends RepositoryMapperType<TRepositoryMapperSchema> = RepositoryMapperType<TRepositoryMapperSchema>
+    TSourceSchema extends ISourceSchema,
+    TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
 > = IStoreProps<{
     page: number;
     size: number;
 
-    filter: TRepositoryMapperType["Filter"];
+    filter: TSourceType["Filter"];
     /**
      * If set, all filter changes are shallow merged with this
      */
-    applyFilter?: TRepositoryMapperType["Filter"];
+    applyFilter?: TSourceType["Filter"];
     filterDto?: IQueryStoreProps.IFilterDto;
-    sort: TRepositoryMapperType["Sort"];
+    sort: TSourceType["Sort"];
 
-    query: TRepositoryMapperType["Query"];
+    query: TSourceType["Query"];
 
-    withFilter(filter?: TRepositoryMapperType["Filter"]): void;
-    withApplyFilter(filter?: TRepositoryMapperType["Filter"]): void;
-    withApplyShallowFilter(filter?: TRepositoryMapperType["Filter"]): void;
-    withShallowFilter(filter?: TRepositoryMapperType["Filter"]): void;
+    withFilter(filter?: TSourceType["Filter"]): void;
+    withApplyFilter(filter?: TSourceType["Filter"]): void;
+    withApplyShallowFilter(filter?: TSourceType["Filter"]): void;
+    withShallowFilter(filter?: TSourceType["Filter"]): void;
     withFilterDto(dto?: IQueryStoreProps.IFilterDto): void;
     withShallowFilterDto(dto?: IQueryStoreProps.IFilterDto): void;
     /**
@@ -34,7 +37,7 @@ export type IQueryStoreProps<
      */
     hasApplyFilter(): boolean;
 
-    withSort(sort: keyof TRepositoryMapperType["Sort"], order: ISortOrder): void;
+    withSort(sort: keyof TSourceType["Sort"], order: ISortOrder): void;
 
     withSize(size: number): void;
     withPage(page: number): void;

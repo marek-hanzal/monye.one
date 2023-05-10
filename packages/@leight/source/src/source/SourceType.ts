@@ -21,13 +21,14 @@ export interface SourceType<TSourceSchema extends ISourceSchema = ISourceSchema>
     Service: RepositoryServiceType<
         TSourceSchema["Service"]
     >;
-    UseRepository: IUseRepository<TSourceSchema["Mapper"]>;
-    UseRepositoryQuery: IUseRepositoryQuery<TSourceSchema["Mapper"]>;
+    UseRepository: IUseRepository<TSourceSchema>;
+    UseRepositoryQuery: IUseRepositoryQuery<TSourceSchema>;
     UseInvalidator: () => () => void;
     Use: ({cacheTime}?: {
         cacheTime?: number
     }) => IRepositoryResult<TSourceSchema>;
     UseRepositoryResult: IRepositoryResult<TSourceSchema>;
-    QueryContext: IStoreContext<IQueryStoreProps<TSourceSchema["Mapper"]>>;
+    QueryContext: IStoreContext<IQueryStoreProps<TSourceSchema>>;
+    QueryStoreProps: IQueryStoreProps<TSourceSchema>;
     Source: ISource<TSourceSchema>;
 }

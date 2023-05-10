@@ -1,6 +1,9 @@
 import {createStoreContext} from "@leight/context-client";
-import {type IQueryStoreProps, type Source} from "@leight/source";
-import {cleanOf, isEmpty} from "@leight/utils";
+import {type Source}        from "@leight/source";
+import {
+    cleanOf,
+    isEmpty
+}                           from "@leight/utils";
 
 export interface ICreateQueryStoreProps {
     name: string;
@@ -10,27 +13,30 @@ export const createQueryStore = <TSource extends Source>(
     {
         name,
     }: ICreateQueryStoreProps) => {
-    return createStoreContext<IQueryStoreProps<TSource["Schema"]["Mapper"]>>({
+    return createStoreContext<TSource["Type"]["QueryStoreProps"]>({
         state: ({defaults}) => (set, get) => ({
-            filter: defaults?.query?.filter as TSource["Type"]["Mapper"]["Filter"],
+            filter:      defaults?.query?.filter as TSource["Type"]["Filter"],
             applyFilter: undefined,
-            filterDto: undefined,
-            sort: defaults?.query?.sort || {},
-            page: defaults?.query?.cursor?.page || 0,
-            size: defaults?.query?.cursor?.size || 30,
-            query: defaults?.query || {
+            filterDto:   undefined,
+            sort:        defaults?.query?.sort || {},
+            page:        defaults?.query?.cursor?.page || 0,
+            size:        defaults?.query?.cursor?.size || 30,
+            query:       defaults?.query || {
                 cursor: {
                     page: 0,
                     size: 30,
                 },
             },
             withFilter(filter) {
-                set(({query, applyFilter}) => ({
+                set(({
+                         query,
+                         applyFilter
+                     }) => ({
                     filter: {
                         ...filter,
                         ...applyFilter,
                     },
-                    query: {
+                    query:  {
                         ...query,
                         filter: {
                             ...filter,
@@ -42,25 +48,28 @@ export const createQueryStore = <TSource extends Source>(
             withApplyFilter(filter) {
                 set(({query}) => ({
                     applyFilter: filter,
-                    filter: filter,
-                    query: {
+                    filter:      filter,
+                    query:       {
                         ...query,
                         filter,
                     },
                 }));
             },
             withApplyShallowFilter(filter) {
-                set(({query, applyFilter}) => ({
+                set(({
+                         query,
+                         applyFilter
+                     }) => ({
                     applyFilter: {
                         ...applyFilter,
                         ...filter,
                     },
-                    filter: {
+                    filter:      {
                         ...query.filter,
                         ...applyFilter,
                         ...filter,
                     },
-                    query: {
+                    query:       {
                         ...query,
                         filter: {
                             ...query.filter,
@@ -71,13 +80,16 @@ export const createQueryStore = <TSource extends Source>(
                 }));
             },
             withShallowFilter(filter) {
-                set(({query, applyFilter}) => ({
+                set(({
+                         query,
+                         applyFilter
+                     }) => ({
                     filter: {
                         ...query.filter,
                         ...filter,
                         ...applyFilter,
                     },
-                    query: {
+                    query:  {
                         ...query,
                         filter: {
                             ...query.filter,
@@ -106,7 +118,7 @@ export const createQueryStore = <TSource extends Source>(
             },
             withSort(key, order) {
                 set(({query}) => ({
-                    sort: {
+                    sort:  {
                         [key as any]: order,
                     },
                     query: {
@@ -119,7 +131,7 @@ export const createQueryStore = <TSource extends Source>(
             },
             withSize(size) {
                 set(({query}) => ({
-                    size: size,
+                    size:  size,
                     query: {
                         ...query,
                         cursor: {
@@ -131,7 +143,7 @@ export const createQueryStore = <TSource extends Source>(
             },
             withPage(page) {
                 set(({query}) => ({
-                    page: page,
+                    page:  page,
                     query: {
                         ...query,
                         cursor: {

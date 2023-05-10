@@ -1,28 +1,30 @@
 import {
     type IUseMutation,
     type IUseQuery
-}                                     from "@leight/react-query";
+} from "@leight/react-query";
 import {
     type IWithIdentity,
     type IWithIdentity$
-}                                     from "../schema";
-import {type IRepositoryMapperSchema} from "./IRepositoryMapperSchema";
-import {type RepositoryMapperType}    from "./RepositoryMapperType";
+} from "../schema";
+import {
+    type ISourceSchema,
+    type SourceType
+} from "../source";
 
 export interface IUseRepository<
-    TRepositoryMapperSchema extends IRepositoryMapperSchema,
-    TRepositoryMapperType extends RepositoryMapperType<TRepositoryMapperSchema> = RepositoryMapperType<TRepositoryMapperSchema>
+    TSourceSchema extends ISourceSchema,
+    TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
 > {
-    useCreate: IUseMutation<TRepositoryMapperType["ToCreate"], TRepositoryMapperType["Dto"]>;
-    usePatch: IUseMutation<TRepositoryMapperType["ToPatchProps"], TRepositoryMapperType["Dto"]>;
-    usePatchBy: IUseMutation<TRepositoryMapperType["ToPatchByProps"], unknown>;
-    useUpsert: IUseMutation<TRepositoryMapperType["ToUpsertProps"], TRepositoryMapperType["Dto"]>;
-    useDelete: IUseMutation<TRepositoryMapperType["Delete"], TRepositoryMapperType["Dto"]>;
-    useDeleteBy: IUseMutation<TRepositoryMapperType["DeleteBy"], unknown>;
-    useQuery: IUseQuery<TRepositoryMapperType["Query"], TRepositoryMapperType["Dto"][]>;
-    useCount: IUseQuery<TRepositoryMapperType["Count"], number>;
-    useFetch: IUseQuery<TRepositoryMapperType["Fetch"], TRepositoryMapperType["Dto"]>;
-    useFetch$: IUseQuery<TRepositoryMapperType["Fetch$"], TRepositoryMapperType["Dto"] | null>;
-    useGet: IUseQuery<IWithIdentity, TRepositoryMapperType["Dto"]>;
-    useGet$: IUseQuery<IWithIdentity$, TRepositoryMapperType["Dto"] | null>;
+    useCreate: IUseMutation<TSourceType["ToCreate"], TSourceType["Dto"]>;
+    usePatch: IUseMutation<TSourceType["ToPatchProps"], TSourceType["Dto"]>;
+    usePatchBy: IUseMutation<TSourceType["ToPatchByProps"], unknown>;
+    useUpsert: IUseMutation<TSourceType["ToUpsertProps"], TSourceType["Dto"]>;
+    useDelete: IUseMutation<TSourceType["Delete"], TSourceType["Dto"]>;
+    useDeleteBy: IUseMutation<TSourceType["DeleteBy"], unknown>;
+    useQuery: IUseQuery<TSourceType["Query"], TSourceType["Dto"][]>;
+    useCount: IUseQuery<TSourceType["Count"], number>;
+    useFetch: IUseQuery<TSourceType["Fetch"], TSourceType["Dto"]>;
+    useFetch$: IUseQuery<TSourceType["Fetch$"], TSourceType["Dto"] | null>;
+    useGet: IUseQuery<IWithIdentity, TSourceType["Dto"]>;
+    useGet$: IUseQuery<IWithIdentity$, TSourceType["Dto"] | null>;
 }
