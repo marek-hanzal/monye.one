@@ -9,7 +9,10 @@ import {
     DrawerStore,
     ModalStore
 }                             from "@leight/mantine";
-import {type Source}          from "@leight/source";
+import {
+    ISource,
+    ISourceSchema
+}                             from "@leight/source";
 import {
     Button,
     Group
@@ -20,8 +23,11 @@ import {
     IconX
 }                             from "@tabler/icons-react";
 
-export interface IBaseFilterFormProps<TFormSchemaType extends IFormSchemaType, TSource extends Source> extends IBaseFormProps<TFormSchemaType> {
-    Source: TSource["Type"]["Source"];
+export interface IBaseFilterFormProps<
+    TFormSchemaType extends IFormSchemaType,
+    TSourceSchema extends ISourceSchema
+> extends IBaseFormProps<TFormSchemaType> {
+    Source: ISource<TSourceSchema>;
     withFilterQuery?: IBaseFilterFormProps.IWithFilterQuery<TFormSchemaType>;
 }
 
@@ -39,12 +45,15 @@ export namespace IBaseFilterFormProps {
     }
 }
 
-export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSource extends Source>(
+export const BaseFilterForm = <
+    TFormSchemaType extends IFormSchemaType,
+    TSourceSchema extends ISourceSchema
+>(
     {
         Source,
         withFilterQuery,
         ...props
-    }: IBaseFilterFormProps<TFormSchemaType, TSource>
+    }: IBaseFilterFormProps<TFormSchemaType, TSourceSchema>
 ) => {
     const modalContext = ModalStore.use$();
     const drawerContext = DrawerStore.use$();

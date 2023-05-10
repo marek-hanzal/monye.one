@@ -1,18 +1,44 @@
-import {type CalendarEventSource, type IDay, type IWeeks} from "@leight/calendar";
-import {DateTime} from "@leight/i18n";
-import {DateInline} from "@leight/i18n-client";
+import {
+    type ICalendarEventSourceSchema,
+    type IDay,
+    type IWeeks
+}                             from "@leight/calendar";
+import {DateTime}             from "@leight/i18n";
+import {DateInline}           from "@leight/i18n-client";
+import {type SourceType}      from "@leight/source";
 import {FulltextStoreContext} from "@leight/source-client";
-import {classNames} from "@leight/utils-client";
-import {ActionIcon, Button, Grid, Group, Stack, Text} from "@mantine/core";
-import {IconCalendarEvent, IconChevronLeft, IconChevronRight, IconChevronsLeft, IconChevronsRight} from "@tabler/icons-react";
-import {type PropsWithChildren, type ReactNode, useEffect, useState} from "react";
-import {WeeksOfStore} from "../context";
-import {CalendarShell, type ICalendarShellProps} from "./CalendarShell";
+import {classNames}           from "@leight/utils-client";
+import {
+    ActionIcon,
+    Button,
+    Grid,
+    Group,
+    Stack,
+    Text
+}                             from "@mantine/core";
+import {
+    IconCalendarEvent,
+    IconChevronLeft,
+    IconChevronRight,
+    IconChevronsLeft,
+    IconChevronsRight
+}                             from "@tabler/icons-react";
+import {
+    type PropsWithChildren,
+    type ReactNode,
+    useEffect,
+    useState
+}                             from "react";
+import {WeeksOfStore}         from "../context";
+import {
+    CalendarShell,
+    type ICalendarShellProps
+}                             from "./CalendarShell";
 
-export type IWeeksProps<TSource extends CalendarEventSource = CalendarEventSource> = PropsWithChildren<Omit<ICalendarShellProps<TSource>, "children" | "onClick" | "onChange"> & {
+export type IWeeksProps<TSourceSchema extends ICalendarEventSourceSchema = ICalendarEventSourceSchema> = PropsWithChildren<Omit<ICalendarShellProps<TSourceSchema>, "children" | "onClick" | "onChange"> & {
     onClick?(props: IWeeksProps.IOnClickProps): void;
     onChange?(props: IWeeksProps.IOnChangeProps): void;
-    renderDayInline?(props: IWeeksProps.IRenderInlineProps<TSource>): ReactNode;
+    renderDayInline?(props: IWeeksProps.IRenderInlineProps<TSourceSchema>): ReactNode;
 
     weekCountSize?: number;
     defaultWithWeekNo?: boolean;
@@ -29,15 +55,21 @@ export namespace IWeeksProps {
         weeks: IWeeks;
     }
 
-    export interface IRenderInlineProps<TSource extends CalendarEventSource> {
-        schema: TSource["Schema"]["DtoSchema"];
+    export interface IRenderInlineProps<
+        TSourceSchema extends ICalendarEventSourceSchema,
+        TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
+    > {
+        schema: TSourceSchema["DtoSchema"];
         day: IDay;
-        events: TSource["Type"]["Dto"][];
+        events: TSourceType["Dto"][];
         compact?: boolean;
     }
 }
 
-export const Weeks = <TSource extends CalendarEventSource = CalendarEventSource>(
+export const Weeks = <
+    TSourceSchema extends ICalendarEventSourceSchema = ICalendarEventSourceSchema,
+    TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
+>(
     {
         onClick,
         onChange: $onChange = () => null,
@@ -49,7 +81,7 @@ export const Weeks = <TSource extends CalendarEventSource = CalendarEventSource>
         columnSize = 3,
         children,
         ...props
-    }: IWeeksProps<TSource>) => {
+    }: IWeeksProps<TSourceSchema>) => {
     const {
         id,
         nextMonth,
@@ -58,19 +90,23 @@ export const Weeks = <TSource extends CalendarEventSource = CalendarEventSource>
         nextYear,
         today,
         weeks: {
-            weeks,
-            list,
-            start,
-            end,
-            isCurrent,
-        }
+                   weeks,
+                   list,
+                   start,
+                   end,
+                   isCurrent,
+               }
     } = WeeksOfStore.use();
     const source = events?.Source.use();
     const filter = events?.Source.query.use();
     const fulltextContext = FulltextStoreContext.use$();
     const $events = events && source?.data
-        .reduce<Record<string, TSource["Type"]["Dto"][]>>((prev, current) => {
-            const stamp = DateTime.fromJSDate(current.date).toLocaleString({day: "numeric", month: "numeric", year: "numeric"});
+        .reduce<Record<string, TSourceType["Dto"][]>>((prev, current) => {
+            const stamp = DateTime.fromJSDate(current.date).toLocaleString({
+                day:   "numeric",
+                month: "numeric",
+                year:  "numeric"
+            });
             prev[stamp] = (prev[stamp] || []).concat(current);
             return prev;
         }, {});
@@ -78,22 +114,22 @@ export const Weeks = <TSource extends CalendarEventSource = CalendarEventSource>
 
     useEffect(() => {
         filter?.withFilter({
-            fulltext: fulltextContext?.fulltext || undefined,
+            fulltext:  fulltextContext?.fulltext || undefined,
             withRange: {
                 from: start.toUTC().toJSDate(),
-                to: end.toUTC().toJSDate(),
+                to:   end.toUTC().toJSDate(),
             },
         });
     }, [
         id,
     ]);
 
-    const onChange: IWeeksProps<TSource>["onChange"] = props => {
+    const onChange: IWeeksProps<TSourceSchema>["onChange"] = props => {
         filter?.withFilter({
-            fulltext: fulltextContext?.fulltext || undefined,
+            fulltext:  fulltextContext?.fulltext || undefined,
             withRange: {
                 from: props.weeks.start.toUTC().toJSDate(),
-                to: props.weeks.end.toUTC().toJSDate(),
+                to:   props.weeks.end.toUTC().toJSDate(),
             },
         });
         $onChange?.(props);
@@ -143,8 +179,15 @@ export const Weeks = <TSource extends CalendarEventSource = CalendarEventSource>
             >
                 <Text c={"dimmed"}>
                     {isCurrent ?
-                        <DateInline date={DateTime.now()} options={{day: "numeric", month: "long", year: "numeric"}}/> :
-                        <DateInline date={start} options={{month: "long", year: "numeric"}}/>
+                        <DateInline date={DateTime.now()} options={{
+                            day:   "numeric",
+                            month: "long",
+                            year:  "numeric"
+                        }}/> :
+                        <DateInline date={start} options={{
+                            month: "long",
+                            year:  "numeric"
+                        }}/>
                     }
                 </Text>
             </Button>
@@ -223,7 +266,12 @@ export const Weeks = <TSource extends CalendarEventSource = CalendarEventSource>
             {/*
                 Quite simple stuff: take all weeks compute by the calendar and render them. That's all
              */}
-            {weeks.map(({days, number, isCurrent, id}) => <Grid
+            {weeks.map(({
+                            days,
+                            number,
+                            isCurrent,
+                            id
+                        }) => <Grid
                 key={id}
                 columns={columnCount}
                 className={classNames(
@@ -269,7 +317,10 @@ export const Weeks = <TSource extends CalendarEventSource = CalendarEventSource>
                 >
                     <Stack
                         justify={"space-between"}
-                        style={{height: "100%", padding: "0 0.3em"}}
+                        style={{
+                            height:  "100%",
+                            padding: "0 0.3em"
+                        }}
                     >
                         <Group position={"apart"}>
                             <div></div>
@@ -282,9 +333,9 @@ export const Weeks = <TSource extends CalendarEventSource = CalendarEventSource>
                         </Group>
                         {renderDayInline && events ? <div>
                             {renderDayInline({
-                                schema: events.schema,
+                                schema:  events.schema,
                                 day,
-                                events: $events?.[day.id] || [],
+                                events:  $events?.[day.id] || [],
                                 compact: props.compact,
                             })}
                         </div> : null}

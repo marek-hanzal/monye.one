@@ -4,7 +4,11 @@ import {
 }                                    from "@leight/form";
 import {Translation}                 from "@leight/i18n-client";
 import {type ISelectionStoreContext} from "@leight/selection";
-import {Source}                      from "@leight/source";
+import {
+    type ISource,
+    type ISourceSchema,
+    type SourceType
+}                                    from "@leight/source";
 import {FulltextProvider}            from "@leight/source-client";
 import {generateId}                  from "@leight/utils";
 import {
@@ -29,31 +33,45 @@ import {
 }                                    from "./InputEx";
 import {Label}                       from "./Label";
 
-export interface ISourceSelectProps<TFormSchemaType extends IFormSchemaType, TSource extends Source> extends IInputExProps<TFormSchemaType> {
-    Selector: ISourceSelectProps.ISelectorComponent<TSource>;
-    SelectionContext: ISelectionStoreContext<TSource["Type"]["Dto"]>;
-    Source: TSource["Type"]["Source"];
+export interface ISourceSelectProps<
+    TFormSchemaType extends IFormSchemaType,
+    TSourceSchema extends ISourceSchema,
+    TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
+> extends IInputExProps<TFormSchemaType> {
+    Selector: ISourceSelectProps.ISelectorComponent<TSourceSchema>;
+    SelectionContext: ISelectionStoreContext<TSourceType["Dto"]>;
+    Source: ISource<TSourceSchema>;
 
-    onCommit?(props: ISourceSelectProps.IOnCommitProps<TFormSchemaType, TSource>): void;
+    onCommit?(props: ISourceSelectProps.IOnCommitProps<TFormSchemaType, TSourceSchema>): void;
 
-    render(item: TSource["Type"]["Dto"]): ReactNode;
+    render(item: TSourceType["Dto"]): ReactNode;
 }
 
 export namespace ISourceSelectProps {
-    export type ISelectorComponent<TSource extends Source> = FC<ISelectorComponentProps<TSource>>;
+    export type ISelectorComponent<TSourceSchema extends ISourceSchema> = FC<ISelectorComponentProps<TSourceSchema>>;
 
-    export type ISelectorComponentProps<TSource extends Source> = {
-        SelectionContext?: ISelectionStoreContext<TSource["Type"]["Dto"]>;
-        onClick(item: TSource["Type"]["Dto"]): void;
+    export type ISelectorComponentProps<
+        TSourceSchema extends ISourceSchema,
+        TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
+    > = {
+        SelectionContext?: ISelectionStoreContext<TSourceType["Dto"]>;
+        onClick(item: TSourceType["Dto"]): void;
     }
 
-    export interface IOnCommitProps<TFormSchemaType extends IFormSchemaType, TSource extends Source> {
-        item?: TSource["Type"]["Dto"];
+    export interface IOnCommitProps<
+        TFormSchemaType extends IFormSchemaType,
+        TSourceSchema extends ISourceSchema,
+        TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
+    > {
+        item?: TSourceType["Dto"];
         form: IUseForm<TFormSchemaType>;
     }
 }
 
-export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSource extends Source>(
+export const SourceSelect = <
+    TFormSchemaType extends IFormSchemaType,
+    TSourceSchema extends ISourceSchema
+>(
     {
         Selector,
         SelectionContext,
@@ -61,7 +79,7 @@ export const SourceSelect = <TFormSchemaType extends IFormSchemaType, TSource ex
         render,
         onCommit,
         ...props
-    }: ISourceSelectProps<TFormSchemaType, TSource>) => {
+    }: ISourceSelectProps<TFormSchemaType, TSourceSchema>) => {
     const [opened, {
         open,
         close

@@ -1,14 +1,30 @@
-import {type CalendarEventSource, type IYear} from "@leight/calendar";
-import {DateInline} from "@leight/i18n-client";
-import {classNames} from "@leight/utils-client";
-import {Button, Grid, Group, Text} from "@mantine/core";
-import {IconChevronLeft, IconChevronRight, IconChevronsLeft, IconChevronsRight} from "@tabler/icons-react";
+import {
+    type ICalendarEventSourceSchema,
+    type IYear
+}                               from "@leight/calendar";
+import {DateInline}             from "@leight/i18n-client";
+import {classNames}             from "@leight/utils-client";
+import {
+    Button,
+    Grid,
+    Group,
+    Text
+}                               from "@mantine/core";
+import {
+    IconChevronLeft,
+    IconChevronRight,
+    IconChevronsLeft,
+    IconChevronsRight
+}                               from "@tabler/icons-react";
 import {type PropsWithChildren} from "react";
-import {YearsOfStore} from "../context";
-import {DateRageInline} from "../inline";
-import {CalendarShell, type ICalendarShellProps} from "./CalendarShell";
+import {YearsOfStore}           from "../context";
+import {DateRageInline}         from "../inline";
+import {
+    CalendarShell,
+    type ICalendarShellProps
+}                               from "./CalendarShell";
 
-export type IYearsProps<TSource extends CalendarEventSource = CalendarEventSource> = PropsWithChildren<Omit<ICalendarShellProps<TSource>, "children" | "onClick"> & {
+export type IYearsProps<TSourceSchema extends ICalendarEventSourceSchema = ICalendarEventSourceSchema> = PropsWithChildren<Omit<ICalendarShellProps<TSourceSchema>, "children" | "onClick"> & {
     onClick?(props: IYearsProps.IOnClickProps): void;
 }>;
 
@@ -18,22 +34,22 @@ export namespace IYearsProps {
     }
 }
 
-export const Years = <TSource extends CalendarEventSource = CalendarEventSource>(
+export const Years = <TSourceSchema extends ICalendarEventSourceSchema = ICalendarEventSourceSchema>(
     {
         children,
         onClick,
         ...props
-    }: IYearsProps<TSource>) => {
+    }: IYearsProps<TSourceSchema>) => {
     const {
         years: {
-            years,
-            isCurrent,
-            start,
-            end,
-            columns,
-            rows,
-            count,
-        },
+                   years,
+                   isCurrent,
+                   start,
+                   end,
+                   columns,
+                   rows,
+                   count,
+               },
         today,
         prevYear,
         nextYear,

@@ -1,7 +1,11 @@
 import {type IFormSchemaType}             from "@leight/form";
 import {Translation}                      from "@leight/i18n-client";
 import {type IMultiSelectionStoreContext} from "@leight/selection";
-import {type Source}                      from "@leight/source";
+import {
+    ISource,
+    ISourceSchema,
+    SourceType
+}                                         from "@leight/source";
 import {FulltextProvider}                 from "@leight/source-client";
 import {generateId}                       from "@leight/utils";
 import {
@@ -26,31 +30,42 @@ import {
 }                                         from "./InputEx";
 import {Label}                            from "./Label";
 
-export interface ISourceMultiSelectProps<TFormSchemaType extends IFormSchemaType, TSource extends Source> extends IInputExProps<TFormSchemaType> {
-    Selector: ISourceMultiSelectProps.ISelectorComponent<TSource>;
-    SelectionContext: IMultiSelectionStoreContext<TSource["Type"]["Dto"]>;
-    Source: Source["Type"]["Source"];
+export interface ISourceMultiSelectProps<
+    TFormSchemaType extends IFormSchemaType,
+    TSourceSchema extends ISourceSchema,
+    TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
+> extends IInputExProps<TFormSchemaType> {
+    Selector: ISourceMultiSelectProps.ISelectorComponent<TSourceSchema>;
+    SelectionContext: IMultiSelectionStoreContext<TSourceType["Dto"]>;
+    Source: ISource<TSourceSchema>;
 
-    render(items: TSource["Type"]["Dto"][]): ReactNode;
+    render(items: TSourceType["Dto"][]): ReactNode;
 }
 
 export namespace ISourceMultiSelectProps {
-    export type ISelectorComponent<TSource extends Source> = FC<ISelectorComponentProps<TSource>>;
+    export type ISelectorComponent<TSourceSchema extends ISourceSchema> = FC<ISelectorComponentProps<TSourceSchema>>;
 
-    export type ISelectorComponentProps<TSource extends Source> = {
-        MultiSelectionContext?: IMultiSelectionStoreContext<TSource["Type"]["Dto"]>;
-        onClick(item: TSource["Type"]["Dto"]): void;
+    export type ISelectorComponentProps<
+        TSourceSchema extends ISourceSchema,
+        TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
+    > = {
+        MultiSelectionContext?: IMultiSelectionStoreContext<TSourceType["Dto"]>;
+        onClick(item: TSourceType["Dto"]): void;
     }
 }
 
-export const SourceMultiSelect = <TFormSchemaType extends IFormSchemaType, TSource extends Source>(
+export const SourceMultiSelect = <
+    TFormSchemaType extends IFormSchemaType,
+    TSourceSchema extends ISourceSchema,
+    TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
+>(
     {
         Selector,
         SelectionContext,
         Source,
         render,
         ...props
-    }: ISourceMultiSelectProps<TFormSchemaType, TSource>) => {
+    }: ISourceMultiSelectProps<TFormSchemaType, TSourceSchema>) => {
     const [opened, {
         open,
         close
@@ -85,11 +100,11 @@ export const SourceMultiSelect = <TFormSchemaType extends IFormSchemaType, TSour
             items:     entity.data.reduce((prev, current) => {
                 prev[current.id] = current;
                 return prev;
-            }, {} as Record<string, TSource["Type"]["Dto"]>),
+            }, {} as Record<string, TSourceType["Dto"]>),
             selection: entity.data.reduce((prev, current) => {
                 prev[current.id] = current;
                 return prev;
-            }, {} as Record<string, TSource["Type"]["Dto"]>),
+            }, {} as Record<string, TSourceType["Dto"]>),
         }}
     >
         {() => {

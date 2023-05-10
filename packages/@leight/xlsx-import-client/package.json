@@ -35,6 +35,7 @@
         "@leight/job": "^0.5.78",
         "@leight/job-client": "^0.5.29",
         "@leight/mantine": "^0.5.76",
+        "@leight/source": "^0.5.0",
         "@leight/tsconfig": "^0.5.68",
         "@leight/utils-client": "^0.5.70",
         "@mantine/core": "^6.0.5",
