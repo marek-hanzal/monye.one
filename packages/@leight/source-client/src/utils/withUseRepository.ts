@@ -1,11 +1,11 @@
 import {
-    type IRepositoryMapperSchema,
+    type ISourceSchema,
     type IUseRepository,
     type IUseRepositoryQuery
 } from "@leight/source";
 
 export const withUseRepository = <
-    TRepositoryMapperSchema extends IRepositoryMapperSchema
+    TSourceSchema extends ISourceSchema
 >(
     {
         create:   {useMutation: useCreate},
@@ -20,8 +20,8 @@ export const withUseRepository = <
         fetch$:   {useQuery: useFetch$},
         get:      {useQuery: useGet},
         get$:     {useQuery: useGet$},
-    }: IUseRepositoryQuery<TRepositoryMapperSchema>
-): IUseRepository<TRepositoryMapperSchema> => ({
+    }: IUseRepositoryQuery<TSourceSchema>
+): IUseRepository<TSourceSchema> => ({
     useCreate,
     usePatch,
     usePatchBy,

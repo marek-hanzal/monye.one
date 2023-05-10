@@ -1,5 +1,4 @@
-import {type IStoreContext} from "@leight/context";
-import {type IQueryStoreProps, type Source} from "@leight/source";
+import {type Source}            from "@leight/source";
 import {type PropsWithChildren} from "react";
 
 export type IQueryProviderInternalProps<TSource extends Source> = PropsWithChildren<{
@@ -7,7 +6,7 @@ export type IQueryProviderInternalProps<TSource extends Source> = PropsWithChild
      * Typed query context used to provide Query; this should be usually generated
      * by SDK or you can use `createQueryStore`.
      */
-    QueryContext: IStoreContext<IQueryStoreProps<TSource["Schema"]["Mapper"]>>;
+    QueryContext: TSource["Type"]["QueryContext"];
     /**
      * The default filter could be replaced or merged, but it's not applied all the times
      */
@@ -36,11 +35,11 @@ export const QueryProvider = <TSource extends Source>(
     }: IQueryProviderInternalProps<TSource>) => {
     return <QueryContext.Provider
         defaults={{
-            filter: defaultFilter,
+            filter:      defaultFilter,
             applyFilter: applyFilter,
-            sort: defaultSort,
-            page: defaultCursor?.page || 0,
-            size: defaultCursor?.size || 30,
+            sort:        defaultSort,
+            page:        defaultCursor?.page || 0,
+            size:        defaultCursor?.size || 30,
         }}
     >
         {children}
