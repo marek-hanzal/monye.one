@@ -11,4 +11,4 @@ export type IUseTransactionInvalidator = TransactionSource["Type"]["UseInvalidat
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zg1zr0hwnkffwstlhyjg2oji = true;
+export const $leight_m4goy4qp6z03n6l81rzxcgti = true;

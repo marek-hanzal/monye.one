@@ -11,4 +11,4 @@ export type UseBankRepositoryQuery = BankSource["Type"]["UseRepositoryQuery"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_x62h0lmxxhzfvg7qble7g2dg = true;
+export const $leight_uzcwu8qd43tqahp7mhjr7faj = true;

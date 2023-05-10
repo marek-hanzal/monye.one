@@ -1,6 +1,15 @@
 import {withSourceFile}  from "@leight/generator-server";
+import {type Unboxed}    from "@leight/utils";
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
+import {
+    type IWithInvalidatorParams,
+    withInvalidator
+}                        from "./withInvalidator";
+import {
+    type IWithUseRepositoryParams,
+    withUseRepository
+}                        from "./withUseRepository";
 
 export interface IWithSourceParams {
     sources: IWithSourceParams.ISource[];
@@ -16,6 +25,8 @@ export namespace IWithSourceParams {
          * Required package imports
          */
         packages: IPackages;
+        withInvalidator?: Omit<Unboxed<IWithInvalidatorParams["invalidators"]>, "name" | "packages">;
+        withUseRepository?: Omit<Unboxed<IWithUseRepositoryParams["repositories"]>, "name" | "packages">;
     }
 
     export interface IPackages {
@@ -28,14 +39,17 @@ export namespace IWithSourceParams {
 
 export const withSource: IGenerator<IWithSourceParams> = async (
     {
+        packageName,
         barrel,
         directory,
         params: {sources}
     }) => {
-    sources.forEach(({
-                         name,
-                         packages
-                     }) => {
+    sources.forEach((
+        {
+            name,
+            packages,
+            ...rest
+        }) => {
         console.log(`- Generating [withSource] [${name}]`);
 
         withSourceFile()
@@ -55,11 +69,11 @@ export const withSource: IGenerator<IWithSourceParams> = async (
             })
             .withImports({
                 imports: {
-                    [`../Trpc/Use${name}SourceQuery`]:      [
-                        `Use${name}SourceQuery`,
+                    [`../trpc/Use${name}Repository`]:  [
+                        `Use${name}Repository as UseRepository`,
                     ],
-                    [`../Trpc/use${name}QueryInvalidator`]: [
-                        `use${name}QueryInvalidator`,
+                    [`../trpc/use${name}Invalidator`]: [
+                        `use${name}Invalidator as useInvalidator`,
                     ],
                 },
             })
@@ -70,8 +84,8 @@ export const withSource: IGenerator<IWithSourceParams> = async (
 withSource<Source>({
     name: "${name}",
     schema: SourceSchema,
-    use: Use${name}SourceQuery,
-    useInvalidator: use${name}QueryInvalidator,
+    repository: UseRepository,
+    useInvalidator,
 })
                     `,
                     },
@@ -81,5 +95,35 @@ withSource<Source>({
                 file: normalize(`${directory}/source/${name}Source.ts`),
                 barrel,
             });
+
+        rest.withInvalidator && withInvalidator({
+            barrel,
+            directory,
+            packageName,
+            params: {
+                invalidators: [
+                    {
+                        name,
+                        packages,
+                        ...rest.withInvalidator
+                    },
+                ],
+            },
+        });
+
+        rest.withUseRepository && withUseRepository({
+            barrel,
+            directory,
+            packageName,
+            params: {
+                repositories: [
+                    {
+                        name,
+                        packages,
+                        ...rest.withUseRepository
+                    },
+                ],
+            },
+        });
     });
 };

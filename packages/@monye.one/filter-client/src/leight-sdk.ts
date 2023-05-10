@@ -1,76 +1,29 @@
-import {withSdk} from "@leight/sdk";
+import {generatorClient} from "@leight/sdk";
 
-void withSdk([]);
-//
-// void withSdk(
-//     withClientSourceGenerators({
-//         Selection: {
-//             selections: [
-//                 {
-//                     name: "Filter",
-//                     packages: {
-//                         schema: "@leight/filter",
-//                     },
-//                 },
-//             ],
-//         },
-//         Select: {
-//             selects: [
-//                 {
-//                     name: "Filter",
-//                     packages: {
-//                         schema: "@leight/filter",
-//                     },
-//                 },
-//             ],
-//         },
-//         SourceTable: {
-//             entities: [
-//                 {
-//                     name: "Filter",
-//                     packages: {
-//                         schema: "@leight/filter",
-//                     },
-//                 },
-//             ],
-//         },
-//         Trpc: {
-//             entities: [
-//                 {
-//                     name: "Filter",
-//                     packages: {
-//                         schema: "@leight/filter",
-//                     },
-//                     withTrpc: {
-//                         path: "filter",
-//                         package: "@monye.one/trpc-client",
-//                         invalidators: [
-//                             "filter.source.query",
-//                             "filter.source.count",
-//                         ],
-//                     },
-//                 }
-//             ],
-//         },
-//         SourceStore: {
-//             entities: [
-//                 {
-//                     name: "Filter",
-//                     packages: {
-//                         schema: "@leight/filter",
-//                     },
-//                 },
-//             ],
-//         },
-//         SourceProvider: {
-//             entities: [
-//                 {
-//                     name: "Filter",
-//                     packages: {
-//                         schema: "@leight/filter",
-//                     },
-//                 },
-//             ],
-//         },
-//     })
-// );
+void generatorClient({
+    withSource: {
+        sources: [
+            {
+                name:              "Filter",
+                packages:          {
+                    schema: "@leight/filter",
+                },
+                withInvalidator:   {
+                    trpc: {
+                        path:         "filter",
+                        package:      "@monye.one/trpc-client",
+                        invalidators: [
+                            "$query",
+                        ],
+                    },
+                },
+                withUseRepository: {
+                    trpc: {
+                        path:    "filter",
+                        package: "@monye.one/trpc-client",
+                    },
+                }
+            },
+        ],
+    },
+});

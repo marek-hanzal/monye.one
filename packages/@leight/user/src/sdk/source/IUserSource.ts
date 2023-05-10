@@ -11,4 +11,4 @@ export type IUserSource = UserSource["Type"]["Source"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lsp52dwj1yqsw77vwlm2pfg7 = true;
+export const $leight_sa0rl1poaeyx17er8auju0e9 = true;

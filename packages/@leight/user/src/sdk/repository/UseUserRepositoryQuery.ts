@@ -11,4 +11,4 @@ export type UseUserRepositoryQuery = UserSource["Type"]["UseRepositoryQuery"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ha8pxu4wcjcjiyxfuy5fs5to = true;
+export const $leight_xwteyr72y12mr4j9r2ghtd9h = true;

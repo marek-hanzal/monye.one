@@ -4,6 +4,10 @@ import {type ISdkGeneratorProps} from "../../api";
 import {withSdk}                 from "../../index";
 import {generatorSdkBarrel}      from "../generatorSdkBarrel";
 import {
+    type IWithFormParams,
+    withForm
+}                                from "./withForm";
+import {
     type IWithInvalidatorParams,
     withInvalidator
 }                                from "./withInvalidator";
@@ -15,6 +19,10 @@ import {
     type IWithSourceParams,
     withSource
 }                                from "./withSource";
+import {
+    type IWithUseRepositoryParams,
+    withUseRepository
+}                                from "./withUseRepository";
 
 export type IGeneratorClientProps =
     ISdkGeneratorProps
@@ -22,6 +30,8 @@ export type IGeneratorClientProps =
         withSelection?: IWithSelectionParams;
         withSource?: IWithSourceParams;
         withInvalidator?: IWithInvalidatorParams;
+        withUseRepository?: IWithUseRepositoryParams;
+        withForm?: IWithFormParams;
     };
 
 export const generatorClient = (
@@ -54,6 +64,14 @@ export const generatorClient = (
                 params.withInvalidator ? withInvalidator({
                     ...$params,
                     params: params.withInvalidator,
+                }) : undefined,
+                params.withUseRepository ? withUseRepository({
+                    ...$params,
+                    params: params.withUseRepository,
+                }) : undefined,
+                params.withForm ? withForm({
+                    ...$params,
+                    params: params.withForm,
                 }) : undefined,
             ]);
             await generatorSdkBarrel({

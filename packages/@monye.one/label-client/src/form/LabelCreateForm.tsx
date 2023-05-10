@@ -11,16 +11,21 @@ export interface ILabelCreateFormProps extends Omit<ILabelCreateTrpcFormProps, "
     type: string;
 }
 
-export const LabelCreateForm: FC<ILabelCreateFormProps> = ({type, ...props}) => {
+export const LabelCreateForm: FC<ILabelCreateFormProps> = ({
+                                                               type,
+                                                               ...props
+                                                           }) => {
     return <LabelCreateTrpcForm
         toRequest={({values}) => ({
-            toCreate: {
-                ...values,
-                type,
-            }
+            ...values,
+            type,
         })}
         inputs={() => ({
-            "label": ({mandatory, withLabel, withDescription}) => <TextInput
+            "label": ({
+                          mandatory,
+                          withLabel,
+                          withDescription
+                      }) => <TextInput
                 {...mandatory}
                 {...withLabel}
                 {...withDescription}

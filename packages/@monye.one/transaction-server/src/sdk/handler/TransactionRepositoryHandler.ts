@@ -16,4 +16,4 @@ export const TransactionRepositoryHandler = withRepositoryHandler<TransactionSou
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hvvq20alyr1ee80nydq3vnp0 = true;
+export const $leight_t81mbod8jg2lv2n0vy3tc14v = true;

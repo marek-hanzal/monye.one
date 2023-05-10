@@ -13,4 +13,4 @@ export interface IFileRepositoryMapper extends IRepositoryMapper<FileSource["Sch
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_cgx372dcr3ivtwr3pwqwfigb = true;
+export const $leight_by042gv1wqfwty3t7t2mc5c3 = true;

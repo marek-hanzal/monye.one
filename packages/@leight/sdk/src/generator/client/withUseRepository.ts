@@ -2,12 +2,12 @@ import {withSourceFile}  from "@leight/generator-server";
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
-export interface IGeneratorClientTrpcSourceParams {
-    entities: IGeneratorClientTrpcSourceParams.IEntity[];
+export interface IWithUseRepositoryParams {
+    repositories: IWithUseRepositoryParams.IRepository[];
 }
 
-export namespace IGeneratorClientTrpcSourceParams {
-    export interface IEntity {
+export namespace IWithUseRepositoryParams {
+    export interface IRepository {
         /**
          * Base name exported (used to name all exported objects)
          */
@@ -38,13 +38,13 @@ export namespace IGeneratorClientTrpcSourceParams {
     }
 }
 
-export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourceParams> = async (
+export const withUseRepository: IGenerator<IWithUseRepositoryParams> = async (
     {
         barrel,
         directory,
-        params: {entities}
+        params: {repositories}
     }) => {
-    entities.forEach((
+    repositories.forEach((
         {
             name,
             trpc,
@@ -54,11 +54,11 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
             .withImports({
                 imports: {
                     "@leight/source-client": [
-                        "withSourceQuery",
+                        "withUseRepository",
                     ],
                     [packages.schema]:       [
-                        `type I${name}SourceSchemaType`,
-                        `type IUse${name}SourceQuery`,
+                        `type Use${name}Repository as UseRepository`,
+                        `type I${name}SourceSchema as SourceSchema`,
                     ],
                 }
             })
@@ -71,14 +71,14 @@ export const generatorClientTrpcSource: IGenerator<IGeneratorClientTrpcSourcePar
             })
             .withConsts({
                 exports: {
-                    [`Use${name}SourceQuery`]: {
-                        type: `IUse${name}SourceQuery`,
-                        body: `withSourceQuery<I${name}SourceSchemaType>(trpc.${trpc.path}.source)`,
+                    [`Use${name}Repository`]: {
+                        type: `UseRepository`,
+                        body: `withUseRepository<SourceSchema>(trpc.${trpc.path}.repository)`,
                     },
                 }
             })
             .saveTo({
-                file: normalize(`${directory}/trpc/Use${name}SourceQuery.tsx`),
+                file: normalize(`${directory}/trpc/Use${name}Repository.tsx`),
                 barrel,
             });
     });

@@ -1,121 +1,57 @@
-import {withSdk} from "@leight/sdk";
+import {generatorClient} from "@leight/sdk";
 
-void withSdk([]);
-//
-// void withSdk(
-//     withClientSourceGenerators({
-//         Form:           {
-//             forms: [
-//                 {
-//                     name:        "LabelCreate",
-//                     translation: {
-//                         namespace: "label",
-//                     },
-//                     withTrpc:    {
-//                         source: "Label",
-//                         use:    "useCreate",
-//                     },
-//                     packages:    {
-//                         schema: "@leight/label",
-//                     },
-//                 },
-//                 {
-//                     type:        "dto",
-//                     name:        "LabelEdit",
-//                     translation: {
-//                         namespace: "label",
-//                     },
-//                     withTrpc:    {
-//                         source: "Label",
-//                         use:    "usePatch",
-//                     },
-//                     packages:    {
-//                         schema: "@leight/label",
-//                     },
-//                 },
-//                 {
-//                     type:        "dto",
-//                     name:        "LabelPatch",
-//                     translation: {
-//                         namespace: "label",
-//                     },
-//                     withTrpc:    {
-//                         source: "Label",
-//                         use:    "usePatch",
-//                     },
-//                     packages:    {
-//                         schema: "@leight/label",
-//                     },
-//                 },
-//             ],
-//         },
-//         Selection:      {
-//             selections: [
-//                 {
-//                     name:     "Label",
-//                     packages: {
-//                         schema: "@leight/label",
-//                     },
-//                 },
-//             ],
-//         },
-//         Select:         {
-//             selects: [
-//                 {
-//                     name:     "Label",
-//                     packages: {
-//                         schema: "@leight/label",
-//                     },
-//                 },
-//             ],
-//         },
-//         SourceTable:    {
-//             entities: [
-//                 {
-//                     name:     "Label",
-//                     packages: {
-//                         schema: "@leight/label",
-//                     },
-//                 },
-//             ],
-//         },
-//         Trpc:           {
-//             entities: [
-//                 {
-//                     name:     "Label",
-//                     packages: {
-//                         schema: "@leight/label",
-//                     },
-//                     withTrpc: {
-//                         path:         "label",
-//                         package:      "@monye.one/trpc-client",
-//                         invalidators: [
-//                             "label.source.query",
-//                             "label.source.count",
-//                         ],
-//                     },
-//                 }
-//             ],
-//         },
-//         SourceStore:    {
-//             entities: [
-//                 {
-//                     name:     "Label",
-//                     packages: {
-//                         schema: "@leight/label",
-//                     },
-//                 },
-//             ],
-//         },
-//         SourceProvider: {
-//             entities: [
-//                 {
-//                     name:     "Label",
-//                     packages: {
-//                         schema: "@leight/label",
-//                     },
-//                 },
-//             ],
-//         },
-//     })
-// );
+void generatorClient({
+    withSource:    {
+        sources: [
+            {
+                name:              "Label",
+                packages:          {
+                    schema: "@leight/label",
+                },
+                withInvalidator:   {
+                    trpc: {
+                        path:         "label",
+                        package:      "@monye.one/trpc-client",
+                        invalidators: [
+                            "$query",
+                        ],
+                    },
+                },
+                withUseRepository: {
+                    trpc: {
+                        path:    "label",
+                        package: "@monye.one/trpc-client",
+                    },
+                },
+            },
+        ],
+    },
+    withSelection: {
+        selections: [
+            {
+                name:     "Label",
+                packages: {
+                    schema: "@leight/label",
+                },
+            },
+        ],
+    },
+    withForm:      {
+        forms: [
+            {
+                name:        "LabelCreate",
+                type:        "common",
+                packages:    {
+                    schema: "@leight/label",
+                },
+                translation: {
+                    namespace: "label",
+                },
+                withTrpc:    {
+                    use:    "useCreate",
+                    source: "Label",
+                },
+            },
+        ],
+    },
+});

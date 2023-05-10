@@ -11,4 +11,4 @@ export type IFileSourceType = FileSource["Type"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_n1m8wg6n961eazoxz8yowtn7 = true;
+export const $leight_kfzq5s2q5181b2wf1q982ero = true;

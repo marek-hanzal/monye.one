@@ -6,17 +6,17 @@ import {
 	TransactionSourceSchema as SourceSchema,
 	type TransactionSource as Source
 } from "@monye.one/transaction";
-import {UseTransactionSourceQuery} from "../Trpc/UseTransactionSourceQuery";
-import {useTransactionQueryInvalidator} from "../Trpc/useTransactionQueryInvalidator";
+import {UseTransactionRepository as UseRepository} from "../trpc/UseTransactionRepository";
+import {useTransactionInvalidator as useInvalidator} from "../trpc/useTransactionInvalidator";
 
 export const TransactionSource = withSource<Source>({
     name: "Transaction",
     schema: SourceSchema,
-    use: UseTransactionSourceQuery,
-    useInvalidator: useTransactionQueryInvalidator,
+    repository: UseRepository,
+    useInvalidator,
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_snd58xcnjsw9bvadstyikg2s = true;
+export const $leight_dp41tl9n42rzeq2dque7l37j = true;
