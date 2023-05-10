@@ -50,6 +50,8 @@ export const withUseRepository: IGenerator<IWithUseRepositoryParams> = async (
             trpc,
             packages
         }) => {
+        console.log(`- Generating [withUseRepository] [${name}]`);
+
         withSourceFile()
             .withImports({
                 imports: {

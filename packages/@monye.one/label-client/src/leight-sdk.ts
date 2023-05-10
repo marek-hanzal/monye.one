@@ -39,8 +39,8 @@ void generatorClient({
     withForm:      {
         forms: [
             {
+                type:        "dto",
                 name:        "LabelCreate",
-                type:        "common",
                 packages:    {
                     schema: "@leight/label",
                 },

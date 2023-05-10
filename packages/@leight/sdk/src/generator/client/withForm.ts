@@ -53,6 +53,8 @@ export const withForm: IGenerator<IWithFormParams> = async (
             withTrpc,
             packages
         }) => {
+        console.log(`- Generating [withForm] [${name}]`);
+
         withSourceFile()
             .withImports({
                 imports: {

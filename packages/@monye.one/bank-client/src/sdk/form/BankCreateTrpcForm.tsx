@@ -5,23 +5,23 @@
  */
 import {type ITrpcFormProps} from "@leight/form";
 import {BlockStore} from "@leight/utils-client";
-import {type ILabelCreateFormSchemaType} from "@leight/label";
+import {type IBankCreateFormSchemaType} from "@monye.one/bank";
 import {type FC} from "react";
 import {
-	type ILabelCreateBaseFormProps,
-	LabelCreateBaseForm
-} from "./LabelCreateBaseForm";
-import {useLabelInvalidator} from "../trpc/useLabelInvalidator";
-import {LabelSource} from "../source/LabelSource";
+	type IBankCreateBaseFormProps,
+	BankCreateBaseForm
+} from "./BankCreateBaseForm";
+import {useBankInvalidator} from "../trpc/useBankInvalidator";
+import {BankSource} from "../source/BankSource";
 
-export interface ILabelCreateTrpcFormProps extends ILabelCreateBaseFormProps, ITrpcFormProps<ILabelCreateFormSchemaType> {
+export interface IBankCreateTrpcFormProps extends IBankCreateBaseFormProps, ITrpcFormProps<IBankCreateFormSchemaType> {
 }
 
-export const LabelCreateTrpcForm: FC<ILabelCreateTrpcFormProps> = ({onSuccess, onError, onSettled, ...props}) => {
+export const BankCreateTrpcForm: FC<IBankCreateTrpcFormProps> = ({onSuccess, onError, onSettled, ...props}) => {
     const {block} = BlockStore.use$() || {block: () => null};
-    const mutation = LabelSource.repository.useCreate();
-    const invalidator = useLabelInvalidator();
-    return <LabelCreateBaseForm
+    const mutation = BankSource.repository.useCreate();
+    const invalidator = useBankInvalidator();
+    return <BankCreateBaseForm
         onSubmit={({request, form, values, onDefaultSubmit}) => {
             block(true);
             mutation.mutate(request, {
@@ -46,4 +46,4 @@ export const LabelCreateTrpcForm: FC<ILabelCreateTrpcFormProps> = ({onSuccess, o
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_y82i5w080tpgf3gzje60trc9 = true;
+export const $leight_i0wiz0rmhfi5c8ud9rp5frvq = true;

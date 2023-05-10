@@ -48,6 +48,8 @@ export const withInvalidator: IGenerator<IWithInvalidatorParams> = async (
             trpc,
             packages,
         }) => {
+        console.log(`- Generating [withInvalidator] [${name}]`);
+
         trpc.invalidators?.length && withSourceFile()
             .withImports({
                 imports: {

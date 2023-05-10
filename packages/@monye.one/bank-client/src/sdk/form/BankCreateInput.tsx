@@ -7,13 +7,13 @@ import {
 	type IWithInputProps,
 	WithInput
 } from "@leight/form-client";
-import {type ILabelCreateFormSchemaType} from "@leight/label";
+import {type IBankCreateFormSchemaType} from "@monye.one/bank";
 import {type FC} from "react";
-import {LabelCreateFormStoreContext} from "../context/LabelCreateFormStoreContext";
+import {BankCreateFormStoreContext} from "../context/BankCreateFormStoreContext";
 
-export const LabelCreateInput: FC<Omit<IWithInputProps<ILabelCreateFormSchemaType>, "FormContext">> = props => {
+export const BankCreateInput: FC<Omit<IWithInputProps<IBankCreateFormSchemaType>, "FormContext">> = props => {
     return <WithInput
-        FormContext={LabelCreateFormStoreContext}
+        FormContext={BankCreateFormStoreContext}
         {...props}
     />;
 };
@@ -21,4 +21,4 @@ export const LabelCreateInput: FC<Omit<IWithInputProps<ILabelCreateFormSchemaTyp
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_omctcoimld2o7dmim9vxrzqn = true;
+export const $leight_nh09i31ybjycg100jml25mla = true;

@@ -4,11 +4,11 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {createMantineFormContext} from "@leight/form-client";
-import {type ILabelCreateFormSchemaType} from "@leight/label";
+import {type IBankPatchFormSchemaType} from "@monye.one/bank";
 
-export const LabelCreateMantineFormContext = createMantineFormContext<ILabelCreateFormSchemaType>();
+export const BankPatchMantineFormContext = createMantineFormContext<IBankPatchFormSchemaType>();
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_cquzy2cr7u4fmvs4o1x7tw3o = true;
+export const $leight_jkq1eas8ab4nf9j0c27ui3ms = true;

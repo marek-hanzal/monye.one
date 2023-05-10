@@ -12,11 +12,11 @@ import {useBankInvalidator as useInvalidator} from "../trpc/useBankInvalidator";
 export const BankSource = withSource<Source>({
     name: "Bank",
     schema: SourceSchema,
-    UseRepository,
+    repository: UseRepository,
     useInvalidator,
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bqyq9ur8xnib6ib1qj2zvj25 = true;
+export const $leight_sb2toemsuly0ufwrlm7sz2wh = true;
