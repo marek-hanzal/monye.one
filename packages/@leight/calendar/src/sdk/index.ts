@@ -7,8 +7,9 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ou40cnd2sxjeeu3z21e9a1e4 = true;
+export const $leight_ot1l3nauldwdl2ltz2b6gy4k = true;
 
+export * from "./index";
 export * from "./repository/IUseCalendarEventRepository";
 export * from "./repository/IUseCalendarEventRepositoryQuery";
 export * from "./schema/ICalendarEventSourceSchema";

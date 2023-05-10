@@ -63,7 +63,7 @@ export const withSource: IGenerator<IWithSourceParams> = async (
                     ],
                     [packages.schema]:       [
                         `${name}SourceSchema as SourceSchema`,
-                        `type ${name}Source as Source`,
+                        `type I${name}SourceSchema as ISourceSchema`,
                     ],
                 },
             })
@@ -81,7 +81,7 @@ export const withSource: IGenerator<IWithSourceParams> = async (
                 exports: {
                     [`${name}Source`]: {
                         body: `
-withSource<Source>({
+withSource<ISourceSchema>({
     name: "${name}",
     schema: SourceSchema,
     repository: UseRepository,

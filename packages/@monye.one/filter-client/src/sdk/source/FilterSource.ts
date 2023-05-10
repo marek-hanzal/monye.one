@@ -4,12 +4,12 @@
 import {withSource} from "@leight/source-client";
 import {
 	FilterSourceSchema as SourceSchema,
-	type FilterSource as Source
+	type IFilterSourceSchema as ISourceSchema
 } from "@leight/filter";
 import {UseFilterRepository as UseRepository} from "../trpc/UseFilterRepository";
 import {useFilterInvalidator as useInvalidator} from "../trpc/useFilterInvalidator";
 
-export const FilterSource = withSource<Source>({
+export const FilterSource = withSource<ISourceSchema>({
     name: "Filter",
     schema: SourceSchema,
     repository: UseRepository,
@@ -19,4 +19,4 @@ export const FilterSource = withSource<Source>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rovonsr42m0gfh7txv1ikmhx = true;
+export const $leight_s4w6yh131429ap8asviooycz = true;

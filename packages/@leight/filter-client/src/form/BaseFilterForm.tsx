@@ -10,8 +10,8 @@ import {
     ModalStore
 }                             from "@leight/mantine";
 import {
-    ISource,
-    ISourceSchema
+    type ISource,
+    type ISourceSchema
 }                             from "@leight/source";
 import {
     Button,

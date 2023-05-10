@@ -1,39 +1,46 @@
-import {Fulltext}    from "@leight/mantine";
-import {type Source} from "@leight/source";
+import {Fulltext} from "@leight/mantine";
+import {
+    type ISource,
+    type ISourceSchema,
+    type SourceType
+}                 from "@leight/source";
 import {
     FulltextStoreContext,
     type IPaginationProps,
     Pagination,
     SortIcon
-}                    from "@leight/source-client";
+}                 from "@leight/source-client";
 import {
     chain,
     keywordsOf
-}                    from "@leight/utils";
-import {Grid}        from "@mantine/core";
+}                 from "@leight/utils";
+import {Grid}     from "@mantine/core";
 import {
     type ReactNode,
     useEffect
-}                    from "react";
+}                 from "react";
 import {
     type ITableColumn,
     type ITableProps,
     Table
-}                    from "./Table";
+}                 from "./Table";
 
-export interface ISourceTableColumn<TSource extends Source> extends ITableColumn<TSource["Type"]["Dto"]> {
-    sort?: keyof TSource["Type"]["Sort"];
+export interface ISourceTableColumn<
+    TSourceSchema extends ISourceSchema,
+    TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
+> extends ITableColumn<TSourceType["Dto"]> {
+    sort?: keyof TSourceType["Sort"];
 }
 
 export interface ISourceTableInternalProps<
-    TSource extends Source,
-    TColumnKeys extends string,
-> extends ITableProps<ISourceTableColumn<TSource>, TColumnKeys> {
+    TSourceSchema extends ISourceSchema,
+    TColumnKeys extends string
+> extends ITableProps<ISourceTableColumn<TSourceSchema>, TColumnKeys> {
     /**
      * Table schema used to infer all internal types.
      */
-    schema: TSource["Schema"]["DtoSchema"];
-    Source: TSource["Type"]["Source"];
+    schema: TSourceSchema["DtoSchema"];
+    Source: ISource<TSourceSchema>;
     pagination?: {
         hideOnSingle?: boolean;
         /**
@@ -52,13 +59,14 @@ export interface ISourceTableInternalProps<
  * Public props which any component could extend from (non-partial).
  */
 export type ISourceTableProps<
-    TSource extends Source,
+    TSourceSchema extends ISourceSchema,
     TColumnKeys extends string,
-> = Omit<ISourceTableInternalProps<TSource, TColumnKeys>, "schema" | "Source" | "columns" | "withTranslation">;
+> = Omit<ISourceTableInternalProps<TSourceSchema, TColumnKeys>, "schema" | "Source" | "columns" | "withTranslation">;
 
 export const SourceTable = <
-    TSource extends Source,
+    TSourceSchema extends ISourceSchema,
     TColumnKeys extends string,
+    TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
 >(
     {
         schema,
@@ -74,7 +82,7 @@ export const SourceTable = <
         sourceCacheTime = 120,
         filter,
         ...props
-    }: ISourceTableInternalProps<TSource, TColumnKeys>) => {
+    }: ISourceTableInternalProps<TSourceSchema, TColumnKeys>) => {
     const {
         data,
         result
@@ -125,11 +133,11 @@ export const SourceTable = <
                 {...pagination?.props}
             />
         </>}
-        <Table<ISourceTableColumn<TSource>, TColumnKeys>
+        <Table<ISourceTableColumn<TSourceSchema>, TColumnKeys>
             mt={"sm"}
             isLoading={isLoading}
             highlight={keywordsOf(fulltextStore?.fulltext)}
-            columns={Object.entries<ISourceTableColumn<TSource>>(columns).reduce<any>((prev, [name, column]) => {
+            columns={Object.entries<ISourceTableColumn<TSourceSchema>>(columns).reduce<any>((prev, [name, column]) => {
                 prev[name] = {
                     ...column,
                     headerStyle:   column.headerStyle || (defaultStyle => ({
@@ -145,7 +153,7 @@ export const SourceTable = <
                     }),
                     headerRender:  column.headerRender || ((children) => {
                         return <>
-                            {column.sort ? <SortIcon<TSource["Type"]["Sort"]> sort={sort} index={column.sort}/> : null}
+                            {column.sort ? <SortIcon<TSourceType["Sort"]> sort={sort} index={column.sort}/> : null}
                             {children}
                         </>;
                     }),

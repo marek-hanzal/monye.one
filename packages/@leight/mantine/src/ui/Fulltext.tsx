@@ -23,7 +23,7 @@ import {WithIcon}              from "../component";
 export type IFulltextProps =
     ComponentProps<typeof TextInput>
     & {
-        Source: ISource;
+        Source: ISource<any>;
         loading?: boolean;
         debounce?: number;
         withTranslation?: IWithTranslation;

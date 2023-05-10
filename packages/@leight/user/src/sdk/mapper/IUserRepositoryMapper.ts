@@ -13,4 +13,4 @@ export interface IUserRepositoryMapper extends IRepositoryMapper<UserSource["Sch
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xx101nczsmw9egtgkgjm9nzo = true;
+export const $leight_lx2sl3ed183obgtp4x42ke6m = true;

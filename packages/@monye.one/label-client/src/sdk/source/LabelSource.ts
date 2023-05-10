@@ -4,12 +4,12 @@
 import {withSource} from "@leight/source-client";
 import {
 	LabelSourceSchema as SourceSchema,
-	type LabelSource as Source
+	type ILabelSourceSchema as ISourceSchema
 } from "@leight/label";
 import {UseLabelRepository as UseRepository} from "../trpc/UseLabelRepository";
 import {useLabelInvalidator as useInvalidator} from "../trpc/useLabelInvalidator";
 
-export const LabelSource = withSource<Source>({
+export const LabelSource = withSource<ISourceSchema>({
     name: "Label",
     schema: SourceSchema,
     repository: UseRepository,
@@ -19,4 +19,4 @@ export const LabelSource = withSource<Source>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_xl72gwpyl58oolx7i36plotr = true;
+export const $leight_akut0idwcd9jiizag15sif3y = true;

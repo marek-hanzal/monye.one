@@ -6,7 +6,7 @@ import {
 }                                     from "react";
 
 export interface IPaginationProps extends Partial<ComponentProps<typeof CoolPagination>> {
-    Source: ISource;
+    Source: ISource<any>;
     hideOnSingle?: boolean;
 }
 

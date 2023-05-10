@@ -11,4 +11,4 @@ export const LabelCreateMantineFormContext = createMantineFormContext<ILabelCrea
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_d0box4gyt8lg7482j30v2zq1 = true;
+export const $leight_vps5nc4ao8sadvuwy29nuo6r = true;

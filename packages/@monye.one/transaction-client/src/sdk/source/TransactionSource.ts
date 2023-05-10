@@ -4,12 +4,12 @@
 import {withSource} from "@leight/source-client";
 import {
 	TransactionSourceSchema as SourceSchema,
-	type TransactionSource as Source
+	type ITransactionSourceSchema as ISourceSchema
 } from "@monye.one/transaction";
 import {UseTransactionRepository as UseRepository} from "../trpc/UseTransactionRepository";
 import {useTransactionInvalidator as useInvalidator} from "../trpc/useTransactionInvalidator";
 
-export const TransactionSource = withSource<Source>({
+export const TransactionSource = withSource<ISourceSchema>({
     name: "Transaction",
     schema: SourceSchema,
     repository: UseRepository,
@@ -19,4 +19,4 @@ export const TransactionSource = withSource<Source>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_di3kyovk16lzg93mhn054niq = true;
+export const $leight_hk7g0c6j3fqubpgei3rvgi6j = true;
