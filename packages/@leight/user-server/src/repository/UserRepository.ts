@@ -1,8 +1,11 @@
-import {type IUserSourceEx, type UserSource} from "@leight/user";
+import {
+    type IUserSourceEx,
+    type IUserSourceType
+}                             from "@leight/user";
 import {BaseUserRepositoryEx} from "../sdk";
 
 export class UserRepository extends BaseUserRepositoryEx implements IUserSourceEx {
-    public findByEmail(email: string): Promise<UserSource["Type"]["Entity"]> {
+    public findByEmail(email: string): Promise<IUserSourceType["Entity"]> {
         return this.prisma().findUniqueOrThrow({where: {email}});
     }
 }

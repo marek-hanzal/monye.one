@@ -13,4 +13,4 @@ export interface IKeywordRepositoryMapper extends IRepositoryMapper<KeywordSourc
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_u7wxmjf4wn2z3ax4zm0tv72e = true;
+export const $leight_ux8ao1bcm1ywn8vmbehm51jl = true;

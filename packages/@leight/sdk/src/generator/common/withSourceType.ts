@@ -80,5 +80,41 @@ export const withSourceType: IGenerator<IWithSourceTypeParams> = async (
                 file: normalize(`${directory}/repository/Use${name}RepositoryQuery.ts`),
                 barrel,
             });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "../../schema": [
+                        `type ${name}Source`,
+                    ],
+                },
+            })
+            .withTypes({
+                exports: {
+                    [`I${name}SourceType`]: `${name}Source["Type"]`,
+                },
+            })
+            .saveTo({
+                file: normalize(`${directory}/source/I${name}SourceType.ts`),
+                barrel,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "../../schema": [
+                        `type ${name}Source`,
+                    ],
+                },
+            })
+            .withTypes({
+                exports: {
+                    [`I${name}SourceSchema`]: `${name}Source["Schema"]`,
+                },
+            })
+            .saveTo({
+                file: normalize(`${directory}/source/I${name}SourceSchema.ts`),
+                barrel,
+            });
     }
 };

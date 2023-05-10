@@ -11,4 +11,4 @@ export type IKeywordSource = KeywordSource["Type"]["Source"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wo6odjnpr42va5cl45snghva = true;
+export const $leight_bjggsqg6y4q1j4cwgycvn9sy = true;

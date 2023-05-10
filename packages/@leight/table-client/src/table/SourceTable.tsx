@@ -1,42 +1,39 @@
-import {Fulltext} from "@leight/mantine";
-import {
-    type ISourceSchemaType,
-    type ISourceStore
-}                 from "@leight/source";
+import {Fulltext}    from "@leight/mantine";
+import {type Source} from "@leight/source";
 import {
     FulltextStoreContext,
     type IPaginationProps,
     Pagination,
     SortIcon
-}                 from "@leight/source-client";
+}                    from "@leight/source-client";
 import {
     chain,
     keywordsOf
-}                 from "@leight/utils";
-import {Grid}     from "@mantine/core";
+}                    from "@leight/utils";
+import {Grid}        from "@mantine/core";
 import {
-    ReactNode,
+    type ReactNode,
     useEffect
-}                 from "react";
+}                    from "react";
 import {
     type ITableColumn,
     type ITableProps,
     Table
-}                 from "./Table";
+}                    from "./Table";
 
-export interface ISourceTableColumn<TSourceSchemaType extends ISourceSchemaType> extends ITableColumn<TSourceSchemaType["Dto"]> {
-    sort?: keyof TSourceSchemaType["Sort"];
+export interface ISourceTableColumn<TSource extends Source> extends ITableColumn<TSource["Type"]["Dto"]> {
+    sort?: keyof TSource["Type"]["Sort"];
 }
 
 export interface ISourceTableInternalProps<
-    TSourceSchemaType extends ISourceSchemaType,
+    TSource extends Source,
     TColumnKeys extends string,
-> extends ITableProps<ISourceTableColumn<TSourceSchemaType>, TColumnKeys> {
+> extends ITableProps<ISourceTableColumn<TSource>, TColumnKeys> {
     /**
      * Table schema used to infer all internal types.
      */
-    schema: TSourceSchemaType["DtoSchema"];
-    SourceStore: ISourceStore<TSourceSchemaType>;
+    schema: TSource["Schema"]["DtoSchema"];
+    Source: TSource["Type"]["Source"];
     pagination?: {
         hideOnSingle?: boolean;
         /**
@@ -55,17 +52,17 @@ export interface ISourceTableInternalProps<
  * Public props which any component could extend from (non-partial).
  */
 export type ISourceTableProps<
-    TSourceSchemaType extends ISourceSchemaType,
+    TSource extends Source,
     TColumnKeys extends string,
-> = Omit<ISourceTableInternalProps<TSourceSchemaType, TColumnKeys>, "schema" | "SourceStore" | "columns" | "withTranslation">;
+> = Omit<ISourceTableInternalProps<TSource, TColumnKeys>, "schema" | "Source" | "columns" | "withTranslation">;
 
 export const SourceTable = <
-    TSourceSchemaType extends ISourceSchemaType,
+    TSource extends Source,
     TColumnKeys extends string,
 >(
     {
         schema,
-        SourceStore,
+        Source,
         columns,
         pagination = {
             hideOnSingle: false,
@@ -77,17 +74,33 @@ export const SourceTable = <
         sourceCacheTime = 120,
         filter,
         ...props
-    }: ISourceTableInternalProps<TSourceSchemaType, TColumnKeys>) => {
-    const {data, result}                    = SourceStore.useSource({cacheTime: sourceCacheTime});
-    const fulltextStore                     = FulltextStoreContext.useOptionalState();
-    const {sort, setSort, setShallowFilter} = SourceStore.Query.useState(({$sort, setSort, setShallowFilter}) => ({sort: $sort, setSort, setShallowFilter}));
+    }: ISourceTableInternalProps<TSource, TColumnKeys>) => {
+    const {
+        data,
+        result
+    } = Source.use({cacheTime: sourceCacheTime});
+    const fulltextStore = FulltextStoreContext.use$();
+    const {
+        sort,
+        withSort,
+        withShallowFilter
+    } = Source.query.use((
+        {
+            sort,
+            withSort,
+            withShallowFilter
+        }) => ({
+        sort,
+        withSort,
+        withShallowFilter
+    }));
 
     useEffect(() => {
         if (!withFulltext || !fulltextStore) {
             return;
         }
-        setShallowFilter({
-            fulltext: fulltextStore.fulltext,
+        withShallowFilter({
+            fulltext: fulltextStore.fulltext || undefined,
         });
     }, [fulltextStore?.fulltext]);
 
@@ -97,7 +110,7 @@ export const SourceTable = <
         <Grid align={"center"} mt={"sm"}>
             {withFulltext && <Grid.Col span={"auto"}>
                 <Fulltext
-                    SourceStore={SourceStore}
+                    Source={Source}
                     loading={isLoading}
                     withTranslation={props.withTranslation}
                 />
@@ -106,17 +119,17 @@ export const SourceTable = <
         </Grid>
         {pagination?.position?.includes("top") && <>
             <Pagination
-                SourceStore={SourceStore}
+                Source={Source}
                 hideOnSingle={pagination?.hideOnSingle}
                 mt={"sm"}
                 {...pagination?.props}
             />
         </>}
-        <Table<ISourceTableColumn<TSourceSchemaType>, TColumnKeys>
+        <Table<ISourceTableColumn<TSource>, TColumnKeys>
             mt={"sm"}
             isLoading={isLoading}
             highlight={keywordsOf(fulltextStore?.fulltext)}
-            columns={Object.entries<ISourceTableColumn<TSourceSchemaType>>(columns).reduce<any>((prev, [name, column]) => {
+            columns={Object.entries<ISourceTableColumn<TSource>>(columns).reduce<any>((prev, [name, column]) => {
                 prev[name] = {
                     ...column,
                     headerStyle:   column.headerStyle || (defaultStyle => ({
@@ -124,7 +137,7 @@ export const SourceTable = <
                         cursor: column.sort ? "pointer" : undefined,
                     })),
                     onHeaderClick: column.onHeaderClick || (() => {
-                        column.sort && setSort(column.sort, chain(sort[column.sort], [
+                        column.sort && withSort(column.sort as string, chain((sort as any)[column.sort], [
                             "asc",
                             "desc",
                             undefined,
@@ -132,7 +145,7 @@ export const SourceTable = <
                     }),
                     headerRender:  column.headerRender || ((children) => {
                         return <>
-                            {column.sort ? <SortIcon<TSourceSchemaType["Sort"]> sort={sort} index={column.sort}/> : null}
+                            {column.sort ? <SortIcon<TSource["Type"]["Sort"]> sort={sort} index={column.sort}/> : null}
                             {children}
                         </>;
                     }),
@@ -144,7 +157,7 @@ export const SourceTable = <
         />
         {pagination?.position?.includes("bottom") && <>
             <Pagination
-                SourceStore={SourceStore}
+                Source={Source}
                 hideOnSingle={pagination?.hideOnSingle}
                 mt={"sm"}
                 {...pagination?.props}

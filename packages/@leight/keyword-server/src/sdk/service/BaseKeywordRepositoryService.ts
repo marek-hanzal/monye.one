@@ -46,4 +46,4 @@ export class BaseKeywordRepositoryService<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_l40wr0nl64ae5exb69nf06ut = true;
+export const $leight_sdcm0lz6op4jr6b85irqa9fe = true;

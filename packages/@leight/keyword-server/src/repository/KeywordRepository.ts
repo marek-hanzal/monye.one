@@ -1,8 +1,11 @@
-import {type IKeywordRepositorySchemaEx, type KeywordSource} from "@leight/keyword";
+import {
+    type IKeywordRepositoryExType,
+    type IKeywordSourceType
+}                                from "@leight/keyword";
 import {BaseKeywordRepositoryEx} from "../sdk";
 
 export class KeywordRepository extends BaseKeywordRepositoryEx {
-    toWhereUnique(filter: KeywordSource["Type"]["Filter"]): IKeywordRepositorySchemaEx["Type"]["WhereUnique"] {
+    toWhereUnique(filter: IKeywordSourceType["Filter"]): IKeywordRepositoryExType["WhereUnique"] {
         if (!filter) {
             return {};
         }

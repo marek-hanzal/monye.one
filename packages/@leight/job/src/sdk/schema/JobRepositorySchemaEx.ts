@@ -15,8 +15,10 @@ export type IJobRepositorySchemaEx = IRepositorySchemaEx<
     typeof JobWhereUniqueInputSchema,
     typeof JobOrderByWithRelationInputSchema
 >;
+export type IJobRepositoryExType = IJobRepositorySchemaEx["Type"];
+export type IJobRepositoryExSchema = IJobRepositorySchemaEx["Schema"];
 
-export const JobRepositorySchemaEx: IJobRepositorySchemaEx["Schema"] = {
+export const JobRepositorySchemaEx: IJobRepositoryExSchema = {
     WhereSchema:       JobWhereInputSchema,
     WhereUniqueSchema: JobWhereUniqueInputSchema,
     OrderBySchema:     JobOrderByWithRelationInputSchema,
@@ -25,4 +27,4 @@ export const JobRepositorySchemaEx: IJobRepositorySchemaEx["Schema"] = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_dyl9dvxmtvrby8s5jo9wdjfa = true;
+export const $leight_e8660cody2ou3zgvg6x69p44 = true;

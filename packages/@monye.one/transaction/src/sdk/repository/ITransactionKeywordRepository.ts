@@ -13,4 +13,4 @@ export interface ITransactionKeywordRepository extends IRepository<TransactionKe
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vyxa238hlrx1yyu9m9qdqkww = true;
+export const $leight_pp2ccpnakc7drkf8neosre5i = true;

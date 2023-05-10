@@ -15,8 +15,10 @@ export type IKeywordRepositorySchemaEx = IRepositorySchemaEx<
     typeof KeywordWhereUniqueInputSchema,
     typeof KeywordOrderByWithRelationInputSchema
 >;
+export type IKeywordRepositoryExType = IKeywordRepositorySchemaEx["Type"];
+export type IKeywordRepositoryExSchema = IKeywordRepositorySchemaEx["Schema"];
 
-export const KeywordRepositorySchemaEx: IKeywordRepositorySchemaEx["Schema"] = {
+export const KeywordRepositorySchemaEx: IKeywordRepositoryExSchema = {
     WhereSchema:       KeywordWhereInputSchema,
     WhereUniqueSchema: KeywordWhereUniqueInputSchema,
     OrderBySchema:     KeywordOrderByWithRelationInputSchema,
@@ -25,4 +27,4 @@ export const KeywordRepositorySchemaEx: IKeywordRepositorySchemaEx["Schema"] = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bpjeb4wlmr48afxc1lhbkqod = true;
+export const $leight_jwmy0ep7hrmasrbmvhpwmor7 = true;

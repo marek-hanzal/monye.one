@@ -1,4 +1,4 @@
-import {IFilterSource}        from "@leight/filter";
+import {type IFilterSource}   from "@leight/filter";
 import {type IFormSchemaType} from "@leight/form";
 import {
     BaseForm,
@@ -71,7 +71,7 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSource 
             withFilter,
             withFilterDto,
             hasFilter,
-            withtPage,
+            withPage,
         }) => (
         {
             defaultValues: filterDto,

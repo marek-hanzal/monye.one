@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wny9emthcyal2x3gk8zoif0m = true;
+export const $leight_vvr2amyfio0ytdpfe8tp1dqj = true;
 
 export * from "./index";
 export * from "./mapper/IUserRepositoryMapper";
@@ -16,4 +16,6 @@ export * from "./repository/UseUserRepository";
 export * from "./repository/UseUserRepositoryQuery";
 export * from "./schema/UserRepositorySchemaEx";
 export * from "./source/IUserSource";
+export * from "./source/IUserSourceSchema";
+export * from "./source/IUserSourceType";
 export * from "./symbol/UserRepositorySymbol";

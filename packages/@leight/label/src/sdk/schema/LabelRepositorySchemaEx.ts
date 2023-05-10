@@ -15,8 +15,10 @@ export type ILabelRepositorySchemaEx = IRepositorySchemaEx<
     typeof LabelWhereUniqueInputSchema,
     typeof LabelOrderByWithRelationInputSchema
 >;
+export type ILabelRepositoryExType = ILabelRepositorySchemaEx["Type"];
+export type ILabelRepositoryExSchema = ILabelRepositorySchemaEx["Schema"];
 
-export const LabelRepositorySchemaEx: ILabelRepositorySchemaEx["Schema"] = {
+export const LabelRepositorySchemaEx: ILabelRepositoryExSchema = {
     WhereSchema:       LabelWhereInputSchema,
     WhereUniqueSchema: LabelWhereUniqueInputSchema,
     OrderBySchema:     LabelOrderByWithRelationInputSchema,
@@ -25,4 +27,4 @@ export const LabelRepositorySchemaEx: ILabelRepositorySchemaEx["Schema"] = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_el3uebyqf9e1gc21w09iic4c = true;
+export const $leight_hqweo7873d9f8cyb0de6shyl = true;

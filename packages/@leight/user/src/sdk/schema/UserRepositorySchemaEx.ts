@@ -15,8 +15,10 @@ export type IUserRepositorySchemaEx = IRepositorySchemaEx<
     typeof UserWhereUniqueInputSchema,
     typeof UserOrderByWithRelationInputSchema
 >;
+export type IUserRepositoryExType = IUserRepositorySchemaEx["Type"];
+export type IUserRepositoryExSchema = IUserRepositorySchemaEx["Schema"];
 
-export const UserRepositorySchemaEx: IUserRepositorySchemaEx["Schema"] = {
+export const UserRepositorySchemaEx: IUserRepositoryExSchema = {
     WhereSchema:       UserWhereInputSchema,
     WhereUniqueSchema: UserWhereUniqueInputSchema,
     OrderBySchema:     UserOrderByWithRelationInputSchema,
@@ -25,4 +27,4 @@ export const UserRepositorySchemaEx: IUserRepositorySchemaEx["Schema"] = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ks3qmst5qa0fez46cqiqj77c = true;
+export const $leight_x5z4y2hmqpgdwpst34zk70f7 = true;

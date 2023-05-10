@@ -15,8 +15,10 @@ export type IFilterRepositorySchemaEx = IRepositorySchemaEx<
     typeof FilterWhereUniqueInputSchema,
     typeof FilterOrderByWithRelationInputSchema
 >;
+export type IFilterRepositoryExType = IFilterRepositorySchemaEx["Type"];
+export type IFilterRepositoryExSchema = IFilterRepositorySchemaEx["Schema"];
 
-export const FilterRepositorySchemaEx: IFilterRepositorySchemaEx["Schema"] = {
+export const FilterRepositorySchemaEx: IFilterRepositoryExSchema = {
     WhereSchema:       FilterWhereInputSchema,
     WhereUniqueSchema: FilterWhereUniqueInputSchema,
     OrderBySchema:     FilterOrderByWithRelationInputSchema,
@@ -25,4 +27,4 @@ export const FilterRepositorySchemaEx: IFilterRepositorySchemaEx["Schema"] = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_r6maoqzmqi8e7n3fpwzsury3 = true;
+export const $leight_j3kle4w1st2aox146a1uv79f = true;

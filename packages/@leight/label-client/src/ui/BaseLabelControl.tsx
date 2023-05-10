@@ -1,12 +1,14 @@
 import {type IWithTranslation}            from "@leight/i18n";
 import {Translation}                      from "@leight/i18n-client";
-import {type ILabelSourceSchemaType}      from "@leight/label";
+import {
+    type ILabelSource,
+    ILabelSourceType
+}                                         from "@leight/label";
 import {
     DrawerStore,
     ModalStore
 }                                         from "@leight/mantine";
 import {type IMultiSelectionStoreContext} from "@leight/selection";
-import {type ISourceStore}                from "@leight/source";
 import {
     ActionIcon,
     Badge,
@@ -31,29 +33,35 @@ import {
 export interface IBaseLabelControlProps extends ComponentProps<typeof Box<"div">> {
     prepend: ReactNode;
     withTranslation: IWithTranslation;
-    SourceStore: ISourceStore<ILabelSourceSchemaType>;
-    SelectionContext: IMultiSelectionStoreContext<ILabelSourceSchemaType["Dto"]>;
+    Source: ILabelSource;
+    SelectionContext: IMultiSelectionStoreContext<ILabelSourceType["Dto"]>;
     withAutoClose?: string[];
 
-    onCommit?(items: ILabelSourceSchemaType["Dto"][]): void;
+    onCommit?(items: ILabelSourceType["Dto"][]): void;
 }
 
 export const BaseLabelControl: FC<IBaseLabelControlProps> = (
     {
         prepend,
         withTranslation,
-        SourceStore,
+        Source,
         SelectionContext,
         onCommit,
         withAutoClose = [],
         ...props
     }) => {
-    const labels                                              = SourceStore.useSource();
-    const {isSelection, isSelected, selection, toggle, clear} = SelectionContext.useState();
-    const modal                                               = ModalStore.useOptionalState();
-    const drawer                                              = DrawerStore.useOptionalState();
-    const deleteMutation                                      = SourceStore.use.useDelete();
-    const invalidator                                         = SourceStore.useInvalidator();
+    const labels = Source.use();
+    const {
+        isSelection,
+        isSelected,
+        selection,
+        toggle,
+        clear
+    } = SelectionContext.use();
+    const modal = ModalStore.use$();
+    const drawer = DrawerStore.use$();
+    const deleteMutation = Source.repository.useDelete();
+    const invalidator = Source.useInvalidator();
     return <Box
         {...props}
     >

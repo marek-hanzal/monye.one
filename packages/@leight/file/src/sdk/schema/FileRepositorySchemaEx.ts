@@ -15,8 +15,10 @@ export type IFileRepositorySchemaEx = IRepositorySchemaEx<
     typeof FileWhereUniqueInputSchema,
     typeof FileOrderByWithRelationInputSchema
 >;
+export type IFileRepositoryExType = IFileRepositorySchemaEx["Type"];
+export type IFileRepositoryExSchema = IFileRepositorySchemaEx["Schema"];
 
-export const FileRepositorySchemaEx: IFileRepositorySchemaEx["Schema"] = {
+export const FileRepositorySchemaEx: IFileRepositoryExSchema = {
     WhereSchema:       FileWhereInputSchema,
     WhereUniqueSchema: FileWhereUniqueInputSchema,
     OrderBySchema:     FileOrderByWithRelationInputSchema,
@@ -25,4 +27,4 @@ export const FileRepositorySchemaEx: IFileRepositorySchemaEx["Schema"] = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_z539lklssnuvzm5he1hrn3ui = true;
+export const $leight_teoiarip86pv55fqs8q6wy25 = true;

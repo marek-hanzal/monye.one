@@ -1,5 +1,5 @@
-import {withSourceFile} from "@leight/generator-server";
-import {normalize} from "node:path";
+import {withSourceFile}  from "@leight/generator-server";
+import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
 export interface IWithRepositoryExParams {
@@ -35,7 +35,10 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
         directory,
         params: {repositories},
     }) => {
-    for (const {name, packages} of repositories) {
+    for (const {
+        name,
+        packages
+    } of repositories) {
         console.log(`- Generating [withRepositoryEx] [${name}]`);
 
         withSourceFile()
@@ -54,7 +57,7 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
             .withConsts({
                 exports: {
                     [`${name}RepositorySchemaEx`]: {
-                        type: `I${name}RepositorySchemaEx["Schema"]`,
+                        type: `I${name}RepositoryExSchema`,
                         body: `{
     WhereSchema:       ${name}WhereInputSchema,
     WhereUniqueSchema: ${name}WhereUniqueInputSchema,
@@ -71,6 +74,8 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
     typeof ${name}WhereUniqueInputSchema,
     typeof ${name}OrderByWithRelationInputSchema
 >`,
+                    [`I${name}RepositoryExType`]:   `I${name}RepositorySchemaEx["Type"]`,
+                    [`I${name}RepositoryExSchema`]: `I${name}RepositorySchemaEx["Schema"]`,
                 },
             })
             .saveTo({

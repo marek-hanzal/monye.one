@@ -15,8 +15,10 @@ export type IBankRepositorySchemaEx = IRepositorySchemaEx<
     typeof BankWhereUniqueInputSchema,
     typeof BankOrderByWithRelationInputSchema
 >;
+export type IBankRepositoryExType = IBankRepositorySchemaEx["Type"];
+export type IBankRepositoryExSchema = IBankRepositorySchemaEx["Schema"];
 
-export const BankRepositorySchemaEx: IBankRepositorySchemaEx["Schema"] = {
+export const BankRepositorySchemaEx: IBankRepositoryExSchema = {
     WhereSchema:       BankWhereInputSchema,
     WhereUniqueSchema: BankWhereUniqueInputSchema,
     OrderBySchema:     BankOrderByWithRelationInputSchema,
@@ -25,4 +27,4 @@ export const BankRepositorySchemaEx: IBankRepositorySchemaEx["Schema"] = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zdcndpxb3geumvkayz77qrq1 = true;
+export const $leight_zdtanmlsf9ug9mfbf7yzl0hs = true;

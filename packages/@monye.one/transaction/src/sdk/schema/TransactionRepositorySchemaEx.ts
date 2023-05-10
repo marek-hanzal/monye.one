@@ -15,8 +15,10 @@ export type ITransactionRepositorySchemaEx = IRepositorySchemaEx<
     typeof TransactionWhereUniqueInputSchema,
     typeof TransactionOrderByWithRelationInputSchema
 >;
+export type ITransactionRepositoryExType = ITransactionRepositorySchemaEx["Type"];
+export type ITransactionRepositoryExSchema = ITransactionRepositorySchemaEx["Schema"];
 
-export const TransactionRepositorySchemaEx: ITransactionRepositorySchemaEx["Schema"] = {
+export const TransactionRepositorySchemaEx: ITransactionRepositoryExSchema = {
     WhereSchema:       TransactionWhereInputSchema,
     WhereUniqueSchema: TransactionWhereUniqueInputSchema,
     OrderBySchema:     TransactionOrderByWithRelationInputSchema,
@@ -25,4 +27,4 @@ export const TransactionRepositorySchemaEx: ITransactionRepositorySchemaEx["Sche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_yyurw31pf2jfeokd0xfy4vo3 = true;
+export const $leight_boggjx6kysjiq7p3mvpgek0s = true;
