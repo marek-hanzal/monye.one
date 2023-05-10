@@ -1,37 +1,34 @@
-import {type IUseFilterSourceQuery} from "@leight/filter";
-import {type IFormSchemaType}       from "@leight/form";
+import {IFilterSource}        from "@leight/filter";
+import {type IFormSchemaType} from "@leight/form";
 import {
     BaseForm,
     type IBaseFormProps
-}                                   from "@leight/form-client";
-import {Translation}                from "@leight/i18n-client";
+}                             from "@leight/form-client";
+import {Translation}          from "@leight/i18n-client";
 import {
     DrawerStore,
     ModalStore
-}                                   from "@leight/mantine";
-import {
-    type ISourceSchemaType,
-    type ISourceStore
-}                                   from "@leight/source";
+}                             from "@leight/mantine";
+import {type Source}          from "@leight/source";
 import {
     Button,
     Group
-}                                   from "@mantine/core";
+}                             from "@mantine/core";
 import {
     IconFilter,
     IconFilterX,
     IconX
-}                                   from "@tabler/icons-react";
+}                             from "@tabler/icons-react";
 
-export interface IBaseFilterFormProps<TFormSchemaType extends IFormSchemaType, TSourceSchemaType extends ISourceSchemaType> extends IBaseFormProps<TFormSchemaType> {
-    SourceStore: ISourceStore<TSourceSchemaType>;
+export interface IBaseFilterFormProps<TFormSchemaType extends IFormSchemaType, TSource extends Source> extends IBaseFormProps<TFormSchemaType> {
+    Source: TSource["Type"]["Source"];
     withFilterQuery?: IBaseFilterFormProps.IWithFilterQuery<TFormSchemaType>;
 }
 
 export namespace IBaseFilterFormProps {
     export interface IWithFilterQuery<TFormSchemaType extends IFormSchemaType> {
         type: string;
-        UseFilterQuery: IUseFilterSourceQuery;
+        Source: IFilterSource;
 
         getName(props: IWithFilterQuery.IGetNameProps<TFormSchemaType>): string | undefined;
     }
@@ -42,16 +39,16 @@ export namespace IBaseFilterFormProps {
     }
 }
 
-export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceSchemaType extends ISourceSchemaType>(
+export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSource extends Source>(
     {
-        SourceStore,
+        Source,
         withFilterQuery,
         ...props
-    }: IBaseFilterFormProps<TFormSchemaType, TSourceSchemaType>
+    }: IBaseFilterFormProps<TFormSchemaType, TSource>
 ) => {
-    const modalContext  = ModalStore.useOptionalState();
-    const drawerContext = DrawerStore.useOptionalState();
-    const upsertFilter  = withFilterQuery?.UseFilterQuery.useUpsert();
+    const modalContext = ModalStore.use$();
+    const drawerContext = DrawerStore.use$();
+    const upsertFilter = withFilterQuery?.Source.repository.useUpsert();
 
     const withAutoClose = () => {
         props.withAutoClose?.forEach(close => {
@@ -61,53 +58,62 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
     };
 
     const {
-              defaultValues,
-              setShallowFilter,
-              setFilter,
-              setFilterDto,
-              hasFilter,
-              setPage,
-          } = SourceStore.Query.useState((
+        defaultValues,
+        withShallowFilter,
+        withFilter,
+        withFilterDto,
+        hasFilter,
+        withPage,
+    } = Source.query.use((
         {
-            $filterDto,
-            setShallowFilter,
-            setFilter,
-            setFilterDto,
+            filterDto,
+            withShallowFilter,
+            withFilter,
+            withFilterDto,
             hasFilter,
-            setPage,
+            withtPage,
         }) => (
         {
-            defaultValues: $filterDto,
-            setShallowFilter,
-            setFilter,
-            setFilterDto,
+            defaultValues: filterDto,
+            withShallowFilter,
+            withFilter,
+            withFilterDto,
             hasFilter,
-            setPage,
+            withPage,
         }));
 
     return <BaseForm
         notification={false}
-        onSubmit={({request, values, form, onDefaultSubmit}) => {
-            setShallowFilter(request);
-            setFilterDto(values);
-            setPage(0);
+        onSubmit={({
+                       request,
+                       values,
+                       form,
+                       onDefaultSubmit
+                   }) => {
+            withShallowFilter(request);
+            withFilterDto(values);
+            withPage(0);
             if (withFilterQuery) {
-                const name = withFilterQuery.getName({request, form, values});
+                const name = withFilterQuery.getName({
+                    request,
+                    form,
+                    values
+                });
                 if (name) {
                     upsertFilter?.mutate({
-                        toCreate: {
+                        create: {
                             name,
                             type:   withFilterQuery.type,
                             filter: request,
                             dto:    values,
                         },
-                        toPatch:  {
+                        patch:  {
                             name,
                             type:   withFilterQuery.type,
                             filter: request,
                             dto:    values,
                         },
-                        filter:   {
+                        filter: {
                             type_name: {
                                 name,
                                 type: withFilterQuery.type,
@@ -136,8 +142,8 @@ export const BaseFilterForm = <TFormSchemaType extends IFormSchemaType, TSourceS
                 size={"md"}
                 leftIcon={<IconFilterX/>}
                 onClick={() => {
-                    setFilter(undefined);
-                    setFilterDto(undefined);
+                    withFilter(undefined);
+                    withFilterDto(undefined);
                     withAutoClose();
                 }}
             >
