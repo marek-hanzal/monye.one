@@ -11,4 +11,4 @@ export type IUseKeywordInvalidator = KeywordSource["Type"]["UseInvalidator"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bcky30s6waez4zrqu52js77p = true;
+export const $leight_ygzgutxlkiktx3dh77j62rav = true;

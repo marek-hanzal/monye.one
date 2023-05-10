@@ -11,4 +11,4 @@ export type UseLabelRepositoryQuery = LabelSource["Type"]["UseRepositoryQuery"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_m3qf4tw6dksj8y0tgcz7ybsv = true;
+export const $leight_j9mp08mtk7rc45hschqojdc3 = true;

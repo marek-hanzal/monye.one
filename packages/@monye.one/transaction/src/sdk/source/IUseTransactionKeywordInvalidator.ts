@@ -11,4 +11,4 @@ export type IUseTransactionKeywordInvalidator = TransactionKeywordSource["Type"]
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_o84y4h0sms780r4v4g881v48 = true;
+export const $leight_cmi6j83izuwx570aq8ir102e = true;

@@ -12,11 +12,11 @@ import {useFilterInvalidator as useInvalidator} from "../trpc/useFilterInvalidat
 export const FilterSource = withSource<Source>({
     name: "Filter",
     schema: SourceSchema,
-    UseRepository,
+    repository: UseRepository,
     useInvalidator,
 });
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wrcuo8vyt8pgae5rqtcmrw7h = true;
+export const $leight_iimdb67epqbg5umxq9tmudvk = true;

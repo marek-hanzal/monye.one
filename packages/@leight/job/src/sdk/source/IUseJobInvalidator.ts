@@ -11,4 +11,4 @@ export type IUseJobInvalidator = JobSource["Type"]["UseInvalidator"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ot4l6dx2zrqsdvyyswdvwf33 = true;
+export const $leight_p5c2im7mh7ko5k9qufwgz0jn = true;

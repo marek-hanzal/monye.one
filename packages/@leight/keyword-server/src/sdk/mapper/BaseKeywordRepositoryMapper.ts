@@ -13,4 +13,4 @@ export class BaseKeywordRepositoryMapper extends AbstractRepositoryMapper<Keywor
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ievqiz5x8f300fp0q6vvu4od = true;
+export const $leight_gj1tdwmzas22sbygi5y8evi4 = true;

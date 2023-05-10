@@ -46,4 +46,4 @@ export class BaseCalendarEventRepositoryService<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ccgb65kn111kl0vecluh5dht = true;
+export const $leight_p4d7m4s1xwgd7o0dbk17yzxf = true;

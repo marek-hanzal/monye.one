@@ -10,4 +10,4 @@ export const $FilterRepositoryService = Symbol.for("@leight/filter/IFilterReposi
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_t99fossav6zw0udf0kt8mydq = true;
+export const $leight_w5ox6b2i7iiezfeerxtfbqtu = true;

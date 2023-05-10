@@ -11,4 +11,4 @@ export type IFileSourceSchema = FileSource["Schema"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_y782oecxz25in7b3oir5itc2 = true;
+export const $leight_tlk4thtm77phwsdgydwhsrxo = true;

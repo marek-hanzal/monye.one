@@ -10,4 +10,4 @@ export const $TransactionRepositoryService = Symbol.for("@monye.one/transaction/
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_m63ulnzq98h3i5z4rbitpkc6 = true;
+export const $leight_nhjpprs2d0qflf9gat5h97f1 = true;
