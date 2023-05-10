@@ -1,7 +1,8 @@
 import {createStoreContext} from "@leight/context-client";
 import {
-    IQueryStoreProps,
-    type Source
+    type IQueryStoreProps,
+    type ISourceSchema,
+    type SourceType
 }                           from "@leight/source";
 import {
     cleanOf,
@@ -12,13 +13,16 @@ export interface ICreateQueryStoreProps {
     name: string;
 }
 
-export const createQueryStore = <TSource extends Source>(
+export const createQueryStore = <
+    TSourceSchema extends ISourceSchema,
+    TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>,
+>(
     {
         name,
     }: ICreateQueryStoreProps) => {
-    return createStoreContext<IQueryStoreProps<TSource["Schema"]>>({
+    return createStoreContext<IQueryStoreProps<TSourceSchema>>({
         state: ({defaults}) => (set, get) => ({
-            filter:      defaults?.query?.filter as TSource["Type"]["Filter"],
+            filter:      defaults?.query?.filter as TSourceType["Filter"],
             applyFilter: undefined,
             filterDto:   undefined,
             sort:        defaults?.query?.sort || {},

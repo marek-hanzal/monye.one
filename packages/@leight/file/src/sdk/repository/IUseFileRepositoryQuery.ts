@@ -3,12 +3,13 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type TransactionSource} from "../../schema";
+import {type IUseRepositoryQuery} from "@leight/source";
+import {type IFileSourceSchema as SourceSchema} from "../schema/IFileSourceSchema";
 
-export type UseTransactionRepositoryQuery = TransactionSource["Type"]["UseRepositoryQuery"];
+export type IUseFileRepositoryQuery = IUseRepositoryQuery<SourceSchema>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qcj1i4dkemjc1yakhvdx147h = true;
+export const $leight_ajd42k0fn303mkee5lw6gekb = true;

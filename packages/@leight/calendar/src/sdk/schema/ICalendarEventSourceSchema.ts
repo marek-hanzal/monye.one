@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type JobSource} from "../../schema";
+import {type CalendarEventSource} from "../../schema";
 
-export type UseJobRepositoryQuery = JobSource["Type"]["UseRepositoryQuery"];
+export type ICalendarEventSourceSchema = CalendarEventSource["Schema"];
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tg1udiv3w78h08v2y1vss3cp = true;
+export const $leight_ug9a5fs80x7aobahfpzgbjdq = true;

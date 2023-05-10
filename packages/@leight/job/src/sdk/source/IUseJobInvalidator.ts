@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type JobSource} from "../../schema";
+import {type ISource} from "@leight/source";
 
-export type IUseJobInvalidator = JobSource["Type"]["UseInvalidator"];
+export type IUseJobInvalidator = ISource.IUseInvalidator;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hwfc1xdtm67dzd6ef35ahb9u = true;
+export const $leight_fmovyc4pflt88n6hoxv0lf6p = true;

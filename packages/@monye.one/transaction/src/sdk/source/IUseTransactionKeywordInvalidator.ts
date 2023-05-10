@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type TransactionKeywordSource} from "../../schema";
+import {type ISource} from "@leight/source";
 
-export type IUseTransactionKeywordInvalidator = TransactionKeywordSource["Type"]["UseInvalidator"];
+export type IUseTransactionKeywordInvalidator = ISource.IUseInvalidator;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ppxr5x7i25ctunm5276mm2jc = true;
+export const $leight_u9a6nj6mxsoj6qfgmfjsvlke = true;

@@ -17,7 +17,7 @@ import {type SourceType}       from "./SourceType";
  * Client side Source tools.
  */
 export interface ISource<
-    TSourceSchema extends ISourceSchema
+    TSourceSchema extends ISourceSchema = ISourceSchema
 > {
     name: string;
     schema: TSourceSchema;

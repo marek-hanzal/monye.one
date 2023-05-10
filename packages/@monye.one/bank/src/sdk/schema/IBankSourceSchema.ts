@@ -11,4 +11,4 @@ export type IBankSourceSchema = BankSource["Schema"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_a6f7pcoyuw45kw5h7710pmd0 = true;
+export const $leight_ewlxc13ddjcobsbfva1uv9v9 = true;

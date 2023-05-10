@@ -1,23 +1,37 @@
-import {Translation} from "@leight/i18n-client";
-import {Source} from "@leight/source";
-import {Button, Divider, Group} from "@mantine/core";
-import {IconTrash} from "@tabler/icons-react";
-import {type IModalProps, Modal} from "../component";
-import {ModalStore} from "../context";
+import {Translation}             from "@leight/i18n-client";
+import {
+    type ISource,
+    type ISourceSchema,
+    type SourceType
+}                                from "@leight/source";
+import {
+    Button,
+    Divider,
+    Group
+}                                from "@mantine/core";
+import {IconTrash}               from "@tabler/icons-react";
+import {
+    type IModalProps,
+    Modal
+}                                from "../component";
+import {ModalStore}              from "../context";
 import {withSuccessNotification} from "../utils";
 
-export interface IDeleteModalProps<TSource extends Source> extends IModalProps {
-    Source: TSource["Type"]["Source"];
-    entity: TSource["Type"]["Dto"];
+export interface IDeleteModalProps<
+    TSourceSchema extends ISourceSchema,
+    TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
+> extends IModalProps {
+    Source: ISource<TSourceSchema>;
+    entity: TSourceType["Dto"];
 }
 
-export const DeleteModal = <TSource extends Source>(
+export const DeleteModal = <TSourceSchema extends ISourceSchema>(
     {
         withTranslation,
         Source,
         entity,
         ...props
-    }: IDeleteModalProps<TSource>) => {
+    }: IDeleteModalProps<TSourceSchema>) => {
     const {close} = ModalStore.use(({close}) => ({close}));
     const deleteMutation = Source.repository.useDelete();
     const invalidator = Source.useInvalidator();
@@ -57,7 +71,7 @@ export const DeleteModal = <TSource extends Source>(
                             withSuccessNotification({
                                 withTranslation: {
                                     ...withTranslation,
-                                    label: withTranslation?.label ? `${withTranslation.label}.delete` : "delete",
+                                    label:  withTranslation?.label ? `${withTranslation.label}.delete` : "delete",
                                     values: dto,
                                 }
                             });

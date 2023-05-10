@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type LabelSource} from "../../schema";
+import {type ISource} from "@leight/source";
 
-export type IUseLabelInvalidator = LabelSource["Type"]["UseInvalidator"];
+export type IUseLabelInvalidator = ISource.IUseInvalidator;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bs31fmqbom8eqsz5ay3ff7n2 = true;
+export const $leight_ov4fvy1rs9gm7o5m73la26ma = true;

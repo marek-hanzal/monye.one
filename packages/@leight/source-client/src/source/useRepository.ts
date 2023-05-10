@@ -1,17 +1,22 @@
-import {type Source} from "@leight/source";
+import {
+    type ISource,
+    type ISourceSchema
+} from "@leight/source";
 
-export interface IUseRepositoryProps<TSource extends Source> extends Pick<TSource["Type"], "UseRepository" | "QueryContext"> {
+export interface IUseRepositoryProps<TSourceSchema extends ISourceSchema> {
     cacheTime?: number;
-    schema: TSource["Schema"];
+    schema: TSourceSchema;
+    UseRepository: ISource.IUseRepository<TSourceSchema>;
+    QueryContext: ISource.IQueryContext<TSourceSchema>;
 }
 
-export const useRepository = <TSource extends Source>(
+export const useRepository = <TSourceSchema extends ISourceSchema>(
     {
         cacheTime = 120,
         schema,
         UseRepository,
         QueryContext,
-    }: IUseRepositoryProps<TSource>): TSource["Type"]["UseRepositoryResult"] => {
+    }: IUseRepositoryProps<TSourceSchema>): ISource.IUseResult<TSourceSchema> => {
     const $cacheTime = cacheTime ? cacheTime * 1000 : undefined;
     const {query} = QueryContext.use(({query}) => ({query}));
     const result = UseRepository.useQuery(query, {

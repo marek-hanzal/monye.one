@@ -1,6 +1,6 @@
 import {
+    type ISource,
     type ISourceSchema,
-    type IUseRepository,
     type IUseRepositoryQuery
 } from "@leight/source";
 
@@ -21,7 +21,7 @@ export const withUseRepository = <
         get:      {useQuery: useGet},
         get$:     {useQuery: useGet$},
     }: IUseRepositoryQuery<TSourceSchema>
-): IUseRepository<TSourceSchema> => ({
+): ISource.IUseRepository<TSourceSchema> => ({
     useCreate,
     usePatch,
     usePatchBy,

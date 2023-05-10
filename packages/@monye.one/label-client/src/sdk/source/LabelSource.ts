@@ -19,4 +19,4 @@ export const LabelSource = withSource<Source>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_kme55291ow1a66schme664mf = true;
+export const $leight_xl72gwpyl58oolx7i36plotr = true;

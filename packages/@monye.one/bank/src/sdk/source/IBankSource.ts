@@ -3,12 +3,13 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type BankSource} from "../../schema";
+import {type ISource} from "@leight/source";
+import {type IBankSourceSchema as SourceSchema} from "../schema/IBankSourceSchema";
 
-export type IBankSource = BankSource["Type"]["Source"];
+export type IBankSource = ISource<SourceSchema>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_n7a5oira56einnebr16g4q6r = true;
+export const $leight_uey3wbqjn4ooso7v8ye7l2qm = true;

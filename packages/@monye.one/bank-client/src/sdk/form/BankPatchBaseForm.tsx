@@ -34,4 +34,4 @@ export const BankPatchBaseForm: FC<IBankPatchBaseFormProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_dlom2ji7yocxjzf1kwdtrrk8 = true;
+export const $leight_ujfjbf4fb2z20crczl6e56rp = true;

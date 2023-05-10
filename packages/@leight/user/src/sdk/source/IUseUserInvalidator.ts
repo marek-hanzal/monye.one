@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type UserSource} from "../../schema";
+import {type ISource} from "@leight/source";
 
-export type IUseUserInvalidator = UserSource["Type"]["UseInvalidator"];
+export type IUseUserInvalidator = ISource.IUseInvalidator;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_eumoc7u9xodn6ddv0wobjhrm = true;
+export const $leight_xu4t4no8i2ckx0s2gup0rvd1 = true;

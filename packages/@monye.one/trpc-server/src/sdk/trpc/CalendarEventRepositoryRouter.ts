@@ -56,4 +56,4 @@ export const CalendarEventRepositoryRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_p7z6qsxnaofk5zebinjy2knb = true;
+export const $leight_kavnqs0t1rneq5emyzcxgz3o = true;

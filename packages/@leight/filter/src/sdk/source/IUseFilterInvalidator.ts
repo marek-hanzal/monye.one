@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type FilterSource} from "../../schema";
+import {type ISource} from "@leight/source";
 
-export type IUseFilterInvalidator = FilterSource["Type"]["UseInvalidator"];
+export type IUseFilterInvalidator = ISource.IUseInvalidator;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_z1oxp2smp8nlc2ou5bd87zox = true;
+export const $leight_pz6geeg3d0rjf0f5rem02vzv = true;

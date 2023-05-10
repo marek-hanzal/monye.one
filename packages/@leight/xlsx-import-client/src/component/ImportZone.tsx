@@ -1,14 +1,21 @@
 import {type IWithImportMutation} from "@leight/import";
-import {type JobSource} from "@leight/job";
-import {type IJobInlineProps, withJobNotification} from "@leight/job-client";
-import {DropZone, type IDropZoneProps} from "@leight/mantine";
-import {LoopsProvider} from "@leight/utils-client";
-import {MIME_TYPES} from "@mantine/dropzone";
+import {type IJobSourceSchema}    from "@leight/job";
+import {
+    type IJobInlineProps,
+    withJobNotification
+}                                 from "@leight/job-client";
+import {
+    DropZone,
+    type IDropZoneProps
+}                                 from "@leight/mantine";
+import {ISource}                  from "@leight/source";
+import {LoopsProvider}            from "@leight/utils-client";
+import {MIME_TYPES}               from "@mantine/dropzone";
 
 export interface IImportZoneProps<TParams extends Record<string, any>> extends Omit<IDropZoneProps, "path"> {
     mutation: IWithImportMutation;
     onSuccess?: IJobInlineProps["onSuccess"];
-    useJobGetQuery: JobSource["Type"]["UseRepository"]["useGet"];
+    useJobGetQuery: ISource.IUseRepository<IJobSourceSchema>["useGet"];
     path?: string;
     /**
      * Override import service name

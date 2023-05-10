@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type BankSource} from "../../schema";
+import {type ISource} from "@leight/source";
 
-export type IUseBankInvalidator = BankSource["Type"]["UseInvalidator"];
+export type IUseBankInvalidator = ISource.IUseInvalidator;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_frpmzkpw6ciprtc7xy4olq9a = true;
+export const $leight_t1ranxmuze6do3xtcicru6mj = true;

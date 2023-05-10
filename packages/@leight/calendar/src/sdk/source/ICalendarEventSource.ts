@@ -3,12 +3,13 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type FileSource} from "../../schema";
+import {type ISource} from "@leight/source";
+import {type ICalendarEventSourceSchema as SourceSchema} from "../schema/ICalendarEventSourceSchema";
 
-export type UseFileRepositoryQuery = FileSource["Type"]["UseRepositoryQuery"];
+export type ICalendarEventSource = ISource<SourceSchema>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_y001w3f5y38o1qzscpgm7u8t = true;
+export const $leight_iow94ja9qyuidpy298o60kdg = true;

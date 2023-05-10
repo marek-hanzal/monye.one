@@ -15,4 +15,4 @@ export const LabelSelection = createSelectionStore<LabelSource["Type"]["Dto"]>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_f4to9tkrhhrme38ytxz5186t = true;
+export const $leight_y3upxjycmt4dl60841xagrx7 = true;

@@ -3,12 +3,13 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type KeywordSource} from "../../schema";
+import {type ISource} from "@leight/source";
+import {type IKeywordSourceSchema as SourceSchema} from "../schema/IKeywordSourceSchema";
 
-export type IKeywordSource = KeywordSource["Type"]["Source"];
+export type IKeywordSource = ISource<SourceSchema>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_uq4ij1x5pploo6henfjagidm = true;
+export const $leight_ii6sgipw92whibsc6vzv756x = true;

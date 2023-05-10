@@ -1,9 +1,12 @@
-import {type Source} from "@leight/source";
+import {type ISource}                 from "@leight/source";
 import {Pagination as CoolPagination} from "@mantine/core";
-import {type ComponentProps, type FC} from "react";
+import {
+    type ComponentProps,
+    type FC
+}                                     from "react";
 
 export interface IPaginationProps extends Partial<ComponentProps<typeof CoolPagination>> {
-    Source: Source["Type"]["Source"];
+    Source: ISource;
     hideOnSingle?: boolean;
 }
 
@@ -14,7 +17,23 @@ export const Pagination: FC<IPaginationProps> = (
         ...props
     }) => {
     const $cacheTime = 120;
-    const {filter, size, page, withPage} = Source.query.use(({filter, size, page, withPage}) => ({filter, size, page, withPage}));
+    const {
+        filter,
+        size,
+        page,
+        withPage
+    } = Source.query.use((
+        {
+            filter,
+            size,
+            page,
+            withPage
+        }) => ({
+        filter,
+        size,
+        page,
+        withPage
+    }));
     const result = Source.repository.useCount(filter, {
         cacheTime: $cacheTime * 1000,
         staleTime: $cacheTime * 1000,

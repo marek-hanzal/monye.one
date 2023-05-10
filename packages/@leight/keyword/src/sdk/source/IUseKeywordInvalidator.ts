@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type KeywordSource} from "../../schema";
+import {type ISource} from "@leight/source";
 
-export type IUseKeywordInvalidator = KeywordSource["Type"]["UseInvalidator"];
+export type IUseKeywordInvalidator = ISource.IUseInvalidator;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_oq8wiz7x1ybs7wtqnze8sw0q = true;
+export const $leight_aehvdn8rpvx33iq91d7jhmns = true;

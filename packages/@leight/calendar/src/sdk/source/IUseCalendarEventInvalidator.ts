@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type LabelSource} from "../../schema";
+import {type ISource} from "@leight/source";
 
-export type UseLabelRepositoryQuery = LabelSource["Type"]["UseRepositoryQuery"];
+export type IUseCalendarEventInvalidator = ISource.IUseInvalidator;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zdyxjarikuzsqeq1b0swkqge = true;
+export const $leight_uogj0skptbrxkme9j4imaq0i = true;

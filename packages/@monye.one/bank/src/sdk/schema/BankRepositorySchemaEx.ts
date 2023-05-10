@@ -27,4 +27,4 @@ export const BankRepositorySchemaEx: IBankRepositoryExSchema = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_il69k014j9akjlhfdndfioou = true;
+export const $leight_rvnhq863i182t644qwpyn0b3 = true;
