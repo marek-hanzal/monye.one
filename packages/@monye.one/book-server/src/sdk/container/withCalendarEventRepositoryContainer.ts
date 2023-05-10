@@ -22,4 +22,4 @@ export const withCalendarEventRepositoryContainer = (container: IContainer) => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_m0xycqq97scjr1s91hhu1xck = true;
+export const $leight_puhuwc4f9ibtxl2gfwz2913x = true;

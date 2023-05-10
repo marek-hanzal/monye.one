@@ -6,10 +6,11 @@ import {type FC}         from "react";
 import {LabelCreateForm} from "../form";
 import {
     LabelMultiSelection,
-    LabelQueryProvider
+    LabelQueryProvider,
+    LabelSource
 }                        from "../sdk";
 
-export interface ILabelControlProps extends Omit<IBaseLabelControlProps, "SourceStore" | "SelectionContext" | "prepend"> {
+export interface ILabelControlProps extends Omit<IBaseLabelControlProps, "Source" | "SelectionContext" | "prepend"> {
     type: string;
 }
 
@@ -35,6 +36,7 @@ export const LabelControl: FC<ILabelControlProps> = (
                         form.setValues({label: ""});
                     }}
                 />}
+                Source={LabelSource}
                 SelectionContext={LabelMultiSelection}
                 {...props}
             />

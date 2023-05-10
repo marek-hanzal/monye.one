@@ -13,4 +13,4 @@ export interface IBankRepository extends IRepository<BankSource["Schema"]["Repos
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jt7jwdfkrzo0hthreszdrysw = true;
+export const $leight_n8nec9cdlie73uc9d73z0ly0 = true;

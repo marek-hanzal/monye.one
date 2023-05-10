@@ -11,4 +11,4 @@ export type IUseLabelInvalidator = LabelSource["Type"]["UseInvalidator"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ork3jah97yalgxi5goielgk1 = true;
+export const $leight_bs31fmqbom8eqsz5ay3ff7n2 = true;

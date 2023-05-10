@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type TransactionSource} from "../../schema";
+import {type LabelSource} from "../../schema";
 
-export type ITransactionSourceSchema = TransactionSource["Schema"];
+export type ILabelSourceSchema = LabelSource["Schema"];
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hwoi25efr410227rq3p03f4s = true;
+export const $leight_i68umwdl5rfcbpn16o0gls6i = true;

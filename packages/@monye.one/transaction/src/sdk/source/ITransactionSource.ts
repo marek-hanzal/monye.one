@@ -11,4 +11,4 @@ export type ITransactionSource = TransactionSource["Type"]["Source"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_b396j5kn29icfqjd0m61izub = true;
+export const $leight_kwo1vpk178ejzk4du6n7hnbl = true;

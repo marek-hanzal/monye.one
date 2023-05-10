@@ -3,12 +3,13 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type FilterSource} from "../../schema";
+import {type ISource} from "@leight/source";
+import {type ITransactionSourceSchema as SourceSchema} from "../schema/ITransactionSourceSchema";
 
-export type IFilterSourceSchema = FilterSource["Schema"];
+export type IUseTransactionRepository = ISource.IUseRepository<SourceSchema>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vt506ysyu36qultwsyuccnk6 = true;
+export const $leight_y9rvfupc31bf2u7ydvq4p9qx = true;

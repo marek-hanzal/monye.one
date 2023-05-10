@@ -3,12 +3,11 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type BankSource} from "../../schema";
-
-export type UseBankRepository = BankSource["Type"]["UseRepository"];
-
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_g0eugcgrdjsi6jdvin42v4ob = true;
+export const $leight_h3amqbiiftde1y10asoqw60s = true;
+
+export * from "./index";
+export * from "./trpc/useTransactionInvalidator";

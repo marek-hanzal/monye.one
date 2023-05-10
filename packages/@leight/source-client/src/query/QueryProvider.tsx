@@ -1,30 +1,37 @@
-import {type Source}            from "@leight/source";
+import {
+    type ISource,
+    type ISourceSchema,
+    type SourceType
+}                               from "@leight/source";
 import {type PropsWithChildren} from "react";
 
-export type IQueryProviderInternalProps<TSource extends Source> = PropsWithChildren<{
+export type IQueryProviderInternalProps<
+    TSourceSchema extends ISourceSchema,
+    TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>,
+> = PropsWithChildren<{
     /**
      * Typed query context used to provide Query; this should be usually generated
      * by SDK or you can use `createQueryStore`.
      */
-    QueryContext: TSource["Type"]["QueryContext"];
+    QueryContext: ISource.IQueryContext<TSourceSchema>;
     /**
      * The default filter could be replaced or merged, but it's not applied all the times
      */
-    defaultFilter?: TSource["Type"]["Filter"];
+    defaultFilter?: TSourceType["Filter"];
     /**
      * Filter applied all the times (for example when you need to fix filters on clientId or
      * whatever).
      */
-    applyFilter?: TSource["Type"]["Filter"];
+    applyFilter?: TSourceType["Filter"];
     /**
      * Default sorting could be replaced or merged, but it's not forced
      */
-    defaultSort?: TSource["Type"]["Sort"];
-    defaultCursor?: TSource["Type"]["Cursor"];
+    defaultSort?: TSourceType["Sort"];
+    defaultCursor?: TSourceType["Cursor"];
 }>;
-export type IQueryProviderProps<TSource extends Source> = IQueryProviderInternalProps<TSource>;
+export type IQueryProviderProps<TSourceSchema extends ISourceSchema> = IQueryProviderInternalProps<TSourceSchema>;
 
-export const QueryProvider = <TSource extends Source>(
+export const QueryProvider = <TSourceSchema extends ISourceSchema>(
     {
         QueryContext,
         defaultFilter,
@@ -32,7 +39,7 @@ export const QueryProvider = <TSource extends Source>(
         defaultSort,
         defaultCursor,
         children,
-    }: IQueryProviderInternalProps<TSource>) => {
+    }: IQueryProviderInternalProps<TSourceSchema>) => {
     return <QueryContext.Provider
         defaults={{
             filter:      defaultFilter,

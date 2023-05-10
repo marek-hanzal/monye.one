@@ -4,8 +4,8 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {
-	DtoForm as BaseForm,
-	type IDtoFormProps as IBaseFormProps
+	BaseForm,
+	type IBaseFormProps
 } from "@leight/form-client";
 import {type FC} from "react";
 import {
@@ -34,4 +34,4 @@ export const LabelCreateBaseForm: FC<ILabelCreateBaseFormProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qgaksti5yu20gintsvwpefq3 = true;
+export const $leight_g7obomsttdz5hh5rp478mcy6 = true;

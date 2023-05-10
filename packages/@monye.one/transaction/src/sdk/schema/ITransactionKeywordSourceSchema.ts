@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type BankSource} from "../../schema";
+import {type TransactionKeywordSource} from "../../schema";
 
-export type IBankSourceSchema = BankSource["Schema"];
+export type ITransactionKeywordSourceSchema = TransactionKeywordSource["Schema"];
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_bcy64yp99g1fysb8rwk0e2i0 = true;
+export const $leight_y5kuof7p1zpsdftggp8f9ewp = true;

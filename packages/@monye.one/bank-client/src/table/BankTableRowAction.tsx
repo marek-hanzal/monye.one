@@ -1,4 +1,4 @@
-import {Translation}                from "@leight/i18n-client";
+import {Translation}              from "@leight/i18n-client";
 import {
     DeleteModal,
     Drawer,
@@ -7,32 +7,32 @@ import {
     MenuLabel,
     ModalMenuItem,
     ModalStoreProvider
-}                                   from "@leight/mantine";
-import {TableRowMenu}               from "@leight/table-client";
-import {Menu}                       from "@mantine/core";
-import {modals}                     from "@mantine/modals";
-import {type IBankSourceSchemaType} from "@monye.one/bank";
-import {TransactionImport}          from "@monye.one/transaction-ex-client";
-import {trpc}                       from "@monye.one/trpc-client";
+}                                 from "@leight/mantine";
+import {TableRowMenu}             from "@leight/table-client";
+import {Menu}                     from "@mantine/core";
+import {modals}                   from "@mantine/modals";
+import {type IBankSource}         from "@monye.one/bank";
+import {TransactionImport}        from "@monye.one/transaction-ex-client";
+import {trpc}                     from "@monye.one/trpc-client";
 import {
     IconCash,
     IconEdit,
     IconRefresh,
     IconTrash
-}                                   from "@tabler/icons-react";
-import {BankEditForm}               from "../form";
-import {BankSourceStore}            from "../sdk";
-import {withStatsJobNotification}   from "../utils";
-import {type IBankTableProps}       from "./BankTable";
+}                                 from "@tabler/icons-react";
+import {BankEditForm}             from "../form";
+import {BankSource}               from "../sdk";
+import {withStatsJobNotification} from "../utils";
+import {type IBankTableProps}     from "./BankTable";
 
 
 export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => {
     const bankStatsMutation = trpc.bank.stats.useMutation();
     return <ModalStoreProvider>
         <DrawerStoreProvider>
-            <DeleteModal<IBankSourceSchemaType>
+            <DeleteModal<IBankSource>
                 modalId={"bank.delete"}
-                SourceStore={BankSourceStore}
+                Source={BankSource}
                 withTranslation={{
                     namespace: "bank",
                     label:     "account",

@@ -11,4 +11,4 @@ export type IUseFilterInvalidator = FilterSource["Type"]["UseInvalidator"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_l4w8ezj5fm89lenn8nl23fxt = true;
+export const $leight_z1oxp2smp8nlc2ou5bd87zox = true;

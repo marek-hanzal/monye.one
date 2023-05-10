@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type FileSource} from "../../schema";
+import {type TransactionSource} from "../../schema";
 
-export type UseFileRepository = FileSource["Type"]["UseRepository"];
+export type ITransactionSourceSchema = TransactionSource["Schema"];
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_uz58ecumx9vyppi81rrbqc2k = true;
+export const $leight_ddwmosz92p5b7anc0rg8lhb2 = true;

@@ -3,12 +3,13 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type JobSource} from "../../schema";
+import {type ISource} from "@leight/source";
+import {type IBankSourceSchema as SourceSchema} from "../schema/IBankSourceSchema";
 
-export type IJobSourceSchema = JobSource["Schema"];
+export type IUseBankRepository = ISource.IUseRepository<SourceSchema>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_pfqdpkmsqu3v5cisz94uin29 = true;
+export const $leight_apps6chfomfose56gnjsd69p = true;

@@ -3,12 +3,13 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type TransactionKeywordSource} from "../../schema";
+import {type ISource} from "@leight/source";
+import {type IFileSourceSchema as SourceSchema} from "../schema/IFileSourceSchema";
 
-export type ITransactionKeywordSourceSchema = TransactionKeywordSource["Schema"];
+export type IUseFileRepository = ISource.IUseRepository<SourceSchema>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fdlqwvm67bkwc9sfunbnfqk9 = true;
+export const $leight_xtpkmr0pezunz1y1s74vjekd = true;

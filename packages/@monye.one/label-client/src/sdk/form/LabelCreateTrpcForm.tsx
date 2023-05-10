@@ -46,4 +46,4 @@ export const LabelCreateTrpcForm: FC<ILabelCreateTrpcFormProps> = ({onSuccess, o
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tjy67jrun1mxrchosau7vk76 = true;
+export const $leight_kckhy2qt9dy7j63k4vb76b83 = true;

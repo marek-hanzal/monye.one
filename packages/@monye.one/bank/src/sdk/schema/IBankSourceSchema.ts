@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type LabelSource} from "../../schema";
+import {type BankSource} from "../../schema";
 
-export type UseLabelRepository = LabelSource["Type"]["UseRepository"];
+export type IBankSourceSchema = BankSource["Schema"];
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_w7ldx01y28s63zy72orlgqt7 = true;
+export const $leight_a6f7pcoyuw45kw5h7710pmd0 = true;

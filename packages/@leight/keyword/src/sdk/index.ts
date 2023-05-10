@@ -7,16 +7,16 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_gwadbc5twi56v2l4zzjubivg = true;
+export const $leight_uwaq7wtoqhm51lkt1hf1vn6t = true;
 
 export * from "./index";
 export * from "./mapper/IKeywordRepositoryMapper";
 export * from "./repository/IKeywordRepository";
-export * from "./repository/UseKeywordRepository";
+export * from "./repository/IUseKeywordRepository";
 export * from "./repository/UseKeywordRepositoryQuery";
+export * from "./schema/IKeywordSourceSchema";
 export * from "./schema/KeywordRepositorySchemaEx";
 export * from "./source/IKeywordSource";
-export * from "./source/IKeywordSourceSchema";
 export * from "./source/IKeywordSourceType";
 export * from "./source/IUseKeywordInvalidator";
 export * from "./symbol/KeywordRepositorySymbol";

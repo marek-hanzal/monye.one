@@ -48,18 +48,25 @@ export const withSourceType: IGenerator<IWithSourceTypeParams> = async (
         withSourceFile()
             .withImports({
                 imports: {
-                    "../../schema": [
-                        `type ${name}Source`,
+                    "@leight/source": [
+                        "type ISource",
+                    ],
+                },
+            })
+            .withImports({
+                imports: {
+                    [`../schema/I${name}SourceSchema`]: [
+                        `type I${name}SourceSchema as SourceSchema`,
                     ],
                 },
             })
             .withTypes({
                 exports: {
-                    [`Use${name}Repository`]: `${name}Source["Type"]["UseRepository"]`,
+                    [`IUse${name}Repository`]: `ISource.IUseRepository<SourceSchema>`,
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/repository/Use${name}Repository.ts`),
+                file: normalize(`${directory}/repository/IUse${name}Repository.ts`),
                 barrel,
             });
 
@@ -113,7 +120,7 @@ export const withSourceType: IGenerator<IWithSourceTypeParams> = async (
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/source/I${name}SourceSchema.ts`),
+                file: normalize(`${directory}/schema/I${name}SourceSchema.ts`),
                 barrel,
             });
 

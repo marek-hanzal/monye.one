@@ -12,4 +12,4 @@ export type IBankEditMantineFormContext = IMantineFormContext<IBankEditFormSchem
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_s3ru6afoglbhd4f56pmzu471 = true;
+export const $leight_cb33ezi125d58athvxltd202 = true;

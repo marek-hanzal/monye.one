@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type LabelSource} from "../../schema";
+import {type KeywordSource} from "../../schema";
 
-export type ILabelSourceSchema = LabelSource["Schema"];
+export type IKeywordSourceSchema = KeywordSource["Schema"];
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_x42fxxvnhnrq9h8vf0d2fumd = true;
+export const $leight_sbvybmte8u67nv9ljm5oqi5i = true;

@@ -11,10 +11,11 @@ export interface ILabelCreateFormProps extends Omit<ILabelCreateTrpcFormProps, "
     type: string;
 }
 
-export const LabelCreateForm: FC<ILabelCreateFormProps> = ({
-                                                               type,
-                                                               ...props
-                                                           }) => {
+export const LabelCreateForm: FC<ILabelCreateFormProps> = (
+    {
+        type,
+        ...props
+    }) => {
     return <LabelCreateTrpcForm
         toRequest={({values}) => ({
             ...values,

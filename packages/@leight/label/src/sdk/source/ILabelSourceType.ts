@@ -11,4 +11,4 @@ export type ILabelSourceType = LabelSource["Type"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_i8c2c6p5r4omk5a1c3725vyc = true;
+export const $leight_k0573zps1pcv2esu1zz9vinc = true;

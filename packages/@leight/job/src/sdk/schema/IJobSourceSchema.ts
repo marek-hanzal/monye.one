@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type FilterSource} from "../../schema";
+import {type JobSource} from "../../schema";
 
-export type UseFilterRepository = FilterSource["Type"]["UseRepository"];
+export type IJobSourceSchema = JobSource["Schema"];
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_oe466b0uj87kkevybsf3czgg = true;
+export const $leight_p8x4kq2wrksdq51e0q432yef = true;

@@ -3,12 +3,12 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type KeywordSource} from "../../schema";
+import {type FilterSource} from "../../schema";
 
-export type IKeywordSourceSchema = KeywordSource["Schema"];
+export type IFilterSourceSchema = FilterSource["Schema"];
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_x68yovoj457fwkoauslt7khr = true;
+export const $leight_akrjntwqwoz6x221573rxk3p = true;

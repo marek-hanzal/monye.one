@@ -13,4 +13,4 @@ export interface ITransactionRepository extends IRepository<TransactionSource["S
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tbspw6tj4xutvq70kfg6pvfi = true;
+export const $leight_edf8a3ai4fah0rnoen0zjlgc = true;

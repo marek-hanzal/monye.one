@@ -10,4 +10,4 @@ export const $BankRepositoryService = Symbol.for("@monye.one/bank/IBankRepositor
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_paf6uhc1yky6gf6hvw7v2uh4 = true;
+export const $leight_twk1bc65dehki0eexrsadgv6 = true;
