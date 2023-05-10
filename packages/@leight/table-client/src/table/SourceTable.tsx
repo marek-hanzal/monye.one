@@ -41,7 +41,7 @@ export interface ISourceTableInternalProps<
          */
         position?: ("top" | "bottom")[];
 
-        props?: Omit<IPaginationProps, "SourceStore">;
+        props?: Omit<IPaginationProps, "Source">;
     };
     withFulltext?: boolean;
     sourceCacheTime?: number;

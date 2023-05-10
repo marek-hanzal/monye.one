@@ -1,7 +1,7 @@
 import {generatorClient} from "@leight/sdk";
 
 void generatorClient({
-    withSource: {
+    withSource:        {
         sources: [
             {
                 name:              "Bank",
@@ -26,7 +26,7 @@ void generatorClient({
             },
         ],
     },
-    withForm:   {
+    withForm:          {
         forms: [
             {
                 type:        "dto",
@@ -67,6 +67,26 @@ void generatorClient({
                     use:    "usePatch",
                 },
                 packages:    {
+                    schema: "@monye.one/bank",
+                },
+            },
+        ],
+    },
+    withTable:         {
+        tables: [
+            {
+                name:     "Bank",
+                packages: {
+                    schema: "@monye.one/bank",
+                },
+            },
+        ],
+    },
+    withQueryProvider: {
+        sources: [
+            {
+                name:     "Bank",
+                packages: {
                     schema: "@monye.one/bank",
                 },
             },

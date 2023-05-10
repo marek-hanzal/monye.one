@@ -11,4 +11,4 @@ export type UseFilterRepositoryQuery = FilterSource["Type"]["UseRepositoryQuery"
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_cg6yfdfcf40l49awecm237s7 = true;
+export const $leight_y9470oqrwm6b0zv5swj97zhj = true;

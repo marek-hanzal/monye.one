@@ -11,4 +11,4 @@ export type UseTransactionKeywordRepository = TransactionKeywordSource["Type"]["
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ynpl6qrys0ru93sw9wnftcxf = true;
+export const $leight_ms3y0yoq53luywpimnu1a57f = true;

@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jiwd6gns7t204af3rvrnjf7o = true;
+export const $leight_zamn3of8s69r5lzleo8wq8l3 = true;
 
 export * from "./index";
 export * from "./context/LabelCreateFormStoreContext";
@@ -15,6 +15,7 @@ export * from "./context/LabelCreateMantineFormContext";
 export * from "./form/LabelCreateBaseForm";
 export * from "./form/LabelCreateInput";
 export * from "./form/LabelCreateTrpcForm";
+export * from "./query/LabelQueryProvider";
 export * from "./selection/LabelMultiSelection";
 export * from "./selection/LabelSelection";
 export * from "./source/LabelSource";

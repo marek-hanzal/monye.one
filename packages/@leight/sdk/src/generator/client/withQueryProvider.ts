@@ -2,12 +2,12 @@ import {withSourceFile}  from "@leight/generator-server";
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
-export interface IGeneratorClientSourceProviderParams {
-    entities: IGeneratorClientSourceProviderParams.IEntity[];
+export interface IWithQueryProviderParams {
+    sources: IWithQueryProviderParams.ISource[];
 }
 
-export namespace IGeneratorClientSourceProviderParams {
-    export interface IEntity {
+export namespace IWithQueryProviderParams {
+    export interface ISource {
         /**
          * Base name exported (used to name all exported objects)
          */
@@ -26,28 +26,34 @@ export namespace IGeneratorClientSourceProviderParams {
     }
 }
 
-export const generatorClientSourceProvider: IGenerator<IGeneratorClientSourceProviderParams> = async (
+export const withQueryProvider: IGenerator<IWithQueryProviderParams> = async (
     {
         barrel,
         directory,
-        params: {entities}
+        params: {sources}
     }) => {
-    entities.forEach(({name, packages}) => {
+    sources.forEach((
+        {
+            name,
+            packages
+        }) => {
+        console.log(`- Generating [withQueryProvider] [${name}]`);
+
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/source-client":  [
+                    "@leight/source-client":     [
                         "type IQueryProviderProps",
                         "QueryProvider",
                     ],
-                    [packages.schema]:        [
-                        `type I${name}SourceSchemaType`,
+                    [packages.schema]:           [
+                        `type ${name}Source as Source`,
                     ],
-                    "react":                  [
+                    "react":                     [
                         "type FC",
                     ],
-                    [`./${name}SourceStore`]: [
-                        `${name}SourceStore`,
+                    [`../source/${name}Source`]: [
+                        `${name}Source`,
                     ],
                 }
             })
@@ -55,7 +61,7 @@ export const generatorClientSourceProvider: IGenerator<IGeneratorClientSourcePro
                 exports: {
                     [`I${name}QueryProviderProps`]: {
                         extends: [
-                            {type: `IQueryProviderProps<I${name}SourceSchemaType>`},
+                            {type: `Omit<IQueryProviderProps<Source>, "QueryContext">`},
                         ],
                     },
                 },
@@ -70,8 +76,8 @@ export const generatorClientSourceProvider: IGenerator<IGeneratorClientSourcePro
  */
                         `,
                         body:    `props => {
-    return <QueryProvider<I${name}SourceSchemaType>
-        SourceStore={${name}SourceStore}
+    return <QueryProvider<Source>
+        QueryContext={${name}Source.query}
         {...props}
     />;
 }
@@ -80,7 +86,7 @@ export const generatorClientSourceProvider: IGenerator<IGeneratorClientSourcePro
                 }
             })
             .saveTo({
-                file: normalize(`${directory}/Source/${name}QueryProvider.tsx`),
+                file: normalize(`${directory}/query/${name}QueryProvider.tsx`),
                 barrel,
             });
     });

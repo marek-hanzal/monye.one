@@ -1,7 +1,7 @@
 import {generatorClient} from "@leight/sdk";
 
 void generatorClient({
-    withSource:    {
+    withSource:        {
         sources: [
             {
                 name:              "Label",
@@ -26,7 +26,7 @@ void generatorClient({
             },
         ],
     },
-    withSelection: {
+    withSelection:     {
         selections: [
             {
                 name:     "Label",
@@ -36,7 +36,7 @@ void generatorClient({
             },
         ],
     },
-    withForm:      {
+    withForm:          {
         forms: [
             {
                 type:        "dto",
@@ -50,6 +50,16 @@ void generatorClient({
                 withTrpc:    {
                     use:    "useCreate",
                     source: "Label",
+                },
+            },
+        ],
+    },
+    withQueryProvider: {
+        sources: [
+            {
+                name:     "Label",
+                packages: {
+                    schema: "@leight/label",
                 },
             },
         ],

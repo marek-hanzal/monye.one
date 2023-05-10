@@ -1,13 +1,13 @@
-import {withSourceFile} from "@leight/generator-server";
-import {normalize} from "node:path";
+import {withSourceFile}  from "@leight/generator-server";
+import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
-export interface IGeneratorClientSourceTableParams {
-    entities: IGeneratorClientSourceTableParams.IEntity[];
+export interface IWithTableParams {
+    tables: IWithTableParams.ITable[];
 }
 
-export namespace IGeneratorClientSourceTableParams {
-    export interface IEntity {
+export namespace IWithTableParams {
+    export interface ITable {
         /**
          * Base name exported (used to name all exported objects)
          */
@@ -26,26 +26,32 @@ export namespace IGeneratorClientSourceTableParams {
     }
 }
 
-export const generatorClientSourceTable: IGenerator<IGeneratorClientSourceTableParams> = async (
+export const withTable: IGenerator<IWithTableParams> = async (
     {
         barrel,
         directory,
-        params: {entities}
+        params: {tables}
     }) => {
-    entities.forEach(({name, packages}) => {
+    tables.forEach((
+        {
+            name,
+            packages
+        }) => {
+        console.log(`- Generating [withTable] [${name}]`);
+
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/table-client":           [
+                    "@leight/table-client":      [
                         "SourceTable",
                         "type ISourceTableInternalProps",
                     ],
-                    [packages.schema]:                [
-                        `type I${name}SourceSchemaType`,
-                        `${name}SourceSchema`,
+                    [packages.schema]:           [
+                        `${name}SourceSchema as SourceSchema`,
+                        `type ${name}Source as Source`,
                     ],
-                    [`../Source/${name}SourceStore`]: [
-                        `${name}SourceStore`,
+                    [`../source/${name}Source`]: [
+                        `${name}Source`,
                     ],
                 }
             })
@@ -53,7 +59,7 @@ export const generatorClientSourceTable: IGenerator<IGeneratorClientSourceTableP
                 exports: {
                     [`I${name}SourceTableInternalProps<TColumnKeys extends string>`]: {
                         extends: [
-                            {type: `Omit<ISourceTableInternalProps<I${name}SourceSchemaType, TColumnKeys>, "SourceStore" | "schema">`},
+                            {type: `Omit<ISourceTableInternalProps<Source, TColumnKeys>, "Source" | "schema">`},
                         ],
                         body:    `
 sourceCacheTime?: number;
@@ -75,10 +81,11 @@ sourceCacheTime?: number;
  * columns and other props as you wish.
  */
                         `,
-                        body:    `<TColumnKeys extends string>(props: I${name}SourceTableInternalProps<TColumnKeys>) => {
-    return <SourceTable
-        SourceStore={${name}SourceStore}
-        schema={${name}SourceSchema["DtoSchema"]}
+                        // language=text
+                        body: `<TColumnKeys extends string>(props: I${name}SourceTableInternalProps<TColumnKeys>) => {
+    return <SourceTable<Source, TColumnKeys>
+        Source={${name}Source}
+        schema={SourceSchema["DtoSchema"]}
         {...props}
     />;
 }

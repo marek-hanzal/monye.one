@@ -26,4 +26,14 @@ void generatorClient({
             },
         ],
     },
+    withTable:  {
+        tables: [
+            {
+                name:     "Filter",
+                packages: {
+                    schema: "@leight/filter",
+                },
+            },
+        ],
+    },
 });

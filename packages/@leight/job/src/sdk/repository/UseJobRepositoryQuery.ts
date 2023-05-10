@@ -11,4 +11,4 @@ export type UseJobRepositoryQuery = JobSource["Type"]["UseRepositoryQuery"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_du7dbdterzivurycpuj4i80x = true;
+export const $leight_dr1nlypyb61j7wkls75dxjs2 = true;

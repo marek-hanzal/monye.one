@@ -11,4 +11,4 @@ export type IUseBankInvalidator = BankSource["Type"]["UseInvalidator"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rwhnoycuuncipxmpz4yn9g2w = true;
+export const $leight_kpcf9d1y5qh8rwkoterrz7ue = true;

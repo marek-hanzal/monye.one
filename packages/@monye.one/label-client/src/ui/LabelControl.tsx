@@ -6,15 +6,18 @@ import {type FC}         from "react";
 import {LabelCreateForm} from "../form";
 import {
     LabelMultiSelection,
-    LabelQueryProvider,
-    LabelSourceStore
+    LabelQueryProvider
 }                        from "../sdk";
 
 export interface ILabelControlProps extends Omit<IBaseLabelControlProps, "SourceStore" | "SelectionContext" | "prepend"> {
     type: string;
 }
 
-export const LabelControl: FC<ILabelControlProps> = ({type, ...props}) => {
+export const LabelControl: FC<ILabelControlProps> = (
+    {
+        type,
+        ...props
+    }) => {
     return <LabelMultiSelection.Provider>
         <LabelQueryProvider
             applyFilter={{
@@ -32,7 +35,6 @@ export const LabelControl: FC<ILabelControlProps> = ({type, ...props}) => {
                         form.setValues({label: ""});
                     }}
                 />}
-                SourceStore={LabelSourceStore}
                 SelectionContext={LabelMultiSelection}
                 {...props}
             />

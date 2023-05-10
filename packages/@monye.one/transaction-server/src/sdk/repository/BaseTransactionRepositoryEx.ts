@@ -144,4 +144,4 @@ export class BaseTransactionRepositoryEx<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_kjs1c0ho5goo17b0ot2rzgqq = true;
+export const $leight_kefhpk5rt56ej0zq6v0bihhm = true;

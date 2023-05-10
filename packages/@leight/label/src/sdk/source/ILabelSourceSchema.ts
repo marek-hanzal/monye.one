@@ -11,4 +11,4 @@ export type ILabelSourceSchema = LabelSource["Schema"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lka6bj6fyk0i2fl3xuf5od8m = true;
+export const $leight_x42fxxvnhnrq9h8vf0d2fumd = true;

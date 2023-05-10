@@ -11,4 +11,4 @@ export type IUseUserInvalidator = UserSource["Type"]["UseInvalidator"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_b9j5olglvpco9dueie9pu408 = true;
+export const $leight_gq2sc162rb6mvp2e2tsiknfe = true;

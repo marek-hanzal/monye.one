@@ -15,4 +15,4 @@ export const UseTransactionRepository: UseRepository = withUseRepository<SourceS
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_s74jhvpslfkx92fo646jvec5 = true;
+export const $leight_io64do70wffj3geest7zc4pg = true;

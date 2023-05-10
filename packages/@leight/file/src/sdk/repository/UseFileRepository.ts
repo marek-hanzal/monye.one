@@ -11,4 +11,4 @@ export type UseFileRepository = FileSource["Type"]["UseRepository"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_gnflxtas3ybzaahtjplpoapz = true;
+export const $leight_uz58ecumx9vyppi81rrbqc2k = true;

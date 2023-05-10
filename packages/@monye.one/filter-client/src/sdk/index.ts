@@ -7,9 +7,10 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mr0l4dcf414bju0i5himcejk = true;
+export const $leight_pfinqjo1dpllzjh43i4xglap = true;
 
 export * from "./index";
 export * from "./source/FilterSource";
+export * from "./table/FilterSourceTable";
 export * from "./trpc/useFilterInvalidator";
 export * from "./trpc/UseFilterRepository";

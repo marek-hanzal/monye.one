@@ -36,4 +36,14 @@ void generatorClient({
             },
         ],
     },
+    withTable:     {
+        tables: [
+            {
+                name:     "Transaction",
+                packages: {
+                    schema: "@monye.one/transaction",
+                },
+            },
+        ],
+    },
 });
