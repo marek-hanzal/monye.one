@@ -1,6 +1,6 @@
-import {router} from "../router";
-import {JobSourceRouter} from "../sdk/ServerTrpc/JobTrpcRouter";
+import {router}              from "../router";
+import {JobRepositoryRouter} from "../sdk";
 
 export const JobRouter = router({
-    source: JobSourceRouter,
+    repository: JobRepositoryRouter,
 });

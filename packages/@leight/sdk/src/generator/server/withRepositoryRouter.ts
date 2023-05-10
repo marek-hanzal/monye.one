@@ -114,7 +114,7 @@ router({
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/trpc/${name}SourceRouter.ts`),
+                file: normalize(`${directory}/trpc/${name}RepositoryRouter.ts`),
                 barrel,
             });
     });

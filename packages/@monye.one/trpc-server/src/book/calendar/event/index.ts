@@ -1,6 +1,6 @@
-import {router} from "../../../router";
-import {CalendarEventSourceRouter} from "../../../sdk/ServerTrpc/CalendarEventTrpcRouter";
+import {router}                        from "../../../router";
+import {CalendarEventRepositoryRouter} from "../../../sdk";
 
 export const EventRouter = router({
-    source: CalendarEventSourceRouter,
+    repository: CalendarEventRepositoryRouter,
 });

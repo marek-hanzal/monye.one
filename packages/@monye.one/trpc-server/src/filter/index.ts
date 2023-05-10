@@ -1,6 +1,6 @@
-import {router} from "../router";
-import {FilterSourceRouter} from "../sdk";
+import {router}                 from "../router";
+import {FilterRepositoryRouter} from "../sdk";
 
 export const FilterRouter = router({
-    source: FilterSourceRouter,
+    repository: FilterRepositoryRouter,
 });

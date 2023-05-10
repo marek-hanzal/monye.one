@@ -1,6 +1,6 @@
-import {router}            from "../router";
-import {LabelSourceRouter} from "../sdk";
+import {router}                from "../router";
+import {LabelRepositoryRouter} from "../sdk";
 
 export const LabelRouter = router({
-    source: LabelSourceRouter,
+    repository: LabelRepositoryRouter,
 });

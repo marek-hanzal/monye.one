@@ -4,9 +4,9 @@ import {
     procedure,
     router
 }                              from "../router";
-import {BankSourceRouter}      from "../sdk";
+import {BankRepositoryRouter}  from "../sdk";
 
 export const BankRouter = router({
-    source: BankSourceRouter,
+    repository: BankRepositoryRouter,
     stats:  procedure.input(BankStatsParamsSchema).mutation(BankStatsProcedure),
 });
