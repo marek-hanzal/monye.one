@@ -11,4 +11,4 @@ export type IUseCalendarEventInvalidator = ISource.IUseInvalidator;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zq0apxqp0rfkyl3y4vi772wq = true;
+export const $leight_yiis8up814q9yoks1d4ybs2c = true;

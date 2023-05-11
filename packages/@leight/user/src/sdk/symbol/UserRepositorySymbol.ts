@@ -10,4 +10,4 @@ export const $UserRepositoryService = Symbol.for("@leight/user/IUserRepositorySe
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ttr0ikigd9mdhmuldkvmjx1c = true;
+export const $leight_anpg646nxcy1g5zcp733unlf = true;

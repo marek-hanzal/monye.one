@@ -15,4 +15,4 @@ export const BankMultiSelection = createMultiSelectionStore<BankSource["Type"]["
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tebon8maf4rewelpq42g17cf = true;
+export const $leight_k3ckwsivn3url1eh7heyvjza = true;

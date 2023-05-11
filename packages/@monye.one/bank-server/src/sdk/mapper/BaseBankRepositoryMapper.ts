@@ -13,4 +13,4 @@ export class BaseBankRepositoryMapper extends AbstractRepositoryMapper<BankSourc
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lbr41iqvq60qa5sbkajo99z0 = true;
+export const $leight_b0lr7z5q3afal03gbzk3tv2m = true;

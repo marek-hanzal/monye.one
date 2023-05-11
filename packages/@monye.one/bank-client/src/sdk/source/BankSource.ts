@@ -19,4 +19,4 @@ export const BankSource = withSource<ISourceSchema>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vreazj2s4dgcjjsgwv55fi00 = true;
+export const $leight_kchb4gw8awl9wu7yj9akd6wt = true;

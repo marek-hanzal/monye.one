@@ -16,4 +16,4 @@ export const CalendarEventRepositoryHandler = withRepositoryHandler<CalendarEven
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_v69pyya225d5pxh8fulawzfu = true;
+export const $leight_n44gzi54d0tkik8j3ilz4mr6 = true;

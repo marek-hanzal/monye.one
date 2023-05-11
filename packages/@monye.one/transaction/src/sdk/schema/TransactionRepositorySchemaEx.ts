@@ -27,4 +27,4 @@ export const TransactionRepositorySchemaEx: ITransactionRepositoryExSchema = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_n2sts65nt432umlim4ahlgg5 = true;
+export const $leight_c9ddk5kscyzpw4wjjud5t38s = true;

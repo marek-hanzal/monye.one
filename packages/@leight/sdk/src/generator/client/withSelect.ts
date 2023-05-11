@@ -65,7 +65,7 @@ export const withSelect: IGenerator<IWithSelectParams> = async (
                     [`I${name}SourceSelect<TFormSchemaType extends IFormSchemaType>`]: {
                         extends: [
                             {
-                                type: `Omit<ISourceSelectProps<TFormSchemaType, SourceSchema>, "SelectionContext" | "SourceStore">`,
+                                type: `Omit<ISourceSelectProps<TFormSchemaType, SourceSchema>, "SelectionContext" | "Source">`,
                             }
                         ],
                     }
@@ -74,13 +74,14 @@ export const withSelect: IGenerator<IWithSelectParams> = async (
             .withConsts({
                 exports: {
                     [`${name}SourceSelect`]: {
+                        // language=text
                         body: `
 <TFormSchemaType extends IFormSchemaType>(props: I${name}SourceSelect<TFormSchemaType>) => {
     return <SourceSelect<TFormSchemaType, SourceSchema>
-        SelectionContext={${name}Selection};
-        Source={Source};
-        {...props;}
-    />;;;
+        SelectionContext={${name}Selection}
+        Source={Source}
+        {...props}
+    />
 }
                         `,
                     }
@@ -104,7 +105,7 @@ export const withSelect: IGenerator<IWithSelectParams> = async (
                     [`../selection/${name}MultiSelection`]: [
                         `${name}MultiSelection`,
                     ],
-                    [`../source/${name}SourceStore`]:       [
+                    [`../source/${name}Source`]:            [
                         `${name}Source as Source`,
                     ],
                 },
@@ -121,7 +122,7 @@ export const withSelect: IGenerator<IWithSelectParams> = async (
                     [`I${name}MultiSourceSelect<TFormSchemaType extends IFormSchemaType>`]: {
                         extends: [
                             {
-                                type: `Omit<ISourceMultiSelectProps<TFormSchemaType, SourceSchema>, "SelectionContext" | "SourceStore">`,
+                                type: `Omit<ISourceMultiSelectProps<TFormSchemaType, SourceSchema>, "SelectionContext" | "Source">`,
                             }
                         ],
                     }
@@ -130,6 +131,7 @@ export const withSelect: IGenerator<IWithSelectParams> = async (
             .withConsts({
                 exports: {
                     [`${name}MultiSourceSelect`]: {
+                        // language=text
                         body: `
 <TFormSchemaType extends IFormSchemaType>(props: I${name}MultiSourceSelect<TFormSchemaType>) => {
     return <SourceMultiSelect<TFormSchemaType, SourceSchema>

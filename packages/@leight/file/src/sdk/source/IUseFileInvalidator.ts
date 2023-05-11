@@ -11,4 +11,4 @@ export type IUseFileInvalidator = ISource.IUseInvalidator;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_nsil3av0cl7bucr4ahdt1m28 = true;
+export const $leight_kjirjkbxzjshcyfunakipmzf = true;

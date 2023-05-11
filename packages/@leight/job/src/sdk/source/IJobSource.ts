@@ -12,4 +12,4 @@ export type IJobSource = ISource<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ljgm6nt2g2am7forinqrmirw = true;
+export const $leight_zawjjg55jexf2mw7ncu4dxh7 = true;

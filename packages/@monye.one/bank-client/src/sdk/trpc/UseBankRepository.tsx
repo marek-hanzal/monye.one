@@ -15,4 +15,4 @@ export const UseBankRepository: UseRepository = withUseRepository<SourceSchema>(
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mp3510cbpt6n57hdmpw78wbr = true;
+export const $leight_tamb8rg65qb44qr9m39ghopa = true;

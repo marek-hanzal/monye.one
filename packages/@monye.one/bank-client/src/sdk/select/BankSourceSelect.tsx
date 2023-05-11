@@ -12,18 +12,18 @@ import {BankSelection} from "../selection/BankSelection";
 import {BankSource as Source} from "../source/BankSource";
 import {type IBankSourceSchema as SourceSchema} from "@monye.one/bank";
 
-export interface IBankSourceSelect<TFormSchemaType extends IFormSchemaType> extends Omit<ISourceSelectProps<TFormSchemaType, SourceSchema>, "SelectionContext" | "SourceStore"> {
+export interface IBankSourceSelect<TFormSchemaType extends IFormSchemaType> extends Omit<ISourceSelectProps<TFormSchemaType, SourceSchema>, "SelectionContext" | "Source"> {
 }
 
 export const BankSourceSelect = <TFormSchemaType extends IFormSchemaType>(props: IBankSourceSelect<TFormSchemaType>) => {
     return <SourceSelect<TFormSchemaType, SourceSchema>
-        SelectionContext={BankSelection};
-        Source={Source};
-        {...props;}
-    />;;;
+        SelectionContext={BankSelection}
+        Source={Source}
+        {...props}
+    />
 };
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wzzj35pdla9scjwzp6pazsko = true;
+export const $leight_wdszf73upyiiagznoxv7bmvm = true;

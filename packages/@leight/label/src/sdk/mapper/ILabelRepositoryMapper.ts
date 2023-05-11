@@ -13,4 +13,4 @@ export interface ILabelRepositoryMapper extends IRepositoryMapper<LabelSource["S
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ema6ym4r6ldshkmr8qpyt6sj = true;
+export const $leight_yiaxmb6rtnwgtlvkxft6izfq = true;

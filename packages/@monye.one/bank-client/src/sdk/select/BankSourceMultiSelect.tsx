@@ -9,10 +9,10 @@ import {
 	SourceMultiSelect
 } from "@leight/form-client";
 import {BankMultiSelection} from "../selection/BankMultiSelection";
-import {BankSource as Source} from "../source/BankSourceStore";
+import {BankSource as Source} from "../source/BankSource";
 import {type IBankSourceSchema as SourceSchema} from "@monye.one/bank";
 
-export interface IBankMultiSourceSelect<TFormSchemaType extends IFormSchemaType> extends Omit<ISourceMultiSelectProps<TFormSchemaType, SourceSchema>, "SelectionContext" | "SourceStore"> {
+export interface IBankMultiSourceSelect<TFormSchemaType extends IFormSchemaType> extends Omit<ISourceMultiSelectProps<TFormSchemaType, SourceSchema>, "SelectionContext" | "Source"> {
 }
 
 export const BankMultiSourceSelect = <TFormSchemaType extends IFormSchemaType>(props: IBankMultiSourceSelect<TFormSchemaType>) => {
@@ -26,4 +26,4 @@ export const BankMultiSourceSelect = <TFormSchemaType extends IFormSchemaType>(p
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ypiov5rcls0815crvqrakt8e = true;
+export const $leight_kbxevpdvrzd2cjxfetchptdl = true;

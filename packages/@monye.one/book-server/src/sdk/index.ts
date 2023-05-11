@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_tagt07q77c230f66kbzmi2ze = true;
+export const $leight_zmzbnb6evrkrahwoymswicsd = true;
 
 export * from "./index";
 export * from "./container/withCalendarEventRepositoryContainer";
