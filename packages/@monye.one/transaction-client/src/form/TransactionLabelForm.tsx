@@ -9,7 +9,10 @@ export interface ITransactionLabelFormProps extends Omit<ITransactionLabelTrpcFo
 
 export const TransactionLabelForm: FC<ITransactionLabelFormProps> = props => {
     return <TransactionLabelTrpcForm
-        toRequest={({values}) => values}
+        toRequest={({values}) => ({
+            patch:  values,
+            filter: {},
+        })}
         toValues={values => ({labelIds: []})}
         inputs={() => ({
             "labelIds": () => null,

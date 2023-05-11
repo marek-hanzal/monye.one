@@ -1,4 +1,5 @@
-import {z} from "@leight/zod";
+import {z}            from "@leight/zod";
+import {FilterSchema} from "./FilterSchema";
 
 export const WithIdentitySchema = z.object({
     id: z.string(),
@@ -35,3 +36,10 @@ export type IPatch = z.infer<IPatchSchema>;
 export const ToPatchSchema = z.object({});
 export type IToPatchSchema = z.ZodObject<any, "strip">;
 export type IToPatch = z.infer<IToPatchSchema>;
+
+export const ToPatchPropsSchema = z.object({
+    patch:  ToPatchSchema,
+    filter: FilterSchema,
+});
+export type IToPatchPropsSchema = typeof ToPatchPropsSchema;
+export type IToPatchProps = z.infer<IToPatchPropsSchema>;
