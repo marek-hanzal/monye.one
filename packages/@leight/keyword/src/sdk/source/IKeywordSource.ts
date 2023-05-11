@@ -12,4 +12,4 @@ export type IKeywordSource = ISource<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_d047v47u6428mxqidcw41e2d = true;
+export const $leight_gwf6nqxvr1emy1l5ne7jyrwt = true;

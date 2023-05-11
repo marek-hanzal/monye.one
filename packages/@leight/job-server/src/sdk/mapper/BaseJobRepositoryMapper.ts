@@ -13,4 +13,4 @@ export class BaseJobRepositoryMapper extends AbstractRepositoryMapper<JobSource[
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_iumvu2z6hzf5bi8enxqd4rzj = true;
+export const $leight_uws85a5g0j926r44buqls76w = true;

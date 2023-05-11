@@ -91,78 +91,24 @@ void generatorClient({
             },
         ],
     },
+    withSelection:     {
+        selections: [
+            {
+                name:     "Bank",
+                packages: {
+                    schema: "@monye.one/bank",
+                },
+            },
+        ],
+    },
+    withSelect:        {
+        selects: [
+            {
+                name:     "Bank",
+                packages: {
+                    schema: "@monye.one/bank",
+                },
+            },
+        ],
+    },
 });
-
-
-// void withSdk(
-//     withClientSourceGenerators({
-//         Selection:      {
-//             selections: [
-//                 {
-//                     name:     "Bank",
-//                     packages: {
-//                         schema: "@monye.one/bank",
-//                     },
-//                 },
-//             ],
-//         },
-//         Select:         {
-//             selects: [
-//                 {
-//                     name:     "Bank",
-//                     packages: {
-//                         schema: "@monye.one/bank",
-//                     },
-//                 },
-//             ],
-//         },
-//         SourceTable:    {
-//             entities: [
-//                 {
-//                     name:     "Bank",
-//                     packages: {
-//                         schema: "@monye.one/bank",
-//                     },
-//                 },
-//             ],
-//         },
-//         Trpc:           {
-//             entities: [
-//                 {
-//                     name:     "Bank",
-//                     packages: {
-//                         schema: "@monye.one/bank",
-//                     },
-//                     withTrpc: {
-//                         path:         "bank",
-//                         package:      "@monye.one/trpc-client",
-//                         invalidators: [
-//                             "bank.source.query",
-//                             "bank.source.count",
-//                         ],
-//                     },
-//                 }
-//             ],
-//         },
-//         SourceStore:    {
-//             entities: [
-//                 {
-//                     name:     "Bank",
-//                     packages: {
-//                         schema: "@monye.one/bank",
-//                     },
-//                 },
-//             ],
-//         },
-//         SourceProvider: {
-//             entities: [
-//                 {
-//                     name:     "Bank",
-//                     packages: {
-//                         schema: "@monye.one/bank",
-//                     },
-//                 },
-//             ],
-//         },
-//     })
-// );

@@ -16,6 +16,10 @@ import {
     withQueryProvider
 }                                from "./withQueryProvider";
 import {
+    IWithSelectParams,
+    withSelect
+}                                from "./withSelect";
+import {
     type IWithSelectionParams,
     withSelection
 }                                from "./withSelection";
@@ -42,6 +46,7 @@ export type IGeneratorClientProps =
         withForm?: IWithFormParams;
         withTable?: IWithTableParams;
         withQueryProvider?: IWithQueryProviderParams;
+        withSelect?: IWithSelectParams;
     };
 
 export const generatorClient = (
@@ -90,6 +95,10 @@ export const generatorClient = (
                 params.withQueryProvider ? withQueryProvider({
                     ...$params,
                     params: params.withQueryProvider,
+                }) : undefined,
+                params.withSelect ? withSelect({
+                    ...$params,
+                    params: params.withSelect,
                 }) : undefined,
             ]);
             await generatorSdkBarrel({

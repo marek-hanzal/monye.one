@@ -13,4 +13,4 @@ export interface IBankRepositoryMapper extends IRepositoryMapper<BankSource["Sch
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_osglkw0iff2quj7k2uxv15s4 = true;
+export const $leight_m3vakze3uaeha4cidlpzmb2z = true;

@@ -13,4 +13,4 @@ export interface ITransactionRepositoryMapper extends IRepositoryMapper<Transact
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_g9z416kk4rufl81pvhuufpo6 = true;
+export const $leight_sxs7hvl3e7vpaqlhnt280un7 = true;

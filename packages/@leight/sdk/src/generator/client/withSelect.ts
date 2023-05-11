@@ -2,12 +2,12 @@ import {withSourceFile}  from "@leight/generator-server";
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
-export interface IGeneratorClientSourceSelectParams {
-    selects: IGeneratorClientSourceSelectParams.IForm[];
+export interface IWithSelectParams {
+    selects: IWithSelectParams.ISelect[];
 }
 
-export namespace IGeneratorClientSourceSelectParams {
-    export interface IForm {
+export namespace IWithSelectParams {
+    export interface ISelect {
         /**
          * Base name exported (used to name all exported objects)
          */
@@ -23,13 +23,18 @@ export namespace IGeneratorClientSourceSelectParams {
     }
 }
 
-export const generatorClientSourceSelect: IGenerator<IGeneratorClientSourceSelectParams> = async (
+export const withSelect: IGenerator<IWithSelectParams> = async (
     {
         barrel,
         directory,
         params: {selects}
     }) => {
-    selects.forEach(({name, packages}) => {
+    selects.forEach(({
+                         name,
+                         packages
+                     }) => {
+        console.log(`- Generating [withSelect] [${name}]`);
+
         withSourceFile()
             .withImports({
                 imports: {
@@ -40,18 +45,18 @@ export const generatorClientSourceSelect: IGenerator<IGeneratorClientSourceSelec
                         "type ISourceSelectProps",
                         "SourceSelect",
                     ],
-                    [`../Selection/${name}Selection`]: [
+                    [`../selection/${name}Selection`]: [
                         `${name}Selection`,
                     ],
-                    [`../Source/${name}SourceStore`]: [
-                        `${name}SourceStore`,
+                    [`../source/${name}Source`]:       [
+                        `${name}Source as Source`,
                     ],
                 },
             })
             .withImports({
                 imports: {
                     [packages.schema]: [
-                        `type I${name}SourceSchemaType`,
+                        `type I${name}SourceSchema as SourceSchema`,
                     ],
                 }
             })
@@ -60,7 +65,7 @@ export const generatorClientSourceSelect: IGenerator<IGeneratorClientSourceSelec
                     [`I${name}SourceSelect<TFormSchemaType extends IFormSchemaType>`]: {
                         extends: [
                             {
-                                type: `Omit<ISourceSelectProps<TFormSchemaType, I${name}SourceSchemaType>, "SelectionContext" | "SourceStore">`,
+                                type: `Omit<ISourceSelectProps<TFormSchemaType, SourceSchema>, "SelectionContext" | "SourceStore">`,
                             }
                         ],
                     }
@@ -71,43 +76,43 @@ export const generatorClientSourceSelect: IGenerator<IGeneratorClientSourceSelec
                     [`${name}SourceSelect`]: {
                         body: `
 <TFormSchemaType extends IFormSchemaType>(props: I${name}SourceSelect<TFormSchemaType>) => {
-    return <SourceSelect<TFormSchemaType, I${name}SourceSchemaType>
-        SelectionContext={${name}Selection}
-        SourceStore={${name}SourceStore}
-        {...props}
-    />;
+    return <SourceSelect<TFormSchemaType, SourceSchema>
+        SelectionContext={${name}Selection};
+        Source={Source};
+        {...props;}
+    />;;;
 }
                         `,
                     }
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/SourceSelect/${name}SourceSelect.tsx`),
+                file: normalize(`${directory}/select/${name}SourceSelect.tsx`),
                 barrel,
             });
 
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/form":                    [
+                    "@leight/form":                         [
                         "type IFormSchemaType",
                     ],
-                    "@leight/form-client":             [
+                    "@leight/form-client":                  [
                         "type ISourceMultiSelectProps",
                         "SourceMultiSelect",
                     ],
-                    [`../Selection/${name}MultiSelection`]: [
+                    [`../selection/${name}MultiSelection`]: [
                         `${name}MultiSelection`,
                     ],
-                    [`../Source/${name}SourceStore`]: [
-                        `${name}SourceStore`,
+                    [`../source/${name}SourceStore`]:       [
+                        `${name}Source as Source`,
                     ],
                 },
             })
             .withImports({
                 imports: {
                     [packages.schema]: [
-                        `type I${name}SourceSchemaType`,
+                        `type I${name}SourceSchema as SourceSchema`,
                     ],
                 }
             })
@@ -116,7 +121,7 @@ export const generatorClientSourceSelect: IGenerator<IGeneratorClientSourceSelec
                     [`I${name}MultiSourceSelect<TFormSchemaType extends IFormSchemaType>`]: {
                         extends: [
                             {
-                                type: `Omit<ISourceMultiSelectProps<TFormSchemaType, I${name}SourceSchemaType>, "SelectionContext" | "SourceStore">`,
+                                type: `Omit<ISourceMultiSelectProps<TFormSchemaType, SourceSchema>, "SelectionContext" | "SourceStore">`,
                             }
                         ],
                     }
@@ -127,9 +132,9 @@ export const generatorClientSourceSelect: IGenerator<IGeneratorClientSourceSelec
                     [`${name}MultiSourceSelect`]: {
                         body: `
 <TFormSchemaType extends IFormSchemaType>(props: I${name}MultiSourceSelect<TFormSchemaType>) => {
-    return <SourceMultiSelect<TFormSchemaType, I${name}SourceSchemaType>
+    return <SourceMultiSelect<TFormSchemaType, SourceSchema>
         SelectionContext={${name}MultiSelection}
-        SourceStore={${name}SourceStore}
+        Source={Source}
         {...props}
     />
 }
@@ -138,7 +143,7 @@ export const generatorClientSourceSelect: IGenerator<IGeneratorClientSourceSelec
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/SourceSelect/${name}SourceMultiSelect.tsx`),
+                file: normalize(`${directory}/select/${name}SourceMultiSelect.tsx`),
                 barrel,
             });
     });
