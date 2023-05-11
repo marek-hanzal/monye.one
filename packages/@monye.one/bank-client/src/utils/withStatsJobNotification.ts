@@ -1,10 +1,10 @@
-import {type IJobSourceSchemaType} from "@leight/job";
-import {withJobNotification} from "@leight/job-client";
-import {type IBankSourceSchemaType} from "@monye.one/bank";
-import {trpc} from "@monye.one/trpc-client";
+import {type IJobSourceType}  from "@leight/job";
+import {withJobNotification}  from "@leight/job-client";
+import {type IBankSourceType} from "@monye.one/bank";
+import {trpc}                 from "@monye.one/trpc-client";
 
 export interface IWithStatsJobNotificationProps {
-    bank: IBankSourceSchemaType["Dto"];
+    bank: IBankSourceType["Dto"];
 }
 
 export const withStatsJobNotification = (
@@ -12,7 +12,7 @@ export const withStatsJobNotification = (
         bank
     }: IWithStatsJobNotificationProps) => {
     return {
-        onSuccess(job: IJobSourceSchemaType["Dto"]) {
+        onSuccess(job: IJobSourceType["Dto"]) {
             withJobNotification({
                 job,
                 withTranslation: {
@@ -20,7 +20,7 @@ export const withStatsJobNotification = (
                     label:     "stats.update",
                     values:    bank,
                 },
-                useJobGetQuery: trpc.job.source.find.useQuery,
+                useJobGetQuery:  trpc.job.repository.get.useQuery,
             });
         }
     };
