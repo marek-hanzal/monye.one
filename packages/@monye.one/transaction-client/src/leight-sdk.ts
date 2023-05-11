@@ -1,7 +1,7 @@
 import {generatorClient} from "@leight/sdk";
 
 void generatorClient({
-    withSource:    {
+    withSource:     {
         sources: [
             {
                 name:              "Transaction",
@@ -26,7 +26,7 @@ void generatorClient({
             },
         ],
     },
-    withSelection: {
+    withSelection:  {
         selections: [
             {
                 name:     "Transaction",
@@ -36,12 +36,25 @@ void generatorClient({
             },
         ],
     },
-    withTable:     {
+    withTable:      {
         tables: [
             {
                 name:     "Transaction",
                 packages: {
                     schema: "@monye.one/transaction",
+                },
+            },
+        ],
+    },
+    withFilterForm: {
+        forms: [
+            {
+                name:        "Transaction",
+                packages:    {
+                    schema: "@monye.one/transaction",
+                },
+                translation: {
+                    namespace: "translation",
                 },
             },
         ],

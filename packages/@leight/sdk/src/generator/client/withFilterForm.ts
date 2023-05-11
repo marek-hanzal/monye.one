@@ -6,11 +6,11 @@ import {
 import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
-export interface IGeneratorClientFilterFormParams {
-    forms: IGeneratorClientFilterFormParams.IForm[];
+export interface IWithFilterFormParams {
+    forms: IWithFilterFormParams.IForm[];
 }
 
-export namespace IGeneratorClientFilterFormParams {
+export namespace IWithFilterFormParams {
     export interface IForm {
         /**
          * Base name exported (used to name all exported objects)
@@ -36,13 +36,20 @@ export namespace IGeneratorClientFilterFormParams {
     }
 }
 
-export const generatorClientFilterForm: IGenerator<IGeneratorClientFilterFormParams> = async (
+export const withFilterForm: IGenerator<IWithFilterFormParams> = async (
     {
         barrel,
         directory,
         params: {forms}
     }) => {
-    forms.forEach(({name, translation, packages, withFilter}) => {
+    forms.forEach(({
+                       name,
+                       translation,
+                       packages,
+                       withFilter
+                   }) => {
+        console.log(`- Generating [withFilterForm] [${name}]`);
+
         withSourceFile()
             .withImports({
                 imports: {
@@ -66,7 +73,7 @@ createFormContext<I${name}FilterFormSchemaType>({
                 }
             })
             .saveTo({
-                file:   normalize(`${directory}/FormStoreContext/${name}FilterFormStoreContext.tsx`),
+                file:   normalize(`${directory}/context/${name}FilterFormStoreContext.tsx`),
                 barrel: false,
             });
 
@@ -89,7 +96,7 @@ createFormContext<I${name}FilterFormSchemaType>({
                 },
             })
             .saveTo({
-                file:   normalize(`${directory}/FormStoreContext/${name}MantineFilterFormContext.tsx`),
+                file:   normalize(`${directory}/context/${name}MantineFilterFormContext.tsx`),
                 barrel: false,
             });
 
@@ -106,7 +113,7 @@ createFormContext<I${name}FilterFormSchemaType>({
                     "react":                                               [
                         "type FC",
                     ],
-                    [`../FormStoreContext/${name}FilterFormStoreContext`]: [
+                    [`../context/${name}FilterFormStoreContext`]: [
                         `${name}FilterFormStoreContext`,
                     ],
                 },
@@ -127,7 +134,7 @@ props => {
                 },
             })
             .saveTo({
-                file:   normalize(`${directory}/FilterForm/${name}FilterInput.tsx`),
+                file:   normalize(`${directory}/form/${name}FilterInput.tsx`),
                 barrel: false,
             });
 
@@ -145,14 +152,14 @@ props => {
                         `type I${name}FilterFormSchemaType`,
                         `type I${name}SourceSchemaType`,
                     ],
-                    [`../FormStoreContext/${name}FilterFormStoreContext`]:   [
+                    [`../context/${name}FilterFormStoreContext`]:   [
                         `${name}FilterFormStoreContext`,
                     ],
-                    [`../FormStoreContext/${name}MantineFilterFormContext`]: [
+                    [`../context/${name}MantineFilterFormContext`]: [
                         `${name}MantineFilterFormContext`,
                     ],
-                    [`../Source/${name}SourceStore`]:                        [
-                        `${name}SourceStore`,
+                    [`../source/${name}SourceStore`]:                        [
+                        `${name}Source`,
                     ],
                 },
             })
@@ -178,7 +185,7 @@ props => {
                         body: `
 ({getFilterName, ...props}) => {
     return <BaseFilterForm<I${name}FilterFormSchemaType, I${name}SourceSchemaType>
-        SourceStore={${name}SourceStore}
+        Source={${name}Source}
         MantineContext={${name}MantineFilterFormContext}
         schemas={${name}FilterFormSchema}
         FormContext={${name}FilterFormStoreContext}
@@ -201,14 +208,14 @@ props => {
                                 type: `Omit<IBaseFilterFormProps<I${name}FilterFormSchemaType, I${name}SourceSchemaType>, "SourceStore" | "FormContext" | "MantineContext" | "withTranslation">`,
                             },
                         ],
-                        body: `
+                        body:    `
 getFilterName?: IBaseFilterFormProps.IWithFilterQuery<I${name}FilterFormSchemaType>["getName"];
                         `,
                     },
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/FilterForm/${name}BaseFilterForm.tsx`),
+                file: normalize(`${directory}/form/${name}BaseFilterForm.tsx`),
                 barrel,
             });
     });

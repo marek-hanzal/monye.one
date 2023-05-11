@@ -15,4 +15,4 @@ export const TransactionSelection = createSelectionStore<TransactionSource["Type
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_uwhwri8m6szdmwyyrjkjguiv = true;
+export const $leight_y38g17bllkgiztw191m2pql6 = true;

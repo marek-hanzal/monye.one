@@ -4,6 +4,10 @@ import {type ISdkGeneratorProps} from "../../api";
 import {withSdk}                 from "../../index";
 import {generatorSdkBarrel}      from "../generatorSdkBarrel";
 import {
+    IWithFilterFormParams,
+    withFilterForm
+}                                from "./withFilterForm";
+import {
     type IWithFormParams,
     withForm
 }                                from "./withForm";
@@ -47,6 +51,7 @@ export type IGeneratorClientProps =
         withTable?: IWithTableParams;
         withQueryProvider?: IWithQueryProviderParams;
         withSelect?: IWithSelectParams;
+        withFilterForm?: IWithFilterFormParams;
     };
 
 export const generatorClient = (
@@ -99,6 +104,10 @@ export const generatorClient = (
                 params.withSelect ? withSelect({
                     ...$params,
                     params: params.withSelect,
+                }) : undefined,
+                params.withFilterForm ? withFilterForm({
+                    ...$params,
+                    params: params.withFilterForm,
                 }) : undefined,
             ]);
             await generatorSdkBarrel({
