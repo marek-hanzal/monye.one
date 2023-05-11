@@ -1,5 +1,5 @@
-import {withSourceFile} from "@leight/generator-server";
-import {normalize} from "node:path";
+import {withSourceFile}  from "@leight/generator-server";
+import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
 export interface IWithSelectionParams {
@@ -49,14 +49,14 @@ export const withSelection: IGenerator<IWithSelectionParams> = async (
             .withImports({
                 imports: {
                     [packages.schema]: [
-                        `type ${name}Source`,
+                        `type I${name}SourceType as SourceType`,
                     ],
                 }
             })
             .withTypes({
                 exports: {
                     [`I${name}SelectionStore`]: `
-IStoreContext<ISelectionStoreProps<${name}Source["Type"]["Dto"]>>
+IStoreContext<ISelectionStoreProps<SourceType["Dto"]>>
                     `,
                 },
             })
@@ -64,7 +64,7 @@ IStoreContext<ISelectionStoreProps<${name}Source["Type"]["Dto"]>>
                 exports: {
                     [`${name}Selection`]: {
                         body: `
-createSelectionStore<${name}Source["Type"]["Dto"]>({name: "${name}"})
+createSelectionStore<SourceType["Dto"]>({name: "${name}"})
                         `,
                     }
                 },
@@ -91,14 +91,14 @@ createSelectionStore<${name}Source["Type"]["Dto"]>({name: "${name}"})
             .withImports({
                 imports: {
                     [packages.schema]: [
-                        `type ${name}Source`,
+                        `type I${name}SourceType as SourceType`,
                     ],
                 }
             })
             .withTypes({
                 exports: {
                     [`I${name}MultiSelectionStore`]: `
-IStoreContext<IMultiSelectionStoreProps<${name}Source["Type"]["Dto"]>>
+IStoreContext<IMultiSelectionStoreProps<SourceType["Dto"]>>
                     `,
                 },
             })
@@ -106,7 +106,7 @@ IStoreContext<IMultiSelectionStoreProps<${name}Source["Type"]["Dto"]>>
                 exports: {
                     [`${name}MultiSelection`]: {
                         body: `
-createMultiSelectionStore<${name}Source["Type"]["Dto"]>({name: "${name}"})
+createMultiSelectionStore<SourceType["Dto"]>({name: "${name}"})
                         `,
                     }
                 },

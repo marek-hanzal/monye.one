@@ -42,12 +42,13 @@ export const withFilterForm: IGenerator<IWithFilterFormParams> = async (
         directory,
         params: {forms}
     }) => {
-    forms.forEach(({
-                       name,
-                       translation,
-                       packages,
-                       withFilter
-                   }) => {
+    forms.forEach((
+        {
+            name,
+            translation,
+            packages,
+            withFilter
+        }) => {
         console.log(`- Generating [withFilterForm] [${name}]`);
 
         withSourceFile()
@@ -103,14 +104,14 @@ createFormContext<I${name}FilterFormSchemaType>({
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/form-client":                                 [
+                    "@leight/form-client":                        [
                         "type IWithInputProps",
                         "WithInput",
                     ],
-                    [packages.schema]:                                     [
+                    [packages.schema]:                            [
                         `type I${name}FilterFormSchemaType`,
                     ],
-                    "react":                                               [
+                    "react":                                      [
                         "type FC",
                     ],
                     [`../context/${name}FilterFormStoreContext`]: [
@@ -141,32 +142,32 @@ props => {
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/filter-client":                                 [
+                    "@leight/filter-client":                        [
                         "BaseFilterForm",
                         "type IBaseFilterFormProps",
                     ],
-                    "react":                                                 [
+                    "react":                                        [
                         "type FC",
                     ],
-                    [packages.schema]:                                       [
-                        `type I${name}FilterFormSchemaType`,
-                        `type I${name}SourceSchemaType`,
+                    [packages.schema]:                              [
+                        `type I${name}FilterFormSchemaType as IFilterFormSchemaType`,
+                        `type I${name}SourceSchema as ISourceSchema`,
                     ],
                     [`../context/${name}FilterFormStoreContext`]:   [
-                        `${name}FilterFormStoreContext`,
+                        `${name}FilterFormStoreContext as FilterFormStoreContext`,
                     ],
                     [`../context/${name}MantineFilterFormContext`]: [
-                        `${name}MantineFilterFormContext`,
+                        `${name}MantineFilterFormContext as MantineFilterFormContext`,
                     ],
-                    [`../source/${name}SourceStore`]:                        [
-                        `${name}Source`,
+                    [`../source/${name}Source`]:                    [
+                        `${name}Source as Source`,
                     ],
                 },
             })
             .withImports({
                 imports: {
                     [packages.schema]: [
-                        `${name}FilterFormSchema`,
+                        `${name}FilterFormSchema as FilterFormSchema`,
                     ],
                 },
             })
@@ -179,21 +180,20 @@ props => {
             } : undefined)
             .withConsts({
                 exports: {
-                    [`${name}BaseFilterForm`]: {
-                        type: `FC<I${name}BaseFilterFormProps>`,
+                    [`Base${name}FilterForm`]: {
+                        type: `FC<IBase${name}FilterFormProps>`,
                         // language=text
                         body: `
-({getFilterName, ...props}) => {
-    return <BaseFilterForm<I${name}FilterFormSchemaType, I${name}SourceSchemaType>
-        Source={${name}Source}
-        MantineContext={${name}MantineFilterFormContext}
-        schemas={${name}FilterFormSchema}
-        FormContext={${name}FilterFormStoreContext}
+${withFilter ? `({getFilterName, ...props}) => {` : `props => {`}
+    return <BaseFilterForm<IFilterFormSchemaType, ISourceSchema>
+        Source={Source}
+        MantineContext={MantineFilterFormContext}
+        schemas={FilterFormSchema}
+        FormContext={FilterFormStoreContext}
         withTranslation={{
             namespace: "${translation.namespace}",
             label:     "${name}BaseFilterForm",
-        }}
-        ${withFilter ? `withFilterQuery={getFilterName ? {getName: getFilterName, type: "${withFilter.type}", UseFilterQuery: ${withPackageImport(withFilter.package)}} : undefined}\n\t\t` : "\n\t\t"}{...props}
+        }}${withFilter ? `\n\t\twithFilterQuery={getFilterName ? {getName: getFilterName, type: "${withFilter.type}", Source: ${withPackageImport(withFilter.package)}} : undefined}\n\t\t` : "\n\t\t"}{...props}
     />;
 }
                         `,
@@ -202,20 +202,20 @@ props => {
             })
             .withInterfaces({
                 exports: {
-                    [`I${name}BaseFilterFormProps`]: {
+                    [`IBase${name}FilterFormProps`]: {
                         extends: [
                             {
-                                type: `Omit<IBaseFilterFormProps<I${name}FilterFormSchemaType, I${name}SourceSchemaType>, "SourceStore" | "FormContext" | "MantineContext" | "withTranslation">`,
+                                type: `Omit<IBaseFilterFormProps<IFilterFormSchemaType, ISourceSchema>, "Source" | "FormContext" | "MantineContext" | "withTranslation">`,
                             },
                         ],
                         body:    `
-getFilterName?: IBaseFilterFormProps.IWithFilterQuery<I${name}FilterFormSchemaType>["getName"];
+getFilterName?: IBaseFilterFormProps.IWithFilterQuery<IFilterFormSchemaType>["getName"];
                         `,
                     },
                 },
             })
             .saveTo({
-                file: normalize(`${directory}/form/${name}BaseFilterForm.tsx`),
+                file: normalize(`${directory}/form/Base${name}FilterForm.tsx`),
                 barrel,
             });
     });

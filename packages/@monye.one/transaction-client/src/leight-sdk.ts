@@ -56,6 +56,33 @@ void generatorClient({
                 translation: {
                     namespace: "translation",
                 },
+                withFilter:  {
+                    type:    "@monye.one/transaction",
+                    package: {
+                        type:        "FilterSource",
+                        withPackage: {
+                            package: "@monye.one/filter-client",
+                        },
+                    },
+                },
+            },
+        ],
+    },
+    withForm:       {
+        forms: [
+            {
+                type:        "dto",
+                name:        "TransactionLabel",
+                translation: {
+                    namespace: "transaction",
+                },
+                packages:    {
+                    schema: "@monye.one/transaction",
+                },
+                withTrpc:    {
+                    source: "Transaction",
+                    use:    "usePatchBy",
+                },
             },
         ],
     },

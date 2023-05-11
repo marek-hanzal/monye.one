@@ -4,11 +4,11 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {createMantineFormContext} from "@leight/form-client";
-import {type ITransactionFilterFormSchemaType} from "@monye.one/transaction";
+import {type ITransactionLabelFormSchemaType} from "@monye.one/transaction";
 
-export const TransactionMantineFilterFormContext = createMantineFormContext<ITransactionFilterFormSchemaType>();
+export const TransactionLabelMantineFormContext = createMantineFormContext<ITransactionLabelFormSchemaType>();
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mpv5m3w6l91hku044nk303cz = true;
+export const $leight_n95e23x014yobizxkp0cm1xg = true;

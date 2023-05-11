@@ -1,7 +1,7 @@
 import {generatorClient} from "@leight/sdk";
 
 void generatorClient({
-    withSource: {
+    withSource:        {
         sources: [
             {
                 name:              "Filter",
@@ -26,7 +26,7 @@ void generatorClient({
             },
         ],
     },
-    withTable:  {
+    withTable:         {
         tables: [
             {
                 name:     "Filter",
@@ -34,6 +34,36 @@ void generatorClient({
                     schema: "@leight/filter",
                 },
             },
+        ],
+    },
+    withSelection:     {
+        selections: [
+            {
+                name:     "Filter",
+                packages: {
+                    schema: "@leight/filter",
+                },
+            },
+        ],
+    },
+    withSelect:        {
+        selects: [
+            {
+                name:     "Filter",
+                packages: {
+                    schema: "@leight/filter",
+                },
+            },
+        ],
+    },
+    withQueryProvider: {
+        sources: [
+            {
+                name:     "Filter",
+                packages: {
+                    schema: "@leight/filter",
+                },
+            }
         ],
     },
 });

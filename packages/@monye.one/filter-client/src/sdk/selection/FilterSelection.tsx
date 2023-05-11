@@ -6,13 +6,13 @@
 import {createSelectionStore} from "@leight/selection-client";
 import {type IStoreContext} from "@leight/context";
 import {type ISelectionStoreProps} from "@leight/selection";
-import {type ITransactionSourceType as SourceType} from "@monye.one/transaction";
+import {type IFilterSourceType as SourceType} from "@leight/filter";
 
-export type ITransactionSelectionStore = IStoreContext<ISelectionStoreProps<SourceType["Dto"]>>;
+export type IFilterSelectionStore = IStoreContext<ISelectionStoreProps<SourceType["Dto"]>>;
 
-export const TransactionSelection = createSelectionStore<SourceType["Dto"]>({name: "Transaction"});
+export const FilterSelection = createSelectionStore<SourceType["Dto"]>({name: "Filter"});
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mhmacy36zwbvjydro42b1e8m = true;
+export const $leight_yb7976v5izw5obbt0z4v5df5 = true;
