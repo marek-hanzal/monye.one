@@ -11,7 +11,7 @@ import {
 import {TableRowMenu}             from "@leight/table-client";
 import {Menu}                     from "@mantine/core";
 import {modals}                   from "@mantine/modals";
-import {type IBankSource}         from "@monye.one/bank";
+import {type IBankSourceSchema}   from "@monye.one/bank";
 import {TransactionImport}        from "@monye.one/transaction-ex-client";
 import {trpc}                     from "@monye.one/trpc-client";
 import {
@@ -25,12 +25,11 @@ import {BankSource}               from "../sdk";
 import {withStatsJobNotification} from "../utils";
 import {type IBankTableProps}     from "./BankTable";
 
-
 export const BankTableRowAction: IBankTableProps["WithRowAction"] = ({item}) => {
     const bankStatsMutation = trpc.bank.stats.useMutation();
     return <ModalStoreProvider>
         <DrawerStoreProvider>
-            <DeleteModal<IBankSource>
+            <DeleteModal<IBankSourceSchema>
                 modalId={"bank.delete"}
                 Source={BankSource}
                 withTranslation={{

@@ -5,7 +5,7 @@
  */
 import {withUseRepository} from "@leight/source-client";
 import {
-	type UseLabelRepository as UseRepository,
+	type IUseLabelRepository as UseRepository,
 	type ILabelSourceSchema as SourceSchema
 } from "@leight/label";
 import {trpc} from "@monye.one/trpc-client";
@@ -15,4 +15,4 @@ export const UseLabelRepository: UseRepository = withUseRepository<SourceSchema>
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_txsoqc3krdvxqih3lpjc94mv = true;
+export const $leight_gr3oicbih14patd1zju1zoif = true;

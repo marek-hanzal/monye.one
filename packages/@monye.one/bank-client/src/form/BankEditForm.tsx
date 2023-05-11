@@ -16,35 +16,56 @@ export interface IBankEditFormProps extends Omit<IBankEditTrpcFormProps, "toRequ
 
 export const BankEditForm: FC<IBankEditFormProps> = props => {
     return <BankEditTrpcForm
-        toRequest={({values: {balance, ...values}}) => ({
-            toPatch: {
+        toRequest={({
+                        values: {
+                                    balance,
+                                    ...values
+                                }
+                    }) => ({
+            patch:  {
                 balance: balance || null,
                 ...values,
             },
-            filter:  {
+            filter: {
                 id: props.dto.id,
             },
         })}
         toValues={({dto}) => dto}
         inputs={() => ({
-            "account":       ({mandatory, withLabel, withDescription}) => <TextInput
+            "account":       ({
+                                  mandatory,
+                                  withLabel,
+                                  withDescription
+                              }) => <TextInput
                 {...mandatory}
                 {...withLabel}
                 {...withDescription}
                 withAsterisk
             />,
-            "description":   ({mandatory, withLabel, withDescription}) => <TextInput
+            "description":   ({
+                                  mandatory,
+                                  withLabel,
+                                  withDescription
+                              }) => <TextInput
                 {...mandatory}
                 {...withLabel}
                 {...withDescription}
             />,
-            "balance.value": ({mandatory, withLabel, withDescription}) => <NumberInput
+            "balance.value": ({
+                                  mandatory,
+                                  withLabel,
+                                  withDescription
+                              }) => <NumberInput
                 {...mandatory}
                 {...withLabel}
                 {...withDescription}
                 withAsterisk
             />,
-            "balance.date":  ({mandatory, withLabelPlaceholder, withDescription}) => <DateInput
+            "balance.date":  ({
+                                  mandatory,
+                                  withLabelPlaceholder,
+                                  withDescription
+                              }) => <DateInput
                 {...mandatory}
                 {...mandatory}
                 {...withLabelPlaceholder}

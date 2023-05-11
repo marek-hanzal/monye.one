@@ -21,7 +21,7 @@ export interface IBankCreateFieldsProps {
 export const BankCreateFields: FC<IBankCreateFieldsProps> = () => {
     const [withBalance, setWithBalance] = useState(true);
     const form                          = BankCreateMantineFormContext.useFormContext();
-    const {defaultValues}               = BankCreateFormStoreContext.useState(({defaultValues}) => ({defaultValues}));
+    const {defaultValues}               = BankCreateFormStoreContext.use(({defaultValues}) => ({defaultValues}));
     return <>
         <BankCreateInput path={"account"}/>
         <BankCreateInput path={"description"}/>

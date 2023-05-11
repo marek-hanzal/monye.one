@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_y4438dgawinrp0k0dqn5mumy = true;
+export const $leight_ladvk2pbvb4d4o61n61pupy6 = true;
 
 export * from "./index";
 export * from "./selection/TransactionMultiSelection";

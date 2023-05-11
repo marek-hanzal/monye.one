@@ -47,13 +47,13 @@ export const withQueryProvider: IGenerator<IWithQueryProviderParams> = async (
                         "QueryProvider",
                     ],
                     [packages.schema]:           [
-                        `type ${name}Source as Source`,
+                        `type I${name}SourceSchema as SourceSchema`,
                     ],
                     "react":                     [
                         "type FC",
                     ],
                     [`../source/${name}Source`]: [
-                        `${name}Source`,
+                        `${name}Source as Source`,
                     ],
                 }
             })
@@ -61,7 +61,7 @@ export const withQueryProvider: IGenerator<IWithQueryProviderParams> = async (
                 exports: {
                     [`I${name}QueryProviderProps`]: {
                         extends: [
-                            {type: `Omit<IQueryProviderProps<Source>, "QueryContext">`},
+                            {type: `Omit<IQueryProviderProps<SourceSchema>, "QueryContext">`},
                         ],
                     },
                 },
@@ -76,8 +76,8 @@ export const withQueryProvider: IGenerator<IWithQueryProviderParams> = async (
  */
                         `,
                         body:    `props => {
-    return <QueryProvider<Source>
-        QueryContext={${name}Source.query}
+    return <QueryProvider<SourceSchema>
+        QueryContext={Source.query}
         {...props}
     />;
 }

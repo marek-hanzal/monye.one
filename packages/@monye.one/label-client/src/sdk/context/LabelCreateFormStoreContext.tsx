@@ -13,4 +13,4 @@ export const LabelCreateFormStoreContext = createFormContext<ILabelCreateFormSch
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jf7ez37imyq7vsqwo2aoo4tu = true;
+export const $leight_dwr9laxhex9jsv2uypd6vez7 = true;

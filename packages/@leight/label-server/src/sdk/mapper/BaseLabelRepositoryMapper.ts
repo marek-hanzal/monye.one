@@ -13,4 +13,4 @@ export class BaseLabelRepositoryMapper extends AbstractRepositoryMapper<LabelSou
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_p5oa8lv148byiexdci1pbcfi = true;
+export const $leight_o09a3foba8titxy7rhq89821 = true;

@@ -9,11 +9,11 @@ import {
 } from "@leight/table-client";
 import {
 	FilterSourceSchema as SourceSchema,
-	type FilterSource as Source
+	type IFilterSourceSchema as ISourceSchema
 } from "@leight/filter";
 import {FilterSource} from "../source/FilterSource";
 
-export interface IFilterSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<Source, TColumnKeys>, "Source" | "schema"> {
+export interface IFilterSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<ISourceSchema, TColumnKeys>, "Source" | "schema"> {
 	sourceCacheTime?: number;
 }
 
@@ -25,7 +25,7 @@ export interface IFilterSourceTableProps<TColumnKeys extends string> extends Omi
  * columns and other props as you wish.
  */
 export const FilterSourceTable = <TColumnKeys extends string>(props: IFilterSourceTableInternalProps<TColumnKeys>) => {
-    return <SourceTable<Source, TColumnKeys>
+    return <SourceTable<ISourceSchema, TColumnKeys>
         Source={FilterSource}
         schema={SourceSchema["DtoSchema"]}
         {...props}
@@ -35,4 +35,4 @@ export const FilterSourceTable = <TColumnKeys extends string>(props: IFilterSour
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mdh6l6lw8koyd5wgmzw0nyp7 = true;
+export const $leight_zmo21tbkg5jmwo39wcjva3f8 = true;

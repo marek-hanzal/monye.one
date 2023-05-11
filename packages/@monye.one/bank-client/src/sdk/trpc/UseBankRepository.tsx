@@ -5,7 +5,7 @@
  */
 import {withUseRepository} from "@leight/source-client";
 import {
-	type UseBankRepository as UseRepository,
+	type IUseBankRepository as UseRepository,
 	type IBankSourceSchema as SourceSchema
 } from "@monye.one/bank";
 import {trpc} from "@monye.one/trpc-client";
@@ -15,4 +15,4 @@ export const UseBankRepository: UseRepository = withUseRepository<SourceSchema>(
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_s3cv89tkbk0llsgvtqyplk5s = true;
+export const $leight_na5ksfk4gr30ile4ux0s2eeu = true;

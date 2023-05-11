@@ -13,7 +13,7 @@ export interface IBankCreateForm extends Omit<IBankCreateBaseFormProps, "toReque
 
 export const BankCreateForm: FC<IBankCreateForm> = props => {
     return <BankCreateTrpcForm
-        toRequest={({values: toCreate}) => ({toCreate})}
+        toRequest={({values}) => values}
         inputs={BankCreateFormInputFactory}
         defaultValues={{
             account: "",

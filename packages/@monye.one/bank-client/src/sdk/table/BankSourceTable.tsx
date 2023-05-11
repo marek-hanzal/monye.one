@@ -9,11 +9,11 @@ import {
 } from "@leight/table-client";
 import {
 	BankSourceSchema as SourceSchema,
-	type BankSource as Source
+	type IBankSourceSchema as ISourceSchema
 } from "@monye.one/bank";
 import {BankSource} from "../source/BankSource";
 
-export interface IBankSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<Source, TColumnKeys>, "Source" | "schema"> {
+export interface IBankSourceTableInternalProps<TColumnKeys extends string> extends Omit<ISourceTableInternalProps<ISourceSchema, TColumnKeys>, "Source" | "schema"> {
 	sourceCacheTime?: number;
 }
 
@@ -25,7 +25,7 @@ export interface IBankSourceTableProps<TColumnKeys extends string> extends Omit<
  * columns and other props as you wish.
  */
 export const BankSourceTable = <TColumnKeys extends string>(props: IBankSourceTableInternalProps<TColumnKeys>) => {
-    return <SourceTable<Source, TColumnKeys>
+    return <SourceTable<ISourceSchema, TColumnKeys>
         Source={BankSource}
         schema={SourceSchema["DtoSchema"]}
         {...props}
@@ -35,4 +35,4 @@ export const BankSourceTable = <TColumnKeys extends string>(props: IBankSourceTa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ps7vixdm4hnl0b565doil3c7 = true;
+export const $leight_he63thc82ohdinfmd1kd92ip = true;

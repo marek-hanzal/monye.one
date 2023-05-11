@@ -56,4 +56,4 @@ export const TransactionRepositoryRouter = router({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_onsrxc68re1r3qx9eplvfv1j = true;
+export const $leight_gdy0bb4q58tkdxkapfjr5zt8 = true;

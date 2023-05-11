@@ -59,7 +59,7 @@ export const withUseRepository: IGenerator<IWithUseRepositoryParams> = async (
                         "withUseRepository",
                     ],
                     [packages.schema]:       [
-                        `type Use${name}Repository as UseRepository`,
+                        `type IUse${name}Repository as UseRepository`,
                         `type I${name}SourceSchema as SourceSchema`,
                     ],
                 }

@@ -7,19 +7,19 @@ import {
 	type IQueryProviderProps,
 	QueryProvider
 } from "@leight/source-client";
-import {type LabelSource as Source} from "@leight/label";
+import {type ILabelSourceSchema as SourceSchema} from "@leight/label";
 import {type FC} from "react";
-import {LabelSource} from "../source/LabelSource";
+import {LabelSource as Source} from "../source/LabelSource";
 
-export interface ILabelQueryProviderProps extends Omit<IQueryProviderProps<Source>, "QueryContext"> {
+export interface ILabelQueryProviderProps extends Omit<IQueryProviderProps<SourceSchema>, "QueryContext"> {
 }
 
 /**
  * Provides all Query parts for Label used in fetching and sorting its data. 
  */
 export const LabelQueryProvider: FC<ILabelQueryProviderProps> = props => {
-    return <QueryProvider<Source>
-        QueryContext={LabelSource.query}
+    return <QueryProvider<SourceSchema>
+        QueryContext={Source.query}
         {...props}
     />;
 };
@@ -27,4 +27,4 @@ export const LabelQueryProvider: FC<ILabelQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_b9xzgsnzu84umtbp8rsr959i = true;
+export const $leight_ojzhepe1lkkmkgqt8d3rivfz = true;

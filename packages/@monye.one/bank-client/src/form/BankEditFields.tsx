@@ -20,7 +20,7 @@ export interface IBankEditFieldsProps {
 }
 
 export const BankEditFields: FC<IBankEditFieldsProps> = () => {
-    const {defaultValues}               = BankEditFormStoreContext.useState(({defaultValues}) => ({defaultValues}));
+    const {defaultValues}               = BankEditFormStoreContext.use(({defaultValues}) => ({defaultValues}));
     const [withBalance, setWithBalance] = useState(!!defaultValues?.balance);
     const form                          = BankEditMantineFormContext.useFormContext();
     return <>

@@ -5,7 +5,7 @@
  */
 import {withUseRepository} from "@leight/source-client";
 import {
-	type UseFilterRepository as UseRepository,
+	type IUseFilterRepository as UseRepository,
 	type IFilterSourceSchema as SourceSchema
 } from "@leight/filter";
 import {trpc} from "@monye.one/trpc-client";
@@ -15,4 +15,4 @@ export const UseFilterRepository: UseRepository = withUseRepository<SourceSchema
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_u3uzche2tl5ktpfuj3ckknnt = true;
+export const $leight_eghom0w8l07crpjiw11j2tre = true;

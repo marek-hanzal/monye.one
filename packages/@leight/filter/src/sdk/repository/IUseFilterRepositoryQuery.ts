@@ -12,4 +12,4 @@ export type IUseFilterRepositoryQuery = IUseRepositoryQuery<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ru28d9mzakb888s2mvdzoxl7 = true;
+export const $leight_mugb3b65bsuuygib2l4e28os = true;

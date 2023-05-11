@@ -29,7 +29,6 @@ void generatorClient({
     withForm:          {
         forms: [
             {
-                type:        "dto",
                 name:        "BankCreate",
                 translation: {
                     namespace: "bank",

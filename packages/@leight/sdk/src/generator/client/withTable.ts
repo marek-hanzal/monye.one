@@ -48,7 +48,7 @@ export const withTable: IGenerator<IWithTableParams> = async (
                     ],
                     [packages.schema]:           [
                         `${name}SourceSchema as SourceSchema`,
-                        `type ${name}Source as Source`,
+                        `type I${name}SourceSchema as ISourceSchema`,
                     ],
                     [`../source/${name}Source`]: [
                         `${name}Source`,
@@ -59,7 +59,7 @@ export const withTable: IGenerator<IWithTableParams> = async (
                 exports: {
                     [`I${name}SourceTableInternalProps<TColumnKeys extends string>`]: {
                         extends: [
-                            {type: `Omit<ISourceTableInternalProps<Source, TColumnKeys>, "Source" | "schema">`},
+                            {type: `Omit<ISourceTableInternalProps<ISourceSchema, TColumnKeys>, "Source" | "schema">`},
                         ],
                         body:    `
 sourceCacheTime?: number;
@@ -83,7 +83,7 @@ sourceCacheTime?: number;
                         `,
                         // language=text
                         body: `<TColumnKeys extends string>(props: I${name}SourceTableInternalProps<TColumnKeys>) => {
-    return <SourceTable<Source, TColumnKeys>
+    return <SourceTable<ISourceSchema, TColumnKeys>
         Source={${name}Source}
         schema={SourceSchema["DtoSchema"]}
         {...props}
