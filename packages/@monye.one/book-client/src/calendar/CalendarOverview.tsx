@@ -7,7 +7,7 @@ import {Translation}     from "@leight/i18n-client";
 import {Paper}           from "@leight/mantine";
 import {
     FulltextProvider,
-    FulltextStoreContext
+    FulltextStore
 }                        from "@leight/source-client";
 import {
     Group,
@@ -17,7 +17,7 @@ import {
 import {
     SumByInline,
     TransactionQueryProvider,
-    TransactionSourceStore,
+    TransactionSource,
     TransactionTable
 }                        from "@monye.one/transaction-client";
 import {
@@ -32,7 +32,7 @@ import {
 }                        from "react";
 import {
     CalendarEventQueryProvider,
-    CalendarEventSourceStore
+    CalendarEventSource
 }                        from "../sdk";
 import {BookCalendar}    from "./BookCalendar";
 
@@ -47,27 +47,36 @@ export interface ICalendarOverviewProps {
 }
 
 export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
-    const [tab, setTab]                   = useState<string | null>("calendar");
-    const {fulltext}                      = FulltextStoreContext.useState(({fulltext}) => ({fulltext}));
-    const {weeks}                         = WeeksOfStore.useState(({weeks}) => ({weeks}));
+    const [tab, setTab] = useState<string | null>("calendar");
+    const {fulltext} = FulltextStore.use(({fulltext}) => ({fulltext}));
+    const {weeks} = WeeksOfStore.use(({weeks}) => ({weeks}));
     const {
-              transactionFilterId,
-              transactionFilter,
-              setTransactionFilter,
-          }                               = TransactionSourceStore.Query.useState((
+        transactionFilterId,
+        transactionFilter,
+        setTransactionFilter,
+    } = TransactionSource.query.use((
         {
-            $id,
-            $filter,
-            applyShallowFilter,
+            id,
+            filter,
+            withApplyShallowFilter,
         }) => (
         {
-            transactionFilterId:  $id,
-            transactionFilter:    $filter,
-            setTransactionFilter: applyShallowFilter,
+            transactionFilterId:  id,
+            transactionFilter:    filter,
+            setTransactionFilter: withApplyShallowFilter,
         }));
-    const {setCalendarEventShallowFilter} = CalendarEventSourceStore.Query.useState(({setShallowFilter}) => ({setCalendarEventShallowFilter: setShallowFilter}));
+    const {setCalendarEventShallowFilter} = CalendarEventSource.query.use(({withShallowFilter}) => ({setCalendarEventShallowFilter: withShallowFilter}));
 
-    const $setFilter = useCallback(({fulltext, range: {from, to}, withIncome = false, withOutcome = false}: IFilterRange) => {
+    const $setFilter = useCallback((
+        {
+            fulltext,
+            range: {
+                       from,
+                       to
+                   },
+            withIncome = false,
+            withOutcome = false
+        }: IFilterRange) => {
         setTransactionFilter({
             fulltext:  fulltext || undefined,
             withRange: {
@@ -87,7 +96,10 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
 
     useEffect(() => {
         $setFilter({
-            range: {from: weeks.start, to: weeks.end},
+            range: {
+                from: weeks.start,
+                to:   weeks.end
+            },
             fulltext,
         });
     }, []);
@@ -132,25 +144,50 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
                         mt={"sm"}
                         day={{
                             onIncomeClick:  ({range}) => {
-                                $setFilter({fulltext, range, withIncome: true, withOutcome: false});
+                                $setFilter({
+                                    fulltext,
+                                    range,
+                                    withIncome:  true,
+                                    withOutcome: false
+                                });
                                 setTab("transactions");
                             },
                             onOutcomeClick: ({range}) => {
-                                $setFilter({fulltext, range, withIncome: false, withOutcome: true});
+                                $setFilter({
+                                    fulltext,
+                                    range,
+                                    withIncome:  false,
+                                    withOutcome: true
+                                });
                                 setTab("transactions");
                             },
                             onSumClick:     ({range}) => {
-                                $setFilter({fulltext, range, withIncome: false, withOutcome: false});
+                                $setFilter({
+                                    fulltext,
+                                    range,
+                                    withIncome:  false,
+                                    withOutcome: false
+                                });
                                 setTab("transactions");
                             },
                         }}
                         month={{
                             onIncomeClick:  ({range}) => {
-                                $setFilter({fulltext, range, withIncome: true, withOutcome: false});
+                                $setFilter({
+                                    fulltext,
+                                    range,
+                                    withIncome:  true,
+                                    withOutcome: false
+                                });
                                 setTab("transactions");
                             },
                             onOutcomeClick: ({range}) => {
-                                $setFilter({fulltext, range, withIncome: false, withOutcome: true});
+                                $setFilter({
+                                    fulltext,
+                                    range,
+                                    withIncome:  false,
+                                    withOutcome: true
+                                });
                                 setTab("transactions");
                             },
                         }}
@@ -159,7 +196,10 @@ export const CalendarOverview: FC<ICalendarOverviewProps> = () => {
                                 withIncome:  transactionFilter?.withIncome,
                                 withOutcome: transactionFilter?.withOutcome,
                                 fulltext,
-                                range:       {from: weeks.start, to: weeks.end},
+                                range:       {
+                                    from: weeks.start,
+                                    to:   weeks.end
+                                },
                             });
                         }}
                     />

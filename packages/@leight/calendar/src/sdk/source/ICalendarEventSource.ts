@@ -12,4 +12,4 @@ export type ICalendarEventSource = ISource<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hzij15n78kfioe9nddqj1j9j = true;
+export const $leight_fic4cl680z5gttbt728gek2n = true;

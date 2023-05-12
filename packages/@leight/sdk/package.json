@@ -1,5 +1,5 @@
 {
-    "version": "0.5.25",
+    "version": "0.5.30",
     "name": "@leight/sdk",
     "description": "SDK generator.",
     "license": "MIT",
@@ -31,16 +31,17 @@
         "cleanup:lib": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/generator": "^0.5.21",
-        "@leight/generator-server": "^0.5.22",
-        "@leight/utils": "^0.5.70",
-        "@leight/utils-server": "^0.5.65",
-        "chalk": "^5.2.0"
+        "@leight/generator": "^0.5.22",
+        "@leight/generator-server": "^0.5.23",
+        "@leight/utils": "^0.5.71",
+        "@leight/utils-server": "^0.5.66",
+        "chalk": "^5.2.0",
+        "eta": "^2.1.1"
     },
     "devDependencies": {
-        "@leight/esbuild": "^0.5.45",
-        "@leight/eslint-config-eslint": "^0.5.54",
-        "@leight/tsconfig": "^0.5.68",
+        "@leight/esbuild": "^0.5.46",
+        "@leight/eslint-config-eslint": "^0.5.55",
+        "@leight/tsconfig": "^0.5.69",
         "@types/node": "^18.15.0",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",

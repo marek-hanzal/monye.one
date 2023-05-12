@@ -1,5 +1,13 @@
 # @leight/utils
 
+## 0.5.71
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/zod@0.5.13
+
 ## 0.5.70
 
 ### Patch Changes

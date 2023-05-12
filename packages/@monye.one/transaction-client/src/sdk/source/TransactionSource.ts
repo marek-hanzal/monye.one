@@ -19,4 +19,4 @@ export const TransactionSource = withSource<ISourceSchema>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hlnzuay94swwyu1zir4avpla = true;
+export const $leight_opqzowvjudsg4vywonce9xow = true;

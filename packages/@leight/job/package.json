@@ -1,5 +1,5 @@
 {
-    "version": "0.5.78",
+    "version": "0.5.80",
     "name": "@leight/job",
     "description": "Common job stuff.",
     "license": "MIT",
@@ -32,18 +32,18 @@
         "cleanup:lib": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/container": "^0.5.67",
-        "@leight/prisma": "^0.5.84",
-        "@leight/source": "^0.5.66",
-        "@leight/winston": "^0.5.65",
-        "@leight/zod": "^0.5.12"
+        "@leight/container": "^0.5.68",
+        "@leight/prisma": "^0.5.85",
+        "@leight/source": "^0.5.67",
+        "@leight/winston": "^0.5.66",
+        "@leight/zod": "^0.5.13"
     },
     "devDependencies": {
-        "@leight/esbuild": "^0.5.45",
-        "@leight/eslint-config-eslint": "^0.5.54",
-        "@leight/sdk": "^0.5.25",
-        "@leight/tsconfig": "^0.5.68",
-        "@leight/turbowatch": "^0.5.33",
+        "@leight/esbuild": "^0.5.46",
+        "@leight/eslint-config-eslint": "^0.5.55",
+        "@leight/sdk": "^0.5.27",
+        "@leight/tsconfig": "^0.5.69",
+        "@leight/turbowatch": "^0.5.34",
         "@types/node": "^18.15.0",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",

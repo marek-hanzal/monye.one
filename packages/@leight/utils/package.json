@@ -1,5 +1,5 @@
 {
-    "version": "0.5.70",
+    "version": "0.5.71",
     "name": "@leight/utils",
     "description": "Some simple utils used in @leight libraries.",
     "license": "MIT",
@@ -32,7 +32,7 @@
         "cleanup:lib": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/zod": "^0.5.0",
+        "@leight/zod": "^0.5.13",
         "@paralleldrive/cuid2": "^2.2.0",
         "devalue": "^4.3.0",
         "fast-clean": "^1.2.1",
@@ -43,10 +43,10 @@
         "is-string": "^1.0.7"
     },
     "devDependencies": {
-        "@leight/esbuild": "^0.5.45",
-        "@leight/eslint-config-eslint": "^0.5.54",
-        "@leight/tsconfig": "^0.5.68",
-        "@leight/turbowatch": "^0.5.33",
+        "@leight/esbuild": "^0.5.46",
+        "@leight/eslint-config-eslint": "^0.5.55",
+        "@leight/tsconfig": "^0.5.69",
+        "@leight/turbowatch": "^0.5.34",
         "@types/is-callable": "^1.1.0",
         "@types/is-empty": "^1.2.1",
         "@types/is-object": "^1.0.2",

@@ -15,9 +15,9 @@ export interface IRepositoryService<
 
     handleSourcePatch(patch: TRepositoryServiceType["PatchProps"]): Promise<TRepositoryServiceType["Entity"]>;
 
-    handlePatchBy(props: TRepositoryServiceType["ToPatchByProps"]): Promise<unknown>;
+    handlePatchBy(props: TRepositoryServiceType["ToPatchByProps"]): Promise<any>;
 
-    handleSourcePatchBy(patch: TRepositoryServiceType["PatchByProps"]): Promise<unknown>;
+    handleSourcePatchBy(patch: TRepositoryServiceType["PatchByProps"]): Promise<any>;
 
     handleUpsert(props: TRepositoryServiceType["ToUpsertProps"]): Promise<TRepositoryServiceType["Dto"]>;
 
@@ -29,7 +29,7 @@ export interface IRepositoryService<
 
     handleQuery(props: TRepositoryServiceType["Query"]): Promise<TRepositoryServiceType["Dto"][]>;
 
-    handleDeleteBy(props: TRepositoryServiceType["DeleteBy"]): Promise<unknown>;
+    handleDeleteBy(props: TRepositoryServiceType["DeleteBy"]): Promise<any>;
 
     handleFetch(props: TRepositoryServiceType["Fetch"]): Promise<TRepositoryServiceType["Dto"]>;
 

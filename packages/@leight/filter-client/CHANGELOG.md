@@ -1,5 +1,20 @@
 # @leight/filter-client
 
+## 0.5.8
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/filter@0.5.76
+  - @leight/form@0.5.3
+  - @leight/form-client@0.5.4
+  - @leight/i18n@0.5.73
+  - @leight/i18n-client@0.5.73
+  - @leight/mantine@0.5.77
+  - @leight/source@0.5.67
+  - @leight/source-client@0.5.38
+
 ## 0.5.7
 
 ### Patch Changes

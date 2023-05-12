@@ -12,4 +12,4 @@ export type IUseTransactionRepository = ISource.IUseRepository<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_gwgy7qlt1bfav7rdpj20h2gj = true;
+export const $leight_akgjdr14cjvrg3rkho888ysp = true;

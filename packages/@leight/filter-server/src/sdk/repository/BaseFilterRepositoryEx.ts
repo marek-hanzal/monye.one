@@ -48,7 +48,7 @@ export class BaseFilterRepositoryEx<
         });
     }
     
-    async patchBy({patch, filter}: TRepositoryType["PatchByProps"]): Promise<unknown> {
+    async patchBy({patch, filter}: TRepositoryType["PatchByProps"]): Promise<any> {
         return this.prisma().updateMany({
             data:  patch,
             where: this.toWhere(filter),
@@ -75,7 +75,7 @@ export class BaseFilterRepositoryEx<
         return item;
     }
     
-    async deleteBy(query: TRepositoryType["DeleteBy"]): Promise<unknown> {
+    async deleteBy(query: TRepositoryType["DeleteBy"]): Promise<any> {
         const where = this.toWhere(query);
         if(isEmpty(where)) {
             throw new SourceError("Cannot delete an item with an empty where condition!");
@@ -138,4 +138,4 @@ export class BaseFilterRepositoryEx<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fb709u5f7qeerl9gvyh9i3uk = true;
+export const $leight_tmju4ghn48o3wt2ea989ikrc = true;

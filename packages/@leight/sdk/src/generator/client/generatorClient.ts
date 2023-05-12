@@ -1,10 +1,14 @@
 import {resolvePackageJson}      from "@leight/utils-server";
 import {normalize}               from "node:path";
 import {type ISdkGeneratorProps} from "../../api";
-import {withSdk}                 from "../../index";
+import {
+    type IWithTemplateParams,
+    withSdk,
+    withTemplate
+}                                from "../../index";
 import {generatorSdkBarrel}      from "../generatorSdkBarrel";
 import {
-    IWithFilterFormParams,
+    type IWithFilterFormParams,
     withFilterForm
 }                                from "./withFilterForm";
 import {
@@ -20,7 +24,7 @@ import {
     withQueryProvider
 }                                from "./withQueryProvider";
 import {
-    IWithSelectParams,
+    type IWithSelectParams,
     withSelect
 }                                from "./withSelect";
 import {
@@ -52,6 +56,7 @@ export type IGeneratorClientProps =
         withQueryProvider?: IWithQueryProviderParams;
         withSelect?: IWithSelectParams;
         withFilterForm?: IWithFilterFormParams;
+        withTemplate?: IWithTemplateParams;
     };
 
 export const generatorClient = (
@@ -108,6 +113,10 @@ export const generatorClient = (
                 params.withFilterForm ? withFilterForm({
                     ...$params,
                     params: params.withFilterForm,
+                }) : undefined,
+                params.withTemplate ? withTemplate({
+                    ...$params,
+                    params: params.withTemplate,
                 }) : undefined,
             ]);
             await generatorSdkBarrel({

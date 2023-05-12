@@ -6,13 +6,13 @@
 import {createMultiSelectionStore} from "@leight/selection-client";
 import {type IStoreContext} from "@leight/context";
 import {type IMultiSelectionStoreProps} from "@leight/selection";
-import {type BankSource} from "@monye.one/bank";
+import {type IBankSourceType as SourceType} from "@monye.one/bank";
 
-export type IBankMultiSelectionStore = IStoreContext<IMultiSelectionStoreProps<BankSource["Type"]["Dto"]>>;
+export type IBankMultiSelectionStore = IStoreContext<IMultiSelectionStoreProps<SourceType["Dto"]>>;
 
-export const BankMultiSelection = createMultiSelectionStore<BankSource["Type"]["Dto"]>({name: "Bank"});
+export const BankMultiSelection = createMultiSelectionStore<SourceType["Dto"]>({name: "Bank"});
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_k3ckwsivn3url1eh7heyvjza = true;
+export const $leight_rhone400ta3jx89qesy5yuxj = true;

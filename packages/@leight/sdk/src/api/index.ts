@@ -23,6 +23,7 @@ export interface IGenerator<TParams = void> {
 }
 
 export interface ISdkGeneratorProps {
+    barrel?: boolean;
     /**
      * Package name where the SDK is generated; if not provided, package.json is resolved.
      */

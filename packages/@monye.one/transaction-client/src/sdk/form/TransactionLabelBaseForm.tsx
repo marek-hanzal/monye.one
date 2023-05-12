@@ -34,4 +34,4 @@ export const TransactionLabelBaseForm: FC<ITransactionLabelBaseFormProps> = prop
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_isf6g9fn607witu4pksry788 = true;
+export const $leight_bd2n3jvcr1p3adbxlbjwqwzd = true;

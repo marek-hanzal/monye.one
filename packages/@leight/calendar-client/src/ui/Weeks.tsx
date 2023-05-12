@@ -2,12 +2,12 @@ import {
     type ICalendarEventSourceSchema,
     type IDay,
     type IWeeks
-}                             from "@leight/calendar";
-import {DateTime}             from "@leight/i18n";
-import {DateInline}           from "@leight/i18n-client";
-import {type SourceType}      from "@leight/source";
-import {FulltextStoreContext} from "@leight/source-client";
-import {classNames}           from "@leight/utils-client";
+}                        from "@leight/calendar";
+import {DateTime}        from "@leight/i18n";
+import {DateInline}      from "@leight/i18n-client";
+import {type SourceType} from "@leight/source";
+import {FulltextStore}   from "@leight/source-client";
+import {classNames}      from "@leight/utils-client";
 import {
     ActionIcon,
     Button,
@@ -15,25 +15,25 @@ import {
     Group,
     Stack,
     Text
-}                             from "@mantine/core";
+}                        from "@mantine/core";
 import {
     IconCalendarEvent,
     IconChevronLeft,
     IconChevronRight,
     IconChevronsLeft,
     IconChevronsRight
-}                             from "@tabler/icons-react";
+}                        from "@tabler/icons-react";
 import {
     type PropsWithChildren,
     type ReactNode,
     useEffect,
     useState
-}                             from "react";
-import {WeeksOfStore}         from "../context";
+}                        from "react";
+import {WeeksOfStore}    from "../context";
 import {
     CalendarShell,
     type ICalendarShellProps
-}                             from "./CalendarShell";
+}                        from "./CalendarShell";
 
 export type IWeeksProps<TSourceSchema extends ICalendarEventSourceSchema = ICalendarEventSourceSchema> = PropsWithChildren<Omit<ICalendarShellProps<TSourceSchema>, "children" | "onClick" | "onChange"> & {
     onClick?(props: IWeeksProps.IOnClickProps): void;
@@ -99,7 +99,7 @@ export const Weeks = <
     } = WeeksOfStore.use();
     const source = events?.Source.use();
     const filter = events?.Source.query.use();
-    const fulltextContext = FulltextStoreContext.use$();
+    const fulltextStore = FulltextStore.use$();
     const $events = events && source?.data
         .reduce<Record<string, TSourceType["Dto"][]>>((prev, current) => {
             const stamp = DateTime.fromJSDate(current.date).toLocaleString({
@@ -114,7 +114,7 @@ export const Weeks = <
 
     useEffect(() => {
         filter?.withFilter({
-            fulltext:  fulltextContext?.fulltext || undefined,
+            fulltext:  fulltextStore?.fulltext || undefined,
             withRange: {
                 from: start.toUTC().toJSDate(),
                 to:   end.toUTC().toJSDate(),
@@ -126,7 +126,7 @@ export const Weeks = <
 
     const onChange: IWeeksProps<TSourceSchema>["onChange"] = props => {
         filter?.withFilter({
-            fulltext:  fulltextContext?.fulltext || undefined,
+            fulltext:  fulltextStore?.fulltext || undefined,
             withRange: {
                 from: props.weeks.start.toUTC().toJSDate(),
                 to:   props.weeks.end.toUTC().toJSDate(),

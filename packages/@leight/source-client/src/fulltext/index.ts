@@ -1,1 +1,1 @@
-export * from "./FulltextStoreContext";
+export * from "./FulltextStore";

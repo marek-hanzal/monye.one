@@ -1,7 +1,7 @@
 import {type IWithTranslation} from "@leight/i18n";
 import {useTranslation}        from "@leight/i18n-client";
 import {type ISource}          from "@leight/source";
-import {FulltextStoreContext}  from "@leight/source-client";
+import {FulltextStore}         from "@leight/source-client";
 import {generateId}            from "@leight/utils";
 import {
     ActionIcon,
@@ -43,7 +43,7 @@ export const Fulltext: FC<IFulltextProps> = (
     const {
         fulltext,
         setFulltext
-    } = FulltextStoreContext.use((
+    } = FulltextStore.use((
         {
             fulltext,
             setFulltext

@@ -5,7 +5,7 @@ import {
     type SourceType
 }                 from "@leight/source";
 import {
-    FulltextStoreContext,
+    FulltextStore,
     type IPaginationProps,
     Pagination,
     SortIcon
@@ -87,7 +87,7 @@ export const SourceTable = <
         data,
         result
     } = Source.use({cacheTime: sourceCacheTime});
-    const fulltextStore = FulltextStoreContext.use$();
+    const fulltextStore = FulltextStore.use$();
     const {
         sort,
         withSort,

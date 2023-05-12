@@ -1,20 +1,20 @@
-import {type IDateRange}                     from "@leight/calendar";
-import {toHumanNumber}                       from "@leight/utils";
+import {type IDateRange}               from "@leight/calendar";
+import {toHumanNumber}                 from "@leight/utils";
 import {
     Button,
     Group,
     Stack
-}                                            from "@mantine/core";
-import {type ICalendarEventSourceSchemaType} from "@monye.one/book";
-import {IconSum}                             from "@tabler/icons-react";
+}                                      from "@mantine/core";
+import {type ICalendarEventSourceType} from "@monye.one/book";
+import {IconSum}                       from "@tabler/icons-react";
 import {
     type ComponentProps,
     type FC
-}                                            from "react";
+}                                      from "react";
 
 export interface IIncomeOutcomeProps extends ComponentProps<typeof Group> {
     range: IDateRange;
-    events?: ICalendarEventSourceSchemaType["Dto"][];
+    events?: ICalendarEventSourceType["Dto"][];
 
     onIncomeClick?(props: IIncomeOutcomeProps.IOnIncomeClickProps): void;
 
@@ -25,17 +25,17 @@ export interface IIncomeOutcomeProps extends ComponentProps<typeof Group> {
 
 export namespace IIncomeOutcomeProps {
     export interface IOnIncomeClickProps {
-        events?: ICalendarEventSourceSchemaType["Dto"][];
+        events?: ICalendarEventSourceType["Dto"][];
         range: IDateRange;
     }
 
     export interface IOnOutcomeClickProps {
-        events?: ICalendarEventSourceSchemaType["Dto"][];
+        events?: ICalendarEventSourceType["Dto"][];
         range: IDateRange;
     }
 
     export interface IOnSumClickProps {
-        events?: ICalendarEventSourceSchemaType["Dto"][];
+        events?: ICalendarEventSourceType["Dto"][];
         range: IDateRange;
     }
 }
@@ -52,9 +52,9 @@ export const IncomeOutcome: FC<IIncomeOutcomeProps> = (
     if (!events?.length) {
         return null;
     }
-    const income  = events.reduce((prev, current) => prev + current.income, 0);
+    const income = events.reduce((prev, current) => prev + current.income, 0);
     const outcome = events.reduce((prev, current) => prev + current.outcome, 0);
-    const sum     = income - outcome;
+    const sum = income - outcome;
     return <Group
         position={"apart"}
         spacing={0}

@@ -1,5 +1,5 @@
 {
-    "version": "0.5.66",
+    "version": "0.5.67",
     "name": "@leight/sql",
     "description": "Some SQL related helper tools.",
     "license": "MIT",
@@ -30,13 +30,13 @@
         "cleanup:lib": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/prisma": "^0.5.84"
+        "@leight/prisma": "^0.5.85"
     },
     "devDependencies": {
-        "@leight/esbuild": "^0.5.45",
-        "@leight/eslint-config-eslint": "^0.5.54",
-        "@leight/tsconfig": "^0.5.68",
-        "@leight/turbowatch": "^0.5.33",
+        "@leight/esbuild": "^0.5.46",
+        "@leight/eslint-config-eslint": "^0.5.55",
+        "@leight/tsconfig": "^0.5.69",
+        "@leight/turbowatch": "^0.5.34",
         "@types/node": "^18.15.0",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",

@@ -13,4 +13,4 @@ export class BaseCalendarEventRepositoryMapper extends AbstractRepositoryMapper<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_o6gzuljarblyuffuq5od436s = true;
+export const $leight_zwb46cukn1dsf0onvs1weo0b = true;

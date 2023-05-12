@@ -9,6 +9,8 @@ export type IQueryStoreProps<
     TSourceSchema extends ISourceSchema,
     TSourceType extends SourceType<TSourceSchema> = SourceType<TSourceSchema>
 > = IStoreProps<{
+    id: string;
+
     page: number;
     size: number;
 

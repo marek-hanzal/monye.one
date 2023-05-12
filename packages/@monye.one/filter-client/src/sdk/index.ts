@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qiz7mzal77491jyaah04zad5 = true;
+export const $leight_y58svla5cxplbwhd7qspknr2 = true;
 
 export * from "./index";
 export * from "./query/FilterQueryProvider";

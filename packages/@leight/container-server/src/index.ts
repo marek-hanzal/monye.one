@@ -1,1 +1,1 @@
-export * from "./WithServerContainer";
+export * from "./withServerContainer";

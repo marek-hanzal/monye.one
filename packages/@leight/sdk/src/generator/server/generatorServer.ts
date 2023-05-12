@@ -1,7 +1,11 @@
 import {resolvePackageJson}      from "@leight/utils-server";
 import {normalize}               from "node:path";
 import {type ISdkGeneratorProps} from "../../api";
-import {withSdk}                 from "../../index";
+import {
+    type IWithTemplateParams,
+    withSdk,
+    withTemplate
+}                                from "../../index";
 import {generatorSdkBarrel}      from "../generatorSdkBarrel";
 import {
     type IWithRepositoryParams,
@@ -49,6 +53,7 @@ export type IGeneratorServerProps =
         withRepositoryHandler?: IWithRepositoryHandlerParams;
         withRepositoryContainer?: IWithRepositoryContainerParams;
         withRepository?: IWithRepositoryParams;
+        withTemplate?: IWithTemplateParams;
     }
 
 export const generatorServer = (
@@ -97,6 +102,10 @@ export const generatorServer = (
                 params.withRepository ? withRepository({
                     ...$params,
                     params: params.withRepository,
+                }) : undefined,
+                params.withTemplate ? withTemplate({
+                    ...$params,
+                    params: params.withTemplate,
                 }) : undefined,
             ]);
             await generatorSdkBarrel({

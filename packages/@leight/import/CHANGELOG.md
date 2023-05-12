@@ -1,5 +1,17 @@
 # @leight/import
 
+## 0.5.66
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/job@0.5.79
+  - @leight/prisma@0.5.85
+  - @leight/source@0.5.67
+  - @leight/trpc@0.5.66
+  - @leight/zod@0.5.13
+
 ## 0.5.65
 
 ### Patch Changes

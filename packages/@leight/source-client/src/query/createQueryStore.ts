@@ -6,6 +6,7 @@ import {
 }                           from "@leight/source";
 import {
     cleanOf,
+    generateId,
     isEmpty
 }                           from "@leight/utils";
 
@@ -22,6 +23,7 @@ export const createQueryStore = <
     }: ICreateQueryStoreProps) => {
     return createStoreContext<IQueryStoreProps<TSourceSchema>>({
         state: ({defaults}) => (set, get) => ({
+            id:          generateId(),
             filter:      defaults?.query?.filter as TSourceType["Filter"],
             applyFilter: undefined,
             filterDto:   undefined,
@@ -39,6 +41,7 @@ export const createQueryStore = <
                          query,
                          applyFilter
                      }) => ({
+                    id:     generateId(),
                     filter: {
                         ...filter,
                         ...applyFilter,
@@ -54,6 +57,7 @@ export const createQueryStore = <
             },
             withApplyFilter(filter) {
                 set(({query}) => ({
+                    id:          generateId(),
                     applyFilter: filter,
                     filter:      filter,
                     query:       {
@@ -67,6 +71,7 @@ export const createQueryStore = <
                          query,
                          applyFilter
                      }) => ({
+                    id:          generateId(),
                     applyFilter: {
                         ...applyFilter,
                         ...filter,
@@ -91,6 +96,7 @@ export const createQueryStore = <
                          query,
                          applyFilter
                      }) => ({
+                    id:     generateId(),
                     filter: {
                         ...query.filter,
                         ...filter,
@@ -107,10 +113,14 @@ export const createQueryStore = <
                 }));
             },
             withFilterDto(dto) {
-                set({filterDto: dto});
+                set({
+                    id:        generateId(),
+                    filterDto: dto,
+                });
             },
             withShallowFilterDto(dto) {
                 set(state => ({
+                    id:        generateId(),
                     filterDto: {
                         ...state.filterDto,
                         ...dto,
@@ -125,6 +135,7 @@ export const createQueryStore = <
             },
             withSort(key, order) {
                 set(({query}) => ({
+                    id:    generateId(),
                     sort:  {
                         [key as any]: order,
                     },
@@ -138,6 +149,7 @@ export const createQueryStore = <
             },
             withSize(size) {
                 set(({query}) => ({
+                    id:    generateId(),
                     size:  size,
                     query: {
                         ...query,
@@ -150,6 +162,7 @@ export const createQueryStore = <
             },
             withPage(page) {
                 set(({query}) => ({
+                    id:    generateId(),
                     page:  page,
                     query: {
                         ...query,

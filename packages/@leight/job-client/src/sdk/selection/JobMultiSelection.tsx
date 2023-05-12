@@ -6,13 +6,13 @@
 import {createMultiSelectionStore} from "@leight/selection-client";
 import {type IStoreContext} from "@leight/context";
 import {type IMultiSelectionStoreProps} from "@leight/selection";
-import {type JobSource} from "@leight/job";
+import {type IJobSourceType as SourceType} from "@leight/job";
 
-export type IJobMultiSelectionStore = IStoreContext<IMultiSelectionStoreProps<JobSource["Type"]["Dto"]>>;
+export type IJobMultiSelectionStore = IStoreContext<IMultiSelectionStoreProps<SourceType["Dto"]>>;
 
-export const JobMultiSelection = createMultiSelectionStore<JobSource["Type"]["Dto"]>({name: "Job"});
+export const JobMultiSelection = createMultiSelectionStore<SourceType["Dto"]>({name: "Job"});
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vpvkx4m0lkppz85ncrhlxqnx = true;
+export const $leight_vxguk6b6kno2ur1043tyhmsi = true;

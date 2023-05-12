@@ -1,5 +1,15 @@
 # @leight/generator-server
 
+## 0.5.23
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/generator@0.5.22
+  - @leight/utils@0.5.71
+  - @leight/utils-server@0.5.66
+
 ## 0.5.22
 
 ### Patch Changes

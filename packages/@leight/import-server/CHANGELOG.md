@@ -1,5 +1,17 @@
 # @leight/import-server
 
+## 0.5.66
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/container@0.5.68
+  - @leight/import@0.5.66
+  - @leight/job@0.5.79
+  - @leight/job-server@0.5.78
+  - @leight/zod@0.5.13
+
 ## 0.5.65
 
 ### Patch Changes

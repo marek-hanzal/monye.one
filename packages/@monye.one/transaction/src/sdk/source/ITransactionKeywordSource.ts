@@ -12,4 +12,4 @@ export type ITransactionKeywordSource = ISource<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_pw1zkibgsokb68q5260fa7bm = true;
+export const $leight_spyokkl6xx81orze1nbl79op = true;

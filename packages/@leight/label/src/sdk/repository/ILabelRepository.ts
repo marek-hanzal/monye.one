@@ -13,4 +13,4 @@ export interface ILabelRepository extends IRepository<LabelSource["Schema"]["Rep
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_yy4rse9epo9dmuf6hck75a84 = true;
+export const $leight_eku0155ckdmobcz5l36ekx9j = true;

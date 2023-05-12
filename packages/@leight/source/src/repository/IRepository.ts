@@ -23,7 +23,7 @@ export interface IRepository<
     /**
      * Patch all entities by the given query
      */
-    patchBy(patchBy: TRepositoryType["PatchByProps"]): Promise<unknown>;
+    patchBy(patchBy: TRepositoryType["PatchByProps"]): Promise<any>;
 
     /**
      * Delete an entity by an id
@@ -33,7 +33,7 @@ export interface IRepository<
     /**
      * Delete entities by the given query; deleted entities are on the output
      */
-    deleteBy(deleteBy: TRepositoryType["DeleteBy"]): Promise<unknown>;
+    deleteBy(deleteBy: TRepositoryType["DeleteBy"]): Promise<any>;
 
     /**
      * Count items based on an optional query.

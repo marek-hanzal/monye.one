@@ -1,5 +1,29 @@
 # @leight/keyword-server
 
+## 0.5.4
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/keyword@0.5.4
+
+## 0.5.3
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/container@0.5.68
+  - @leight/keyword@0.5.3
+  - @leight/prisma@0.5.85
+  - @leight/react-query@0.5.30
+  - @leight/source@0.5.67
+  - @leight/source-server@0.5.67
+  - @leight/trpc-source-server@0.5.21
+  - @leight/utils@0.5.71
+  - @leight/zod@0.5.13
+
 ## 0.5.2
 
 ### Patch Changes

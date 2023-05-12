@@ -34,10 +34,10 @@ export namespace ISource {
     > {
         useCreate: IUseMutation<TSourceType["ToCreate"], TSourceType["Dto"]>;
         usePatch: IUseMutation<TSourceType["ToPatchProps"], TSourceType["Dto"]>;
-        usePatchBy: IUseMutation<TSourceType["ToPatchByProps"], unknown>;
+        usePatchBy: IUseMutation<TSourceType["ToPatchByProps"], any>;
         useUpsert: IUseMutation<TSourceType["ToUpsertProps"], TSourceType["Dto"]>;
         useDelete: IUseMutation<TSourceType["Delete"], TSourceType["Dto"]>;
-        useDeleteBy: IUseMutation<TSourceType["DeleteBy"], unknown>;
+        useDeleteBy: IUseMutation<TSourceType["DeleteBy"], any>;
         useQuery: IUseQuery<TSourceType["Query"], TSourceType["Dto"][]>;
         useCount: IUseQuery<TSourceType["Count"], number>;
         useFetch: IUseQuery<TSourceType["Fetch"], TSourceType["Dto"]>;

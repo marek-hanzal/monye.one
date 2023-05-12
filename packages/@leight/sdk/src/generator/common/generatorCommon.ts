@@ -1,7 +1,11 @@
 import {resolvePackageJson}      from "@leight/utils-server";
 import {normalize}               from "node:path";
 import {type ISdkGeneratorProps} from "../../api";
-import {withSdk}                 from "../../index";
+import {
+    IWithTemplateParams,
+    withSdk,
+    withTemplate
+} from "../../index";
 import {generatorSdkBarrel}      from "../generatorSdkBarrel";
 import {
     type IWithFormParams,
@@ -24,7 +28,7 @@ import {
     withRepositorySymbol
 }                                from "./withRepositorySymbol";
 import {
-    IWithSourceTypeParams,
+    type IWithSourceTypeParams,
     withSourceType
 }                                from "./withSourceType";
 
@@ -52,6 +56,7 @@ export type IGeneratorCommonProps =
          * Generate base form stuff (interfaces)
          */
         withForm?: IWithFormParams;
+        withTemplate?: IWithTemplateParams;
     }
 
 export const generatorCommon = (
@@ -96,6 +101,10 @@ export const generatorCommon = (
                 params.withForm ? withForm({
                     ...$params,
                     params: params.withForm,
+                }) : undefined,
+                params.withTemplate ? withTemplate({
+                    ...$params,
+                    params: params.withTemplate,
                 }) : undefined,
             ]);
             await generatorSdkBarrel({

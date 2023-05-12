@@ -1,5 +1,18 @@
 # @leight/form
 
+## 0.5.3
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/context@0.5.30
+  - @leight/i18n@0.5.73
+  - @leight/source@0.5.67
+  - @leight/utils@0.5.71
+  - @leight/zod@0.5.13
+  - @leight/zustand@0.5.67
+
 ## 0.5.2
 
 ### Patch Changes

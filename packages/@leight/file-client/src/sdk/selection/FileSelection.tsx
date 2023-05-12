@@ -6,13 +6,13 @@
 import {createSelectionStore} from "@leight/selection-client";
 import {type IStoreContext} from "@leight/context";
 import {type ISelectionStoreProps} from "@leight/selection";
-import {type FileSource} from "@leight/file";
+import {type IFileSourceType as SourceType} from "@leight/file";
 
-export type IFileSelectionStore = IStoreContext<ISelectionStoreProps<FileSource["Type"]["Dto"]>>;
+export type IFileSelectionStore = IStoreContext<ISelectionStoreProps<SourceType["Dto"]>>;
 
-export const FileSelection = createSelectionStore<FileSource["Type"]["Dto"]>({name: "File"});
+export const FileSelection = createSelectionStore<SourceType["Dto"]>({name: "File"});
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_sdl0xhualyachq8n7niw4u3g = true;
+export const $leight_lvqplxz84jh3fvuq8ocel8nm = true;

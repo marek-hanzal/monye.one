@@ -1,46 +1,49 @@
-import {withSdk} from "@leight/sdk";
+import {generatorClient} from "@leight/sdk";
 
-void withSdk([]);
-
-// void withSdk(
-//     withClientSourceGenerators({
-//         SourceStore:    {
-//             entities: [
-//                 {
-//                     name:     "CalendarEvent",
-//                     packages: {
-//                         schema: "@monye.one/book",
-//                     },
-//                 },
-//             ],
-//         },
-//         SourceProvider: {
-//             entities: [
-//                 {
-//                     name:     "CalendarEvent",
-//                     packages: {
-//                         schema: "@monye.one/book",
-//                     },
-//                 },
-//             ],
-//         },
-//         Trpc:           {
-//             entities: [
-//                 {
-//                     name:     "CalendarEvent",
-//                     withTrpc: {
-//                         path:         "book.calendar.event",
-//                         package:      "@monye.one/trpc-client",
-//                         invalidators: [
-//                             "book.calendar.event.source.query",
-//                             "book.calendar.event.source.count",
-//                         ],
-//                     },
-//                     packages: {
-//                         schema: "@monye.one/book",
-//                     },
-//                 },
-//             ],
-//         }
-//     })
-// );
+void generatorClient({
+    withSelection:     {
+        selections: [
+            {
+                name:     "CalendarEvent",
+                packages: {
+                    schema: "@monye.one/book",
+                },
+            },
+        ],
+    },
+    withSource:        {
+        sources: [
+            {
+                name:              "CalendarEvent",
+                packages:          {
+                    schema: "@monye.one/book",
+                },
+                withInvalidator:   {
+                    trpc: {
+                        path:         "book.calendar.event",
+                        invalidators: [
+                            "$query",
+                        ],
+                        package:      "@monye.one/trpc-client",
+                    },
+                },
+                withUseRepository: {
+                    trpc: {
+                        path:    "book.calendar.event",
+                        package: "@monye.one/trpc-client",
+                    },
+                },
+            },
+        ],
+    },
+    withQueryProvider: {
+        sources: [
+            {
+                name:     "CalendarEvent",
+                packages: {
+                    schema: "@monye.one/book",
+                },
+            },
+        ],
+    },
+});

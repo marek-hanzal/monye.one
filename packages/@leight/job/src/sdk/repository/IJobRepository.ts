@@ -13,4 +13,4 @@ export interface IJobRepository extends IRepository<JobSource["Schema"]["Reposit
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wngmvfpv4lxorgqieyr3i58y = true;
+export const $leight_h7iwwp5dmmt9rhwujlebyef4 = true;

@@ -1,5 +1,18 @@
 # @leight/selection-client
 
+## 0.5.3
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/context@0.5.30
+  - @leight/context-client@0.5.75
+  - @leight/selection@0.5.3
+  - @leight/source@0.5.67
+  - @leight/utils@0.5.71
+  - @leight/zustand@0.5.67
+
 ## 0.5.2
 
 ### Patch Changes

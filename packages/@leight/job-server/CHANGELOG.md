@@ -1,5 +1,31 @@
 # @leight/job-server
 
+## 0.5.79
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/user@0.5.80
+  - @leight/job@0.5.80
+
+## 0.5.78
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/container@0.5.68
+  - @leight/job@0.5.79
+  - @leight/prisma@0.5.85
+  - @leight/source@0.5.67
+  - @leight/source-server@0.5.67
+  - @leight/trpc-source-server@0.5.21
+  - @leight/user@0.5.79
+  - @leight/utils@0.5.71
+  - @leight/winston@0.5.66
+  - @leight/zod@0.5.13
+
 ## 0.5.77
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @leight/i18n-client
 
+## 0.5.73
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/context-client@0.5.75
+  - @leight/i18n@0.5.73
+  - @leight/utils@0.5.71
+  - @leight/zustand@0.5.67
+
 ## 0.5.72
 
 ### Patch Changes

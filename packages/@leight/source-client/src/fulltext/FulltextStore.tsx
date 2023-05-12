@@ -3,7 +3,7 @@ import {createStoreContext}       from "@leight/context-client";
 import {type IFulltextStoreProps} from "@leight/source";
 import {type FC}                  from "react";
 
-export const FulltextStoreContext = createStoreContext<IFulltextStoreProps>({
+export const FulltextStore = createStoreContext<IFulltextStoreProps>({
     state: () => (set) => ({
         fulltext: undefined,
         setFulltext(fulltext) {
@@ -17,8 +17,12 @@ export interface IFulltextProviderProps extends IStoreProviderProps<IFulltextSto
     defaultFulltext?: string;
 }
 
-export const FulltextProvider: FC<IFulltextProviderProps> = ({defaultFulltext, ...props}) => {
-    return <FulltextStoreContext.Provider
+export const FulltextProvider: FC<IFulltextProviderProps> = (
+    {
+        defaultFulltext,
+        ...props
+    }) => {
+    return <FulltextStore.Provider
         defaults={{fulltext: defaultFulltext}}
         {...props}
     />;

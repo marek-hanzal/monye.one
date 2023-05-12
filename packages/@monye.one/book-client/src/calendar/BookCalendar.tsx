@@ -1,29 +1,29 @@
 import {
     Calendar,
     type ICalendarProps
-}                                 from "@leight/calendar-client";
-import {Fulltext}                 from "@leight/mantine";
-import {FulltextStoreContext}     from "@leight/source-client";
-import {Grid}                     from "@mantine/core";
+}                            from "@leight/calendar-client";
+import {Fulltext}            from "@leight/mantine";
+import {FulltextStore}       from "@leight/source-client";
+import {Grid}                from "@mantine/core";
 import {
     CalendarEventSourceSchema,
-    type ICalendarEventSourceSchemaType
-}                                 from "@monye.one/book";
+    type ICalendarEventSourceSchema
+}                            from "@monye.one/book";
 import {
     TransactionFilter,
-    TransactionSourceStore
-}                                 from "@monye.one/transaction-client";
+    TransactionSource
+}                            from "@monye.one/transaction-client";
 import {
     type FC,
     useEffect
-}                                 from "react";
-import {CalendarEventSourceStore} from "../sdk";
+}                            from "react";
+import {CalendarEventSource} from "../sdk";
 import {
     type IIncomeOutcomeProps,
     IncomeOutcome
-}                                 from "./IncomeOutcome";
+}                            from "./IncomeOutcome";
 
-export interface IBookCalendarProps extends Omit<ICalendarProps<ICalendarEventSourceSchemaType>, "useEventState"> {
+export interface IBookCalendarProps extends Omit<ICalendarProps<ICalendarEventSourceSchema>, "useEventState"> {
     day?: {
         onIncomeClick?: IIncomeOutcomeProps["onIncomeClick"];
         onOutcomeClick?: IIncomeOutcomeProps["onOutcomeClick"];
@@ -40,21 +40,21 @@ export const BookCalendar: FC<IBookCalendarProps> = (
         day: $day,
         ...  props
     }) => {
-    const fulltextStore      = FulltextStoreContext.useOptionalState();
-    const {setShallowFilter} = CalendarEventSourceStore.Query.useState(({setShallowFilter}) => ({setShallowFilter}));
+    const fulltextStore = FulltextStore.use$();
+    const {withShallowFilter} = CalendarEventSource.query.use(({withShallowFilter}) => ({withShallowFilter}));
 
     useEffect(() => {
         if (!fulltextStore) {
             return;
         }
-        setShallowFilter({fulltext: fulltextStore?.fulltext || undefined});
+        withShallowFilter({fulltext: fulltextStore?.fulltext || undefined});
     }, [fulltextStore?.fulltext]);
 
     return <>
         <Grid align={"center"} mt={"sm"}>
             <Grid.Col span={"auto"}>
                 <Fulltext
-                    SourceStore={TransactionSourceStore}
+                    Source={TransactionSource}
                     withTranslation={{
                         namespace: "book",
                         label:     "calendar",
@@ -71,12 +71,15 @@ export const BookCalendar: FC<IBookCalendarProps> = (
                 />
             </Grid.Col>
         </Grid>
-        <Calendar<ICalendarEventSourceSchemaType>
+        <Calendar<ICalendarEventSourceSchema>
             events={{
-                schema:      CalendarEventSourceSchema["DtoSchema"],
-                SourceStore: CalendarEventSourceStore,
+                schema: CalendarEventSourceSchema["DtoSchema"],
+                Source: CalendarEventSource,
             }}
-            renderDayInline={({day, events}) => <IncomeOutcome
+            renderDayInline={({
+                                  day,
+                                  events
+                              }) => <IncomeOutcome
                 range={{
                     from: day.day.startOf("day"),
                     to:   day.day.endOf("day"),

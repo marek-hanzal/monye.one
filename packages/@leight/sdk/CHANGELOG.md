@@ -1,5 +1,40 @@
 # @leight/sdk
 
+## 0.5.30
+
+### Patch Changes
+
+- Improved templates
+
+## 0.5.29
+
+### Patch Changes
+
+- Improved SDK with templates
+
+## 0.5.28
+
+### Patch Changes
+
+- Improved templates
+
+## 0.5.27
+
+### Patch Changes
+
+- Version bump
+
+## 0.5.26
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/generator@0.5.22
+  - @leight/generator-server@0.5.23
+  - @leight/utils@0.5.71
+  - @leight/utils-server@0.5.66
+
 ## 0.5.25
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @leight/selection
 
+## 0.5.3
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/context@0.5.30
+  - @leight/source@0.5.67
+  - @leight/zod@0.5.13
+  - @leight/zustand@0.5.67
+
 ## 0.5.2
 
 ### Patch Changes

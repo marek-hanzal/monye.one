@@ -1,5 +1,28 @@
 # @leight/file-client
 
+## 0.5.78
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/file@0.5.77
+
+## 0.5.77
+
+### Patch Changes
+
+- Version bump
+- Updated dependencies
+  - @leight/context@0.5.30
+  - @leight/file@0.5.76
+  - @leight/selection@0.5.3
+  - @leight/selection-client@0.5.3
+  - @leight/source@0.5.67
+  - @leight/source-client@0.5.38
+  - @leight/utils@0.5.71
+  - @leight/utils-client@0.5.71
+
 ## 0.5.76
 
 ### Patch Changes

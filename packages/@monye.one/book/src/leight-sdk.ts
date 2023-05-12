@@ -8,5 +8,11 @@ void generatorCommon({
             },
         ],
     },
-
+    withSourceType:       {
+        sources: [
+            {
+                name: "CalendarEvent",
+            },
+        ],
+    },
 });

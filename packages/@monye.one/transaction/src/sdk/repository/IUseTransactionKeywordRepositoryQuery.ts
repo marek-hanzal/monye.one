@@ -12,4 +12,4 @@ export type IUseTransactionKeywordRepositoryQuery = IUseRepositoryQuery<SourceSc
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qa2vdlfs7clgw8m61426m5m1 = true;
+export const $leight_k0m7kev0nvfjlmq36dopq8rw = true;
