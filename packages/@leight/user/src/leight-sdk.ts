@@ -10,7 +10,14 @@ void generatorCommon({
                         prisma: "@leight/prisma",
                     },
                 },
-                withRepositorySymbol: {},
+                withRepositorySymbol: {
+                    repositoryEx: {
+                        type:        "IUserRepositoryEx",
+                        withPackage: {
+                            package: "../../api",
+                        },
+                    },
+                },
                 withRepositoryMapper: {},
             },
         ],

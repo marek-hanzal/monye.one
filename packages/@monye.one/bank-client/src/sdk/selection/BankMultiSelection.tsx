@@ -15,4 +15,4 @@ export const BankMultiSelection = createMultiSelectionStore<SourceType["Dto"]>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rhone400ta3jx89qesy5yuxj = true;
+export const $leight_x68gpjmfz2wy4mosu2gb3aob = true;

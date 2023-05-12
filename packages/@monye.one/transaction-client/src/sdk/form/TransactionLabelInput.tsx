@@ -21,4 +21,4 @@ export const TransactionLabelInput: FC<Omit<IWithInputProps<ITransactionLabelFor
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_lxlnpl2a7dr13ulp52laxcir = true;
+export const $leight_yv5ddwldq0i3ky3j9m1mff89 = true;

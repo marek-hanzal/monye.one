@@ -3,11 +3,22 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
+import {
+	type IContainer,
+	ServiceContext
+} from "@leight/container";
+import {type ILabelRepository} from "../repository/ILabelRepository";
+import {type ILabelRepositoryService} from "../service/ILabelRepositoryService";
+import {type ILabelRepositoryMapper} from "../mapper/ILabelRepositoryMapper";
+
 export const $LabelRepository = Symbol.for("@leight/label/ILabelRepository");
 export const $LabelRepositoryMapper = Symbol.for("@leight/label/ILabelRepositoryMapper");
 export const $LabelRepositoryService = Symbol.for("@leight/label/ILabelRepositoryService");
+export const LabelRepositoryContext = (container: IContainer) => new ServiceContext<ILabelRepository>(container, $LabelRepository);
+export const LabelRepositoryMapperContext = (container: IContainer) => new ServiceContext<ILabelRepositoryMapper>(container, $LabelRepositoryMapper);
+export const LabelRepositoryServiceContext = (container: IContainer) => new ServiceContext<ILabelRepositoryService>(container, $LabelRepositoryService);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ei7r5659v6rsyhqiuvu5xq28 = true;
+export const $leight_glni97jtxdwbxhhdfx0zzjc1 = true;

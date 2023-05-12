@@ -7,7 +7,7 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mw6v20nm90rvo4iopg8hk5ti = true;
+export const $leight_jiozzy62pbahnal2ziap7lzs = true;
 
 export * from "./index";
 export * from "./form/ITransactionFilterFormInputFactory";
@@ -24,6 +24,8 @@ export * from "./schema/ITransactionKeywordSourceSchema";
 export * from "./schema/ITransactionSourceSchema";
 export * from "./schema/TransactionKeywordRepositorySchemaEx";
 export * from "./schema/TransactionRepositorySchemaEx";
+export * from "./service/ITransactionKeywordRepositoryService";
+export * from "./service/ITransactionRepositoryService";
 export * from "./source/ITransactionKeywordSource";
 export * from "./source/ITransactionKeywordSourceType";
 export * from "./source/ITransactionSource";

@@ -17,4 +17,4 @@ export const useBankInvalidator: IUseInvalidator = () => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_iyhz857hn5nnihf9x9h2zs31 = true;
+export const $leight_yqfltviy69n7353x8pnn3jqw = true;

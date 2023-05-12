@@ -15,4 +15,4 @@ export const TransactionSelection = createSelectionStore<SourceType["Dto"]>({nam
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_abm3nazbkao2vq1actk8qz4m = true;
+export const $leight_snsq1pcr7t6v70gomrmb0v5u = true;

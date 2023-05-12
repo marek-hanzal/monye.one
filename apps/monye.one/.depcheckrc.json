@@ -6,8 +6,6 @@
         "@types/node",
         "autoprefixer",
         "postcss",
-        "tailwindcss",
         "zod",
-        "@tailwindcss/*"
     ]
 }

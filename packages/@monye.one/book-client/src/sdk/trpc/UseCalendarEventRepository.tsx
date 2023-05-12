@@ -15,4 +15,4 @@ export const UseCalendarEventRepository: UseRepository = withUseRepository<Sourc
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_y4lb2atg5dehcyktkuk5vqzh = true;
+export const $leight_d6qrkxds2u2u76my2eqpczz1 = true;

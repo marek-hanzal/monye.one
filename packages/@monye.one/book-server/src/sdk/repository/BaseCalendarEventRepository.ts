@@ -19,4 +19,4 @@ export class BaseCalendarEventRepository extends AbstractRepository<CalendarEven
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_rspjz6ls2csyuelve0i6bgb0 = true;
+export const $leight_smgbsx2xeyn8vmt6itn0kyyz = true;

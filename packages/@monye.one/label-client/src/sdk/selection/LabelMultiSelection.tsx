@@ -15,4 +15,4 @@ export const LabelMultiSelection = createMultiSelectionStore<SourceType["Dto"]>(
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_psnh77it7hm4y94qjmay8n91 = true;
+export const $leight_aby8q2vddgtz6b4n1glgt0zc = true;

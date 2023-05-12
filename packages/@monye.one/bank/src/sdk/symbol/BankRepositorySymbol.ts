@@ -3,11 +3,22 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
+import {
+	type IContainer,
+	ServiceContext
+} from "@leight/container";
+import {type IBankRepository} from "../repository/IBankRepository";
+import {type IBankRepositoryService} from "../service/IBankRepositoryService";
+import {type IBankRepositoryMapper} from "../mapper/IBankRepositoryMapper";
+
 export const $BankRepository = Symbol.for("@monye.one/bank/IBankRepository");
 export const $BankRepositoryMapper = Symbol.for("@monye.one/bank/IBankRepositoryMapper");
 export const $BankRepositoryService = Symbol.for("@monye.one/bank/IBankRepositoryService");
+export const BankRepositoryContext = (container: IContainer) => new ServiceContext<IBankRepository>(container, $BankRepository);
+export const BankRepositoryMapperContext = (container: IContainer) => new ServiceContext<IBankRepositoryMapper>(container, $BankRepositoryMapper);
+export const BankRepositoryServiceContext = (container: IContainer) => new ServiceContext<IBankRepositoryService>(container, $BankRepositoryService);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_cmlctdb3pltbftteqmmhfnjt = true;
+export const $leight_xns3j1j7bbk88ryjgmm11lws = true;

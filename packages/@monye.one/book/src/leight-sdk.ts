@@ -1,17 +1,19 @@
 import {generatorCommon} from "@leight/sdk";
 
 void generatorCommon({
-    withRepositorySymbol: {
-        repositories: [
+    withSourceType: {
+        sources: [
             {
                 name: "CalendarEvent",
             },
         ],
     },
-    withSourceType:       {
-        sources: [
+    withRepository: {
+        repositories: [
             {
-                name: "CalendarEvent",
+                name:                 "CalendarEvent",
+                withRepositoryMapper: {},
+                withRepositorySymbol: {},
             },
         ],
     },

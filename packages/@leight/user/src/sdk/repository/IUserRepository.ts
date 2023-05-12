@@ -13,4 +13,4 @@ export interface IUserRepository extends IRepository<UserSource["Schema"]["Repos
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ixbc4r3nvqyvo4cjzl8s027h = true;
+export const $leight_lr9vp8y6tnfhmrn6tn2rlf1c = true;

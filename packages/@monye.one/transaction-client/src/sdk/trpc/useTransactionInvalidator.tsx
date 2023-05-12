@@ -17,4 +17,4 @@ export const useTransactionInvalidator: IUseInvalidator = () => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_i5s9yd8cb5isgtru02pxprb5 = true;
+export const $leight_qiod4xl8gmt7obmgs4lfvujk = true;

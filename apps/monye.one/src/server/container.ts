@@ -36,6 +36,8 @@ export const MonyeOneContainer = ((container: IContainer) => {
         }, {
             scope: SCOPE.SINGLETON,
         });
+    $withLeightServerContainer(container);
+    $withMonyeOneServerContainer(container);
 
     return {
         get PrismaClient() {
@@ -43,6 +45,3 @@ export const MonyeOneContainer = ((container: IContainer) => {
         },
     };
 })(container);
-
-$withLeightServerContainer(container);
-$withMonyeOneServerContainer(container);

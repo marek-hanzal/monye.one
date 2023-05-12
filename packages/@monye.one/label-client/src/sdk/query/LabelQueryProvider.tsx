@@ -27,4 +27,4 @@ export const LabelQueryProvider: FC<ILabelQueryProviderProps> = props => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_y4ys1cf95cy3clrosmhcdyv3 = true;
+export const $leight_trrl95ccjmtd6h8ifu3gc7cg = true;

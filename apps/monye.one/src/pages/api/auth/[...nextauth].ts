@@ -1,11 +1,9 @@
-import {env}               from "@/monye.one/env.mjs";
-import {
-    container,
-    LeightServerContainer
-}                          from "@/monye.one/server/container";
-import {NextAuthEndpoint}  from "@leight/next.js-server";
-import CredentialsProvider from "next-auth/providers/credentials";
-import GitHub              from "next-auth/providers/github";
+import {env}                   from "@/monye.one/env.mjs";
+import {container}             from "@/monye.one/server/container";
+import {NextAuthEndpoint}      from "@leight/next.js-server";
+import {UserRepositoryContext} from "@leight/user";
+import CredentialsProvider     from "next-auth/providers/credentials";
+import GitHub                  from "next-auth/providers/github";
 
 export default NextAuthEndpoint({
     container,
@@ -23,14 +21,17 @@ export default NextAuthEndpoint({
         env.NODE_ENV === "development" && CredentialsProvider({
             name:        "Credentials",
             credentials: {
-                secret: {label: "Dark Secret", type: "text"},
+                secret: {
+                    label: "Dark Secret",
+                    type:  "text"
+                },
             },
             async authorize(credentials) {
                 const {secret} = credentials || {};
                 if (!secret) {
                     return null;
                 }
-                return LeightServerContainer.UserContainer.UserSource.findByEmail(secret);
+                return UserRepositoryContext(container).resolve().findByEmail(secret);
             },
         }),
     ],

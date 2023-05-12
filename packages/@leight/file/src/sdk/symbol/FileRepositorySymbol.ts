@@ -3,11 +3,22 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
+import {
+	type IContainer,
+	ServiceContext
+} from "@leight/container";
+import {type IFileRepository} from "../repository/IFileRepository";
+import {type IFileRepositoryService} from "../service/IFileRepositoryService";
+import {type IFileRepositoryMapper} from "../mapper/IFileRepositoryMapper";
+
 export const $FileRepository = Symbol.for("@leight/file/IFileRepository");
 export const $FileRepositoryMapper = Symbol.for("@leight/file/IFileRepositoryMapper");
 export const $FileRepositoryService = Symbol.for("@leight/file/IFileRepositoryService");
+export const FileRepositoryContext = (container: IContainer) => new ServiceContext<IFileRepository>(container, $FileRepository);
+export const FileRepositoryMapperContext = (container: IContainer) => new ServiceContext<IFileRepositoryMapper>(container, $FileRepositoryMapper);
+export const FileRepositoryServiceContext = (container: IContainer) => new ServiceContext<IFileRepositoryService>(container, $FileRepositoryService);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_dg5kbv0shx1li55gmhezt0mc = true;
+export const $leight_oo37f8mn5cefeiauctxp4njg = true;

@@ -3,11 +3,22 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
+import {
+	type IContainer,
+	ServiceContext
+} from "@leight/container";
+import {type IFilterRepository} from "../repository/IFilterRepository";
+import {type IFilterRepositoryService} from "../service/IFilterRepositoryService";
+import {type IFilterRepositoryMapper} from "../mapper/IFilterRepositoryMapper";
+
 export const $FilterRepository = Symbol.for("@leight/filter/IFilterRepository");
 export const $FilterRepositoryMapper = Symbol.for("@leight/filter/IFilterRepositoryMapper");
 export const $FilterRepositoryService = Symbol.for("@leight/filter/IFilterRepositoryService");
+export const FilterRepositoryContext = (container: IContainer) => new ServiceContext<IFilterRepository>(container, $FilterRepository);
+export const FilterRepositoryMapperContext = (container: IContainer) => new ServiceContext<IFilterRepositoryMapper>(container, $FilterRepositoryMapper);
+export const FilterRepositoryServiceContext = (container: IContainer) => new ServiceContext<IFilterRepositoryService>(container, $FilterRepositoryService);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_f9qqiizut6tpmju9zo9ezzg9 = true;
+export const $leight_rschylr3hw466jh5omtfsk4l = true;

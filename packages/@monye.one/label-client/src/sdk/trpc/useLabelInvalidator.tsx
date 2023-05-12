@@ -17,4 +17,4 @@ export const useLabelInvalidator: IUseInvalidator = () => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_l5jvre8f8b6wznpn3axven33 = true;
+export const $leight_cnqwpigjdx2sl0hakcir4v8a = true;

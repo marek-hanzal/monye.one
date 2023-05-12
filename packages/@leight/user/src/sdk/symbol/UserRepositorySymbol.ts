@@ -3,11 +3,22 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
+import {
+	type IContainer,
+	ServiceContext
+} from "@leight/container";
+import {IUserRepositoryEx} from "../../api";
+import {type IUserRepositoryService} from "../service/IUserRepositoryService";
+import {type IUserRepositoryMapper} from "../mapper/IUserRepositoryMapper";
+
 export const $UserRepository = Symbol.for("@leight/user/IUserRepository");
 export const $UserRepositoryMapper = Symbol.for("@leight/user/IUserRepositoryMapper");
 export const $UserRepositoryService = Symbol.for("@leight/user/IUserRepositoryService");
+export const UserRepositoryContext = (container: IContainer) => new ServiceContext<IUserRepositoryEx>(container, $UserRepository);
+export const UserRepositoryMapperContext = (container: IContainer) => new ServiceContext<IUserRepositoryMapper>(container, $UserRepositoryMapper);
+export const UserRepositoryServiceContext = (container: IContainer) => new ServiceContext<IUserRepositoryService>(container, $UserRepositoryService);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_sxchjm5pkr4r8bzwo2r4muuv = true;
+export const $leight_qnzb1xlcy6lqaqp0b30fm08g = true;
