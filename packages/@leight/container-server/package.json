@@ -38,7 +38,8 @@
         "@leight/keyword-server": "^0.5.3",
         "@leight/label-server": "^0.5.1",
         "@leight/user-server": "^0.5.82",
-        "@leight/xlsx-import-server": "^0.5.66"
+        "@leight/xlsx-import-server": "^0.5.66",
+        "pumpit": "^4.1.1"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.46",

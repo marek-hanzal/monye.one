@@ -1,14 +1,11 @@
-import {
-    type BindKey,
-    type ClassValue
-}                        from "pumpit";
-import {type IContainer} from "./IContainer";
+import {type IContainer} from "@leight/container";
+import {type ClassValue} from "pumpit";
 
 /**
  * Helper class for mounting container, symbol to a type.
  */
 export class ServiceContext<T> {
-    constructor(protected container: IContainer, private symbol: BindKey) {
+    constructor(protected container: IContainer, private symbol: IContainer.Key) {
     }
 
     resolve(): T {
