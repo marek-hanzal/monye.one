@@ -1,6 +1,6 @@
 {
-    "version": "0.5.66",
-    "name": "@leight/container-server",
+    "version": "0.5.0",
+    "name": "@leight/viv-server",
     "description": "All @leight services exposed on server-side.",
     "license": "MIT",
     "repository": {
@@ -31,7 +31,14 @@
     },
     "dependencies": {
         "@leight/container": "^0.5.68",
-        "pumpit": "^4.1.1"
+        "@leight/file-server": "^0.5.77",
+        "@leight/filter-server": "^0.5.2",
+        "@leight/import-server": "^0.5.66",
+        "@leight/job-server": "^0.5.78",
+        "@leight/keyword-server": "^0.5.3",
+        "@leight/label-server": "^0.5.1",
+        "@leight/user-server": "^0.5.82",
+        "@leight/xlsx-import-server": "^0.5.66"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.46",
