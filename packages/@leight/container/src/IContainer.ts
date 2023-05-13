@@ -9,6 +9,8 @@ import {
 } from "pumpit";
 
 export interface IContainer {
+    unbind(key: IContainer.Key): void;
+
     bindClass<T extends ClassValue>(key: IContainer.Key, value: T, options?: IContainer.Options.Class<T>): IContainer;
 
     bindFactory<T extends FactoryValue>(key: IContainer.Key, value: T, options?: IContainer.Options.Factory<T>): IContainer;

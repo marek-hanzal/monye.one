@@ -14,20 +14,28 @@ export class Container implements IContainer {
     ) {
     }
 
+    public unbind(key: IContainer.Key): void {
+        try {
+            this.container.unbind(key);
+        } catch (e) {
+            // noop
+        }
+    }
+
     public bindClass<T extends ClassValue>(key: IContainer.Key, value: T, options?: IContainer.Options.Class<T>): IContainer {
-        this.container.unbind(key);
+        this.unbind(key);
         this.container.bindClass(key, value, options);
         return this;
     }
 
     public bindFactory<T extends FactoryValue>(key: IContainer.Key, value: T, options?: IContainer.Options.Factory<T>): IContainer {
-        this.container.unbind(key);
+        this.unbind(key);
         this.container.bindFactory(key, value, options);
         return this;
     }
 
     public bindValue<T>(key: IContainer.Key, value: T): IContainer {
-        this.container.unbind(key);
+        this.unbind(key);
         this.container.bindValue(key, value);
         return this;
     }
