@@ -13,4 +13,4 @@ export interface ICalendarEventRepository extends IRepository<CalendarEventSourc
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ffgqlkp86vmutx1jakk1twmb = true;
+export const $leight_ehh19de0a3q58rt3ynz0c72f = true;

@@ -7,9 +7,8 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_i0ubt10c8prwpenyoyr7cdgu = true;
+export const $leight_esj53e8hp5b9iovdhvqiiga4 = true;
 
-export * from "./index";
 export * from "./mapper/IKeywordRepositoryMapper";
 export * from "./repository/IKeywordRepository";
 export * from "./repository/IUseKeywordRepository";

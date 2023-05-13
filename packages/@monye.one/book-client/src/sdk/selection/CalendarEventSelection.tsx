@@ -15,4 +15,4 @@ export const CalendarEventSelection = createSelectionStore<SourceType["Dto"]>({n
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_uvqonswk7tobeih83c5kox21 = true;
+export const $leight_vfpmehm7obsihg6iwrtltwzy = true;

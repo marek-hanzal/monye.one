@@ -1,7 +1,5 @@
-import {
-    type IContainer,
-    ServiceContext
-}                            from "@leight/container";
+import {type IContainer}     from "@leight/container";
+import {ServiceContext}      from "@leight/container-server";
 import {type IImportService} from "@leight/import";
 import {$XlsxImportService}  from "@leight/xlsx-import";
 

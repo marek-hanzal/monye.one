@@ -1,5 +1,4 @@
 import {type IContainer} from "@leight/container";
-import {childContainer}  from "@leight/container-server";
 import {
     $UserService,
     type IUserService
@@ -17,7 +16,7 @@ export const TrpcEndpoint = <TRouter extends AnyRouter>(
     coolContainer: IContainer
 ) =>
     createHandler(router, async ({req}) => {
-        const container = childContainer(coolContainer);
+        const container = coolContainer.child();
         const token = await getToken({req});
         const tokenService = TokenServiceContext(container)
             .register((token?.tokens || []) as [])

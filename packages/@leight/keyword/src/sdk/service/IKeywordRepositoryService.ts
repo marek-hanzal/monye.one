@@ -12,4 +12,4 @@ export type IKeywordRepositoryService = IRepositoryService<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_w1cxtz9czg9bdoekcu4x0qv6 = true;
+export const $leight_konrc1il940vyym7oru8p92s = true;

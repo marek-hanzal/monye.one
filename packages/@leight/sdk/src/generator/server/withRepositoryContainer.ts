@@ -1,6 +1,11 @@
-import {withSourceFile} from "@leight/generator-server";
-import {normalize} from "node:path";
-import {type IGenerator} from "../../api";
+import {type IPackageType} from "@leight/generator";
+import {
+    withPackageImport,
+    withPackageType,
+    withSourceFile
+}                          from "@leight/generator-server";
+import {normalize}         from "node:path";
+import {type IGenerator}   from "../../api";
 
 export interface IWithRepositoryContainerParams {
     repositories: IWithRepositoryContainerParams.IRepository[];
@@ -11,6 +16,9 @@ export namespace IWithRepositoryContainerParams {
         name: string;
         type?: "common" | "extended";
         packages: IPackages;
+        repositoryEx?: IPackageType;
+        mapperEx?: IPackageType;
+        serviceEx?: IPackageType;
     }
 
     export interface IPackages {
@@ -27,7 +35,15 @@ export const withRepositoryContainer: IGenerator<IWithRepositoryContainerParams>
         barrel,
         params: {repositories},
     }) => {
-    repositories.forEach(({name, type = "extended", packages}) => {
+    repositories.forEach((
+        {
+            name,
+            type = "extended",
+            packages,
+            repositoryEx,
+            serviceEx,
+            mapperEx
+        }) => {
         console.log(`- Generating [withRepositoryContainer] [${name}]`);
 
         const repository = `Base${name}Repository` + (type === "extended" ? "Ex" : "");
@@ -72,6 +88,71 @@ export const withRepositoryContainer: IGenerator<IWithRepositoryContainerParams>
             })
             .saveTo({
                 file: normalize(`${directory}/container/with${name}RepositoryContainer.ts`),
+                barrel,
+            });
+
+        withSourceFile()
+            .withImports({
+                imports: {
+                    "@leight/container":        [
+                        "type IContainer",
+                    ],
+                    "@leight/container-server": [
+                        "ServiceContext",
+                    ],
+                },
+            })
+            .withImports({
+                imports: repositoryEx?.withPackage ? {
+                    [repositoryEx.withPackage.package]: [
+                        withPackageImport(repositoryEx),
+                    ],
+                } : {
+                    [packages.schema]: [
+                        `type I${name}Repository`,
+                    ],
+                },
+            })
+            .withImports({
+                imports: serviceEx?.withPackage ? {
+                    [serviceEx.withPackage.package]: [
+                        withPackageImport(serviceEx),
+                    ],
+                } : {
+                    [packages.schema]: [
+                        `type I${name}RepositoryService`,
+                    ],
+                },
+            })
+            .withImports({
+                imports: mapperEx?.withPackage ? {
+                    [mapperEx.withPackage.package]: [
+                        withPackageImport(mapperEx),
+                    ],
+                } : {
+                    [packages.schema]: [
+                        `type I${name}RepositoryMapper`,
+                    ],
+                },
+            })
+            .withImports({
+                imports: {
+                    [packages.schema]: [
+                        `$${name}Repository`,
+                        `$${name}RepositoryMapper`,
+                        `$${name}RepositoryService`,
+                    ],
+                },
+            })
+            .withConsts({
+                exports: {
+                    [`${name}RepositoryContext`]:        {body: `(container: IContainer) => new ServiceContext<${repositoryEx ? withPackageType(repositoryEx) : `I${name}Repository`}>(container, $${name}Repository)`},
+                    [`${name}RepositoryMapperContext`]:  {body: `(container: IContainer) => new ServiceContext<${mapperEx ? withPackageType(mapperEx) : `I${name}RepositoryMapper`}>(container, $${name}RepositoryMapper)`},
+                    [`${name}RepositoryServiceContext`]: {body: `(container: IContainer) => new ServiceContext<${serviceEx ? withPackageType(serviceEx) : `I${name}RepositoryService`}>(container, $${name}RepositoryService)`},
+                }
+            })
+            .saveTo({
+                file: normalize(`${directory}/container/${name}Context.ts`),
                 barrel,
             });
     });

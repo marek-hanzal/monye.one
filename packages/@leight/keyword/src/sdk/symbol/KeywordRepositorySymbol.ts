@@ -3,22 +3,11 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {
-	type IContainer,
-	ServiceContext
-} from "@leight/container";
-import {type IKeywordRepository} from "../repository/IKeywordRepository";
-import {type IKeywordRepositoryService} from "../service/IKeywordRepositoryService";
-import {type IKeywordRepositoryMapper} from "../mapper/IKeywordRepositoryMapper";
-
 export const $KeywordRepository = Symbol.for("@leight/keyword/IKeywordRepository");
 export const $KeywordRepositoryMapper = Symbol.for("@leight/keyword/IKeywordRepositoryMapper");
 export const $KeywordRepositoryService = Symbol.for("@leight/keyword/IKeywordRepositoryService");
-export const KeywordRepositoryContext = (container: IContainer) => new ServiceContext<IKeywordRepository>(container, $KeywordRepository);
-export const KeywordRepositoryMapperContext = (container: IContainer) => new ServiceContext<IKeywordRepositoryMapper>(container, $KeywordRepositoryMapper);
-export const KeywordRepositoryServiceContext = (container: IContainer) => new ServiceContext<IKeywordRepositoryService>(container, $KeywordRepositoryService);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_f4wzd69742ifc3am5vg0gexb = true;
+export const $leight_lzdad3o22edg475mz0vep0qu = true;

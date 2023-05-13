@@ -11,4 +11,4 @@ export const TransactionLabelMantineFormContext = createMantineFormContext<ITran
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mbavc9f7pb85ykjd5axojeek = true;
+export const $leight_hzbd0htgop1dnk2bscgrk7cm = true;

@@ -33,6 +33,7 @@
     },
     "dependencies": {
         "@leight/container": "^0.5.68",
+        "@leight/container-server": "^0.5.0",
         "@leight/keyword": "^0.5.4",
         "@leight/prisma": "^0.5.85",
         "@leight/react-query": "^0.5.30",

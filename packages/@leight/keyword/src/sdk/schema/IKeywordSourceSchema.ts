@@ -11,4 +11,4 @@ export type IKeywordSourceSchema = KeywordSource["Schema"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_i7z712wqnjmajuz1jy3zigtv = true;
+export const $leight_s0m9gf9uhzsr9p0f8riskbw0 = true;

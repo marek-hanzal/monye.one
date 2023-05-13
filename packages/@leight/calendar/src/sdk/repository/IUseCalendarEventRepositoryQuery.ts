@@ -12,4 +12,4 @@ export type IUseCalendarEventRepositoryQuery = IUseRepositoryQuery<SourceSchema>
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_y7b7n4rvimqrspbx3u37fuw9 = true;
+export const $leight_qg72cm9xy6m2sb4uvdfa87rd = true;

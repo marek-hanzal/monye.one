@@ -1,4 +1,4 @@
-import {type BindKey}            from "@leight/container";
+import {type IContainer}         from "@leight/container";
 import {type ILogger}            from "@leight/winston";
 import {z}                       from "@leight/zod";
 import {type IJobParamsSchema}   from "../schema";
@@ -7,7 +7,7 @@ import {type IJobProgress}       from "./IJobProgress";
 import {type IJobWithParams}     from "./IJobWithParams";
 
 export interface IJobService<TParamsSchema extends IJobParamsSchema, TResult = any> {
-    name: BindKey;
+    name: IContainer.Key;
 
     async(props: IJobService.IAsyncProps<TParamsSchema>): Promise<IJobWithParams<TParamsSchema>>;
 

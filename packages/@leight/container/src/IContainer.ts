@@ -5,12 +5,10 @@ import {
     type ClassValue,
     type FactoryOptions,
     type FactoryValue,
-    type PumpIt
+    SCOPE
 } from "pumpit";
 
 export interface IContainer {
-    readonly container: PumpIt;
-
     bindClass<T extends ClassValue>(key: IContainer.Key, value: T, options?: IContainer.Options.Class<T>): IContainer;
 
     bindFactory<T extends FactoryValue>(key: IContainer.Key, value: T, options?: IContainer.Options.Factory<T>): IContainer;
@@ -24,6 +22,7 @@ export interface IContainer {
 
 export namespace IContainer {
     export type Key = BindKey;
+    export const Scope = SCOPE;
 
     export namespace Options {
         export type Class<T extends ClassValue> = Omit<Partial<ClassOptions<T, AvailableScopes>>, "type">;

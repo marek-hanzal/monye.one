@@ -33,6 +33,7 @@
     },
     "dependencies": {
         "@leight/container": "^0.5.68",
+        "@leight/container-server": "^0.5.0",
         "@leight/file": "^0.5.77",
         "@leight/next.js": "^0.5.33",
         "@leight/next.js-server": "^0.5.73",

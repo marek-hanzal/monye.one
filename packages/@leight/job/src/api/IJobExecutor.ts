@@ -1,4 +1,4 @@
-import {type BindKey}          from "@leight/container";
+import {type IContainer}       from "@leight/container";
 import {z}                     from "@leight/zod";
 import {type IJobParamsSchema} from "../schema";
 import {type IJobWithParams}   from "./IJobWithParams";
@@ -9,7 +9,7 @@ export interface IJobExecutor {
 
 export namespace IJobExecutor {
     export interface IExecuteProps<TParamsSchema extends IJobParamsSchema> {
-        service: BindKey;
+        service: IContainer.Key;
         params: z.infer<TParamsSchema>;
     }
 }

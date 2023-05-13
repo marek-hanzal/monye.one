@@ -46,4 +46,4 @@ export const TransactionLabelTrpcForm: FC<ITransactionLabelTrpcFormProps> = ({on
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_eafkzncch12satgjwzdubyq5 = true;
+export const $leight_kcfk6s52kwtlly5c5lvhb35s = true;

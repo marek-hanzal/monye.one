@@ -12,4 +12,4 @@ export type ILabelRepositoryService = IRepositoryService<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zmasygrwu02sxwcu6mtg5ohu = true;
+export const $leight_de8pm9n0rke8842jf3dop36m = true;

@@ -12,4 +12,4 @@ export type ILabelSource = ISource<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_h883tglhgg15h166z5d3uag3 = true;
+export const $leight_xrntqg5p23zez07d2jok42ep = true;

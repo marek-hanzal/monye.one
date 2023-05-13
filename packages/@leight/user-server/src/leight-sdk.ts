@@ -36,9 +36,15 @@ void generatorServer({
     withRepositoryContainer: {
         repositories: [
             {
-                name:     "User",
-                packages: {
+                name:         "User",
+                packages:     {
                     schema: "@leight/user",
+                },
+                repositoryEx: {
+                    type:        "IUserRepositoryEx",
+                    withPackage: {
+                        package: "@leight/user",
+                    },
                 },
             },
         ],

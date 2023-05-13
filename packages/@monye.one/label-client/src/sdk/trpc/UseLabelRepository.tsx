@@ -15,4 +15,4 @@ export const UseLabelRepository: UseRepository = withUseRepository<SourceSchema>
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_evncimbse7ycbatqyuabtkq0 = true;
+export const $leight_yz1up0p2tbsbezau0h0sg5dg = true;

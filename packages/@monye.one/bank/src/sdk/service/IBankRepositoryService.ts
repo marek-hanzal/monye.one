@@ -12,4 +12,4 @@ export type IBankRepositoryService = IRepositoryService<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_x30azk1ghjh1z6fsg356s83a = true;
+export const $leight_w2ys9etcdv2hhn9iwu6472l8 = true;

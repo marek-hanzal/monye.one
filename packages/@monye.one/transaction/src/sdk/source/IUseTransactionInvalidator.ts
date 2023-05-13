@@ -11,4 +11,4 @@ export type IUseTransactionInvalidator = ISource.IUseInvalidator;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jm1tmc9l2k0gee14gncoi2b0 = true;
+export const $leight_qn09iz7h50804pg5a94p2d03 = true;

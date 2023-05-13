@@ -17,4 +17,4 @@ export const useCalendarEventInvalidator: IUseInvalidator = () => {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wej1h4qlpfsi0ye90impb9t2 = true;
+export const $leight_tm8879atu3nt0htry4j87n8c = true;

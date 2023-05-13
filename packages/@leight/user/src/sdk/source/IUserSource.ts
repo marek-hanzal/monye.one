@@ -12,4 +12,4 @@ export type IUserSource = ISource<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hhx5wftwtnpqwfsk7ncg9obu = true;
+export const $leight_cak9vznqnfhh26l4mcn6ucvq = true;

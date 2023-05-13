@@ -19,4 +19,4 @@ export const LabelSource = withSource<ISourceSchema>({
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_hws4fbzqedg09gddhlbk1vgc = true;
+export const $leight_uluwrscyxxdhzlkclo4s9xy0 = true;

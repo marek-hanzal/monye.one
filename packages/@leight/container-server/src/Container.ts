@@ -5,12 +5,12 @@ import {
 import {
     type ClassValue,
     type FactoryValue,
-    type PumpIt
+    PumpIt
 } from "pumpit";
 
 export class Container implements IContainer {
     constructor(
-        public container: PumpIt
+        protected container: PumpIt
     ) {
     }
 
@@ -40,8 +40,8 @@ export class Container implements IContainer {
         return this.container.resolve(key);
     }
 
-    static create(container: PumpIt): IContainer {
-        const $container = new Container(container);
+    static create(container?: PumpIt): IContainer {
+        const $container = new Container(container || new PumpIt());
         $container.bindValue($Container, $container);
         return $container;
     }

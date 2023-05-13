@@ -3,22 +3,11 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {
-	type IContainer,
-	ServiceContext
-} from "@leight/container";
-import {type IJobRepository} from "../repository/IJobRepository";
-import {type IJobRepositoryService} from "../service/IJobRepositoryService";
-import {type IJobRepositoryMapper} from "../mapper/IJobRepositoryMapper";
-
 export const $JobRepository = Symbol.for("@leight/job/IJobRepository");
 export const $JobRepositoryMapper = Symbol.for("@leight/job/IJobRepositoryMapper");
 export const $JobRepositoryService = Symbol.for("@leight/job/IJobRepositoryService");
-export const JobRepositoryContext = (container: IContainer) => new ServiceContext<IJobRepository>(container, $JobRepository);
-export const JobRepositoryMapperContext = (container: IContainer) => new ServiceContext<IJobRepositoryMapper>(container, $JobRepositoryMapper);
-export const JobRepositoryServiceContext = (container: IContainer) => new ServiceContext<IJobRepositoryService>(container, $JobRepositoryService);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_sihcsglsq6orbk3hwvwbvmf2 = true;
+export const $leight_lx8es1s6bjup98xykx1j62lm = true;

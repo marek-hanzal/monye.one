@@ -13,4 +13,4 @@ export const TransactionLabelFormStoreContext = createFormContext<ITransactionLa
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_zs16u2qp17ynzqxne7lqqh2u = true;
+export const $leight_zr3qlu61m7y3sa105sb6cqcj = true;

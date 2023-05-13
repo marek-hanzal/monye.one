@@ -12,4 +12,4 @@ export type ITransactionRepositoryService = IRepositoryService<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fyx0bozdnxduv6q1km2uc7sg = true;
+export const $leight_dej24gocb3q5pt8odjy06cwc = true;

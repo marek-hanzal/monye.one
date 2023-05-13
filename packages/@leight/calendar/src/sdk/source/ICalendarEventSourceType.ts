@@ -11,4 +11,4 @@ export type ICalendarEventSourceType = CalendarEventSource["Type"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ztm9ytg9hfs5v6yoq5s0ejz0 = true;
+export const $leight_xxvexxr55q9oogrr4wejgyd5 = true;

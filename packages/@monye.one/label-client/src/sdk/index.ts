@@ -7,9 +7,8 @@
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_u55a582q9bko278qm0tb7mp9 = true;
+export const $leight_xht6gsysgj6jaf0iip7l9ull = true;
 
-export * from "./index";
 export * from "./context/LabelCreateFormStoreContext";
 export * from "./context/LabelCreateMantineFormContext";
 export * from "./form/LabelCreateBaseForm";

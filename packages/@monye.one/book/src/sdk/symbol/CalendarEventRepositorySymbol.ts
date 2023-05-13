@@ -3,22 +3,11 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {
-	type IContainer,
-	ServiceContext
-} from "@leight/container";
-import {type ICalendarEventRepository} from "../repository/ICalendarEventRepository";
-import {type ICalendarEventRepositoryService} from "../service/ICalendarEventRepositoryService";
-import {type ICalendarEventRepositoryMapper} from "../mapper/ICalendarEventRepositoryMapper";
-
 export const $CalendarEventRepository = Symbol.for("@monye.one/book/ICalendarEventRepository");
 export const $CalendarEventRepositoryMapper = Symbol.for("@monye.one/book/ICalendarEventRepositoryMapper");
 export const $CalendarEventRepositoryService = Symbol.for("@monye.one/book/ICalendarEventRepositoryService");
-export const CalendarEventRepositoryContext = (container: IContainer) => new ServiceContext<ICalendarEventRepository>(container, $CalendarEventRepository);
-export const CalendarEventRepositoryMapperContext = (container: IContainer) => new ServiceContext<ICalendarEventRepositoryMapper>(container, $CalendarEventRepositoryMapper);
-export const CalendarEventRepositoryServiceContext = (container: IContainer) => new ServiceContext<ICalendarEventRepositoryService>(container, $CalendarEventRepositoryService);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_o5rejf90ei2o1py06c0li94g = true;
+export const $leight_b1pi1tw2mqx2u0bhfk5417ew = true;

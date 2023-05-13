@@ -13,4 +13,4 @@ export interface ICalendarEventRepositoryMapper extends IRepositoryMapper<Calend
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_gkrmnxz82lryfs5b3ikijg83 = true;
+export const $leight_ubk27enfywi2nj7y0ss9nu1i = true;

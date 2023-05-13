@@ -3,22 +3,11 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {
-	type IContainer,
-	ServiceContext
-} from "@leight/container";
-import {type ITransactionKeywordRepository} from "../repository/ITransactionKeywordRepository";
-import {type ITransactionKeywordRepositoryService} from "../service/ITransactionKeywordRepositoryService";
-import {type ITransactionKeywordRepositoryMapper} from "../mapper/ITransactionKeywordRepositoryMapper";
-
 export const $TransactionKeywordRepository = Symbol.for("@monye.one/transaction/ITransactionKeywordRepository");
 export const $TransactionKeywordRepositoryMapper = Symbol.for("@monye.one/transaction/ITransactionKeywordRepositoryMapper");
 export const $TransactionKeywordRepositoryService = Symbol.for("@monye.one/transaction/ITransactionKeywordRepositoryService");
-export const TransactionKeywordRepositoryContext = (container: IContainer) => new ServiceContext<ITransactionKeywordRepository>(container, $TransactionKeywordRepository);
-export const TransactionKeywordRepositoryMapperContext = (container: IContainer) => new ServiceContext<ITransactionKeywordRepositoryMapper>(container, $TransactionKeywordRepositoryMapper);
-export const TransactionKeywordRepositoryServiceContext = (container: IContainer) => new ServiceContext<ITransactionKeywordRepositoryService>(container, $TransactionKeywordRepositoryService);
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_geza57snb92danu1agbfh7ns = true;
+export const $leight_w5mfnl2uejkxk50rjvomabym = true;

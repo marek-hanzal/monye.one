@@ -12,4 +12,4 @@ export type ICalendarEventRepositoryService = IRepositoryService<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_vg7nf18smlxkai9f8b451x4t = true;
+export const $leight_is9wbq1pkyum3mvrxlcx8eno = true;

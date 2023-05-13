@@ -138,4 +138,4 @@ export class BaseUserRepositoryEx<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ns7ifji6ps8zfkf4hxd4h42i = true;
+export const $leight_w7f94jkf68m7xjhxdjp3bw3h = true;

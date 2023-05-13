@@ -12,4 +12,4 @@ export type IUseTransactionKeywordRepository = ISource.IUseRepository<SourceSche
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ogma1xe91c5sbr9i14tbg4sq = true;
+export const $leight_hyf2ryv9p2w6i33x2akepuzz = true;

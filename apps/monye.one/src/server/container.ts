@@ -1,15 +1,8 @@
 import {env}                                          from "@/monye.one/env.mjs";
-import {
-    type IContainer,
-    PumpIt,
-    SCOPE,
-    wrapContainer
-}                                                     from "@leight/container";
-import {
-    withContainer,
-    withServerContainer as withLeightContainer
-}                                                     from "@leight/container-server";
+import {IContainer}                                   from "@leight/container";
+import {Container}                                    from "@leight/container-server";
 import {$PrismaClient}                                from "@leight/prisma";
+import {withServerContainer as withLeightContainer}   from "@leight/viv-server";
 import {BootstrapLogger}                              from "@leight/winston";
 import {withServerContainer as withMonyeOneContainer} from "@monye.one/container-server";
 import {PrismaClient}                                 from "@monye.one/prisma";
@@ -20,10 +13,10 @@ BootstrapLogger({
     ],
 });
 
-export const container = withContainer(new PumpIt());
+export const container = Container.create();
 
 export const MonyeOneContainer = ((container: IContainer) => {
-    wrapContainer(container)
+    container
         .bindFactory($PrismaClient, () => {
             return new PrismaClient({
                 errorFormat: "pretty",
@@ -37,7 +30,7 @@ export const MonyeOneContainer = ((container: IContainer) => {
                                  : ["error"],
             });
         }, {
-            scope: SCOPE.SINGLETON,
+            scope: IContainer.Scope.SINGLETON,
         });
     withLeightContainer(container);
     withMonyeOneContainer(container);

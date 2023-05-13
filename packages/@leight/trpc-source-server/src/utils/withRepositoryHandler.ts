@@ -1,18 +1,15 @@
-import {
-    type BindKey,
-    type IContainer
-}                    from "@leight/container";
+import {type IContainer} from "@leight/container";
 import {
     type IRepositoryService,
     type IRepositoryServiceSchema,
     type IWithIdentity,
     type IWithIdentity$,
     type RepositoryServiceType
-}                    from "@leight/source";
-import {withHandler} from "@leight/trpc-server";
+}                        from "@leight/source";
+import {withHandler}     from "@leight/trpc-server";
 
 export interface IWithRepositoryHandlerProps {
-    service: BindKey;
+    service: IContainer.Key;
 }
 
 export const withRepositoryHandler = <

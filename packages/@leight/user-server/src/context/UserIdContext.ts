@@ -1,8 +1,6 @@
-import {
-    type IContainer,
-    ServiceContext
-}                from "@leight/container";
-import {$UserId} from "@leight/user";
+import {type IContainer} from "@leight/container";
+import {ServiceContext}  from "@leight/container-server";
+import {$UserId}         from "@leight/user";
 
 export class $UserIdContext extends ServiceContext<string | undefined> {
     constructor(container: IContainer) {
