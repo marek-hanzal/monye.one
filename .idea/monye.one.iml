@@ -99,6 +99,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/label-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/label/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/label-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/viv-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/viv-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-ex-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
@@ -289,6 +290,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/label-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/label-client/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-ex-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/viv-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/viv-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/viv-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/viv-server/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

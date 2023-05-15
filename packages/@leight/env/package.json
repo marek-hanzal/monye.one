@@ -1,7 +1,7 @@
 {
-    "version": "0.5.6",
-    "name": "@leight/viv-client",
-    "description": "Proxy export for all @leight client-side libraries.",
+    "version": "0.5.34",
+    "name": "@leight/env",
+    "description": "Next.js env helper stuff.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -12,6 +12,7 @@
     },
     "sideEffects": false,
     "type": "module",
+    "main": "lib/index.js",
     "module": "lib/index.js",
     "types": "lib/index.d.ts",
     "files": [
@@ -19,7 +20,7 @@
         "src"
     ],
     "scripts": {
-        "dev": "turbowatch",
+        "init": "npm run build",
         "build": "concurrently npm:build:*",
         "build:esbuild": "node esbuild.mjs",
         "build:types": "tsc --outDir lib",
@@ -28,20 +29,18 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "next-intl": "^2.14.2"
+        "zod": "^3.21.1"
     },
     "devDependencies": {
-        "@leight/esbuild": "^0.5.46",
-        "@leight/eslint-config-eslint": "^0.5.55",
-        "@leight/tsconfig": "^0.5.69",
-        "@leight/turbowatch": "^0.5.34",
+        "@leight/esbuild": "^0.5.42",
+        "@leight/eslint-config-eslint": "^0.5.51",
+        "@leight/tsconfig": "^0.5.65",
         "@types/node": "^18.15.0",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
         "depcheck": "^1.4.3",
         "eslint": "^8.36.0",
-        "turbowatch": "^2.3.2",
-        "typescript": "^5.0.4"
+        "typescript": "^5.0.2"
     },
     "bugs": {
         "url": "https://github.com/leight-core/viv/issues"

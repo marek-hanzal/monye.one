@@ -1,5 +1,4 @@
 // @ts-check
-import i18n from './next-i18next.config.js';
 
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
@@ -9,13 +8,9 @@ import i18n from './next-i18next.config.js';
 
 /** @type {import('next').NextConfig} */
 export default {
-    experimental:      {
+    experimental:    {
         serverActions: true,
-        turbo:         {},
     },
-    reactStrictMode:   true,
-    swcMinify:         true,
-    i18n:              i18n.i18n,
-    transpilePackages: [],
-    modularizeImports: {}
+    reactStrictMode: true,
+    swcMinify:       true,
 };
