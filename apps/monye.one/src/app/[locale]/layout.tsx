@@ -1,5 +1,6 @@
 import {locales}                from "@/monye.one/locales";
-import {LocaleProvider}         from "@leight/viv-client";
+import {NextIntlClientProvider} from "next-intl";
+import {notFound}               from "next/navigation";
 import {type PropsWithChildren} from "react";
 
 export function generateStaticParams() {
@@ -17,22 +18,21 @@ export default async function Layout(
         children,
         params: {locale}
     }: ILayoutProps) {
-    // try {
-    // const translations = (await import(`../translation/${locale}.json`)).default;
-    const translations = {};
-    return <html
-        lang={locale}
-    >
-        <body>
-            <LocaleProvider
-                locale={locale}
-                messages={translations}
-            >
-                {children}
-            </LocaleProvider>
-        </body>
-    </html>;
-    // } catch (e) {
-    //     notFound();
-    // }
+    try {
+        const translations = (await import(`../../translation/${locale}.json`)).default;
+        return <html
+            lang={locale}
+        >
+            <body>
+                <NextIntlClientProvider
+                    locale={locale}
+                    messages={translations}
+                >
+                    {children}
+                </NextIntlClientProvider>
+            </body>
+        </html>;
+    } catch (e) {
+        notFound();
+    }
 }
