@@ -43,6 +43,7 @@
             "cache": false
         },
         "init": {
+            "outputMode": "new-only",
             "dependsOn": [
                 "setup",
                 "^init"
