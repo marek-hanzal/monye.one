@@ -1,7 +1,9 @@
 "use client";
 
-import {LayoutShell}            from "@leight/viv-client";
-import {MantineProvider}        from "@mantine/core";
+import {
+    LayoutShell,
+    withEmotionCache
+}                               from "@leight/viv-client";
 import {notFound}               from "next/navigation";
 import {type PropsWithChildren} from "react";
 
@@ -22,23 +24,19 @@ export default async function Layout(
     }: ILayoutProps) {
     try {
         const translations = (await import(`../../translation/${locale}.json`)).default;
-        return <MantineProvider
-            withGlobalStyles
-            withNormalizeCSS
+        return <html
+            lang={locale}
         >
-            <html
-                lang={locale}
-            >
-                <body>
-                    <LayoutShell
-                        locale={locale}
-                        translations={translations}
-                    >
-                        {children}
-                    </LayoutShell>
-                </body>
-            </html>
-        </MantineProvider>;
+            <body>
+                <LayoutShell
+                    locale={locale}
+                    translations={translations}
+                    emotionCache={withEmotionCache()}
+                >
+                    {children}
+                </LayoutShell>
+            </body>
+        </html>;
     } catch (e) {
         notFound();
     }

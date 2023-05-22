@@ -28,6 +28,11 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
+        "@emotion/react": "^11.11.0",
+        "@mantine/core": "^6.0.11",
+        "@mantine/hooks": "^6.0.11",
+        "@mantine/modals": "^6.0.11",
+        "@mantine/notifications": "^6.0.11",
         "next": "^13.4.3",
         "next-intl": "^2.14.2",
         "react": "^18.2.0",
