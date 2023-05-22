@@ -1,7 +1,7 @@
 "use client";
 
+import {LayoutShell}            from "@leight/viv-client";
 import {MantineProvider}        from "@mantine/core";
-import {NextIntlClientProvider} from "next-intl";
 import {notFound}               from "next/navigation";
 import {type PropsWithChildren} from "react";
 
@@ -30,12 +30,12 @@ export default async function Layout(
                 lang={locale}
             >
                 <body>
-                    <NextIntlClientProvider
+                    <LayoutShell
                         locale={locale}
-                        messages={translations}
+                        translations={translations}
                     >
                         {children}
-                    </NextIntlClientProvider>
+                    </LayoutShell>
                 </body>
             </html>
         </MantineProvider>;
