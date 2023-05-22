@@ -1,6 +1,7 @@
 "use client";
 
 import {action} from "@/monye.one/app/[locale]/action";
+import {Button} from "@mantine/core";
 import {
     useState,
     useTransition
@@ -10,11 +11,11 @@ export const Some = () => {
     const [foo, setFoo] = useState<string>();
     const [isPending, startTransition] = useTransition();
     return <>
-        <button
+        <Button
             onClick={async () => startTransition(async () => setFoo(await action("blabla")))}
         >
             klyk
-        </button>
+        </Button>
         {isPending ? "????" : <div>{foo}</div>}
     </>;
 };

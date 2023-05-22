@@ -1,3 +1,6 @@
+"use client";
+
+import {MantineProvider}        from "@mantine/core";
 import {NextIntlClientProvider} from "next-intl";
 import {notFound}               from "next/navigation";
 import {type PropsWithChildren} from "react";
@@ -19,18 +22,23 @@ export default async function Layout(
     }: ILayoutProps) {
     try {
         const translations = (await import(`../../translation/${locale}.json`)).default;
-        return <html
-            lang={locale}
+        return <MantineProvider
+            withGlobalStyles
+            withNormalizeCSS
         >
-            <body>
-                <NextIntlClientProvider
-                    locale={locale}
-                    messages={translations}
-                >
-                    {children}
-                </NextIntlClientProvider>
-            </body>
-        </html>;
+            <html
+                lang={locale}
+            >
+                <body>
+                    <NextIntlClientProvider
+                        locale={locale}
+                        messages={translations}
+                    >
+                        {children}
+                    </NextIntlClientProvider>
+                </body>
+            </html>
+        </MantineProvider>;
     } catch (e) {
         notFound();
     }

@@ -28,7 +28,10 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "next-intl": "^2.14.2"
+        "next": "^13.4.3",
+        "next-intl": "^2.14.2",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.46",
@@ -36,6 +39,8 @@
         "@leight/tsconfig": "^0.5.69",
         "@leight/turbowatch": "^0.5.34",
         "@types/node": "^18.15.0",
+        "@types/react": "^18.2.6",
+        "@types/react-dom": "^18.2.4",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
         "depcheck": "^1.4.3",
