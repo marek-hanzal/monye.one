@@ -1,7 +1,7 @@
 {
-    "version": "0.5.6",
-    "name": "@leight/viv-client",
-    "description": "Proxy export for all @leight client-side libraries.",
+    "version": "0.5.0",
+    "name": "@leight/viv",
+    "description": "Common stuff shared in leight-viv.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -28,23 +28,24 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@emotion/react": "^11.11.0",
-        "@leight/viv": "^0.5.0",
-        "@mantine/core": "^6.0.11",
-        "@mantine/hooks": "^6.0.11",
-        "@mantine/modals": "^6.0.11",
-        "@mantine/notifications": "^6.0.11",
+        "devalue": "^4.3.2",
+        "is-callable": "^1.2.7",
+        "is-object": "^1.0.2",
+        "is-string": "^1.0.7",
         "luxon": "^3.3.0",
         "next": "^13.4.3",
-        "next-intl": "^2.14.2",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "zustand": "^4.3.8"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.46",
         "@leight/eslint-config-eslint": "^0.5.55",
         "@leight/tsconfig": "^0.5.69",
         "@leight/turbowatch": "^0.5.34",
+        "@types/is-callable": "^1.1.0",
+        "@types/is-object": "^1.0.2",
+        "@types/is-string": "^1.0.0",
         "@types/node": "^18.15.0",
         "@types/react": "^18.2.6",
         "@types/react-dom": "^18.2.4",
