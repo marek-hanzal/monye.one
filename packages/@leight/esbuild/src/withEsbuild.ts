@@ -1,4 +1,4 @@
-import {BuildOptions} from "esbuild";
+import {type BuildOptions} from "esbuild";
 
 export const withEsbuild = (config?: BuildOptions): BuildOptions => {
     return {
@@ -12,6 +12,9 @@ export const withEsbuild = (config?: BuildOptions): BuildOptions => {
         sourcemap:   true,
         outdir:      "lib",
         packages:    "external",
+        // banner: {
+        //     js: '"use client";',
+        // },
         ...config,
     };
 };

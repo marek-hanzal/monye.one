@@ -1,6 +1,6 @@
 import {
     build as coolBuild,
-    BuildOptions
+    type BuildOptions
 }                    from "esbuild";
 import {withEsbuild} from "./withEsbuild";
 
