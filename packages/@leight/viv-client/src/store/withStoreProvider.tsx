@@ -10,18 +10,18 @@ import {
     useMemo
 } from "react";
 
-export interface ICreateStoreProviderProps<TStoreProps extends IStoreProps> {
+export interface IWithStoreProviderProps<TStoreProps extends IStoreProps> {
     name: string;
     createStore: ICreateStore<TStoreProps>;
     Context: IStoreContext<TStoreProps>;
 }
 
-export const createStoreProvider = <TStoreProps extends IStoreProps>(
+export const withStoreProvider = <TStoreProps extends IStoreProps>(
     {
         name,
         createStore,
         Context,
-    }: ICreateStoreProviderProps<TStoreProps>): IStoreProvider<TStoreProps> => {
+    }: IWithStoreProviderProps<TStoreProps>): IStoreProvider<TStoreProps> => {
     return function StoreProvider(
         {
             children,

@@ -7,7 +7,7 @@ import {type Context} from "react";
 import {useStore}     from "zustand";
 import {useContext}   from "../context";
 
-export const createUseState = <TStoreProps extends IStoreProps>(
+export const withUseState = <TStoreProps extends IStoreProps>(
     Context: Context<IStoreApi<TStoreProps> | null>,
     name: string,
     hint?: string

@@ -295,6 +295,8 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/viv-client/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/viv-server/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/viv-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/viv/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/viv/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

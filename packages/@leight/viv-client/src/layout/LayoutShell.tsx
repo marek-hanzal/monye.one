@@ -11,6 +11,7 @@ import {
     type PropsWithChildren
 }                               from "react";
 import {withEmotionCache}       from "../emotion";
+import {DateTimeProvider}       from "../i18n";
 
 type MantineProviderProps = ComponentProps<typeof MantineProvider>;
 
@@ -37,6 +38,7 @@ export const LayoutShell = (
     }: ILayoutShellProps) => {
     useServerInsertedHTML(() => (
         <style
+            key={"emotion-cache"}
             data-emotion={`${emotionCache.key} ${Object.keys(emotionCache.inserted).join(" ")}`}
             dangerouslySetInnerHTML={{
                 __html: Object.values(emotionCache.inserted).join(" "),
@@ -64,7 +66,11 @@ export const LayoutShell = (
             >
                 <Notifications position={"top-right"}/>
                 <ModalsProvider>
-                    {children}
+                    <DateTimeProvider
+                        locale={locale}
+                    >
+                        {children}
+                    </DateTimeProvider>
                 </ModalsProvider>
             </MantineProvider>
         </CacheProvider>

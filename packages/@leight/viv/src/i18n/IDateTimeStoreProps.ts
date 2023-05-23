@@ -14,4 +14,6 @@ export type IDateTimeStoreProps = IStoreProps<{
      * Take input string in ISO format and return localized date & time
      */
     toLocalDateTime(date?: IDateInput, fallback?: IDateInput, opts?: DateTimeFormatOptions): string | undefined;
+}, {
+    locale: string;
 }>

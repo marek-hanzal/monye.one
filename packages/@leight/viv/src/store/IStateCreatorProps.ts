@@ -1,13 +1,17 @@
-import {type CheckIfExtends}  from "../utils";
+import {type MergeIf}         from "../utils";
 import {type IStoreProps}     from "./IStoreProps";
 import {type IStorePropsType} from "./IStorePropsType";
 
-export type IStateCreatorProps<TStoreProps extends IStoreProps> =
+export type IStateCreatorProps<TStoreProps extends IStoreProps> = MergeIf<
     {
         defaults?: Partial<TStoreProps["Props$"]>;
+    },
+    TStoreProps["State"],
+    IStorePropsType,
+    {
+        state: TStoreProps["State"];
+    },
+    {
+        state?: never;
     }
-    & CheckIfExtends<TStoreProps["State"], IStorePropsType, {
-    state: TStoreProps["State"];
-}, {
-    state?: never;
-}>;
+>

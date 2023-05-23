@@ -1,38 +1,38 @@
 import {
     type ICreateStoreContextProps,
+    type IStore,
     type IStoreApi,
-    type IStoreContext,
     type IStoreProps
-}                            from "@leight/viv";
-import {createStore}         from "zustand";
+}                                       from "@leight/viv";
+import {createStore as coolCreateStore} from "zustand";
 import {
     createContext,
     useContext,
     useContext$
-}                            from "../context";
-import {createStoreProvider} from "./createStoreProvider";
-import {createUseState}      from "./createUseState";
-import {createUseState$}     from "./createUseState$";
+}                                       from "../context";
+import {withStoreProvider}              from "./withStoreProvider";
+import {withUseState}                   from "./withUseState";
+import {withUseState$}                  from "./withUseState$";
 
 /**
  * Creates store hook and provider of Zustand.
  */
-export const createStoreContext = <TStoreProps extends IStoreProps>(
+export const createStore = <TStoreProps extends IStoreProps>(
     {
         state,
         name,
         hint,
-    }: ICreateStoreContextProps<TStoreProps>): IStoreContext<TStoreProps> => {
+    }: ICreateStoreContextProps<TStoreProps>): IStore<TStoreProps> => {
     const Context = createContext<IStoreApi<TStoreProps>>();
     return {
         name,
-        Provider:  createStoreProvider<TStoreProps>({
+        Provider: withStoreProvider<TStoreProps>({
             name,
             Context,
             createStore: ({
                               defaults: $defaults,
                               state:    $state
-                          }) => createStore<TStoreProps["StoreProps"]>(($set, $get, $store) => ({
+                          }) => coolCreateStore<TStoreProps["StoreProps"]>(($set, $get, $store) => ({
                 ...state({
                     defaults: $defaults,
                     state:    $state
@@ -40,8 +40,8 @@ export const createStoreContext = <TStoreProps extends IStoreProps>(
                 ...$defaults,
             })),
         }),
-        useState:  createUseState(Context, name, hint),
-        useState$: createUseState$(Context),
+        useState:  withUseState(Context, name, hint),
+        useState$: withUseState$(Context),
         useStore:  () => useContext(Context, name, hint).store,
         useStore$: () => useContext$(Context)?.store || null,
     };
