@@ -1,8 +1,15 @@
 "use client";
 
-import {useTranslations} from "next-intl";
+import {
+    DateTimeStore,
+    useTranslation
+} from "@leight/viv-client";
 
 export const Bar = () => {
-    const t = useTranslations("Index");
-    return <div>{t("foo")}</div>;
+    const t = useTranslation("Index");
+    const {locale} = DateTimeStore.useState();
+    return <div>
+        {t("foo")}<br/>
+        locale: {locale}
+    </div>;
 };
