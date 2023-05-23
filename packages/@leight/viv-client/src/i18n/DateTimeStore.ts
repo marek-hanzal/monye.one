@@ -8,7 +8,7 @@ import {
     DateTime,
     type DateTimeFormatOptions
 }                           from "luxon";
-import {createStoreContext} from "../store/createStoreContext";
+import {createStoreContext} from "../store";
 
 export const iso2locale = (date?: IDateInput, fallback?: IDateInput, opts?: DateTimeFormatOptions): string | undefined => {
     if (!date) {

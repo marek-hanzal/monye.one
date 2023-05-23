@@ -14,5 +14,5 @@ export interface IStoreContext<TStoreProps extends IStoreProps> {
     useState: IUseState<TStoreProps>;
     useState$: IUseState$<TStoreProps>;
     useStore: () => StoreApi<TStoreProps["StoreProps"]>;
-    useOptionalStore: () => StoreApi<TStoreProps["StoreProps"]> | null;
+    useStore$: () => StoreApi<TStoreProps["StoreProps"]> | null;
 }

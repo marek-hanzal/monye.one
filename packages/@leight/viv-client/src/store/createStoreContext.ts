@@ -4,8 +4,15 @@ import {
     type IStoreContext,
     type IStoreProps
 }                            from "@leight/viv";
-import {createContext}       from "../context";
+import {createStore}         from "zustand";
+import {
+    createContext,
+    useContext,
+    useContext$
+}                            from "../context";
 import {createStoreProvider} from "./createStoreProvider";
+import {createUseState}      from "./createUseState";
+import {createUseState$}     from "./createUseState$";
 
 /**
  * Creates store hook and provider of Zustand.
@@ -19,7 +26,7 @@ export const createStoreContext = <TStoreProps extends IStoreProps>(
     const Context = createContext<IStoreApi<TStoreProps>>();
     return {
         name,
-        Provider:         createStoreProvider<TStoreProps>({
+        Provider:  createStoreProvider<TStoreProps>({
             name,
             Context,
             createStore: ({
@@ -33,9 +40,9 @@ export const createStoreContext = <TStoreProps extends IStoreProps>(
                 ...$defaults,
             })),
         }),
-        useState:         createUseState(Context, name, hint),
-        useOptionalState: createOptionalUseState(Context),
-        useStore:         () => useContext(Context, name, hint).store,
-        useOptionalStore: () => useOptionalContext(Context)?.store || null,
+        useState:  createUseState(Context, name, hint),
+        useState$: createUseState$(Context),
+        useStore:  () => useContext(Context, name, hint).store,
+        useStore$: () => useContext$(Context)?.store || null,
     };
 };
