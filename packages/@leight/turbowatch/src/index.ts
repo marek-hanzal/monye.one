@@ -1,10 +1,10 @@
-import {watch} from "turbowatch";
+import {defineConfig} from "turbowatch";
 
 export interface IWithTurbowatchProps {
     project: string;
 }
 
-export const withTurbowatch = ({project}: IWithTurbowatchProps) => watch({
+export const withTurbowatch = ({project}: IWithTurbowatchProps) => defineConfig({
     project,
     triggers: [
         {

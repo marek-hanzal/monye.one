@@ -11,8 +11,8 @@ import {type IUseState$}     from "./IUseState$";
 export interface IStore<TStoreProps extends IStoreProps> {
     name: string;
     Provider: IStoreProvider<TStoreProps>;
-    useState: IUseState<TStoreProps>;
-    useState$: IUseState$<TStoreProps>;
+    use: IUseState<TStoreProps>;
+    use$: IUseState$<TStoreProps>;
     useStore: () => StoreApi<TStoreProps["StoreProps"]>;
     useStore$: () => StoreApi<TStoreProps["StoreProps"]> | null;
 }

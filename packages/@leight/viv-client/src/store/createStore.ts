@@ -26,7 +26,7 @@ export const createStore = <TStoreProps extends IStoreProps>(
     const Context = createContext<IStoreApi<TStoreProps>>();
     return {
         name,
-        Provider: withStoreProvider<TStoreProps>({
+        Provider:  withStoreProvider<TStoreProps>({
             name,
             Context,
             createStore: ({
@@ -40,8 +40,8 @@ export const createStore = <TStoreProps extends IStoreProps>(
                 ...$defaults,
             })),
         }),
-        useState:  withUseState(Context, name, hint),
-        useState$: withUseState$(Context),
+        use:       withUseState(Context, name, hint),
+        use$:      withUseState$(Context),
         useStore:  () => useContext(Context, name, hint).store,
         useStore$: () => useContext$(Context)?.store || null,
     };
