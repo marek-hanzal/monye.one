@@ -1,5 +1,10 @@
 {
     "Index": {
         "foo": "bello [cs]"
+    },
+    "public": {
+        "button": {
+            "sign-in": "Bla?"
+        }
     }
 }

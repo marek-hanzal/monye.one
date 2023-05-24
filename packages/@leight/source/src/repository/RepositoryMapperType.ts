@@ -1,0 +1,12 @@
+import {z}                            from "@leight/utils";
+import {type IRepositoryMapperSchema} from "./IRepositoryMapperSchema";
+import {type RepositoryType}          from "./RepositoryType";
+
+export interface RepositoryMapperType<TRepositoryMapperSchema extends IRepositoryMapperSchema = IRepositoryMapperSchema> extends RepositoryType<TRepositoryMapperSchema> {
+    Dto: z.infer<TRepositoryMapperSchema["DtoSchema"]>;
+    ToCreate: z.infer<TRepositoryMapperSchema["ToCreateSchema"]>;
+    ToPatch: z.infer<TRepositoryMapperSchema["ToPatchSchema"]>;
+    ToPatchProps: z.infer<TRepositoryMapperSchema["ToPatchSchemaProps"]>;
+    ToPatchByProps: z.infer<TRepositoryMapperSchema["ToPatchBySchemaProps"]>;
+    ToUpsertProps: z.infer<TRepositoryMapperSchema["ToUpsertSchemaProps"]>;
+}

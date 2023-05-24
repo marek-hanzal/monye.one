@@ -1,0 +1,25 @@
+{
+    "root": true,
+    "extends": [
+        "@leight/eslint"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "src/**/*"
+            ],
+            "settings": {
+                "disable/plugins": [
+                    "react",
+                    "eslint-plugin-react"
+                ]
+            }
+        }
+    ],
+    "rules": {
+        "import/no-cycle": "off",
+        "import/no-useless-path-segments": "off",
+        "@typescript-eslint/no-use-before-define": "off",
+        "spaced-comment": "off"
+    }
+}

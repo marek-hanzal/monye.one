@@ -102,6 +102,11 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/viv-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/viv-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/viv/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/auth-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/logger-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/session-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/store-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/store/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-ex-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
@@ -297,6 +302,16 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/viv-server/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/viv/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/viv/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/@monye.one" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/monye.one/~pages" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/auth-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/auth-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/logger-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/session-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/store-client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/store-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/store/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/store/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
