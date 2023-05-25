@@ -107,6 +107,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/session-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/store-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/store/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/logger/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/ui-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-ex-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
@@ -313,6 +314,7 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/store-client/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/store/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/store/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/logger-server/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/ui-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/ui-client/lib" />
     </content>

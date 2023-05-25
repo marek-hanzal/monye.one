@@ -30,7 +30,6 @@
         "cleanup:lib": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "@leight/context": "^0.5.0",
         "@leight/react-query": "^0.5.0",
         "@leight/utils": "^0.5.0",
         "@leight/store": "^0.5.0"

@@ -27,4 +27,4 @@ export const UserRepositorySchemaEx: IUserRepositoryExSchema = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_h3peahozbuwi9t6rh9igluzm = true;
+export const $leight_tf9lfzye5dzm037dk1qyttxm = true;

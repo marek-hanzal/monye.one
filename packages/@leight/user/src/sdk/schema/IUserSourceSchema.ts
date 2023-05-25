@@ -11,4 +11,4 @@ export type IUserSourceSchema = UserSource["Schema"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_jolso3az6wfo9mxbmfyfxmw9 = true;
+export const $leight_pckw3ow6wx6gwccudbc3j76v = true;

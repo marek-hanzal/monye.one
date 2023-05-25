@@ -19,10 +19,12 @@
     "dependencies": {
         "@leight/auth-server": "^0.5.0",
         "@leight/i18n-client": "^0.5.0",
+        "@leight/logger-server": "^0.5.0",
         "@leight/mantine": "^0.5.0",
         "@mantine/core": "^6.0.1",
         "@mantine/hooks": "^6.0.1",
         "@mantine/next": "^6.0.1",
+        "@monye.one/prisma": "^0.5.0",
         "next": "^13.4.3",
         "next-auth": "^4.20.1",
         "next-intl": "^2.14.2",
