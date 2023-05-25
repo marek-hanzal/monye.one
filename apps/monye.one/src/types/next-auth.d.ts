@@ -1,4 +1,4 @@
-import type { IUserSession } from "@leight/user";
+import {type IUserSession} from "@leight/user";
 
 declare module "next-auth" {
     /**

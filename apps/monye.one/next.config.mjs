@@ -10,7 +10,7 @@
 export default {
     experimental:    {
         serverActions: true,
-        turbo:         {},
+        // turbo:         {},
     },
     reactStrictMode: true,
     swcMinify:       true,

@@ -34,5 +34,8 @@
     "workspaces": [
         "apps/*",
         "packages/**/*"
-    ]
+    ],
+    "dependencies": {
+        "@leight/file-server": "^0.5.78"
+    }
 }
