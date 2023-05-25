@@ -1,5 +1,5 @@
-import {type IStateCreator}    from "./IStateCreator";
-import {type IStoreProps} from "./IStoreProps";
+import {type IStateCreator} from "./IStateCreator";
+import {type IStoreProps}   from "./IStoreProps";
 
 export interface ICreateStoreContextProps<TStoreProps extends IStoreProps> {
     state: IStateCreator<TStoreProps>,

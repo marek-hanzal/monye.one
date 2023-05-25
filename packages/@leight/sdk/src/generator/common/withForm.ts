@@ -1,5 +1,5 @@
-import {withSourceFile} from "@leight/generator-server";
-import {normalize} from "node:path";
+import {withSourceFile}  from "@leight/generator-server";
+import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
 export interface IWithFormParams {
@@ -28,7 +28,10 @@ export const withForm: IGenerator<IWithFormParams> = async (
         directory,
         params: {forms}
     }) => {
-    forms.forEach(({name, packages}) => {
+    forms.forEach(({
+                       name,
+                       packages
+                   }) => {
         console.log(`- Generating [withForm] [${name}]`);
 
         withSourceFile()
@@ -44,7 +47,7 @@ export const withForm: IGenerator<IWithFormParams> = async (
             })
             .withTypes({
                 exports: {
-                    [`I${name}FormInputFactory`]:   `IFormInputsFactory<I${name}FormSchemaType>`,
+                    [`I${name}FormInputFactory`]: `IFormInputsFactory<I${name}FormSchemaType>`,
                 }
             })
             .saveTo({

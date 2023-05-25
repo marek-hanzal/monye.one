@@ -1,5 +1,5 @@
-import {withSourceFile} from "@leight/generator-server";
-import {normalize} from "node:path";
+import {withSourceFile}  from "@leight/generator-server";
+import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
 export interface IWithRepositoryMapperParams {

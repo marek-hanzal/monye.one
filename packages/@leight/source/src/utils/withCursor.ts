@@ -14,7 +14,12 @@ export interface IWithCursorProps<T> {
  * @param size
  * @param page
  */
-export const withCursor = <T>({query, arg = {} as any, size, page}: IWithCursorProps<T>): T => {
+export const withCursor = <T>({
+                                  query,
+                                  arg = {} as any,
+                                  size,
+                                  page
+                              }: IWithCursorProps<T>): T => {
     const take = query?.cursor?.size ?? size;
     const skip = query?.cursor?.page ?? page;
 

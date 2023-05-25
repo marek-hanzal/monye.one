@@ -5,7 +5,7 @@ import {
     IWithTemplateParams,
     withSdk,
     withTemplate
-} from "../../index";
+}                                from "../../index";
 import {generatorSdkBarrel}      from "../generatorSdkBarrel";
 import {
     type IWithFormParams,

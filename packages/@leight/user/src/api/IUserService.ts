@@ -25,4 +25,4 @@ export const $UserService = Symbol.for("@leight/user/UserService");
 /**
  * Token for just for user id; container should return just a string.
  */
-export const $UserId      = Symbol.for("@leight/user/UserId");
+export const $UserId = Symbol.for("@leight/user/UserId");

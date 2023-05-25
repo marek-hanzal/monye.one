@@ -15,7 +15,7 @@ export const generatorSdkBarrel: IGenerator<IGeneratorSdkBarrelParams> = async (
         return;
     }
     const $directory = directory.replaceAll("\\", "/");
-    const file       = withSourceFile();
+    const file = withSourceFile();
     file.withExports({
         exportsOf: glob(normalize(`${directory}/**/*`).replaceAll("\\", "/")).map(item => "." + item.replaceAll($directory, "").replace(".tsx", "").replace(".ts", ""))
     });

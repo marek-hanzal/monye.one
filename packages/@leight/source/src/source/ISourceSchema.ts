@@ -1,4 +1,8 @@
-import {type IRepositoryMapperSchema, type IRepositorySchema, type IRepositoryServiceSchema} from "../repository";
+import {
+    type IRepositoryMapperSchema,
+    type IRepositorySchema,
+    type IRepositoryServiceSchema
+} from "../repository";
 import {
     type ICreateSchema,
     type IDtoSchema,

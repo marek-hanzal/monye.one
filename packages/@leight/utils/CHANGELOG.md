@@ -6,7 +6,7 @@
 
 - Version bump
 - Updated dependencies
-  - @leight/zod@0.5.13
+    - @leight/zod@0.5.13
 
 ## 0.5.70
 

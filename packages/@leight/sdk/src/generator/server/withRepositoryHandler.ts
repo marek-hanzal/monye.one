@@ -1,5 +1,5 @@
-import {withSourceFile} from "@leight/generator-server";
-import {normalize} from "node:path";
+import {withSourceFile}  from "@leight/generator-server";
+import {normalize}       from "node:path";
 import {type IGenerator} from "../../api";
 
 export interface IWithRepositoryHandlerParams {
@@ -32,7 +32,10 @@ export const withRepositoryHandler: IGenerator<IWithRepositoryHandlerParams> = a
         directory,
         params: {repositories},
     }) => {
-    repositories.forEach(({name, packages}) => {
+    repositories.forEach(({
+                              name,
+                              packages
+                          }) => {
         console.log(`- Generating [withRepositoryHandler] [${name}]`);
 
         withSourceFile()

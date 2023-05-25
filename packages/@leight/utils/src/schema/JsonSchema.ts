@@ -6,7 +6,9 @@ import {
 
 export type IJson =
     ILiteral
-    | { [key: string]: IJson }
+    | {
+        [key: string]: IJson
+    }
     | IJson[];
 
 export type IJsonSchema = z.ZodType<IJson>;

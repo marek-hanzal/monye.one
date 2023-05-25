@@ -33,7 +33,10 @@ export const withRepositoryRouter: IGenerator<IWithRepositoryRouterParams> = asy
         directory,
         params: {procedures},
     }) => {
-    procedures.forEach(({name, packages}) => {
+    procedures.forEach(({
+                            name,
+                            packages
+                        }) => {
         console.log(`- Generating [withRepositoryRouter] [${name}]`);
 
         withSourceFile()

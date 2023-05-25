@@ -24,8 +24,8 @@ export const withEnv = <
     }: IWithEnvProps<TServerSchema, TClientSchema>) => {
     const $serverSchema = ServerSchema.merge(serverSchema || z.object({}));
     const $clientSchema = ClientSchema.merge(clientSchema || z.object({}));
-    const $schema       = $serverSchema.merge($clientSchema);
-    const $processEnv   = {
+    const $schema = $serverSchema.merge($clientSchema);
+    const $processEnv = {
         DATABASE_URL:    process.env.DATABASE_URL,
         NODE_ENV:        process.env.NODE_ENV,
         NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
@@ -36,7 +36,7 @@ export const withEnv = <
     let env: z.infer<typeof $schema> = process.env as any;
     if (validate) {
         const isServer = typeof window === "undefined";
-        const result   = isServer
+        const result = isServer
             ? $schema.safeParse($processEnv)
             : $clientSchema.safeParse($processEnv);
         if (!result.success) {

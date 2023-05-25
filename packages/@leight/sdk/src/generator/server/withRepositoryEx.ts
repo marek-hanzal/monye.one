@@ -44,7 +44,12 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
         directory,
         params: {repositories},
     }) => {
-    repositories.forEach(({name, prisma, packages, withInclude}) => {
+    repositories.forEach(({
+                              name,
+                              prisma,
+                              packages,
+                              withInclude
+                          }) => {
         console.log(`- Generating [withRepositoryEx] [${name}]`);
 
         const $withInclude = withInclude ? JSON.stringify(withInclude) : undefined;

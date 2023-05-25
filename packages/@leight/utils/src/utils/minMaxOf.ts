@@ -4,6 +4,10 @@ export type IMinMaxOfProps = {
     value: number;
 }
 
-export const minMaxOf = ({min = 0, max, value}: IMinMaxOfProps) => {
+export const minMaxOf = ({
+                             min = 0,
+                             max,
+                             value
+                         }: IMinMaxOfProps) => {
     return Math.min(Math.max(value, min), max);
 };

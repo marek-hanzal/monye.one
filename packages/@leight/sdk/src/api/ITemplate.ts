@@ -15,5 +15,7 @@ export type ITemplate<TParams = void> = IfExtends<
          */
         barrel: boolean;
     },
-    { params: TParams }
+    {
+        params: TParams
+    }
 >;

@@ -5,7 +5,11 @@ export interface IToHumanNumberProps {
     fraction?: number;
 }
 
-export function toHumanNumber({number, empty = "-", fraction = 2}: IToHumanNumberProps): string {
+export function toHumanNumber({
+                                  number,
+                                  empty = "-",
+                                  fraction = 2
+                              }: IToHumanNumberProps): string {
     if (number === null || number === undefined) {
         return empty;
     }
