@@ -23,8 +23,6 @@
         "build": "concurrently npm:build:*",
         "build:esbuild": "node esbuild.mjs",
         "build:types": "tsc --outDir lib",
-        "generate": "concurrently npm:generate:*",
-        "generate:prisma": "prisma generate",
         "depcheck": "depcheck",
         "lint": "eslint src",
         "cleanup": "concurrently npm:cleanup:*",

@@ -21,6 +21,7 @@
         "@leight/i18n-client": "^0.5.0",
         "@leight/logger-server": "^0.5.0",
         "@leight/mantine": "^0.5.0",
+        "@leight/user-server": "^0.5.0",
         "@mantine/core": "^6.0.1",
         "@mantine/hooks": "^6.0.1",
         "@mantine/next": "^6.0.1",

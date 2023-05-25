@@ -94,10 +94,8 @@ export const withRepositoryContainer: IGenerator<IWithRepositoryContainerParams>
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/container":        [
+                    "@leight/container": [
                         "type IContainer",
-                    ],
-                    "@leight/container-server": [
                         "ServiceContext",
                     ],
                 },
@@ -146,13 +144,13 @@ export const withRepositoryContainer: IGenerator<IWithRepositoryContainerParams>
             })
             .withConsts({
                 exports: {
-                    [`${name}RepositoryContext`]:        {body: `(container: IContainer) => new ServiceContext<${repositoryEx ? withPackageType(repositoryEx) : `I${name}Repository`}>(container, $${name}Repository)`},
-                    [`${name}RepositoryMapperContext`]:  {body: `(container: IContainer) => new ServiceContext<${mapperEx ? withPackageType(mapperEx) : `I${name}RepositoryMapper`}>(container, $${name}RepositoryMapper)`},
-                    [`${name}RepositoryServiceContext`]: {body: `(container: IContainer) => new ServiceContext<${serviceEx ? withPackageType(serviceEx) : `I${name}RepositoryService`}>(container, $${name}RepositoryService)`},
+                    [`with${name}Repository`]:        {body: `(container: IContainer) => new ServiceContext<${repositoryEx ? withPackageType(repositoryEx) : `I${name}Repository`}>(container, $${name}Repository).resolve()`},
+                    [`with${name}RepositoryMapper`]:  {body: `(container: IContainer) => new ServiceContext<${mapperEx ? withPackageType(mapperEx) : `I${name}RepositoryMapper`}>(container, $${name}RepositoryMapper).resolve()`},
+                    [`with${name}RepositoryService`]: {body: `(container: IContainer) => new ServiceContext<${serviceEx ? withPackageType(serviceEx) : `I${name}RepositoryService`}>(container, $${name}RepositoryService).resolve()`},
                 }
             })
             .saveTo({
-                file: normalize(`${directory}/container/${name}Context.ts`),
+                file: normalize(`${directory}/container/with${name}Repository.ts`),
                 barrel,
             });
     });
