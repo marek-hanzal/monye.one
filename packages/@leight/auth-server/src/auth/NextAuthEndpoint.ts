@@ -32,7 +32,7 @@ export const NextAuthEndpoint = (
      */
     const NextAuth = (NextAuthShit as any).default as typeof NextAuthShit;
 
-    return NextAuth({
+    const handler = NextAuth({
         theme:     {
             logo:        "/assets/logo/logo.svg",
             brandColor:  "#1890ff",
@@ -82,4 +82,8 @@ export const NextAuthEndpoint = (
         },
         ...options,
     });
+    return {
+        GET:  handler,
+        POST: handler,
+    };
 };

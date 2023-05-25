@@ -5,7 +5,10 @@ import {withUserRepository} from "@leight/user-server";
 import CredentialsProvider  from "next-auth/providers/credentials";
 import GitHub               from "next-auth/providers/github";
 
-export default NextAuthEndpoint({
+export const {
+    GET,
+    POST
+} = NextAuthEndpoint({
     container,
     providers: [
         GitHub({
