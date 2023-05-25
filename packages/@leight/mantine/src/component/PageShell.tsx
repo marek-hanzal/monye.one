@@ -1,13 +1,13 @@
-import {type IPageWithLayout} from "@leight/layout";
-import {SessionProvider}      from "next-auth/react";
-import {type AppProps}        from "next/app";
-import Head                   from "next/head";
-import {type FC}              from "react";
-import {RouterTransition}     from "../router";
+import {withLayout}       from "@leight/ui-client";
+import {SessionProvider}  from "next-auth/react";
+import {type AppProps}    from "next/app";
+import Head               from "next/head";
+import {type FC}          from "react";
+import {RouterTransition} from "../router";
 import {
     type IShellProps,
     Shell
-}                             from "./Shell";
+}                         from "./Shell";
 
 export interface IPageShellProps extends IShellProps {
     /**
@@ -54,9 +54,10 @@ export const PageShell: FC<IPageShellProps> = (
             <Shell
                 {...props}
             >
-                {(
-                    (Component as unknown as IPageWithLayout).layout || ((page) => page)
-                )(<Component {...pageProps}/>)}
+                {withLayout({
+                    Component,
+                    pageProps,
+                })}
             </Shell>
         </SessionProvider>
     </>;

@@ -11,11 +11,18 @@ import {
 type MantineProviderProps = ComponentProps<typeof MantineProvider>;
 
 export type IShellProps = PropsWithChildren<{
+    locale: string;
     theme?: MantineProviderProps["theme"];
     emotionCache?: MantineProviderProps["emotionCache"];
 }>
 
-export const Shell: FC<IShellProps> = ({theme, emotionCache, children}) => {
+export const Shell: FC<IShellProps> = (
+    {
+        locale,
+        theme,
+        emotionCache,
+        children
+    }) => {
     return <MantineProvider
         theme={{
             colorScheme:  "light",
@@ -28,7 +35,9 @@ export const Shell: FC<IShellProps> = ({theme, emotionCache, children}) => {
         emotionCache={emotionCache}
     >
         <ModalsProvider>
-            <DateTimeProvider>
+            <DateTimeProvider
+                locale={locale}
+            >
                 <Notifications position={"top-right"}/>
                 {children}
             </DateTimeProvider>

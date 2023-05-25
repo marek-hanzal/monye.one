@@ -1,12 +1,9 @@
-import {createStoreContext} from "@leight/context-client";
+import {type IStoreProps} from "@leight/store";
+import {createStore}      from "@leight/store-client";
 import {
-    type IStoreProps,
-    type IStoreProviderComponent
-}                           from "@leight/store";
-import {
-    type ComponentProps,
-    type FC
-}                           from "react";
+    type FC,
+    type PropsWithChildren
+}                         from "react";
 
 export type IModalStoreProps = IStoreProps<{
     isOpened: Record<string, boolean>;
@@ -15,7 +12,7 @@ export type IModalStoreProps = IStoreProps<{
     setOpen(id: string, isOpened: boolean): void;
 }>;
 
-export const ModalStore = createStoreContext<IModalStoreProps>({
+export const ModalStore = createStore<IModalStoreProps>({
     state: () => set => ({
         isOpened: {},
         open:     id => set(state => ({
@@ -41,14 +38,15 @@ export const ModalStore = createStoreContext<IModalStoreProps>({
     hint:  "Add ModalStoreProvider",
 });
 
-export interface IModalStoreProviderProps extends ComponentProps<IStoreProviderComponent<IModalStoreProps>> {
+export type IModalStoreProviderProps = PropsWithChildren<{
     defaultOpened?: Record<string, boolean>;
-}
+}>;
 
-export const ModalStoreProvider: FC<IModalStoreProviderProps> = ({
-                                                                     defaultOpened,
-                                                                     ...props
-                                                                 }) => {
+export const ModalStoreProvider: FC<IModalStoreProviderProps> = (
+    {
+        defaultOpened,
+        ...props
+    }) => {
     return <ModalStore.Provider
         defaults={{
             isOpened: defaultOpened || {},

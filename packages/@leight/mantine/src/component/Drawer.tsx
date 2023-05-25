@@ -1,10 +1,18 @@
 import {type IWithTranslation} from "@leight/i18n";
-import {Translation} from "@leight/i18n-client";
-import {BlockProvider} from "@leight/utils-client";
-import {Divider, Drawer as CoolDrawer, Group} from "@mantine/core";
-import {type ComponentProps, type FC, type ReactNode} from "react";
-import {DrawerStore} from "../context";
-import {WithIcon} from "./WithIcon";
+import {Translation}           from "@leight/i18n-client";
+import {BlockProvider}         from "@leight/utils-client";
+import {
+    Divider,
+    Drawer as CoolDrawer,
+    Group
+}                              from "@mantine/core";
+import {
+    type ComponentProps,
+    type FC,
+    type ReactNode
+}                              from "react";
+import {DrawerStore}           from "../context";
+import {WithIcon}              from "./WithIcon";
 
 export interface IDrawerProps extends Omit<ComponentProps<typeof CoolDrawer>, "opened" | "onClose"> {
     drawerId: string;
@@ -21,14 +29,27 @@ export const Drawer: FC<IDrawerProps> = (
         children,
         ...props
     }) => {
-    const {isOpened, close} = DrawerStore.use(({isOpened, close}) => ({isOpened, close}));
+    const {
+        isOpened,
+        close
+    } = DrawerStore.use((
+        {
+            isOpened,
+            close
+        }) => ({
+        isOpened,
+        close
+    }));
     return <CoolDrawer
         opened={isOpened[drawerId] || false}
         onClose={() => close(drawerId)}
         position={"right"}
         title={<Group spacing={4}>
             <WithIcon icon={icon}/>
-            <Translation {...withTranslation} withLabel={title}/>
+            <Translation
+                {...withTranslation}
+                withLabel={title}
+            />
         </Group>}
         size={"lg"}
         zIndex={500}

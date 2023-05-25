@@ -1,12 +1,9 @@
-import {createStoreContext} from "@leight/context-client";
+import {type IStoreProps} from "@leight/store";
+import {createStore}      from "@leight/store-client";
 import {
-    type IStoreProps,
-    type IStoreProviderComponent
-}                           from "@leight/store";
-import {
-    type ComponentProps,
-    type FC
-}                           from "react";
+    type FC,
+    type PropsWithChildren
+}                         from "react";
 
 export type IDrawerStoreProps = IStoreProps<{
     isOpened: Record<string, boolean>;
@@ -15,7 +12,7 @@ export type IDrawerStoreProps = IStoreProps<{
     setOpen(id: string, isOpened: boolean): void;
 }>;
 
-export const DrawerStore = createStoreContext<IDrawerStoreProps>({
+export const DrawerStore = createStore<IDrawerStoreProps>({
     state: () => set => ({
         isOpened: {},
         open:     id => set(state => ({
@@ -41,9 +38,9 @@ export const DrawerStore = createStoreContext<IDrawerStoreProps>({
     hint:  "Add DrawerStoreProvider",
 });
 
-export interface IDrawerStoreProviderProps extends ComponentProps<IStoreProviderComponent<IDrawerStoreProps>> {
+export type IDrawerStoreProviderProps = PropsWithChildren<{
     defaultOpened?: Record<string, boolean>;
-}
+}>
 
 export const DrawerStoreProvider: FC<IDrawerStoreProviderProps> = (
     {

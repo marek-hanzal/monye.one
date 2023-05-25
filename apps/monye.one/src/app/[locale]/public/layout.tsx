@@ -1,7 +1,7 @@
 "use client";
 
 import logo                     from "@/monye.one/assets/logo/logo.svg";
-import {PublicLayout}           from "@leight/viv-client";
+import {PublicLayout}           from "@leight/mantine";
 import {type PropsWithChildren} from "react";
 
 export type ILayoutProps = PropsWithChildren;

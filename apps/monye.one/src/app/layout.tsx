@@ -7,6 +7,10 @@ export const metadata: Metadata = {
 
 export default function Layout({children}: PropsWithChildren) {
     return <>
+        <h1>
+            Try pluralized translations<br/>
+            https://next-intl-docs.vercel.app/docs/usage/messages
+        </h1>
         {children}
     </>;
 }

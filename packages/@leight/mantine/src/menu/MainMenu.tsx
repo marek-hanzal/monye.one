@@ -1,6 +1,6 @@
 import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
-import {type ILink}            from "@leight/utils-client";
+import {type ILink}            from "@leight/utils";
 import {
     createStyles,
     Group
@@ -61,9 +61,12 @@ export const MainMenu = <TLinks extends IMainMenuLinks>(
         active,
         withTranslation,
     }: IMainMenuProps<TLinks>) => {
-    const router        = useRouter();
-    const {classes, cx} = useStyles();
-    const $active       = (active || router.pathname) as string;
+    const router = useRouter();
+    const {
+        classes,
+        cx
+    } = useStyles();
+    const $active = (active || router.pathname) as string;
     return <Group
         sx={{height: "100%"}}
         spacing={0}

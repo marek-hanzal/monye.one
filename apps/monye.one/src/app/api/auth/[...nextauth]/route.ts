@@ -1,6 +1,6 @@
 import {env}               from "@/monye.one/env.mjs";
 import {container}         from "@/monye.one/server/container";
-import {NextAuthEndpoint}  from "@leight/viv-server";
+import {NextAuthEndpoint}  from "@leight/auth-server";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHub              from "next-auth/providers/github";
 

@@ -39,7 +39,7 @@ export const Fulltext: FC<IFulltextProps> = (
         onSearch,
         ...props
     }) => {
-    const {t} = useTranslation(withTranslation?.namespace);
+    const t = useTranslation(withTranslation);
     const {
         fulltext,
         setFulltext

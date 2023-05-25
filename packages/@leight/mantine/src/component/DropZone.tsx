@@ -1,27 +1,49 @@
-import {type FileSource, type IFileWithPath} from "@leight/file";
-import {type IWithTranslation} from "@leight/i18n";
-import {Translation, useTranslation} from "@leight/i18n-client";
-import {LoopProvider, LoopsStore} from "@leight/utils-client";
-import {Divider, Group, Table, Text, useMantineTheme} from "@mantine/core";
+import {
+    type IFileSourceType,
+    type IFileWithPath
+}                                 from "@leight/file";
+import {type IWithTranslation}    from "@leight/i18n";
+import {
+    Translation,
+    useTranslation
+}                                 from "@leight/i18n-client";
+import {
+    LoopProvider,
+    LoopsStore
+}                                 from "@leight/utils-client";
+import {
+    Divider,
+    Group,
+    Table,
+    Text,
+    useMantineTheme
+}                                 from "@mantine/core";
 import {Dropzone as CoolDropzone} from "@mantine/dropzone";
-import {notifications} from "@mantine/notifications";
-import {IconCheck, IconUpload, IconX} from "@tabler/icons-react";
-import {type ComponentProps, type FC, useEffect, useState} from "react";
-import {switchScheme} from "../utils";
-import {Upload} from "./Upload";
+import {notifications}            from "@mantine/notifications";
+import {
+    IconCheck,
+    IconUpload,
+    IconX
+}                                 from "@tabler/icons-react";
+import {
+    type ComponentProps,
+    type FC,
+    useEffect,
+    useState
+}                                 from "react";
+import {switchScheme}             from "../utils";
+import {Upload}                   from "./Upload";
 
 export interface IDropZoneProps extends Partial<
     Omit<ComponentProps<typeof CoolDropzone>, "children" | "onDrop">
 > {
     withTranslation: IWithTranslation;
-
     path: string;
-
     limit?: number;
 
     onDrop?(files: IFileWithPath[], commit: () => void): void;
 
-    onUpload?(file: FileSource["Type"]["Entity"]): void;
+    onUpload?(file: IFileSourceType["Entity"]): void;
 }
 
 /**
@@ -38,7 +60,7 @@ export const DropZone: FC<IDropZoneProps> = (
         ...props
     }) => {
     const theme = useMantineTheme();
-    const {t} = useTranslation(withTranslation.namespace);
+    const t = useTranslation(withTranslation.namespace);
     const [files, setFiles] = useState<IFileWithPath[]>([]);
     const {loops} = LoopsStore.use(({current: loops}) => ({loops}));
 
@@ -46,9 +68,9 @@ export const DropZone: FC<IDropZoneProps> = (
         if (files.length > 0 && !loops) {
             setTimeout(() => {
                 notifications.show({
-                    icon: <IconCheck size={"1.1rem"}/>,
-                    color: "teal",
-                    title: t("dropzone.upload.success.title"),
+                    icon:    <IconCheck size={"1.1rem"}/>,
+                    color:   "teal",
+                    title:   t("dropzone.upload.success.title"),
                     message: t("dropzone.upload.success.message"),
                 });
                 setFiles([]);
@@ -71,7 +93,10 @@ export const DropZone: FC<IDropZoneProps> = (
                 <Group
                     position={"center"}
                     spacing={"xl"}
-                    style={{minHeight: 220, pointerEvents: "none"}}
+                    style={{
+                        minHeight:     220,
+                        pointerEvents: "none"
+                    }}
                 >
                     <CoolDropzone.Accept>
                         <IconUpload

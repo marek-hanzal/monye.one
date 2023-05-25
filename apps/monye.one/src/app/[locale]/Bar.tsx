@@ -3,7 +3,7 @@
 import {
     DateTimeStore,
     useTranslation
-} from "@leight/viv-client";
+} from "@leight/i18n-client";
 
 export const Bar = () => {
     const t = useTranslation("Index");
