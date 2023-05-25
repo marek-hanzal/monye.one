@@ -10,7 +10,7 @@ import {
     type Source,
     withSourceSchema
 }          from "@leight/source";
-import {z} from "@leight/zod";
+import {z} from "@leight/utils";
 
 export const FileSourceSchema = withSourceSchema({
     EntitySchema:   FileSchema,

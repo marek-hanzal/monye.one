@@ -1,5 +1,5 @@
 import {type IWithIdentity} from "@leight/source";
-import {type IStoreProps}   from "@leight/zustand";
+import {type IStoreProps}   from "@leight/store";
 
 export type ISelectionStoreProps<TItem extends IWithIdentity> = IStoreProps<{
     item?: TItem;

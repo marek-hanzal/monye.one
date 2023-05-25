@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {createSelectionStore} from "@leight/selection-client";
-import {type IStoreContext} from "@leight/context";
+import {type IStoreContext} from "@leight/store";
 import {type ISelectionStoreProps} from "@leight/selection";
 import {type IFileSourceType as SourceType} from "@leight/file";
 
@@ -15,4 +15,4 @@ export const FileSelection = createSelectionStore<SourceType["Dto"]>({name: "Fil
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ahoogupu8bjbf5rm2i13tsa5 = true;
+export const $leight_x8kxfrmddrw75k8jzwnt3t5i = true;

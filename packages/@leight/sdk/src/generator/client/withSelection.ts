@@ -41,7 +41,7 @@ export const withSelection: IGenerator<IWithSelectionParams> = async (
                     "@leight/selection-client": [
                         "createSelectionStore",
                     ],
-                    "@leight/context":          [
+                    "@leight/store":          [
                         "type IStoreContext",
                     ],
                     "@leight/selection":        [
@@ -83,7 +83,7 @@ createSelectionStore<SourceType["Dto"]>({name: "${name}"})
                     "@leight/selection-client": [
                         "createMultiSelectionStore",
                     ],
-                    "@leight/context":          [
+                    "@leight/store":          [
                         "type IStoreContext",
                     ],
                     "@leight/selection":        [
