@@ -12,21 +12,16 @@
     },
     "sideEffects": false,
     "type": "module",
-    "module": "lib/index.js",
-    "types": "lib/index.d.ts",
+    "module": "src/index.ts",
+    "types": "src/index.ts",
     "files": [
-        "lib",
         "src"
     ],
     "scripts": {
         "setup": "npm run generate",
-        "init": "npm run build",
         "dev": "turbowatch",
         "generate": "concurrently npm:generate:*",
         "generate:prisma": "prisma generate",
-        "build": "concurrently npm:build:*",
-        "build:esbuild": "node esbuild.mjs",
-        "build:types": "tsc --outDir lib",
         "depcheck": "depcheck",
         "prisma:format": "prisma format",
         "lint": "eslint src",

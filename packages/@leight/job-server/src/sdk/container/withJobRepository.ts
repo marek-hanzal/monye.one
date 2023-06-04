@@ -23,4 +23,4 @@ export const withJobRepositoryService = (container: IContainer) => new ServiceCo
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mvb7fc7vg7oyjzfrxw28qggt = true;
+export const $leight_hp4dl9uh8bz00np94vq2624k = true;

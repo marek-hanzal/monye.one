@@ -12,18 +12,13 @@
     },
     "sideEffects": false,
     "type": "module",
-    "module": "lib/index.js",
-    "types": "lib/index.d.ts",
+    "module": "src/index.ts",
+    "types": "src/index.ts",
     "files": [
-        "lib",
         "src"
     ],
     "scripts": {
         "dev": "turbowatch",
-        "init": "npm run build",
-        "build": "concurrently npm:build:*",
-        "build:esbuild": "node esbuild.mjs",
-        "build:types": "tsc --outDir lib",
         "depcheck": "depcheck",
         "lint": "eslint src",
         "cleanup": "concurrently npm:cleanup:*",

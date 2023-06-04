@@ -109,6 +109,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/store/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/logger/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/ui-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/react-query/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/server-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-ex-client/src" isTestSource="false" />

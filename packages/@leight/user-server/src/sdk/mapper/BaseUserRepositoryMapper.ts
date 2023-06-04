@@ -13,4 +13,4 @@ export class BaseUserRepositoryMapper extends AbstractRepositoryMapper<UserSourc
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_kzyxbof56hjg7y6grw2pkp3s = true;
+export const $leight_mooskci1ts2d6xtvgwgpz5tu = true;
