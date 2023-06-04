@@ -12,4 +12,4 @@ export type IUserRepositoryService = IRepositoryService<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ftjvfnz066mt8xff57vfdli4 = true;
+export const $leight_l2fw186ztuhof5ssprp5sor6 = true;
