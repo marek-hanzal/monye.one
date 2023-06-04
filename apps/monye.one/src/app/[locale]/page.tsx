@@ -5,7 +5,6 @@ export default function Index() {
     return <>
         <h1>hello from locale</h1>
         <Bar/>
-        {/* @ts-expect-error Async Server Component */}
         <Foo/>
     </>;
 }

@@ -1,4 +1,4 @@
-import {z} from "@leight/zod";
+import {z} from "@leight/utils";
 
 export const ImportParamsSchema = z.object({
     service: z.string().optional(),

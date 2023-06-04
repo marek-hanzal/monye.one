@@ -23,4 +23,4 @@ export const withUserRepositoryService = (container: IContainer) => new ServiceC
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_en4n8ph6lv0k0xovyy3o1ukl = true;
+export const $leight_d0y98hx5jnxtm7hreoqh8oir = true;

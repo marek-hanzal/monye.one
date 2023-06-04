@@ -1,5 +1,5 @@
 import {type IContainer}  from "@leight/container";
-import {Logger}           from "@leight/logger-server";
+import {withLogger}       from "@leight/logger-server";
 import {withPrismaClient} from "@leight/prisma";
 import {
     withRegistrationService,
@@ -26,7 +26,7 @@ export const NextAuthEndpoint = (
     }: INextAuthEndpointProps) => {
     const registrationService = withRegistrationService(container);
     const userJwtService = withUserJwtService(container);
-    const logger = Logger("auth");
+    const logger = withLogger("auth");
     /**
      * For whatever reason, types are not what you really get, so the hack must be used.
      */

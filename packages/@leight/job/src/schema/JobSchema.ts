@@ -1,5 +1,5 @@
 import {JobStatusSchema} from "@leight/prisma";
-import {z}               from "@leight/zod";
+import {z}               from "@leight/utils";
 
 export type IJobStatusSchema = typeof JobStatusSchema;
 export type IJobStatus = z.infer<IJobStatusSchema>;

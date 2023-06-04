@@ -1,3 +1,4 @@
+import {jsonOf} from "@leight/utils";
 import type {
     IMeta,
     IMetaService,
@@ -11,7 +12,6 @@ import {
     $TranslationService,
     MetaSchema
 }               from "@leight/xlsx-import";
-import {jsonOf} from "@leight/zod";
 import fs       from "node:fs";
 
 export class MetaService implements IMetaService {

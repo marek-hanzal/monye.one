@@ -17,8 +17,5 @@ export namespace IRegistrationService {
     }
 }
 
-export const $RegistrationService = Symbol.for(
-    "@leight/user/RegistrationService"
-);
-
+export const $RegistrationService = Symbol.for("@leight/user/RegistrationService");
 export const withRegistrationService = (container: IContainer) => new ServiceContext<IRegistrationService>(container, $RegistrationService).resolve();

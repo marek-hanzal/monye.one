@@ -46,4 +46,4 @@ export class BaseUserRepositoryService<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mz4opn66csgfuo1prf1ylav4 = true;
+export const $leight_ubn855hbkgs03xvugm1cym4u = true;

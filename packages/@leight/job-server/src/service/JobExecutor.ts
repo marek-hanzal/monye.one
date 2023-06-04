@@ -1,4 +1,7 @@
-import {$Container, type IContainer} from "@leight/container";
+import {
+    $Container,
+    type IContainer
+}                   from "@leight/container";
 import {
     $JobProgressService,
     $JobRepository,
@@ -10,11 +13,14 @@ import {
     type IJobRepositoryMapper,
     type IJobService,
     type IJobWithParams
-} from "@leight/job";
-import {$UserService, type IUserService} from "@leight/user";
-import {Pack} from "@leight/utils";
-import {Logger} from "@leight/winston";
-import delay from "delay";
+}                   from "@leight/job";
+import {withLogger} from "@leight/logger-server";
+import {
+    $UserService,
+    type IUserService
+}                   from "@leight/user";
+import {Pack}       from "@leight/utils";
+import delay        from "delay";
 
 export class JobExecutor implements IJobExecutor {
     static inject = [
@@ -40,17 +46,24 @@ export class JobExecutor implements IJobExecutor {
             params,
         }: IJobExecutor.IExecuteProps<TJobParamsSchema>): Promise<IJobWithParams<TJobParamsSchema>> {
         const name = service.toString();
-        let logger = Logger(name);
+        let logger = withLogger(name);
         const job = await this.jobRepositoryMapper.toDto(
             await this.jobRepository.create({
                 created: new Date(),
                 name,
-                userId: this.userService.required(),
-                params: await Pack.packIf(params),
+                userId:  this.userService.required(),
+                params:  await Pack.packIf(params),
             })
         ) as IJobWithParams<TJobParamsSchema>;
-        const labels = {name, jobId: job.id};
-        logger = logger.child({labels, jobId: labels.jobId, name});
+        const labels = {
+            name,
+            jobId: job.id
+        };
+        logger = logger.child({
+            labels,
+            jobId: labels.jobId,
+            name
+        });
         const jobProgress = this.jobProgressService.create(job.id);
         setTimeout(() => {
             (async () => {
@@ -62,8 +75,8 @@ export class JobExecutor implements IJobExecutor {
                     await jobService.handle({
                         name,
                         job,
-                        params: $params,
-                        userId: this.userService.required(),
+                        params:   $params,
+                        userId:   this.userService.required(),
                         jobProgress,
                         logger,
                         progress: async (callback, $sleep = 0) => {

@@ -11,5 +11,4 @@ export interface IUserJwtService {
 }
 
 export const $UserJwtService = Symbol.for("@leight/user/UserJwtService");
-
 export const withUserJwtService = (container: IContainer) => new ServiceContext<IUserJwtService>(container, $UserJwtService).resolve();

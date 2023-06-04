@@ -1,9 +1,10 @@
-import {env}             from "@/monye.one/env.mjs";
-import {IContainer}      from "@leight/container";
-import {Container}       from "@leight/container-server";
-import {BootstrapLogger} from "@leight/logger-server";
-import {$PrismaClient}   from "@leight/prisma";
-import {PrismaClient}    from "@monye.one/prisma";
+import {env}                 from "@/monye.one/env.mjs";
+import {IContainer}          from "@leight/container";
+import {Container}           from "@leight/container-server";
+import {BootstrapLogger}     from "@leight/logger-server";
+import {$PrismaClient}       from "@leight/prisma";
+import {withServerContainer} from "@leight/viv-server";
+import {PrismaClient}        from "@monye.one/prisma";
 
 BootstrapLogger({
     loggers: [
@@ -30,6 +31,5 @@ export const container = Container.create();
         }, {
             scope: IContainer.Scope.SINGLETON,
         });
-    // withLeightContainer(container);
-    // withMonyeOneContainer(container);
+    withServerContainer(container);
 })(container);

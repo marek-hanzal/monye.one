@@ -7,6 +7,7 @@ export * from "./isCallable";
 export * from "./isEmpty";
 export * from "./isObject";
 export * from "./isString";
+export * from "./jsonOf";
 export * from "./keywordsOf";
 export * from "./minMaxOf";
 export * from "./Pack";

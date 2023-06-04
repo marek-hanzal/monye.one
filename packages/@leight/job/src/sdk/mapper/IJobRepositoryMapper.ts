@@ -13,4 +13,4 @@ export interface IJobRepositoryMapper extends IRepositoryMapper<JobSource["Schem
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qjgr33xue9uzzn2brnu1oe4x = true;
+export const $leight_gyhv0g5jj5r8zg2qpe8oo2kt = true;

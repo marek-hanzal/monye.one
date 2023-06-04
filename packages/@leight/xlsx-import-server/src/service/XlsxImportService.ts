@@ -16,7 +16,10 @@ import {
     type IJobParamValidator,
     type IJobService
 }                              from "@leight/job";
-import {cleanOf}               from "@leight/utils";
+import {
+    cleanOf,
+    z
+}                              from "@leight/utils";
 import {streamOf}              from "@leight/utils-server";
 import {
     $MetaService,
@@ -25,7 +28,6 @@ import {
     type IMetaService,
     type ITranslationService
 }                              from "@leight/xlsx-import";
-import {z}                     from "@leight/zod";
 import {measureTime}           from "measure-time";
 import {Readable}              from "node:stream";
 import {

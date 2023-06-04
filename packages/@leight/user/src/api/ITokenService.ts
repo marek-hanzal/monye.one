@@ -28,5 +28,4 @@ export interface ITokenService {
 }
 
 export const $TokenService = Symbol.for("@leight/user/TokenService");
-
 export const withTokenService = (container: IContainer) => new ServiceContext<ITokenService>(container, $TokenService).resolve();

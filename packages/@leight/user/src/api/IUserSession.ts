@@ -9,6 +9,5 @@ export interface IUserSession extends Pick<DefaultSession, "user"> {
     tokens: string[];
 }
 
-export const $UserSession = Symbol.for("@leight-viv/user/UserSession");
-
+export const $UserSession = Symbol.for("@leight/user/UserSession");
 export const withUserSession = (container: IContainer) => new ServiceContext<IUserSession>(container, $UserSession).resolve();

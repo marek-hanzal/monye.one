@@ -109,6 +109,8 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/store/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/logger/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/ui-client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/server-server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-ex-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
@@ -317,6 +319,12 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/logger-server/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/ui-client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/ui-client/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/logger/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/logger/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/server-server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/server-server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/server/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/server/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -12,4 +12,4 @@ export type IUseFileRepository = ISource.IUseRepository<SourceSchema>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ieznrozpa775sgbshczgyyil = true;
+export const $leight_nah5xn8ggw1indgyo03pjt5w = true;

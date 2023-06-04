@@ -1,6 +1,17 @@
 import {type IContainer} from "@leight/container";
-import {$MetaService, $MetaServiceConfig, $TabService, $TranslationService, $XlsxImportService,} from "@leight/xlsx-import";
-import {MetaService, TabService, TranslationService, XlsxImportService} from "./service";
+import {
+    $MetaService,
+    $MetaServiceConfig,
+    $TabService,
+    $TranslationService,
+    $XlsxImportService
+}                        from "@leight/xlsx-import";
+import {
+    MetaService,
+    TabService,
+    TranslationService,
+    XlsxImportService
+}                        from "./service";
 
 /**
  * Register all services of this packages into a target container.
