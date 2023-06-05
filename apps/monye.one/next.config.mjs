@@ -20,10 +20,10 @@ export default {
     experimental:      {
         outputFileTracingRoot: join(__dirname, '../../'),
         turbo:                 {},
-        // turbotrace:            {
-        //     logLevel:  'suggestions',
-        //     logDetail: true,
-        // },
+        turbotrace:            {
+            logLevel:  'suggestions',
+            logDetail: true,
+        },
     },
     transpilePackages: [
         '@leight/i18n-client',

@@ -1,4 +1,4 @@
-export * from "./api";
-export * from "./error";
-export * from "./schema";
+export * from "./api/export";
+export * from "./error/export";
+export * from "./schema/export";
 export * from "./sdk";

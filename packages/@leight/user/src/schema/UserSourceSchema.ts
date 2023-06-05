@@ -6,7 +6,6 @@ import {
 import {
     PatchSchema,
     SortOrderSchema,
-    type Source,
     withSourceSchema
 }          from "@leight/source";
 import {z} from "@leight/utils";
@@ -22,4 +21,3 @@ export const UserSourceSchema = withSourceSchema({
         id: SortOrderSchema,
     }),
 });
-export type UserSource = Source<typeof UserSourceSchema>;
