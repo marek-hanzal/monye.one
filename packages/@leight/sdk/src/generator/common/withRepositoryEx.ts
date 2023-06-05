@@ -12,17 +12,6 @@ export namespace IWithRepositoryExParams {
          * Base name exported (used to name all exported objects)
          */
         name: string;
-        /**
-         * Required package imports
-         */
-        packages: IPackages;
-    }
-
-    export interface IPackages {
-        /**
-         * Prisma package which exports PrismaClient.
-         */
-        prisma: string;
     }
 }
 
@@ -37,7 +26,6 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
     }) => {
     for (const {
         name,
-        packages
     } of repositories) {
         console.log(`- Generating [withRepositoryEx] [${name}]`);
 
@@ -47,10 +35,8 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
                     "@leight/source":  [
                         "type IRepositorySchemaEx",
                     ],
-                    [packages.prisma]: [
-                        `${name}WhereInputSchema`,
-                        `${name}WhereUniqueInputSchema`,
-                        `${name}OrderByWithRelationInputSchema`,
+                    "@leight/utils":  [
+                        "z",
                     ],
                 },
             })
@@ -59,9 +45,9 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
                     [`${name}RepositorySchemaEx`]: {
                         type: `I${name}RepositoryExSchema`,
                         body: `{
-    WhereSchema:       ${name}WhereInputSchema,
-    WhereUniqueSchema: ${name}WhereUniqueInputSchema,
-    OrderBySchema:     ${name}OrderByWithRelationInputSchema,
+    WhereSchema:       z.object({}),
+    WhereUniqueSchema: z.object({}),
+    OrderBySchema:     z.object({}),
 }
                     `
                     },
@@ -70,9 +56,9 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
             .withTypes({
                 exports: {
                     [`I${name}RepositorySchemaEx`]: `IRepositorySchemaEx<
-    typeof ${name}WhereInputSchema,
-    typeof ${name}WhereUniqueInputSchema,
-    typeof ${name}OrderByWithRelationInputSchema
+    any,
+    any,
+    any
 >`,
                     [`I${name}RepositoryExType`]:   `I${name}RepositorySchemaEx["Type"]`,
                     [`I${name}RepositoryExSchema`]: `I${name}RepositorySchemaEx["Schema"]`,

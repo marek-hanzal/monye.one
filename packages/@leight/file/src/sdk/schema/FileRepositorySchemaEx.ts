@@ -4,27 +4,23 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {type IRepositorySchemaEx} from "@leight/source";
-import {
-	FileWhereInputSchema,
-	FileWhereUniqueInputSchema,
-	FileOrderByWithRelationInputSchema
-} from "@leight/prisma";
+import {z} from "@leight/utils";
 
 export type IFileRepositorySchemaEx = IRepositorySchemaEx<
-    typeof FileWhereInputSchema,
-    typeof FileWhereUniqueInputSchema,
-    typeof FileOrderByWithRelationInputSchema
+    any,
+    any,
+    any
 >;
 export type IFileRepositoryExType = IFileRepositorySchemaEx["Type"];
 export type IFileRepositoryExSchema = IFileRepositorySchemaEx["Schema"];
 
 export const FileRepositorySchemaEx: IFileRepositoryExSchema = {
-    WhereSchema:       FileWhereInputSchema,
-    WhereUniqueSchema: FileWhereUniqueInputSchema,
-    OrderBySchema:     FileOrderByWithRelationInputSchema,
+    WhereSchema:       z.object({}),
+    WhereUniqueSchema: z.object({}),
+    OrderBySchema:     z.object({}),
 };
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_cb0t7v25ifd0w0at8919nbd0 = true;
+export const $leight_h7xfj8ai0zo0z3qi36whac98 = true;

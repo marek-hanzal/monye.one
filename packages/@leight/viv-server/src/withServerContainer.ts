@@ -8,10 +8,6 @@ import {withLabelContainer}      from "@leight/label-server";
 import {withUserContainer}       from "@leight/user-server";
 import {withXlsxImportContainer} from "@leight/xlsx-import-server";
 
-/**
- * @TODO Move this to standalone package (container-utils, container-ex...?)
- * @param container
- */
 export const withServerContainer = (container: IContainer) => {
     withFileContainer(container);
     withXlsxImportContainer(container);

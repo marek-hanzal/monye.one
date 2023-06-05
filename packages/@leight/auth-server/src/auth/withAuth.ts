@@ -1,17 +1,15 @@
-import {type IContainer}  from "@leight/container";
-import {withLogger}       from "@leight/logger-server";
-import {withPrismaClient} from "@leight/prisma";
+import {type IContainer} from "@leight/container";
+import {withLogger}      from "@leight/logger-server";
 import {
     withRegistrationService,
     withUserJwtService
-}                         from "@leight/user";
-import {PrismaAdapter}    from "@next-auth/prisma-adapter";
+}                        from "@leight/user";
 import {
     type AuthOptions,
     type NextAuthOptions,
     type Session
-}                         from "next-auth";
-import {Provider}         from "next-auth/providers";
+}                        from "next-auth";
+import {Provider}        from "next-auth/providers";
 
 export interface IWithAuthProps {
     options?: Partial<AuthOptions>;
@@ -42,7 +40,7 @@ export const withAuth = (
                 logger.debug("User sign-out", {label: {userId: sub}});
             },
         },
-        adapter:   PrismaAdapter(withPrismaClient(container)),
+        // adapter:   PrismaAdapter(withPrismaClient(container)),
         session:   {
             strategy: "jwt",
         },

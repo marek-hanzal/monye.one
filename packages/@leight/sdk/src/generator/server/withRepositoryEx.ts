@@ -62,9 +62,6 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
         `)
             .withImports({
                 imports: {
-                    "@leight/prisma":        [
-                        "$PrismaClient",
-                    ],
                     "@leight/source":        [
                         "withCursor",
                         "SourceError",
@@ -86,13 +83,6 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
                     ],
                 },
             })
-            .withImports({
-                imports: {
-                    [packages.prisma]: [
-                        "type PrismaClient",
-                    ],
-                },
-            })
             .withClasses({
                 exports: {
                     [`Base${name}RepositoryEx<
@@ -104,11 +94,9 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
 >`,
                         body:    `
     static inject = [
-        $PrismaClient,
     ];
 
     constructor(
-        protected prismaClient: PrismaClient,
     ) {
         super($${name}Repository);
     }
@@ -208,7 +196,7 @@ export const withRepositoryEx: IGenerator<IWithRepositoryExParams> = async (
     }
     
     prisma() {
-        return this.prismaClient.${prisma};
+        throw new Error('Not supported. EdgeDB is waiting!');
     }
                     `,
                     },

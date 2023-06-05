@@ -4,10 +4,6 @@
     You should NOT modify this file until you are ABSOLUTELY sure what are you doing.
  */
 import {
-	$PrismaClient,
-	type PrismaClient
-} from "@leight/prisma";
-import {
 	withCursor,
 	SourceError
 } from "@leight/source";
@@ -26,11 +22,9 @@ export class BaseFileRepositoryEx<
     FileSource["Schema"]["Repository"]
 > {
 	static inject = [
-        $PrismaClient,
     ];
 
     constructor(
-        protected prismaClient: PrismaClient,
     ) {
         super($FileRepository);
     }
@@ -130,7 +124,7 @@ export class BaseFileRepositoryEx<
     }
     
     prisma() {
-        return this.prismaClient.file;
+        throw new Error('Not supported. EdgeDB is waiting!');
     }
 }
 
@@ -138,4 +132,4 @@ export class BaseFileRepositoryEx<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ert4s8jpap7li73oda5e63j6 = true;
+export const $leight_vvqzg5z1ztq0zllxog71uzzl = true;

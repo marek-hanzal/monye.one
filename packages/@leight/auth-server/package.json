@@ -28,7 +28,6 @@
     "dependencies": {
         "@leight/container": "^0.5.0",
         "@leight/logger-server": "^0.5.0",
-        "@leight/prisma": "^0.5.0",
         "@leight/user": "^0.5.0",
         "@next-auth/prisma-adapter": "^1.0.6",
         "next": "^13.0.0",

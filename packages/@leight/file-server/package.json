@@ -31,7 +31,6 @@
         "@leight/container": "^0.5.0",
         "@leight/container-server": "^0.5.0",
         "@leight/file": "^0.5.0",
-        "@leight/prisma": "^0.5.0",
         "@leight/server": "^0.5.0",
         "@leight/server-server": "^0.5.0",
         "@leight/source": "^0.5.0",

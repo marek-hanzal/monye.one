@@ -4,10 +4,6 @@
     You should NOT modify this file until you are ABSOLUTELY sure what are you doing.
  */
 import {
-	$PrismaClient,
-	type PrismaClient
-} from "@leight/prisma";
-import {
 	withCursor,
 	SourceError
 } from "@leight/source";
@@ -26,11 +22,9 @@ export class BaseJobRepositoryEx<
     JobSource["Schema"]["Repository"]
 > {
 	static inject = [
-        $PrismaClient,
     ];
 
     constructor(
-        protected prismaClient: PrismaClient,
     ) {
         super($JobRepository);
     }
@@ -130,7 +124,7 @@ export class BaseJobRepositoryEx<
     }
     
     prisma() {
-        return this.prismaClient.job;
+        throw new Error('Not supported. EdgeDB is waiting!');
     }
 }
 
@@ -138,4 +132,4 @@ export class BaseJobRepositoryEx<
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_iqzmxbzww4oul060cuxvpaqh = true;
+export const $leight_kyv4xo9liunbcf515zayfwe4 = true;

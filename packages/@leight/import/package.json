@@ -26,7 +26,6 @@
     },
     "dependencies": {
         "@leight/job": "^0.5.0",
-        "@leight/prisma": "^0.5.0",
         "@leight/source": "^0.5.0",
         "@leight/trpc": "^0.5.0",
         "@leight/utils": "^0.5.0"
