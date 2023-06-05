@@ -13,4 +13,4 @@ export interface IKeywordRepository extends IRepository<KeywordSource["Schema"][
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_q51dsyykfqfzbr2ezyt57thj = true;
+export const $leight_y9fdowmh8z8df8782wrghg87 = true;

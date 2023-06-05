@@ -12,4 +12,4 @@ export type IFileRepositoryService = IRepositoryService<SourceSchema["Service"]>
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_u17x61jd48os21eqjxgob6qy = true;
+export const $leight_m7790b5bdtqhyt1pj83akku1 = true;

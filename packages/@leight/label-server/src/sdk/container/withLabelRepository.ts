@@ -23,4 +23,4 @@ export const withLabelRepositoryService = (container: IContainer) => new Service
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_amfbf1qmc9qqfi7uli8yvaeq = true;
+export const $leight_gffmajlzoxi5fva96cmdi2uw = true;

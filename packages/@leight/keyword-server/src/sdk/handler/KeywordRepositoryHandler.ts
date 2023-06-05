@@ -16,4 +16,4 @@ export const KeywordRepositoryHandler = withRepositoryHandler<KeywordSource["Sch
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_gjwzsri3wxxhqq6cf5lec8as = true;
+export const $leight_xarkmjnxb948tr52zlg6hmm0 = true;

@@ -16,4 +16,4 @@ export const LabelRepositoryHandler = withRepositoryHandler<LabelSource["Schema"
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_eomxqs0s23g8s1evmm2l3ner = true;
+export const $leight_cz26hdqjh6cuq067ssbpv8cw = true;

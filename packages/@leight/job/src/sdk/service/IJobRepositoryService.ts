@@ -12,4 +12,4 @@ export type IJobRepositoryService = IRepositoryService<SourceSchema["Service"]>;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_k02yxxlq0ypftgn4low89lpn = true;
+export const $leight_c595r9quhexv4u1gikwey0j5 = true;

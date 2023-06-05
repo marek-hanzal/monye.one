@@ -23,4 +23,4 @@ export const KeywordRepositorySchemaEx: IKeywordRepositoryExSchema = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_og2pqm0m242kgf2opz29uhcl = true;
+export const $leight_fr86f6lqvgryuutaxxvvbgl4 = true;

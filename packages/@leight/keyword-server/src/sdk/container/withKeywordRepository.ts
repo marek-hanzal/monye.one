@@ -23,4 +23,4 @@ export const withKeywordRepositoryService = (container: IContainer) => new Servi
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_kzs11agm6jh48mxetl23mv0k = true;
+export const $leight_z9uhw31g2ueyk55qfu88na36 = true;
