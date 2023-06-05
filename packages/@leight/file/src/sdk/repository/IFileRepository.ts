@@ -13,4 +13,4 @@ export interface IFileRepository extends IRepository<FileSource["Schema"]["Repos
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_d2a0ugcr4qsa6841zw3aizjd = true;
+export const $leight_udksqy2wyzr93msqk3d8z641 = true;

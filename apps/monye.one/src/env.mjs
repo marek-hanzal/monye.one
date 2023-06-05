@@ -1,5 +1,5 @@
-import { withEnv } from "@leight/env";
-import { z } from "zod";
+import { withEnv } from '@leight/env';
+import { z } from 'zod';
 
 export const {env} = withEnv({
     serverSchema: z.object({

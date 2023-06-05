@@ -8,10 +8,15 @@
 
 /** @type {import('next').NextConfig} */
 export default {
-    experimental:    {
+    experimental:      {
         serverActions: true,
-        // turbo:         {},
+        turbo:         {},
     },
-    reactStrictMode: true,
-    swcMinify:       true,
+    transpilePackages: [
+        '@leight/env',
+        '@leight/i18n-client',
+    ],
+    modularizeImports: {},
+    reactStrictMode:   true,
+    swcMinify:         true,
 };

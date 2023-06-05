@@ -5,7 +5,7 @@
     "scripts": {
         "build": "npx dotenv -c development -- next build",
         "dev": "concurrently npm:dev:*",
-        "dev:app": "next dev",
+        "dev:app": "next dev --turbo",
         "dev:docs": "npx @leight/docs",
         "migration": "npx dotenv -c development -- npx prisma migrate deploy --schema=../../packages/@monye.one/prisma/prisma/schema.prisma",
         "prisma:migrate-reset": "npx dotenv -c development -- npx prisma migrate reset --schema=../../packages/@monye.one/prisma/prisma/schema.prisma --force",
