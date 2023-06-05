@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {type IRepositoryMapper} from "@leight/source";
-import {type UserSource} from "../../schema";
+import {type UserSource} from "../../schema/UserSource";
 
 export interface IUserRepositoryMapper extends IRepositoryMapper<UserSource["Schema"]["Mapper"]> {
 }
@@ -13,4 +13,4 @@ export interface IUserRepositoryMapper extends IRepositoryMapper<UserSource["Sch
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_pfj9x81op9b4wvm4u0in4w2d = true;
+export const $leight_e50zzelq1zmco3sa7v3og8oy = true;

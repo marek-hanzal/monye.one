@@ -29,19 +29,21 @@ export const withSelection: IGenerator<IWithSelectionParams> = async (
         directory,
         params: {selections}
     }) => {
-    selections.forEach(({
-                            name,
-                            packages
-                        }) => {
+    selections.forEach((
+        {
+            name,
+            packages
+        }) => {
         console.log(`- Generating [withSelection] [${name}]`);
 
         withSourceFile()
+            .withBanner(`"use client";`)
             .withImports({
                 imports: {
                     "@leight/selection-client": [
                         "createSelectionStore",
                     ],
-                    "@leight/store":          [
+                    "@leight/store":            [
                         "type IStoreContext",
                     ],
                     "@leight/selection":        [
@@ -78,12 +80,13 @@ createSelectionStore<SourceType["Dto"]>({name: "${name}"})
             });
 
         withSourceFile()
+            .withBanner(`"use client";`)
             .withImports({
                 imports: {
                     "@leight/selection-client": [
                         "createMultiSelectionStore",
                     ],
-                    "@leight/store":          [
+                    "@leight/store":            [
                         "type IStoreContext",
                     ],
                     "@leight/selection":        [

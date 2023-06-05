@@ -1,41 +1,34 @@
-import {type IContainer} from "@leight/container";
-import {withLogger}      from "@leight/logger-server";
-import {
-    $PrismaClient,
-    type PrismaClient
-}                        from "@leight/prisma";
+import {type IContainer}  from "@leight/container";
+import {withLogger}       from "@leight/logger-server";
+import {withPrismaClient} from "@leight/prisma";
 import {
     withRegistrationService,
     withUserJwtService
-}                        from "@leight/user";
-import {PrismaAdapter}   from "@next-auth/prisma-adapter";
-import NextAuthShit, {
+}                         from "@leight/user";
+import {PrismaAdapter}    from "@next-auth/prisma-adapter";
+import {
     type AuthOptions,
-    Session
-}                        from "next-auth";
-import {type Provider}   from "next-auth/providers";
+    type NextAuthOptions,
+    type Session
+}                         from "next-auth";
+import {Provider}         from "next-auth/providers";
 
-export interface INextAuthEndpointProps {
+export interface IWithAuthProps {
     options?: Partial<AuthOptions>;
     providers: (Provider | null | false | undefined)[];
     container: IContainer;
 }
 
-export const NextAuthEndpoint = (
+export const withAuth = (
     {
         options,
         providers,
-        container
-    }: INextAuthEndpointProps) => {
+        container,
+    }: IWithAuthProps): NextAuthOptions => {
+    const logger = withLogger("auth");
     const registrationService = withRegistrationService(container);
     const userJwtService = withUserJwtService(container);
-    const logger = withLogger("auth");
-    /**
-     * For whatever reason, types are not what you really get, so the hack must be used.
-     */
-    const NextAuth = (NextAuthShit as any).default as typeof NextAuthShit;
-
-    return NextAuth({
+    return {
         theme:     {
             logo:        "/assets/logo/logo.svg",
             brandColor:  "#1890ff",
@@ -49,7 +42,7 @@ export const NextAuthEndpoint = (
                 logger.debug("User sign-out", {label: {userId: sub}});
             },
         },
-        adapter:   PrismaAdapter(container.resolve<PrismaClient>($PrismaClient)),
+        adapter:   PrismaAdapter(withPrismaClient(container)),
         session:   {
             strategy: "jwt",
         },
@@ -67,10 +60,11 @@ export const NextAuthEndpoint = (
                     throw e;
                 }
             },
-            session: async ({
-                                session,
-                                token
-                            }) => {
+            session: async (
+                {
+                    session,
+                    token
+                }) => {
                 const $session: any = {...session};
                 if ($session && token?.sub) {
                     $session.user = {
@@ -83,5 +77,5 @@ export const NextAuthEndpoint = (
             },
         },
         ...options,
-    });
+    };
 };

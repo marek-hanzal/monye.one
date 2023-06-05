@@ -1,3 +1,5 @@
+"use client";
+
 import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
 import {BlockProvider}         from "@leight/utils-client";

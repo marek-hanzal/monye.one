@@ -6,10 +6,10 @@
 import {type IRepositoryService} from "@leight/source";
 import {type IFileSourceSchema as SourceSchema} from "../schema/IFileSourceSchema";
 
-export type IFileRepositoryService = IRepositoryService<SourceSchema>;
+export type IFileRepositoryService = IRepositoryService<SourceSchema["Service"]>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_ozbi3taur05osoms3tvwccmw = true;
+export const $leight_rhds8rekem22vjb8g5kkzdf4 = true;

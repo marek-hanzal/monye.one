@@ -27,4 +27,4 @@ export const FileRepositorySchemaEx: IFileRepositoryExSchema = {
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_qb1zbxqrwvgkcu8cuvcte7xk = true;
+export const $leight_cb0t7v25ifd0w0at8919nbd0 = true;

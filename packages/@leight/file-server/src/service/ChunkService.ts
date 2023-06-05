@@ -1,5 +1,15 @@
-import {$ChunkServiceConfig, $FileService, type FileSource, type IChunkService, type IChunkServiceConfig, type IFileService} from "@leight/file";
-import {outputFileSync, removeSync} from "fs-extra";
+import {
+    $ChunkServiceConfig,
+    $FileService,
+    type FileSource,
+    type IChunkService,
+    type IChunkServiceConfig,
+    type IFileService
+} from "@leight/file";
+import {
+    outputFileSync,
+    removeSync
+} from "fs-extra";
 
 export class ChunkService implements IChunkService {
     static inject = [

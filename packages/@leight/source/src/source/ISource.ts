@@ -5,11 +5,11 @@ import {
 }                              from "@leight/react-query";
 import {type IStore}           from "@leight/store";
 import {z}                     from "@leight/utils";
-import {type IQueryStoreProps} from "../query";
+import {type IQueryStoreProps} from "../query/IQueryStoreProps";
 import {
     type IWithIdentity,
     type IWithIdentity$
-}                              from "../schema";
+}                              from "../schema/SourceSchema";
 import {type ISourceSchema}    from "./ISourceSchema";
 import {type SourceType}       from "./SourceType";
 

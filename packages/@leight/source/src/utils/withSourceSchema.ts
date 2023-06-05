@@ -1,27 +1,33 @@
 import {z}                  from "@leight/utils";
+import {CursorSchema}       from "../schema/CursorSchema";
+import {
+    FilterSchema,
+    type IFilterSchema
+}                           from "../schema/FilterSchema";
+import {
+    type IParamsSchema,
+    ParamsSchema
+}                           from "../schema/ParamsSchema";
+import {
+    type ISortSchema,
+    SortSchema
+}                           from "../schema/SortSchema";
 import {
     CreateSchema,
-    CursorSchema,
     DtoSchema,
     EntitySchema,
-    FilterSchema,
     type ICreateSchema,
     type IDtoSchema,
     type IEntitySchema,
-    type IFilterSchema,
-    type IParamsSchema,
     type IPatchSchema,
-    type ISortSchema,
     type IToCreateSchema,
     type IToPatchSchema,
-    ParamsSchema,
     PatchSchema,
-    SortSchema,
     ToCreateSchema,
     ToPatchSchema,
     WithIdentitySchema
-}                           from "../schema";
-import {type ISourceSchema} from "../source";
+}                           from "../schema/SourceSchema";
+import {type ISourceSchema} from "../source/ISourceSchema";
 
 export interface IWithSourceSchemaProps<
     TEntitySchema extends IEntitySchema,

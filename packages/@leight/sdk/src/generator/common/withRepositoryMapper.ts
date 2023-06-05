@@ -24,10 +24,10 @@ export const withRepositoryMapper: IGenerator<IWithRepositoryMapperParams> = asy
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/source": [
+                    "@leight/source":               [
                         `type IRepositoryMapper`,
                     ],
-                    ["../../schema"]: [
+                    [`../../schema/${name}Source`]: [
                         `type ${name}Source`,
                     ],
                 },

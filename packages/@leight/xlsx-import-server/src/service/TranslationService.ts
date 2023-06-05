@@ -34,7 +34,12 @@ export class TranslationService implements ITranslationService {
 
     translate(item: Record<string, string>, translations: ITranslation[]): Record<string, string> {
         const output: Record<string, string> = {...item};
-        translations.forEach(({to, from: {source, concat}}) => {
+        translations.forEach(({to,
+                                  from: {
+                                            source,
+                                            concat
+                                        }
+                              }) => {
             output[to] = source.map(key => item[key] ?? "").filter(Boolean).join(concat);
         });
         return output;

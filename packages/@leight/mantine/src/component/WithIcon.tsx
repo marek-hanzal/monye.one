@@ -1,3 +1,5 @@
+"use client";
+
 import {ThemeIcon} from "@mantine/core";
 import {
     type ComponentProps,
@@ -9,7 +11,11 @@ export interface IWithIconPros extends Omit<ComponentProps<typeof ThemeIcon>, "c
     icon: ReactNode;
 }
 
-export const WithIcon: FC<IWithIconPros> = ({icon, ...props}) => {
+export const WithIcon: FC<IWithIconPros> = (
+    {
+        icon,
+        ...props
+    }) => {
     return icon ? <ThemeIcon
         variant={"outline"}
         color={"gray"}

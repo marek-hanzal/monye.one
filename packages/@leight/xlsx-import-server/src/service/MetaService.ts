@@ -28,13 +28,17 @@ export class MetaService implements IMetaService {
     ) {
     }
 
-    async toMeta({workbook, name}: IMetaService.MetaProps): Promise<IMeta> {
-        const tabs         = await this.tabService.toTabs(workbook);
+    async toMeta(
+        {
+            workbook,
+            name
+        }: IMetaService.MetaProps): Promise<IMeta> {
+        const tabs = await this.tabService.toTabs(workbook);
         const translations = await this.translationService.toTranslations(
             workbook
         );
-        const type         = name.match(/\(([a-z0-9]+)\)/)?.[1];
-        const template     = `${this.metaServiceConfig.templates}/${type}.json`;
+        const type = name.match(/\(([a-z0-9]+)\)/)?.[1];
+        const template = `${this.metaServiceConfig.templates}/${type}.json`;
 
         if (!tabs.length && type && fs.existsSync(template)) {
             return jsonOf(MetaSchema, fs.readFileSync(template, "utf8"));

@@ -29,7 +29,7 @@
         "cleanup": "del-cli .turbo lib tsconfig.tsbuildinfo src/**/*.{d.ts,d.ts.map,js,js.map}"
     },
     "dependencies": {
-        "zod": "^3.21.1"
+        "zod": "3.21.1"
     },
     "devDependencies": {
         "@leight/esbuild": "^0.5.42",

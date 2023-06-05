@@ -1,7 +1,5 @@
-import {
-    type ISource,
-    type ISourceSchema
-} from "../source";
+import {type ISource}       from "../source/ISource";
+import {type ISourceSchema} from "../source/ISourceSchema";
 
 export interface IUseRepositoryQuery<
     TSourceSchema extends ISourceSchema

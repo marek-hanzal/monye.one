@@ -1,3 +1,5 @@
+"use client";
+
 import {Highlight} from "@mantine/core";
 import {
     type ComponentProps,
@@ -9,7 +11,11 @@ export interface IWithHighlightProps extends Omit<ComponentProps<typeof Highligh
     highlight: string[];
 }
 
-export const WithHighlight: FC<IWithHighlightProps> = ({text, ...props}) => {
+export const WithHighlight: FC<IWithHighlightProps> = (
+    {
+        text,
+        ...props
+    }) => {
     return text ? <Highlight
         {...props}
     >

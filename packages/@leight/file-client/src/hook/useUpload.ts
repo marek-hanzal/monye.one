@@ -1,3 +1,5 @@
+"use client";
+
 import {
     type IChunkService,
     type IFileSourceType,

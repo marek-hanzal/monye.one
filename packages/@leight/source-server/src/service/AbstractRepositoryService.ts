@@ -51,7 +51,11 @@ export abstract class AbstractRepositoryService<
         return this.repository().patchBy(patch);
     }
 
-    async handleUpsert({create, patch, filter}: TRepositoryServiceType["ToUpsertProps"]): Promise<TRepositoryServiceType["Dto"]> {
+    async handleUpsert({
+                           create,
+                           patch,
+                           filter
+                       }: TRepositoryServiceType["ToUpsertProps"]): Promise<TRepositoryServiceType["Dto"]> {
         return this.withDto(
             await this.toDto(
                 await this.withEntity(

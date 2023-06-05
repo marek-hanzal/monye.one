@@ -1,3 +1,5 @@
+"use client";
+
 import {
     type IUseUploadProps,
     useUpload
@@ -16,7 +18,12 @@ export interface IUploadProps {
  * This component executes upload just as it's got rendered.
  */
 export const Upload: FC<IUploadProps> = ({upload}) => {
-    const {isRunning, isSuccess, isError, percent} = useUpload(upload);
+    const {
+        isRunning,
+        isSuccess,
+        isError,
+        percent
+    } = useUpload(upload);
     return <Progress
         color={
             isError

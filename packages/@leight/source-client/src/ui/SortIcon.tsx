@@ -10,7 +10,10 @@ export interface ISortIconProps<TSort extends ISort> {
     sort: TSort;
 }
 
-export const SortIcon = <TSort extends ISort>({index, sort}: ISortIconProps<TSort>) => {
+export const SortIcon = <TSort extends ISort>({
+                                                  index,
+                                                  sort
+                                              }: ISortIconProps<TSort>) => {
     switch (sort[index]) {
         case "asc":
             return <IconSortAscending2 color={"grey"}/>;

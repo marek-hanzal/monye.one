@@ -1,3 +1,5 @@
+"use client";
+
 import {createEmotionCache} from "@mantine/core";
 
 export const withEmotionCache = () => {

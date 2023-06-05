@@ -50,10 +50,10 @@ export const withRepository: IGenerator<IWithRepositoryParams> = async (
         withSourceFile()
             .withImports({
                 imports: {
-                    "@leight/source": [
+                    "@leight/source":               [
                         "type IRepository",
                     ],
-                    "../../schema":   [
+                    [`../../schema/${name}Source`]: [
                         `type ${name}Source`,
                     ],
                 },

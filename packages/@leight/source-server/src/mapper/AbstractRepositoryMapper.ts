@@ -20,21 +20,31 @@ export class AbstractRepositoryMapper<
         return patch;
     }
 
-    async toPatchByProps({patch, filter}: TRepositoryMapperType["ToPatchByProps"]): Promise<TRepositoryMapperType["PatchByProps"]> {
+    async toPatchByProps({
+                             patch,
+                             filter
+                         }: TRepositoryMapperType["ToPatchByProps"]): Promise<TRepositoryMapperType["PatchByProps"]> {
         return {
             patch: await this.toPatch(patch),
             filter,
         };
     }
 
-    async toPatchProps({patch, filter}: TRepositoryMapperType["ToPatchProps"]): Promise<TRepositoryMapperType["PatchProps"]> {
+    async toPatchProps({
+                           patch,
+                           filter
+                       }: TRepositoryMapperType["ToPatchProps"]): Promise<TRepositoryMapperType["PatchProps"]> {
         return {
             patch: await this.toPatch(patch),
             filter,
         };
     }
 
-    async toUpsertProps({create, patch, filter}: TRepositoryMapperType["ToUpsertProps"]): Promise<TRepositoryMapperType["UpsertProps"]> {
+    async toUpsertProps({
+                            create,
+                            patch,
+                            filter
+                        }: TRepositoryMapperType["ToUpsertProps"]): Promise<TRepositoryMapperType["UpsertProps"]> {
         return {
             create: await this.toCreate(create),
             patch:  await this.toPatch(patch),

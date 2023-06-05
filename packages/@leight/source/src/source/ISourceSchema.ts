@@ -1,19 +1,17 @@
-import {
-    type IRepositoryMapperSchema,
-    type IRepositorySchema,
-    type IRepositoryServiceSchema
-} from "../repository";
+import {type IRepositoryMapperSchema}  from "../repository/IRepositoryMapperSchema";
+import {type IRepositorySchema}        from "../repository/IRepositorySchema";
+import {type IRepositoryServiceSchema} from "../repository/IRepositoryServiceSchema";
+import {type IFilterSchema}            from "../schema/FilterSchema";
+import {type IParamsSchema}            from "../schema/ParamsSchema";
+import {type ISortSchema}              from "../schema/SortSchema";
 import {
     type ICreateSchema,
     type IDtoSchema,
     type IEntitySchema,
-    type IFilterSchema,
-    type IParamsSchema,
     type IPatchSchema,
-    type ISortSchema,
     type IToCreateSchema,
     type IToPatchSchema
-} from "../schema";
+}                                      from "../schema/SourceSchema";
 
 /**
  * This is the basic building element for the whole Source package: define

@@ -1,14 +1,14 @@
-import {z} from "@leight/utils";
+import {z}                  from "@leight/utils";
+import {type ICursorSchema} from "../schema/CursorSchema";
+import {type IFilterSchema} from "../schema/FilterSchema";
+import {type IParamsSchema} from "../schema/ParamsSchema";
+import {type ISortSchema}   from "../schema/SortSchema";
 import {
     type ICreateSchema,
-    type ICursorSchema,
     type IEntitySchema,
-    type IFilterSchema,
-    type IParamsSchema,
     type IPatchSchema,
-    type ISortSchema,
     type IWithIdentitySchema
-}          from "../schema";
+}                           from "../schema/SourceSchema";
 
 export interface IRepositorySchema<
     TEntitySchema extends IEntitySchema = IEntitySchema,

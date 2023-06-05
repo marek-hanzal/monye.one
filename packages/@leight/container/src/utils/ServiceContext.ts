@@ -1,4 +1,4 @@
-import {type IContainer} from "./IContainer";
+import {type IContainer} from "../api/IContainer";
 
 /**
  * Helper class for mounting container, symbol to a type.

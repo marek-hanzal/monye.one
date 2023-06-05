@@ -1,5 +1,13 @@
 // @ts-check
 
+import {
+    dirname,
+    join
+} from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
  * This is especially useful for Docker builds.
@@ -8,15 +16,23 @@
 
 /** @type {import('next').NextConfig} */
 export default {
+    // output:            'standalone',
     experimental:      {
-        serverActions: true,
-        turbo:         {},
+        outputFileTracingRoot: join(__dirname, '../../'),
+        turbo:                 {},
+        // turbotrace:            {
+        //     logLevel:  'suggestions',
+        //     logDetail: true,
+        // },
     },
     transpilePackages: [
-        '@leight/env',
         '@leight/i18n-client',
     ],
-    modularizeImports: {},
+    modularizeImports: {
+        '@tabler/icons-react': {
+            transform: '@tabler/icons-react/dist/esm/icons/{{member}}',
+        },
+    },
     reactStrictMode:   true,
     swcMinify:         true,
 };

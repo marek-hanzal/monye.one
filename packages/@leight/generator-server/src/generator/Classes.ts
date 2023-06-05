@@ -9,8 +9,8 @@ export class Class implements IExportable {
     public readonly isExported: boolean;
 
     constructor(name: string, code: IClass, isExported: boolean) {
-        this.name       = name;
-        this.code       = code;
+        this.name = name;
+        this.code = code;
         this.isExported = isExported;
     }
 

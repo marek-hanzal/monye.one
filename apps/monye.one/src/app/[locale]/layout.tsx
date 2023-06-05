@@ -1,5 +1,5 @@
-"use client";
-
+import {auth}                   from "@/monye.one/auth";
+import {SessionCheck}           from "@leight/auth-client";
 import {
     LayoutShell,
     withEmotionCache
@@ -28,6 +28,10 @@ export default async function Layout(
             lang={locale}
         >
             <body>
+                <SessionCheck
+                    auth={auth}
+                    redirect={"/book"}
+                />
                 <LayoutShell
                     locale={locale}
                     translations={translations}

@@ -44,7 +44,11 @@ export const useChunk = (
         total: Math.ceil(size / chunk),
         throttle,
         onStart,
-        async onTick({total, current, percent}: IOnTickProps): Promise<void> {
+        async onTick({
+                         total,
+                         current,
+                         percent
+                     }: IOnTickProps): Promise<void> {
             return onTick({
                 start: current * chunk,
                 end:   Math.min(current * chunk + chunk, size),

@@ -6,8 +6,8 @@ export class Type implements IExportable {
     public readonly isExported: boolean;
 
     constructor(name: string, code: string, isExported: boolean) {
-        this.name       = name;
-        this.code       = code;
+        this.name = name;
+        this.code = code;
         this.isExported = isExported;
     }
 

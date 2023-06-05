@@ -1,3 +1,5 @@
+"use client";
+
 import {Translation}             from "@leight/i18n-client";
 import {
     type ISource,

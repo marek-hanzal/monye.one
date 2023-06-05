@@ -1,4 +1,9 @@
-import {$UserRepository, type IRegistrationService, type IToken, type IUserRepository} from "@leight/user";
+import {
+    $UserRepository,
+    type IRegistrationService,
+    type IToken,
+    type IUserRepository
+} from "@leight/user";
 
 /**
  * Service used to register new users with en eventual case where the
@@ -23,10 +28,16 @@ export class RegistrationService implements IRegistrationService {
             return;
         }
         if ((await this.userRepository.count()) === 1) {
-            await this.registerRootUser({token, isNewUser});
+            await this.registerRootUser({
+                token,
+                isNewUser
+            });
             return;
         }
-        await this.registerCommonUser({token, isNewUser});
+        await this.registerCommonUser({
+            token,
+            isNewUser
+        });
     }
 
     /**

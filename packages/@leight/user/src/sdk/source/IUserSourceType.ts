@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type UserSource} from "../../schema";
+import {type UserSource} from "../../schema/UserSource";
 
 export type IUserSourceType = UserSource["Type"];
 
@@ -11,4 +11,4 @@ export type IUserSourceType = UserSource["Type"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_desjknamtkq0y1my4qsbzmxv = true;
+export const $leight_fensghinbf84bpjccew2gbg5 = true;

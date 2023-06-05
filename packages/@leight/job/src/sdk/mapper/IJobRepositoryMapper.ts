@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {type IRepositoryMapper} from "@leight/source";
-import {type JobSource} from "../../schema";
+import {type JobSource} from "../../schema/JobSource";
 
 export interface IJobRepositoryMapper extends IRepositoryMapper<JobSource["Schema"]["Mapper"]> {
 }
@@ -13,4 +13,4 @@ export interface IJobRepositoryMapper extends IRepositoryMapper<JobSource["Schem
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_dqlhtdlk2fytxycdb1uq4cs6 = true;
+export const $leight_uohvmzi913k6447ytldgigf5 = true;

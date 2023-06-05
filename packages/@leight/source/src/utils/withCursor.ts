@@ -1,4 +1,4 @@
-import {type RepositoryType} from "../repository";
+import {type RepositoryType} from "../repository/RepositoryType";
 
 export interface IWithCursorProps<T> {
     query?: RepositoryType["Query"];

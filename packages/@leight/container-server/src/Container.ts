@@ -10,6 +10,12 @@ export class Container implements IContainer {
     ) {
     }
 
+    static create(container?: PumpIt): IContainer {
+        const $container = new Container(container || new PumpIt());
+        $container.bindValue($Container, $container);
+        return $container;
+    }
+
     public unbind(key: IContainer.Key): void {
         try {
             this.container.unbind(key);
@@ -42,11 +48,5 @@ export class Container implements IContainer {
 
     public resolve<T>(key: IContainer.Key): T {
         return this.container.resolve(key);
-    }
-
-    static create(container?: PumpIt): IContainer {
-        const $container = new Container(container || new PumpIt());
-        $container.bindValue($Container, $container);
-        return $container;
     }
 }

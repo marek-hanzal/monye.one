@@ -1,3 +1,5 @@
+"use client";
+
 import {type IStoreProps} from "@leight/store";
 import {createStore}      from "@leight/store-client";
 import {

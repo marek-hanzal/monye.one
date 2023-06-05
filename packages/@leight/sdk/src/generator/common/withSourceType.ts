@@ -119,7 +119,7 @@ export const withSourceType: IGenerator<IWithSourceTypeParams> = async (
             })
             .withTypes({
                 exports: {
-                    [`I${name}RepositoryService`]: `IRepositoryService<SourceSchema>`,
+                    [`I${name}RepositoryService`]: `IRepositoryService<SourceSchema["Service"]>`,
                 },
             })
             .saveTo({
@@ -130,7 +130,7 @@ export const withSourceType: IGenerator<IWithSourceTypeParams> = async (
         withSourceFile()
             .withImports({
                 imports: {
-                    "../../schema": [
+                    [`../../schema/${name}Source`]: [
                         `type ${name}Source`,
                     ],
                 },
@@ -148,7 +148,7 @@ export const withSourceType: IGenerator<IWithSourceTypeParams> = async (
         withSourceFile()
             .withImports({
                 imports: {
-                    "../../schema": [
+                    [`../../schema/${name}Source`]: [
                         `type ${name}Source`,
                     ],
                 },

@@ -6,10 +6,10 @@
 import {type IRepositoryService} from "@leight/source";
 import {type IUserSourceSchema as SourceSchema} from "../schema/IUserSourceSchema";
 
-export type IUserRepositoryService = IRepositoryService<SourceSchema>;
+export type IUserRepositoryService = IRepositoryService<SourceSchema["Service"]>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_fpu63836nxz76tn5x7g56k8y = true;
+export const $leight_pwfbq5i5z8jttstel6qr3tql = true;

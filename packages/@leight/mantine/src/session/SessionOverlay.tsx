@@ -1,3 +1,5 @@
+"use client";
+
 import {LoadingOverlay} from "@mantine/core";
 import {useSession}     from "next-auth/react";
 import {

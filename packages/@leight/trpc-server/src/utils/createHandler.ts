@@ -17,7 +17,10 @@ export const createHandler = <
         createContext,
         onError:
                   process.env.NODE_ENV === "development"
-                      ? ({path, error}) =>
+                      ? ({
+                             path,
+                             error
+                         }) =>
                           console.error(`❌ tRPC failed on ${path}: ${error}`)
                       : undefined,
         batching: {

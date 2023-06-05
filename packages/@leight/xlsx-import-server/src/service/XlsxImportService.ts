@@ -63,18 +63,25 @@ export class XlsxImportService extends AbstractImportService<IImportParamsSchema
             params,
             jobProgress,
         }: IJobService.IHandleProps<IImportParamsSchema>): Promise<IImportResult> {
-        const file                 = await this.fileService.fetch(params.fileId);
-        const workbook             = readFile(file.location, {
+        const file = await this.fileService.fetch(params.fileId);
+        const workbook = readFile(file.location, {
             type:      "binary",
             cellDates: true,
             cellNF:    false,
         });
-        const {tabs, translations} = await this.metaService.toMeta({workbook, file: file.location, name: file.name});
+        const {
+            tabs,
+            translations
+        } = await this.metaService.toMeta({
+            workbook,
+            file: file.location,
+            name: file.name
+        });
 
-        let total   = 0;
+        let total = 0;
         let success = 0;
         let failure = 0;
-        let skip    = 0;
+        let skip = 0;
         let runtime = 0;
 
         const handleWorksheet = async (workSheet: WorkSheet, service: string) => {
@@ -82,7 +89,7 @@ export class XlsxImportService extends AbstractImportService<IImportParamsSchema
                 defval: null,
             });
             try {
-                const handler   = this.importHandlerService.resolve(service);
+                const handler = this.importHandlerService.resolve(service);
                 const validator = handler.validator();
                 await handler.begin?.({});
                 const getElapsed = measureTime();
@@ -161,7 +168,10 @@ export class XlsxImportService extends AbstractImportService<IImportParamsSchema
 
             await jobProgress.setTotal(total);
 
-            for (const {services, tab} of tabs) {
+            for (const {
+                services,
+                tab
+            } of tabs) {
                 const workSheet = workbook.Sheets[tab];
                 if (!workSheet) {
                     continue;

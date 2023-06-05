@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {type IRepository} from "@leight/source";
-import {type FileSource} from "../../schema";
+import {type FileSource} from "../../schema/FileSource";
 
 export interface IFileRepository extends IRepository<FileSource["Schema"]["Repository"]> {
 }
@@ -13,4 +13,4 @@ export interface IFileRepository extends IRepository<FileSource["Schema"]["Repos
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_udksqy2wyzr93msqk3d8z641 = true;
+export const $leight_svstjy73tssw2fotdu18xiyt = true;

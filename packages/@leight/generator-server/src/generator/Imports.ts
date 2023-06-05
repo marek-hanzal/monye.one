@@ -8,7 +8,7 @@ export class Import implements IExportable {
     public readonly $import: Set<string>;
 
     constructor(file: string) {
-        this.file    = file;
+        this.file = file;
         this.$import = new Set();
     }
 
@@ -18,7 +18,7 @@ export class Import implements IExportable {
     }
 
     public export() {
-        const $join    = this.$import.size > 1 ? "\n\t" : "";
+        const $join = this.$import.size > 1 ? "\n\t" : "";
         const $newline = this.$import.size > 1 ? "\n" : "";
         return `import {${$join}${[...this.$import.values()].join(`,${$join}`)}${$newline}} from "${this.file}";`;
     }

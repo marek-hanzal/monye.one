@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type JobSource} from "../../schema";
+import {type JobSource} from "../../schema/JobSource";
 
 export type IJobSourceSchema = JobSource["Schema"];
 
@@ -11,4 +11,4 @@ export type IJobSourceSchema = JobSource["Schema"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_mucjlfkjl6jzoay4bfimo9kn = true;
+export const $leight_o1ufowlsabv28gb8knf0raz6 = true;

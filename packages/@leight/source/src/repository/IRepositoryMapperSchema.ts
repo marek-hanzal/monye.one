@@ -1,15 +1,15 @@
 import {z}                      from "@leight/utils";
+import {type IFilterSchema}     from "../schema/FilterSchema";
+import {type IParamsSchema}     from "../schema/ParamsSchema";
+import {type ISortSchema}       from "../schema/SortSchema";
 import {
     type ICreateSchema,
     type IDtoSchema,
     type IEntitySchema,
-    type IFilterSchema,
-    type IParamsSchema,
     type IPatchSchema,
-    type ISortSchema,
     type IToCreateSchema,
     type IToPatchSchema
-}                               from "../schema";
+}                               from "../schema/SourceSchema";
 import {type IRepositorySchema} from "./IRepositorySchema";
 
 export interface IRepositoryMapperSchema<

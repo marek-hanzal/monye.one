@@ -1,3 +1,5 @@
+"use client";
+
 import {useTranslation} from "@leight/i18n-client";
 import {
     Box,
@@ -14,29 +16,19 @@ import {
     type FC,
     type PropsWithChildren
 }                       from "react";
-import {
-    SessionOverlay,
-    useAuthenticatedSession
-}                       from "../session";
 
 export interface IPublicLayoutProps extends PropsWithChildren {
-    /**
-     * Where to redirect if user is already authenticated
-     */
-    redirect?: string;
     logo: ComponentProps<typeof Image>["src"];
 }
 
 export const PublicLayout: FC<IPublicLayoutProps> = (
     {
-        redirect,
         logo,
         children
     }) => {
     const t = useTranslation("public");
-    useAuthenticatedSession({redirect});
     return <>
-        <SessionOverlay/>
+        {/*<SessionOverlay/>*/}
         <Box>
             <Header height={72} px={"md"}>
                 <Group position={"apart"} sx={{height: "100%"}}>

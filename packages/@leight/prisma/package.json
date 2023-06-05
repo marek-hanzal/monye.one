@@ -18,10 +18,6 @@
         "src"
     ],
     "scripts": {
-        "setup": "npm run generate",
-        "dev": "turbowatch",
-        "generate": "concurrently npm:generate:*",
-        "generate:prisma": "prisma generate",
         "depcheck": "depcheck",
         "prisma:format": "prisma format",
         "lint": "eslint src",
@@ -36,15 +32,14 @@
         "@leight/esbuild": "^0.5.46",
         "@leight/eslint-config-eslint": "^0.5.55",
         "@leight/tsconfig": "^0.5.69",
-        "@leight/turbowatch": "^0.5.34",
+
         "@types/node": "^18.15.0",
         "concurrently": "^7.6.0",
         "del-cli": "^5.0.0",
         "depcheck": "^1.4.3",
         "eslint": "^8.36.0",
         "prisma": "^4.11.0",
-        "turbowatch": "^2.3.2",
-        "typescript": "^5.0.2",
+        "typescript": "^5.1.3",
         "zod-prisma-types": "^2.5.1"
     },
     "bugs": {

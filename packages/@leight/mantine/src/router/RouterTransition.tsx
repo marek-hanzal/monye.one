@@ -1,3 +1,5 @@
+"use client";
+
 import {
     completeNavigationProgress,
     NavigationProgress,
@@ -10,7 +12,7 @@ export function RouterTransition() {
     const router = useRouter();
 
     useEffect(() => {
-        const handleStart    = (url: string) =>
+        const handleStart = (url: string) =>
             url !== router.asPath && startNavigationProgress();
         const handleComplete = () => completeNavigationProgress();
 

@@ -1,3 +1,5 @@
+"use client";
+
 import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
 import {type IHrefProps}       from "@leight/utils";
@@ -21,7 +23,11 @@ export interface ITabLinkMenuProps {
     active?: string;
 }
 
-export const TabLinkMenu: FC<ITabLinkMenuProps> = ({active, items}) => {
+export const TabLinkMenu: FC<ITabLinkMenuProps> = (
+    {
+        active,
+        items
+    }) => {
     const router = useRouter();
     return (
         <Tabs
@@ -29,7 +35,11 @@ export const TabLinkMenu: FC<ITabLinkMenuProps> = ({active, items}) => {
             onTabChange={(href) => href && router.push(href)}
         >
             <Tabs.List>
-                {items.map(({icon, href, withTranslation}) => (
+                {items.map(({
+                                icon,
+                                href,
+                                withTranslation
+                            }) => (
                     <Tabs.Tab
                         key={href.href}
                         icon={<WithIcon icon={icon}/>}

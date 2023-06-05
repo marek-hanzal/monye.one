@@ -1,7 +1,7 @@
 import winston from "winston";
 
 const {transports} = winston;
-const {format}     = winston;
+const {format} = winston;
 
 export const createConsole = () =>
     new transports.Console({

@@ -6,12 +6,10 @@ import {
     $FileService,
     $FileServiceConfig
 }                                    from "@leight/file";
-import {FileRepository}              from "./repository";
+import {FileRepository}              from "./repository/FileRepository";
 import {withFileRepositoryContainer} from "./sdk";
-import {
-    ChunkService,
-    FileService
-}                                    from "./service";
+import {ChunkService}                from "./service/ChunkService";
+import {FileService}                 from "./service/FileService";
 
 /**
  * Register services of this package into a container and return typed

@@ -16,7 +16,10 @@ export class TabService implements ITabService {
         }
         return utils
             .sheet_to_json<IXlsxTab>(tabs)
-            .map<ITab>(({tab, services}) => ({
+            .map<ITab>(({
+                            tab,
+                            services
+                        }) => ({
                 tab,
                 services: services.split(/,\s+/g),
             }));

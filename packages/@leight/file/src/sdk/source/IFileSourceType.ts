@@ -3,7 +3,7 @@
     
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
-import {type FileSource} from "../../schema";
+import {type FileSource} from "../../schema/FileSource";
 
 export type IFileSourceType = FileSource["Type"];
 
@@ -11,4 +11,4 @@ export type IFileSourceType = FileSource["Type"];
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_azbap0lr97fazgafjfdt3w3g = true;
+export const $leight_g22pbd24vgbzktl5ijlz5ylx = true;

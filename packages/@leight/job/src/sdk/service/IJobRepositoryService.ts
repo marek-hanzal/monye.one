@@ -6,10 +6,10 @@
 import {type IRepositoryService} from "@leight/source";
 import {type IJobSourceSchema as SourceSchema} from "../schema/IJobSourceSchema";
 
-export type IJobRepositoryService = IRepositoryService<SourceSchema>;
+export type IJobRepositoryService = IRepositoryService<SourceSchema["Service"]>;
 
 /**
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_u2op3st24vc3w18q5zemq3d7 = true;
+export const $leight_zi9iuk9o5zh693xh8oefbri9 = true;

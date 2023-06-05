@@ -12,7 +12,6 @@ import {
     type PropsWithChildren
 }                               from "react";
 import {withEmotionCache}       from "../emotion";
-import {RouterTransition}       from "../router";
 
 type MantineProviderProps = ComponentProps<typeof MantineProvider>;
 
@@ -65,7 +64,7 @@ export const LayoutShell = (
                 withNormalizeCSS
                 emotionCache={emotionCache}
             >
-                <RouterTransition/>
+                {/*<RouterTransition/>*/}
                 <Notifications position={"top-right"}/>
                 <ModalsProvider>
                     <DateTimeProvider

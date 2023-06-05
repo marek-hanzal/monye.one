@@ -4,7 +4,7 @@
     So, please, DO NOT modify this file as it would get re-generated and you would be f*cked up.
  */
 import {type IRepository} from "@leight/source";
-import {type UserSource} from "../../schema";
+import {type UserSource} from "../../schema/UserSource";
 
 export interface IUserRepository extends IRepository<UserSource["Schema"]["Repository"]> {
 }
@@ -13,4 +13,4 @@ export interface IUserRepository extends IRepository<UserSource["Schema"]["Repos
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_wpcfb5hpm6sf8fsquefxy2l2 = true;
+export const $leight_ntqw9tjc607xir5gix9jlpqm = true;

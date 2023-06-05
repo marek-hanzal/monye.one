@@ -1,7 +1,7 @@
 import {type IContainer}         from "@leight/container";
 import {type ILogger}            from "@leight/logger";
 import {z}                       from "@leight/utils";
-import {type IJobParamsSchema}   from "../schema";
+import {type IJobParamsSchema}   from "../schema/JobSchema";
 import {type IJobParamValidator} from "./IJobParamValidator";
 import {type IJobProgress}       from "./IJobProgress";
 import {type IJobWithParams}     from "./IJobWithParams";

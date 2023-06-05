@@ -1,3 +1,5 @@
+"use client";
+
 import {type IWithTranslation} from "@leight/i18n";
 import {Translation}           from "@leight/i18n-client";
 import {minMaxOf}              from "@leight/utils";
@@ -23,7 +25,10 @@ export const switchScheme = <T, >(
  */
 export const withPrimaryColor = (theme: MantineTheme, offset = 0): string => {
     return theme.colors[theme.primaryColor]?.[
-        minMaxOf({value: theme.primaryShade as number + offset, max: 9})
+        minMaxOf({
+            value: theme.primaryShade as number + offset,
+            max:   9
+        })
         ] as string;
 };
 
@@ -33,7 +38,10 @@ export const withPrimaryColor = (theme: MantineTheme, offset = 0): string => {
  */
 export const withSecondaryPrimaryColor = (theme: MantineTheme, offset = 0): string => {
     return theme.colors[theme.primaryColor]?.[
-        minMaxOf({value: theme.primaryShade as number + offset, max: 9}) >= 5 ?
+        minMaxOf({
+            value: theme.primaryShade as number + offset,
+            max:   9
+        }) >= 5 ?
             0 :
             9
         ] as string;

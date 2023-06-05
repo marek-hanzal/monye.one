@@ -11,4 +11,4 @@ export type IUseJobInvalidator = ISource.IUseInvalidator;
  * Default export marking a file it's generated and also preventing failing
  * an empty file export (every module "must" have an export).
  */
-export const $leight_okpmtdhqnrvtacyk8qtshmzy = true;
+export const $leight_s69fklt90ji53ke80yo4yj9b = true;

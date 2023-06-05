@@ -9,8 +9,8 @@ export class Const implements IExportable {
     public readonly isExported: boolean;
 
     constructor(name: string, code: IConst, isExported: boolean) {
-        this.name       = name;
-        this.code       = code;
+        this.name = name;
+        this.code = code;
         this.isExported = isExported;
     }
 

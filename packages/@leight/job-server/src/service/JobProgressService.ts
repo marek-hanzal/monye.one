@@ -1,4 +1,10 @@
-import {$JobRepository, type IJobProgress, type IJobProgressService, type IJobRepository, type IJobStatus} from "@leight/job";
+import {
+    $JobRepository,
+    type IJobProgress,
+    type IJobProgressService,
+    type IJobRepository,
+    type IJobStatus
+}                  from "@leight/job";
 import {toPercent} from "@leight/utils";
 
 export class JobProgressService implements IJobProgressService {
@@ -21,12 +27,12 @@ export class JobProgressService implements IJobProgressService {
 
         return {
             jobId,
-            result: () => $result,
-            success: () => $success,
-            failure: () => $failure,
-            skip: () => $skip,
-            setTotal: total => this.jobRepository.patch({
-                patch: {
+            result:    () => $result,
+            success:   () => $success,
+            failure:   () => $failure,
+            skip:      () => $skip,
+            setTotal:  total => this.jobRepository.patch({
+                patch:  {
                     total: ($total = total),
                 },
                 filter: {
@@ -34,44 +40,44 @@ export class JobProgressService implements IJobProgressService {
                 }
             }),
             setStatus: status => this.jobRepository.patch({
-                patch: {
+                patch:  {
                     status,
-                    started: ["RUNNING"].includes(status) ? new Date() : undefined,
+                    started:  ["RUNNING"].includes(status) ? new Date() : undefined,
                     finished: [
-                        "REVIEW",
-                        "SUCCESS",
-                        "FAILURE"
-                    ].includes(status) ? new Date() : (["RUNNING"].includes(status) ? null : undefined),
+                                  "REVIEW",
+                                  "SUCCESS",
+                                  "FAILURE"
+                              ].includes(status) ? new Date() : (["RUNNING"].includes(status) ? null : undefined),
                 },
                 filter: {
                     id: jobId,
                 },
             }),
             onSuccess: () => this.jobRepository.patch({
-                patch: {
-                    success: ++$success,
+                patch:  {
+                    success:      ++$success,
                     successRatio: toPercent($success, $total),
-                    progress: toPercent(++$processed, $total),
+                    progress:     toPercent(++$processed, $total),
                 },
                 filter: {
                     id: jobId,
                 },
             }),
             onFailure: () => this.jobRepository.patch({
-                patch: {
-                    failure: ++$failure,
+                patch:  {
+                    failure:      ++$failure,
                     failureRatio: toPercent($failure, $total),
-                    progress: toPercent(++$processed, $total),
+                    progress:     toPercent(++$processed, $total),
                 },
                 filter: {
                     id: jobId,
                 },
             }),
-            onSkip: () => this.jobRepository.patch({
-                patch: {
-                    skip: ++$skip,
+            onSkip:    () => this.jobRepository.patch({
+                patch:  {
+                    skip:      ++$skip,
                     skipRatio: toPercent($skip, $total),
-                    progress: toPercent(++$processed, $total),
+                    progress:  toPercent(++$processed, $total),
                 },
                 filter: {
                     id: jobId,
@@ -80,7 +86,7 @@ export class JobProgressService implements IJobProgressService {
             setResult: result => {
                 $result = result;
             },
-            isReview: () => $failure > 0 || $skip > 0,
+            isReview:  () => $failure > 0 || $skip > 0,
         };
     }
 }

@@ -10,13 +10,13 @@ export class Interface implements IExportable {
     public readonly isExported: boolean;
 
     constructor(name: string, code: IInterface, isExported: boolean) {
-        this.name       = name;
-        this.code       = code;
+        this.name = name;
+        this.code = code;
         this.isExported = isExported;
     }
 
     public export() {
-        const body     = this.code.body?.trim() || "";
+        const body = this.code.body?.trim() || "";
         const $extends = this.code.extends?.map($extends => withPackageType($extends).trim()).join(", ");
 
         return `

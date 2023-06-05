@@ -112,6 +112,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/react-query/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/server-server/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@leight/server/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/@leight/auth-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/@monye.one/transaction-ex-client/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.docker" />
       <excludeFolder url="file://$MODULE_DIR$/.github" />
@@ -326,6 +327,7 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/server-server/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/server/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/@leight/server/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/@leight/auth-client/.turbo" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

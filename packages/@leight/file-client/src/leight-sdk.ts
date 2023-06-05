@@ -4,7 +4,7 @@ void generatorClient({
     withSelection: {
         selections: [
             {
-                name: "File",
+                name:     "File",
                 packages: {
                     schema: "@leight/file",
                 },

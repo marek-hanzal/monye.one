@@ -1,9 +1,7 @@
-import {type IStoreProps} from "@leight/store";
-import {type ISortOrder}  from "../schema";
-import {
-    type ISourceSchema,
-    type SourceType
-}                         from "../source";
+import {type IStoreProps}   from "@leight/store";
+import {type ISortOrder}    from "../schema/SortSchema";
+import {type ISourceSchema} from "../source/ISourceSchema";
+import {type SourceType}    from "../source/SourceType";
 
 export type IQueryStoreProps<
     TSourceSchema extends ISourceSchema,

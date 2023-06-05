@@ -1,6 +1,6 @@
 import {type IContainer}       from "@leight/container";
 import {z}                     from "@leight/utils";
-import {type IJobParamsSchema} from "../schema";
+import {type IJobParamsSchema} from "../schema/JobSchema";
 import {type IJobWithParams}   from "./IJobWithParams";
 
 export interface IJobExecutor {
@@ -14,6 +14,4 @@ export namespace IJobExecutor {
     }
 }
 
-export const $JobExecutor = Symbol.for(
-    "@leight/job/IJobExecutor"
-);
+export const $JobExecutor = Symbol.for("@leight/job/IJobExecutor");

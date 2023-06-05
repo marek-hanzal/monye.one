@@ -7,7 +7,6 @@ import {
     FilterSchema,
     PatchSchema,
     SortOrderSchema,
-    type Source,
     withSourceSchema
 }          from "@leight/source";
 import {z} from "@leight/utils";
@@ -30,4 +29,3 @@ export const FileSourceSchema = withSourceSchema({
         id: SortOrderSchema
     }),
 });
-export type FileSource = Source<typeof FileSourceSchema>;
